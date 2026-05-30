@@ -1,0 +1,78 @@
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --orange: #FF7033;
+  --orange2: #E85F1F;
+  --peach: #FFB899;
+  --peach-light: #FFF0E8;
+  --peach-mid: #FFD4BC;
+  --charcoal: #353434;
+  --charcoal2: #4A4848;
+  --charcoal3: #6B6969;
+  --gray: #F1F1F1;
+  --gray2: #E8E8E8;
+  --gray3: #D4D4D4;
+  --white: #FFFFFF;
+  --text: #353434;
+  --text2: #6B6969;
+  --text3: #9A9898;
+  --line: #E8E8E8;
+  --line2: #D4D4D4;
+  --success: #2D7A3A;
+  --success-bg: #EBF5EE;
+  --r: 8px;
+  --r2: 16px;
+  --r3: 24px;
+  --shadow: 0 2px 12px rgba(53,52,52,.08);
+  --shadow2: 0 8px 32px rgba(53,52,52,.14);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--gray);
+  color: var(--text);
+  font-size: 15px;
+  line-height: 1.65;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Dropdown animation */
+.dropdown-menu {
+  animation: dropDown 0.15s ease-out;
+}
+
+@keyframes dropDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+/* Modal overlay */
+.modal-overlay {
+  animation: fadeIn 0.15s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+.modal-box {
+  animation: slideUp 0.2s ease-out;
+}
+
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
