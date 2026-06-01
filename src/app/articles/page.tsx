@@ -2,39 +2,52 @@
 
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import Link from 'next/link'
 
-const articles = [
+// ✅ Опублікована стаття
+const published = [
   {
-    tag: 'Getting Started',
-    title: 'How to register your Gewerbe in Austria as a foreigner',
-    desc: 'A complete step-by-step guide to Gewerbeanmeldung — what documents you need, how much it costs and how long it takes.',
-    date: 'Jan 2025',
-    readTime: '7 min read',
+    tag: 'Реєстрація бізнесу',
+    title: 'Gewerbeanmeldung в Австрії: покрокова реєстрація самозайнятості',
+    desc: 'Повний гайд для іноземців — які документи потрібні, скільки коштує, куди йти і як не переплатити юристу €300.',
+    date: 'Червень 2025',
+    readTime: '15 хв читання',
     href: '/articles/gewerbeanmeldung',
+    published: true,
+  },
+]
+
+// 🔜 Статті що готуються
+const upcoming = [
+  {
+    tag: 'Austria ID',
+    title: 'Як оформити Austria ID: покроковий гайд',
+    desc: 'Цифровий підпис для входу в GISA, FinanzOnline та SVS. Що робити якщо онлайн не виходить.',
+    href: '/articles/austria-id',
   },
   {
-    tag: 'Taxes',
-    title: 'Understanding USt (VAT) for small businesses in Austria',
-    desc: 'When do you need to charge VAT? What is the Kleinunternehmerregelung? All your USt questions answered simply.',
-    date: 'Feb 2025',
-    readTime: '5 min read',
-    href: '/articles/ust-vat',
-  },
-  {
-    tag: 'Invoicing',
-    title: 'What must be on an Austrian invoice? The complete checklist',
-    desc: 'Missing one field can invalidate your invoice. Here is exactly what Austrian law requires you to include.',
-    date: 'Mar 2025',
-    readTime: '4 min read',
-    href: '/articles/invoice-checklist',
+    tag: 'GISA',
+    title: 'Як заповнити формуляр GISA',
+    desc: 'Покроковий гайд з поясненнями — що вказати в кожному полі щоб реєстрація пройшла без помилок.',
+    href: '/articles/gisa-formular',
   },
   {
     tag: 'SVS',
-    title: 'SVS contributions explained: how much will you actually pay?',
-    desc: 'SVS is one of the biggest costs for solo entrepreneurs in Austria. Here is how it is calculated and when you pay.',
-    date: 'Apr 2025',
-    readTime: '6 min read',
-    href: '/articles/svs-contributions',
+    title: 'Як заповнити формуляр SVS',
+    desc: 'Соціальне страхування самозайнятих — що вказати, щоб не переплатити і підключити сім\'ю.',
+    href: '/articles/svs-formular',
+  },
+  {
+    tag: 'FinanzOnline',
+    title: 'Як заповнити формуляр FinanzOnline',
+    desc: 'Реєстрація в податковій онлайн — покроково, що вказати і як не помилитись з КВЕДом.',
+    href: '/articles/finanz-online',
+  },
+  {
+    tag: 'MVK',
+    title: 'Як обрати пенсійний фонд MVK',
+    desc: 'Що таке Mitarbeitervorsorgekasse, навіщо потрібен і як не пропустити дедлайн 6 місяців.',
+    href: '/articles/mvk-pension',
   },
 ]
 
@@ -43,56 +56,114 @@ export default function ArticlesPage() {
     <div style={{ minHeight: '100vh', background: 'var(--gray)' }}>
       <Navbar />
 
-      <section className="max-w-5xl mx-auto px-4 sm:px-6 py-16">
-        <div className="mb-10">
-          <div
-            className="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-widest mb-3 px-3 py-1 rounded"
-            style={{ background: 'var(--peach-light)', color: 'var(--orange)' }}
-          >
-            Articles
+      <section style={{ maxWidth: 960, margin: '0 auto', padding: '64px 16px 80px' }}>
+
+        {/* Header */}
+        <div style={{ marginBottom: 48 }}>
+          <div style={{
+            display: 'inline-block', fontSize: 11, fontWeight: 700,
+            letterSpacing: '0.1em', textTransform: 'uppercase',
+            padding: '4px 12px', borderRadius: 6, marginBottom: 12,
+            background: 'var(--peach-light)', color: 'var(--orange)',
+          }}>
+            Статті
           </div>
-          <h1
-            className="text-4xl"
-            style={{ fontFamily: 'DM Serif Display, serif', color: 'var(--charcoal)' }}
-          >
-            Guides & <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>resources</em>
+          <h1 style={{
+            fontFamily: 'DM Serif Display, serif',
+            fontSize: 'clamp(28px,5vw,40px)',
+            color: 'var(--charcoal)', marginBottom: 10,
+          }}>
+            Гайди та <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>ресурси</em>
           </h1>
-          <p className="text-sm mt-2" style={{ color: 'var(--text2)' }}>
-            Practical knowledge for foreigners running a business in Austria.
+          <p style={{ fontSize: 15, color: 'var(--text2)', maxWidth: 520 }}>
+            Практичні знання для іноземців, які ведуть або відкривають бізнес в Австрії.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
-          {articles.map(art => (
-            <a
-              key={art.href}
-              href={art.href}
-              className="block bg-white rounded-qmd p-6 border group transition-shadow hover:shadow-md"
-              style={{ border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}
-            >
-              <div
-                className="inline-block text-xs font-bold px-2.5 py-1 rounded mb-3"
-                style={{ background: 'var(--peach-light)', color: 'var(--orange)' }}
-              >
-                {art.tag}
-              </div>
-              <h2
-                className="text-base font-semibold mb-2 group-hover:text-orange transition-colors"
-                style={{ color: 'var(--charcoal)', lineHeight: 1.4 }}
-              >
-                {art.title}
-              </h2>
-              <p className="text-sm mb-4 leading-relaxed" style={{ color: 'var(--text2)' }}>
-                {art.desc}
-              </p>
-              <div className="flex items-center gap-3 text-xs" style={{ color: 'var(--text3)' }}>
-                <span>{art.date}</span>
-                <span>·</span>
-                <span>{art.readTime}</span>
-              </div>
-            </a>
-          ))}
+        {/* Published articles */}
+        <div style={{ marginBottom: 56 }}>
+          <h2 style={{
+            fontSize: 13, fontWeight: 700, letterSpacing: '0.08em',
+            textTransform: 'uppercase', color: 'var(--text3)', marginBottom: 20,
+          }}>
+            Опубліковано
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 20 }}>
+            {published.map(art => (
+              <Link key={art.href} href={art.href} style={{
+                display: 'block', background: '#fff', borderRadius: 16,
+                padding: 24, border: '1px solid var(--line)',
+                boxShadow: 'var(--shadow)', textDecoration: 'none',
+              }}>
+                <div style={{
+                  display: 'inline-block', fontSize: 11, fontWeight: 700,
+                  padding: '3px 10px', borderRadius: 5, marginBottom: 12,
+                  background: 'var(--peach-light)', color: 'var(--orange)',
+                }}>
+                  {art.tag}
+                </div>
+                <h3 style={{
+                  fontSize: 15, fontWeight: 600, color: 'var(--charcoal)',
+                  marginBottom: 8, lineHeight: 1.4,
+                }}>
+                  {art.title}
+                </h3>
+                <p style={{ fontSize: 13, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 16 }}>
+                  {art.desc}
+                </p>
+                <div style={{ fontSize: 12, color: 'var(--text3)' }}>
+                  {art.date} · {art.readTime}
+                </div>
+              </Link>
+            ))}
+          </div>
         </div>
+
+        {/* Upcoming articles */}
+        <div>
+          <h2 style={{
+            fontSize: 13, fontWeight: 700, letterSpacing: '0.08em',
+            textTransform: 'uppercase', color: 'var(--text3)', marginBottom: 20,
+          }}>
+            Незабаром
+          </h2>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 16 }}>
+            {upcoming.map(art => (
+              <Link key={art.href} href={art.href} style={{
+                display: 'block', background: '#fff', borderRadius: 14,
+                padding: 20, border: '1px solid var(--line)',
+                textDecoration: 'none', opacity: 0.75,
+              }}>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
+                  <div style={{
+                    display: 'inline-block', fontSize: 11, fontWeight: 700,
+                    padding: '3px 10px', borderRadius: 5,
+                    background: 'var(--gray)', color: 'var(--text3)',
+                  }}>
+                    {art.tag}
+                  </div>
+                  <div style={{
+                    fontSize: 10, fontWeight: 700, letterSpacing: '0.06em',
+                    textTransform: 'uppercase', color: 'var(--orange)',
+                    background: 'var(--peach-light)', padding: '3px 8px', borderRadius: 4,
+                  }}>
+                    Скоро
+                  </div>
+                </div>
+                <h3 style={{
+                  fontSize: 14, fontWeight: 600, color: 'var(--charcoal)',
+                  marginBottom: 6, lineHeight: 1.4,
+                }}>
+                  {art.title}
+                </h3>
+                <p style={{ fontSize: 13, color: 'var(--text2)', lineHeight: 1.5 }}>
+                  {art.desc}
+                </p>
+              </Link>
+            ))}
+          </div>
+        </div>
+
       </section>
 
       <Footer />
