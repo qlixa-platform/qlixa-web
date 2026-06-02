@@ -4,7 +4,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 
-// ✅ Опублікована стаття
+// ✅ Опубліковані статті
 const published = [
   {
     tag: 'Реєстрація бізнесу',
@@ -13,18 +13,21 @@ const published = [
     date: 'Червень 2025',
     readTime: '15 хв читання',
     href: '/articles/gewerbeanmeldung',
-    published: true,
+    cover: '/articles/gewerbeanmeldung-cover.jpg',
+  },
+  {
+    tag: 'Австрія · Документи',
+    title: 'Як оформити Austria ID: покроковий гайд для іноземців',
+    desc: 'Austria ID — обов\'язковий перший крок для реєстрації бізнесу, роботи з FinanzOnline та SVS. 5 кроків.',
+    date: 'Червень 2025',
+    readTime: '8 хв читання',
+    href: '/articles/austria-id',
+    cover: '/articles/austria-id-cover.jpg',
   },
 ]
 
 // 🔜 Статті що готуються
 const upcoming = [
-  {
-    tag: 'Austria ID',
-    title: 'Як оформити Austria ID: покроковий гайд',
-    desc: 'Цифровий підпис для входу в GISA, FinanzOnline та SVS. Що робити якщо онлайн не виходить.',
-    href: '/articles/austria-id',
-  },
   {
     tag: 'GISA',
     title: 'Як заповнити формуляр GISA',
@@ -88,31 +91,24 @@ export default function ArticlesPage() {
           }}>
             Опубліковано
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 20 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 24, alignItems: 'start' }}>
             {published.map(art => (
-              <Link key={art.href} href={art.href} style={{
-                display: 'block', background: '#fff', borderRadius: 16,
-                padding: 24, border: '1px solid var(--line)',
-                boxShadow: 'var(--shadow)', textDecoration: 'none',
-              }}>
-                <div style={{
-                  display: 'inline-block', fontSize: 11, fontWeight: 700,
-                  padding: '3px 10px', borderRadius: 5, marginBottom: 12,
-                  background: 'var(--peach-light)', color: 'var(--orange)',
-                }}>
-                  {art.tag}
+              <Link key={art.href} href={art.href} style={{ display: 'block', textDecoration: 'none', position: 'relative' }}>
+                {/* Photo */}
+                <div style={{ position: 'relative', width: '100%', height: 200, borderRadius: 16, overflow: 'hidden', zIndex: 1 }}>
+                  <img src={art.cover} alt={art.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%', display: 'block' }} />
+                  <div style={{ position: 'absolute', top: 14, left: 14, background: 'var(--orange)', color: '#fff', fontSize: 10, fontWeight: 700, letterSpacing: '0.5px', padding: '4px 10px', borderRadius: 4, zIndex: 2 }}>
+                    {art.tag}
+                  </div>
                 </div>
-                <h3 style={{
-                  fontSize: 15, fontWeight: 600, color: 'var(--charcoal)',
-                  marginBottom: 8, lineHeight: 1.4,
-                }}>
-                  {art.title}
-                </h3>
-                <p style={{ fontSize: 13, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 16 }}>
-                  {art.desc}
-                </p>
-                <div style={{ fontSize: 12, color: 'var(--text3)' }}>
-                  {art.date} · {art.readTime}
+                {/* White card overlapping */}
+                <div style={{ position: 'relative', zIndex: 2, background: '#fff', borderRadius: 16, padding: '22px 20px 20px', marginTop: -24, border: '1px solid var(--line)', boxShadow: '0 4px 20px rgba(53,52,52,0.08)' }}>
+                  <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 8 }}>{art.title}</div>
+                  <div style={{ fontSize: 13, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 14 }}>{art.desc}</div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                    <span style={{ fontSize: 11, color: 'var(--text3)' }}>{art.date} · {art.readTime}</span>
+                    <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)' }}>Читати →</span>
+                  </div>
                 </div>
               </Link>
             ))}
