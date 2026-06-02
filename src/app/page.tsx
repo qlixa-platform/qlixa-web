@@ -15,10 +15,18 @@ const published = [
     href: '/articles/gewerbeanmeldung',
     cover: '/articles/gewerbeanmeldung-cover.jpg',
   },
+  {
+    tag: 'Австрія · Документи',
+    title: 'Як оформити Austria ID: покроковий гайд для іноземців',
+    desc: 'Austria ID — обов\'язковий перший крок для реєстрації бізнесу, роботи з FinanzOnline та SVS. Розповідаємо як оформити за 5 кроків.',
+    date: 'Червень 2025',
+    readTime: '8 хв читання',
+    href: '/articles/austria-id',
+    cover: '/articles/austria-id-cover.jpg',
+  },
 ]
 
 const upcoming = [
-  { tag: 'Austria ID', title: 'Як оформити Austria ID: покроковий гайд', desc: 'Цифровий підпис для входу в GISA, FinanzOnline та SVS.', href: '/articles/austria-id' },
   { tag: 'GISA', title: 'Як заповнити формуляр GISA', desc: 'Покроковий гайд з поясненнями кожного поля.', href: '/articles/gisa-formular' },
   { tag: 'SVS', title: 'Як заповнити формуляр SVS', desc: 'Соціальне страхування — що вказати щоб не переплатити.', href: '/articles/svs-formular' },
   { tag: 'FinanzOnline', title: 'Як заповнити формуляр FinanzOnline', desc: 'Реєстрація в податковій онлайн — покроково.', href: '/articles/finanz-online' },

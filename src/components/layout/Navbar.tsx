@@ -8,7 +8,7 @@ const navItems = [
   {
     label: 'Платформа',
     items: [
-      { label: 'Огляд', href: '/platform', desc: 'Що вміє QLIXA' },
+      { label: 'Огляд', href: '/platform/overview', desc: 'Що вміє QLIXA' },
       { label: 'Рахунки-фактури', href: '/platform/invoicing', desc: 'Виставляй рахунки швидко' },
       { label: 'Витрати', href: '/platform/expenses', desc: 'Відстежуй всі витрати' },
       { label: 'Звіти', href: '/platform/reports', desc: 'Звітність одним кліком' },
