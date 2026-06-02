@@ -197,34 +197,48 @@ export default function GewerbeanmeldungPage() {
     <div style={{ minHeight: '100vh', background: 'var(--gray)' }}>
       <Navbar />
 
-      {/* Hero */}
-      <div style={{ background: 'var(--charcoal)', padding: '56px 16px 44px' }}>
-        <div style={{ maxWidth: 760, margin: '0 auto' }}>
-          <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap', marginBottom: 20 }}>
+      {/* Hero — photo with text overlay */}
+      <div style={{ position: 'relative', height: 340, overflow: 'hidden' }}>
+        <Image
+          src="/articles/gewerbeanmeldung-cover.jpg"
+          alt="Gewerbeanmeldung в Австрії"
+          fill
+          style={{ objectFit: 'cover', objectPosition: 'center 35%' }}
+          priority
+        />
+        {/* Gradient overlay */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.78) 100%)',
+        }} />
+        {/* Text on top */}
+        <div style={{
+          position: 'absolute', bottom: 0, left: 0, right: 0,
+          padding: '28px clamp(16px,4vw,40px)',
+          maxWidth: 820, margin: '0 auto',
+        }}>
+          <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
             <span style={{
               background: 'var(--orange)', color: '#fff',
-              fontSize: 11, fontWeight: 700, padding: '4px 12px', borderRadius: 999,
+              fontSize: 10, fontWeight: 700, letterSpacing: '0.5px',
+              padding: '4px 11px', borderRadius: 4,
             }}>Реєстрація бізнесу</span>
             <span style={{
-              background: 'rgba(255,255,255,0.1)', color: 'rgba(255,255,255,0.6)',
-              fontSize: 11, fontWeight: 600, padding: '4px 12px', borderRadius: 999,
+              background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.8)',
+              fontSize: 10, fontWeight: 600, padding: '4px 11px', borderRadius: 4,
             }}>9 кроків · Повний гайд</span>
           </div>
           <h1 style={{
             fontFamily: 'DM Serif Display, serif',
-            fontSize: 'clamp(26px,4.5vw,40px)',
-            color: '#fff', lineHeight: 1.2, marginBottom: 16,
+            fontSize: 'clamp(22px,3.5vw,32px)',
+            color: '#fff', lineHeight: 1.2, marginBottom: 12, fontWeight: 400,
           }}>
             Gewerbeanmeldung в Австрії:<br />
-            <em style={{ color: 'var(--orange)', fontStyle: 'italic' }}>покрокова реєстрація самозайнятості</em>
+            <em style={{ color: '#FFB899', fontStyle: 'italic' }}>покрокова реєстрація самозайнятості</em>
           </h1>
-          <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 14, lineHeight: 1.7, maxWidth: 580, marginBottom: 22 }}>
-            Іноземці в Австрії платять юристам €300–500 за типові питання. Ми зібрали всю інформацію
-            безкоштовно — щоб ти міг зробити все сам, крок за кроком.
-          </p>
-          <div style={{ display: 'flex', gap: 20, flexWrap: 'wrap' }}>
+          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
             {[{ icon: '🕐', text: '15 хв читання' }, { icon: '🆓', text: 'Freies Gewerbe — 0 €' }, { icon: '🇺🇦', text: 'Для іноземців' }].map(m => (
-              <span key={m.text} style={{ display: 'flex', alignItems: 'center', gap: 7, color: 'rgba(255,255,255,0.4)', fontSize: 12 }}>
+              <span key={m.text} style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'rgba(255,255,255,0.65)', fontSize: 12 }}>
                 {m.icon} {m.text}
               </span>
             ))}
