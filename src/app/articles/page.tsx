@@ -24,6 +24,15 @@ const published = [
     href: '/articles/austria-id',
     cover: '/articles/austria-id-cover.jpg',
   },
+  {
+    tag: 'Сім\'я · Пільги',
+    title: 'Інвалідність дитини в Австрії: виплати, пільги та з чого почати',
+    desc: 'Behindertenpass, підвищена Familienbeihilfe, Pflegegeld та податкові пільги — покроковий гайд для батьків.',
+    date: 'Червень 2025',
+    readTime: '10 хв читання',
+    href: '/articles/invalidity-child',
+    cover: '/articles/invalidity-cover.jpg',
+  },
 ]
 
 // 🔜 Статті що готуються
@@ -91,21 +100,25 @@ export default function ArticlesPage() {
           }}>
             Опубліковано
           </h2>
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 24, alignItems: 'start' }}>
+          <style>{`
+            .card-img { transition: transform 0.4s cubic-bezier(.25,.46,.45,.94); }
+            .card-link:hover .card-img { transform: scale(1.07); }
+            .card-body-inner { transition: box-shadow 0.3s ease; }
+            .card-link:hover .card-body-inner { box-shadow: 0 8px 32px rgba(53,52,52,0.13) !important; }
+          `}</style>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(260px,1fr))', gap: 24, alignItems: 'start' }}>
             {published.map(art => (
-              <Link key={art.href} href={art.href} style={{ display: 'block', textDecoration: 'none', position: 'relative' }}>
-                {/* Photo */}
-                <div style={{ position: 'relative', width: '100%', height: 200, borderRadius: 16, overflow: 'hidden', zIndex: 1 }}>
-                  <img src={art.cover} alt={art.title} style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%', display: 'block' }} />
-                  <div style={{ position: 'absolute', top: 14, left: 14, background: 'var(--orange)', color: '#fff', fontSize: 10, fontWeight: 700, letterSpacing: '0.5px', padding: '4px 10px', borderRadius: 4, zIndex: 2 }}>
+              <Link key={art.href} href={art.href} className="card-link" style={{ display: 'block', textDecoration: 'none', position: 'relative' }}>
+                <div style={{ position: 'relative', width: '100%', height: 190, borderRadius: 14, overflow: 'hidden', zIndex: 1 }}>
+                  <img src={art.cover} alt={art.title} className="card-img" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%', display: 'block' }} />
+                  <div style={{ position: 'absolute', top: 12, left: 12, background: 'var(--orange)', color: '#fff', fontSize: 10, fontWeight: 700, letterSpacing: '0.5px', padding: '4px 10px', borderRadius: 4, zIndex: 2 }}>
                     {art.tag}
                   </div>
                 </div>
-                {/* White card overlapping */}
-                <div style={{ position: 'relative', zIndex: 2, background: '#fff', borderRadius: 16, padding: '22px 20px 20px', marginTop: -24, border: '1px solid var(--line)', boxShadow: '0 4px 20px rgba(53,52,52,0.08)' }}>
-                  <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 8 }}>{art.title}</div>
-                  <div style={{ fontSize: 13, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 14 }}>{art.desc}</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+                <div className="card-body-inner" style={{ position: 'relative', zIndex: 2, background: '#fff', borderRadius: 14, padding: '20px 18px 18px', marginTop: -22, border: '1px solid var(--line)', boxShadow: '0 4px 16px rgba(53,52,52,0.07)', display: 'flex', flexDirection: 'column' }}>
+                  <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 7, flex: 1 }}>{art.title}</div>
+                  <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 12 }}>{art.desc}</div>
+                  <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
                     <span style={{ fontSize: 11, color: 'var(--text3)' }}>{art.date} · {art.readTime}</span>
                     <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)' }}>Читати →</span>
                   </div>

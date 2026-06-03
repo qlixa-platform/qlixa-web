@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Image from 'next/image'
 import Link from 'next/link'
+import { ArticleSidebar, ArticlePrevNext } from '@/components/layout/ArticleNav'
 
 function NoteBox({ type, children }: { type: 'warning' | 'info' | 'tip'; children: React.ReactNode }) {
   const s = {
@@ -165,8 +166,14 @@ export default function AustriaIdPage() {
         </div>
       </div>
 
-      {/* Article body */}
-      <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 16px 80px' }}>
+      {/* Article body + sidebar */}
+      <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 16px 80px', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
+
+        {/* Sidebar */}
+        <ArticleSidebar currentSlug="austria-id" />
+
+        {/* Main content */}
+        <div style={{ flex: 1, minWidth: 0 }}>
 
         {/* Back link */}
         <Link href="/articles" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text3)', textDecoration: 'none', marginBottom: 32 }}>
@@ -308,7 +315,11 @@ export default function AustriaIdPage() {
           Цей матеріал має інформаційний характер і ґрунтується на особистому досвіді команди QLIXA. Актуальність інформації рекомендуємо перевіряти на офіційних державних сайтах.
         </div>
 
-      </div>
+        {/* Prev / Next navigation */}
+        <ArticlePrevNext currentSlug="austria-id" />
+
+        </div>{/* end main content */}
+      </div>{/* end flex wrapper */}
       <Footer />
     </div>
   )

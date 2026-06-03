@@ -4,6 +4,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Image from 'next/image'
 import Link from 'next/link'
+import { ArticleSidebar, ArticlePrevNext } from '@/components/layout/ArticleNav'
 
 function StepBadge({ n }: { n: number }) {
   return (
@@ -107,16 +108,17 @@ function CostTable() {
 function QlixaPromo() {
   return (
     <div style={{
-      background: 'var(--charcoal)', borderRadius: 20, padding: '40px 28px',
+      background: 'var(--peach-light)', borderRadius: 20, padding: '40px 28px',
       margin: '48px 0', textAlign: 'center', position: 'relative', overflow: 'hidden',
+      border: '1px solid var(--orange-mid)',
     }}>
       <div style={{
         position: 'absolute', width: 180, height: 180, borderRadius: '50%',
-        background: 'var(--orange)', opacity: 0.07, top: -40, right: -40,
+        background: 'var(--orange)', opacity: 0.08, top: -40, right: -40,
       }} />
       <div style={{
         position: 'absolute', width: 180, height: 180, borderRadius: '50%',
-        background: 'var(--orange)', opacity: 0.07, bottom: -60, left: -40,
+        background: 'var(--orange)', opacity: 0.08, bottom: -60, left: -40,
       }} />
       <div style={{ position: 'relative', zIndex: 1 }}>
         <Image src="/logos/logo-mascot.svg" alt="QLIXA" width={72} height={72}
@@ -128,13 +130,15 @@ function QlixaPromo() {
           Reports in one click
         </div>
         <h3 style={{
-          fontFamily: 'DM Serif Display, serif', fontSize: 26, color: '#fff',
+          fontFamily: 'DM Serif Display, serif', fontSize: 28, color: 'var(--charcoal)',
           marginBottom: 14, lineHeight: 1.3,
         }}>
           Тримай фінанси під контролем <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>легко</em>
         </h3>
-        <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 14, maxWidth: 460, margin: '0 auto 24px', lineHeight: 1.75 }}>
-          Автоматичний розрахунок SVS, USt, ESt. Рахунки за кілька секунд. Звіти одним кліком.
+        <p style={{ color: 'var(--text2)', fontSize: 16, maxWidth: 420, margin: '0 auto 8px', lineHeight: 1.75 }}>
+          Рахунки за кілька секунд. Звіти одним кліком.
+        </p>
+        <p style={{ color: 'var(--text2)', fontSize: 16, maxWidth: 420, margin: '0 auto 24px', lineHeight: 1.75 }}>
           Чотири мови: 🇺🇦 🇩🇪 🇬🇧 🇷🇺
         </p>
         <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
@@ -147,7 +151,7 @@ function QlixaPromo() {
           </Link>
           <Link href="/pricing" style={{
             padding: '13px 26px', borderRadius: 999, fontSize: 13, fontWeight: 700,
-            background: 'transparent', color: '#fff', border: '2px solid #fff',
+            background: 'transparent', color: 'var(--charcoal)', border: '2px solid var(--charcoal)',
             textDecoration: 'none', display: 'inline-block',
           }}>
             Дивитись тарифи
@@ -246,8 +250,14 @@ export default function GewerbeanmeldungPage() {
         </div>
       </div>
 
-      {/* Article body */}
-      <div style={{ maxWidth: 760, margin: '0 auto', padding: '48px 16px 80px' }}>
+      {/* Article body + sidebar */}
+      <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 16px 80px', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
+
+        {/* Sidebar */}
+        <ArticleSidebar currentSlug="gewerbeanmeldung" />
+
+        {/* Main content */}
+        <div style={{ flex: 1, minWidth: 0 }}>
 
         {/* Intro */}
         <div style={{
@@ -315,7 +325,7 @@ export default function GewerbeanmeldungPage() {
           <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)' }}>
             <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 14 }}>Ці документи знадобляться на різних етапах — готуйте одразу всі:</p>
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 14 }}>
-              {['Скан паспорта (закордонного)', 'Meldezettel — довідка про прописку в Австрії', 'Ausweis — посвідчення особи', 'Дійсний австрійський банківський рахунок', 'Довідка про несудимість (після 3 років перебування)'].map((doc, i) => (
+              {['Скан паспорта (закордонного)', 'Meldezettel — довідка про прописку в Австрії', 'Ausweis — посвідчення особи', 'Дійсний австрійський банківський рахунок', 'Довідка про несудимість'].map((doc, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '10px 13px', borderRadius: 9, background: 'var(--gray)', border: '1px solid var(--line)' }}>
                   <div style={{ width: 22, height: 22, borderRadius: '50%', background: 'var(--peach-light)', color: 'var(--orange)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{i + 1}</div>
                   <span style={{ fontSize: 13, color: 'var(--charcoal)' }}>{doc}</span>
@@ -326,9 +336,18 @@ export default function GewerbeanmeldungPage() {
               <strong>Банківський рахунок:</strong> для Einzelunternehmen окремий рахунок не обов&apos;язковий, але рекомендований. Для GmbH / FlexCo — обов&apos;язковий.
             </NoteBox>
             <NoteBox type="warning">
-              <strong>Довідка з ДІЯ:</strong> для реєстрації в GISA підходить згенерований у ДІЯ+ переклад на німецьку. QLIXA може допомогти з автоперекладом через наших партнерів.{' '}
-              Замовити австрійську довідку: <ExtLink href="https://citizen.bmi.gv.at/at.gv.bmi.fnsetvweb-p/etv/public/sva/Terminvereinbarung?locale=en">bmi.gv.at</ExtLink>
+              Якщо ви проживаєте в Австрії менше 5 років, при реєстрації Gewerbe майже завжди вимагають довідку про несудимість. Довідка видається країною вашого громадянства або останньої країни довготривалого проживання. Вона має бути не старше 3 місяців на момент подачі. Обов&apos;язковий офіційний переклад на німецьку мову, виконаний присяжним перекладачем. Для українців — довідку можна згенерувати онлайн через «Дія». QLIXA може допомогти з автоперекладом через наших партнерів.
             </NoteBox>
+            <a href="https://citizen.bmi.gv.at/at.gv.bmi.fnsetvweb-p/etv/public/sva/Terminvereinbarung?locale=en"
+              target="_blank" rel="noopener noreferrer"
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8,
+                padding: '10px 18px', borderRadius: 999, marginBottom: 16,
+                background: 'var(--peach-light)', border: '1.5px solid var(--orange)',
+                fontSize: 13, fontWeight: 700, color: 'var(--orange)', textDecoration: 'none',
+              }}>
+              📅 Замовити австрійську довідку — bmi.gv.at ↗
+            </a>
             <div style={{ marginTop: 20, padding: 18, borderRadius: 12, border: '2px dashed var(--orange)', background: 'var(--peach-light)' }}>
               <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--orange)', marginBottom: 4 }}>🔄 Потрібен переклад довідки з ДІЯ?</div>
               <p style={{ fontSize: 13, color: 'var(--charcoal)', marginBottom: 14, lineHeight: 1.6 }}>
@@ -354,21 +373,6 @@ export default function GewerbeanmeldungPage() {
             <NoteBox type="warning">
               Для негромадян Австрії зробити Austria ID онлайн може не вийти — залежить від землі. Будьте готові до особистого відвідування.
             </NoteBox>
-            <div style={{ display: 'flex', flexDirection: 'column', gap: 8, margin: '14px 0' }}>
-              {[
-                'Запишіться на термін у поліцейське управління вашої землі',
-                'Вкажіть: ID Austria – Registration',
-                'Підготуйте всі документи (список прийде на пошту після запису)',
-                'Прийдіть особисто у вказану дату (для кожного члена сім\'ї — окремо)',
-                'Майте доступ до австрійського номера телефону',
-                'Заздалегідь завантажте застосунок Austria ID',
-              ].map((s, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 11, padding: '10px 13px', borderRadius: 9, background: 'var(--gray)' }}>
-                  <div style={{ width: 22, height: 22, borderRadius: '50%', background: 'var(--charcoal)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, flexShrink: 0, marginTop: 1 }}>{i + 1}</div>
-                  <span style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--charcoal)' }}>{s}</span>
-                </div>
-              ))}
-            </div>
             <ExtLink href="https://citizen.bmi.gv.at/at.gv.bmi.fnsetvweb-p/etv/public/sva/Terminvereinbarung">
               📅 Записатися на термін — bmi.gv.at
             </ExtLink>
@@ -516,24 +520,24 @@ export default function GewerbeanmeldungPage() {
 
         {/* Final CTA */}
         <div style={{
-          background: 'var(--charcoal)', borderRadius: 20, padding: '40px 28px',
+          background: 'var(--peach-light)', borderRadius: 20, padding: '40px 28px',
           textAlign: 'center', marginBottom: 48, position: 'relative', overflow: 'hidden',
+          border: '1px solid var(--orange-mid)',
         }}>
-          <div style={{ position: 'absolute', width: 180, height: 180, borderRadius: '50%', background: 'var(--orange)', opacity: 0.07, top: -40, right: -40 }} />
+          <div style={{ position: 'absolute', width: 180, height: 180, borderRadius: '50%', background: 'var(--orange)', opacity: 0.08, top: -40, right: -40 }} />
           <div style={{ position: 'relative', zIndex: 1 }}>
             <Image src="/logos/logo-mascot.svg" alt="QLIXA" width={80} height={80}
               style={{ margin: '0 auto 18px', display: 'block' }} />
             <h2 style={{
-              fontFamily: 'DM Serif Display, serif', fontSize: 28, color: '#fff',
+              fontFamily: 'DM Serif Display, serif', fontSize: 30, color: 'var(--charcoal)',
               marginBottom: 16, lineHeight: 1.3,
             }}>
-              Ну шо — погнали! 🚀<br />
-              <em style={{ color: 'var(--orange)', fontStyle: 'italic' }}>Починай заробляти!</em>
+              А тепер — починай заробляти! 🚀
             </h2>
-            <p style={{ color: 'rgba(255,255,255,0.55)', fontSize: 14, maxWidth: 500, margin: '0 auto 28px', lineHeight: 1.8 }}>
-              А найкращий спосіб тримати фінанси під контролем — це <strong style={{ color: '#fff' }}>QLIXA</strong>.
-              За один клік, твоєю мовою: рахунки, склад, клієнти, прогнози SVS, повернення податків і автоматична звітність.
-              Ти будеш готовий до кінця року — <strong style={{ color: 'var(--orange)' }}>автоматично</strong>.
+            <p style={{ color: 'var(--text2)', fontSize: 16, maxWidth: 500, margin: '0 auto 28px', lineHeight: 1.8 }}>
+              А найкращий спосіб тримати фінанси під контролем — це <strong style={{ color: 'var(--charcoal)' }}>QLIXA</strong>.{' '}
+              Все одним кліком і зрозумілою мовою: рахунки, клієнти, склад, прогнози внесків і податків та автоматична звітність.{' '}
+              Без стресу і складних термінів — просто спокійно ведеш бізнес.
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
               <Link href="/free-test" style={{
@@ -545,7 +549,7 @@ export default function GewerbeanmeldungPage() {
               </Link>
               <Link href="/pricing" style={{
                 padding: '14px 28px', borderRadius: 999, fontSize: 14, fontWeight: 700,
-                background: 'transparent', color: '#fff', border: '2px solid #fff',
+                background: 'transparent', color: 'var(--charcoal)', border: '2px solid var(--charcoal)',
                 textDecoration: 'none', display: 'inline-block',
               }}>
                 QLIXA — твоя бухгалтерія в Австрії
@@ -574,7 +578,12 @@ export default function GewerbeanmeldungPage() {
             </a>
           ))}
         </div>
-      </div>
+
+        {/* Prev / Next navigation */}
+        <ArticlePrevNext currentSlug="gewerbeanmeldung" />
+
+        </div>{/* end main content */}
+      </div>{/* end flex wrapper */}
 
       <Footer />
     </div>
