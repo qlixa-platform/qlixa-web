@@ -73,7 +73,7 @@ function Dropdown({ item, isOpen, onToggle }: {
           border: '1px solid var(--line)', boxShadow: 'var(--shadow2)', zIndex: 50,
         }}>
           <div style={{ padding: 8 }}>
-            {item.items.map((sub) => (
+            {item.items?.map((sub) => (
               <Link key={sub.href} href={sub.href} onClick={onToggle} style={{
                 display: 'flex', flexDirection: 'column', padding: '10px 12px',
                 borderRadius: 8, textDecoration: 'none',
