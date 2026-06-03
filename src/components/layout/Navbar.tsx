@@ -27,13 +27,7 @@ const navItems = [
   },
   {
     label: 'Статті',
-    items: [
-      { label: 'Gewerbeanmeldung', href: '/articles/gewerbeanmeldung', desc: 'Реєстрація самозайнятості' },
-      { label: 'Як оформити Austria ID', href: '/articles/austria-id', desc: 'Цифровий підпис онлайн' },
-      { label: 'Формуляр GISA', href: '/articles/gisa-formular', desc: 'Покроковий гайд' },
-      { label: 'Формуляр SVS', href: '/articles/svs-formular', desc: 'Соціальне страхування' },
-      { label: 'Всі статті', href: '/articles', desc: 'Переглянути всі' },
-    ],
+    href: '/articles',
   },
 ]
 
@@ -399,10 +393,19 @@ export default function Navbar() {
             {/* Desktop nav */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 4 }} className="hidden-mobile">
               {navItems.map(item => (
-                <Dropdown key={item.label} item={item}
-                  isOpen={openDropdown === item.label}
-                  onToggle={() => toggleDropdown(item.label)}
-                />
+                'href' in item ? (
+                  <Link key={item.label} href={item.href} style={{
+                    padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
+                    color: 'var(--charcoal)', textDecoration: 'none',
+                  }}>
+                    {item.label}
+                  </Link>
+                ) : (
+                  <Dropdown key={item.label} item={item}
+                    isOpen={openDropdown === item.label}
+                    onToggle={() => toggleDropdown(item.label)}
+                  />
+                )
               ))}
               <Link href="/pricing" style={{
                 padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,

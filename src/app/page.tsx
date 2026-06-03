@@ -94,6 +94,11 @@ export default function HomePage() {
               style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
               priority
             />
+            <div style={{
+              position: 'absolute', top: 0, left: 0, bottom: 0, width: 120,
+              background: 'linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0) 100%)',
+              zIndex: 1, pointerEvents: 'none',
+            }} />
           </div>
         </div>
       </section>
@@ -112,48 +117,27 @@ export default function HomePage() {
           </Link>
         </div>
 
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))', gap: 24, alignItems: 'start' }}>
+        <style>{`
+          .card-img { transition: transform 0.4s cubic-bezier(.25,.46,.45,.94); }
+          .card-link:hover .card-img { transform: scale(1.07); }
+          .card-body-inner { transition: box-shadow 0.3s ease; }
+          .card-link:hover .card-body-inner { box-shadow: 0 8px 32px rgba(53,52,52,0.13) !important; }
+        `}</style>
 
-          {/* Published — with photo overlap effect */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 24, alignItems: 'start' }}>
+
           {published.map(art => (
-            <Link key={art.href} href={art.href} style={{ display: 'block', textDecoration: 'none', position: 'relative' }}>
-              {/* Photo */}
-              <div style={{
-                position: 'relative', width: '100%', height: 200,
-                borderRadius: 16, overflow: 'hidden', zIndex: 1,
-              }}>
-                <Image
-                  src={art.cover}
-                  alt={art.title}
-                  fill
-                  style={{ objectFit: 'cover', objectPosition: 'center 35%' }}
-                />
-                {/* Tag on photo */}
-                <div style={{
-                  position: 'absolute', top: 14, left: 14,
-                  background: 'var(--orange)', color: '#fff',
-                  fontSize: 10, fontWeight: 700, letterSpacing: '0.5px',
-                  padding: '4px 10px', borderRadius: 4, zIndex: 2,
-                }}>
+            <Link key={art.href} href={art.href} className="card-link" style={{ display: 'block', textDecoration: 'none', position: 'relative' }}>
+              <div style={{ position: 'relative', width: '100%', height: 190, borderRadius: 14, overflow: 'hidden', zIndex: 1 }}>
+                <Image src={art.cover} alt={art.title} fill className="card-img" style={{ objectFit: 'cover', objectPosition: 'center 35%' }} />
+                <div style={{ position: 'absolute', top: 12, left: 12, background: 'var(--orange)', color: '#fff', fontSize: 10, fontWeight: 700, letterSpacing: '0.5px', padding: '4px 10px', borderRadius: 4, zIndex: 2 }}>
                   {art.tag}
                 </div>
               </div>
-              {/* White card overlapping photo */}
-              <div style={{
-                position: 'relative', zIndex: 2,
-                background: '#fff', borderRadius: 16,
-                padding: '22px 20px 20px',
-                marginTop: -24,
-                border: '1px solid var(--line)',
-                boxShadow: '0 4px 20px rgba(53,52,52,0.08)',
-              }}>
-                <div style={{ fontSize: 15, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 8 }}>
-                  {art.title}
-                </div>
-                <div style={{ fontSize: 13, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 14 }}>
-                  {art.desc}
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+              <div className="card-body-inner" style={{ position: 'relative', zIndex: 2, background: '#fff', borderRadius: 14, padding: '20px 18px 18px', marginTop: -22, border: '1px solid var(--line)', boxShadow: '0 4px 16px rgba(53,52,52,0.07)', display: 'flex', flexDirection: 'column' }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 7, flex: 1 }}>{art.title}</div>
+                <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 12 }}>{art.desc}</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
                   <span style={{ fontSize: 11, color: 'var(--text3)' }}>{art.date} · {art.readTime}</span>
                   <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)' }}>Читати →</span>
                 </div>
@@ -161,35 +145,14 @@ export default function HomePage() {
             </Link>
           ))}
 
-          {/* Upcoming — no photo */}
           {upcoming.map(art => (
-            <Link key={art.href} href={art.href} style={{
-              display: 'block', textDecoration: 'none',
-              background: '#fff', borderRadius: 16,
-              padding: 20, border: '1px dashed var(--line2)',
-              opacity: 0.65,
-            }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 10 }}>
-                <div style={{
-                  fontSize: 10, fontWeight: 700, padding: '3px 8px',
-                  borderRadius: 4, background: 'var(--gray)', color: 'var(--text3)',
-                }}>
-                  {art.tag}
-                </div>
-                <div style={{
-                  fontSize: 9, fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase',
-                  padding: '3px 8px', borderRadius: 3,
-                  background: 'var(--peach-light)', color: 'var(--orange)',
-                }}>
-                  Скоро
-                </div>
+            <Link key={art.href} href={art.href} style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', minHeight: 160, background: '#fff', borderRadius: 14, padding: 18, border: '1px dashed var(--line2)', opacity: 0.65 }}>
+              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 9 }}>
+                <div style={{ fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 4, background: 'var(--gray)', color: 'var(--text3)' }}>{art.tag}</div>
+                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', padding: '3px 7px', borderRadius: 3, background: 'var(--peach-light)', color: 'var(--orange)' }}>Скоро</div>
               </div>
-              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 6 }}>
-                {art.title}
-              </div>
-              <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.55 }}>
-                {art.desc}
-              </div>
+              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 6 }}>{art.title}</div>
+              <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.55, marginTop: 'auto' }}>{art.desc}</div>
             </Link>
           ))}
 
