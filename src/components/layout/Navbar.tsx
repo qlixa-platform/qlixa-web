@@ -4,7 +4,11 @@ import { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
-const navItems = [
+type NavLink = { label: string; href: string }
+type NavDropdown = { label: string; items: { label: string; href: string; desc: string }[] }
+type NavItem = NavLink | NavDropdown
+
+const navItems: NavItem[] = [
   {
     label: 'Платформа',
     items: [
@@ -32,7 +36,7 @@ const navItems = [
 ]
 
 function Dropdown({ item, isOpen, onToggle }: {
-  item: typeof navItems[0]
+  item: NavDropdown
   isOpen: boolean
   onToggle: () => void
 }) {
@@ -394,7 +398,7 @@ export default function Navbar() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 4 }} className="hidden-mobile">
               {navItems.map(item => (
                 'href' in item ? (
-                  <Link key={item.label} href={item.href} style={{
+                  <Link key={item.label} href={(item as NavLink).href} style={{
                     padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
                     color: 'var(--charcoal)', textDecoration: 'none',
                   }}>
