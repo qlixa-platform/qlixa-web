@@ -86,7 +86,7 @@ const footerLinks = {
   'Продукти': [
     { label: 'Ціни', href: '/pricing' },
     { label: 'Шаблони', href: '/templates' },
-    { label: 'Калькулятори', href: '/calculators' },
+    { label: 'Партнери', href: '/partners' },
   ],
   'Компанія': [
     { label: 'Про нас', href: '/about' },
