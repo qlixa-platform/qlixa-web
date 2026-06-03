@@ -28,6 +28,15 @@ export const articles: Article[] = [
     published: true,
   },
   {
+    slug: 'invalidity-child',
+    href: '/articles/invalidity-child',
+    tag: 'Сім\'я · Пільги',
+    title: 'Інвалідність дитини в Австрії: виплати, пільги та з чого почати',
+    desc: 'Behindertenpass, підвищена Familienbeihilfe, Pflegegeld та податкові пільги — покроковий гайд для батьків.',
+    cover: '/articles/invalidity-cover.jpg',
+    published: true,
+  },
+  {
     slug: 'gisa-formular',
     href: '/articles/gisa-formular',
     tag: 'GISA',

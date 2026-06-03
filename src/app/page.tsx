@@ -24,6 +24,15 @@ const published = [
     href: '/articles/austria-id',
     cover: '/articles/austria-id-cover.jpg',
   },
+  {
+    tag: 'Сім\'я · Пільги',
+    title: 'Інвалідність дитини в Австрії: виплати, пільги та з чого почати',
+    desc: 'Behindertenpass, підвищена Familienbeihilfe, Pflegegeld та податкові пільги — покроковий гайд для батьків.',
+    date: 'Червень 2025',
+    readTime: '10 хв читання',
+    href: '/articles/invalidity-child',
+    cover: '/articles/invalidity-cover.jpg',
+  },
 ]
 
 const upcoming = [
