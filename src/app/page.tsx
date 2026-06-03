@@ -103,11 +103,6 @@ export default function HomePage() {
               style={{ objectFit: 'cover', objectPosition: 'center 20%' }}
               priority
             />
-            <div style={{
-              position: 'absolute', top: 0, left: 0, bottom: 0, width: 120,
-              background: 'linear-gradient(to right, #ffffff 0%, rgba(255,255,255,0) 100%)',
-              zIndex: 1, pointerEvents: 'none',
-            }} />
           </div>
         </div>
       </section>
