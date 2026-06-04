@@ -20,8 +20,8 @@ const reviews = [
     country: '🇩🇪 Зальцбург, Австрія',
     // Middle-aged man, professional
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=face&q=80',
-    // Austrian alpine lake
-    cardBg: 'https://images.unsplash.com/photo-1580568718460-8b4374bb11c5?w=400&h=120&fit=crop&q=70',
+    // Austrian mountain lake - verified working
+    cardBg: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=120&fit=crop&q=70',
     text: '"Я навіть не знав, що можу повернути €800 на рік. QLIXA показала що вказати в декларації — і гроші прийшли самі."',
   },
   {
