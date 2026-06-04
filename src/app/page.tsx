@@ -6,6 +6,7 @@ import Footer from '@/components/layout/Footer'
 import Image from 'next/image'
 import Link from 'next/link'
 import ReviewsSection from '@/components/layout/ReviewsSection'
+import ArticlesSlider from '@/components/layout/ArticlesSlider'
 
 const published = [
   {
@@ -37,6 +38,8 @@ const upcoming = [
   { tag: 'FinanzOnline', title: 'Як заповнити формуляр FinanzOnline', desc: 'Реєстрація в податковій онлайн — покроково.', href: '/articles/finanz-online' },
   { tag: 'MVK', title: 'Як обрати пенсійний фонд MVK', desc: 'Що таке MVK і як не пропустити дедлайн 6 місяців.', href: '/articles/mvk-pension' },
 ]
+
+
 
 export default function HomePage() {
   return (
@@ -70,55 +73,8 @@ export default function HomePage() {
         </div>
       </section>
 
-      {/* ARTICLES */}
-      <section style={{ maxWidth: 1200, margin: '0 auto', padding: '64px 16px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 32 }}>
-          <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 28, color: 'var(--charcoal)' }}>
-            Останні <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>статті</em>
-          </h2>
-          <Link href="/articles" style={{ fontSize: 14, fontWeight: 500, color: 'var(--orange)', textDecoration: 'none' }}>
-            Всі статті →
-          </Link>
-        </div>
-
-        <style>{`
-          .card-img { transition: transform 0.4s cubic-bezier(.25,.46,.45,.94); }
-          .card-link:hover .card-img { transform: scale(1.07); }
-          .card-body-inner { transition: box-shadow 0.3s ease; }
-          .card-link:hover .card-body-inner { box-shadow: 0 8px 32px rgba(53,52,52,0.13) !important; }
-        `}</style>
-
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(260px, 1fr))', gap: 24, alignItems: 'start' }}>
-          {published.map(art => (
-            <Link key={art.href} href={art.href} className="card-link" style={{ display: 'block', textDecoration: 'none', position: 'relative' }}>
-              <div style={{ position: 'relative', width: '100%', height: 190, borderRadius: 14, overflow: 'hidden', zIndex: 1 }}>
-                <Image src={art.cover} alt={art.title} fill className="card-img" style={{ objectFit: 'cover', objectPosition: 'center 35%' }} />
-                <div style={{ position: 'absolute', top: 12, left: 12, background: 'var(--orange)', color: '#fff', fontSize: 10, fontWeight: 700, letterSpacing: '0.5px', padding: '4px 10px', borderRadius: 4, zIndex: 2 }}>
-                  {art.tag}
-                </div>
-              </div>
-              <div className="card-body-inner" style={{ position: 'relative', zIndex: 2, background: '#fff', borderRadius: 14, padding: '20px 18px 18px', marginTop: -22, border: '1px solid var(--line)', boxShadow: '0 4px 16px rgba(53,52,52,0.07)', display: 'flex', flexDirection: 'column' }}>
-                <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 7, flex: 1 }}>{art.title}</div>
-                <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 12 }}>{art.desc}</div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginTop: 'auto' }}>
-                  <span style={{ fontSize: 11, color: 'var(--text3)' }}>{art.date} · {art.readTime}</span>
-                  <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)' }}>Читати →</span>
-                </div>
-              </div>
-            </Link>
-          ))}
-          {upcoming.map(art => (
-            <Link key={art.href} href={art.href} style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', minHeight: 160, background: '#fff', borderRadius: 14, padding: 18, border: '1px dashed var(--line2)', opacity: 0.65 }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 9 }}>
-                <div style={{ fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 4, background: 'var(--gray)', color: 'var(--text3)' }}>{art.tag}</div>
-                <div style={{ fontSize: 9, fontWeight: 700, letterSpacing: '0.5px', textTransform: 'uppercase', padding: '3px 7px', borderRadius: 3, background: 'var(--peach-light)', color: 'var(--orange)' }}>Скоро</div>
-              </div>
-              <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 6 }}>{art.title}</div>
-              <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.55, marginTop: 'auto' }}>{art.desc}</div>
-            </Link>
-          ))}
-        </div>
-      </section>
+      {/* ARTICLES — horizontal scroll */}
+      <ArticlesSlider published={published} upcoming={upcoming} />
 
       {/* REVIEWS */}
       <ReviewsSection />
