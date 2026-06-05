@@ -92,7 +92,7 @@ export default function ArticlesSlider({
           style={{
             display: 'flex',
             gap: 20,
-            transform: `translateX(calc(-${cur} * (260px + 20px)))`,
+            transform: `translateX(calc(-${cur} * (280px + 20px)))`,
             transition: 'transform 0.4s cubic-bezier(.25,.46,.45,.94)',
           }}
         >
@@ -102,7 +102,7 @@ export default function ArticlesSlider({
                 key={i}
                 href={art.href}
                 className="card-link"
-                style={{ display: 'block', textDecoration: 'none', position: 'relative', minWidth: 260, flex: '0 0 calc(25% - 15px)' }}
+                style={{ display: 'block', textDecoration: 'none', position: 'relative', minWidth: 280, flex: '0 0 280px' }}
               >
                 <div style={{ position: 'relative', width: '100%', height: 190, borderRadius: 14, overflow: 'hidden', zIndex: 1 }}>
                   <Image src={art.cover} alt={art.title} fill className="card-img" style={{ objectFit: 'cover', objectPosition: 'center 35%' }} />
@@ -110,7 +110,7 @@ export default function ArticlesSlider({
                     {art.tag}
                   </div>
                 </div>
-                <div className="card-body-inner" style={{ position: 'relative', zIndex: 2, background: '#fff', borderRadius: 14, padding: '20px 18px 18px', marginTop: -22, border: '1px solid var(--line)', boxShadow: '0 4px 16px rgba(53,52,52,0.07)', display: 'flex', flexDirection: 'column' }}>
+                <div className="card-body-inner" style={{ position: 'relative', zIndex: 2, background: '#fff', borderRadius: 14, padding: '20px 18px 18px', marginTop: -22, border: '1px solid var(--line)', boxShadow: '0 4px 16px rgba(53,52,52,0.07)', display: 'flex', flexDirection: 'column', height: 160 }}>
                   <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 7, flex: 1 }}>{art.title}</div>
                   <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 12 }}>{art.desc}</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'auto' }}>
@@ -123,7 +123,7 @@ export default function ArticlesSlider({
               <Link
                 key={i}
                 href={art.href}
-                style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', minWidth: 260, flex: '0 0 calc(25% - 15px)', minHeight: 200, background: '#fff', borderRadius: 14, padding: 18, border: '1px dashed var(--line2)', opacity: 0.65 }}
+                style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', minWidth: 280, flex: '0 0 280px', height: 320, background: '#fff', borderRadius: 14, padding: 18, border: '1px dashed var(--line2)', opacity: 0.65 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 9 }}>
                   <div style={{ fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 4, background: 'var(--gray)', color: 'var(--text3)' }}>{art.tag}</div>

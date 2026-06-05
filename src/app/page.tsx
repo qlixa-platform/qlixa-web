@@ -30,10 +30,16 @@ const published = [
     date: 'Червень 2025', readTime: '10 хв читання',
     href: '/articles/invalidity-child', cover: '/articles/invalidity-cover.jpg',
   },
+  {
+    tag: 'GISA · Реєстрація',
+    title: 'Реєстрація на сайті GISA: покрокова інструкція',
+    desc: 'Як подати заяву Gewerbeanmeldung онлайн через GISA — детально, з поясненням кожного поля та кроку.',
+    date: 'Червень 2025', readTime: '15 хв читання',
+    href: '/articles/gisa-formular', cover: '/articles/gisa-cover.jpg',
+  },
 ]
 
 const upcoming = [
-  { tag: 'GISA', title: 'Як заповнити формуляр GISA', desc: 'Покроковий гайд з поясненнями кожного поля.', href: '/articles/gisa-formular' },
   { tag: 'SVS', title: 'Як заповнити формуляр SVS', desc: 'Соціальне страхування — що вказати щоб не переплатити.', href: '/articles/svs-formular' },
   { tag: 'FinanzOnline', title: 'Як заповнити формуляр FinanzOnline', desc: 'Реєстрація в податковій онлайн — покроково.', href: '/articles/finanz-online' },
   { tag: 'MVK', title: 'Як обрати пенсійний фонд MVK', desc: 'Що таке MVK і як не пропустити дедлайн 6 місяців.', href: '/articles/mvk-pension' },

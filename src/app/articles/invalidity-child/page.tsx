@@ -182,9 +182,12 @@ export default function InvalidityChildPage() {
           </StepCard>
 
           {/* STEP 2 */}
-          <StepCard n={2} title="Підвищена Familienbeihilfe">
-            <p style={{ fontSize: 14, lineHeight: 1.8, color: 'var(--charcoal)', marginBottom: 14 }}>
+          <StepCard n={2} title="Підвищена Familienbeihilfe (додатково до звичайної)">
+            <p style={{ fontSize: 14, lineHeight: 1.8, color: 'var(--charcoal)', marginBottom: 10 }}>
               Після підтвердження ступеня інвалідності від 50% відкривається право на підвищену Familienbeihilfe.
+            </p>
+            <p style={{ fontSize: 14, lineHeight: 1.8, color: 'var(--charcoal)', marginBottom: 16 }}>
+              Ця виплата <strong>додається до звичайної Familienbeihilfe (Kinderbeihilfe)</strong>, яку ви отримуєте на дитину.
             </p>
 
             <div style={{ display: 'grid', gap: 12, gridTemplateColumns: 'repeat(auto-fit,minmax(200px,1fr))', marginBottom: 16 }}>
@@ -201,13 +204,13 @@ export default function InvalidityChildPage() {
             </div>
 
             <NoteBox type="info">
-              <strong>Kinderabsetzbetrag</strong> (70,90 €/міс) додається автоматично — його не потрібно запитувати окремо.
+              <strong>Kinderabsetzbetrag</strong> (70,90 €/міс) виплачується автоматично разом із Familienbeihilfe — його не потрібно запитувати окремо.
             </NoteBox>
             <NoteBox type="warning">
               <strong>Для українських сімей:</strong> з листопада 2025 по червень 2026 Familienbeihilfe отримують лише батьки, які або працюють, або зареєстровані в AMS. <strong>Але є виняток:</strong> батьки, які доглядають за дитиною зі значною інвалідністю, звільнені від цієї вимоги.
             </NoteBox>
             <p style={{ fontSize: 13, color: 'var(--text2)', lineHeight: 1.7, marginTop: 12 }}>
-              Заява подається до <strong>Finanzamt Österreich</strong> — через FinanzOnline або поштою. З березня 2023 року як підтвердження достатньо даних із процедури Behindertenpass.
+              Заява на підвищену Familienbeihilfe подається до <strong>Finanzamt Österreich</strong> — через FinanzOnline або поштою. З березня 2023 року як підтвердження достатньо даних із процедури Behindertenpass.
             </p>
           </StepCard>
 

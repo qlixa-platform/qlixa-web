@@ -39,11 +39,11 @@ export const articles: Article[] = [
   {
     slug: 'gisa-formular',
     href: '/articles/gisa-formular',
-    tag: 'GISA',
-    title: 'Як заповнити формуляр GISA',
-    desc: 'Покроковий гайд з поясненнями кожного поля.',
-    cover: '',
-    published: false,
+    tag: 'GISA · Реєстрація',
+    title: 'Реєстрація на сайті GISA: покрокова інструкція',
+    desc: 'Як подати заяву Gewerbeanmeldung онлайн через GISA — детально, з поясненням кожного поля та кроку.',
+    cover: '/articles/gisa-cover.jpg',
+    published: true,
   },
   {
     slug: 'svs-formular',
