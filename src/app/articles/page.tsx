@@ -33,16 +33,20 @@ const published = [
     href: '/articles/invalidity-child',
     cover: '/articles/invalidity-cover.jpg',
   },
+  {
+    tag: 'GISA · Реєстрація',
+    title: 'Реєстрація на сайті GISA: покрокова інструкція',
+    desc: 'Як подати заяву Gewerbeanmeldung онлайн через GISA — детально, з поясненням кожного поля та кроку.',
+    date: 'Червень 2025',
+    readTime: '15 хв читання',
+    href: '/articles/gisa-formular',
+    cover: '/articles/gisa-cover.jpg',
+  },
 ]
 
 // 🔜 Статті що готуються
 const upcoming = [
-  {
-    tag: 'GISA',
-    title: 'Як заповнити формуляр GISA',
-    desc: 'Покроковий гайд з поясненнями — що вказати в кожному полі щоб реєстрація пройшла без помилок.',
-    href: '/articles/gisa-formular',
-  },
+
   {
     tag: 'SVS',
     title: 'Як заповнити формуляр SVS',
