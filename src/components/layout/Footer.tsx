@@ -135,14 +135,18 @@ export default function Footer() {
           }}>
             {/* Brand */}
             <div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 12 }}>
-                <Image src="/logos/logo-mascot.svg" alt="QLIXA" width={32} height={32} />
-                <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 18, color: '#fff' }}>
-                  <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>Q</em>LIXA
-                </span>
+              <div style={{ marginBottom: 12 }}>
+                <Link href="/" style={{ display: 'inline-block', textDecoration: 'none' }}>
+                  <Image
+                    src="/logos/logo-dark.svg"
+                    alt="QLIXA — Reports in one click"
+                    width={130}
+                    height={50}
+                    style={{ display: 'block' }}
+                  />
+                </Link>
               </div>
               <p style={{ fontSize: 12, lineHeight: 1.6, color: 'rgba(255,255,255,0.35)', marginBottom: 16 }}>
-                Reports in one click.<br />
                 Розумна бухгалтерія для іноземців в Австрії.
               </p>
               <div style={{ display: 'flex', gap: 14 }}>
