@@ -384,14 +384,14 @@ export default function Navbar() {
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 }}>
 
             {/* Logo */}
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', gap: 10, textDecoration: 'none' }}>
-              <Image src="/logos/logo-mascot.svg" alt="QLIXA" width={36} height={36} />
-              <span style={{
-                fontFamily: 'DM Serif Display, serif', fontSize: 20,
-                color: 'var(--charcoal)', letterSpacing: '0.02em',
-              }}>
-                <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>Q</em>LIXA
-              </span>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+              <Image
+                src="/logos/logo-light.svg"
+                alt="QLIXA — Reports in one click"
+                width={140}
+                height={54}
+                style={{ display: 'block' }}
+              />
             </Link>
 
             {/* Desktop nav */}
