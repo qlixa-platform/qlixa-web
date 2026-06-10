@@ -140,6 +140,15 @@ export default function HomePage() {
         .faq-item { border-bottom:1px solid #f0f0f0; overflow:hidden }
         .faq-btn { width:100%; background:none; border:none; text-align:left; padding:24px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-family:DM Sans,sans-serif; font-size:17px; font-weight:600; color:#353434; gap:16px }
         .faq-btn:hover { color:#FF7033 }
+        @keyframes fDashBar { from{width:30%;} to{width:85%;} }
+        @keyframes fFillA { 0%{width:0%;} 60%,100%{width:100%;} }
+        @keyframes fCheckA { 0%,59%{opacity:0;} 60%,100%{opacity:1;} }
+        @keyframes fCalcNum { 0%,100%{opacity:1;} 45%{opacity:0;transform:translateY(-4px);} 55%{opacity:0;transform:translateY(4px);} }
+        @keyframes fClockTick { from{stroke-dashoffset:0;} to{stroke-dashoffset:138;} }
+        @keyframes fBlink { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
+        @keyframes fKpiFill1 { 0%{width:0%;} 70%,100%{width:78%;} }
+        @keyframes fKpiFill2 { 0%{width:0%;} 70%,100%{width:45%;} }
+        @keyframes fKpiFill3 { 0%{width:0%;} 70%,100%{width:62%;} }
       `}</style>
 
       <Navbar />
@@ -452,74 +461,120 @@ export default function HomePage() {
             <p style={{ fontSize: 17, color: '#595959' }}>Просто. Легко. В одному місці.</p>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gridTemplateRows: 'auto auto', gap: 20 }}>
-            {/* Card A — peach, spans 2 rows */}
-            <div className="feat-card" style={{ gridRow: '1 / 3', background: '#FFF0E8', border: '1px solid #FFD4BC', display: 'flex', flexDirection: 'column', justifyContent: 'space-between' }}>
-              <div>
-                <div style={{ display: 'inline-block', background: '#FF7033', color: '#fff', fontSize: 11, fontWeight: 700, padding: '4px 10px', borderRadius: 999, marginBottom: 20, letterSpacing: 0.5 }}>Головне</div>
-                <div style={{ fontSize: 28, marginBottom: 14 }}>📊</div>
-                <div style={{ fontWeight: 700, fontSize: 20, color: '#353434', marginBottom: 12, lineHeight: 1.3 }}>Платформа для ведення бізнес-бухгалтерії</div>
-                <div style={{ fontSize: 14, color: '#595959', lineHeight: 1.7, marginBottom: 28 }}>Повний фінансовий дашборд: доходи, витрати, прибуток — все в реальному часі. Додавайте клієнтів, постачальників, виставляйте рахунки та керуйте бізнесом комфортно.</div>
+          <div style={{ display: 'grid', gridTemplateColumns: '2fr 1fr 1fr', gridTemplateRows: 'auto auto', gap: 14 }}>
+
+            {/* Card A — Dashboard, spans 2 rows */}
+            <div style={{ gridColumn: '1', gridRow: '1 / 3', background: '#FFF0E8', border: '1px solid #FFD4BC', borderRadius: 18, padding: 24, position: 'relative', overflow: 'hidden' }}>
+              <div style={{ display: 'inline-block', background: '#FF7033', color: '#fff', fontSize: 10, fontWeight: 700, padding: '3px 10px', borderRadius: 5, marginBottom: 12, letterSpacing: '.5px' }}>Головне</div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#353434', marginBottom: 6 }}>Платформа для ведення бізнес-бухгалтерії</div>
+              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.6 }}>Повний фінансовий дашборд: доходи, витрати, прибуток — все в реальному часі. Клієнти, постачальники, рахунки.</div>
+              <div style={{ marginTop: 16, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {[
+                  { label: 'Дохід червень',   value: '€4 280',   valueColor: '#353434',  badge: null },
+                  { label: 'Списані витрати', value: '€1 140',   valueColor: '#FF7033',  badge: null },
+                  { label: 'До повернення',   value: '€640',     valueColor: '#22c55e',  badge: null },
+                  { label: 'VAT Q2',          value: null, badge: { text: '✓ Готово', bg: '#EBF5EE', color: '#16a34a' } },
+                  { label: 'SVS Formular',    value: null, badge: { text: '⏳ Скоро',  bg: '#FFF0E8', color: '#FF7033' } },
+                ].map(row => (
+                  <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', background: 'rgba(255,112,51,0.06)', borderRadius: 7, padding: '7px 10px' }}>
+                    <span style={{ fontSize: 11, color: '#595959' }}>{row.label}</span>
+                    {row.badge
+                      ? <span style={{ fontSize: 10, fontWeight: 700, padding: '2px 7px', borderRadius: 4, background: row.badge.bg, color: row.badge.color }}>{row.badge.text}</span>
+                      : <span style={{ fontSize: 12, fontWeight: 600, color: row.valueColor }}>{row.value}</span>
+                    }
+                  </div>
+                ))}
               </div>
-              {/* Mini dashboard mockup */}
-              <div>
-                <div style={{ background: 'rgba(53,52,52,0.05)', borderRadius: 14, padding: '16px 18px' }}>
-                  {[
-                    { label: 'Дохід червень', val: '€4 280', color: '#353434' },
-                    { label: 'Списані витрати', val: '€1 140', color: '#FF7033' },
-                    { label: 'До повернення', val: '€640', color: '#22C55E' },
-                    { label: 'VAT Q2', val: '✓ Готово', color: '#22C55E' },
-                    { label: 'SVS Formular', val: '⏳ Скоро', color: '#F59E0B' },
-                  ].map(row => (
-                    <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', padding: '7px 0', borderBottom: '1px solid rgba(53,52,52,0.06)' }}>
-                      <span style={{ fontSize: 12, color: '#595959' }}>{row.label}</span>
-                      <span style={{ fontSize: 12, fontWeight: 600, color: row.color }}>{row.val}</span>
-                    </div>
-                  ))}
-                </div>
-                <div style={{ fontSize: 11, color: '#6B6B6B', fontStyle: 'italic', marginTop: 10 }}>
-                  * Інтерфейс для ознайомлення. Реальний дашборд — після реєстрації.
-                </div>
+              <div style={{ marginTop: 12, height: 4, background: 'rgba(255,112,51,0.12)', borderRadius: 2, overflow: 'hidden' }}>
+                <div style={{ height: '100%', background: '#FF7033', borderRadius: 2, animation: 'fDashBar 2.5s ease-in-out infinite alternate' }} />
               </div>
+              <div style={{ fontSize: 10, color: 'rgba(53,52,52,0.35)', fontStyle: 'italic', marginTop: 10 }}>* Інтерфейс для ознайомлення. Реальний дашборд — після реєстрації.</div>
             </div>
 
-            {/* Card B */}
-            <div className="feat-card" style={{ gridColumn: '2', gridRow: '1', background: '#fff' }}>
-              <div style={{ fontSize: 28, marginBottom: 14 }}>📝</div>
-              <div style={{ fontWeight: 700, fontSize: 17, color: '#353434', marginBottom: 10 }}>Автоматичне заповнення податкових декларацій</div>
-              <div style={{ fontSize: 14, color: '#595959', lineHeight: 1.6, marginBottom: 16 }}>Декларації з доходів та ПДВ заповнюються автоматично на основі ваших даних. Просто перевір і відправ.</div>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                {['Податок з доходів', 'ПДВ декларація', 'Автозаповнення'].map(t => (
-                  <span key={t} style={{ background: '#FFF0E8', color: '#FF7033', fontSize: 11, fontWeight: 600, padding: '4px 10px', borderRadius: 999 }}>{t}</span>
+            {/* Card B — Auto-fill */}
+            <div style={{ gridColumn: '2', gridRow: '1', background: '#fff', border: '1px solid #E8E8E8', borderRadius: 18, padding: 24 }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#353434', marginBottom: 6 }}>Автоматичне заповнення декларацій</div>
+              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.6 }}>Декларації з доходів та ПДВ — автоматично. Просто перевір і відправ.</div>
+              <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 6 }}>
+                {[0, 1, 2].map(i => (
+                  <div key={i} style={{ height: 22, borderRadius: 5, background: '#F4F4F4', border: '1px solid #E8E8E8', position: 'relative', overflow: 'hidden' }}>
+                    <div style={{ position: 'absolute', top: 0, left: 0, height: '100%', background: 'rgba(255,112,51,0.15)', borderRadius: 5, animation: `fFillA 2s ease-out infinite ${i * 0.4}s` }} />
+                    <span style={{ position: 'absolute', right: 6, top: '50%', transform: 'translateY(-50%)', fontSize: 10, color: '#22c55e', opacity: 0, animation: `fCheckA 2s ease-out infinite ${i * 0.4}s` }}>✓</span>
+                  </div>
+                ))}
+              </div>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: 5, marginTop: 10 }}>
+                {['Податок з доходів', 'ПДВ', 'Автозаповнення'].map(t => (
+                  <span key={t} style={{ fontSize: 10, fontWeight: 600, padding: '3px 8px', borderRadius: 4, background: '#F4F4F4', color: '#595959', border: '1px solid #E8E8E8' }}>{t}</span>
                 ))}
               </div>
             </div>
 
-            {/* Card C */}
-            <div className="feat-card" style={{ gridColumn: '3', gridRow: '1', background: '#fff' }}>
-              <div style={{ fontSize: 28, marginBottom: 14 }}>🧮</div>
-              <div style={{ fontWeight: 700, fontSize: 17, color: '#353434', marginBottom: 10 }}>Калькулятори податків</div>
-              <div style={{ fontSize: 14, color: '#595959', lineHeight: 1.6, marginBottom: 16 }}>Точний розрахунок капітальних доходів, інших видів доходів та відповідних податків для вашої конкретної ситуації.</div>
-              <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
-                {['Капітальні доходи', 'Інші доходи', 'Точний розрахунок'].map(t => (
-                  <span key={t} style={{ background: '#FFF0E8', color: '#FF7033', fontSize: 11, fontWeight: 600, padding: '4px 10px', borderRadius: 999 }}>{t}</span>
+            {/* Card C — Calculators */}
+            <div style={{ gridColumn: '3', gridRow: '1', background: '#fff', border: '1px solid #E8E8E8', borderRadius: 18, padding: 24 }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#353434', marginBottom: 6 }}>Калькулятори податків</div>
+              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.6 }}>Точний розрахунок капітальних та інших доходів для вашої ситуації.</div>
+              <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 5 }}>
+                {[
+                  { label: 'Капітальні доходи', value: '€2 340', delay: '0s' },
+                  { label: 'Податок',            value: '€468',   delay: '0.6s' },
+                  { label: 'До повернення',      value: '€190',   delay: '1.2s' },
+                ].map(row => (
+                  <div key={row.label} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', padding: '5px 8px', background: '#F4F4F4', borderRadius: 6 }}>
+                    <span style={{ fontSize: 11, color: '#595959' }}>{row.label}</span>
+                    <span style={{ fontSize: 12, fontWeight: 700, color: '#FF7033', fontFamily: 'DM Serif Display, serif', animation: `fCalcNum 3s ease-in-out infinite ${row.delay}` }}>{row.value}</span>
+                  </div>
                 ))}
               </div>
             </div>
 
-            {/* Card D — Дедлайни */}
-            <div className="feat-card" style={{ gridColumn: '2', gridRow: '2', background: '#fff' }}>
-              <div style={{ fontSize: 28, marginBottom: 14 }}>⏰</div>
-              <div style={{ fontWeight: 700, fontSize: 17, color: '#353434', marginBottom: 10 }}>Дедлайни і нагадування</div>
-              <div style={{ fontSize: 14, color: '#595959', lineHeight: 1.6 }}>Ніяких штрафів! QLIXA знає всі австрійські дедлайни і нагадає заздалегідь.</div>
+            {/* Card D — Deadlines */}
+            <div style={{ gridColumn: '2', gridRow: '2', background: '#353434', border: '1px solid #444', borderRadius: 18, padding: 24, position: 'relative', overflow: 'hidden' }}>
+              <div style={{ position: 'absolute', top: 16, right: 16, width: 56, height: 56 }}>
+                <svg width="56" height="56" viewBox="0 0 56 56" style={{ transform: 'rotate(-90deg)' }}>
+                  <circle cx="28" cy="28" r="22" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="4" />
+                  <circle cx="28" cy="28" r="22" fill="none" stroke="#FF7033" strokeWidth="4" strokeLinecap="round" strokeDasharray="138" strokeDashoffset="0" style={{ animation: 'fClockTick 4s linear infinite' }} />
+                </svg>
+                <div style={{ position: 'absolute', top: '50%', left: '50%', transform: 'translate(-50%,-50%)', fontSize: 9, fontWeight: 700, color: 'rgba(255,255,255,0.5)', textAlign: 'center', lineHeight: 1.2 }}>SVS<br />30 лип</div>
+              </div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#fff', marginBottom: 6 }}>Дедлайни і нагадування</div>
+              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.55)', lineHeight: 1.6, maxWidth: 120 }}>Ніяких штрафів — QLIXA нагадає заздалегідь.</div>
+              <div style={{ marginTop: 12, display: 'flex', flexDirection: 'column', gap: 5 }}>
+                {[
+                  { dot: '#ef4444', anim: 'fBlink 1.5s ease-in-out infinite 0s',   text: 'SVS — 30 лип' },
+                  { dot: '#FF7033', anim: 'fBlink 1.5s ease-in-out infinite 0.5s', text: 'VAT Q3 — 15 серп' },
+                  { dot: '#22c55e', anim: '',                                        text: 'ESt — подано ✓' },
+                ].map(item => (
+                  <div key={item.text} style={{ display: 'flex', alignItems: 'center', gap: 6, fontSize: 10, fontWeight: 600, color: 'rgba(255,255,255,0.5)' }}>
+                    <div style={{ width: 6, height: 6, borderRadius: '50%', flexShrink: 0, background: item.dot, animation: item.anim || undefined }} />
+                    {item.text}
+                  </div>
+                ))}
+              </div>
             </div>
 
             {/* Card E — KPI */}
-            <div className="feat-card" style={{ gridColumn: '3', gridRow: '2', background: '#fff' }}>
-              <div style={{ fontSize: 28, marginBottom: 14 }}>📈</div>
-              <div style={{ fontWeight: 700, fontSize: 17, color: '#353434', marginBottom: 10 }}>KPI дашборд та аналітика</div>
-              <div style={{ fontSize: 14, color: '#595959', lineHeight: 1.6 }}>Відстежуйте ключові показники бізнесу простою мовою — без складних таблиць і зайвих термінів.</div>
+            <div style={{ gridColumn: '3', gridRow: '2', background: '#F4F4F4', border: '1px solid #E0E0E0', borderRadius: 18, padding: 24 }}>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#353434', marginBottom: 6 }}>KPI дашборд та аналітика</div>
+              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.6 }}>Ключові показники бізнесу простою мовою.</div>
+              <div style={{ marginTop: 14, display: 'flex', flexDirection: 'column', gap: 7 }}>
+                {[
+                  { label: 'Дохід',   pct: '78%', anim: 'fKpiFill1 2.5s ease-out forwards' },
+                  { label: 'Витрати', pct: '45%', anim: 'fKpiFill2 2.5s ease-out 0.4s forwards' },
+                  { label: 'Прибуток',pct: '62%', anim: 'fKpiFill3 2.5s ease-out 0.8s forwards' },
+                ].map(row => (
+                  <div key={row.label} style={{ display: 'flex', flexDirection: 'column', gap: 3 }}>
+                    <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 10, color: '#595959' }}>
+                      <span>{row.label}</span><span>{row.pct}</span>
+                    </div>
+                    <div style={{ height: 5, background: '#E8E8E8', borderRadius: 3, overflow: 'hidden' }}>
+                      <div style={{ height: '100%', borderRadius: 3, background: '#FF7033', animation: row.anim }} />
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
+
           </div>
 
           {/* Bottom note */}

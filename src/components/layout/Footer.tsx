@@ -1,67 +1,7 @@
 'use client'
 
-import { useState } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-
-const faqs = [
-  {
-    q: 'Чи потрібно знати німецьку, щоб користуватись QLIXA?',
-    a: 'Ні! QLIXA доступна українською, російською, англійською та німецькою мовами. Всі податкові терміни пояснені простими словами — без жаргону та складних понять.',
-  },
-  {
-    q: 'Я щойно зареєстрував Gewerbe. Можна відразу починати?',
-    a: 'Так. З першого дня ви можете додавати клієнтів, виставляти рахунки та відстежувати доходи. QLIXA проведе вас через перші кроки.',
-  },
-  {
-    q: 'QLIXA автоматично рахує податки?',
-    a: 'Так — USt (ПДВ), ESt (податок на прибуток) та внески SVS розраховуються автоматично на основі ваших доходів і витрат.',
-  },
-  {
-    q: 'Мої дані в безпеці?',
-    a: 'Всі дані зберігаються безпечно в ЄС (Австрія/Німеччина). Ми використовуємо шифрування банківського рівня та дотримуємось GDPR.',
-  },
-  {
-    q: 'Чи можна скасувати підписку в будь-який момент?',
-    a: 'Так. Жодних контрактів та прихованих платежів. Скасуйте підписку будь-коли одним кліком.',
-  },
-  {
-    q: 'Якими мовами доступна платформа?',
-    a: 'Українська, Deutsch (німецька), English та Русский. Переключайте мову в будь-який момент у налаштуваннях.',
-  },
-  {
-    q: 'Підходить QLIXA якщо я тільки планую відкрити бізнес?',
-    a: 'Так! QLIXA підходить як для тих хто вже веде бізнес, так і для тих хто тільки планує. Ми допоможемо розібратися з реєстрацією, вибором форми та першими кроками.',
-  },
-]
-
-function FaqItem({ q, a }: { q: string; a: string }) {
-  const [open, setOpen] = useState(false)
-  return (
-    <div
-      style={{ borderBottom: '1px solid var(--line)', cursor: 'pointer' }}
-      onClick={() => setOpen(!open)}
-    >
-      <div style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '16px 0', gap: 16,
-      }}>
-        <span style={{ fontSize: 14, fontWeight: 500, color: 'var(--charcoal)' }}>{q}</span>
-        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" style={{
-          flexShrink: 0, transition: 'transform 0.2s',
-          transform: open ? 'rotate(180deg)' : 'rotate(0deg)',
-        }}>
-          <path d="M3 6l5 5 5-5" stroke="var(--text3)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </div>
-      {open && (
-        <div style={{ paddingBottom: 16, fontSize: 13, lineHeight: 1.7, color: 'var(--text2)' }}>
-          {a}
-        </div>
-      )}
-    </div>
-  )
-}
 
 const socials = [
   {
@@ -103,28 +43,6 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer>
-      {/* FAQ */}
-      <div style={{ background: '#fff', borderTop: '1px solid var(--line)' }}>
-        <div style={{ maxWidth: 720, margin: '0 auto', padding: '64px 16px' }}>
-          <div style={{ textAlign: 'center', marginBottom: 40 }}>
-            <div style={{
-              display: 'inline-block', fontSize: 11, fontWeight: 700,
-              letterSpacing: '0.1em', textTransform: 'uppercase',
-              padding: '4px 12px', borderRadius: 6, marginBottom: 12,
-              background: 'var(--peach-light)', color: 'var(--orange)',
-            }}>
-              FAQ
-            </div>
-            <h2 style={{
-              fontFamily: 'DM Serif Display, serif', fontSize: 32, color: 'var(--charcoal)',
-            }}>
-              Часті <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>запитання</em>
-            </h2>
-          </div>
-          {faqs.map((item, i) => <FaqItem key={i} q={item.q} a={item.a} />)}
-        </div>
-      </div>
-
       {/* Footer */}
       <div style={{ background: 'var(--charcoal)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 16px' }}>
