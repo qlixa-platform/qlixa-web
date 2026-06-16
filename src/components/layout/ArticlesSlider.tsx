@@ -47,16 +47,21 @@ export default function ArticlesSlider({
   }
 
   return (
-    <section style={{ background: 'var(--gray)', padding: '64px 0' }}>
+    <section style={{
+      background: '#FFFFFF',
+      backgroundImage: 'linear-gradient(rgba(3,131,144,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(3,131,144,0.05) 1px, transparent 1px)',
+      backgroundSize: '28px 28px',
+      padding: '40px 0',
+    }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 16px' }}>
 
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 28 }}>
-          <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 28, color: 'var(--charcoal)' }}>
-            Останні <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>статті</em>
+          <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 28, color: '#1A1A1A' }}>
+            Останні <em style={{ fontStyle: 'italic', color: '#038390' }}>статті</em>
           </h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <Link href="/articles" style={{ fontSize: 13, fontWeight: 500, color: 'var(--orange)', textDecoration: 'none' }}>
+            <Link href="/articles" style={{ fontSize: 13, fontWeight: 500, color: '#038390', textDecoration: 'none' }}>
               Всі статті →
             </Link>
             <div style={{ display: 'flex', gap: 8 }}>
@@ -66,9 +71,9 @@ export default function ArticlesSlider({
                   onClick={() => go(b.d)}
                   style={{
                     width: 36, height: 36, borderRadius: '50%',
-                    border: '1.5px solid var(--line)', background: '#fff',
+                    border: '1px solid rgba(26,26,26,0.15)', background: '#fff',
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    cursor: 'pointer', fontSize: 14, color: 'var(--charcoal)',
+                    cursor: 'pointer', fontSize: 14, color: '#1A1A1A',
                     opacity: (b.d === -1 && cur === 0) || (b.d === 1 && cur >= maxCur) ? 0.3 : 1,
                   }}
                 >
@@ -114,7 +119,7 @@ export default function ArticlesSlider({
                   <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 7, flex: 1 }}>{art.title}</div>
                   <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 12 }}>{art.desc}</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'auto' }}>
-                    <span style={{ fontSize: 11, color: 'var(--text3)' }}>{art.date} · {art.readTime}</span>
+                    <span style={{ fontSize: 11, color: 'rgba(26,26,26,0.55)' }}>{art.date} · {art.readTime}</span>
                     <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)' }}>Читати →</span>
                   </div>
                 </div>
@@ -126,7 +131,7 @@ export default function ArticlesSlider({
                 style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', minWidth: 280, flex: '0 0 280px', height: 320, background: '#fff', borderRadius: 14, padding: 18, border: '1px dashed var(--line2)', opacity: 0.65 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 9 }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 4, background: 'var(--gray)', color: 'var(--text3)' }}>{art.tag}</div>
+                  <div style={{ fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 4, background: '#F0F7F8', color: 'rgba(26,26,26,0.55)' }}>{art.tag}</div>
                   <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', padding: '3px 7px', borderRadius: 3, background: 'var(--peach-light)', color: 'var(--orange)' }}>Скоро</div>
                 </div>
                 <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 6 }}>{art.title}</div>

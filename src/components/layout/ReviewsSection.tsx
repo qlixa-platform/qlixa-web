@@ -1,16 +1,13 @@
 'use client'
 
 import React from 'react'
-import Image from 'next/image'
 
 const reviews = [
   {
     name: 'Sofia M.',
     role: 'Фріланс-дизайнер · Freies Gewerbe',
     country: '🇺🇦 Відень, Австрія',
-    // Young woman, professional, realistic
     avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=120&h=120&fit=crop&crop=face&q=80',
-    // Austrian nature - alpine meadow
     cardBg: 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=400&h=120&fit=crop&q=70',
     text: '"Нарешті можу займатись своєю справою, а не нервувати через папери. QLIXA рахує — я творю."',
   },
@@ -18,9 +15,7 @@ const reviews = [
     name: 'Markus K.',
     role: 'Найманий працівник · Arbeitnehmerveranlagung',
     country: '🇩🇪 Зальцбург, Австрія',
-    // Middle-aged man, professional
     avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=120&h=120&fit=crop&crop=face&q=80',
-    // Austrian mountain lake - verified working
     cardBg: 'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=400&h=120&fit=crop&q=70',
     text: '"Навіть не підозрював, що маю право повернути переплачені податки. QLIXA показала що і як — гроші повернулись самі."',
   },
@@ -28,9 +23,7 @@ const reviews = [
     name: 'Olena V.',
     role: 'Самозайнята + оренда квартири в Україні',
     country: '🇺🇦 Грац, Австрія',
-    // Woman, 35-45, Eastern European look
     avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=120&h=120&fit=crop&crop=face&q=80',
-    // Austrian village
     cardBg: 'https://images.unsplash.com/photo-1539635278303-d4002c07eae3?w=400&h=120&fit=crop&q=70',
     text: '"Маю бізнес в Австрії і квартиру в оренді в Україні. Думала, потрібні два бухгалтери. Виявилось — достатньо QLIXA."',
   },
@@ -38,9 +31,7 @@ const reviews = [
     name: 'Herbert S.',
     role: 'Пенсіонер · Додатковий дохід',
     country: '🇦🇹 Лінц, Австрія',
-    // Older man, 65+, warm smile
     avatar: 'https://images.unsplash.com/photo-1582750433449-648ed127bb54?w=120&h=120&fit=crop&crop=face&q=80',
-    // Austrian forest sunset
     cardBg: 'https://images.unsplash.com/photo-1473580044384-7ba9967e16a0?w=400&h=120&fit=crop&q=70',
     text: '"На пенсії вирішив трохи підпрацьовувати. Думав, бухгалтерія мене доб\'є. Але з QLIXA все виявилось простіше ніж здавалось."',
   },
@@ -55,75 +46,16 @@ export default function ReviewsSection() {
   }
 
   return (
-    <section style={{ background: 'var(--gray)' }}>
+    <section style={{ background: '#1A1A1A', backgroundImage: 'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '28px 28px' }}>
 
-      {/* Photo with title overlaid */}
-      <div style={{ position: 'relative', width: '100%', overflow: 'hidden' }}>
-        <Image
-          src="/reviews-bg.jpg"
-          alt="Наші клієнти"
-          width={1400}
-          height={700}
-          style={{
-            width: '100%',
-            height: 'auto',
-            display: 'block',
-            objectFit: 'contain',
-          }}
-          priority
-        />
-        {/* Center gradient for text */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'rgba(0,0,0,0.22)',
-          pointerEvents: 'none',
-        }} />
-
-        {/* Thought bubbles */}
-        <div style={{ position: 'absolute', inset: 0, zIndex: 2, pointerEvents: 'none' }}>
-          {[
-            { left: '3%',  top: '25.5%', name: 'Alex',   text: 'Фокусуюсь на цілях. Фінанси вже під контролем.' },
-            { left: '14%', top: '54%', name: 'Mia',    text: 'Задоволені клієнти. Плавний бізнес. Нуль стресу від бухгалтерії.' },
-            { left: '35.5%', top: '80%', name: 'David',  text: 'Код, кава, клієнти. Бухгалтерія — сама за себе.' },
-            { left: '57.5%', top: '80%', name: 'Emma',   text: 'Творчість іде краще, коли адмінка не заважає.' },
-            { left: '76.5%', top: '40%', name: 'Lucas',  text: 'Нові можливості попереду. Цифри вже під контролем.' },
-            { left: '75%',   top: '82%', name: 'Sophie', text: 'Веду бізнес. QLIXA веде бухгалтерію.' },
-          ].map((b, i) => (
-            <div key={i} style={{ position: 'absolute', left: b.left, top: b.top, maxWidth: 160, zIndex: 2, pointerEvents: 'none' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, color: '#fff', fontStyle: 'italic', marginBottom: 5, letterSpacing: '0.2px' }}>
-                {b.name}
-              </div>
-              <div style={{ borderLeft: '2px solid rgba(255,255,255,0.7)', paddingLeft: 10, fontSize: 12, fontWeight: 400, color: 'rgba(255,255,255,0.9)', lineHeight: 1.55 }}>
-                &ldquo;{b.text}&rdquo;
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Title CENTER of photo */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          display: 'flex', flexDirection: 'column',
-          alignItems: 'center', justifyContent: 'center',
-          textAlign: 'center', padding: '0 24px',
-        }}>
-          <div style={{
-            fontSize: 11, fontWeight: 700, letterSpacing: '3px',
-            textTransform: 'uppercase', color: 'var(--peach)',
-            marginBottom: 12, opacity: 0.9,
-          }}>
-            Відгуки клієнтів
-          </div>
-          <h2 style={{
-            fontFamily: 'DM Serif Display, serif',
-            fontSize: 'clamp(32px,5vw,60px)',
-            color: '#fff', fontWeight: 400, lineHeight: 1.15,
-            textShadow: '0 2px 20px rgba(0,0,0,0.4)',
-          }}>
-            What Our{' '}
-            <em style={{ fontStyle: 'italic', color: '#FFB899' }}>Clients Say</em>
-          </h2>
-        </div>
+      {/* Title */}
+      <div style={{ textAlign: 'center', padding: '40px 20px 32px' }}>
+        <span style={{ fontFamily: 'Caveat, cursive', fontSize: 26, fontWeight: 700, color: '#fff', background: 'linear-gradient(to bottom, transparent 55%, rgba(245,230,66,0.4) 55%, rgba(245,230,66,0.4) 92%, transparent 92%)', paddingLeft: 6, paddingRight: 6 }}>
+          відгуки клієнтів
+        </span>
+        <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3vw,42px)', fontWeight: 400, color: '#fff', marginTop: 10, letterSpacing: '-0.5px' }}>
+          Що кажуть наші <em style={{ fontStyle: 'italic', color: '#038390' }}>користувачі</em>
+        </h2>
       </div>
 
       {/* Cards */}
@@ -150,7 +82,6 @@ export default function ReviewsSection() {
                   alt="Austria"
                   style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
                 />
-                {/* Slight dark overlay */}
                 <div style={{
                   position: 'absolute', inset: 0,
                   background: 'rgba(0,0,0,0.12)',
@@ -183,7 +114,7 @@ export default function ReviewsSection() {
                 <div style={{ fontSize: 13, color: 'var(--text2)', lineHeight: 1.7, textAlign: 'center', flex: 1, fontStyle: 'italic' }}>
                   {r.text}
                 </div>
-                <div style={{ fontSize: 11, color: 'var(--text3)', textAlign: 'center', marginTop: 10 }}>
+                <div style={{ fontSize: 11, color: 'rgba(26,26,26,0.55)', textAlign: 'center', marginTop: 10 }}>
                   {r.country}
                 </div>
               </div>
@@ -201,7 +132,7 @@ export default function ReviewsSection() {
             style={{
               width: i === current ? 20 : 7, height: 7,
               borderRadius: i === current ? 4 : '50%',
-              background: i === current ? 'var(--orange)' : 'var(--line2)',
+              background: i === current ? '#038390' : 'rgba(255,255,255,0.3)',
               border: 'none', cursor: 'pointer', transition: 'all 0.2s',
               padding: 0,
             }}

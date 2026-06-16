@@ -121,7 +121,7 @@ function QlixaPromo() {
         background: 'var(--orange)', opacity: 0.08, bottom: -60, left: -40,
       }} />
       <div style={{ position: 'relative', zIndex: 1 }}>
-        <Image src="/logos/logo-mascot.svg" alt="QLIXA" width={72} height={72}
+        <Image src="/logos/logo-bird.svg" alt="QLIXA" width={72} height={59}
           style={{ margin: '0 auto 16px', display: 'block' }} />
         <div style={{
           fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase',
@@ -526,7 +526,7 @@ export default function GewerbeanmeldungPage() {
         }}>
           <div style={{ position: 'absolute', width: 180, height: 180, borderRadius: '50%', background: 'var(--orange)', opacity: 0.08, top: -40, right: -40 }} />
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <Image src="/logos/logo-mascot.svg" alt="QLIXA" width={80} height={80}
+            <Image src="/logos/logo-bird.svg" alt="QLIXA" width={80} height={65}
               style={{ margin: '0 auto 18px', display: 'block' }} />
             <h2 style={{
               fontFamily: 'DM Serif Display, serif', fontSize: 30, color: 'var(--charcoal)',

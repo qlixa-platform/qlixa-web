@@ -61,9 +61,9 @@ export default function PlatformOverviewPage() {
       <div style={{ background: 'var(--charcoal)', padding: '56px 16px 48px' }}>
         <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
           <Image
-            src="/logos/logo-mascot.svg"
+            src="/logos/logo-bird.svg"
             alt="QLIXA"
-            width={72} height={72}
+            width={72} height={59}
             style={{ margin: '0 auto 20px', display: 'block' }}
           />
           <div style={{

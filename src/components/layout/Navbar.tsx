@@ -60,7 +60,7 @@ function Dropdown({ item, isOpen, onToggle }: {
           display: 'flex', alignItems: 'center', gap: 4,
           padding: '8px 12px', borderRadius: 8, border: 'none', background: 'transparent',
           fontSize: 14, fontWeight: 500, cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
-          color: isOpen ? 'var(--orange)' : 'var(--charcoal)',
+          color: isOpen ? '#038390' : 'rgba(255,255,255,0.5)',
         }}
       >
         {item.label}
@@ -377,8 +377,7 @@ export default function Navbar() {
   return (
     <>
       <nav style={{
-        position: 'sticky', top: 0, zIndex: 40, background: '#fff',
-        borderBottom: '1px solid var(--line)', boxShadow: 'var(--shadow)',
+        position: 'sticky', top: 0, zIndex: 40, background: '#1A1A1A',
       }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 16px' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 }}>
@@ -386,10 +385,10 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
               <Image
-                src="/logos/logo-light.svg"
-                alt="QLIXA — Reports in one click"
-                width={140}
-                height={54}
+                src="/logos/logo-full-light.svg"
+                alt="QLIXA — Reports in One Click"
+                width={160}
+                height={57}
                 style={{ display: 'block' }}
               />
             </Link>
@@ -400,8 +399,11 @@ export default function Navbar() {
                 'href' in item ? (
                   <Link key={item.label} href={(item as NavLink).href} style={{
                     padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
-                    color: 'var(--charcoal)', textDecoration: 'none',
-                  }}>
+                    color: 'rgba(255,255,255,0.5)', textDecoration: 'none',
+                  }}
+                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#FFFFFF'}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.5)'}
+                  >
                     {item.label}
                   </Link>
                 ) : (
@@ -413,8 +415,11 @@ export default function Navbar() {
               ))}
               <Link href="/pricing" style={{
                 padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
-                color: 'var(--charcoal)', textDecoration: 'none',
-              }}>
+                color: 'rgba(255,255,255,0.5)', textDecoration: 'none',
+              }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#FFFFFF'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.5)'}
+              >
                 Ціни
               </Link>
             </div>
@@ -426,21 +431,22 @@ export default function Navbar() {
                 border: 'none', cursor: 'pointer',
               }}>
                 <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                  <circle cx="8" cy="8" r="5.5" stroke="var(--text3)" strokeWidth="1.5"/>
-                  <path d="M12.5 12.5L16 16" stroke="var(--text3)" strokeWidth="1.5" strokeLinecap="round"/>
+                  <circle cx="8" cy="8" r="5.5" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5"/>
+                  <path d="M12.5 12.5L16 16" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </button>
               <button onClick={() => setShowLogin(true)} style={{
-                padding: '8px 16px', borderRadius: 999, fontSize: 13, fontWeight: 500,
-                color: 'var(--charcoal)', border: '1px solid var(--line2)',
+                padding: '8px 16px', borderRadius: 10, fontSize: 14, fontWeight: 500,
+                color: 'rgba(255,255,255,0.6)', border: '1px solid rgba(255,255,255,0.18)',
                 background: 'transparent', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
               }}>
                 Увійти
               </button>
               <button onClick={() => setShowTrial(true)} style={{
-                padding: '8px 16px', borderRadius: 999, fontSize: 13, fontWeight: 700,
-                background: 'var(--orange)', color: '#fff', border: 'none',
+                padding: '9px 18px', borderRadius: 10, fontSize: 14, fontWeight: 700,
+                background: '#038390', color: '#FFFFFF', border: 'none',
                 cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
+                boxShadow: '0 2px 12px rgba(3,131,144,0.3)',
               }}>
                 Спробувати
               </button>
@@ -448,6 +454,7 @@ export default function Navbar() {
 
           </div>
         </div>
+        <div style={{ height: 3, background: 'linear-gradient(to right, #CC0000 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #CC0000 66.66%)', width: '100%' }} />
       </nav>
 
       {showSearch && <SearchModal onClose={() => setShowSearch(false)} />}

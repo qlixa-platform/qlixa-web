@@ -12,12 +12,12 @@ export default function FreeTestPage() {
         <div style={{ fontSize: 64, marginBottom: 24 }}>🤔</div>
         <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 36, color: '#353434', marginBottom: 16, lineHeight: 1.2 }}>
           Тут дві busy Ірки думають,<br />
-          <em style={{ fontStyle: 'italic', color: '#FF7033' }}>який звітик сюди прикріпити</em>
+          <em style={{ fontStyle: 'italic', color: '#038390' }}>який звітик сюди прикріпити</em>
         </h1>
         <p style={{ fontSize: 16, color: 'rgba(53,52,52,0.55)', lineHeight: 1.7, marginBottom: 32 }}>
           Поки будемо думати — ця сторінка в процесі розробки. Але ти вже на правильному шляху!
         </p>
-        <Link href="/pricing" style={{ display: 'inline-block', padding: '14px 28px', borderRadius: 12, background: '#FF7033', color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: 15 }}>
+        <Link href="/pricing" style={{ display: 'inline-block', padding: '14px 28px', borderRadius: 12, background: '#038390', color: '#fff', textDecoration: 'none', fontWeight: 700, fontSize: 15 }}>
           Переглянути тарифи →
         </Link>
         <br />
