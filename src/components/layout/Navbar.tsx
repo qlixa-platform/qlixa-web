@@ -21,13 +21,7 @@ const navItems: NavItem[] = [
   },
   {
     label: 'Для кого',
-    items: [
-      { label: 'Фрілансери', href: '/for/freelancers', desc: 'Проста самозайнятість' },
-      { label: 'Малий бізнес', href: '/for/small-business', desc: 'Команди 1–10 осіб' },
-      { label: 'Стартапи', href: '/for/startups', desc: 'Для швидкозростаючих' },
-      { label: 'Іноземці в Австрії', href: '/for/expats', desc: 'Австрія — просто' },
-      { label: 'Українці в Австрії', href: '/for/ukrainians', desc: 'Ми розуміємо тебе' },
-    ],
+    href: '/#для-кого',
   },
   {
     label: 'Статті',
@@ -401,6 +395,7 @@ export default function Navbar() {
                     padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
                     color: 'rgba(255,255,255,0.5)', textDecoration: 'none',
                   }}
+                    onClick={item.label === 'Для кого' ? () => { const el = document.getElementById('для-кого'); if (el) el.scrollIntoView({ behavior: 'smooth' }); } : undefined}
                     onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#FFFFFF'}
                     onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.5)'}
                   >

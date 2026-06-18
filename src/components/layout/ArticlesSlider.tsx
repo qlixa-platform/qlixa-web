@@ -47,12 +47,7 @@ export default function ArticlesSlider({
   }
 
   return (
-    <section style={{
-      background: '#FFFFFF',
-      backgroundImage: 'linear-gradient(rgba(3,131,144,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(3,131,144,0.05) 1px, transparent 1px)',
-      backgroundSize: '28px 28px',
-      padding: '40px 0',
-    }}>
+    <section style={{ background: '#F0F7F8', padding: '40px 0' }}>
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 16px' }}>
 
         {/* Header */}

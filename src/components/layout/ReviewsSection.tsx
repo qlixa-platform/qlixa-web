@@ -46,13 +46,11 @@ export default function ReviewsSection() {
   }
 
   return (
-    <section style={{ background: '#1A1A1A', backgroundImage: 'linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px)', backgroundSize: '28px 28px' }}>
+    <section style={{ background: '#1A1A1A' }}>
 
       {/* Title */}
       <div style={{ textAlign: 'center', padding: '40px 20px 32px' }}>
-        <span style={{ fontFamily: 'Caveat, cursive', fontSize: 26, fontWeight: 700, color: '#fff', background: 'linear-gradient(to bottom, transparent 55%, rgba(245,230,66,0.4) 55%, rgba(245,230,66,0.4) 92%, transparent 92%)', paddingLeft: 6, paddingRight: 6 }}>
-          відгуки клієнтів
-        </span>
+        <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', marginBottom: 16 }}>Відгуки клієнтів</div>
         <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3vw,42px)', fontWeight: 400, color: '#fff', marginTop: 10, letterSpacing: '-0.5px' }}>
           Що кажуть наші <em style={{ fontStyle: 'italic', color: '#038390' }}>користувачі</em>
         </h2>
