@@ -44,12 +44,12 @@ const services = [
 ]
 
 const forWhom = [
-  { icon: '💼', text: 'Самозайнятий (Neue Selbstständige або Gewerbe)' },
-  { icon: '💻', text: 'Фрілансер — IT, дизайн, консалтинг, будь-яка вільна професія' },
-  { icon: '🏢', text: 'Маєш маленький бізнес або тільки плануєш відкрити' },
-  { icon: '🏠', text: 'Здаєш нерухомість або маєш дохід з кількох джерел' },
-  { icon: '👴', text: 'Пенсіонер із додатковим доходом від підробітку' },
-  { icon: '🧘', text: 'Хочеш вести справи самостійно — без дорогого Steuerberater' },
+  { icon: '💼', text: 'Самозайнятий (Neue Selbstständige або Gewerbe)', href: '/for/samostiynyy' },
+  { icon: '💻', text: 'Фрілансер — IT, дизайн, консалтинг, будь-яка вільна професія', href: '/for/frilanser' },
+  { icon: '🏢', text: 'Маєш маленький бізнес або тільки плануєш відкрити', href: '/for/biznes' },
+  { icon: '🏠', text: 'Здаєш нерухомість або маєш дохід з кількох джерел', href: '/for/nerukhomist' },
+  { icon: '👴', text: 'Пенсіонер із додатковим доходом від підробітку', href: '/for/pensioner' },
+  { icon: '👔', text: 'Найманий працівник — контроль фінансів та повернення податків', href: '/for/naymanyy' },
 ]
 
 export default function PlatformOverviewPage() {
@@ -188,14 +188,16 @@ export default function PlatformOverviewPage() {
         </p>
         <div style={{ display: 'grid', gap: 10, gridTemplateColumns: 'repeat(auto-fit,minmax(260px,1fr))', marginBottom: 40 }}>
           {forWhom.map((item, i) => (
-            <div key={i} style={{
-              display: 'flex', alignItems: 'center', gap: 12,
-              background: '#fff', borderRadius: 12, padding: '14px 18px',
-              border: '1px solid var(--line)', boxShadow: 'var(--shadow)',
-            }}>
-              <span style={{ fontSize: 22, flexShrink: 0 }}>{item.icon}</span>
-              <span style={{ fontSize: 13, color: 'var(--charcoal)', lineHeight: 1.5 }}>{item.text}</span>
-            </div>
+            <Link key={i} href={item.href} style={{ textDecoration: 'none' }}>
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: 12,
+                background: '#fff', borderRadius: 12, padding: '14px 18px',
+                border: '1px solid var(--line)', boxShadow: 'var(--shadow)',
+              }}>
+                <span style={{ fontSize: 22, flexShrink: 0 }}>{item.icon}</span>
+                <span style={{ fontSize: 13, color: 'var(--charcoal)', lineHeight: 1.5 }}>{item.text}</span>
+              </div>
+            </Link>
           ))}
         </div>
 
