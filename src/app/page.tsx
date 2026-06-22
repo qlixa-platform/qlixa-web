@@ -374,19 +374,20 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
 
             {[
-              { icon: '💼', title: 'Самозайнятий', desc: 'Neue Selbstständige або Gewerbe — QLIXA допоможе з бухгалтерією, звітами та дедлайнами.', href: '/for/samostiynyy' },
-              { icon: '💻', title: 'Фрілансер', desc: 'IT, дизайн, консалтинг, будь-яка вільна професія — веди справи без Steuerberater.', href: '/for/frilanser' },
-              { icon: '🏢', title: 'Маленький бізнес', desc: 'Або тільки плануєш відкрити — QLIXA пройде з тобою кожен крок від реєстрації до звітів.', href: '/for/biznes' },
-              { icon: '🏠', title: 'Здаєш нерухомість', desc: 'Або маєш дохід з кількох джерел — платформа врахує всі надходження та списання.', href: '/for/nerukhomist' },
-              { icon: '👴', title: 'Пенсіонер з доходом', desc: "Додатковий дохід від підробітку — QLIXA розрахує твої зобов'язання просто і зрозуміло.", href: '/for/pensioner' },
-              { icon: '👔', title: 'Найманий працівник', desc: 'Працюєш по найму, але хочеш контролювати свої фінанси та правильно розрахувати щорічне повернення податків.', href: '/for/naymanyy' },
+              { img: '/for-who/samostiynyy.png', title: 'Самозайнятий', desc: 'Neue Selbstständige або Gewerbe — QLIXA допоможе з бухгалтерією, звітами та дедлайнами.', href: '/for/samostiynyy' },
+              { img: '/for-who/frilanser.png', title: 'Фрілансер', desc: 'IT, дизайн, консалтинг, будь-яка вільна професія — веди справи без Steuerberater.', href: '/for/frilanser' },
+              { img: '/for-who/biznes.png', title: 'Маленький бізнес', desc: 'Або тільки плануєш відкрити — QLIXA пройде з тобою кожен крок від реєстрації до звітів.', href: '/for/biznes' },
+              { img: '/for-who/nerukhomist.png', title: 'Здаєш нерухомість', desc: 'Або маєш дохід з кількох джерел — платформа врахує всі надходження та списання.', href: '/for/nerukhomist' },
+              { img: '/for-who/pensioner.png', title: 'Пенсіонер з доходом', desc: "Додатковий дохід від підробітку — QLIXA розрахує твої зобов'язання просто і зрозуміло.", href: '/for/pensioner' },
+              { img: '/for-who/naymanyy.png', title: 'Найманий працівник', desc: 'Працюєш по найму, але хочеш контролювати свої фінанси та правильно розрахувати щорічне повернення податків.', href: '/for/naymanyy' },
             ].map((card, i) => (
               <Link key={i} href={card.href} style={{ textDecoration: 'none' }}>
                 <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', height: '100%' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                    <span style={{ fontSize: 36, flexShrink: 0 }}>{card.icon}</span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={card.img} alt={card.title} style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
                     <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{card.title}</div>
                   </div>
                   <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.65 }}>{card.desc}</div>
