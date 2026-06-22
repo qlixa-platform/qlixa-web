@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
@@ -45,60 +45,8 @@ const upcoming = [
   { tag: 'MVK', title: 'Як обрати пенсійний фонд MVK', desc: 'Що таке MVK і як не пропустити дедлайн 6 місяців.', href: '/articles/mvk-pension' },
 ]
 
-const incomeMap: Record<string, number> = {
-  'До €15 000': 320,
-  '€15 000 – €30 000': 580,
-  '€30 000 – €60 000': 840,
-  'Понад €60 000': 1240,
-}
-
-function useCountUp(target: number, active: boolean) {
-  const [val, setVal] = useState(0)
-  useEffect(() => {
-    if (!active) { setVal(0); return }
-    let start = 0
-    const step = Math.ceil(target / 40)
-    const timer = setInterval(() => {
-      start += step
-      if (start >= target) { setVal(target); clearInterval(timer) }
-      else setVal(start)
-    }, 30)
-    return () => clearInterval(timer)
-  }, [target, active])
-  return val
-}
-
 export default function HomePage() {
-  const [demoStep, setDemoStep] = useState(0)
-  const [s1, setS1] = useState('')
-  const [s2, setS2] = useState('')
-  const [s3Selections, setS3Selections] = useState<string[]>([])
-  const [s4, setS4] = useState('')
   const [openFaq, setOpenFaq] = useState<number | null>(null)
-  const [hasKids, setHasKids] = useState<null | boolean>(null)
-  const [kidsCount, setKidsCount] = useState('')
-  const [quizDone, setQuizDone] = useState(false)
-
-  const handleKidsAnswer = (answer: boolean) => {
-    setHasKids(answer)
-    if (!answer) setQuizDone(true)
-  }
-
-  const handleKidsCountSubmit = (e: React.KeyboardEvent<HTMLInputElement>) => {
-    if (e.key === 'Enter' && kidsCount.trim() !== '') {
-      setQuizDone(true)
-    }
-  }
-
-  const demoComplete = !!(s1 && s2 && s3Selections.length > 0 && s4)
-  const incomeBase = incomeMap[s2] || 0
-  const bonus = s3Selections.length * 120
-  const total = incomeBase + bonus
-  const countVal = useCountUp(total, demoComplete)
-
-  const toggleS3 = (opt: string) => {
-    setS3Selections(prev => prev.includes(opt) ? prev.filter(o => o !== opt) : [...prev, opt])
-  }
 
   return (
     <div style={{ fontFamily: 'DM Sans, sans-serif', background: '#F0F7F8', overflowX: 'hidden' }}>
@@ -453,72 +401,89 @@ export default function HomePage() {
 
 
       {/* ── DEMO ── */}
-      <section id="demo" style={{ background: '#F0F7F8', padding: '72px clamp(20px,6vw,80px)' }}>
+      <section id="demo" style={{ background: '#1A1A1A', padding: '72px clamp(20px,6vw,80px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
           {/* Header */}
-          <div style={{ textAlign: 'center', marginBottom: 32 }}>
-            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>Як це працює</div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.8vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 12 }}>
-              Все просто — нарешті <em style={{ fontStyle: 'italic', color: '#038390' }}>жодних складних термінів</em>
+          <div style={{ textAlign: 'center', marginBottom: 52 }}>
+            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.15)', border: '1px solid rgba(3,131,144,0.35)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>Як це працює</div>
+            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.8vw,44px)', fontWeight: 400, color: '#fff', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 0 }}>
+              Все просто — 4 кроки і <em style={{ fontStyle: 'italic', color: '#038390' }}>жодних складних термінів</em>
             </h2>
-            <p style={{ fontSize: 15, color: '#595959', maxWidth: 460, margin: '0 auto', lineHeight: 1.7 }}>4 простих кроки — і все готово</p>
           </div>
 
-          {/* 4 chess-pattern blocks */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
-
-            {/* BLOCK 1 — image LEFT */}
-            <div style={{ height: 125, borderRadius: 18, background: 'linear-gradient(to right, #1A1A1A 0%, #038390 45%, #E6F4F5 100%)', display: 'flex', alignItems: 'center', padding: '0 28px', gap: 24, boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}>
-              <div style={{ width: 115, height: 100, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image src="/logos/logo-bird.svg" alt="" width={70} height={70} />
+          {/* 4 cards in a row */}
+          <div id="demo-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
+            {[
+              {
+                num: '1',
+                img: '/how-it-works/step-1.png',
+                title: 'Відповідаєш на прості питання.',
+                em: 'прості питання.',
+                before: 'Відповідаєш на ',
+                desc: 'Ніяких складних форм. Просто обираєш відповідь — і QLIXA вже знає твою ситуацію.',
+              },
+              {
+                num: '2',
+                img: '/how-it-works/step-2.png',
+                title: 'QLIXA аналізує.',
+                em: 'аналізує.',
+                before: 'QLIXA ',
+                desc: 'Знаходить усі можливі списання та податкові можливості, про які ти навіть не знав.',
+              },
+              {
+                num: '3',
+                img: '/how-it-works/step-3.png',
+                title: 'Натискаєш одну кнопку.',
+                em: 'одну кнопку.',
+                before: 'Натискаєш ',
+                desc: 'QLIXA формує звіти та готує дані для FinanzOnline автоматично.',
+              },
+              {
+                num: '4',
+                img: '/how-it-works/step-4.png',
+                title: 'Отримуєш результат.',
+                em: 'результат.',
+                before: 'Отримуєш ',
+                desc: 'Біжи працювати далі — QLIXA зробить всю складну роботу.',
+              },
+            ].map((card) => (
+              <div key={card.num} style={{ background: '#242424', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.07)', display: 'flex', flexDirection: 'column' }}>
+                {/* Image */}
+                <div style={{ width: '100%', aspectRatio: '4/3', background: '#F0F7F8', position: 'relative', overflow: 'hidden', flexShrink: 0 }}>
+                  <Image
+                    src={card.img}
+                    alt={card.title}
+                    fill
+                    style={{ objectFit: 'cover' }}
+                  />
+                  {/* Step number badge */}
+                  <div style={{ position: 'absolute', top: 12, left: 12, width: 28, height: 28, borderRadius: '50%', background: '#038390', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 800, color: '#fff', zIndex: 2 }}>{card.num}</div>
+                </div>
+                {/* Text */}
+                <div style={{ padding: '20px 22px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
+                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, fontWeight: 400, color: '#fff', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
+                    {card.before}<em style={{ fontStyle: 'italic', color: '#038390' }}>{card.em}</em>
+                  </h3>
+                  <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, margin: 0 }}>{card.desc}</p>
+                </div>
               </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 400, color: '#1A1A1A', lineHeight: 1.2, marginBottom: 6, letterSpacing: '-0.4px' }}>Ти відповідаєш на прості питання.</h3>
-                <div style={{ fontSize: 14, fontWeight: 600, color: '#038390', marginBottom: 6 }}>Ніяких складних форм.</div>
-                <p style={{ fontSize: 12.5, color: '#3D3D3D', lineHeight: 1.4 }}>Просто обираєш відповідь — і QLIXA вже знає твою ситуацію.</p>
-              </div>
-            </div>
-
-            {/* BLOCK 2 — image RIGHT */}
-            <div style={{ height: 125, borderRadius: 18, background: 'linear-gradient(to left, #1A1A1A 0%, #038390 45%, #E6F4F5 100%)', display: 'flex', alignItems: 'center', padding: '0 28px', gap: 24, boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}>
-              <div style={{ flex: 1, minWidth: 0, textAlign: 'right' }}>
-                <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 400, color: '#1A1A1A', lineHeight: 1.2, marginBottom: 6, letterSpacing: '-0.4px' }}>QLIXA перевіряє доки — і починає економити.</h3>
-                <div style={{ fontSize: 14, fontWeight: 600, color: '#038390', marginBottom: 6 }}>Без зайвих зусиль.</div>
-                <p style={{ fontSize: 12.5, color: '#3D3D3D', lineHeight: 1.4 }}>Знаходить купу можливих податкових списань, про які ти навіть не знав!</p>
-              </div>
-              <div style={{ width: 115, height: 100, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image src="/logos/logo-bird.svg" alt="" width={70} height={70} />
-              </div>
-            </div>
-
-            {/* BLOCK 3 — image LEFT */}
-            <div style={{ height: 125, borderRadius: 18, background: 'linear-gradient(to right, #1A1A1A 0%, #038390 45%, #E6F4F5 100%)', display: 'flex', alignItems: 'center', padding: '0 28px', gap: 24, boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}>
-              <div style={{ width: 115, height: 100, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image src="/logos/logo-bird.svg" alt="" width={70} height={70} />
-              </div>
-              <div style={{ flex: 1, minWidth: 0 }}>
-                <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 400, color: '#1A1A1A', lineHeight: 1.2, marginBottom: 6, letterSpacing: '-0.4px' }}>Ти натискаєш одну кнопку.</h3>
-                <div style={{ fontSize: 14, fontWeight: 600, color: '#038390', marginBottom: 6 }}>Більше нічого робити не треба.</div>
-                <p style={{ fontSize: 12.5, color: '#3D3D3D', lineHeight: 1.4 }}>QLIXA формує звіти та готує дані для FinanzOnline.</p>
-              </div>
-            </div>
-
-            {/* BLOCK 4 — image RIGHT */}
-            <div style={{ height: 125, borderRadius: 18, background: 'linear-gradient(to left, #1A1A1A 0%, #038390 45%, #E6F4F5 100%)', display: 'flex', alignItems: 'center', padding: '0 28px', gap: 24, boxShadow: '0 4px 16px rgba(0,0,0,0.08)' }}>
-              <div style={{ flex: 1, minWidth: 0, textAlign: 'right' }}>
-                <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 400, color: '#1A1A1A', lineHeight: 1.2, marginBottom: 6, letterSpacing: '-0.4px' }}>Ти отримуєш результат. Біжи працювати далі!</h3>
-                <div style={{ fontSize: 14, fontWeight: 600, color: '#038390', marginBottom: 6 }}>Все готово.</div>
-                <p style={{ fontSize: 12.5, color: '#3D3D3D', lineHeight: 1.4 }}>QLIXA зробить всю складну роботу.</p>
-              </div>
-              <div style={{ width: 115, height: 100, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-                <Image src="/logos/logo-bird.svg" alt="" width={70} height={70} />
-              </div>
-            </div>
-
+            ))}
           </div>
+
+          {/* Tablet: 2x2 grid override */}
+          <style>{`
+            @media (max-width: 900px) {
+              #demo-grid { grid-template-columns: repeat(2, 1fr) !important; }
+            }
+            @media (max-width: 540px) {
+              #demo-grid { grid-template-columns: 1fr !important; }
+            }
+          `}</style>
+
         </div>
       </section>
+
 
 
       {/* ── FEATURES ── */}
