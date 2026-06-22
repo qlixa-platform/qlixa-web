@@ -10,13 +10,16 @@ type NavItem = NavLink | NavDropdown
 
 const navItems: NavItem[] = [
   {
-    label: 'Платформа',
+    label: 'Як працює',
     items: [
-      { label: 'Огляд', href: '/platform/overview', desc: 'Що вміє QLIXA' },
-      { label: 'Рахунки-фактури', href: '/platform/invoicing', desc: 'Виставляй рахунки швидко' },
-      { label: 'Витрати', href: '/platform/expenses', desc: 'Відстежуй всі витрати' },
-      { label: 'Звіти', href: '/platform/reports', desc: 'Звітність одним кліком' },
-      { label: 'Клієнти', href: '/platform/clients', desc: 'Керуй контактами' },
+      { label: 'Огляд Платформи', href: '/platform/overview', desc: 'Що вміє QLIXA' },
+      { label: 'Рахунки-фактури', href: '/how-it-works/invoicing', desc: 'Виставляй рахунки швидко' },
+      { label: 'Витрати', href: '/how-it-works/expenses', desc: 'Відстежуй всі витрати' },
+      { label: 'Звіти', href: '/how-it-works/reports', desc: 'Звітність одним кліком' },
+      { label: 'Клієнти', href: '/how-it-works/clients', desc: 'Керуй контактами' },
+      { label: 'Повернення податку', href: '/how-it-works/tax-return', desc: 'Знайди всі свої списання' },
+      { label: 'FinanzOnline', href: '/how-it-works/finanzOnline', desc: 'Без паніки та складних форм' },
+      { label: 'Дедлайни', href: '/how-it-works/deadlines', desc: 'Жодного пропущеного терміну' },
     ],
   },
   {

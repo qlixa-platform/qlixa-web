@@ -457,8 +457,7 @@ export default function HomePage() {
                     fill
                     style={{ objectFit: 'cover' }}
                   />
-                  {/* Step number badge */}
-                  <div style={{ position: 'absolute', top: 12, left: 12, width: 28, height: 28, borderRadius: '50%', background: '#038390', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 13, fontWeight: 800, color: '#fff', zIndex: 2 }}>{card.num}</div>
+
                 </div>
                 {/* Text */}
                 <div style={{ padding: '20px 22px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
