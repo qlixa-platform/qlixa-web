@@ -174,15 +174,16 @@ export default function HomePage() {
             {/* Chain — bigger pills, single line */}
             <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'nowrap', gap: 6, marginBottom: 20, overflowX: 'auto' }}>
               {[
-                { icon: '👤', text: 'Повернення податку' },
-                { icon: '📄', text: 'Рахунки / Клієнти' },
-                { icon: '🧾', text: 'Бухгалтерія' },
-                { icon: '📊', text: 'Звіти' },
-                { icon: '🏛', text: 'FinanzOnline' },
+                { img: '/hero-icons/tax-return.png', text: 'Повернення податку' },
+                { img: '/hero-icons/invoices.png', text: 'Рахунки / Клієнти' },
+                { img: '/hero-icons/expenses.png', text: 'Витрати' },
+                { img: '/hero-icons/reports.png', text: 'Звіти' },
+                { img: '/hero-icons/finanz.png', text: 'FinanzOnline' },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 7, background: '#fff', border: '2px solid #1A1A1A', borderRadius: 12, padding: '9px 16px', boxShadow: '3px 3px 0 #1A1A1A', fontSize: 14, fontWeight: 600, color: '#1A1A1A', whiteSpace: 'nowrap' }}>
-                    <span style={{ fontSize: 16 }}>{item.icon}</span>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={item.img} alt={item.text} style={{ width: 20, height: 20, objectFit: 'contain', flexShrink: 0 }} />
                     {item.text}
                   </div>
                   {i < 4 && <span style={{ fontSize: 18, color: '#038390', fontWeight: 700, padding: '0 2px', flexShrink: 0 }}>→</span>}
@@ -387,7 +388,7 @@ export default function HomePage() {
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={card.img} alt={card.title} style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
+                    <img src={card.img} alt={card.title} style={{ width: 72, height: 72, objectFit: 'contain', flexShrink: 0 }} />
                     <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{card.title}</div>
                   </div>
                   <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.65 }}>{card.desc}</div>

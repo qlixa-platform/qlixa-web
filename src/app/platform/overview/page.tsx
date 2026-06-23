@@ -44,12 +44,12 @@ const services = [
 ]
 
 const forWhom = [
-  { icon: '💼', text: 'Самозайнятий (Neue Selbstständige або Gewerbe)', href: '/for/samostiynyy' },
-  { icon: '💻', text: 'Фрілансер — IT, дизайн, консалтинг, будь-яка вільна професія', href: '/for/frilanser' },
-  { icon: '🏢', text: 'Маєш маленький бізнес або тільки плануєш відкрити', href: '/for/biznes' },
-  { icon: '🏠', text: 'Здаєш нерухомість або маєш дохід з кількох джерел', href: '/for/nerukhomist' },
-  { icon: '👴', text: 'Пенсіонер із додатковим доходом від підробітку', href: '/for/pensioner' },
-  { icon: '👔', text: 'Найманий працівник — контроль фінансів та повернення податків', href: '/for/naymanyy' },
+  { img: '/for-who/samostiynyy.png', alt: 'Самозайнятий', text: 'Самозайнятий (Neue Selbstständige або Gewerbe)', href: '/for/samostiynyy' },
+  { img: '/for-who/frilanser.png', alt: 'Фрілансер', text: 'Фрілансер — IT, дизайн, консалтинг, будь-яка вільна професія', href: '/for/frilanser' },
+  { img: '/for-who/biznes.png', alt: 'Маленький бізнес', text: 'Маєш маленький бізнес або тільки плануєш відкрити', href: '/for/biznes' },
+  { img: '/for-who/nerukhomist.png', alt: 'Нерухомість', text: 'Здаєш нерухомість або маєш дохід з кількох джерел', href: '/for/nerukhomist' },
+  { img: '/for-who/pensioner.png', alt: 'Пенсіонер', text: 'Пенсіонер із додатковим доходом від підробітку', href: '/for/pensioner' },
+  { img: '/for-who/naymanyy.png', alt: 'Найманий працівник', text: 'Найманий працівник — контроль фінансів та повернення податків', href: '/for/naymanyy' },
 ]
 
 export default function PlatformOverviewPage() {
@@ -194,7 +194,8 @@ export default function PlatformOverviewPage() {
                 background: '#fff', borderRadius: 12, padding: '14px 18px',
                 border: '1px solid var(--line)', boxShadow: 'var(--shadow)',
               }}>
-                <span style={{ fontSize: 22, flexShrink: 0 }}>{item.icon}</span>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={item.img} alt={item.alt} style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
                 <span style={{ fontSize: 13, color: 'var(--charcoal)', lineHeight: 1.5 }}>{item.text}</span>
               </div>
             </Link>
