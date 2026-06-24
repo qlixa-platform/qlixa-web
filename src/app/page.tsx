@@ -108,7 +108,7 @@ export default function HomePage() {
 
       <Navbar />
 
-      {/* ── HERO SPLIT ── */}
+      {false && (
       <div style={{ paddingTop: 0 }}>
         {/* ── HERO ── */}
         <section style={{
@@ -204,17 +204,11 @@ export default function HomePage() {
           </div>
         </section>
       </div>
+      )}
 
-      {/* ── HERO2 (experimental map section) ── */}
-      <section style={{ 
-        minHeight: '100vh', 
-        background: '#F0F7F8', 
-        display: 'flex', 
-        alignItems: 'center', 
-        justifyContent: 'center',
-        padding: '0 clamp(20px,6vw,80px)'
-      }}>
-        <div style={{ maxWidth: 1200, width: '100%', display: 'flex', alignItems: 'center', gap: 60 }}>
+      {/* ── HERO ── */}
+      <section style={{ background: '#F0F7F8', padding: '52px clamp(20px,6vw,80px) 44px', minHeight: 'calc(100vh - 72px)', display: 'flex', alignItems: 'center' }}>
+        <div style={{ maxWidth: 1200, width: '100%', margin: '0 auto', display: 'flex', alignItems: 'center', gap: 60 }}>
 
           {/* LEFT — text */}
           <div style={{ flex: '0 0 420px' }}>
