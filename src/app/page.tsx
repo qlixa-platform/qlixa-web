@@ -254,38 +254,42 @@ export default function HomePage() {
 
             {/* Card 1 */}
             <div style={{ background: '#fff', borderRadius: 20, padding: '16px 20px', boxShadow: '0 2px 12px rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.1)', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                <span style={{ fontSize: 32, flexShrink: 0 }}>💰</span>
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>Щорічне повернення твого податку</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/what-is-qlixa/tax-return.png" alt="Повернення податку" style={{ width: 48, height: 48, objectFit: 'contain', flexShrink: 0 }} />
+                <div style={{ fontSize: 13, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Щорічне повернення твого податку</div>
               </div>
-              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.65 }}>Платформа знаходить усі можливі списання та допомагає повернути максимум із того, що тобі належить.</div>
+              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.7 }}>Платформа знаходить усі можливі списання та допомагає повернути максимум із того, що тобі належить.</div>
             </div>
 
             {/* Card 2 */}
             <div style={{ background: '#fff', borderRadius: 20, padding: '16px 20px', boxShadow: '0 2px 12px rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.1)', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                <span style={{ fontSize: 32, flexShrink: 0 }}>😊</span>
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>Інтерфейс, який зрозуміє навіть новачок</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/what-is-qlixa/interface.png" alt="Інтерфейс" style={{ width: 48, height: 48, objectFit: 'contain', flexShrink: 0 }} />
+                <div style={{ fontSize: 13, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Інтерфейс, який зрозуміє навіть новачок</div>
               </div>
-              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.65 }}>Ніяких складних таблиць, бухгалтерських термінів і незрозумілих кнопок. Все пояснюється крок за кроком.</div>
+              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.7 }}>Ніяких складних таблиць, бухгалтерських термінів і незрозумілих кнопок. Все пояснюється крок за кроком.</div>
             </div>
 
             {/* Card 3 */}
             <div style={{ background: '#fff', borderRadius: 20, padding: '16px 20px', boxShadow: '0 2px 12px rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.1)', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                <span style={{ fontSize: 32, flexShrink: 0 }}>☕</span>
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>Не програма для бухгалтерів</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/what-is-qlixa/not-for-accountants.png" alt="Не для бухгалтерів" style={{ width: 48, height: 48, objectFit: 'contain', flexShrink: 0 }} />
+                <div style={{ fontSize: 13, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Не програма для бухгалтерів</div>
               </div>
-              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.65 }}>Це платформа для звичайних людей. Для тих, хто хоче займатися своїм життям або бізнесом, а не годинами розбиратися в документах.</div>
+              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.7 }}>Це платформа для звичайних людей. Для тих, хто хоче займатися своїм життям або бізнесом, а не годинами розбиратися в документах.</div>
             </div>
 
             {/* Card 4 */}
             <div style={{ background: '#fff', borderRadius: 20, padding: '16px 20px', boxShadow: '0 2px 12px rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.1)', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                <span style={{ fontSize: 32, flexShrink: 0 }}>📚</span>
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>Тисячі сторінок законів, перекладених людською мовою</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/what-is-qlixa/laws.png" alt="Закони" style={{ width: 48, height: 48, objectFit: 'contain', flexShrink: 0 }} />
+                <div style={{ fontSize: 13, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Тисячі сторінок законів, перекладених людською мовою</div>
               </div>
-              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.65 }}>Ми вже вивчили правила за тебе і перетворили їх на прості запитання та автоматичні підказки.</div>
+              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.7 }}>Ми вже вивчили правила за тебе і перетворили їх на прості запитання та автоматичні підказки.</div>
             </div>
 
             {/* CENTER — QLIXA logo */}
@@ -320,38 +324,42 @@ export default function HomePage() {
 
             {/* Card 5 */}
             <div style={{ background: '#fff', borderRadius: 20, padding: '16px 20px', boxShadow: '0 2px 12px rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.1)', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                <span style={{ fontSize: 32, flexShrink: 0 }}>🔍</span>
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>Жодного пропущеного списання</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/what-is-qlixa/no-deductions-missed.png" alt="Жодного списання" style={{ width: 48, height: 48, objectFit: 'contain', flexShrink: 0 }} />
+                <div style={{ fontSize: 13, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Жодного пропущеного списання</div>
               </div>
-              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.65 }}>Платформа аналізує твою ситуацію та знаходить можливості, про які більшість людей навіть не знає.</div>
+              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.7 }}>Платформа аналізує твою ситуацію та знаходить можливості, про які більшість людей навіть не знає.</div>
             </div>
 
             {/* Card 6 */}
             <div style={{ background: '#1A1A1A', borderRadius: 20, padding: '16px 20px', boxShadow: '0 2px 12px rgba(0,0,0,0.15)', border: '1px solid rgba(3,131,144,0.3)', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                <span style={{ fontSize: 32, flexShrink: 0 }}>🔔</span>
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>Жодного пропущеного дедлайну</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/what-is-qlixa/no-deadlines-missed.png" alt="Жодного дедлайну" style={{ width: 48, height: 48, objectFit: 'contain', flexShrink: 0 }} />
+                <div style={{ fontSize: 13, fontWeight: 800, color: '#fff', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Жодного пропущеного дедлайну</div>
               </div>
-              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', lineHeight: 1.65 }}>Платформа сама нагадає про важливі дати, щоб ти не отримав штраф через забудькуватість.</div>
+              <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.65)', lineHeight: 1.7 }}>Платформа сама нагадає про важливі дати, щоб ти не отримав штраф через забудькуватість.</div>
             </div>
 
             {/* Card 7 */}
             <div style={{ background: '#fff', borderRadius: 20, padding: '16px 20px', boxShadow: '0 2px 12px rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.1)', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                <span style={{ fontSize: 32, flexShrink: 0 }}>📈</span>
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>Бізнес-помічник на кожен день</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/what-is-qlixa/business.png" alt="Бізнес-помічник" style={{ width: 48, height: 48, objectFit: 'contain', flexShrink: 0 }} />
+                <div style={{ fontSize: 13, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Бізнес-помічник на кожен день</div>
               </div>
-              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.65 }}>Рахунки, клієнти, витрати, показники бізнесу та документи — все в одному зрозумілому кабінеті.</div>
+              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.7 }}>Рахунки, клієнти, витрати, показники бізнесу та документи — все в одному зрозумілому кабінеті.</div>
             </div>
 
             {/* Card 8 */}
             <div style={{ background: '#fff', borderRadius: 20, padding: '16px 20px', boxShadow: '0 2px 12px rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.1)', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
-                <span style={{ fontSize: 32, flexShrink: 0 }}>🌍</span>
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>Складне, пояснене просто</div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/what-is-qlixa/languages.png" alt="Мови" style={{ width: 48, height: 48, objectFit: 'contain', flexShrink: 0 }} />
+                <div style={{ fontSize: 13, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Складне, пояснене просто</div>
               </div>
-              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.65 }}>Українською, англійською, російською та німецькою — обирай зручну мову і починай.</div>
+              <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.7 }}>Українською, англійською, російською та німецькою — обирай зручну мову і починай.</div>
             </div>
 
           </div>
@@ -386,7 +394,7 @@ export default function HomePage() {
                 <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', height: '100%' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 12 }}>
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={card.img} alt={card.title} style={{ width: 72, height: 72, objectFit: 'contain', flexShrink: 0 }} />
                     <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{card.title}</div>
