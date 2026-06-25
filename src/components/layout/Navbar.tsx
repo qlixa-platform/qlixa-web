@@ -418,7 +418,7 @@ export default function Navbar() {
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#FFFFFF'}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.5)'}
               >
-                Ціни
+                Тарифи
               </Link>
             </div>
 
@@ -439,14 +439,6 @@ export default function Navbar() {
                 background: 'transparent', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
               }}>
                 Увійти
-              </button>
-              <button onClick={() => setShowTrial(true)} style={{
-                padding: '9px 18px', borderRadius: 10, fontSize: 14, fontWeight: 700,
-                background: '#038390', color: '#FFFFFF', border: 'none',
-                cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
-                boxShadow: '0 2px 12px rgba(3,131,144,0.3)',
-              }}>
-                Спробувати
               </button>
             </div>
 
