@@ -207,7 +207,7 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
-      <section style={{ background: '#F0F7F8', backgroundImage: 'url(/hero-background.png)', backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,6vw,80px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, minHeight: 'min(720px, calc(100vh - 114px))', overflow: 'hidden' }}>
+      <section style={{ background: '#F0F7F8', backgroundImage: 'url(/hero-background.png)', backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,6vw,80px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const }}>
         <div style={{ maxWidth: 'min(700px, 50vw)', width: '100%' }}>
 
           {/* LEFT — text */}
@@ -242,10 +242,29 @@ export default function HomePage() {
             </p>
 
             {/* Feature pills */}
-            <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 6, marginBottom: 20 }}>
-              {['Декларації', 'ПДВ', 'Повернення податку', 'Рахунки', 'Витрати', 'Склад', 'Клієнти', 'Фінансові звіти'].map((item) => (
-                <span key={item} style={{ fontSize: 12, fontWeight: 600, color: '#1A1A1A', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '5px 14px', background: 'rgba(255,255,255,0.95)', boxShadow: '0 1px 4px rgba(0,0,0,0.08)' }}>
-                  {item}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, auto)', gap: '6px', marginBottom: 16, width: 'fit-content' }}>
+              {[
+                { label: 'Декларації',        bg: 'rgba(3,131,144,0.08)',   color: '#026B76', border: 'rgba(3,131,144,0.25)' },
+                { label: 'ПДВ',               bg: 'rgba(245,230,66,0.15)',  color: '#7a6800', border: 'rgba(245,230,66,0.5)' },
+                { label: 'Повернення податку', bg: 'rgba(3,131,144,0.08)',   color: '#026B76', border: 'rgba(3,131,144,0.25)' },
+                { label: 'Рахунки',           bg: 'rgba(26,26,26,0.06)',    color: '#1A1A1A', border: 'rgba(26,26,26,0.18)' },
+                { label: 'Витрати',           bg: 'rgba(26,26,26,0.06)',    color: '#1A1A1A', border: 'rgba(26,26,26,0.18)' },
+                { label: 'Склад',             bg: 'rgba(245,230,66,0.15)',  color: '#7a6800', border: 'rgba(245,230,66,0.5)' },
+                { label: 'Клієнти',           bg: 'rgba(3,131,144,0.08)',   color: '#026B76', border: 'rgba(3,131,144,0.25)' },
+                { label: 'Фінансові звіти',   bg: 'rgba(26,26,26,0.06)',    color: '#1A1A1A', border: 'rgba(26,26,26,0.18)' },
+              ].map((item) => (
+                <span key={item.label} style={{
+                  fontSize: 11,
+                  fontWeight: 700,
+                  color: item.color,
+                  background: item.bg,
+                  border: `1px solid ${item.border}`,
+                  borderRadius: 8,
+                  padding: '4px 10px',
+                  whiteSpace: 'nowrap' as const,
+                  letterSpacing: '0.1px',
+                }}>
+                  {item.label}
                 </span>
               ))}
             </div>
@@ -265,6 +284,24 @@ export default function HomePage() {
           </div>
 
         </div>
+
+        {/* Girl image — overflows into navbar */}
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/hero-girl.png"
+          alt=""
+          style={{
+            position: 'absolute',
+            right: 'clamp(0px, 5vw, 80px)',
+            bottom: 0,
+            height: '115%',
+            width: 'auto',
+            objectFit: 'contain',
+            objectPosition: 'bottom',
+            zIndex: 50,
+            pointerEvents: 'none',
+          }}
+        />
       </section>
       {/* ── END HERO2 ── */}
 
