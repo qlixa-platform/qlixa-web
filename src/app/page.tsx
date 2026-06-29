@@ -211,66 +211,55 @@ export default function HomePage() {
         <div style={{ maxWidth: 'min(700px, 50vw)', width: '100%' }}>
 
           {/* LEFT — text */}
-          <div style={{ flex: '0 0 460px', display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', gap: 0 }}>
+          <div style={{ flex: '0 0 460px', display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', gap: 0, height: '100%', paddingTop: '8px' }}>
 
             {/* Badge */}
             <div style={{ display: 'inline-block', padding: '5px 14px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 10, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20, width: 'fit-content' }}>
-              Твій цифровий помічник в Австрії
+              Твоя автоматизована цифрова платформа
             </div>
 
-            {/* Logo */}
-            <div style={{ marginBottom: 16 }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src="/logos/qlixa-text-dark.svg"
-                alt="QLIXA"
-                style={{ height: 48, width: 'auto', display: 'block' }}
-              />
-            </div>
+            {/* H1 */}
+            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.4vw,32px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.5px', marginBottom: 20 }}>
+              Податки та бізнес в Австрії —{' '}
+              <br/>
+              <span style={{ display: 'inline-block', background: '#1A1A1A', color: '#ffffff', borderRadius: 8, padding: '3px 12px', fontStyle: 'italic' }}>
+                тепер без Steuerberater
+              </span>
+            </h1>
 
-            {/* Subheading */}
-            <p style={{ fontSize: 'clamp(15px,1.4vw,19px)', color: '#1A1A1A', lineHeight: 1.5, marginBottom: 4, fontWeight: 400 }}>
-              Податки, звіти та бізнес-процеси —
-            </p>
-            <p style={{ fontSize: 'clamp(15px,1.4vw,19px)', color: '#038390', lineHeight: 1.5, marginBottom: 24, fontWeight: 700 }}>
-              простою мовою.
-            </p>
-
-            {/* CTA buttons */}
-            <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' as const, marginBottom: 28 }}>
-              <a href="/pricing" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', background: '#038390', color: '#fff', borderRadius: 12, fontSize: 14, fontWeight: 700, textDecoration: 'none', boxShadow: '3px 3px 0 #026B76' }}>
-                Тарифи →
-              </a>
-              <a href="#demo" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px', background: 'transparent', color: '#038390', borderRadius: 12, fontSize: 14, fontWeight: 700, textDecoration: 'none', border: '1.5px solid #038390' }}>
-                Як це працює
-              </a>
-            </div>
-
-            {/* Checklist */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '8px 16px', marginBottom: 28 }}>
-              {[
-                { text: 'Для працівників за наймом', href: '/for/naymanyy' },
-                { text: 'Для малого бізнесу', href: '/for/biznes' },
-                { text: 'Для самозайнятих', href: '/for/frilanser' },
-                { text: 'Капітальні та закордонні доходи', href: '/for/samostiynyy' },
-              ].map((item, i) => (
-                <Link key={i} href={item.href} style={{ display: 'flex', alignItems: 'flex-start', gap: 8, textDecoration: 'none', color: '#1A1A1A', fontSize: 13, fontWeight: 500, lineHeight: 1.4 }}
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#1A1A1A'}>
-                  <div style={{ width: 18, height: 18, borderRadius: '50%', background: '#038390', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>
-                    <svg width="9" height="7" viewBox="0 0 9 7" fill="none">
-                      <path d="M1 3.5L3 5.5L8 1" stroke="white" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-                    </svg>
-                  </div>
-                  {item.text}
-                </Link>
+            {/* Audience pills */}
+            <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8, marginBottom: 24 }}>
+              {['Самозайняті', 'Малий бізнес', 'Наймані працівники'].map((tag) => (
+                <span key={tag} style={{ fontSize: 12, fontWeight: 600, color: '#038390', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 999, padding: '5px 14px', background: 'rgba(3,131,144,0.05)' }}>
+                  {tag}
+                </span>
               ))}
             </div>
 
-            {/* Trust badge */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '10px 16px', background: 'rgba(255,255,255,0.7)', borderRadius: 12, border: '1px solid rgba(3,131,144,0.12)', width: 'fit-content' }}>
-              <span style={{ fontSize: 18 }}>🇦🇹</span>
-              <span style={{ fontSize: 12, fontWeight: 600, color: '#595959' }}>Більше <strong style={{ color: '#1A1A1A' }}>1 200</strong> клієнтів в Австрії</span>
+            {/* One cabinet */}
+            <p style={{ fontSize: 'clamp(13px,1.2vw,15px)', fontWeight: 700, color: '#1A1A1A', marginBottom: 12, lineHeight: 1.4 }}>
+              Замість купи сервісів — один кабінет:
+            </p>
+
+            {/* Feature pills */}
+            <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 6, marginBottom: 20 }}>
+              {['Декларації', 'ПДВ', 'Повернення податку', 'Рахунки', 'Витрати', 'Склад', 'Клієнти', 'Фінансові звіти'].map((item) => (
+                <span key={item} style={{ fontSize: 12, fontWeight: 600, color: '#1A1A1A', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '5px 14px', background: 'rgba(255,255,255,0.95)', boxShadow: '0 1px 4px rgba(0,0,0,0.08)' }}>
+                  {item}
+                </span>
+              ))}
+            </div>
+
+            {/* Tagline */}
+            <p style={{ fontSize: 'clamp(13px,1.2vw,15px)', color: '#1A1A1A', marginBottom: 28, fontWeight: 600, lineHeight: 1.5 }}>
+              ✓ Автоматизація · Контроль · Економія часу · Зрозуміло
+            </p>
+
+            {/* CTA */}
+            <div>
+              <a href="/pricing" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 32px', background: '#038390', color: '#fff', borderRadius: 12, fontSize: 15, fontWeight: 800, textDecoration: 'none', boxShadow: '0 4px 16px rgba(3,131,144,0.45), 3px 3px 0 #026B76', letterSpacing: '0.2px' }}>
+                Вибрати свій тариф →
+              </a>
             </div>
 
           </div>
