@@ -241,7 +241,7 @@ export default function HomePage() {
 
             {/* Audience pills */}
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const, marginBottom: 32 }}>
-              {['Самозайняті', 'Малий бізнес', 'Наймані працівники'].map((tag) => (
+              {['Самозайнятих', 'Малого бізнесу', 'Найманих працівників'].map((tag) => (
                 <span key={tag} style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const }}>
                   {tag}
                 </span>
