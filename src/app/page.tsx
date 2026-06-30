@@ -211,74 +211,62 @@ export default function HomePage() {
         <div style={{ maxWidth: 'min(700px, 50vw)', width: '100%' }}>
 
           {/* LEFT — text */}
-          <div style={{ flex: '0 0 460px', display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', gap: 0, height: '100%', paddingTop: '8px' }}>
+          <div style={{ display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', gap: 0 }}>
 
             {/* Badge */}
-            <div style={{ display: 'inline-block', padding: '5px 14px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 10, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20, width: 'fit-content' }}>
+            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20, display: 'inline-block', padding: '4px 12px', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 999, background: 'rgba(3,131,144,0.07)', width: 'fit-content' }}>
               Твоя автоматизована цифрова платформа
             </div>
 
-            {/* H1 */}
-            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.4vw,32px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.5px', marginBottom: 20 }}>
-              Податки та бізнес в Австрії —{' '}
-              <br/>
-              <span style={{ display: 'inline-block', background: '#1A1A1A', color: '#ffffff', borderRadius: 8, padding: '3px 12px', fontStyle: 'italic' }}>
-                тепер без Steuerberater
-              </span>
+            {/* H1 line 1 */}
+            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.2vw,48px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1.5px', marginBottom: 6 }}>
+              Податки та бізнес в Австрії
             </h1>
 
+            {/* H1 line 2 — dark highlighted */}
+            <div style={{ marginBottom: 20 }}>
+              <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.2vw,48px)', fontWeight: 700, fontStyle: 'italic', color: '#ffffff', background: '#1A1A1A', padding: '2px 16px 6px', borderRadius: 6, lineHeight: 1.2, letterSpacing: '-0.5px', display: 'inline' }}>
+                тепер без БУХГАЛТЕРА
+              </span>
+            </div>
+
+            {/* Subheading */}
+            <p style={{ fontSize: 'clamp(17px,1.6vw,21px)', color: '#1A1A1A', lineHeight: 1.5, marginBottom: 4, fontWeight: 600 }}>
+              Один кабінет замість купи сервісів
+            </p>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 16 }}>
+              <span style={{ fontSize: 13, color: '#888', fontWeight: 400 }}>для</span>
+              <span style={{ fontSize: 14, color: '#038390' }}>↓</span>
+            </div>
+
             {/* Audience pills */}
-            <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8, marginBottom: 24 }}>
+            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const, marginBottom: 32 }}>
               {['Самозайняті', 'Малий бізнес', 'Наймані працівники'].map((tag) => (
-                <span key={tag} style={{ fontSize: 12, fontWeight: 600, color: '#038390', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 999, padding: '5px 14px', background: 'rgba(3,131,144,0.05)' }}>
+                <span key={tag} style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const }}>
                   {tag}
                 </span>
               ))}
             </div>
 
-            {/* One cabinet */}
-            <p style={{ fontSize: 'clamp(13px,1.2vw,15px)', fontWeight: 700, color: '#1A1A1A', marginBottom: 12, lineHeight: 1.4 }}>
-              Замість купи сервісів — один кабінет:
-            </p>
-
-            {/* Feature pills */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, auto)', gap: '6px', marginBottom: 16, width: 'fit-content' }}>
-              {[
-                { label: 'Декларації',        bg: 'rgba(3,131,144,0.08)',   color: '#026B76', border: 'rgba(3,131,144,0.25)' },
-                { label: 'ПДВ',               bg: 'rgba(245,230,66,0.15)',  color: '#7a6800', border: 'rgba(245,230,66,0.5)' },
-                { label: 'Повернення податку', bg: 'rgba(3,131,144,0.08)',   color: '#026B76', border: 'rgba(3,131,144,0.25)' },
-                { label: 'Рахунки',           bg: 'rgba(26,26,26,0.06)',    color: '#1A1A1A', border: 'rgba(26,26,26,0.18)' },
-                { label: 'Витрати',           bg: 'rgba(26,26,26,0.06)',    color: '#1A1A1A', border: 'rgba(26,26,26,0.18)' },
-                { label: 'Склад',             bg: 'rgba(245,230,66,0.15)',  color: '#7a6800', border: 'rgba(245,230,66,0.5)' },
-                { label: 'Клієнти',           bg: 'rgba(3,131,144,0.08)',   color: '#026B76', border: 'rgba(3,131,144,0.25)' },
-                { label: 'Фінансові звіти',   bg: 'rgba(26,26,26,0.06)',    color: '#1A1A1A', border: 'rgba(26,26,26,0.18)' },
-              ].map((item) => (
-                <span key={item.label} style={{
-                  fontSize: 11,
-                  fontWeight: 700,
-                  color: item.color,
-                  background: item.bg,
-                  border: `1px solid ${item.border}`,
-                  borderRadius: 8,
-                  padding: '4px 10px',
-                  whiteSpace: 'nowrap' as const,
-                  letterSpacing: '0.1px',
-                }}>
-                  {item.label}
-                </span>
-              ))}
-            </div>
-
-            {/* Tagline */}
-            <p style={{ fontSize: 'clamp(13px,1.2vw,15px)', color: '#1A1A1A', marginBottom: 28, fontWeight: 600, lineHeight: 1.5 }}>
-              ✓ Автоматизація · Контроль · Економія часу · Зрозуміло
-            </p>
-
             {/* CTA */}
-            <div>
-              <a href="/pricing" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 32px', background: '#038390', color: '#fff', borderRadius: 12, fontSize: 15, fontWeight: 800, textDecoration: 'none', boxShadow: '0 4px 16px rgba(3,131,144,0.45), 3px 3px 0 #026B76', letterSpacing: '0.2px' }}>
+            <div style={{ marginBottom: 28 }}>
+              <a href="/pricing" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '16px 36px', background: '#038390', color: '#fff', borderRadius: 14, fontSize: 16, fontWeight: 800, textDecoration: 'none', boxShadow: '0 6px 20px rgba(3,131,144,0.4), 3px 3px 0 #026B76', letterSpacing: '0.2px' }}>
                 Вибрати свій тариф →
               </a>
+            </div>
+
+            {/* Trust */}
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' as const }}>
+              {[
+                '1 200+ клієнтів',
+                'FinanzOnline під контролем',
+                'Економія €450/рік на бухгалтері',
+              ].map((item, i) => (
+                <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
+                  <span style={{ fontSize: 11, color: '#888' }}>✓ {item}</span>
+                  {i < 2 && <span style={{ color: '#ccc', fontSize: 11, marginLeft: 6 }}>•</span>}
+                </span>
+              ))}
             </div>
 
           </div>
