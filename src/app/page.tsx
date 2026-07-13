@@ -383,7 +383,7 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/laws.png" alt="Закони" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Тисячі сторінок законів, перекладених людською мовою</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Розуміємо австрійську систему замість вас</div>
               </div>
               <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Ми вже вивчили правила за тебе і перетворили їх на прості запитання та автоматичні підказки.</div>
             </div>
@@ -421,7 +421,7 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/no-deductions-missed.png" alt="Жодного списання" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Жодного пропущеного списання</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Більше не пропустите жодного списання</div>
               </div>
               <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Платформа аналізує твою ситуацію та знаходить можливості, про які більшість людей навіть не знає.</div>
             </div>
@@ -433,7 +433,7 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/no-deadlines-missed.png" alt="Жодного дедлайну" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Жодного пропущеного дедлайну</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Більше не пропустите жодного дедлайну</div>
               </div>
               <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Платформа сама нагадає про важливі дати, щоб ти не отримав штраф через забудькуватість.</div>
             </div>
@@ -484,8 +484,8 @@ export default function HomePage() {
 
             {[
               { img: '/for-who/frilanser.png', title: 'Самозайнятий / Фрілансер', desc: 'Neue Selbstständige, Gewerbe або вільна професія — IT, дизайн, консалтинг. QLIXA замінить Steuerberater за частку вартості.', href: '/for/frilanser' },
-              { img: '/for-who/samostiynyy.png', title: 'Капітальні та закордонні доходи', desc: 'Маєш дохід від продажу акцій, нерухомості або з-за кордону? QLIXA розрахує KESt та інші зобов\'язання точно і без помилок.', href: '/for/samostiynyy' },
-              { img: '/for-who/biznes.png', title: 'Маленький бізнес', desc: 'Або тільки плануєш відкрити — QLIXA пройде з тобою кожен крок від реєстрації до звітів.', href: '/for/biznes' },
+              { img: '/for-who/samostiynyy.png', title: 'Маєш капітальні та закордонні доходи', desc: 'Маєш дохід від продажу акцій, нерухомості або з-за кордону? QLIXA розрахує KESt та інші зобов\'язання точно і без помилок.', href: '/for/samostiynyy' },
+              { img: '/for-who/biznes.png', title: 'Ведеш маленький бізнес', desc: 'Або тільки плануєш відкрити — QLIXA пройде з тобою кожен крок від реєстрації до звітів.', href: '/for/biznes' },
               { img: '/for-who/nerukhomist.png', title: 'Здаєш нерухомість', desc: 'Або маєш дохід з кількох джерел — платформа врахує всі надходження та списання.', href: '/for/nerukhomist' },
               { img: '/for-who/pensioner.png', title: 'Пенсіонер з доходом', desc: "Додатковий дохід від підробітку — QLIXA розрахує твої зобов'язання просто і зрозуміло.", href: '/for/pensioner' },
               { img: '/for-who/naymanyy.png', title: 'Найманий працівник', desc: 'Працюєш по найму, але хочеш контролювати свої фінанси та правильно розрахувати щорічне повернення податків.', href: '/for/naymanyy' },
@@ -956,13 +956,10 @@ export default function HomePage() {
       <section style={{ background: 'linear-gradient(135deg, #038390 0%, #026B76 100%)', padding: '20px clamp(20px,6vw,80px)', textAlign: 'center' }}>
         <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.7)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 20 }}>Починай зараз</div>
         <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(32px,5vw,56px)', fontWeight: 400, color: '#fff', margin: '0 0 16px 0', letterSpacing: '-1px' }}>
-          Твій перший звіт — за <em style={{ fontStyle: 'italic', color: 'rgba(255,255,255,0.85)' }}>15 хвилин</em>
+          Твоя ситуація — унікальна. Ми це розуміємо.
         </h2>
-        <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', marginBottom: 40 }}>Без кредитної картки. Без зобов'язань.</p>
+        <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', marginBottom: 40 }}>Кожен клієнт — це окрема історія. На відміну від бухгалтера, QLIXA не працює за шаблоном — ми розбираємося саме у вашій ситуації.</p>
         <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/free-test" style={{ padding: '16px 36px', borderRadius: 999, fontSize: 16, fontWeight: 700, background: '#fff', color: '#038390', textDecoration: 'none', display: 'inline-block' }}>
-            Спробувати безкоштовно →
-          </Link>
           <Link href="/pricing" style={{ padding: '16px 36px', borderRadius: 999, fontSize: 16, fontWeight: 600, background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.6)', textDecoration: 'none', display: 'inline-block' }}>
             Переглянути тарифи
           </Link>
