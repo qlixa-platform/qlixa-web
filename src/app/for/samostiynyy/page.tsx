@@ -22,8 +22,8 @@ export default function Page() {
           {/* RIGHT — text */}
           <div style={{ flex: 1, minWidth: 0 }}>
             <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 20 }}>Для кого</div>
-            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(36px,5vw,56px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1.5px', marginBottom: 20 }}>Самозайнятий</h1>
-            <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, marginBottom: 16, maxWidth: 480 }}>Neue Selbstständige або Gewerbe — QLIXA допоможе з бухгалтерією, звітами та дедлайнами. Без складних таблиць і бухгалтерів.</p>
+            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(36px,5vw,56px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1.5px', marginBottom: 20 }}>Маєш капітальні та закордонні доходи</h1>
+            <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, marginBottom: 16, maxWidth: 480 }}>Дохід від продажу акцій, нерухомості або з-за кордону? QLIXA розрахує KESt та інші зобов'язання точно і без помилок.</p>
             <div style={{ display: 'inline-block', padding: '8px 20px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.2)', fontSize: 12, fontWeight: 600, color: '#038390', marginBottom: 32 }}>Контент скоро буде</div>
             <div>
               <Link href="/" style={{ fontSize: 15, fontWeight: 700, color: '#038390', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>← Повернутись на головну</Link>
