@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useRef, useEffect } from 'react'
+import React, { useState, useRef, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -367,6 +367,19 @@ export default function Navbar() {
   const [showLogin, setShowLogin] = useState(false)
   const [showTrial, setShowTrial] = useState(false)
 
+  const [lang, setLang] = React.useState<string>(() => {
+    if (typeof window !== 'undefined') return localStorage.getItem('qlixa-lang') || 'UA';
+    return 'UA';
+  });
+
+  const handleLang = (l: string) => {
+    setLang(l);
+    if (typeof window !== 'undefined') {
+      localStorage.setItem('qlixa-lang', l);
+      window.dispatchEvent(new Event('qlixa-lang-change'));
+    }
+  };
+
   function toggleDropdown(label: string) {
     setOpenDropdown(prev => prev === label ? null : label)
   }
@@ -424,6 +437,31 @@ export default function Navbar() {
 
             {/* Right actions */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }} className="hidden-mobile">
+              {/* Language switcher */}
+              <div style={{ display: 'flex', alignItems: 'center', gap: 2, marginRight: 8 }}>
+                {(['UA', 'DE', 'EN', 'RU'] as const).map((l) => (
+                  <button
+                    key={l}
+                    onClick={() => handleLang(l)}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      cursor: 'pointer',
+                      fontSize: 12,
+                      fontWeight: lang === l ? 700 : 400,
+                      color: lang === l ? '#038390' : 'rgba(255,255,255,0.5)',
+                      padding: '2px 5px',
+                      borderRadius: 4,
+                      fontFamily: 'DM Sans, sans-serif',
+                      transition: 'color 0.15s',
+                      letterSpacing: '0.5px',
+                    }}
+                  >
+                    {l}
+                  </button>
+                ))}
+              </div>
+
               <button onClick={() => setShowSearch(true)} style={{
                 padding: 8, borderRadius: 8, background: 'transparent',
                 border: 'none', cursor: 'pointer',

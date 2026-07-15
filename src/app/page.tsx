@@ -1,6 +1,6 @@
 'use client'
 
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
@@ -47,6 +47,18 @@ const upcoming = [
 
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
+
+  const [heroBg, setHeroBg] = useState('hero-background-ua');
+
+  useEffect(() => {
+    const updateBg = () => {
+      const lang = localStorage.getItem('qlixa-lang') || 'UA';
+      setHeroBg(`hero-background-${lang.toLowerCase()}`);
+    };
+    updateBg();
+    window.addEventListener('qlixa-lang-change', updateBg);
+    return () => window.removeEventListener('qlixa-lang-change', updateBg);
+  }, []);
 
   return (
     <div style={{ fontFamily: 'DM Sans, sans-serif', background: '#F0F7F8', overflowX: 'hidden' }}>
@@ -207,7 +219,7 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
-      <section style={{ background: '#F0F7F8', backgroundImage: 'url(/hero-background.png)', backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,6vw,80px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const }}>
+      <section style={{ background: '#F0F7F8', backgroundImage: `url(/${heroBg}.png)`, backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,6vw,80px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const }}>
         <div style={{ maxWidth: 'min(700px, 50vw)', width: '100%' }}>
 
           {/* LEFT — text */}
@@ -241,11 +253,15 @@ export default function HomePage() {
 
             {/* Audience pills */}
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const, marginBottom: 32 }}>
-              {['Самозайнятих', 'Малого бізнесу', 'Найманих працівників'].map((tag) => (
-                <span key={tag} style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const }}>
-                  {tag}
-                </span>
-              ))}
+              <Link href="/for/frilanser" style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer' }}>
+                Самозайнятих
+              </Link>
+              <Link href="/for/biznes" style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer' }}>
+                Малого бізнесу
+              </Link>
+              <Link href="/for/naymanyy" style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer' }}>
+                Найманих працівників
+              </Link>
             </div>
 
             {/* CTA */}
