@@ -219,8 +219,8 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
-      <section style={{ background: '#F0F7F8', backgroundImage: `url(/${heroBg}.png)`, backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,6vw,80px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const }}>
-        <div style={{ maxWidth: 'min(700px, 50vw)', width: '100%' }}>
+      <section style={{ background: '#F0F7F8', backgroundImage: `url(/${heroBg}.png)`, backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const }}>
+        <div style={{ width: '100%' }}>
 
           {/* LEFT — text */}
           <div style={{ display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', gap: 0 }}>
@@ -238,35 +238,55 @@ export default function HomePage() {
             {/* H1 line 2 — dark highlighted */}
             <div style={{ marginBottom: 20 }}>
               <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.2vw,48px)', fontWeight: 700, fontStyle: 'italic', color: '#ffffff', background: '#1A1A1A', padding: '2px 16px 6px', borderRadius: 6, lineHeight: 1.2, letterSpacing: '-0.5px', display: 'inline' }}>
-                тепер без БУХГАЛТЕРА
+                без складної бухгалтерії
               </span>
             </div>
 
             {/* Subheading */}
-            <p style={{ fontSize: 'clamp(17px,1.6vw,21px)', color: '#1A1A1A', lineHeight: 1.5, marginBottom: 4, fontWeight: 600 }}>
-              Один кабінет замість купи сервісів
+            <p style={{ fontSize: 'clamp(17px,1.6vw,21px)', color: '#1A1A1A', lineHeight: 1.5, marginBottom: 20, fontWeight: 600 }}>
+              Один кабінет замість купи сервісів для
             </p>
-            <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 16 }}>
-              <span style={{ fontSize: 13, color: '#888', fontWeight: 400 }}>для</span>
-              <span style={{ fontSize: 14, color: '#038390' }}>↓</span>
-            </div>
 
             {/* Audience pills */}
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const, marginBottom: 32 }}>
-              <Link href="/for/frilanser" style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer' }}>
+              <Link href="/for/frilanser"
+                style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
+                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#038390'; el.style.color='#ffffff'; el.style.border='1.5px solid #038390'; el.style.transform='translateY(-2px)'; el.style.boxShadow='0 4px 12px rgba(3,131,144,0.3)'; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='rgba(3,131,144,0.07)'; el.style.color='#026B76'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
                 Самозайнятих
               </Link>
-              <Link href="/for/biznes" style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer' }}>
+              <Link href="/for/biznes"
+                style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
+                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#038390'; el.style.color='#ffffff'; el.style.border='1.5px solid #038390'; el.style.transform='translateY(-2px)'; el.style.boxShadow='0 4px 12px rgba(3,131,144,0.3)'; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='rgba(3,131,144,0.07)'; el.style.color='#026B76'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
                 Малого бізнесу
               </Link>
-              <Link href="/for/naymanyy" style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer' }}>
+              <Link href="/for/naymanyy"
+                style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
+                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#038390'; el.style.color='#ffffff'; el.style.border='1.5px solid #038390'; el.style.transform='translateY(-2px)'; el.style.boxShadow='0 4px 12px rgba(3,131,144,0.3)'; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='rgba(3,131,144,0.07)'; el.style.color='#026B76'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
                 Найманих працівників
               </Link>
             </div>
 
             {/* CTA */}
             <div style={{ marginBottom: 28 }}>
-              <a href="/pricing" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '16px 36px', background: '#038390', color: '#fff', borderRadius: 14, fontSize: 16, fontWeight: 800, textDecoration: 'none', boxShadow: '0 6px 20px rgba(3,131,144,0.4), 3px 3px 0 #026B76', letterSpacing: '0.2px' }}>
+              <a href="/pricing"
+                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '16px 36px', background: '#038390', color: '#fff', borderRadius: 14, fontSize: 16, fontWeight: 800, textDecoration: 'none', boxShadow: '0 6px 20px rgba(3,131,144,0.4), 3px 3px 0 #026B76', letterSpacing: '0.2px', transition: 'all 0.2s ease', cursor: 'pointer' }}
+                onMouseEnter={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = '#026B76';
+                  el.style.boxShadow = '0 8px 28px rgba(3,131,144,0.55), 2px 2px 0 #015f68';
+                  el.style.transform = 'translateY(-2px)';
+                  el.style.gap = '12px';
+                }}
+                onMouseLeave={e => {
+                  const el = e.currentTarget as HTMLElement;
+                  el.style.background = '#038390';
+                  el.style.boxShadow = '0 6px 20px rgba(3,131,144,0.4), 3px 3px 0 #026B76';
+                  el.style.transform = '';
+                  el.style.gap = '8px';
+                }}>
                 Вибрати свій тариф →
               </a>
             </div>
@@ -499,7 +519,7 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
 
             {[
-              { img: '/for-who/frilanser.png', title: 'Самозайнятий / Фрілансер', desc: 'Neue Selbstständige, Gewerbe або вільна професія — IT, дизайн, консалтинг. QLIXA замінить Steuerberater за частку вартості.', href: '/for/frilanser' },
+              { img: '/for-who/frilanser.png', title: 'Самозайнятий / Фрілансер', desc: 'Neue Selbstständige, Gewerbe або вільна професія — IT, дизайн, консалтинг. QLIXA — без складних термінів за частку вартості.', href: '/for/frilanser' },
               { img: '/for-who/samostiynyy.png', title: 'Маєш капітальні та закордонні доходи', desc: 'Маєш дохід від продажу акцій, нерухомості або з-за кордону? QLIXA розрахує KESt та інші зобов\'язання точно і без помилок.', href: '/for/samostiynyy' },
               { img: '/for-who/biznes.png', title: 'Ведеш маленький бізнес', desc: 'Або тільки плануєш відкрити — QLIXA пройде з тобою кожен крок від реєстрації до звітів.', href: '/for/biznes' },
               { img: '/for-who/nerukhomist.png', title: 'Здаєш нерухомість', desc: 'Або маєш дохід з кількох джерел — платформа врахує всі надходження та списання.', href: '/for/nerukhomist' },
@@ -974,7 +994,7 @@ export default function HomePage() {
         <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(32px,5vw,56px)', fontWeight: 400, color: '#fff', margin: '0 0 16px 0', letterSpacing: '-1px' }}>
           Твоя ситуація — унікальна. Ми це розуміємо.
         </h2>
-        <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', marginBottom: 40 }}>Кожен клієнт — це окрема історія. На відміну від бухгалтера, QLIXA не працює за шаблоном — ми розбираємося саме у вашій ситуації.</p>
+        <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', marginBottom: 40 }}>Кожен клієнт — це окрема історія. QLIXA не працює за шаблоном — ми розбираємося саме у вашій ситуації та допомагаємо знайти найкраще рішення.</p>
         <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link href="/pricing" style={{ padding: '16px 36px', borderRadius: 999, fontSize: 16, fontWeight: 600, background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.6)', textDecoration: 'none', display: 'inline-block' }}>
             Переглянути тарифи

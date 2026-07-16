@@ -57,7 +57,7 @@ function Dropdown({ item, isOpen, onToggle }: {
           display: 'flex', alignItems: 'center', gap: 4,
           padding: '8px 12px', borderRadius: 8, border: 'none', background: 'transparent',
           fontSize: 14, fontWeight: 500, cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
-          color: isOpen ? '#038390' : 'rgba(255,255,255,0.5)',
+          color: isOpen ? '#038390' : '#9D9D9D',
         }}
       >
         {item.label}
@@ -387,15 +387,15 @@ export default function Navbar() {
   return (
     <>
       <nav style={{
-        position: 'sticky', top: 0, zIndex: 40, background: '#1A1A1A',
+        position: 'sticky', top: 0, zIndex: 40, background: '#ffffff',
       }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 16px' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 clamp(20px,4vw,60px)' }}>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 }}>
 
             {/* Logo */}
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none' }}>
+            <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', marginLeft: '-12px' }}>
               <Image
-                src="/logos/logo-full-light.svg"
+                src="/logos/logo-full-black_no_bird.svg"
                 alt="QLIXA — Reports in One Click"
                 width={160}
                 height={57}
@@ -404,16 +404,16 @@ export default function Navbar() {
             </Link>
 
             {/* Desktop nav */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 4 }} className="hidden-mobile">
+            <div style={{ display: 'flex', alignItems: 'center', gap: 4, paddingLeft: '40px' }} className="hidden-mobile">
               {navItems.map(item => (
                 'href' in item ? (
                   <Link key={item.label} href={(item as NavLink).href} style={{
                     padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
-                    color: 'rgba(255,255,255,0.5)', textDecoration: 'none',
+                    color: '#9D9D9D', textDecoration: 'none',
                   }}
                     onClick={item.label === 'Для кого' ? () => { const el = document.getElementById('для-кого'); if (el) el.scrollIntoView({ behavior: 'smooth' }); } : undefined}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#FFFFFF'}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.5)'}
+                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
                   >
                     {item.label}
                   </Link>
@@ -426,10 +426,10 @@ export default function Navbar() {
               ))}
               <Link href="/pricing" style={{
                 padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
-                color: 'rgba(255,255,255,0.5)', textDecoration: 'none',
+                color: '#9D9D9D', textDecoration: 'none',
               }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#FFFFFF'}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.5)'}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
               >
                 Тарифи
               </Link>
@@ -449,7 +449,7 @@ export default function Navbar() {
                       cursor: 'pointer',
                       fontSize: 12,
                       fontWeight: lang === l ? 700 : 400,
-                      color: lang === l ? '#038390' : 'rgba(255,255,255,0.5)',
+                      color: lang === l ? '#038390' : '#9D9D9D',
                       padding: '2px 5px',
                       borderRadius: 4,
                       fontFamily: 'DM Sans, sans-serif',
@@ -473,7 +473,7 @@ export default function Navbar() {
               </button>
               <button onClick={() => setShowLogin(true)} style={{
                 padding: '8px 16px', borderRadius: 10, fontSize: 14, fontWeight: 500,
-                color: 'rgba(255,255,255,0.6)', border: '1px solid rgba(255,255,255,0.18)',
+                color: '#9D9D9D', border: '1px solid #9D9D9D',
                 background: 'transparent', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
               }}>
                 Увійти
