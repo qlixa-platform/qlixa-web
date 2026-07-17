@@ -631,353 +631,119 @@ export default function HomePage() {
 
 
 
-      {/* ── FEATURES ── */}
+      {/* ── WHY QLIXA — redesigned ── */}
+      <section style={{ background: '#ffffff', padding: '48px clamp(20px,6vw,80px) 32px' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
-      {/* ── WHY QLIXA ── */}
-      <section style={{ padding: '64px clamp(20px,6vw,80px)', background: '#F0F7F8' }}>
-        <style>{`
-          @keyframes why-s1 { 0%{opacity:0} 2%{opacity:1} 17%{opacity:1} 20%{opacity:0} 100%{opacity:0} }
-          @keyframes why-s2 { 0%{opacity:0} 20%{opacity:0} 22%{opacity:1} 37%{opacity:1} 40%{opacity:0} 100%{opacity:0} }
-          @keyframes why-s3 { 0%{opacity:0} 40%{opacity:0} 42%{opacity:1} 57%{opacity:1} 60%{opacity:0} 100%{opacity:0} }
-          @keyframes why-s4 { 0%{opacity:0} 60%{opacity:0} 62%{opacity:1} 77%{opacity:1} 80%{opacity:0} 100%{opacity:0} }
-          @keyframes why-s5 { 0%{opacity:0} 80%{opacity:0} 82%{opacity:1} 98%{opacity:1} 100%{opacity:0} }
-          .why-scene { position:absolute; inset:0; opacity:0; pointer-events:none; }
-          .why-s1 { animation: why-s1 24s ease-in-out infinite; }
-          .why-s2 { animation: why-s2 24s ease-in-out infinite; }
-          .why-s3 { animation: why-s3 24s ease-in-out infinite; }
-          .why-s4 { animation: why-s4 24s ease-in-out infinite; }
-          .why-s5 { animation: why-s5 24s ease-in-out infinite; }
-          @keyframes why-t1 { 0%{opacity:0} 2%{opacity:1} 17%{opacity:1} 20%{opacity:0} 100%{opacity:0} }
-          @keyframes why-t2 { 0%{opacity:0} 20%{opacity:0} 22%{opacity:1} 37%{opacity:1} 40%{opacity:0} 100%{opacity:0} }
-          @keyframes why-t3 { 0%{opacity:0} 40%{opacity:0} 42%{opacity:1} 57%{opacity:1} 60%{opacity:0} 100%{opacity:0} }
-          @keyframes why-t4 { 0%{opacity:0} 60%{opacity:0} 62%{opacity:1} 77%{opacity:1} 80%{opacity:0} 100%{opacity:0} }
-          @keyframes why-t5 { 0%{opacity:0} 80%{opacity:0} 82%{opacity:1} 98%{opacity:1} 100%{opacity:0} }
-          .why-text { position:absolute; inset:0; opacity:0; }
-          .why-t1 { animation: why-t1 24s ease-in-out infinite; }
-          .why-t2 { animation: why-t2 24s ease-in-out infinite; }
-          .why-t3 { animation: why-t3 24s ease-in-out infinite; }
-          .why-t4 { animation: why-t4 24s ease-in-out infinite; }
-          .why-t5 { animation: why-t5 24s ease-in-out infinite; }
-          @keyframes why-breathe { 0%,100%{transform:scale(1)} 50%{transform:scale(1.015)} }
-          @keyframes why-blink { 0%,88%,100%{transform:scaleY(1)} 92%{transform:scaleY(0.06)} }
-          @keyframes why-tail { 0%,100%{transform:rotate(0deg)} 40%{transform:rotate(3deg)} 70%{transform:rotate(-2deg)} }
-          @keyframes why-tilt { 0%,100%{transform:rotate(0deg)} 30%{transform:rotate(-4deg)} 70%{transform:rotate(3deg)} }
-          @keyframes why-bounce { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
-          @keyframes why-cloud1 { 0%,100%{transform:translateX(0)} 50%{transform:translateX(14px)} }
-          @keyframes why-cloud2 { 0%,100%{transform:translateX(0)} 50%{transform:translateX(-10px)} }
-          @keyframes why-suitcase { 0%,100%{transform:rotate(0deg)} 30%{transform:rotate(-4deg)} 70%{transform:rotate(3deg)} }
-          @keyframes why-paper1 { 0%,100%{transform:translateY(0) rotate(-5deg)} 50%{transform:translateY(-10px) rotate(-9deg)} }
-          @keyframes why-paper2 { 0%,100%{transform:translateY(0) rotate(8deg)} 50%{transform:translateY(-14px) rotate(13deg)} }
-          @keyframes why-paper3 { 0%,100%{transform:translateY(0) rotate(-10deg)} 55%{transform:translateY(-8px) rotate(-14deg)} }
-          @keyframes why-qmark { 0%,100%{opacity:0;transform:scale(0.5) translateY(4px)} 30%{opacity:0.8;transform:scale(1) translateY(0)} 70%{opacity:0.8;transform:scale(1) translateY(0)} }
-          @keyframes why-warn { 0%,10%{opacity:0;transform:scale(0.3) translateY(-10px)} 20%{opacity:1;transform:scale(1.05) translateY(0)} 25%,80%{opacity:1;transform:scale(1)} 90%{opacity:0} 100%{opacity:0} }
-          @keyframes why-sparkle { 0%,100%{opacity:0;transform:scale(0)} 50%{opacity:1;transform:scale(1)} }
-          @keyframes why-check { 0%,50%{opacity:0;transform:scale(0.3)} 70%{opacity:1;transform:scale(1.15)} 80%,100%{opacity:1;transform:scale(1)} }
-          @keyframes why-steam { 0%,100%{opacity:0;transform:translateY(0)} 40%{opacity:0.5;transform:translateY(-10px)} 80%{opacity:0;transform:translateY(-18px)} }
-          @keyframes why-glow { 0%,100%{opacity:0.7} 50%{opacity:1} }
-          @keyframes why-dot1 { 0%,2%{background:#038390} 20%{background:#038390} 21%{background:rgba(3,131,144,0.2)} 100%{background:rgba(3,131,144,0.2)} }
-          @keyframes why-dot2 { 0%,20%{background:rgba(3,131,144,0.2)} 22%{background:#038390} 39%{background:#038390} 41%{background:rgba(3,131,144,0.2)} 100%{background:rgba(3,131,144,0.2)} }
-          @keyframes why-dot3 { 0%,40%{background:rgba(3,131,144,0.2)} 42%{background:#038390} 59%{background:#038390} 61%{background:rgba(3,131,144,0.2)} 100%{background:rgba(3,131,144,0.2)} }
-          @keyframes why-dot4 { 0%,60%{background:rgba(3,131,144,0.2)} 62%{background:#038390} 79%{background:#038390} 81%{background:rgba(3,131,144,0.2)} 100%{background:rgba(3,131,144,0.2)} }
-          @keyframes why-dot5 { 0%,80%{background:rgba(3,131,144,0.2)} 82%{background:#038390} 99%{background:#038390} 100%{background:rgba(3,131,144,0.2)} }
-        `}</style>
-
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
-
-          {/* Eyebrow */}
-          <div style={{ textAlign: 'center', marginBottom: 40 }}>
-            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>Чому QLIXA</div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(26px,3vw,38px)', fontWeight: 400, color: '#1A1A1A', marginTop: 10, letterSpacing: '-0.5px' }}>
-              Ми створили платформу, якої нам самим <em style={{ fontStyle: 'italic', color: '#038390' }}>колись не вистачало.</em>
-            </h2>
+          {/* BLOCK 1 — Story header */}
+          <div style={{ display: 'flex', alignItems: 'center', gap: 40, marginBottom: 40 }}>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20 }}>Чому QLIXA</div>
+              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3vw,42px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.2, letterSpacing: '-1px', marginBottom: 20 }}>
+                Ми створили платформу,<br/>якої нам самим{' '}
+                <em style={{ fontStyle: 'italic', color: '#038390' }}>не вистачало</em>
+              </h2>
+              <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, maxWidth: 520 }}>
+                Ми теж проходили цей шлях.<br/>
+                Саме тому знаємо, що відчуває людина,<br/>
+                яка тільки починає життя чи бізнес в Австрії.
+              </p>
+            </div>
+            <div style={{ flex: '0 0 500px', display: 'flex', alignItems: 'center' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/why-qlixa/founders.png" alt="Засновники QLIXA" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }}/>
+            </div>
           </div>
 
-          {/* Main grid: animation left, text right */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 52, alignItems: 'center' }}>
+          {/* BLOCK 2 — Pain cards */}
+          <div style={{ textAlign: 'center', marginBottom: 28 }}>
+            <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(24px,2.5vw,36px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 0 }}>
+              Це <em style={{ fontStyle: 'italic', color: '#038390' }}>знайоме?</em>
+            </h3>
+          </div>
 
-            {/* ── STAGE ── */}
-            <div style={{ width: '100%', aspectRatio: '4/3', borderRadius: 24, border: '1.5px solid #1A1A1A', boxShadow: '4px 4px 0 #1A1A1A', position: 'relative', overflow: 'hidden', background: '#026B76' }}>
-
-              {/* ── SCENE 1: Вокзал ── */}
-              <div className="why-scene why-s1">
-                <svg width="100%" height="100%" viewBox="0 0 400 300" style={{ position: 'absolute', inset: 0 }}>
-                  <rect width="400" height="300" fill="#026B76"/>
-                  <g style={{ animation: 'why-cloud1 5s ease-in-out infinite' }}>
-                    <ellipse cx="80" cy="55" rx="35" ry="14" fill="white" opacity="0.5"/>
-                    <ellipse cx="102" cy="47" rx="22" ry="13" fill="white" opacity="0.5"/>
-                  </g>
-                  <g style={{ animation: 'why-cloud2 6s ease-in-out infinite' }}>
-                    <ellipse cx="300" cy="42" rx="28" ry="12" fill="white" opacity="0.5"/>
-                    <ellipse cx="320" cy="35" rx="18" ry="10" fill="white" opacity="0.5"/>
-                  </g>
-                  <polygon points="0,195 80,100 160,195" fill="rgba(255,255,255,0.2)" opacity="1"/>
-                  <polygon points="60,195 150,88 240,195" fill="rgba(255,255,255,0.14)" opacity="1"/>
-                  <polygon points="180,195 260,108 340,195" fill="rgba(255,255,255,0.1)" opacity="1"/>
-                  <rect x="0" y="195" width="400" height="105" fill="rgba(255,255,255,0.12)"/>
-                  <rect x="0" y="195" width="400" height="3" fill="#A8DDE2" opacity="0.4"/>
-                  <rect x="240" y="120" width="130" height="80" fill="white" stroke="#1A1A1A" strokeWidth="1.5" opacity="0.85"/>
-                  <polygon points="234,122 376,122 305,88" fill="#038390" opacity="0.45"/>
-                  <rect x="254" y="130" width="76" height="26" rx="5" fill="#038390"/>
-                  <text x="292" y="148" fontFamily="DM Sans, sans-serif" fontSize="13" fontWeight="700" fill="white" textAnchor="middle">Wien</text>
-                  <rect x="254" y="163" width="18" height="16" rx="2" fill="#E6F4F5" stroke="#1A1A1A" strokeWidth="1" opacity="0.8"/>
-                  <rect x="278" y="163" width="18" height="16" rx="2" fill="#E6F4F5" stroke="#1A1A1A" strokeWidth="1" opacity="0.8"/>
-                  <rect x="326" y="163" width="18" height="16" rx="2" fill="#E6F4F5" stroke="#1A1A1A" strokeWidth="1" opacity="0.8"/>
-                  <g style={{ animation: 'why-suitcase 2.5s ease-in-out infinite', transformOrigin: '182px 248px' }}>
-                    <rect x="162" y="228" width="40" height="32" rx="5" fill="#038390" stroke="#1A1A1A" strokeWidth="1.5"/>
-                    <rect x="172" y="222" width="20" height="9" rx="3" fill="none" stroke="#1A1A1A" strokeWidth="2"/>
-                    <line x1="162" y1="244" x2="202" y2="244" stroke="white" strokeWidth="1.5" opacity="0.5"/>
-                    <circle cx="182" cy="244" r="3" fill="white" opacity="0.4"/>
-                  </g>
-                  <rect x="210" y="155" width="4" height="46" fill="#1A1A1A" opacity="0.3"/>
-                  <rect x="185" y="148" width="44" height="18" rx="3" fill="white" stroke="#1A1A1A" strokeWidth="1" opacity="0.9"/>
-                  <text x="207" y="161" fontFamily="DM Sans, sans-serif" fontSize="7" fontWeight="600" fill="#1A1A1A" textAnchor="middle">Finanzamt</text>
-                  <g style={{ animation: 'why-breathe 3.5s ease-in-out infinite, why-tilt 5s ease-in-out infinite', transformOrigin: '110px 225px' }}>
-                    <path d="M130,208 C140,200 158,194 161,205 L152,216 L130,208Z" fill="white" style={{ animation: 'why-tail 2.5s ease-in-out infinite', transformOrigin: '130px 208px' }}/>
-                    <circle cx="108" cy="218" r="40" fill="white"/>
-                    <path d="M118,213 C118,213 115,217 118,219 L140,219 C143,217 142,215 140,213 L118,213Z" fill="#1A1A1A" opacity="0.7"/>
-                    <path d="M118,206 C118,206 115,210 118,212 L140,212 C143,210 142,208 140,206 L118,206Z" fill="#1A1A1A" opacity="0.7"/>
-                    <path d="M128,199 C128,199 125,203 128,205 L140,205 C143,203 142,201 140,199 L128,199Z" fill="#1A1A1A" opacity="0.6"/>
-                    <path d="M70,205 L50,186 L84,189 L70,205Z" fill="rgb(204,0,0)"/>
-                    <path d="M74,222 C78,194 96,183 127,179 C120,193 120,207 127,222 C109,213 91,213 74,222Z" fill="#1A1A1A"/>
-                    <circle cx="103" cy="189" r="6" fill="white" style={{ animation: 'why-blink 5s ease-in-out infinite', transformOrigin: '103px 189px' }}/>
-                  </g>
-                  <text x="72" y="178" fontFamily="DM Sans, sans-serif" fontSize="22" fontWeight="700" fill="#038390" opacity="0.7" style={{ animation: 'why-qmark 4s ease-in-out infinite' }}>?</text>
-                </svg>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20, marginBottom: 40 }}>
+            {[
+              { img: '/why-qlixa/fear-mistake.png', title: 'Боїшся зробити помилку', desc: 'Не тому що не вмієш. А тому що система здається дуже складною.' },
+              { img: '/why-qlixa/complex-words.png', title: 'Забагато незрозумілих слів', desc: 'Хочеться, щоб усе пояснили простою мовою. Без бухгалтерського словника.' },
+              { img: '/why-qlixa/no-time.png', title: 'Немає часу розбиратися', desc: 'Після роботи хочеться бути з родиною. Не сидіти вечорами над деклараціями.' },
+              { img: '/why-qlixa/unique-situation.png', title: 'Кожна ситуація різна', desc: 'Дохід. Оренда. Діти. Бізнес. Хочеться саме для своєї ситуації.' },
+              { img: '/why-qlixa/expensive.png', title: 'Консультація коштує дорого', desc: 'А питань менше не стає.' },
+              { img: '/why-qlixa/my-language.png', title: 'Хочеться щоб пояснили моєю мовою', desc: 'Без складних термінів. Щоб було зрозуміло з першого разу.' },
+              { img: '/why-qlixa/deadline.png', title: 'Страшно пропустити дедлайн', desc: 'Ніхто не хоче отримати штраф лише тому, що забув дату.' },
+              { img: '/why-qlixa/return-all.png', title: 'Хочеться повернути все, що належить', desc: 'Без сумнівів: "А може я щось пропустив?"' },
+            ].map((card, i) => (
+              <div key={i}
+                style={{ background: '#F0F7F8', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.10)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'default', display: 'flex', flexDirection: 'column' as const }}
+                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform='translateY(-4px)'; el.style.boxShadow='0 12px 32px rgba(3,131,144,0.12)'; }}
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform=''; el.style.boxShadow=''; }}>
+                <div style={{ width: '100%', aspectRatio: '1/1', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px 24px 0' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={card.img} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }}/>
+                </div>
+                <div style={{ padding: '16px 20px 24px' }}>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: '#1A1A1A', marginBottom: 6, lineHeight: 1.3 }}>{card.title}</div>
+                  <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.65 }}>{card.desc}</div>
+                </div>
               </div>
+            ))}
+          </div>
 
-              {/* ── SCENE 2: Documents ── */}
-              <div className="why-scene why-s2">
-                <svg width="100%" height="100%" viewBox="0 0 400 300" style={{ position: 'absolute', inset: 0 }}>
-                  <rect width="400" height="300" fill="#026B76"/>
-                  <rect x="50" y="215" width="300" height="10" rx="4" fill="#E6D5C3" stroke="#1A1A1A" strokeWidth="1" opacity="0.5"/>
-                  <rect x="70" y="225" width="8" height="75" rx="3" fill="#E6D5C3" opacity="0.35"/>
-                  <rect x="322" y="225" width="8" height="75" rx="3" fill="#E6D5C3" opacity="0.35"/>
-                  <g style={{ animation: 'why-paper1 2.5s ease-in-out infinite', transformOrigin: '108px 138px' }}>
-                    <rect x="82" y="108" width="52" height="68" rx="5" fill="white" stroke="#1A1A1A" strokeWidth="1.2" opacity="0.92"/>
-                    <rect x="82" y="108" width="52" height="14" rx="5" fill="#CC0000" opacity="0.1"/>
-                    <text x="108" y="126" fontFamily="DM Sans, sans-serif" fontSize="10" fontWeight="700" fill="#CC0000" textAnchor="middle">SVS</text>
-                    <line x1="92" y1="136" x2="124" y2="136" stroke="#1A1A1A" strokeWidth="1" opacity="0.15"/>
-                    <line x1="92" y1="145" x2="120" y2="145" stroke="#1A1A1A" strokeWidth="1" opacity="0.15"/>
-                    <line x1="92" y1="154" x2="122" y2="154" stroke="#1A1A1A" strokeWidth="1" opacity="0.15"/>
-                    <line x1="92" y1="163" x2="116" y2="163" stroke="#1A1A1A" strokeWidth="1" opacity="0.15"/>
-                  </g>
-                  <g style={{ animation: 'why-paper2 3s ease-in-out infinite', transformOrigin: '280px 110px' }}>
-                    <rect x="254" y="82" width="52" height="68" rx="5" fill="white" stroke="#1A1A1A" strokeWidth="1.2" opacity="0.92"/>
-                    <rect x="254" y="82" width="52" height="14" rx="5" fill="#038390" opacity="0.12"/>
-                    <text x="280" y="100" fontFamily="DM Sans, sans-serif" fontSize="7" fontWeight="700" fill="#038390" textAnchor="middle">FinanzOnline</text>
-                    <line x1="264" y1="108" x2="296" y2="108" stroke="#1A1A1A" strokeWidth="1" opacity="0.15"/>
-                    <line x1="264" y1="117" x2="290" y2="117" stroke="#1A1A1A" strokeWidth="1" opacity="0.15"/>
-                    <line x1="264" y1="126" x2="294" y2="126" stroke="#1A1A1A" strokeWidth="1" opacity="0.15"/>
-                    <line x1="264" y1="135" x2="288" y2="135" stroke="#1A1A1A" strokeWidth="1" opacity="0.15"/>
-                  </g>
-                  <g style={{ animation: 'why-paper3 2.8s ease-in-out infinite', transformOrigin: '200px 148px' }}>
-                    <rect x="174" y="118" width="52" height="68" rx="5" fill="white" stroke="#1A1A1A" strokeWidth="1.2" opacity="0.92"/>
-                    <rect x="174" y="118" width="52" height="14" rx="5" fill="#1A1A1A" opacity="0.06"/>
-                    <text x="200" y="136" fontFamily="DM Sans, sans-serif" fontSize="10" fontWeight="700" fill="#1A1A1A" textAnchor="middle">GISA</text>
-                    <line x1="184" y1="146" x2="216" y2="146" stroke="#1A1A1A" strokeWidth="1" opacity="0.15"/>
-                    <line x1="184" y1="155" x2="212" y2="155" stroke="#1A1A1A" strokeWidth="1" opacity="0.15"/>
-                    <line x1="184" y1="164" x2="214" y2="164" stroke="#1A1A1A" strokeWidth="1" opacity="0.15"/>
-                  </g>
-                  <g style={{ animation: 'why-paper1 3.2s ease-in-out infinite' }}>
-                    <rect x="136" y="80" width="98" height="14" rx="3" fill="rgba(245,230,66,0.35)"/>
-                    <text x="140" y="92" fontFamily="DM Sans, sans-serif" fontSize="9" fontWeight="600" fill="white" opacity="0.85">Einkommensteuer</text>
-                  </g>
-                  <g style={{ animation: 'why-paper2 2.8s ease-in-out infinite' }}>
-                    <rect x="54" y="182" width="88" height="13" rx="3" fill="rgba(245,230,66,0.35)"/>
-                    <text x="58" y="193" fontFamily="DM Sans, sans-serif" fontSize="8" fontWeight="600" fill="white" opacity="0.85">Steuererklärung</text>
-                  </g>
-                  <g style={{ animation: 'why-paper3 3s ease-in-out infinite' }}>
-                    <rect x="283" y="188" width="74" height="13" rx="3" fill="rgba(245,230,66,0.35)"/>
-                    <text x="287" y="199" fontFamily="DM Sans, sans-serif" fontSize="8" fontWeight="600" fill="white" opacity="0.85">Arbeitnehmer</text>
-                  </g>
-                  <text x="152" y="105" fontFamily="DM Sans, sans-serif" fontSize="26" fontWeight="700" fill="#038390" style={{ animation: 'why-qmark 2s ease-in-out infinite 0s' }}>?</text>
-                  <text x="320" y="155" fontFamily="DM Sans, sans-serif" fontSize="20" fontWeight="700" fill="#CC0000" style={{ animation: 'why-qmark 2s ease-in-out infinite 0.5s' }}>?</text>
-                  <text x="60" y="150" fontFamily="DM Sans, sans-serif" fontSize="16" fontWeight="700" fill="#1A1A1A" style={{ animation: 'why-qmark 2s ease-in-out infinite 0.9s' }}>?</text>
-                  <g style={{ animation: 'why-tilt 2.5s ease-in-out infinite', transformOrigin: '200px 195px' }}>
-                    <path d="M222,178 C232,170 250,164 253,175 L244,186 L222,178Z" fill="white" style={{ animation: 'why-tail 2s ease-in-out infinite', transformOrigin: '222px 178px' }}/>
-                    <circle cx="200" cy="188" r="38" fill="white"/>
-                    <path d="M210,183 C210,183 207,187 210,189 L232,189 C235,187 234,185 232,183 L210,183Z" fill="#1A1A1A" opacity="0.7"/>
-                    <path d="M210,176 C210,176 207,180 210,182 L232,182 C235,180 234,178 232,176 L210,176Z" fill="#1A1A1A" opacity="0.7"/>
-                    <path d="M162,175 L142,156 L176,159 L162,175Z" fill="rgb(204,0,0)"/>
-                    <path d="M166,192 C170,164 188,153 219,149 C212,163 212,177 219,192 C201,183 183,183 166,192Z" fill="#1A1A1A"/>
-                    <circle cx="195" cy="159" r="6" fill="white" style={{ animation: 'why-blink 2.5s ease-in-out infinite', transformOrigin: '195px 159px' }}/>
-                  </g>
-                </svg>
-              </div>
+          {/* BLOCK 3 — QLIXA solution */}
+          <div style={{ textAlign: 'center', marginBottom: 28 }}>
+            <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(24px,2.5vw,36px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 8 }}>
+              Саме тому народилась <span style={{ color: '#038390', fontWeight: 700 }}>QLIXA</span>
+            </h3>
+            <p style={{ fontSize: 16, color: '#595959', maxWidth: 600, margin: '0 auto' }}>
+              Не ще одна бухгалтерська програма.<br/>
+              А платформа, яка пояснює складне простими словами і допомагає пройти цей шлях спокійно.
+            </p>
+          </div>
 
-              {/* ── SCENE 3: Error / Fear ── */}
-              <div className="why-scene why-s3">
-                <svg width="100%" height="100%" viewBox="0 0 400 300" style={{ position: 'absolute', inset: 0 }}>
-                  <rect width="400" height="300" fill="#026B76"/>
-                  <rect x="80" y="50" width="200" height="160" rx="14" fill="white" stroke="#1A1A1A" strokeWidth="1.5" opacity="0.92"/>
-                  <rect x="80" y="50" width="200" height="32" rx="14" fill="#E6F4F5"/>
-                  <rect x="80" y="68" width="200" height="14" fill="#E6F4F5"/>
-                  <circle cx="98" cy="66" r="5" fill="#CC0000" opacity="0.5"/>
-                  <circle cx="113" cy="66" r="5" fill="#FFB347" opacity="0.5"/>
-                  <circle cx="128" cy="66" r="5" fill="#4CAF50" opacity="0.5"/>
-                  <text x="192" y="70" fontFamily="DM Sans, sans-serif" fontSize="10" fontWeight="600" fill="rgba(26,26,26,0.4)" textAnchor="middle">FinanzOnline</text>
-                  <rect x="100" y="100" width="60" height="5" rx="2.5" fill="#E0E0E0"/>
-                  <rect x="100" y="113" width="120" height="5" rx="2.5" fill="#E0E0E0"/>
-                  <rect x="100" y="126" width="90" height="5" rx="2.5" fill="#E0E0E0"/>
-                  <rect x="100" y="139" width="100" height="5" rx="2.5" fill="#E0E0E0"/>
-                  <rect x="100" y="152" width="70" height="5" rx="2.5" fill="#E0E0E0"/>
-                  <rect x="100" y="172" width="80" height="26" rx="7" fill="#038390"/>
-                  <text x="140" y="189" fontFamily="DM Sans, sans-serif" fontSize="10" fontWeight="600" fill="white" textAnchor="middle">Надіслати</text>
-                  <g style={{ animation: 'why-warn 4.8s ease-in-out infinite' }}>
-                    <rect x="88" y="10" width="184" height="52" rx="10" fill="#FFF0F0" stroke="#CC0000" strokeWidth="1.5"/>
-                    <text x="110" y="40" fontSize="22">⚠️</text>
-                    <text x="136" y="34" fontFamily="DM Sans, sans-serif" fontSize="12" fontWeight="700" fill="#CC0000">Помилка!</text>
-                    <text x="136" y="50" fontFamily="DM Sans, sans-serif" fontSize="10" fill="#CC0000" opacity="0.8">Перевірте дані форми</text>
-                  </g>
-                  <g style={{ animation: 'why-bounce 1s ease-in-out infinite', transformOrigin: '322px 228px' }}>
-                    <path d="M344,208 C354,200 372,194 375,205 L366,216 L344,208Z" fill="white" style={{ animation: 'why-tail 1.5s ease-in-out infinite', transformOrigin: '344px 208px' }}/>
-                    <circle cx="322" cy="218" r="38" fill="white"/>
-                    <path d="M332,213 C332,213 329,217 332,219 L354,219 C357,217 356,215 354,213 L332,213Z" fill="#1A1A1A" opacity="0.7"/>
-                    <path d="M332,206 C332,206 329,210 332,212 L354,212 C357,210 356,208 354,206 L332,206Z" fill="#1A1A1A" opacity="0.7"/>
-                    <path d="M284,205 L264,186 L298,189 L284,205Z" fill="rgb(204,0,0)"/>
-                    <path d="M288,222 C292,194 310,183 341,179 C334,193 334,207 341,222 C323,213 305,213 288,222Z" fill="#1A1A1A"/>
-                    <circle cx="317" cy="189" r="8" fill="white" style={{ animation: 'why-blink 6s ease-in-out infinite', transformOrigin: '317px 189px' }}/>
-                  </g>
-                </svg>
-              </div>
+          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, alignItems: 'stretch' }}>
 
-              {/* ── SCENE 4: QLIXA born ── */}
-              <div className="why-scene why-s4">
-                <svg width="100%" height="100%" viewBox="0 0 400 300" style={{ position: 'absolute', inset: 0 }}>
-                  <rect width="400" height="300" fill="#026B76"/>
-                  {[{cx:80,cy:70,r:5,c:'#F5E642',d:'0s'},{cx:320,cy:55,r:4,c:'#038390',d:'0.3s'},{cx:350,cy:150,r:3,c:'#F5E642',d:'0.7s'},{cx:60,cy:170,r:4,c:'#038390',d:'0.1s'},{cx:200,cy:40,r:3,c:'#FFB347',d:'0.5s'},{cx:360,cy:220,r:4,c:'#CC0000',d:'0.9s'},{cx:40,cy:240,r:3,c:'#F5E642',d:'0.4s'}].map((s,i) => (
-                    <circle key={i} cx={s.cx} cy={s.cy} r={s.r} fill={s.c} style={{ animation: `why-sparkle 1.5s ease-in-out infinite ${s.d}` }}/>
-                  ))}
-                  <text x="200" y="175" fontFamily="DM Serif Display, serif" fontSize="130" fontWeight="400" fill="none" stroke="#038390" strokeWidth="2" textAnchor="middle" opacity="0.08">Q</text>
-                  <g style={{ animation: 'why-paper1 2s ease-in-out infinite' }}>
-                    <rect x="72" y="100" width="48" height="60" rx="4" fill="rgba(255,255,255,0.92)" stroke="rgba(255,255,255,0.5)" strokeWidth="1"/>
-                    <rect x="72" y="100" width="48" height="13" rx="4" fill="rgba(3,131,144,0.3)"/>
-                    <text x="96" y="111" fontFamily="DM Sans, sans-serif" fontSize="7" fontWeight="700" fill="white" textAnchor="middle">Рахунок</text>
-                    <line x1="80" y1="124" x2="112" y2="124" stroke="#038390" strokeWidth="1.2" opacity="0.5"/>
-                    <line x1="80" y1="132" x2="108" y2="132" stroke="rgba(26,26,26,0.2)" strokeWidth="1"/>
-                    <line x1="80" y1="140" x2="110" y2="140" stroke="rgba(26,26,26,0.2)" strokeWidth="1"/>
-                    <text x="80" y="153" fontFamily="DM Sans, sans-serif" fontSize="7" fill="#038390" fontWeight="600">€ 640</text>
-                  </g>
-                  <g style={{ animation: 'why-paper3 2.2s ease-in-out infinite' }}>
-                    <rect x="288" y="88" width="48" height="60" rx="4" fill="rgba(255,255,255,0.92)" stroke="rgba(255,255,255,0.5)" strokeWidth="1"/>
-                    <rect x="288" y="88" width="48" height="13" rx="4" fill="rgba(245,230,66,0.4)"/>
-                    <text x="312" y="99" fontFamily="DM Sans, sans-serif" fontSize="7" fontWeight="700" fill="white" textAnchor="middle">Звіт ПДВ</text>
-                    <line x1="296" y1="112" x2="328" y2="112" stroke="rgba(255,255,255,0.5)" strokeWidth="1.2"/>
-                    <line x1="296" y1="120" x2="324" y2="120" stroke="rgba(26,26,26,0.2)" strokeWidth="1"/>
-                    <line x1="296" y1="128" x2="326" y2="128" stroke="rgba(26,26,26,0.2)" strokeWidth="1"/>
-                    <text x="296" y="141" fontFamily="DM Sans, sans-serif" fontSize="7" fill="#038390" fontWeight="600">✓ Готово</text>
-                  </g>
-                  <g style={{ animation: 'why-check 4.8s ease-in-out infinite' }}>
-                    <rect x="118" y="80" width="164" height="110" rx="14" fill="white" stroke="#1A1A1A" strokeWidth="1.5"/>
-                    <rect x="118" y="80" width="164" height="28" rx="14" fill="#E6F4F5"/>
-                    <rect x="118" y="95" width="164" height="13" fill="#E6F4F5"/>
-                    <circle cx="134" cy="94" r="4" fill="#CC0000" opacity="0.4"/>
-                    <circle cx="146" cy="94" r="4" fill="#FFB347" opacity="0.4"/>
-                    <circle cx="158" cy="94" r="4" fill="#4CAF50" opacity="0.4"/>
-                    <text x="200" y="98" fontFamily="DM Sans, sans-serif" fontSize="9" fontWeight="600" fill="rgba(26,26,26,0.4)" textAnchor="middle">QLIXA Platform</text>
-                    <rect x="132" y="122" width="50" height="3" rx="1.5" fill="#038390"/>
-                    <rect x="132" y="132" width="100" height="2.5" rx="1.2" fill="#E0E0E0"/>
-                    <rect x="132" y="141" width="80" height="2.5" rx="1.2" fill="#E0E0E0"/>
-                    <text x="134" y="160" fontFamily="DM Sans, sans-serif" fontSize="9" fill="#038390">✓ Податки</text>
-                    <text x="200" y="160" fontFamily="DM Sans, sans-serif" fontSize="9" fill="#038390">✓ Звіти</text>
-                    <text x="134" y="173" fontFamily="DM Sans, sans-serif" fontSize="9" fill="#038390">✓ Документи</text>
-                    <text x="200" y="173" fontFamily="DM Sans, sans-serif" fontSize="9" fill="#038390">✓ FinanzOnline</text>
-                  </g>
-                  <g style={{ animation: 'why-breathe 3s ease-in-out infinite', transformOrigin: '322px 238px' }}>
-                    <path d="M344,218 C354,210 372,204 375,215 L366,226 L344,218Z" fill="white" style={{ animation: 'why-tail 1.8s ease-in-out infinite', transformOrigin: '344px 218px' }}/>
-                    <circle cx="322" cy="228" r="38" fill="white"/>
-                    <path d="M332,223 L354,223 C357,221 356,219 354,219 L332,219 C329,219 329,221 332,223Z" fill="#1A1A1A" opacity="0.7"/>
-                    <path d="M332,216 L354,216 C357,214 356,212 354,212 L332,212 C329,212 329,214 332,216Z" fill="#1A1A1A" opacity="0.7"/>
-                    <path d="M284,215 L264,196 L298,199 L284,215Z" fill="rgb(204,0,0)"/>
-                    <path d="M288,232 C292,204 310,193 341,189 C334,203 334,217 341,232 C323,223 305,223 288,232Z" fill="#1A1A1A"/>
-                    <circle cx="317" cy="199" r="6" fill="white" style={{ animation: 'why-blink 4s ease-in-out infinite', transformOrigin: '317px 199px' }}/>
-                    <path d="M296,237 C306,248 336,248 346,237" stroke="#038390" strokeWidth="2.5" fill="none" strokeLinecap="round" opacity="0.7"/>
-                  </g>
-                </svg>
-              </div>
-
-              {/* ── SCENE 5: Coffee ── */}
-              <div className="why-scene why-s5">
-                <svg width="100%" height="100%" viewBox="0 0 400 300" style={{ position: 'absolute', inset: 0 }}>
-                  <rect width="400" height="300" fill="#026B76"/>
-                  <rect x="260" y="30" width="110" height="80" rx="6" fill="white" stroke="#1A1A1A" strokeWidth="1" opacity="0.5"/>
-                  <line x1="315" y1="30" x2="315" y2="110" stroke="#1A1A1A" strokeWidth="1" opacity="0.3"/>
-                  <line x1="260" y1="70" x2="370" y2="70" stroke="#1A1A1A" strokeWidth="1" opacity="0.3"/>
-                  <ellipse cx="290" cy="50" rx="18" ry="10" fill="#E6F4F5" opacity="0.6"/>
-                  <ellipse cx="345" cy="55" rx="14" ry="8" fill="#E6F4F5" opacity="0.5"/>
-                  <rect x="60" y="210" width="280" height="12" rx="5" fill="rgba(255,255,255,0.2)" stroke="#1A1A1A" strokeWidth="1" opacity="0.55"/>
-                  <rect x="82" y="222" width="10" height="78" rx="4" fill="rgba(255,255,255,0.2)" opacity="0.4"/>
-                  <rect x="308" y="222" width="10" height="78" rx="4" fill="rgba(255,255,255,0.2)" opacity="0.4"/>
-                  <rect x="168" y="138" width="110" height="76" rx="7" fill="white" stroke="#1A1A1A" strokeWidth="1.5" opacity="0.95"/>
-                  <rect x="156" y="210" width="134" height="7" rx="3" fill="#1A1A1A" opacity="0.12"/>
-                  <rect x="174" y="145" width="98" height="62" rx="4" fill="#E6F4F5" style={{ animation: 'why-glow 2.5s ease-in-out infinite' }}/>
-                  <rect x="180" y="152" width="44" height="3" rx="1.5" fill="#038390"/>
-                  <rect x="180" y="160" width="80" height="2" rx="1" fill="#1A1A1A" opacity="0.15"/>
-                  <rect x="180" y="167" width="64" height="2" rx="1" fill="#1A1A1A" opacity="0.15"/>
-                  <text x="180" y="182" fontFamily="DM Sans, sans-serif" fontSize="8" fill="#038390">✓ Податки</text>
-                  <text x="180" y="193" fontFamily="DM Sans, sans-serif" fontSize="8" fill="#038390">✓ Документи</text>
-                  <text x="180" y="204" fontFamily="DM Sans, sans-serif" fontSize="8" fill="#038390">✓ FinanzOnline</text>
-                  <rect x="100" y="170" width="44" height="38" rx="6" fill="white" stroke="#1A1A1A" strokeWidth="1.5"/>
-                  <rect x="100" y="170" width="44" height="14" rx="6" fill="#795548" opacity="0.18"/>
-                  <path d="M144,182 C152,182 152,196 144,196" stroke="#1A1A1A" strokeWidth="1.5" fill="none" opacity="0.35"/>
-                  <text x="122" y="195" fontFamily="DM Sans, sans-serif" fontSize="11" textAnchor="middle" opacity="0.3">☕</text>
-                  <path d="M112,166 C114,156 110,151 112,143" stroke="#1A1A1A" strokeWidth="1.5" fill="none" strokeLinecap="round" style={{ animation: 'why-steam 2s ease-in-out infinite 0s' }}/>
-                  <path d="M122,164 C124,154 120,149 122,141" stroke="#1A1A1A" strokeWidth="1.5" fill="none" strokeLinecap="round" style={{ animation: 'why-steam 2s ease-in-out infinite 0.35s' }}/>
-                  <path d="M132,166 C134,156 130,151 132,143" stroke="#1A1A1A" strokeWidth="1.5" fill="none" strokeLinecap="round" style={{ animation: 'why-steam 2s ease-in-out infinite 0.7s' }}/>
-                  <g style={{ animation: 'why-breathe 4s ease-in-out infinite', transformOrigin: '308px 185px' }}>
-                    <path d="M330,168 C340,160 358,154 361,165 L352,176 L330,168Z" fill="white" style={{ animation: 'why-tail 3s ease-in-out infinite', transformOrigin: '330px 168px' }}/>
-                    <circle cx="308" cy="178" r="38" fill="white"/>
-                    <path d="M318,173 L340,173 C343,171 342,169 340,169 L318,169 C315,169 315,171 318,173Z" fill="#1A1A1A" opacity="0.7"/>
-                    <path d="M318,166 L340,166 C343,164 342,162 340,162 L318,162 C315,162 315,164 318,166Z" fill="#1A1A1A" opacity="0.7"/>
-                    <path d="M270,165 L250,146 L284,149 L270,165Z" fill="rgb(204,0,0)"/>
-                    <path d="M274,182 C278,154 296,143 327,139 C320,153 320,167 327,182 C309,173 291,173 274,182Z" fill="#1A1A1A"/>
-                    <circle cx="303" cy="149" r="6" fill="white" style={{ animation: 'why-blink 5s ease-in-out infinite', transformOrigin: '303px 149px' }}/>
-                    <path d="M282,187 C292,198 322,198 332,187" stroke="#038390" strokeWidth="2.5" fill="none" strokeLinecap="round" opacity="0.65"/>
-                  </g>
-                  {[{x:16,y:28,flag:'🇺🇦',lang:'UA'},{x:58,y:28,flag:'🇷🇺',lang:'RU'},{x:100,y:28,flag:'🇬🇧',lang:'EN'},{x:142,y:28,flag:'🇩🇪',lang:'DE'}].map((l,i) => (
-                    <g key={i}>
-                      <rect x={l.x} y={l.y} width="36" height="18" rx="9" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.3)" strokeWidth="1"/>
-                      <text x={l.x+18} y={l.y+13} fontFamily="DM Sans, sans-serif" fontSize="8" fontWeight="600" fill="white" textAnchor="middle">{l.flag} {l.lang}</text>
-                    </g>
-                  ))}
-                </svg>
-              </div>
-
-            </div>{/* /stage */}
-
-            {/* ── TEXT PANEL ── */}
-            <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center' }}>
-              <div style={{ position: 'relative', minHeight: 180, marginBottom: 24 }}>
-
-                {[
-                  { cls: 'why-t1', h: <>Ми теж були новачками <em style={{ fontStyle: 'italic', color: '#038390' }}>в Австрії.</em></>, p: 'Приїхали. Нічого не розуміли. Хотілося просто щоб хтось пояснив — без зайвих слів.' },
-                  { cls: 'why-t2', h: <>Не розуміли ні мови, <em style={{ fontStyle: 'italic', color: '#038390' }}>ні системи.</em></>, p: 'SVS, FinanzOnline, GISA — самі назви лякали. А форми — взагалі окремий жах.' },
-                  { cls: 'why-t3', h: <>Боялися <em style={{ fontStyle: 'italic', color: '#CC0000' }}>зробити помилку.</em></>, p: 'Кожна помилка — потенційний штраф. Це сковувало і заважало жити спокійно.' },
-                  { cls: 'why-t4', h: <>Саме тому <em style={{ fontStyle: 'italic', color: '#038390' }}>створили QLIXA.</em></>, p: 'Платформа, якої нам самим колись не вистачало. Проста. Людяна. Твоєю мовою.' },
-                  { cls: 'why-t5', h: <>Як друг <em style={{ fontStyle: 'italic', color: '#038390' }}>за чашкою кави. ☕</em></>, p: 'Пояснюємо все без термінів і стресу — крок за кроком, зрозумілою мовою.' },
-                ].map((t, i) => (
-                  <div key={i} className={`why-text ${t.cls}`}>
-                    <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(20px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.3, marginBottom: 12 }}>{t.h}</h3>
-                    <p style={{ fontSize: 16, color: '#3D3D3D', lineHeight: 1.75, fontWeight: 400 }}>{t.p}</p>
+            {/* Left — feature list */}
+            <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 20, background: '#F0F7F8', borderRadius: 24, padding: 28, boxShadow: '0 8px 40px rgba(3,131,144,0.10)' }}>
+              {[
+                { icon: '💬', title: 'Пояснюємо людською мовою', desc: 'Без складних термінів і стресу.' },
+                { icon: '👣', title: 'Показуємо наступний крок', desc: 'Ти завжди знаєш, що робити далі.' },
+                { icon: '🔔', title: 'Нагадуємо про дедлайни', desc: 'Щоб нічого не пропустити.' },
+                { icon: '📁', title: 'Збираємо все в одному місці', desc: 'Документи, податки, бізнес, FinanzOnline.' },
+                { icon: '💶', title: 'Допомагаємо знайти всі можливі списання', desc: 'Щоб повернути максимум.' },
+                { icon: '🎯', title: 'Підлаштовуємося під твою ситуацію', desc: 'Бо двох однакових історій не існує.' },
+              ].map((item, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
+                  <div style={{ width: 44, height: 44, background: 'white', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0, boxShadow: '0 2px 8px rgba(3,131,144,0.08)' }}>
+                    {item.icon}
                   </div>
-                ))}
-              </div>
+                  <div>
+                    <div style={{ fontSize: 14, fontWeight: 700, color: '#1A1A1A', marginBottom: 2 }}>{item.title}</div>
+                    <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.5 }}>{item.desc}</div>
+                  </div>
+                </div>
+              ))}
+            </div>
 
-              {/* Progress dots */}
-              <div style={{ display: 'flex', gap: 8, marginBottom: 24 }}>
-                {['why-dot1','why-dot2','why-dot3','why-dot4','why-dot5'].map((a, i) => (
-                  <div key={i} style={{ width: 8, height: 8, borderRadius: '50%', background: 'rgba(3,131,144,0.2)', animation: `${a} 24s ease-in-out infinite` }}/>
-                ))}
-              </div>
-
-              <Link href="/pricing" style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', background: '#038390', color: '#fff', borderRadius: 10, fontSize: 14, fontWeight: 700, textDecoration: 'none', boxShadow: '3px 3px 0 #026B76', width: 'fit-content' }}>
-                Спробувати →
-              </Link>
+            {/* Right — quote card */}
+            <div style={{ background: '#F0F7F8', borderRadius: 24, padding: 28, boxShadow: '0 8px 40px rgba(3,131,144,0.10)', display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/why-qlixa/laptop.png" alt="" style={{ width: '55%', height: 'auto', objectFit: 'contain', display: 'block', marginBottom: 16 }}/>
+              <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(18px,2vw,24px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.4, textAlign: 'center', marginBottom: 16 }}>
+                Ми не замінюємо бухгалтера —<br/>
+                ми робимо так, щоб ти сам{' '}
+                <em style={{ color: '#038390' }}>розумів</em>{' '}
+                свою ситуацію.
+              </p>
+              <p style={{ fontSize: 14, color: '#595959', lineHeight: 1.65, textAlign: 'center', marginBottom: 24 }}>
+                Ти економиш час, гроші та нерви.<br/>
+                Ми беремо на себе складне,<br/>
+                а ти займаєшся тим, що для тебе справді важливо.
+              </p>
             </div>
 
           </div>
         </div>
-      </section>
+            </section>
 
       {/* Austrian stripe */}
       <div style={{ height: 3, background: 'linear-gradient(to right, #CC0000 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #CC0000 66.66%)', width: '100%' }} />
