@@ -35,10 +35,10 @@ export default function AboutPage() {
           <div style={{ display: 'flex', alignItems: 'center', gap: 48 }}>
             <div style={{ flex: 1 }}>
               <p style={{ fontSize: 17, color: '#1A1A1A', lineHeight: 1.85, marginBottom: 16 }}>
-                Але дуже швидко зрозуміли: австрійська бюрократія — це майже окремий вид спорту. 😄
+                Але дуже швидко зрозуміли: <span style={{ background: '#F5E642', padding: '0 4px', borderRadius: 3 }}>австрійська бюрократія — це майже окремий вид спорту</span>. 😄
               </p>
               <p style={{ fontSize: 17, color: '#1A1A1A', lineHeight: 1.85 }}>
-                Як відкрити Gewerbe? Коли потрібно реєструватися в SVS? Як працює FinanzOnline? Які звіти потрібно подавати? Що можна списати на витрати? Як не пропустити важливий дедлайн? І найголовніше — чому все це не можна було написати простими словами?
+                Як відкрити Gewerbe? Коли потрібно реєструватися в SVS? Як працює FinanzOnline? Які звіти потрібно подавати? Що можна списати на витрати? Як не пропустити важливий дедлайн? І найголовніше — <span style={{ background: '#F5E642', padding: '0 4px', borderRadius: 3 }}>чому все це не можна було написати простими словами</span>?
               </p>
             </div>
             <div style={{ flex: '0 0 260px', flexShrink: 0 }}>
@@ -55,7 +55,7 @@ export default function AboutPage() {
             </div>
             <div style={{ flex: 1 }}>
               <p style={{ fontSize: 17, color: '#1A1A1A', lineHeight: 1.85 }}>
-                Ми шукали відповіді всюди. Читали офіційні сайти, відвідували семінари, спілкувалися зі спеціалістами, вивчали закони, перекладали документи, перевіряли інформацію з різних джерел і крок за кроком будували власне розуміння австрійської системи.
+                <span style={{ fontWeight: 700, fontSize: '1.05em' }}>Ми шукали відповіді всюди</span>. Читали офіційні сайти, відвідували семінари, спілкувалися зі спеціалістами, вивчали закони, перекладали документи, перевіряли інформацію з різних джерел і <span style={{ textDecoration: 'underline', textDecorationColor: '#038390', textDecorationThickness: 3, textUnderlineOffset: 4 }}>крок за кроком будували власне розуміння австрійської системи</span>.
               </p>
             </div>
           </div>
@@ -63,16 +63,16 @@ export default function AboutPage() {
           {/* Quote block */}
           <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '36px 40px', borderLeft: '4px solid #038390' }}>
             <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(18px,2vw,24px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.6, fontStyle: 'italic', marginBottom: 16 }}>
-              Паралельно ми відкрили самозайнятість в Австрії, працювали, подавали звітність, вчилися вести облік, планувати податки та не пропускати важливі дати. Ми добре знаємо, як це — коли в поштовій скриньці з&apos;являється лист від Finanzamt, а ти відкриваєш його з думкою: «Сподіваємося, цього разу нічого страшного...» 😅
+              Паралельно ми відкрили самозайнятість в Австрії, працювали, подавали звітність, вчилися вести облік, планувати податки та не пропускати важливі дати. Ми добре знаємо, як це — коли в поштовій скриньці з&apos;являється лист від Finanzamt, а ти відкриваєш його з думкою: <span style={{ background: '#F5E642', padding: '0 4px', borderRadius: 3 }}>«Сподіваємося, цього разу нічого страшного...»</span> 😅
             </p>
             <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.8 }}>
-              Ми знаємо, як це — годинами шукати відповідь на одне просте запитання. Як десять хвилин читати один абзац німецькою і все одно не зрозуміти, що саме від тебе хочуть.
+              Ми знаємо, як це — <span style={{ fontStyle: 'italic', fontWeight: 600 }}>годинами шукати відповідь на одне просте запитання</span>. Як <span style={{ background: 'rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.2)', borderRadius: 6, padding: '1px 6px' }}>десять хвилин читати один абзац німецькою і все одно не зрозуміти</span>, що саме від тебе хочуть.
             </p>
           </div>
 
           {/* Block 3 — познайомилися */}
           <p style={{ fontSize: 17, color: '#1A1A1A', lineHeight: 1.85 }}>
-            Саме тоді ми випадково познайомилися. Нас об&apos;єднало бажання розібратися в системі та зробити її зрозумілішою. Ми почали допомагати одна одній, ділитися знахідками, створювати власні таблиці, чек-листи, нагадування та шаблони, які спрощували щоденну роботу.
+            Саме тоді ми випадково познайомилися. <span style={{ fontWeight: 700, color: '#038390' }}>Нас об&apos;єднало бажання розібратися в системі та зробити її зрозумілішою</span>. Ми почали допомагати одна одній, ділитися знахідками, створювати власні таблиці, чек-листи, нагадування та шаблони, які спрощували щоденну роботу.
           </p>
 
           {/* Block 4 — для друзів */}
@@ -82,7 +82,7 @@ export default function AboutPage() {
               <p style={{ fontSize: 17, color: '#1A1A1A', lineHeight: 1.85, marginBottom: 12 }}>Потім для друзів.</p>
               <p style={{ fontSize: 17, color: '#1A1A1A', lineHeight: 1.85, marginBottom: 12 }}>Потім для знайомих.</p>
               <p style={{ fontSize: 17, color: '#1A1A1A', lineHeight: 1.85 }}>
-                А потім зрозуміли, що таких, як ми, — тисячі. Щороку нові підприємці, фрилансери, самозайняті, наймані працівники та люди, які тільки починають свій шлях в Австрії, ставлять одні й ті самі запитання, губляться серед десятків офіційних сайтів і витрачають години на пошук інформації.
+                А потім зрозуміли, що <span style={{ background: '#F5E642', padding: '0 4px', borderRadius: 3, fontWeight: 700 }}>таких, як ми, — тисячі</span>. Щороку нові підприємці, фрилансери, самозайняті, наймані працівники та люди, які тільки починають свій шлях в Австрії, ставлять одні й ті самі запитання, <span style={{ textDecoration: 'underline', textDecorationColor: '#038390', textDecorationThickness: 3, textUnderlineOffset: 4 }}>губляться серед десятків офіційних сайтів і витрачають години на пошук інформації</span>.
               </p>
             </div>
             <div style={{ flex: '0 0 260px', flexShrink: 0 }}>
@@ -100,11 +100,11 @@ export default function AboutPage() {
 
           {/* Mission */}
           <p style={{ fontSize: 17, color: '#1A1A1A', lineHeight: 1.85 }}>
-            Ми створюємо не бухгалтерську програму і не замінюємо податкового консультанта. Ми створюємо зрозумілу автоматизовану платформу, яка допомагає підприємцям, самозайнятим та найманим працівникам організувати фінанси, не пропускати важливі дедлайни, користуватися готовими шаблонами, автоматизувати рутинні процеси та краще розуміти австрійську систему.
+            Ми створюємо <span style={{ textDecoration: 'underline', textDecorationColor: '#038390', textDecorationThickness: 3, textUnderlineOffset: 4 }}>не бухгалтерську програму</span> і <span style={{ background: '#F5E642', padding: '0 4px', borderRadius: 3 }}>не замінюємо податкового консультанта</span>. Ми створюємо <span style={{ fontWeight: 700, color: '#038390' }}>зрозумілу автоматизовану платформу</span>, яка допомагає підприємцям, самозайнятим та найманим працівникам <span style={{ borderBottom: '2px solid #038390', paddingBottom: 1 }}>організувати фінанси, не пропускати важливі дедлайни, користуватися готовими шаблонами, автоматизувати рутинні процеси та краще розуміти австрійську систему</span>.
           </p>
 
           <p style={{ fontSize: 17, color: '#1A1A1A', lineHeight: 1.85 }}>
-            Кожен шаблон, калькулятор, інструкцію та чек-лист ми створюємо так, ніби пояснюємо все своїй подрузі за чашкою кави. Просто. Людською мовою. Без зайвої бюрократії та складних термінів.
+            Кожен шаблон, калькулятор, інструкцію та чек-лист ми створюємо так, <span style={{ fontStyle: 'italic', fontWeight: 600, color: '#1A1A1A' }}>ніби пояснюємо все своїй подрузі за чашкою кави. Просто. Людською мовою. Без зайвої бюрократії та складних термінів.</span>
           </p>
 
           {/* Beliefs */}
@@ -113,14 +113,14 @@ export default function AboutPage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/about/stressed-accountant.png" alt="" style={{ width: 80, height: 80, objectFit: 'contain', flexShrink: 0 }}/>
               <p style={{ fontSize: 16, color: '#595959', lineHeight: 1.75 }}>
-                Ми не віримо, що підприємець повинен бути бухгалтером, щоб успішно вести свою справу.
+                Ми не віримо, що <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: '1.15em', fontWeight: 400, color: '#1A1A1A' }}>підприємець повинен бути бухгалтером, щоб успішно вести свою справу</span>.
               </p>
             </div>
             <div style={{ background: '#F0F7F8', borderRadius: 16, padding: '28px 32px', display: 'flex', alignItems: 'flex-start', gap: 20 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/about/relaxed-person.png" alt="" style={{ width: 80, height: 80, objectFit: 'contain', flexShrink: 0 }}/>
               <p style={{ fontSize: 16, color: '#595959', lineHeight: 1.75 }}>
-                Ми віримо, що кожен повинен розуміти свої фінанси, знати свої обов&apos;язки, не боятися офіційних листів і почуватися впевнено.
+                Ми віримо, що <span style={{ fontWeight: 700, color: '#038390' }}>кожен повинен розуміти свої фінанси, знати свої обов&apos;язки, не боятися офіційних листів і почуватися впевнено</span>.
               </p>
             </div>
           </div>
@@ -132,13 +132,13 @@ export default function AboutPage() {
           {/* Dark block */}
           <div style={{ background: '#1A1A1A', borderRadius: 20, padding: '40px 44px' }}>
             <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.85)', lineHeight: 1.85, marginBottom: 20 }}>
-              Ми щиро віримо, що бізнес має приносити задоволення, а не постійний стрес через документи та податки.
+              Ми щиро віримо, що <span style={{ display: 'inline', background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 6, padding: '2px 8px' }}>бізнес має приносити задоволення, а не постійний стрес через документи та податки</span>.
             </p>
             <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.85)', lineHeight: 1.85, marginBottom: 20 }}>
               Якщо завдяки QLIXA ви зможете витрачати менше часу на бюрократію і більше часу приділяти своїй справі, родині, дітям чи відпочинку — значить, ми створили цей проєкт недаремно.
             </p>
             <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.7)', lineHeight: 1.85 }}>
-              І якщо одного дня лист від Finanzamt більше не викликатиме легку паніку, а стане просто ще одним повідомленням у вашому списку справ — ми будемо знати, що все було недарма. 😊
+              І якщо одного дня <span style={{ textDecoration: 'underline', textDecorationColor: '#038390', textDecorationThickness: 3, textUnderlineOffset: 4 }}>лист від Finanzamt більше не викликатиме легку паніку</span>, а стане просто ще одним повідомленням у вашому списку справ — ми будемо знати, що все було недарма. 😊
             </p>
           </div>
 
