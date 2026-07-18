@@ -105,62 +105,6 @@ function CostTable() {
   )
 }
 
-function QlixaPromo() {
-  return (
-    <div style={{
-      background: 'var(--peach-light)', borderRadius: 20, padding: '40px 28px',
-      margin: '48px 0', textAlign: 'center', position: 'relative', overflow: 'hidden',
-      border: '1px solid var(--orange-mid)',
-    }}>
-      <div style={{
-        position: 'absolute', width: 180, height: 180, borderRadius: '50%',
-        background: 'var(--orange)', opacity: 0.08, top: -40, right: -40,
-      }} />
-      <div style={{
-        position: 'absolute', width: 180, height: 180, borderRadius: '50%',
-        background: 'var(--orange)', opacity: 0.08, bottom: -60, left: -40,
-      }} />
-      <div style={{ position: 'relative', zIndex: 1 }}>
-        <Image src="/logos/logo-bird.svg" alt="QLIXA" width={72} height={59}
-          style={{ margin: '0 auto 16px', display: 'block' }} />
-        <div style={{
-          fontSize: 10, fontWeight: 700, letterSpacing: '0.12em', textTransform: 'uppercase',
-          color: 'var(--orange)', marginBottom: 12,
-        }}>
-          Reports in one click
-        </div>
-        <h3 style={{
-          fontFamily: 'DM Serif Display, serif', fontSize: 28, color: 'var(--charcoal)',
-          marginBottom: 14, lineHeight: 1.3,
-        }}>
-          Тримай фінанси під контролем <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>легко</em>
-        </h3>
-        <p style={{ color: 'var(--text2)', fontSize: 16, maxWidth: 420, margin: '0 auto 8px', lineHeight: 1.75 }}>
-          Рахунки за кілька секунд. Звіти одним кліком.
-        </p>
-        <p style={{ color: 'var(--text2)', fontSize: 16, maxWidth: 420, margin: '0 auto 24px', lineHeight: 1.75 }}>
-          Чотири мови: 🇺🇦 🇩🇪 🇬🇧 🇷🇺
-        </p>
-        <div style={{ display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/free-test" style={{
-            padding: '13px 26px', borderRadius: 999, fontSize: 13, fontWeight: 700,
-            background: 'var(--orange)', color: '#fff', border: '2px solid var(--orange)',
-            textDecoration: 'none', display: 'inline-block',
-          }}>
-            Спробувати безкоштовно →
-          </Link>
-          <Link href="/pricing" style={{
-            padding: '13px 26px', borderRadius: 999, fontSize: 13, fontWeight: 700,
-            background: 'transparent', color: 'var(--charcoal)', border: '2px solid var(--charcoal)',
-            textDecoration: 'none', display: 'inline-block',
-          }}>
-            Дивитись тарифи
-          </Link>
-        </div>
-      </div>
-    </div>
-  )
-}
 
 function TranslationForm() {
   return (
@@ -384,9 +328,6 @@ export default function GewerbeanmeldungPage() {
           </div>
         </div>
 
-        {/* QLIXA PROMO */}
-        <QlixaPromo />
-
         {/* STEP 4 */}
         <div style={{ marginBottom: 40 }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 18 }}>
@@ -457,11 +398,6 @@ export default function GewerbeanmeldungPage() {
             <NoteBox type="info">
               При реєстрації можна додати лише <strong>один КВЕД</strong>. Щоб додати ще — напишіть лист у вільній формі та відправте на email вашого Bezirkshauptmannschaft.
             </NoteBox>
-            <ArticleLink
-              href="/articles/finanz-online"
-              title="Читайте детально → Як заповнити формуляр FinanzOnline"
-              sub="Покроковий гайд — що вказати і як не помилитись"
-            />
           </div>
         </div>
 
@@ -540,14 +476,7 @@ export default function GewerbeanmeldungPage() {
               Без стресу і складних термінів — просто спокійно ведеш бізнес.
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/free-test" style={{
-                padding: '14px 28px', borderRadius: 999, fontSize: 14, fontWeight: 700,
-                background: 'var(--orange)', color: '#fff', border: '2px solid var(--orange)',
-                textDecoration: 'none', display: 'inline-block',
-              }}>
-                Спробувати QLIXA безкоштовно →
-              </Link>
-              <Link href="/pricing" style={{
+<Link href="/pricing" style={{
                 padding: '14px 28px', borderRadius: 999, fontSize: 14, fontWeight: 700,
                 background: 'transparent', color: 'var(--charcoal)', border: '2px solid var(--charcoal)',
                 textDecoration: 'none', display: 'inline-block',

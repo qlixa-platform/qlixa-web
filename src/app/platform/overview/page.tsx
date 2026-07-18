@@ -9,7 +9,7 @@ const services = [
   {
     num: '01',
     title: 'Автоматичне заповнення податкових декларацій',
-    desc: 'Декларації з доходів (Einkommensteuer) та ПДВ (Umsatzsteuer) заповнюються автоматично на основі твоїх даних. Тобі залишається лише перевірити — і відправити до FinanzOnline. Жодних складних форм, жодних незрозумілих полів.',
+    desc: 'На основі твоїх даних QLIXA формує декларації з доходів та ПДВ. Ти перевіряєш результат і самостійно відправляєш у FinanzOnline. Жодних складних форм і незрозумілих полів.',
     tags: ['Податок з доходів', 'ПДВ декларація', 'FinanzOnline'],
     accent: false,
   },
@@ -23,21 +23,21 @@ const services = [
   {
     num: '03',
     title: 'KPI дашборд та аналітика бізнесу',
-    desc: 'Бачиш своє підприємство одним поглядом: скільки заробив, скільки витратив, який прибуток і куди рухається бізнес. Прості зрозумілі графіки — без бухгалтерського жаргону. Як GPS для твого бізнесу.',
+    desc: 'Бачиш своє підприємство одним поглядом: скільки заробив, скільки витратив, який прибуток і куди рухається бізнес. Прості зрозумілі графіки на основі твоїх даних — без бухгалтерського жаргону.',
     tags: ['Показники бізнесу', 'Графіки та звіти', 'Прогнозування'],
     accent: false,
   },
   {
     num: '04',
     title: 'Калькулятор капітальних доходів та податків',
-    desc: 'Маєш дохід від продажу акцій, нерухомості або інших інвестицій? QLIXA розрахує точну суму Kapitalertragsteuer (KESt) для твоєї ситуації — просто введи дані, решту зробить платформа.',
+    desc: 'Маєш дохід від продажу акцій, нерухомості чи інвестицій? Введи свої дані — QLIXA автоматично розрахує суму податку відповідно до чинних правил. Результат перевіряєш і приймаєш рішення ти.',
     tags: ['KESt', 'Капітальні доходи', 'Інвестиції'],
     accent: false,
   },
   {
     num: '05',
     title: 'Калькулятор інших доходів та податків',
-    desc: 'Здаєш квартиру в оренду? Отримуєш дохід з-за кордону? Маєш кілька джерел заробітку? Калькулятор враховує всі види доходів і підрахує, скільки ти маєш сплатити — і скільки можеш повернути.',
+    desc: 'Здаєш квартиру, маєш дохід з-за кордону чи кілька джерел? Введи дані — платформа врахує всі надходження, розрахує суми та підкаже можливі списання згідно з чинними правилами.',
     tags: ['Дохід від оренди', 'Закордонні доходи', 'Кілька джерел'],
     accent: false,
   },
@@ -60,29 +60,23 @@ export default function PlatformOverviewPage() {
       {/* Hero */}
       <div style={{ background: 'var(--charcoal)', padding: '56px 16px 48px' }}>
         <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' }}>
-          <Image
-            src="/logos/logo-bird.svg"
-            alt="QLIXA"
-            width={72} height={59}
-            style={{ margin: '0 auto 20px', display: 'block' }}
-          />
-          <div style={{
+<div style={{
             display: 'inline-block', fontSize: 11, fontWeight: 700,
             letterSpacing: '0.1em', textTransform: 'uppercase',
             padding: '4px 12px', borderRadius: 999, marginBottom: 16,
             background: 'rgba(255,255,255,0.08)', color: 'var(--peach)',
           }}>
-            Платформа
+            Можливості платформи
           </div>
           <h1 style={{
             fontFamily: 'DM Serif Display, serif',
-            fontSize: 'clamp(28px,5vw,44px)',
+            fontSize: 'clamp(32px,3.5vw,48px)',
             color: '#fff', lineHeight: 1.2, marginBottom: 16,
           }}>
-            Що вміє <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>QLIXA</em>
+            Твій цифровий бізнес-помічник в Австрії
           </h1>
           <p style={{ color: 'rgba(255,255,255,0.5)', fontSize: 15, lineHeight: 1.7, maxWidth: 540, margin: '0 auto' }}>
-            Усе що потрібно для бізнесу в Австрії — в одному місці. Просто, зрозуміло, твоєю мовою.
+            Разом розберемось з податками, фінансами та бізнесом.
           </p>
         </div>
       </div>
@@ -97,12 +91,8 @@ export default function PlatformOverviewPage() {
           <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>
             👋 Привіт!
           </p>
-          <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>
-            <strong>QLIXA</strong> — це онлайн-платформа, яка бере на себе всю нудну паперову роботу.
-            Ти займаєшся своїм бізнесом, а QLIXA рахує, нагадує і готує документи.
-          </p>
           <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)' }}>
-            Без бухгалтерської освіти. Без знання німецької. Без паніки перед дедлайнами.
+            QLIXA — це цифровий помічник, який допомагає тобі самостійно розібратися з податками та бізнесом в Австрії. Ти вводиш свої дані — платформа автоматично розраховує, підказує і нагадує. Рішення завжди за тобою.
           </p>
         </div>
 
@@ -238,14 +228,7 @@ export default function PlatformOverviewPage() {
 
         {/* CTA */}
         <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-          <Link href="/free-test" style={{
-            padding: '14px 28px', borderRadius: 999, fontSize: 14, fontWeight: 700,
-            background: 'var(--orange)', color: '#fff', border: '2px solid var(--orange)',
-            textDecoration: 'none', display: 'inline-block',
-          }}>
-            Спробувати безкоштовно →
-          </Link>
-          <Link href="/pricing" style={{
+<Link href="/pricing" style={{
             padding: '14px 28px', borderRadius: 999, fontSize: 14, fontWeight: 700,
             background: 'transparent', color: 'var(--charcoal)',
             border: '2px solid var(--line2)', textDecoration: 'none', display: 'inline-block',

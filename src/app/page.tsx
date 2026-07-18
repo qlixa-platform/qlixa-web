@@ -227,18 +227,18 @@ export default function HomePage() {
 
             {/* Badge */}
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20, display: 'inline-block', padding: '4px 12px', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 999, background: 'rgba(3,131,144,0.07)', width: 'fit-content' }}>
-              Твоя автоматизована цифрова платформа
+              Твій цифровий бізнес-помічник в Австрії
             </div>
 
             {/* H1 line 1 */}
             <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.2vw,48px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1.5px', marginBottom: 6 }}>
-              Податки та бізнес в Австрії
+              Разом розберемось з податками,
             </h1>
 
             {/* H1 line 2 — dark highlighted */}
             <div style={{ marginBottom: 20 }}>
               <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.2vw,48px)', fontWeight: 700, fontStyle: 'italic', color: '#ffffff', background: '#1A1A1A', padding: '2px 16px 6px', borderRadius: 6, lineHeight: 1.2, letterSpacing: '-0.5px', display: 'inline' }}>
-                без складної бухгалтерії
+                фінансами та бізнесом
               </span>
             </div>
 
@@ -337,13 +337,13 @@ export default function HomePage() {
           {[...Array(2)].flatMap(() => [
             { text: '🌍 4 мови' },
             { text: '💰 Повертай податки легко' },
-            { text: '📊 Ми забрали всю бухгалтерську складність на себе' },
+            { text: '📊 Складна система — простими кроками' },
             { text: '👥 Клієнти та постачальники під контролем' },
             { text: '🛒 Склад у порядку' },
             { text: '📄 Рахунки одним кліком' },
             { text: '📋 Звіти ПДВ на автопілоті' },
             { text: '📈 KPI під рукою' },
-            { text: '🧮 Податки рахуються самі' },
+            { text: '🧮 Розрахунки на основі твоїх даних' },
             { text: '📋 Податкова онлайн — без паніки' },
             { text: '🚀 Постійно розвиваємось і додаємо нові можливості' },
             { text: '🧠 Ми знаємо, як це важко — тому зробили максимально просто' },
@@ -385,7 +385,7 @@ export default function HomePage() {
                 <img src="/what-is-qlixa/tax-return.png" alt="Повернення податку" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
                 <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Щорічне повернення твого податку</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Платформа знаходить усі можливі списання та допомагає повернути максимум із того, що тобі належить.</div>
+              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Платформа підказує, які списання можна врахувати, та допомагає повернути максимум із того, що тобі належить.</div>
             </div>
 
             {/* Card 2 */}
@@ -459,7 +459,7 @@ export default function HomePage() {
                 <img src="/what-is-qlixa/no-deductions-missed.png" alt="Жодного списання" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
                 <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Більше не пропустите жодного списання</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Платформа аналізує твою ситуацію та знаходить можливості, про які більшість людей навіть не знає.</div>
+              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>На основі твоїх даних платформа показує можливості, про які більшість людей навіть не знає.</div>
             </div>
 
             {/* Card 6 */}
@@ -519,7 +519,7 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
 
             {[
-              { img: '/for-who/frilanser.png', title: 'Самозайнятий / Фрілансер', desc: 'Neue Selbstständige, Gewerbe або вільна професія — IT, дизайн, консалтинг. QLIXA — без складних термінів за частку вартості.', href: '/for/frilanser' },
+              { img: '/for-who/frilanser.png', title: 'Самозайнятий / Фрілансер', desc: 'Neue Selbstständige, Gewerbe або вільна професія — IT, дизайн, консалтинг. QLIXA пояснює кожен крок без складних термінів і зайвого стресу.', href: '/for/frilanser' },
               { img: '/for-who/samostiynyy.png', title: 'Маєш капітальні та закордонні доходи', desc: 'Маєш дохід від продажу акцій, нерухомості або з-за кордону? QLIXA розрахує KESt та інші зобов\'язання точно і без помилок.', href: '/for/samostiynyy' },
               { img: '/for-who/biznes.png', title: 'Ведеш маленький бізнес', desc: 'Або тільки плануєш відкрити — QLIXA пройде з тобою кожен крок від реєстрації до звітів.', href: '/for/biznes' },
               { img: '/for-who/nerukhomist.png', title: 'Здаєш нерухомість', desc: 'Або маєш дохід з кількох джерел — платформа врахує всі надходження та списання.', href: '/for/nerukhomist' },
@@ -572,10 +572,10 @@ export default function HomePage() {
               {
                 num: '2',
                 img: '/how-it-works/step-2.png',
-                title: 'QLIXA аналізує.',
+                title: 'QLIXA розраховує.',
                 em: 'аналізує.',
                 before: 'QLIXA ',
-                desc: 'Знаходить усі можливі списання та податкові можливості, про які ти навіть не знав.',
+                desc: 'На основі твоїх даних показує суми, можливості та наступні кроки.',
               },
               {
                 num: '3',
@@ -591,7 +591,7 @@ export default function HomePage() {
                 title: 'Отримуєш результат.',
                 em: 'результат.',
                 before: 'Отримуєш ',
-                desc: 'Біжи працювати далі — QLIXA зробить всю складну роботу.',
+                desc: 'Біжи працювати далі — QLIXA підготує всі дані — ти приймаєш рішення.',
               },
             ].map((card) => (
               <div key={card.num} style={{ background: '#242424', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.07)', display: 'flex', flexDirection: 'column' }}>
@@ -695,7 +695,7 @@ export default function HomePage() {
               Саме тому народилась <span style={{ color: '#038390', fontWeight: 700 }}>QLIXA</span>
             </h3>
             <p style={{ fontSize: 16, color: '#595959', maxWidth: 600, margin: '0 auto' }}>
-              Не ще одна бухгалтерська програма.<br/>
+              Не ще один складний інструмент.<br/>
               А платформа, яка пояснює складне простими словами і допомагає пройти цей шлях спокійно.
             </p>
           </div>
