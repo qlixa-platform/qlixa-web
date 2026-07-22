@@ -168,12 +168,10 @@ export default function DisclaimerPage() {
               {/* 14. Контакт */}
               <div style={{ background: '#F0F7F8', borderRadius: 16, padding: '28px 32px' }}>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, fontWeight: 400, color: '#038390', marginBottom: 12 }}>14. Контакт</h2>
-                <p style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.75 }}>
-                  З питань щодо цього документу звертайтесь:<br/>
-                  <strong>QLIXA GmbH</strong><br/>
-                  St. Ruprechter Straße 90, 9020 Klagenfurt, Austria<br/>
-                  <a href="mailto:info@qlixa.eu" style={{ color: '#038390' }}>info@qlixa.eu</a>
+                <p style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.75, marginBottom: 16 }}>
+                  З питань щодо цього документу звертайтесь:
                 </p>
+                <a href="mailto:info@qlixa.eu" style={{ fontSize: 15, color: '#038390', fontWeight: 600 }}>info@qlixa.eu</a>
               </div>
 
               {/* Підвал */}
