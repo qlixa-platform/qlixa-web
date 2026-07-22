@@ -3,14 +3,12 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 
 const legalLinks = [
-  { href: '/impressum', label: 'Impressum', de: 'Impressum' },
-  { href: '/datenschutz', label: 'Datenschutzerklärung', de: 'Datenschutz' },
-  { href: '/agb', label: 'AGB / Nutzungsbedingungen', de: 'AGB' },
-  { href: '/disclaimer', label: 'Disclaimer', de: 'Disclaimer' },
-  { href: '/lizenz', label: 'Lizenzbedingungen', de: 'Lizenz' },
-  { href: '/cookies', label: 'Cookie Policy', de: 'Cookies' },
-  { href: '/privacy', label: 'Privacy Policy', de: 'Privacy' },
-  { href: '/terms', label: 'Terms of Service', de: 'Terms' },
+  { href: '/impressum', label: 'Імпресум' },
+  { href: '/privacy', label: 'Політика конфіденційності' },
+  { href: '/agb', label: 'Умови використання' },
+  { href: '/disclaimer', label: 'Відмова від відповідальності' },
+  { href: '/lizenz', label: 'Ліцензійні умови' },
+  { href: '/cookies', label: 'Політика Cookies' },
 ]
 
 export default function LegalLayout({ children }: { children: React.ReactNode }) {
@@ -33,7 +31,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
       }}>
         <div style={{ padding: '0 24px', marginBottom: 24 }}>
           <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 4 }}>
-            Rechtliches
+            Правове
           </div>
           <div style={{ fontSize: 11, color: '#888' }}>Юридичні документи</div>
         </div>
