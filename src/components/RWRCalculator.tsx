@@ -259,14 +259,60 @@ export default function RWRCalculator() {
             </div>
           </div>
 
-          <div style={{ background: '#F0F7F8', borderRadius: 12, padding: '1rem 1.25rem', marginBottom: 12, fontSize: 14, color: '#1A1A1A', lineHeight: 2 }}>
-            <div style={{ fontWeight: 500, marginBottom: 8, color: '#038390' }}>📊 Ваш результат</div>
-            <div>👨‍👩‍👧 Склад сім&apos;ї: {result.hasPartner ? '2 дорослих' : '1 доросла особа'}{result.children > 0 ? ` + ${result.children} ${result.children === 1 ? 'дитина' : 'дітей'}` : ''}</div>
-            <div>💶 Сукупний дохід (скоригований): € {fmt(result.totalIncome)}</div>
-            <div>🏠 Враховані витрати: € {fmt(result.rentDeduction + result.elec + result.other)}</div>
-            <div>✅ Мінімально необхідний дохід: € {fmt(result.required)}</div>
-            <div style={{ fontWeight: 500, color: result.ok ? '#059669' : '#CC0000' }}>
-              {result.ok ? `✓ Залишок: € ${fmt(result.netIncome - result.required)}` : `✗ Не вистачає: € ${fmt(result.shortage)}`}
+          <div style={{ background: '#F0F7F8', borderRadius: 12, padding: '1rem 1.25rem', marginBottom: 12, fontSize: 13, color: '#1A1A1A', lineHeight: 1.8 }}>
+            <div style={{ fontWeight: 500, marginBottom: 12, color: '#038390', fontSize: 14 }}>📊 Ваш результат</div>
+
+            <div style={{ marginBottom: 10 }}>
+              <div style={{ color: '#595959', fontSize: 12, marginBottom: 2 }}>👨‍👩‍👧 Склад сім&apos;ї</div>
+              <div style={{ fontWeight: 500 }}>{result.hasPartner ? '2 дорослих' : '1 доросла особа'}{result.children > 0 ? ` + ${result.children} ${result.children === 1 ? 'дитина' : 'дітей'}` : ''}</div>
+            </div>
+
+            <div style={{ borderTop: '0.5px solid rgba(3,131,144,0.15)', paddingTop: 10, marginBottom: 10 }}>
+              <div style={{ color: '#595959', fontSize: 12, marginBottom: 4 }}>💶 Сукупний дохід (скоригований)</div>
+              {result.hasPartner ? (
+                <div style={{ fontSize: 12, color: '#595959', paddingLeft: 8, marginBottom: 2 }}>
+                  Ваш дохід × 14÷12 + дохід партнера × 14÷12 = € {fmt(result.totalIncome)}
+                </div>
+              ) : (
+                <div style={{ fontSize: 12, color: '#595959', paddingLeft: 8, marginBottom: 2 }}>
+                  Ваш дохід × 14÷12 = € {fmt(result.totalIncome)}
+                </div>
+              )}
+              <div style={{ fontWeight: 500 }}>€ {fmt(result.totalIncome)}</div>
+            </div>
+
+            <div style={{ borderTop: '0.5px solid rgba(3,131,144,0.15)', paddingTop: 10, marginBottom: 10 }}>
+              <div style={{ color: '#595959', fontSize: 12, marginBottom: 4 }}>🏠 Враховані витрати</div>
+              <div style={{ fontSize: 12, color: '#595959', paddingLeft: 8 }}>
+                {result.rentDeduction > 0
+                  ? `Оренда понад freie station (€386,43): € ${fmt(result.rentDeduction)}`
+                  : `Оренда ≤ freie station (€386,43): не вираховується`}
+              </div>
+              {result.elec > 0 && <div style={{ fontSize: 12, color: '#595959', paddingLeft: 8 }}>Електроенергія: € {fmt(result.elec)}</div>}
+              {result.other > 0 && <div style={{ fontSize: 12, color: '#595959', paddingLeft: 8 }}>Інші платежі: € {fmt(result.other)}</div>}
+              <div style={{ fontWeight: 500 }}>Разом: − € {fmt(result.rentDeduction + result.elec + result.other)}</div>
+            </div>
+
+            <div style={{ borderTop: '0.5px solid rgba(3,131,144,0.15)', paddingTop: 10, marginBottom: 10 }}>
+              <div style={{ color: '#595959', fontSize: 12, marginBottom: 4 }}>✅ Мінімально необхідний дохід (BMI 2026)</div>
+              <div style={{ fontSize: 12, color: '#595959', paddingLeft: 8 }}>
+                {result.hasPartner ? `Подружня пара: €2.064,12` : `Одна особа: €1.308,39`}
+              </div>
+              {result.children > 0 && (
+                <div style={{ fontSize: 12, color: '#595959', paddingLeft: 8 }}>
+                  + {result.children} {result.children === 1 ? 'дитина' : 'дітей'} × €201,88 = € {fmt(result.children * 201.88)}
+                </div>
+              )}
+              <div style={{ fontWeight: 500 }}>€ {fmt(result.required)}</div>
+            </div>
+
+            <div style={{ borderTop: '0.5px solid rgba(3,131,144,0.15)', paddingTop: 10 }}>
+              <div style={{ color: '#595959', fontSize: 12, marginBottom: 4 }}>📊 Підсумок</div>
+              <div style={{ fontWeight: 500, color: result.ok ? '#059669' : '#CC0000', fontSize: 14 }}>
+                {result.ok
+                  ? `✓ Залишок після мінімуму: € ${fmt(result.netIncome - result.required)}`
+                  : `✗ Не вистачає: € ${fmt(result.shortage)}`}
+              </div>
             </div>
           </div>
 

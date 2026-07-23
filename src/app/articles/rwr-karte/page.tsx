@@ -12,32 +12,35 @@ export default function RWRKartePage() {
 
         {/* Hero */}
         <section style={{ background: '#F0F7F8', padding: '56px clamp(20px,6vw,80px) 40px' }}>
-          <div style={{ maxWidth: 860, margin: '0 auto' }}>
-            <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
-              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#038390', background: 'rgba(3,131,144,0.1)', padding: '4px 12px', borderRadius: 999 }}>Гайд</span>
-              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>RWR+ Karte</span>
-              <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>Документи</span>
-            </div>
-            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
-              Як підготуватися до подачі на RWR+ карту
-            </h1>
-            <p style={{ fontSize: 16, color: '#595959', lineHeight: 1.75, marginBottom: 24, maxWidth: 680 }}>
-              Сьогодні ми розберемо, як підготуватися до подачі на Rot-Weiß-Rot Karte Plus — на прикладі Iryna Muller — вигаданого персонажа нашого сайту, який супроводжує вас у всіх наших матеріалах. Вона з України, більше двох років живе в Австрії та вже рік як оформила самозайнятість.
-            </p>
+          <div style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
 
-            {/* Meta */}
-            <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: '#888' }}>
-              <span>📅 Липень 2026</span>
-              <span>⏱ ~15 хвилин читання</span>
-              <span>✍️ QLIXA</span>
+            {/* Left — text */}
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#038390', background: 'rgba(3,131,144,0.1)', padding: '4px 12px', borderRadius: 999 }}>Гайд</span>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>RWR+ Karte</span>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>Документи</span>
+              </div>
+              <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
+                Як підготуватися до подачі на RWR+ карту
+              </h1>
+              <p style={{ fontSize: 16, color: '#595959', lineHeight: 1.75, marginBottom: 24, maxWidth: 480 }}>
+                Сьогодні ми розберемо, як підготуватися до подачі на Rot-Weiß-Rot Karte Plus — на прикладі Iryna Muller — вигаданого персонажа нашого сайту, який супроводжує вас у всіх наших матеріалах. Вона з України, більше двох років живе в Австрії та вже рік як оформила самозайнятість.
+              </p>
+              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: '#888' }}>
+                <span>📅 Липень 2026</span>
+                <span>⏱ ~15 хвилин читання</span>
+                <span>✍️ QLIXA</span>
+              </div>
             </div>
+
+            {/* Right — photo */}
+            <div style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
+              <img src="/articles/rwr-karte-cover.png" alt="RWR+ Karte" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
+            </div>
+
           </div>
         </section>
-
-        {/* Photo placeholder */}
-        <div style={{ height: 380, overflow: 'hidden' }}>
-          <img src="/articles/rwr-karte-cover.png" alt="RWR+ Karte — підготовка документів" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center' }}/>
-        </div>
 
         {/* Content */}
         <section style={{ padding: '56px clamp(20px,6vw,80px)' }}>
@@ -47,16 +50,15 @@ export default function RWRKartePage() {
             <aside style={{ flex: '0 0 220px', position: 'sticky' as const, top: 24, alignSelf: 'flex-start' as const, background: '#F0F7F8', borderRadius: 16, padding: '20px 20px', fontSize: 13 }}>
               <div style={{ fontWeight: 700, color: '#038390', marginBottom: 12, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>Зміст</div>
               {[
-                ['#start', 'З чого починає Ірина'],
+                ['#start', 'З чого почати'],
                 ['#docs', 'Список документів'],
                 ['#income', 'Підтвердження доходу'],
-                ['#language', 'Мовний сертифікат'],
+                ['#calculator', 'Калькулятор доходу RWR+'],
+                ['#language', 'Знання мови'],
                 ['#family', 'Сімейні документи'],
                 ['#kids', 'Документи для дітей'],
-                ['#tips', 'Поради від людей'],
-                ['#nesudymost', 'Довідка про несудимість'],
+                ['#tips', 'Поради'],
                 ['#checklist', 'Завантажити чекліст'],
-                ['#calculator', 'Калькулятор доходу'],
               ].map(([href, label]) => (
                 <a key={href} href={href} style={{ display: 'block', color: '#595959', textDecoration: 'none', padding: '5px 0', borderBottom: '1px solid rgba(3,131,144,0.08)', lineHeight: 1.4 }}
                   onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
@@ -76,7 +78,7 @@ export default function RWRKartePage() {
               </div>
 
               {/* Section: Start */}
-              <div id="start" style={{ marginBottom: 40 }}>
+              <div id="start" style={{ marginBottom: 40, scrollMarginTop: '80px' }}>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 16 }}>З чого починає Ірина</h2>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.85, marginBottom: 16 }}>
                   Ірина Мюллер — з України, в Австрії вже більше двох років. Рік тому вона оформила самозайнятість і тепер хоче перейти з тимчасового захисту на повноцінну Rot-Weiß-Rot Karte Plus.
@@ -109,7 +111,7 @@ export default function RWRKartePage() {
               </div>
 
               {/* Section: Docs */}
-              <div id="docs" style={{ marginBottom: 40 }}>
+              <div id="docs" style={{ marginBottom: 40, scrollMarginTop: '80px' }}>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 8 }}>Список документів</h2>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.75, marginBottom: 20 }}>
                   Ірина підготувала <strong>дві папки</strong>: одна з оригіналами, одна з копіями. На кожного члена сім&apos;ї — своя папка з копіями. Так вона зробила відвідування максимально швидким — співробітник просто зібрав все і відсканував.
@@ -185,13 +187,12 @@ export default function RWRKartePage() {
                   <div style={{ fontSize: 14, color: '#595959', lineHeight: 1.7, marginBottom: 8 }}>Завантажити бланк можна на офіційному сайті BMI:</div>
                   <div style={{ display: 'flex', gap: 12, flexWrap: 'wrap' as const }}>
                     <a href="https://www.bmi.gv.at/312/60a/start.html" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: '#038390', fontWeight: 600, padding: '8px 16px', border: '1px solid #038390', borderRadius: 8, textDecoration: 'none' }}>⬇️ Завантажити формуляр (BMI)</a>
-                    <a href="/articles/muller-antragsformular.pdf" target="_blank" rel="noopener noreferrer" style={{ fontSize: 13, color: '#595959', fontWeight: 600, padding: '8px 16px', border: '1px solid rgba(89,89,89,0.3)', borderRadius: 8, textDecoration: 'none' }}>📄 Приклад Iryna Muller (незабаром)</a>
                   </div>
                 </div>
               </div>
 
               {/* Section: Income */}
-              <div id="income" style={{ marginBottom: 40 }}>
+              <div id="income" style={{ marginBottom: 40, scrollMarginTop: '80px' }}>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 16 }}>Підтвердження доходу</h2>
 
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.85, marginBottom: 16 }}>
@@ -201,8 +202,15 @@ export default function RWRKartePage() {
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
                   <div style={{ background: '#F0F7F8', borderRadius: 12, padding: '20px' }}>
                     <div style={{ fontWeight: 700, color: '#1A1A1A', marginBottom: 10, fontSize: 14 }}>👔 Найманий працівник</div>
-                    {['Відомості про заробітну плату (Lohnzettel)', 'Довідка про зарплату від роботодавця', 'Контракт з роботодавцем'].map(item => (
-                      <div key={item} style={{ fontSize: 13, color: '#595959', paddingLeft: 8, marginBottom: 4 }}>☐ {item}</div>
+                    {[
+                      { doc: 'Відомості про заробітну плату (Lohnzettel)', desc: 'Офіційний документ від роботодавця про нараховану зарплату. Зазвичай видається щомісяця або на запит.' },
+                      { doc: 'Довідка про зарплату від роботодавця', desc: 'Письмове підтвердження розміру зарплати — може бути у вільній формі або на бланку компанії.' },
+                      { doc: 'Контракт з роботодавцем', desc: 'Трудовий договір, що підтверджує вашу зайнятість та умови праці в Австрії.' },
+                    ].map(item => (
+                      <div key={item.doc} style={{ fontSize: 13, color: '#595959', paddingLeft: 8, marginBottom: 8, lineHeight: 1.6 }}>
+                        <div style={{ fontWeight: 500, color: '#1A1A1A', marginBottom: 2 }}>☐ {item.doc}</div>
+                        <div style={{ fontSize: 12, color: '#595959' }}>{item.desc}</div>
+                      </div>
                     ))}
                   </div>
                   <div style={{ background: '#F0F7F8', borderRadius: 12, padding: '20px' }}>
@@ -235,12 +243,19 @@ export default function RWRKartePage() {
                   <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.85, marginBottom: 12 }}>
                     Прибуток у Ірини в цьому році невеликий — вона тільки починала свою діяльність і багато часу витратила на пошук клієнтів. Але у неї були кошти на рахунку. Саме це вона вирішила використати як фінансову подушку та підстрахувати себе для отримання RWR+.
                   </p>
-                  <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.85 }}>
-                    Формула проста: <strong>(мінімально необхідна сума – ваш дохід нетто) × 12 = сума яку потрібно показати на рахунку</strong>. Недостатній дохід компенсуємо випискою з банку.
-                  </p>
+                  <style>{`@keyframes bounce { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(5px); } }`}</style>
+                  <div style={{ background: 'linear-gradient(135deg, #F0F7F8 0%, #E6F4F5 100%)', border: '1.5px solid rgba(3,131,144,0.25)', borderRadius: 16, padding: '20px 24px', marginTop: 16 }}>
+                    <p style={{ fontSize: 15, fontWeight: 600, color: '#1A1A1A', lineHeight: 1.65, marginBottom: 12 }}>
+                      Хочете дізнатися, чи вистачає саме вашого доходу — і скільки потрібно показати на рахунку у вашій конкретній ситуації?
+                    </p>
+                    <p style={{ fontSize: 14, color: '#595959', lineHeight: 1.65, marginBottom: 0 }}>
+                      Ми зробили для цього окремий калькулятор — він все порахує за вас.{' '}
+                      <span style={{ fontSize: 18, animation: 'bounce 1.2s ease-in-out infinite', display: 'inline-block', color: '#038390' }}>↓</span>
+                    </p>
+                  </div>
                 </div>
 
-                <div id="calculator" style={{ marginBottom: 20 }}>
+                <div id="calculator" style={{ marginBottom: 20, scrollMarginTop: '80px' }}>
                   <RWRCalculator />
                 </div>
 
@@ -256,7 +271,7 @@ export default function RWRKartePage() {
               </div>
 
               {/* Section: Language */}
-              <div id="language" style={{ marginBottom: 40 }}>
+              <div id="language" style={{ marginBottom: 40, scrollMarginTop: '80px' }}>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 16 }}>Підтвердження знання німецької мови</h2>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.85, marginBottom: 16 }}>
                   Ірина ще не встигла добре вивчити мову — це знайоме багатьом. Але Австрія про це подумала і передбачила альтернативу.
@@ -299,7 +314,7 @@ export default function RWRKartePage() {
               </div>
 
               {/* Section: Family */}
-              <div id="family" style={{ marginBottom: 40 }}>
+              <div id="family" style={{ marginBottom: 40, scrollMarginTop: '80px' }}>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 16 }}>Сімейні документи (якщо є)</h2>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.85, marginBottom: 16 }}>
                   Залежно від вашої унікальної ситуації можуть знадобитися:
@@ -316,7 +331,7 @@ export default function RWRKartePage() {
               </div>
 
               {/* Section: Kids */}
-              <div id="kids" style={{ marginBottom: 40 }}>
+              <div id="kids" style={{ marginBottom: 40, scrollMarginTop: '80px' }}>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 16 }}>Документи для дітей</h2>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.85, marginBottom: 16 }}>
                   У Iryna Muller є син, якому 11 років. Вона заповнює на нього окрему анкету і збирає окремий пакет документів. На кожну дитину — своя папка з копіями.
@@ -344,7 +359,7 @@ export default function RWRKartePage() {
               </div>
 
               {/* Section: Tips */}
-              <div id="tips" style={{ marginBottom: 40 }}>
+              <div id="tips" style={{ marginBottom: 40, scrollMarginTop: '80px' }}>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 16 }}>Поради від людей, які вже подавалися і отримали карту</h2>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.75, marginBottom: 20 }}>
                   Не факт, що у вашому випадку буде саме так — але краще бути готовими:
@@ -369,7 +384,7 @@ export default function RWRKartePage() {
               </div>
 
               {/* Checklist CTA */}
-              <div id="checklist" style={{ marginBottom: 40 }}>
+              <div id="checklist" style={{ marginBottom: 40, scrollMarginTop: '80px' }}>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 8 }}>Завантажте чекліст підготовки документів</h2>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.75, marginBottom: 20 }}>Оберіть свій варіант — чекліст з квадратиками для відміток:</p>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
