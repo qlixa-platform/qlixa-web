@@ -34,9 +34,9 @@ const footerLinks = {
     { label: 'Контакти', href: '/contact' },
   ],
   'Правове': [
-    { label: 'Конфіденційність', href: '/privacy' },
-    { label: 'Умови використання', href: '/terms' },
     { label: 'Impressum', href: '/impressum' },
+    { label: 'Політика конфіденційності', href: '/privacy' },
+    { label: 'Умови використання', href: '/agb' },
   ],
 }
 

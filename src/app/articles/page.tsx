@@ -7,6 +7,15 @@ import Link from 'next/link'
 // ✅ Опубліковані статті
 const published = [
   {
+    href: '/articles/rwr-karte',
+    cover: '/articles/rwr-karte-cover.png',
+    tag: 'Гайд',
+    date: '2026-07-21',
+    title: 'Як підготуватися до подачі на RWR+ карту',
+    desc: 'Список документів, поради та безкоштовний PDF чекліст — на прикладі Iryna Muller.',
+    author: 'QLIXA',
+  },
+  {
     tag: 'Реєстрація бізнесу',
     title: 'Gewerbeanmeldung в Австрії: покрокова реєстрація самозайнятості',
     desc: 'Повний гайд для іноземців — які документи потрібні, скільки коштує, куди йти і як не переплатити юристу €300.',
