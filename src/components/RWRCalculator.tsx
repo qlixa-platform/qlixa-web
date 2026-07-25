@@ -11,7 +11,7 @@ function fmt(n: number) {
 }
 
 function adjIncome(amount: number, type: 'employed' | 'self') {
-  return type === 'employed' ? amount * 14 / 12 : amount
+  return type === 'employed' ? amount * 14 / 12 : amount / 12
 }
 
 type Result = {
@@ -146,151 +146,112 @@ export default function RWRCalculator() {
     return { ok, total, net, required, shortage, savings, adj, adjP: adjPart, rentDed, elec, oth }
   }
 
-  const generatePDF = (r: Result) => {
-    const script = document.createElement('script')
-    script.src = 'https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'
-    script.onload = () => {
-      const { jsPDF } = (window as any).jspdf
-      const doc = new jsPDF({ format: 'a4', unit: 'mm' })
-      const W = 210
+  const generatePDF = async (r: Result) => {
+    const date = new Date().toLocaleDateString('uk-UA', { day: '2-digit', month: 'long', year: 'numeric' })
 
-      doc.setFillColor(26, 46, 56)
-      doc.rect(0, 0, W, 28, 'F')
-      doc.setFillColor(3, 131, 144)
-      doc.roundedRect(14, 7, 14, 14, 3, 3, 'F')
-      doc.setTextColor(255, 255, 255)
-      doc.setFontSize(10)
-      doc.setFont('helvetica', 'bold')
-      doc.text('Q', 21, 16.5, { align: 'center' })
-      doc.setFontSize(14)
-      doc.text('QLIXA', 32, 13)
-      doc.setFontSize(7)
-      doc.setFont('helvetica', 'normal')
-      doc.setTextColor(150, 180, 190)
-      doc.text('RWR+ КАЛЬКУЛЯТОР ДОХОДУ', 32, 19)
-      doc.setTextColor(255, 255, 255)
-      doc.setFontSize(9)
-      doc.text('qlixa.eu', W - 14, 16, { align: 'right' })
-      doc.setFillColor(3, 131, 144)
-      doc.rect(0, 28, W, 1.5, 'F')
-
-      doc.setTextColor(26, 46, 56)
-      doc.setFontSize(18)
-      doc.setFont('helvetica', 'bold')
-      doc.text('Результат розрахунку RWR+', 14, 48)
-      doc.setFontSize(10)
-      doc.setFont('helvetica', 'normal')
-      doc.setTextColor(100, 100, 100)
-      const date = new Date().toLocaleDateString('uk-UA', { day: '2-digit', month: 'long', year: 'numeric' })
-      doc.text(`Сформовано: ${date}`, 14, 56)
-
-      if (r.ok) {
-        doc.setFillColor(232, 248, 240)
-        doc.roundedRect(14, 62, W - 28, 18, 3, 3, 'F')
-        doc.setFillColor(16, 185, 129)
-        doc.circle(24, 71, 4, 'F')
-        doc.setTextColor(255, 255, 255)
-        doc.setFontSize(9)
-        doc.setFont('helvetica', 'bold')
-        doc.text('v', 24, 73, { align: 'center' })
-        doc.setTextColor(15, 80, 50)
-        doc.setFontSize(13)
-        doc.setFont('helvetica', 'bold')
-        doc.text('Дохід достатній', 32, 68.5)
-        doc.setFontSize(9)
-        doc.setFont('helvetica', 'normal')
-        doc.setTextColor(60, 120, 80)
-        doc.text('За попереднім розрахунком умови BMI 2026 виконуються.', 32, 75)
-      } else {
-        doc.setFillColor(255, 248, 230)
-        doc.roundedRect(14, 62, W - 28, 18, 3, 3, 'F')
-        doc.setTextColor(120, 80, 10)
-        doc.setFontSize(13)
-        doc.setFont('helvetica', 'bold')
-        doc.text('! Дохід нижче мінімуму BMI', 20, 69)
-        doc.setFontSize(9)
-        doc.setFont('helvetica', 'normal')
-        doc.text('Можна підтвердити заощадженнями на рахунку.', 20, 76)
-      }
-
-      let y = 92
-      doc.setFontSize(11)
-      doc.setFont('helvetica', 'bold')
-      doc.setTextColor(26, 46, 56)
-      doc.text('Розбивка розрахунку', 14, y)
-      y += 8
-
-      const rows: [string, string][] = [
-        ['Ваш дохід (скоригований × 14÷12)', `€ ${fmt(r.adj)}`],
-      ]
-      if (hasPartner && r.adjP > 0) rows.push([`Дохід партнера (скоригований)`, `€ ${fmt(r.adjP)}`])
-      rows.push([`Оренда понад freie Station (€386,43)`, `− € ${fmt(r.rentDed)}`])
-      if (r.elec > 0) rows.push(['Електроенергія', `− € ${fmt(r.elec)}`])
-      if (r.oth > 0) rows.push(['Інші регулярні платежі', `− € ${fmt(r.oth)}`])
-
-      rows.forEach((row, i) => {
-        if (i % 2 === 0) { doc.setFillColor(248, 250, 252); doc.rect(14, y - 4, W - 28, 10, 'F') }
-        doc.setFontSize(10); doc.setFont('helvetica', 'normal'); doc.setTextColor(80, 80, 80)
-        doc.text(row[0], 18, y + 2)
-        doc.setTextColor(26, 46, 56); doc.setFont('helvetica', 'bold')
-        doc.text(row[1], W - 18, y + 2, { align: 'right' })
-        y += 10
-      })
-
-      doc.setFillColor(3, 131, 144)
-      doc.rect(14, y, W - 28, 12, 'F')
-      doc.setTextColor(255, 255, 255); doc.setFontSize(11); doc.setFont('helvetica', 'bold')
-      doc.text('Дохід після витрат', 18, y + 8)
-      doc.text(`€ ${fmt(r.net)}`, W - 18, y + 8, { align: 'right' })
-      y += 18
-
-      doc.setFillColor(240, 247, 248)
-      doc.rect(14, y, W - 28, 10, 'F')
-      doc.setTextColor(80, 80, 80); doc.setFontSize(10); doc.setFont('helvetica', 'normal')
-      doc.text(`Мінімум BMI 2026 (${hasPartner ? 'пара' : '1 особа'}${children > 0 ? ` + ${children} дит.` : ''})`, 18, y + 7)
-      doc.setTextColor(26, 46, 56); doc.setFont('helvetica', 'bold')
-      doc.text(`€ ${fmt(r.required)}`, W - 18, y + 7, { align: 'right' })
-      y += 16
-
-      if (r.ok) {
-        doc.setFillColor(232, 248, 240)
-        doc.roundedRect(14, y, W - 28, 14, 2, 2, 'F')
-        doc.setTextColor(15, 80, 50); doc.setFontSize(11); doc.setFont('helvetica', 'bold')
-        doc.text('Залишок понад мінімум', 18, y + 9)
-        doc.text(`€ ${fmt(r.net - r.required)}`, W - 18, y + 9, { align: 'right' })
-      } else {
-        doc.setFillColor(255, 243, 220)
-        doc.roundedRect(14, y, W - 28, 24, 2, 2, 'F')
-        doc.setTextColor(120, 80, 10); doc.setFontSize(11); doc.setFont('helvetica', 'bold')
-        doc.text('Не вистачає', 18, y + 8)
-        doc.text(`€ ${fmt(r.shortage)}`, W - 18, y + 8, { align: 'right' })
-        doc.setFontSize(9); doc.setFont('helvetica', 'normal')
-        doc.text('Рекомендована сума на рахунку:', 18, y + 16)
-        doc.setFont('helvetica', 'bold'); doc.setFontSize(12)
-        doc.text(`€ ${fmt(r.savings)}`, W - 18, y + 16, { align: 'right' })
-        doc.setFont('helvetica', 'normal'); doc.setFontSize(8); doc.setTextColor(160, 120, 40)
-        doc.text('недостача × 12 міс + 10% запас (рекомендація QLIXA)', 18, y + 22)
-        y += 10
-      }
-      y += 24
-
-      doc.setFontSize(8); doc.setFont('helvetica', 'normal'); doc.setTextColor(160, 160, 160)
-      const disclaimer = 'Цей розрахунок виконано на основі офіційних ставок BMI 2026 і є попереднім. Остаточне рішення приймає компетентний орган. QLIXA не є податковим консультантом і не надає юридичних консультацій.'
-      const lines = doc.splitTextToSize(disclaimer, W - 28)
-      doc.text(lines, 14, y)
-
-      doc.setFillColor(26, 46, 56)
-      doc.rect(0, 282, W, 15, 'F')
-      doc.setTextColor(3, 131, 144); doc.setFontSize(9); doc.setFont('helvetica', 'bold')
-      doc.text('QLIXA', 14, 291)
-      doc.setTextColor(150, 180, 190); doc.setFont('helvetica', 'normal')
-      doc.text('| Твій цифровий бізнес-помічник в Австрії', 28, 291)
-      doc.setTextColor(100, 140, 150)
-      doc.text('qlixa.eu', W - 14, 291, { align: 'right' })
-
-      doc.save('QLIXA_RWR_Rozrakhunok.pdf')
+    // Load logo from actual file
+    let logoSrc = ''
+    try {
+      const res = await fetch('/logos/logo-full-black_no_bird.svg')
+      const svgText = await res.text()
+      const b64 = btoa(unescape(encodeURIComponent(svgText)))
+      logoSrc = `data:image/svg+xml;base64,${b64}`
+    } catch {
+      logoSrc = ''
     }
-    document.head.appendChild(script)
+
+    const el = document.createElement('div')
+    el.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;background:#fff;font-family:Arial,sans-serif;padding:0'
+
+    const rows = [
+      [incomeType === 'employed' ? `Ваш дохід (скоригований × 14÷12)` : `Ваш дохід (річний ÷ 12)`, `€ ${fmt(r.adj)}`],
+      ...(hasPartner && r.adjP > 0 ? [[partnerIncomeType === 'employed' ? `Дохід партнера (скоригований × 14÷12)` : `Дохід партнера (річний ÷ 12)`, `€ ${fmt(r.adjP)}`]] : []),
+      [`Оренда понад freie Station (€386,43)`, `− € ${fmt(r.rentDed)}`],
+      ...(r.elec > 0 ? [[`Електроенергія`, `− € ${fmt(r.elec)}`]] : []),
+      ...(r.oth > 0 ? [[`Інші регулярні платежі`, `− € ${fmt(r.oth)}`]] : []),
+    ]
+
+    el.innerHTML = `
+      <div style="background:#ffffff;padding:16px 28px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E6F4F5">
+        <img src="${logoSrc}" style="height:28px;width:auto" alt="QLIXA"/>
+        <div style="text-align:right">
+          <div style="font-size:11px;color:#595959">Результат розрахунку RWR+</div>
+          <div style="font-size:11px;color:#038390;font-weight:600">qlixa.eu</div>
+        </div>
+      </div>
+      <div style="height:2px;background:#038390"></div>
+      <div style="padding:32px 36px">
+        <div style="font-size:22px;font-weight:700;color:#1A2E38;margin-bottom:6px">Результат розрахунку RWR+</div>
+        <div style="font-size:12px;color:#888;margin-bottom:28px">Сформовано: ${date}</div>
+        <div style="background:${r.ok ? '#E8F8F0' : '#FFF8E7'};border-radius:12px;padding:16px 20px;margin-bottom:24px;display:flex;align-items:center;gap:14px">
+          <div style="width:40px;height:40px;border-radius:10px;background:${r.ok ? '#10B981' : '#F59E0B'};display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;font-weight:700;flex-shrink:0">${r.ok ? '&#10003;' : '!'}</div>
+          <div>
+            <div style="font-size:16px;font-weight:700;color:${r.ok ? '#065F46' : '#92400E'}">${r.ok ? 'Дохід достатній' : 'Дохід нижче мінімуму BMI'}</div>
+            <div style="font-size:12px;color:${r.ok ? '#047857' : '#B45309'};margin-top:3px">${r.ok ? 'За попереднім розрахунком умови BMI 2026 виконуються.' : 'Можна підтвердити заощадженнями на рахунку.'}</div>
+          </div>
+        </div>
+        <div style="font-size:13px;font-weight:700;color:#1A2E38;margin-bottom:12px;text-transform:uppercase;letter-spacing:1px">Розбивка розрахунку</div>
+        <table style="width:100%;border-collapse:collapse;margin-bottom:24px">
+          ${rows.map(([l, v], i) => `
+            <tr style="background:${i % 2 === 0 ? '#F8FAFB' : '#fff'}">
+              <td style="padding:10px 14px;font-size:13px;color:#555">${l}</td>
+              <td style="padding:10px 14px;font-size:13px;font-weight:600;color:#1A2E38;text-align:right">${v}</td>
+            </tr>
+          `).join('')}
+          <tr style="background:#038390">
+            <td style="padding:12px 14px;font-size:14px;font-weight:700;color:#fff">Дохід після витрат</td>
+            <td style="padding:12px 14px;font-size:14px;font-weight:700;color:#fff;text-align:right">€ ${fmt(r.net)}</td>
+          </tr>
+          <tr style="background:#F0F7F8">
+            <td style="padding:10px 14px;font-size:13px;color:#555">Мінімум BMI 2026 (${hasPartner ? 'пара' : '1 особа'}${children > 0 ? ` + ${children} дит.` : ''})</td>
+            <td style="padding:10px 14px;font-size:13px;font-weight:600;color:#1A2E38;text-align:right">€ ${fmt(r.required)}</td>
+          </tr>
+          <tr style="background:${r.ok ? '#E8F8F0' : '#FFF8E7'}">
+            <td style="padding:12px 14px;font-size:14px;font-weight:700;color:${r.ok ? '#065F46' : '#92400E'}">${r.ok ? 'Залишок понад мінімум' : 'Не вистачає'}</td>
+            <td style="padding:12px 14px;font-size:14px;font-weight:700;color:${r.ok ? '#10B981' : '#F59E0B'};text-align:right">€ ${r.ok ? fmt(r.net - r.required) : fmt(r.shortage)}</td>
+          </tr>
+        </table>
+        ${!r.ok ? `
+        <div style="background:#FFF8E7;border:1px solid rgba(245,166,35,0.3);border-radius:12px;padding:18px 20px;margin-bottom:24px">
+          <div style="font-size:11px;color:#B45309;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px">Рекомендована сума на рахунку</div>
+          <div style="font-size:28px;font-weight:700;color:#F59E0B">€ ${fmt(r.savings)}</div>
+          <div style="font-size:11px;color:#888;margin-top:4px">недостача x 12 міс + 10% запас (рекомендація QLIXA)</div>
+        </div>` : ''}
+        <div style="font-size:10px;color:#aaa;line-height:1.6;border-top:1px solid #eee;padding-top:16px;margin-top:8px">
+          Цей розрахунок виконано на основі офіційних ставок BMI 2026 і є попереднім. Остаточне рішення приймає компетентний орган. QLIXA не є податковим консультантом і не надає юридичних консультацій.
+        </div>
+      </div>
+      <div style="background:#ffffff;padding:12px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #E6F4F5;margin-top:20px">
+        <img src="${logoSrc}" style="height:20px;width:auto" alt="QLIXA"/>
+        <div style="font-size:11px;color:#595959">Твій цифровий бізнес-помічник в Австрії  |  qlixa.eu</div>
+      </div>
+    `
+
+    document.body.appendChild(el)
+
+    const loadScript = (src: string) => new Promise<void>(resolve => {
+      const s = document.createElement('script')
+      s.src = src
+      s.onload = () => resolve()
+      document.head.appendChild(s)
+    })
+
+    Promise.all([
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'),
+      loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'),
+    ]).then(() => {
+      const h2c = (window as any).html2canvas
+      const { jsPDF } = (window as any).jspdf
+      h2c(el, { scale: 2, useCORS: true, backgroundColor: '#ffffff' }).then((canvas: HTMLCanvasElement) => {
+        const imgData = canvas.toDataURL('image/png')
+        const pdf = new jsPDF({ format: 'a4', unit: 'mm' })
+        const W = 210
+        const H = (canvas.height * W) / canvas.width
+        pdf.addImage(imgData, 'PNG', 0, 0, W, H)
+        pdf.save('QLIXA_RWR_Rozrakhunok.pdf')
+        document.body.removeChild(el)
+      })
+    })
   }
 
   const rentStep = hasPartner ? 6 : 5
@@ -374,7 +335,7 @@ export default function RWRCalculator() {
         {typeToggle(incomeType, setIncomeType)}
         {hint(incomeType === 'employed'
           ? 'Якщо зарплата 14 разів на рік — вводьте звичайну місячну суму. Ми перерахуємо × 14÷12 за формулою BMI.'
-          : 'Вводьте середній чистий місячний прибуток після податків та внесків до SVS.')}
+          : 'Вводьте річний чистий прибуток після вирахування податків та внесків до SVS. Ми розрахуємо середньомісячний автоматично (÷ 12).')}
         <div style={{ display: 'flex', gap: 8 }}>{btnBack()}{btnNext('Далі', () => setStep(4))}</div>
       </div>
     )
@@ -382,8 +343,8 @@ export default function RWRCalculator() {
     if (step === 4) return (
       <div style={mainStyle}>
         {stepLabel(4, 'Ваш чистий місячний дохід')}
-        {fieldInput(income, setIncome, 'напр. 1400')}
-        {hint(incomeType === 'employed' ? 'Вводьте звичайну місячну суму — перерахунок × 14÷12 відбудеться автоматично.' : 'Середній чистий місячний прибуток після всіх відрахувань.')}
+        {fieldInput(income, setIncome, incomeType === 'self' ? 'напр. 12000 (річний)' : 'напр. 1400')}
+        {hint(incomeType === 'employed' ? 'Вводьте звичайну місячну суму — перерахунок × 14÷12 відбудеться автоматично.' : 'Вводьте річний чистий прибуток після вирахування податків та внесків до SVS. Ми розрахуємо середньомісячний автоматично (÷ 12).')}
         <div style={{ display: 'flex', gap: 8 }}>
           {btnBack()}
           {btnNext('Далі', () => {
@@ -398,8 +359,8 @@ export default function RWRCalculator() {
       <div style={mainStyle}>
         {stepLabel(5, 'Дохід партнера')}
         {typeToggle(partnerIncomeType, setPartnerIncomeType)}
-        {fieldInput(partnerIncome, setPartnerIncome, 'напр. 1200')}
-        {hint(partnerIncomeType === 'employed' ? 'Вводьте звичайну місячну суму — перерахунок × 14÷12 відбудеться автоматично.' : 'Середній чистий місячний прибуток після всіх відрахувань.')}
+        {fieldInput(partnerIncome, setPartnerIncome, partnerIncomeType === 'self' ? 'напр. 14400 (річний)' : 'напр. 1200')}
+        {hint(partnerIncomeType === 'employed' ? 'Вводьте звичайну місячну суму — перерахунок × 14÷12 відбудеться автоматично.' : 'Вводьте річний чистий прибуток після вирахування податків та внесків до SVS. Ми розрахуємо середньомісячний автоматично (÷ 12).')}
         <div style={{ display: 'flex', gap: 8 }}>
           {btnBack()}
           {btnNext('Далі', () => {
@@ -463,8 +424,8 @@ export default function RWRCalculator() {
         <div style={{ background: 'rgba(255,255,255,0.04)', border: '1px solid rgba(255,255,255,0.08)', borderRadius: 14, padding: 16, marginBottom: 12 }}>
           <div style={{ fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: 'rgba(255,255,255,0.3)', marginBottom: 12 }}>Розбивка</div>
           {[
-            [`Ваш дохід (× 14÷12)`, `€ ${fmt(result.adj)}`],
-            ...(hasPartner && result.adjP > 0 ? [[`Дохід партнера (× 14÷12)`, `€ ${fmt(result.adjP)}`]] : []),
+            [incomeType === 'employed' ? `Ваш дохід (скоригований × 14÷12)` : `Ваш дохід (річний ÷ 12)`, `€ ${fmt(result.adj)}`],
+            ...(hasPartner && result.adjP > 0 ? [[partnerIncomeType === 'employed' ? `Дохід партнера (× 14÷12)` : `Дохід партнера (річний ÷ 12)`, `€ ${fmt(result.adjP)}`]] : []),
             [`Оренда понад freie Station`, `− € ${fmt(result.rentDed)}`],
             ...(result.elec > 0 ? [[`Електрика`, `− € ${fmt(result.elec)}`]] : []),
             ...(result.oth > 0 ? [[`Інші платежі`, `− € ${fmt(result.oth)}`]] : []),
@@ -493,7 +454,7 @@ export default function RWRCalculator() {
         )}
 
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const }}>
-          <button onClick={() => generatePDF(result)}
+          <button onClick={() => { generatePDF(result) }}
             style={{ background: TEAL, color: '#fff', border: 'none', borderRadius: 10, padding: '11px 20px', fontSize: 13, fontWeight: 600, cursor: 'pointer' }}>
             ⬇ Завантажити результат (PDF)
           </button>
