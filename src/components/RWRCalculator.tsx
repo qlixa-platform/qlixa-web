@@ -173,7 +173,7 @@ export default function RWRCalculator() {
 
     el.innerHTML = `
       <div style="background:#ffffff;padding:16px 28px 14px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E6F4F5">
-        <img src="${logoSrc}" style="height:28px;width:auto" alt="QLIXA"/>
+        <img src="${logoSrc}" style="height:auto;width:160px;max-height:48px;object-fit:contain;display:block" alt="QLIXA"/>
         <div style="text-align:right">
           <div style="font-size:11px;color:#595959">Результат розрахунку RWR+</div>
           <div style="font-size:11px;color:#038390;font-weight:600">qlixa.eu</div>
@@ -222,7 +222,7 @@ export default function RWRCalculator() {
         </div>
       </div>
       <div style="background:#ffffff;padding:12px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #E6F4F5;margin-top:20px">
-        <img src="${logoSrc}" style="height:20px;width:auto" alt="QLIXA"/>
+        <img src="${logoSrc}" style="height:auto;width:120px;max-height:36px;object-fit:contain;display:block" alt="QLIXA"/>
         <div style="font-size:11px;color:#595959">Твій цифровий бізнес-помічник в Австрії  |  qlixa.eu</div>
       </div>
     `
