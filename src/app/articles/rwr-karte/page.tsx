@@ -25,7 +25,7 @@ export default function RWRKartePage() {
                 Як підготуватися до подачі на RWR+ карту
               </h1>
               <p style={{ fontSize: 16, color: '#595959', lineHeight: 1.75, marginBottom: 24, maxWidth: 480 }}>
-                Сьогодні ми розберемо, як підготуватися до подачі на Rot-Weiß-Rot Karte Plus — на прикладі Ірина — вигаданого персонажа нашого сайту, який супроводжує вас у всіх наших матеріалах. Вона з України, більше двох років живе в Австрії та вже рік як оформила самозайнятість.
+                Сьогодні ми розберемо, як підготуватися до подачі на Rot-Weiß-Rot Karte Plus — на прикладі Ірини — вигаданого персонажа нашого сайту, який супроводжує вас у всіх наших матеріалах. Вона з України, більше двох років живе в Австрії та вже рік як оформила самозайнятість.
               </p>
               <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: '#888' }}>
                 <span>📅 Липень 2026</span>
@@ -73,7 +73,7 @@ export default function RWRKartePage() {
 
               {/* Disclaimer */}
               <div style={{ background: '#FFF8E7', border: '1px solid rgba(245,166,35,0.3)', borderRadius: 12, padding: '16px 20px', marginBottom: 32, fontSize: 13, color: '#595959', lineHeight: 1.6 }}>
-                ⚠️ <strong>Важливо:</strong> Цей матеріал підготовлений на основі реального досвіду людей, які вже подавалися на RWR+ карту. QLIXA не є юридичним агентством і не надає індивідуальних консультацій. Завжди перевіряйте актуальні вимоги на офіційному сайті:{' '}
+                ⚠️ <strong>Важливо:</strong> Цей матеріал підготовлений на основі реального досвіду людей, які вже подавалися на RWR+ карту та отримали її. QLIXA не є юридичним агентством і не надає індивідуальних консультацій. Завжди перевіряйте актуальні вимоги на офіційному сайті:{' '}
                 <a href="https://www.bmi.gv.at/Ukraine/Informationen_zum_Umstieg_auf_eine_Rot-_Weiss_Rot_Karte_plus.aspx" target="_blank" rel="noopener noreferrer" style={{ color: '#038390' }}>bmi.gv.at</a>
               </div>
 
@@ -81,7 +81,7 @@ export default function RWRKartePage() {
               <div id="start" style={{ marginBottom: 40, scrollMarginTop: '80px' }}>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 16 }}>З чого починає Ірина</h2>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.85, marginBottom: 16 }}>
-                  Ірина Мюллер — з України, в Австрії вже більше двох років. Рік тому вона оформила самозайнятість і тепер хоче перейти з тимчасового захисту на повноцінну Rot-Weiß-Rot Karte Plus.
+                  Ірина — з України, в Австрії вже більше двох років. Рік тому вона оформила самозайнятість і тепер хоче перейти з тимчасового захисту на повноцінну Rot-Weiß-Rot Karte Plus.
                 </p>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.85, marginBottom: 16 }}>
                   Перше, що вона зробила — записалася на термін у магістраті за місцем прописки. У Клагенфурті це можна зробити через{' '}
