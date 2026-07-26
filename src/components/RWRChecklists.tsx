@@ -135,7 +135,7 @@ async function generateChecklistPDF(type: ChecklistType) {
 
   const headerFooterHTML = (title: string, subtitle: string) => `
     <div style="background:#fff;padding:14px 28px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E6F4F5">
-      <img src="/logos/logo-full-black_no_bird.svg" style="height:auto;width:140px;object-fit:contain;display:block" crossorigin="anonymous" alt="QLIXA"/>
+      <img src="/logos/logo-name-slogan_planets_black.svg" style="height:auto;width:140px;object-fit:contain;display:block" crossorigin="anonymous" alt="QLIXA"/>
       <div style="text-align:right">
         <div style="font-size:10px;color:#595959">${subtitle}</div>
         <div style="font-size:10px;color:#038390;font-weight:700">qlixa.eu</div>
@@ -146,7 +146,7 @@ async function generateChecklistPDF(type: ChecklistType) {
 
   const footerHTML = () => `
     <div style="background:#fff;padding:10px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #E6F4F5;margin-top:12px">
-      <img src="/logos/logo-full-black_no_bird.svg" style="height:auto;width:100px;object-fit:contain;display:block" crossorigin="anonymous" alt="QLIXA"/>
+      <img src="/logos/logo-name-slogan_planets_black.svg" style="height:auto;width:100px;object-fit:contain;display:block" crossorigin="anonymous" alt="QLIXA"/>
       <div style="font-size:10px;color:#595959">Твій цифровий бізнес-помічник в Австрії &nbsp;|&nbsp; qlixa.eu</div>
     </div>
   `

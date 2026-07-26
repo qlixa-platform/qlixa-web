@@ -151,7 +151,7 @@ export default function RWRCalculator() {
     // Load logo from actual file
     let logoSrc = ''
     try {
-      const res = await fetch('/logos/logo-full-black_no_bird.svg')
+      const res = await fetch('/logos/logo-name-slogan_planets_black.svg')
       const svgText = await res.text()
       const svgBlob = new Blob([svgText], { type: 'image/svg+xml' })
       const svgUrl = URL.createObjectURL(svgBlob)
@@ -494,11 +494,8 @@ export default function RWRCalculator() {
     <div style={wrapStyle}>
       <div style={headerStyle}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <img src="/logos/logo-bird-for-black-bg.svg" alt="QLIXA bird" style={{ width: 32, height: 32, objectFit: 'contain' }}/>
-          <div>
-            <img src="/logos/qlixa-text.svg" alt="QLIXA" style={{ height: 16, width: 'auto', objectFit: 'contain', display: 'block', filter: 'none' }}/>
-            <div style={{ fontSize: 10, color: '#595959', letterSpacing: '1px', textTransform: 'uppercase' as const, marginTop: 2 }}>RWR+ калькулятор</div>
-          </div>
+          <img src="/logos/favicon-planet-black.svg" alt="QLIXA" style={{ width: 40, height: 40, objectFit: 'contain' }}/>
+          <div style={{ fontSize: 17, fontWeight: 700, color: '#1A1A1A', letterSpacing: '0.5px', lineHeight: 1 }}>RWR+ КАЛЬКУЛЯТОР</div>
         </div>
         {step > 0 && step < 99 && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>

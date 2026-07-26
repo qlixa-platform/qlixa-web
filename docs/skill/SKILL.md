@@ -1,3 +1,257 @@
+---
+name: qlixa-brand
+description: >
+  Apply this skill for ALL work on the QLIXA website and platform —
+  creating pages, sections, articles, components, PDF documents, UI changes,
+  or any design and content work. Contains the complete QLIXA brand system:
+  colors, typography, logos, spacing, components, tone of voice, and PDF rules.
+  ALWAYS trigger this skill before writing any code, UI, or content for QLIXA.
+  Trigger on: new page, new section, new article, new component, PDF generation,
+  color/font change, logo usage, style question, brand consistency check.
+---
+
+# QLIXA Brand Skill
+
+## ⚠️ RULES BEFORE ANY ACTION
+
+1. **Always explain** what you plan to do and ask for confirmation before writing code
+2. **Never change** heights, paddings, margins, card layout without explicit permission
+3. **Never change** text content — only fix errors or suggest alternatives
+4. **Always propose** 2–3 options if design direction is unclear
+5. **New article** = same parameters as existing ones (check first)
+6. **Before PDF** = read PDF_MASTER_TEMPLATE.md then BRAND_STYLE_GUIDE.md
+
+---
+
+## Brand in 3 Words
+**Простий. Спокійний. Свій.**
+
+Character: молода подруга з чашкою чаю яка вже розібралась і спокійно пояснює.
+Audience: українці в Австрії — самозайняті, підприємці, наймані працівники.
+
+---
+
+## Colors — ONLY THESE
+
+```
+#038390   Teal          — buttons, links, accents, section headers
+#026B76   Teal Dark     — hover states
+#1A1A1A   Charcoal      — headings, main text
+#FFFFFF   White         — page backgrounds, cards
+#F0F7F8   Powder        — section backgrounds, QLIXA-style cards
+#E6F4F5   Light Teal    — borders, dividers
+#595959   Gray          — secondary text
+#9D9D9D   Gray Light    — muted text, navbar/footer links
+#F5E642   Yellow        — text highlight marker
+#CC0000   Red           — errors, unfilled placeholders
+#F59E0B   Amber         — warnings, financial caution results
+#10B981   Green         — success states
+```
+
+**Rules:**
+- Dark `#1A1A1A` bg: max 1 section per page
+- Default bg: Powder `#F0F7F8` or White `#FFFFFF`
+- NEVER: corporate blue, aggressive red, dull gray as backgrounds
+
+---
+
+## Contrast Rule — ALWAYS FOLLOW
+
+| Background | Text color | Logos to use |
+|-----------|-----------|-------------|
+| White `#FFFFFF` | `#1A1A1A` | `_black` versions |
+| Powder `#F0F7F8` | `#1A1A1A` | `_black` versions |
+| Dark `#1A1A1A` | `#FFFFFF` | `_white` versions |
+
+---
+
+## Logos — WHICH FILE WHEN
+
+| File | Use when |
+|------|---------|
+| `logo-name-slogan_planets_black.svg` | Light bg — Navbar, Footer, PDF header |
+| `logo-name-slogan_planets_white.svg` | Dark bg `#1A1A1A` |
+| `qlixa-text_planet_black.svg` | Text-only accent, light bg |
+| `qlixa-text_planet_white.svg` | Text-only accent, dark bg |
+| `favicon-planet-black.svg` | Browser favicon, small icons on light bg |
+
+**Logo sizes:**
+- Navbar/Footer: height auto, ~40–50px
+- PDF header: width 160px
+- PDF footer: width 110px
+
+**Logo in PDF — always fetch dynamically:**
+```tsx
+const res = await fetch('/logos/logo-name-slogan_planets_black.svg')
+const svgText = await res.text()
+const svgBlob = new Blob([svgText], { type: 'image/svg+xml' })
+const svgUrl = URL.createObjectURL(svgBlob)
+// convert SVG → PNG via canvas before jsPDF
+```
+
+---
+
+## Typography — ONLY THESE FONTS
+
+| Font | Use |
+|------|-----|
+| DM Serif Display | H1, H2, H3 — weight 400 only |
+| DM Sans | All body, UI, buttons — 400/500/600/700 |
+| Caveat | Accent captions, founder signatures |
+
+**Key sizes:**
+- H1: `clamp(32px, 4vw, 52px)` DM Serif, letter-spacing: -1px
+- H2: `clamp(24px, 3vw, 42px)` DM Serif
+- Body: `14–15px` DM Sans, line-height: `1.75–1.85`
+- Captions: `10–11px` DM Sans, weight 700, UPPERCASE, letter-spacing: 1.5–2px
+
+---
+
+## Spacing
+
+```
+Section padding:     72px clamp(20px,6vw,80px)
+Compact padding:     48px clamp(20px,6vw,80px)
+Max container:       1200px (main), 860–900px (articles)
+Card border-radius:  16–20px
+Button border-radius: 10–14px
+Badge border-radius: 999px
+Card gap:            16–24px
+```
+
+---
+
+## Components
+
+### Primary Button
+```tsx
+background: '#038390', color: '#fff', borderRadius: 12,
+padding: '13px 28px', fontWeight: 700, border: 'none'
+// hover: background '#026B76', translateY(-2px)
+```
+
+### Ghost Button
+```tsx
+background: '#F0F7F8', border: '1px solid rgba(3,131,144,0.25)',
+color: '#038390', borderRadius: 10
+```
+
+### QLIXA Card (main style)
+```tsx
+background: '#F0F7F8', borderRadius: 20,
+border: '1px solid rgba(3,131,144,0.10)'
+// hover: translateY(-4px), boxShadow: '0 12px 32px rgba(3,131,144,0.12)'
+```
+
+### White Card
+```tsx
+background: '#fff', border: '1px solid #E6F4F5',
+borderRadius: 16, boxShadow: '0 4px 16px rgba(53,52,52,0.07)'
+```
+
+### Badge
+```tsx
+fontSize: 11, fontWeight: 700, letterSpacing: '2px',
+textTransform: 'uppercase', padding: '4px 12px', borderRadius: 999,
+background: 'rgba(3,131,144,0.1)', color: '#038390'
+```
+
+### Article Cards
+- Cover image: `height: 190px`, `borderRadius: 14`, `objectFit: cover`
+- Body (grid page): `minHeight: 200px`, `display: flex`, `flexDirection: column`
+- Body (slider): `minHeight: 230px`
+- Title: `minHeight: 58–60px`, `flex: none`
+- Desc: `flex: 1`
+
+---
+
+## PDF Generation Rules
+
+**Before generating ANY PDF:**
+1. Read `docs/PDF_MASTER_TEMPLATE.md` → architecture, components, rules
+2. Read `docs/BRAND_STYLE_GUIDE.md` → colors, fonts, logos
+
+**Every PDF must have:**
+- Header: white bg | logo left (160px) | teal line 2px | doc title + qlixa.eu right
+- Footer: white bg | logo left (110px) | disclaimer right | page number center
+- Logo: always fetched dynamically (never hardcoded base64)
+- Colors: from Brand Style Guide semantic tokens only
+- Fonts: from Brand Style Guide only
+
+**Standard disclaimer in every PDF footer:**
+> Документ сформовано платформою QLIXA. Інформація має виключно інформаційний характер та створена автоматично на основі введених користувачем даних. Документ не є офіційним рішенням державного органу, юридичною консультацією або податковим висновком.
+
+---
+
+## Tone of Voice
+
+✅ Write "ти" (not "Ви"), warm friendly tone, 1–2 emoji per block
+✅ Simple sentences, no jargon without explanation
+❌ Sarcasm, childish tone, legal guarantees, "ТЕРМІНОВО!"
+
+---
+
+## New Page/Section Checklist
+
+- [ ] Background: Powder or White (never dark by default)
+- [ ] Fonts: DM Serif Display + DM Sans + Caveat only
+- [ ] Colors: from palette above only
+- [ ] Spacing: matches table above
+- [ ] Tone: friendly, simple
+- [ ] Whitespace: enough between blocks
+- [ ] CTA: clear next action
+- [ ] Mobile: check responsive
+
+---
+
+## New Article Rules
+
+Before adding a new article to any page:
+1. Check existing article card parameters (cover height, body minHeight, title minHeight)
+2. Match exactly — new article = same size as existing ones
+3. Add to BOTH `src/app/page.tsx` AND `src/app/articles/page.tsx`
+
+---
+
+## Key Files
+
+```
+src/app/page.tsx                  — main landing (published articles array)
+src/app/articles/page.tsx         — articles page (separate published array)
+src/app/articles/[slug]/page.tsx  — individual articles
+src/components/layout/Navbar.tsx  — navbar
+src/components/layout/Footer.tsx  — footer
+src/components/RWRCalculator.tsx  — RWR+ income calculator + PDF
+src/components/RWRChecklists.tsx  — PDF checklists generator
+public/logos/                     — all logos
+public/articles/                  — article assets + PDFs
+docs/BRAND_STYLE_GUIDE.md         — full brand reference
+docs/PDF_MASTER_TEMPLATE.md       — PDF architecture rules
+docs/CLAUDE.md                    — development workflow rules
+```
+
+---
+
+## Forbidden in Design
+
+- ❌ More than 1 dark section per page
+- ❌ Emoji as main section icons
+- ❌ Text without whitespace
+- ❌ Corporate gray blocks
+- ❌ Too many animations (subtle hover only)
+- ❌ Physical address in contact sections (email only: info@qlixa.eu)
+- ❌ Hardcoded HEX in PDF generation code
+- ❌ Static base64 logo in PDF
+
+## Legal
+
+- Entity: QLIXA GmbH (in Gründung)
+- Email: info@qlixa.eu (contacts — email only, no address)
+- Trademark: QLIXA™ (registration in progress)
+- Analytics: Plausible (no cookie banner needed)
+---
+
+## PDF Master Template
 # PDF Master Template — QLIXA
 *Специфікація системи генерації PDF-документів*
 *Версія 1.1 — Липень 2026*
