@@ -43,8 +43,8 @@ const footerLinks = {
 export default function Footer() {
   return (
     <footer>
-      <div style={{ height: 3, background: 'linear-gradient(to right, #CC0000 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #CC0000 66.66%)', width: '100%' }} />
-      <div style={{ background: '#1A1A1A' }}>
+      <div style={{ height: 1, background: '#f0f0f0', width: '100%' }} />
+      <div style={{ background: '#ffffff' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 16px' }}>
           <div style={{
             display: 'grid',
@@ -55,22 +55,22 @@ export default function Footer() {
             <div>
               <Link href="/" style={{ display: 'inline-block', textDecoration: 'none', marginBottom: 14 }}>
                 <Image
-                  src="/logos/logo-full-light.svg"
+                  src="/logos/logo-name-slogan_planets_black.svg"
                   alt="QLIXA — Reports in One Click"
                   width={140}
                   height={50}
                   style={{ display: 'block' }}
                 />
               </Link>
-              <p style={{ fontSize: 12, lineHeight: 1.6, color: 'rgba(255,255,255,0.35)', marginBottom: 16 }}>
+              <p style={{ fontSize: 12, lineHeight: 1.6, color: '#9D9D9D', marginBottom: 16 }}>
                 Твій цифровий помічник для життя та бізнесу в Австрії.
               </p>
               <div style={{ display: 'flex', gap: 14 }}>
                 {socials.map(s => (
                   <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer"
-                    title={s.name} style={{ color: 'rgba(255,255,255,0.35)' }}
+                    title={s.name} style={{ color: '#9D9D9D' }}
                     onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.35)'}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
                   >
                     {s.icon}
                   </a>
@@ -83,17 +83,17 @@ export default function Footer() {
               <div key={title}>
                 <div style={{
                   fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
-                  textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', marginBottom: 16,
+                  textTransform: 'uppercase', color: '#9D9D9D', marginBottom: 16,
                 }}>
                   {title}
                 </div>
                 {links.map(link => (
                   <Link key={link.href} href={link.href} style={{
                     display: 'block', fontSize: 13,
-                    color: 'rgba(255,255,255,0.45)', textDecoration: 'none', marginBottom: 10,
+                    color: '#9D9D9D', textDecoration: 'none', marginBottom: 10,
                   }}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.8)'}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.45)'}
+                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
                   >
                     {link.label}
                   </Link>
@@ -105,34 +105,27 @@ export default function Footer() {
             <div>
               <div style={{
                 fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
-                textTransform: 'uppercase', color: 'rgba(255,255,255,0.25)', marginBottom: 16,
+                textTransform: 'uppercase', color: '#9D9D9D', marginBottom: 16,
               }}>
                 Контакт
               </div>
               <a href="mailto:info@qlixa.eu" style={{
                 display: 'block', fontSize: 13,
-                color: 'rgba(255,255,255,0.45)', textDecoration: 'none', marginBottom: 10,
+                color: '#9D9D9D', textDecoration: 'none', marginBottom: 10,
               }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'rgba(255,255,255,0.45)'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
               >
                 info@qlixa.eu
               </a>
-              <Link href="/free-test" style={{
-                display: 'inline-block', marginTop: 8,
-                padding: '8px 16px', borderRadius: 8, fontSize: 13, fontWeight: 700,
-                background: '#038390', color: '#FFFFFF', textDecoration: 'none',
-              }}>
-                Спробувати →
-              </Link>
             </div>
           </div>
 
           {/* Bottom bar */}
           <div style={{
-            paddingTop: 24, borderTop: '1px solid rgba(255,255,255,0.08)',
+            paddingTop: 24, borderTop: '1px solid #f0f0f0',
             display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap',
-            gap: 8, fontSize: 12, color: 'rgba(255,255,255,0.2)',
+            gap: 8, fontSize: 12, color: '#9D9D9D',
           }}>
             <span>© 2025 QLIXA · info@qlixa.eu</span>
             <span>Made with ♥ in Austria 🇦🇹</span>

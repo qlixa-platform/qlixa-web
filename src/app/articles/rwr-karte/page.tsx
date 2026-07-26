@@ -392,15 +392,16 @@ export default function RWRKartePage() {
                     <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>Безкоштовно від QLIXA</div>
                     <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 18, color: 'white', marginBottom: 8 }}>Для найманих працівників</div>
                     <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: 16 }}>Чекліст документів для тих, хто працює за наймом в Австрії.</p>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: 'white', color: '#038390', borderRadius: 10, fontSize: 13, fontWeight: 700, cursor: 'not-allowed', opacity: 0.7 }}>
-                      ⬇️ Незабаром
-                    </div>
+                    <a href="/articles/QLIXA_Checklist_Naymanyi.pdf" download
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: 'white', color: '#038390', borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
+                      ⬇️ Завантажити PDF
+                    </a>
                   </div>
                   <div style={{ background: '#038390', borderRadius: 16, padding: '24px' }}>
                     <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>Безкоштовно від QLIXA</div>
                     <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 18, color: 'white', marginBottom: 8 }}>Для самозайнятих</div>
                     <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: 16 }}>Чекліст документів для самозайнятих та підприємців в Австрії.</p>
-                    <a href="/articles/QLIXA_RWR_Checklist.pdf" download
+                    <a href="/articles/QLIXA_Checklist_Samozaynyati.pdf" download
                       style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: 'white', color: '#038390', borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
                       ⬇️ Завантажити PDF
                     </a>
@@ -409,9 +410,10 @@ export default function RWRKartePage() {
                     <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>Безкоштовно від QLIXA</div>
                     <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 18, color: 'white', marginBottom: 8 }}>Для дітей</div>
                     <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: 16 }}>Чекліст документів на кожну дитину — окремо.</p>
-                    <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: 'white', color: '#026B76', borderRadius: 10, fontSize: 13, fontWeight: 700, cursor: 'not-allowed', opacity: 0.7 }}>
-                      ⬇️ Незабаром
-                    </div>
+                    <a href="/articles/QLIXA_Checklist_Dity.pdf" download
+                      style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: 'white', color: '#026B76', borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
+                      ⬇️ Завантажити PDF
+                    </a>
                   </div>
                 </div>
               </div>

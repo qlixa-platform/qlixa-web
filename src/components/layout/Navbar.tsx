@@ -395,7 +395,7 @@ export default function Navbar() {
             {/* Logo */}
             <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', marginLeft: '-12px' }}>
               <Image
-                src="/logos/logo-full-black_no_bird.svg"
+                src="/logos/logo-name-slogan_planets_black.svg"
                 alt="QLIXA — Reports in One Click"
                 width={160}
                 height={57}
@@ -482,7 +482,6 @@ export default function Navbar() {
 
           </div>
         </div>
-        <div style={{ height: 3, background: 'linear-gradient(to right, #CC0000 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #CC0000 66.66%)', width: '100%' }} />
       </nav>
 
       {showSearch && <SearchModal onClose={() => setShowSearch(false)} />}

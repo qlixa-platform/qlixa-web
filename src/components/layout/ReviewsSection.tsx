@@ -46,12 +46,12 @@ export default function ReviewsSection() {
   }
 
   return (
-    <section style={{ background: '#1A1A1A' }}>
+    <section style={{ background: '#ffffff' }}>
 
       {/* Title */}
       <div style={{ textAlign: 'center', padding: '40px 20px 32px' }}>
-        <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(255,255,255,0.15)', border: '1px solid rgba(255,255,255,0.3)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#fff', marginBottom: 16 }}>Відгуки клієнтів</div>
-        <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3vw,42px)', fontWeight: 400, color: '#fff', marginTop: 10, letterSpacing: '-0.5px' }}>
+        <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.2)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#1A1A1A', marginBottom: 16 }}>Відгуки клієнтів</div>
+        <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3vw,42px)', fontWeight: 400, color: '#1A1A1A', marginTop: 10, letterSpacing: '-0.5px' }}>
           Що кажуть наші <em style={{ fontStyle: 'italic', color: '#038390' }}>користувачі</em>
         </h2>
       </div>
@@ -130,7 +130,7 @@ export default function ReviewsSection() {
             style={{
               width: i === current ? 20 : 7, height: 7,
               borderRadius: i === current ? 4 : '50%',
-              background: i === current ? '#038390' : 'rgba(255,255,255,0.3)',
+              background: i === current ? '#038390' : 'rgba(3,131,144,0.2)',
               border: 'none', cursor: 'pointer', transition: 'all 0.2s',
               padding: 0,
             }}

@@ -364,20 +364,18 @@ export default function HomePage() {
         </div>
       </div>
 
-      {/* Austrian stripe */}
-      <div style={{ height: 3, background: 'linear-gradient(to right, #CC0000 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #CC0000 66.66%)', width: '100%' }} />
 
       {/* ── ЩО ТАКЕ QLIXA ── */}
-      <section style={{ background: '#1A1A1A', padding: '72px clamp(20px,6vw,80px)' }}>
+      <section style={{ background: '#ffffff', padding: '72px clamp(20px,6vw,80px)' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(255,255,255,0.1)', border: '1px solid rgba(255,255,255,0.2)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#ffffff', marginBottom: 16 }}>Що таке QLIXA</div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.8vw,44px)', fontWeight: 400, color: '#ffffff', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 12 }}>
+            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.2)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#1A1A1A', marginBottom: 16 }}>Що таке QLIXA</div>
+            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.8vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 12 }}>
               Це один кабінет замість купи різних <em style={{ fontStyle: 'italic', color: '#038390' }}>сервісів.</em>
             </h2>
-            <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', margin: '0 auto', lineHeight: 1.7, textAlign: 'center' }}>
+            <p style={{ fontSize: 15, color: '#595959', margin: '0 auto', lineHeight: 1.7, textAlign: 'center' }}>
               Де ти зручною мовою вирішуєш щоденні фінансові та бізнес питання.
             </p>
           </div>
@@ -436,26 +434,9 @@ export default function HomePage() {
             {/* CENTER — QLIXA logo */}
             <div style={{ background: '#1A1A1A', borderRadius: 24, padding: '8px 12px', boxShadow: '4px 4px 0 #1A1A1A', border: '1.5px solid #1A1A1A', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 6, position: 'relative', overflow: 'hidden' }}>
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 16 }}>
-                <svg viewBox="0 0 497 116" xmlns="http://www.w3.org/2000/svg" style={{ width: '90%', maxWidth: 220, height: 'auto' }}>
-                  <defs>
-                    <linearGradient id="cg1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(711.226,0,0,165.405,336.274,2201.12)"><stop offset="0" style={{stopColor:'#ffffff',stopOpacity:1}}/><stop offset="1" style={{stopColor:'rgba(255,255,255,0.7)',stopOpacity:1}}/></linearGradient>
-                  </defs>
-                  <g transform="matrix(1,0,0,1,-194.465,-869.986)">
-                    <g transform="matrix(1,0,0,1,-1.84252,-2655.14)">
-                      <g transform="matrix(0.697492,0,0,0.697492,-38.2408,2047.54)">
-                        <path d="M431.998,2273.76C425.284,2275.99 417.248,2277.11 407.889,2277.11C388.358,2277.11 372.217,2271.28 359.468,2259.62C344.005,2245.58 336.274,2224.96 336.274,2197.77C336.274,2170.37 344.209,2149.65 360.078,2135.61C373.031,2124.15 389.137,2118.42 408.397,2118.42C427.793,2118.42 444.069,2124.49 457.226,2136.63C472.417,2150.67 480.012,2170.3 480.012,2195.53C480.012,2208.89 478.384,2220.08 475.129,2229.1C472.484,2237.71 468.585,2244.87 463.431,2250.56L480.724,2266.74L464.346,2283.83L446.239,2266.74C440.746,2270.06 435.999,2272.4 431.998,2273.76ZM425.284,2246.7L410.127,2232.25L426.301,2215.37L441.458,2229.81C443.832,2224.93 445.493,2220.66 446.443,2216.99C447.935,2211.5 448.681,2205.09 448.681,2197.77C448.681,2180.95 445.239,2167.95 438.356,2158.76C431.472,2149.57 421.418,2144.97 408.194,2144.97C395.784,2144.97 385.882,2149.38 378.49,2158.2C371.098,2167.01 367.402,2180.2 367.402,2197.77C367.402,2218.32 372.692,2233.03 383.271,2241.92C390.121,2247.68 398.327,2250.56 407.889,2250.56C411.483,2250.56 414.942,2250.12 418.265,2249.24C420.096,2248.77 422.436,2247.92 425.284,2246.7Z" fill="url(#cg1)" fillRule="nonzero"/>
-                        <path d="M503.917,2123L535.249,2123L535.249,2245.99L609.508,2245.99L609.508,2272.94L503.917,2272.94L503.917,2123Z" fill="url(#cg1)" fillRule="nonzero"/>
-                        <rect x="628.734" y="2123" width="31.128" height="149.943" fill="url(#cg1)" fillRule="nonzero"/>
-                        <path d="M809.602,2272.94L771.557,2272.94L743.074,2221.88L712.963,2272.94L676.545,2272.94L724.763,2196.55L678.885,2123L716.32,2123L743.074,2171.73L770.539,2123L806.754,2123L760.875,2195.33L809.602,2272.94Z" fill="url(#cg1)" fillRule="nonzero"/>
-                        <g transform="matrix(1.42857,0,0,1.42857,-751.071,1379.87)">
-                          <path d="M1098,626L1147,521L1177,575L1259,546C1205.66,573.145 1151.96,599.762 1098,626ZM1129,596L1162,581L1147,557L1129,596Z" fill="url(#cg1)"/>
-                          <path d="M1190,604L1197,617L1175,617L1175,612L1190,604Z" fill="url(#cg1)"/>
-                        </g>
-                      </g>
-                    </g>
-                  </g>
-                </svg>
-                <div style={{ fontFamily: 'Caveat, cursive', fontSize: 22, color: 'rgba(255,255,255,0.85)', letterSpacing: '1px', textAlign: 'center' }}>просто про складне</div>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src="/logos/logo-name-slogan_planets_white.svg" alt="QLIXA" style={{ width: '90%', maxWidth: 220, height: 'auto' }} />
+                <div style={{ fontFamily: 'Caveat, cursive', fontSize: 22, color: '#ffffff', letterSpacing: '1px', textAlign: 'center' }}>просто про складне</div>
               </div>
             </div>
 
@@ -556,13 +537,13 @@ export default function HomePage() {
 
 
       {/* ── DEMO ── */}
-      <section id="demo" style={{ background: '#1A1A1A', padding: '72px clamp(20px,6vw,80px)' }}>
+      <section id="demo" style={{ background: '#ffffff', padding: '72px clamp(20px,6vw,80px)' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: 52 }}>
             <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.15)', border: '1px solid rgba(3,131,144,0.35)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>Як це працює</div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.8vw,44px)', fontWeight: 400, color: '#fff', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 0 }}>
+            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.8vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 0 }}>
               Все просто — 4 кроки і <em style={{ fontStyle: 'italic', color: '#038390' }}>жодних складних термінів</em>
             </h2>
           </div>
@@ -603,7 +584,7 @@ export default function HomePage() {
                 desc: 'Біжи працювати далі — QLIXA підготує всі дані — ти приймаєш рішення.',
               },
             ].map((card) => (
-              <div key={card.num} style={{ background: '#242424', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(255,255,255,0.07)', display: 'flex', flexDirection: 'column' }}>
+              <div key={card.num} style={{ background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)', display: 'flex', flexDirection: 'column' }}>
                 {/* Image */}
                 <div style={{ width: '100%', aspectRatio: '4/3', background: '#F0F7F8', position: 'relative', overflow: 'hidden', flexShrink: 0 }}>
                   <Image
@@ -616,10 +597,10 @@ export default function HomePage() {
                 </div>
                 {/* Text */}
                 <div style={{ padding: '20px 22px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, fontWeight: 400, color: '#fff', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
+                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, fontWeight: 400, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
                     {card.before}<em style={{ fontStyle: 'italic', color: '#038390' }}>{card.em}</em>
                   </h3>
-                  <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.65, margin: 0 }}>{card.desc}</p>
+                  <p style={{ fontSize: 13, color: '#595959', lineHeight: 1.65, margin: 0 }}>{card.desc}</p>
                 </div>
               </div>
             ))}
@@ -647,9 +628,9 @@ export default function HomePage() {
           {/* BLOCK 1 — Story header */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 40, marginBottom: 40 }}>
             <div style={{ flex: 1 }}>
-              <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20 }}>Чому QLIXA</div>
+              <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20 }}>Чому ж ми створили QLIXA</div>
               <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3vw,42px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.2, letterSpacing: '-1px', marginBottom: 20 }}>
-                Ми створили платформу,<br/>якої нам самим{' '}
+                Ми просто створили платформу,<br/>якої нам самим{' '}
                 <em style={{ fontStyle: 'italic', color: '#038390' }}>не вистачало</em>
               </h2>
               <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, maxWidth: 520 }}>
@@ -657,6 +638,11 @@ export default function HomePage() {
                 Саме тому знаємо, що відчуває людина,<br/>
                 яка тільки починає життя чи бізнес в Австрії.
               </p>
+              <Link href="/about" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 16, fontSize: 14, fontWeight: 600, color: '#038390', textDecoration: 'none' }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.textDecoration = 'underline'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.textDecoration = 'none'}>
+                Наша історія →
+              </Link>
             </div>
             <div style={{ flex: '0 0 500px', display: 'flex', alignItems: 'center' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -754,8 +740,6 @@ export default function HomePage() {
         </div>
             </section>
 
-      {/* Austrian stripe */}
-      <div style={{ height: 3, background: 'linear-gradient(to right, #CC0000 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #CC0000 66.66%)', width: '100%' }} />
 
       {/* ARTICLES */}
       <ArticlesSlider published={published} upcoming={upcoming} />
@@ -769,10 +753,10 @@ export default function HomePage() {
         <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(32px,5vw,56px)', fontWeight: 400, color: '#fff', margin: '0 0 16px 0', letterSpacing: '-1px' }}>
           Твоя ситуація — унікальна. Ми це розуміємо.
         </h2>
-        <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', marginBottom: 40 }}>Кожен клієнт — це окрема історія. QLIXA не працює за шаблоном — ми розбираємося саме у вашій ситуації та допомагаємо знайти найкраще рішення.</p>
+        <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', marginBottom: 40 }}>Саме тому ми створюємо не <span style={{ background: 'rgba(255,255,255,0.25)', borderRadius: 3, padding: '1px 4px' }}>універсальні шаблони</span> — ми допомагаємо сформувати саме <span style={{ background: 'rgba(255,255,255,0.25)', borderRadius: 3, padding: '1px 4px', fontWeight: 700 }}>ваш персональний план дій</span>. Чеклісти, калькулятори, звіти та рекомендації створюються на основі введених вами даних і враховують саме вашу ситуацію.</p>
         <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link href="/pricing" style={{ padding: '16px 36px', borderRadius: 999, fontSize: 16, fontWeight: 600, background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.6)', textDecoration: 'none', display: 'inline-block' }}>
-            Переглянути тарифи
+            Починай підготовку →
           </Link>
         </div>
       </section>
