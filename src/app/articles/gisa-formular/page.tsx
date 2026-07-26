@@ -135,7 +135,7 @@ export default function GisaFormularPage() {
               У цій статті ми детально, простою мовою розберемо, як пройти <strong>реєстрацію на сайті GISA</strong> — подати заяву про відкриття підприємницької діяльності (<strong>Gewerbeanmeldung</strong>).
             </p>
             <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)' }}>
-              📌 <strong>Приклад:</strong> Iryna Müller, яка реєструється як самозайнята в сфері IT (вільна професія).
+              📌 <strong>Приклад:</strong> Ірина Müller, яка реєструється як самозайнята в сфері IT (вільна професія).
             </p>
           </div>
 
@@ -169,7 +169,7 @@ export default function GisaFormularPage() {
               </div>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 10 }}>Що обираємо ми?</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>Для Iryna Müller обираємо перший варіант — <strong>mit ID Austria beantragen</strong>. Після натискання система перенаправить вас на авторизацію через <strong>ID Austria</strong>.</p>
+              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>Для Ірина Müller обираємо перший варіант — <strong>mit ID Austria beantragen</strong>. Після натискання система перенаправить вас на авторизацію через <strong>ID Austria</strong>.</p>
               <NoteBox type="tip">
                 <strong>Важлива порада:</strong> якщо у вас ще немає ID Austria, обовязково отримайте її перед початком реєстрації. Без неї процес буде довшим і складнішим.{' '}
                 <Link href="/articles/austria-id" style={{ color: 'var(--orange)', fontWeight: 600 }}>📖 Як оформити Austria ID: покроковий гайд →</Link>
@@ -199,7 +199,7 @@ export default function GisaFormularPage() {
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--orange)', marginBottom: 6 }}>Головне питання: Wer stellt den Antrag?</h3>
               <p style={{ fontSize: 13, color: 'var(--text2)', marginBottom: 12 }}>Переклад: «Хто подає заяву?» Тут потрібно обрати, від кого саме йде реєстрація.</p>
 
-              <OptionItem selected de="1. Natürliche Person (auch e.U. = im Firmenbuch eingetragenes Einzelunternehmen)" tr="Фізична особа (в тому числі e.U. — одноосібне підприємство)" desc="<strong>Це ваш варіант.</strong> Ви реєструєтеся як звичайна людина, яка хоче працювати на себе. e.U. — це саме те, що буде у Iryna Müller після реєстрації (Einzelunternehmen — одноосібне підприємство)." />
+              <OptionItem selected de="1. Natürliche Person (auch e.U. = im Firmenbuch eingetragenes Einzelunternehmen)" tr="Фізична особа (в тому числі e.U. — одноосібне підприємство)" desc="<strong>Це ваш варіант.</strong> Ви реєструєтеся як звичайна людина, яка хоче працювати на себе. e.U. — це саме те, що буде у Ірина Müller після реєстрації (Einzelunternehmen — одноосібне підприємство)." />
               <OptionItem de="2. Natürliche Person mit Geschäftsführungsbestellung" tr="Фізична особа з призначенням керівника" desc="Використовується, коли ви є директором в уже існуючій компанії (наприклад, GmbH). <strong>Нам це не підходить.</strong>" />
               <OptionItem de="3. Juristische Person (AG, GmbH, KG, OG, etc.)" tr="Юридична особа (АТ, ТОВ, командитне товариство тощо)" desc="Це для компаній, а не для окремої людини. <strong>Нам не потрібно.</strong>" />
 
@@ -208,7 +208,7 @@ export default function GisaFormularPage() {
               <OptionItem selected de="Ohne Vertretung" desc="Без представника. <strong>Ви подаєте заяву самостійно.</strong> Оберіть цей варіант." />
               <OptionItem de="Mit Vertretung (Vollmacht)" desc="Через представника з довіреністю. <strong>Нам не потрібно.</strong>" />
 
-              <NoteBox type="ok">Для Iryna Müller обираємо: <strong>Natürliche Person</strong> + <strong>Ohne Vertretung</strong>. Після вибору натискайте кнопку <strong>«Weiter»</strong> (Далі).</NoteBox>
+              <NoteBox type="ok">Для Ірина Müller обираємо: <strong>Natürliche Person</strong> + <strong>Ohne Vertretung</strong>. Після вибору натискайте кнопку <strong>«Weiter»</strong> (Далі).</NoteBox>
               <NoteBox type="info">На цьому етапі система вже може автоматично підтягнути ваші дані (ПІБ, дата народження) завдяки ID Austria. Якщо щось не підтягнулося — перевірте.</NoteBox>
               <p style={{ fontSize: 12, color: 'var(--text3)', fontStyle: 'italic', marginTop: 14 }}>Готово для другої сторінки! Переходимо на третю сторінку.</p>
             </div>
@@ -227,7 +227,7 @@ export default function GisaFormularPage() {
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 8 }}>Aufenthalt — Проживання в Австрії</h3>
               <QuoteBlock de="Die gewerbeberechtigte Person hat in den letzten fünf Jahren durchgehend in Österreich gewohnt." ua="«Чи проживала особа безперервно в Австрії протягом останніх п'яти років?»" />
               <YesNo yesLabel="Якщо ви проживаєте в Австрії понад 5 років" noLabel="Якщо ви переїхали менш ніж 5 років тому — наш випадок" selected="nein" />
-              <NoteBox type="info">У нашому прикладі Iryna Müller проживає в Австрії менше 5 років — обираємо <strong>Nein</strong>. Це нормально і не є проблемою для реєстрації бізнесу. На наступних етапах система може попросити додаткові документи.</NoteBox>
+              <NoteBox type="info">У нашому прикладі Ірина Müller проживає в Австрії менше 5 років — обираємо <strong>Nein</strong>. Це нормально і не є проблемою для реєстрації бізнесу. На наступних етапах система може попросити додаткові документи.</NoteBox>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>Österreichische Sozialversicherungsnummer</h3>
               <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 14 }}>Це ваш <strong>австрійський номер соціального страхування</strong>. У більшості випадків він підтягується автоматично. Якщо поле порожнє — номер можна знайти на вашій <strong>e-card</strong> або в документах від <strong>ÖGK</strong> чи <strong>SVS</strong>.</p>
@@ -254,7 +254,7 @@ export default function GisaFormularPage() {
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
               <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 10 }}>Відкривається сторінка <strong>Angaben zum Gewerbe</strong> (Відомості про підприємницьку діяльність). Саме тут ми повідомляємо державі: чим будемо займатися, з якої дати починаємо, де знаходиться наш бізнес.</p>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 16 }}>Для прикладу продовжимо реєстрацію для Iryna Müller, яка працюватиме як самозайнята IT-фахівчиня.</p>
+              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 16 }}>Для прикладу продовжимо реєстрацію для Ірина Müller, яка працюватиме як самозайнята IT-фахівчиня.</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 10 }}>Gewerbewortlaut — вид діяльності</h3>
               <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>У верхній частині сторінки знаходиться поле: <strong>Suche nach Gewerbewortlaut</strong>. Введіть ключове слово та натисніть <strong>«Gewerbewortlaut suchen»</strong>.</p>
@@ -267,7 +267,7 @@ export default function GisaFormularPage() {
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 8 }}>Чи потрібно обмежувати вид діяльності?</h3>
               <QuoteBlock de="Möchten Sie den Umfang des Gewerbes einschränken?" ua="«Чи бажаєте ви обмежити обсяг своєї діяльності?»" />
-              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>Для більшості нових підприємців робити цього не потрібно. Iryna Müller хоче мати можливість у майбутньому надавати різні IT-послуги без додаткових змін у реєстрації. Тому обираємо:</p>
+              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>Для більшості нових підприємців робити цього не потрібно. Ірина Müller хоче мати можливість у майбутньому надавати різні IT-послуги без додаткових змін у реєстрації. Тому обираємо:</p>
               <YesNo yesLabel="Якщо хочете свідомо звузити перелік послуг" noLabel="Стандартний варіант для більшості фрилансерів та самозайнятих" selected="nein" />
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>Anmeldung gültig ab — дата початку діяльності</h3>
@@ -285,14 +285,14 @@ export default function GisaFormularPage() {
               <FieldRow label="Straße" value="Назва вулиці" />
               <FieldRow label="Hausnummer" value="Номер будинку" />
               <FieldRow label="Tür" value="Номер квартири (за наявності)" />
-              <NoteBox type="info">Оскільки Iryna Müller працює віддалено з дому — вона вказує свою <strong>фактичну адресу проживання</strong> в Австрії. Для більшості фрилансерів це стандартна практика і <strong>не потребує окремого офісу</strong>.</NoteBox>
+              <NoteBox type="info">Оскільки Ірина Müller працює віддалено з дому — вона вказує свою <strong>фактичну адресу проживання</strong> в Австрії. Для більшості фрилансерів це стандартна практика і <strong>не потребує окремого офісу</strong>.</NoteBox>
 
               <p style={{ fontSize: 14, marginTop: 14, marginBottom: 8 }}>Перевіряємо:</p>
               <CheckList items={['Правильність обраного Gewerbe', 'Дату початку діяльності', 'Адресу бізнесу']} />
               <p style={{ fontSize: 14, marginTop: 14 }}>Після цього натискаємо <strong>Weiter</strong>.</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>Підтвердження відсутності обмежень</h3>
-              <OptionItem selected de="Gegen mich liegen keine Gewerbeausschlussgründe vor" tr="Щодо мене не існує підстав для заборони ведення підприємницької діяльності" desc="Для нашого прикладу з Iryna Müller обираємо цей варіант." />
+              <OptionItem selected de="Gegen mich liegen keine Gewerbeausschlussgründe vor" tr="Щодо мене не існує підстав для заборони ведення підприємницької діяльності" desc="Для нашого прикладу з Ірина Müller обираємо цей варіант." />
               <OptionItem de="Mir wurde eine Nachsicht erteilt" desc="Використовується лише в особливих випадках, коли людина раніше мала обмеження для ведення бізнесу, але отримала офіційний дозвіл. <strong>Не наш варіант.</strong>" />
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>Eidesstattliche Erklärung — Заява під присягою</h3>
@@ -306,7 +306,7 @@ export default function GisaFormularPage() {
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '18px 0 8px' }}>Введення імені та прізвища — електронний підпис</h3>
               <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 10 }}>Наприкінці потрібно ввести своє імя та прізвище. Це прирівнюється до <strong>електронного підпису декларації</strong>.</p>
-              <FieldRow label="Vorname" value="Iryna" />
+              <FieldRow label="Vorname" value="Ірина" />
               <FieldRow label="Familienname" value="Müller" />
               <p style={{ fontSize: 14, marginTop: 12 }}>Після цього натискаємо <strong>Weiter</strong> та переходимо до наступного етапу реєстрації.</p>
             </div>

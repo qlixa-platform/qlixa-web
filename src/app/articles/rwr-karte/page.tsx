@@ -25,7 +25,7 @@ export default function RWRKartePage() {
                 Як підготуватися до подачі на RWR+ карту
               </h1>
               <p style={{ fontSize: 16, color: '#595959', lineHeight: 1.75, marginBottom: 24, maxWidth: 480 }}>
-                Сьогодні ми розберемо, як підготуватися до подачі на Rot-Weiß-Rot Karte Plus — на прикладі Iryna Muller — вигаданого персонажа нашого сайту, який супроводжує вас у всіх наших матеріалах. Вона з України, більше двох років живе в Австрії та вже рік як оформила самозайнятість.
+                Сьогодні ми розберемо, як підготуватися до подачі на Rot-Weiß-Rot Karte Plus — на прикладі Ірина — вигаданого персонажа нашого сайту, який супроводжує вас у всіх наших матеріалах. Вона з України, більше двох років живе в Австрії та вже рік як оформила самозайнятість.
               </p>
               <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: '#888' }}>
                 <span>📅 Липень 2026</span>
@@ -226,14 +226,14 @@ export default function RWRKartePage() {
                 </div>
 
                 <div style={{ borderLeft: '3px solid #038390', paddingLeft: 20, marginBottom: 24 }}>
-                  <div style={{ fontWeight: 700, color: '#1A1A1A', marginBottom: 8, fontSize: 15 }}>Як це вирішила Iryna Muller</div>
+                  <div style={{ fontWeight: 700, color: '#1A1A1A', marginBottom: 8, fontSize: 15 }}>Як це вирішила Ірина</div>
                   <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.85, marginBottom: 12 }}>
                     Ірина подавалася на початку січня, тому офіційного Einkommensteuerbescheid з FinanzOnline у неї ще не було. Вона могла б звернутися до бухгалтера — але Ірина веде бухгалтерію сама. Тому вона заповнила <strong>Gewinnbestätigung / Selbsterklärung</strong> — самодекларацію про доходи — власноруч, вписала всі свої дані та прибуток за рік. Подала — і її прийняли без питань.
                   </p>
                   <div style={{ background: '#F0F7F8', borderRadius: 16, padding: '20px 24px', marginBottom: 16, marginTop: 16 }}>
-                    <div style={{ fontWeight: 700, color: '#1A1A1A', marginBottom: 8, fontSize: 14 }}>📄 Приклад довідки Iryna Muller</div>
+                    <div style={{ fontWeight: 700, color: '#1A1A1A', marginBottom: 8, fontSize: 14 }}>📄 Приклад довідки Ірина</div>
                     <p style={{ fontSize: 13, color: '#595959', lineHeight: 1.6, marginBottom: 16 }}>
-                      Нижче — приклад Gewinnbestätigung, яку Ірина підготувала самостійно і подала до магістрату. Це лише приклад для ознайомлення. Дані і цифри відносяться виключно до ситуації вигаданого персонажа Iryna Muller. Не використовуйте як шаблон.
+                      Нижче — приклад Gewinnbestätigung, яку Ірина підготувала самостійно і подала до магістрату. Це лише приклад для ознайомлення. Дані і цифри відносяться виключно до ситуації вигаданого персонажа Ірина. Не використовуйте як шаблон.
                     </p>
                     <a href="/articles/muller-gewinnbestatigung.pdf" target="_blank" rel="noopener noreferrer"
                       style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: '#038390', color: 'white', borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
@@ -334,7 +334,7 @@ export default function RWRKartePage() {
               <div id="kids" style={{ marginBottom: 40, scrollMarginTop: '80px' }}>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 16 }}>Документи для дітей</h2>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.85, marginBottom: 16 }}>
-                  У Iryna Muller є син, якому 11 років. Вона заповнює на нього окрему анкету і збирає окремий пакет документів. На кожну дитину — своя папка з копіями.
+                  У Ірина є син, якому 11 років. Вона заповнює на нього окрему анкету і збирає окремий пакет документів. На кожну дитину — своя папка з копіями.
                 </p>
                 {[
                   { text: 'Посвідчення переміщених осіб (блакитна картка / Ausweis für Vertriebene)', note: 'Копії + оригінали' },
