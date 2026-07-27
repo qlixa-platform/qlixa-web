@@ -249,7 +249,7 @@ export default function AustriaIdPage() {
           </div>
           <div style={{ flexShrink: 0 }}>
             <Image
-              src="/articles/austria-rwr-card.png"
+              src="/articles/austria-rwr-card.jpg"
               alt="RWR Karte Plus Austria"
               width={160} height={100}
               style={{ borderRadius: 8, border: '1px solid var(--line)', objectFit: 'cover' }}

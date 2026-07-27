@@ -111,7 +111,7 @@ export default function AboutPage() {
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 20 }}>
             <div style={{ background: '#F0F7F8', borderRadius: 16, padding: '28px 32px', display: 'flex', alignItems: 'flex-start', gap: 20 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/about/stressed-accountant.png" alt="" style={{ width: 80, height: 80, objectFit: 'contain', flexShrink: 0 }}/>
+              <img src="/about/stressed-accountant.png" alt="Стрес від паперів та бухгалтерії" style={{ width: 80, height: 80, objectFit: 'contain', flexShrink: 0 }}/>
               <p style={{ fontSize: 16, color: '#595959', lineHeight: 1.75 }}>
                 Ми не віримо, що <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: '1.15em', fontWeight: 400, color: '#1A1A1A' }}>підприємець повинен бути бухгалтером, щоб успішно вести свою справу</span>.
               </p>

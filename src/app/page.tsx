@@ -22,28 +22,28 @@ const published = [
     tag: 'Реєстрація бізнесу',
     title: 'Gewerbeanmeldung в Австрії: покрокова реєстрація самозайнятості',
     desc: 'Іноземці в Австрії платять юристам €300–500 за типові питання про реєстрацію бізнесу. Ми зібрали всю інформацію безкоштовно — щоб ти міг зробити все сам, крок за кроком.',
-    date: 'Червень 2025', readTime: '15 хв читання',
+    date: 'Червень 2026', readTime: '15 хв читання',
     href: '/articles/gewerbeanmeldung', cover: '/articles/gewerbeanmeldung-cover.jpg',
   },
   {
     tag: 'Австрія · Документи',
     title: 'Як оформити Austria ID: покроковий гайд для іноземців',
     desc: 'Austria ID — обов\'язковий перший крок для реєстрації бізнесу, роботи з FinanzOnline та SVS. 5 кроків.',
-    date: 'Червень 2025', readTime: '8 хв читання',
+    date: 'Червень 2026', readTime: '8 хв читання',
     href: '/articles/austria-id', cover: '/articles/austria-id-cover.jpg',
   },
   {
     tag: 'Сім\'я · Пільги',
     title: 'Інвалідність дитини в Австрії: виплати, пільги та з чого почати',
     desc: 'Behindertenpass, підвищена Familienbeihilfe, Pflegegeld та податкові пільги — покроковий гайд для батьків.',
-    date: 'Червень 2025', readTime: '10 хв читання',
+    date: 'Червень 2026', readTime: '10 хв читання',
     href: '/articles/invalidity-child', cover: '/articles/invalidity-cover.jpg',
   },
   {
     tag: 'GISA · Реєстрація',
     title: 'Реєстрація на сайті GISA: покрокова інструкція',
     desc: 'Як подати заяву Gewerbeanmeldung онлайн через GISA — детально, з поясненням кожного поля та кроку.',
-    date: 'Червень 2025', readTime: '15 хв читання',
+    date: 'Червень 2026', readTime: '15 хв читання',
     href: '/articles/gisa-formular', cover: '/articles/gisa-cover.jpg',
   },
 ]
@@ -228,7 +228,7 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
-      <section style={{ background: '#F0F7F8', backgroundImage: `url(/${heroBg}.png)`, backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const }}>
+      <section style={{ background: '#F0F7F8', backgroundImage: `url(/${heroBg}.webp)`, backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const }}>
         <div style={{ width: '100%' }}>
 
           {/* LEFT — text */}
