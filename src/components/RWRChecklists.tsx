@@ -1,4 +1,5 @@
 'use client'
+import { loadPDFScripts } from '@/utils/generatePDF'
 
 type ChecklistType = 'employed' | 'self' | 'kids'
 
@@ -100,16 +101,7 @@ async function generateChecklistPDF(type: ChecklistType) {
 
   const config = configs[type]
 
-  const loadScript = (src: string) => new Promise<void>(resolve => {
-    if (document.querySelector(`script[src="${src}"]`)) { resolve(); return }
-    const s = document.createElement('script'); s.src = src
-    s.onload = () => resolve(); document.head.appendChild(s)
-  })
-
-  await Promise.all([
-    loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'),
-    loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'),
-  ])
+  await loadPDFScripts()
 
   const h2c = (window as any).html2canvas
   const { jsPDF } = (window as any).jspdf

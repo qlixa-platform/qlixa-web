@@ -23,7 +23,7 @@ function NoteBox({ type, children }: { type: 'warning' | 'info' | 'tip' | 'ok'; 
 
 function ExtLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--orange)', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'var(--peach-mid)', textUnderlineOffset: 3, fontSize: 13 }}>
+    <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#038390', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'var(--peach-mid)', textUnderlineOffset: 3, fontSize: 13 }}>
       {children} ↗
     </a>
   )
@@ -40,10 +40,10 @@ function QuoteBlock({ de, ua }: { de: string; ua: string }) {
 
 function OptionItem({ selected, de, tr, desc }: { selected?: boolean; de: string; tr?: string; desc?: string }) {
   return (
-    <div style={{ display: 'flex', gap: 10, padding: '12px 14px', borderRadius: 9, background: selected ? 'var(--peach-light)' : 'var(--gray)', border: `1px solid ${selected ? 'var(--orange)' : 'var(--line)'}`, alignItems: 'flex-start', marginBottom: 8 }}>
-      <span style={{ fontSize: 15, flexShrink: 0, marginTop: 1, color: selected ? 'var(--orange)' : 'var(--text3)' }}>{selected ? '✅' : '○'}</span>
+    <div style={{ display: 'flex', gap: 10, padding: '12px 14px', borderRadius: 9, background: selected ? 'var(--peach-light)' : 'var(--gray)', border: `1px solid ${selected ? '#038390' : 'var(--line)'}`, alignItems: 'flex-start', marginBottom: 8 }}>
+      <span style={{ fontSize: 15, flexShrink: 0, marginTop: 1, color: selected ? '#038390' : 'var(--text3)' }}>{selected ? '✅' : '○'}</span>
       <div>
-        <div style={{ fontSize: 13, fontWeight: 700, color: selected ? 'var(--orange)' : 'var(--charcoal)', marginBottom: 2 }}>{de}</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: selected ? '#038390' : 'var(--charcoal)', marginBottom: 2 }}>{de}</div>
         {tr && <div style={{ fontSize: 11, color: 'var(--text3)', fontStyle: 'italic', margin: '2px 0 4px' }}>{tr}</div>}
         {desc && <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.55 }} dangerouslySetInnerHTML={{ __html: desc }} />}
       </div>
@@ -54,12 +54,12 @@ function OptionItem({ selected, de, tr, desc }: { selected?: boolean; de: string
 function YesNo({ yesLabel, noLabel, selected }: { yesLabel: string; noLabel: string; selected: 'ja' | 'nein' }) {
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, margin: '10px 0' }}>
-      <div style={{ padding: '13px 14px', borderRadius: 9, border: `2px solid ${selected === 'ja' ? 'var(--orange)' : 'var(--line)'}`, background: selected === 'ja' ? 'var(--peach-light)' : 'var(--gray)', textAlign: 'center' }}>
-        <div style={{ fontSize: 18, fontWeight: 700, color: selected === 'ja' ? 'var(--orange)' : 'var(--text3)' }}>{selected === 'ja' ? '✅ ' : ''}Ja</div>
+      <div style={{ padding: '13px 14px', borderRadius: 9, border: `2px solid ${selected === 'ja' ? '#038390' : 'var(--line)'}`, background: selected === 'ja' ? 'var(--peach-light)' : 'var(--gray)', textAlign: 'center' }}>
+        <div style={{ fontSize: 18, fontWeight: 700, color: selected === 'ja' ? '#038390' : 'var(--text3)' }}>{selected === 'ja' ? '✅ ' : ''}Ja</div>
         <div style={{ fontSize: 11, color: 'var(--text2)', marginTop: 4, lineHeight: 1.4 }}>{yesLabel}</div>
       </div>
-      <div style={{ padding: '13px 14px', borderRadius: 9, border: `2px solid ${selected === 'nein' ? 'var(--orange)' : 'var(--line)'}`, background: selected === 'nein' ? 'var(--peach-light)' : 'var(--gray)', textAlign: 'center' }}>
-        <div style={{ fontSize: 18, fontWeight: 700, color: selected === 'nein' ? 'var(--orange)' : 'var(--text3)' }}>{selected === 'nein' ? '✅ ' : ''}Nein</div>
+      <div style={{ padding: '13px 14px', borderRadius: 9, border: `2px solid ${selected === 'nein' ? '#038390' : 'var(--line)'}`, background: selected === 'nein' ? 'var(--peach-light)' : 'var(--gray)', textAlign: 'center' }}>
+        <div style={{ fontSize: 18, fontWeight: 700, color: selected === 'nein' ? '#038390' : 'var(--text3)' }}>{selected === 'nein' ? '✅ ' : ''}Nein</div>
         <div style={{ fontSize: 11, color: 'var(--text2)', marginTop: 4, lineHeight: 1.4 }}>{noLabel}</div>
       </div>
     </div>
@@ -152,6 +152,11 @@ export default function GisaFormularPage() {
         <div style={{ flex: 1, minWidth: 0 }}>
           <Link href="/articles" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text3)', textDecoration: 'none', marginBottom: 32 }}>← Всі статті</Link>
 
+          {/* Disclaimer */}
+          <div style={{ background: '#FFF8E7', border: '1px solid rgba(245,166,35,0.3)', borderRadius: 12, padding: '16px 20px', marginBottom: 32, fontSize: 13, color: '#595959', lineHeight: 1.6 }}>
+            ⚠️ <strong>Важливо:</strong> Цей матеріал підготовлено на основі публічно доступних офіційних джерел та досвіду людей, які пройшли цей процес. QLIXA не є юридичним агентством і не надає індивідуальних консультацій. Інтерфейс GISA може оновлюватися — завжди перевіряйте актуальну версію на gisa.gv.at.
+          </div>
+
           {/* Intro */}
           <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 28 }}>
             <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 10 }}>
@@ -165,7 +170,7 @@ export default function GisaFormularPage() {
           {/* КРОК 1 */}
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 13, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>1</div>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#038390', color: '#fff', fontWeight: 700, fontSize: 13, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>1</div>
               <h2 id="step1" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>Заходимо на сайт</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
@@ -177,11 +182,11 @@ export default function GisaFormularPage() {
               <OptionItem de="GISA Gewerbeinformationssystem Austria" tr="Що це?" desc="GISA — це офіційна державна база даних Австрії, в якій реєструються всі підприємці. Тут зберігається інформація про всі діючі бізнеси в країні." />
               <OptionItem de="Gewerbeanmeldung" tr="Що це означає?" desc="Це <strong>заява на реєстрацію підприємницької діяльності</strong>. Саме цю заяву ми зараз заповнюємо." />
 
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--orange)', margin: '20px 0 10px' }}>Два способи подання заяви — найважливіший вибір</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: '#038390', margin: '20px 0 10px' }}>Два способи подання заяви — найважливіший вибір</h3>
               <div style={{ display: 'grid', gap: 12, gridTemplateColumns: '1fr 1fr', marginBottom: 16 }}>
-                <div style={{ padding: 14, borderRadius: 10, border: '2px solid var(--orange)', background: 'var(--peach-light)' }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--orange)', marginBottom: 3 }}>1. mit ID Austria beantragen</div>
-                  <div style={{ fontSize: 11, fontStyle: 'italic', color: 'var(--orange)', marginBottom: 5 }}>Переклад: Подати заяву за допомогою ID Austria</div>
+                <div style={{ padding: 14, borderRadius: 10, border: '2px solid #038390', background: 'var(--peach-light)' }}>
+                  <div style={{ fontSize: 13, fontWeight: 700, color: '#038390', marginBottom: 3 }}>1. mit ID Austria beantragen</div>
+                  <div style={{ fontSize: 11, fontStyle: 'italic', color: '#038390', marginBottom: 5 }}>Переклад: Подати заяву за допомогою ID Austria</div>
                   <div style={{ fontSize: 12, color: 'var(--charcoal)', lineHeight: 1.6 }}><strong>Найкращий і найшвидший спосіб.</strong> Якщо у вас є ID Austria, система автоматично підтягне ваше прізвище, імя та дату народження. У більшості випадків заяву можуть схвалити <strong>автоматично і відразу</strong>.</div>
                 </div>
                 <div style={{ padding: 14, borderRadius: 10, border: '1px solid var(--line)', background: 'var(--gray)' }}>
@@ -195,7 +200,7 @@ export default function GisaFormularPage() {
               <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>Для Ірини обираємо перший варіант — <strong>mit ID Austria beantragen</strong>. Після натискання система перенаправить вас на авторизацію через <strong>ID Austria</strong>.</p>
               <NoteBox type="tip">
                 <strong>Важлива порада:</strong> якщо у вас ще немає ID Austria, обовязково отримайте її перед початком реєстрації. Без неї процес буде довшим і складнішим.{' '}
-                <Link href="/articles/austria-id" style={{ color: 'var(--orange)', fontWeight: 600 }}>📖 Як оформити Austria ID: покроковий гайд →</Link>
+                <Link href="/articles/austria-id" style={{ color: '#038390', fontWeight: 600 }}>📖 Як оформити Austria ID: покроковий гайд →</Link>
               </NoteBox>
               <p style={{ fontSize: 12, color: 'var(--text3)', fontStyle: 'italic', marginTop: 14 }}>Готово для першої сторінки. Переходимо на другу сторінку.</p>
             </div>
@@ -204,7 +209,7 @@ export default function GisaFormularPage() {
           {/* КРОК 2 */}
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 13, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>2</div>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#038390', color: '#fff', fontWeight: 700, fontSize: 13, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>2</div>
               <h2 id="step2" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>Вибір типу заявника</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
@@ -214,12 +219,12 @@ export default function GisaFormularPage() {
               <p style={{ fontSize: 12, color: 'var(--text2)', marginBottom: 8 }}>Gewerbeanmeldung → Fortschrittsanzeige</p>
               <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap', marginBottom: 10 }}>
                 {['1 Einstieg', '2 Person', '3 Daten', '4 Optional', '5 Beilagen', '6 Kontrolle', '7 Abschluss'].map((s, i) => (
-                  <span key={s} style={{ padding: '5px 10px', borderRadius: 5, fontSize: 11, fontWeight: 600, background: i === 1 ? 'var(--orange)' : 'var(--gray)', color: i === 1 ? '#fff' : 'var(--text3)', border: `1px solid ${i === 1 ? 'var(--orange)' : 'var(--line)'}` }}>{s}</span>
+                  <span key={s} style={{ padding: '5px 10px', borderRadius: 5, fontSize: 11, fontWeight: 600, background: i === 1 ? '#038390' : 'var(--gray)', color: i === 1 ? '#fff' : 'var(--text3)', border: `1px solid ${i === 1 ? '#038390' : 'var(--line)'}` }}>{s}</span>
                 ))}
               </div>
               <p style={{ fontSize: 13, color: 'var(--text2)', marginBottom: 16 }}>Це етапи заповнення заяви. Зараз ви на кроці <strong>2 Person</strong> (Дані про особу).</p>
 
-              <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--orange)', marginBottom: 6 }}>Головне питання: Wer stellt den Antrag?</h3>
+              <h3 style={{ fontSize: 15, fontWeight: 700, color: '#038390', marginBottom: 6 }}>Головне питання: Wer stellt den Antrag?</h3>
               <p style={{ fontSize: 13, color: 'var(--text2)', marginBottom: 12 }}>Переклад: «Хто подає заяву?» Тут потрібно обрати, від кого саме йде реєстрація.</p>
 
               <OptionItem selected de="1. Natürliche Person (auch e.U. = im Firmenbuch eingetragenes Einzelunternehmen)" tr="Фізична особа (в тому числі e.U. — одноосібне підприємство)" desc="<strong>Це ваш варіант.</strong> Ви реєструєтеся як звичайна людина, яка хоче працювати на себе. e.U. — це саме те, що буде у Ірини після реєстрації (Einzelunternehmen — одноосібне підприємство)." />
@@ -240,7 +245,7 @@ export default function GisaFormularPage() {
           {/* КРОК 3 */}
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 13, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>3</div>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#038390', color: '#fff', fontWeight: 700, fontSize: 13, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>3</div>
               <h2 id="step3" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>Персональні дані підприємця</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
@@ -272,7 +277,7 @@ export default function GisaFormularPage() {
           {/* КРОК 4 */}
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 13, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>4</div>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#038390', color: '#fff', fontWeight: 700, fontSize: 13, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>4</div>
               <h2 id="step4" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>Вибір виду діяльності та адреси бізнесу</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
@@ -283,7 +288,7 @@ export default function GisaFormularPage() {
               <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>У верхній частині сторінки знаходиться поле: <strong>Suche nach Gewerbewortlaut</strong>. Введіть ключове слово та натисніть <strong>«Gewerbewortlaut suchen»</strong>.</p>
               <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>Для більшості програмістів, веброзробників, IT-консультантів, UX/UI дизайнерів та фахівців з цифрових технологій підходить:</p>
               <div style={{ background: 'var(--peach-light)', borderRadius: 9, padding: '13px 16px', border: '1px solid var(--orange-mid)', marginBottom: 10 }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: 'var(--orange)', marginBottom: 4 }}>Dienstleistungen in der automatischen Datenverarbeitung und Informationstechnik</div>
+                <div style={{ fontSize: 14, fontWeight: 700, color: '#038390', marginBottom: 4 }}>Dienstleistungen in der automatischen Datenverarbeitung und Informationstechnik</div>
                 <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.5 }}>Послуги у сфері автоматизованої обробки даних та інформаційних технологій • <strong>Freies Gewerbe</strong> — вільна діяльність, без ліцензії</div>
               </div>
               <p style={{ fontSize: 13, color: 'var(--text2)', marginBottom: 16 }}>Після вибору назва діяльності зявиться у полі <strong>«Gefundene Gewerbewortlaute»</strong>.</p>
@@ -338,7 +343,7 @@ export default function GisaFormularPage() {
           {/* КРОК 5–6 */}
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 11, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>5–6</div>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#038390', color: '#fff', fontWeight: 700, fontSize: 11, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>5–6</div>
               <h2 id="step5" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>Перевірка даних та відправка заяви</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
@@ -363,7 +368,7 @@ export default function GisaFormularPage() {
           {/* Завершення */}
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 16, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>✓</div>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#038390', color: '#fff', fontWeight: 700, fontSize: 16, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>✓</div>
               <h2 id="step6" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>Реєстрацію завершено — що далі?</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
@@ -377,7 +382,7 @@ export default function GisaFormularPage() {
 
           {/* Вітання */}
           <div style={{ background: 'var(--charcoal)', borderRadius: 16, padding: '32px 28px', textAlign: 'center', marginBottom: 24, position: 'relative', overflow: 'hidden' }}>
-            <div style={{ position: 'absolute', width: 180, height: 180, borderRadius: '50%', background: 'var(--orange)', opacity: 0.07, top: -40, right: -40 }} />
+            <div style={{ position: 'absolute', width: 180, height: 180, borderRadius: '50%', background: '#038390', opacity: 0.07, top: -40, right: -40 }} />
             <div style={{ position: 'relative', zIndex: 1 }}>
               <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 26, color: '#fff', marginBottom: 14, fontWeight: 400 }}>
                 Вітаємо з реєстрацією <em style={{ fontStyle: 'italic', color: '#FFB899' }}>Gewerbe! 🎉</em>
@@ -393,12 +398,12 @@ export default function GisaFormularPage() {
             Саме тому ми підготували цілу серію практичних статей про самозайнятість в Австрії. <strong>Зберігайте наш сайт у закладки — ми регулярно публікуємо нові практичні інструкції та пояснюємо складні австрійські правила простою мовою.</strong>
           </NoteBox>
 
-          <Link href="/articles/gewerbeanmeldung" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '14px 18px', borderRadius: 12, border: '1.5px solid var(--orange)', background: 'var(--peach-light)', textDecoration: 'none', margin: '16px 0' }}>
+          <Link href="/articles/gewerbeanmeldung" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '14px 18px', borderRadius: 12, border: '1.5px solid #038390', background: 'var(--peach-light)', textDecoration: 'none', margin: '16px 0' }}>
             <div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--orange)' }}>📖 Читайте також → Gewerbeanmeldung в Австрії: повний покроковий гайд</div>
+              <div style={{ fontSize: 13, fontWeight: 700, color: '#038390' }}>📖 Читайте також → Gewerbeanmeldung в Австрії: повний покроковий гайд</div>
               <div style={{ fontSize: 11, color: 'var(--text2)', marginTop: 2 }}>Все про реєстрацію самозайнятості — з чого починати</div>
             </div>
-            <span style={{ fontSize: 18, color: 'var(--orange)', fontWeight: 700 }}>→</span>
+            <span style={{ fontSize: 18, color: '#038390', fontWeight: 700 }}>→</span>
           </Link>
 
           {/* Підсумок */}
@@ -406,7 +411,7 @@ export default function GisaFormularPage() {
             <h2 id="summary" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, color: 'var(--charcoal)', marginBottom: 16, scrollMarginTop: '80px' }}>Підсумок: що ми зробили</h2>
             {summarySteps.map((step, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, marginBottom: 10, alignItems: 'flex-start' }}>
-                <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>{i + 1}</div>
+                <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#038390', color: '#fff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>{i + 1}</div>
                 <span style={{ fontSize: 13, color: 'var(--charcoal)', lineHeight: 1.6 }}>{step}</span>
               </div>
             ))}
@@ -420,7 +425,7 @@ export default function GisaFormularPage() {
               { label: 'GISA — Перевірка реєстрації', href: 'https://www.gisa.gv.at/abfrage' },
               { label: 'WKO — Gewerbeanmeldung', href: 'https://www.wko.at/gruendung/gewerbeanmeldung' },
             ].map(s => (
-              <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: 13, color: 'var(--orange)', textDecoration: 'none', marginBottom: 6 }}>↗ {s.label}</a>
+              <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: 13, color: '#038390', textDecoration: 'none', marginBottom: 6 }}>↗ {s.label}</a>
             ))}
           </div>
           <div style={{ background: 'var(--gray)', borderRadius: 10, padding: '13px 16px', fontSize: 12, color: 'var(--text3)', lineHeight: 1.6, marginTop: 24, border: '1px solid var(--line)' }}>

@@ -10,6 +10,15 @@ export type Article = {
 
 export const articles: Article[] = [
   {
+    slug: 'rwr-karte',
+    href: '/articles/rwr-karte',
+    tag: 'Гайд',
+    title: 'Як підготуватися до подачі на RWR+ карту',
+    desc: 'Покроковий гайд: документи, калькулятор фінансових вимог і PDF чеклісти для найманих та самозайнятих.',
+    cover: '/articles/rwr-karte-cover.jpg',
+    published: true,
+  },
+  {
     slug: 'gewerbeanmeldung',
     href: '/articles/gewerbeanmeldung',
     tag: 'Реєстрація бізнесу',

@@ -127,7 +127,7 @@ export default function Footer() {
             display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap',
             gap: 8, fontSize: 12, color: '#9D9D9D',
           }}>
-            <span>© 2025 QLIXA · info@qlixa.eu</span>
+            <span>© 2026 QLIXA · info@qlixa.eu</span>
             <span>Made with ♥ in Austria 🇦🇹</span>
           </div>
         </div>

@@ -390,28 +390,28 @@ export default function RWRKartePage() {
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 8 }}>Завантажте чекліст підготовки документів</h2>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.75, marginBottom: 20 }}>Оберіть свій варіант — чекліст з квадратиками для відміток:</p>
                 <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
-                  <div style={{ background: '#038390', borderRadius: 16, padding: '24px' }}>
+                  <div style={{ background: '#038390', borderRadius: 16, padding: '24px', display: 'flex', flexDirection: 'column' as const }}>
                     <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>Безкоштовно від QLIXA</div>
                     <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 18, color: 'white', marginBottom: 8 }}>Для найманих працівників</div>
-                    <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: 16 }}>Чекліст документів для тих, хто працює за наймом в Австрії.</p>
+                    <div style={{ flex: 1 }}><p style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: 16 }}>Чекліст документів для тих, хто працює за наймом в Австрії.</p></div>
                     <a href="/articles/QLIXA_Checklist_Naymanyi.pdf" download
                       style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: 'white', color: '#038390', borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
                       ⬇️ Завантажити PDF
                     </a>
                   </div>
-                  <div style={{ background: '#038390', borderRadius: 16, padding: '24px' }}>
+                  <div style={{ background: '#038390', borderRadius: 16, padding: '24px', display: 'flex', flexDirection: 'column' as const }}>
                     <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>Безкоштовно від QLIXA</div>
                     <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 18, color: 'white', marginBottom: 8 }}>Для самозайнятих</div>
-                    <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: 16 }}>Чекліст документів для самозайнятих та підприємців в Австрії.</p>
+                    <div style={{ flex: 1 }}><p style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: 16 }}>Чекліст документів для самозайнятих та підприємців в Австрії.</p></div>
                     <a href="/articles/QLIXA_Checklist_Samozaynyati.pdf" download
                       style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: 'white', color: '#038390', borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
                       ⬇️ Завантажити PDF
                     </a>
                   </div>
-                  <div style={{ background: '#026B76', borderRadius: 16, padding: '24px' }}>
+                  <div style={{ background: '#026B76', borderRadius: 16, padding: '24px', display: 'flex', flexDirection: 'column' as const }}>
                     <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>Безкоштовно від QLIXA</div>
                     <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 18, color: 'white', marginBottom: 8 }}>Для дітей</div>
-                    <p style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: 16 }}>Чекліст документів на кожну дитину — окремо.</p>
+                    <div style={{ flex: 1 }}><p style={{ fontSize: 13, color: 'rgba(255,255,255,0.8)', lineHeight: 1.6, marginBottom: 16 }}>Чекліст документів на кожну дитину — окремо.</p></div>
                     <a href="/articles/QLIXA_Checklist_Dity.pdf" download
                       style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: 'white', color: '#026B76', borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
                       ⬇️ Завантажити PDF

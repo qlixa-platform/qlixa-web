@@ -22,7 +22,7 @@ function NoteBox({ type, children }: { type: 'warning' | 'info' | 'tip'; childre
 
 function ExtLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--orange)', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'var(--peach-mid)', textUnderlineOffset: 3, fontSize: 13 }}>
+    <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#038390', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'var(--peach-mid)', textUnderlineOffset: 3, fontSize: 13 }}>
       {children} ↗
     </a>
   )
@@ -80,7 +80,7 @@ const steps = [
           'Австрійський номер телефону — обов\'язковий для SMS-коду',
         ].map((item, i) => (
           <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '8px 12px', borderRadius: 8, background: 'var(--gray)', marginBottom: 6, border: '1px solid var(--line)' }}>
-            <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'var(--peach-light)', color: 'var(--orange)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, flexShrink: 0 }}>{i + 1}</div>
+            <div style={{ width: 20, height: 20, borderRadius: '50%', background: 'var(--peach-light)', color: '#038390', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, fontWeight: 700, flexShrink: 0 }}>{i + 1}</div>
             <span style={{ fontSize: 13, color: 'var(--charcoal)' }}>{item}</span>
           </div>
         ))}
@@ -186,9 +186,14 @@ export default function AustriaIdPage() {
           ← Всі статті
         </Link>
 
+        {/* Disclaimer */}
+        <div style={{ background: '#FFF8E7', border: '1px solid rgba(245,166,35,0.3)', borderRadius: 12, padding: '16px 20px', marginBottom: 32, fontSize: 13, color: '#595959', lineHeight: 1.6 }}>
+          ⚠️ <strong>Важливо:</strong> Цей матеріал підготовлено на основі публічно доступних офіційних джерел та досвіду людей, які пройшли цей процес. QLIXA не є юридичним агентством і не надає індивідуальних консультацій. Процедура оформлення може відрізнятися залежно від вашого відділення поліції — завжди перевіряйте актуальну інформацію на офіційних сайтах Австрії.
+        </div>
+
         {/* What is Austria ID */}
         <h2 id="what" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16, scrollMarginTop: '80px' }}>
-          Що таке Austria ID і навіщо вона <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>потрібна?</em>
+          Що таке Austria ID і навіщо вона <em style={{ fontStyle: 'italic', color: '#038390' }}>потрібна?</em>
         </h2>
 
         {/* ID Austria logo */}
@@ -211,7 +216,7 @@ export default function AustriaIdPage() {
 
         {/* For whom */}
         <h2 id="why" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16, scrollMarginTop: '80px' }}>
-          Навіщо вона потрібна <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>іноземцю?</em>
+          Навіщо вона потрібна <em style={{ fontStyle: 'italic', color: '#038390' }}>іноземцю?</em>
         </h2>
         <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 24 }}>
           <p style={{ fontSize: 14, color: 'var(--charcoal)', marginBottom: 14 }}>Без Austria ID ви не зможете зареєструватися на багатьох держплатформах. Зокрема, вона обов&apos;язкова для:</p>
@@ -231,7 +236,7 @@ export default function AustriaIdPage() {
 
         {/* Warning for non-citizens */}
         <h2 id="nongradients" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16, scrollMarginTop: '80px' }}>
-          Важливо для <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>не-громадян Австрії</em>
+          Важливо для <em style={{ fontStyle: 'italic', color: '#038390' }}>не-громадян Австрії</em>
         </h2>
 
         {/* RWR card small inline */}
@@ -257,12 +262,12 @@ export default function AustriaIdPage() {
 
         {/* Steps */}
         <h2 id="steps" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: '32px 0 16px', scrollMarginTop: '80px' }}>
-          Покрокова інструкція: як <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>оформити Austria ID</em>
+          Покрокова інструкція: як <em style={{ fontStyle: 'italic', color: '#038390' }}>оформити Austria ID</em>
         </h2>
         <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 24 }}>
           {steps.map((step, i) => (
             <div key={step.n} style={{ display: 'flex', gap: 16, paddingBottom: i < steps.length - 1 ? 20 : 0, marginBottom: i < steps.length - 1 ? 20 : 0, borderBottom: i < steps.length - 1 ? '1px solid var(--line)' : 'none' }}>
-              <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
+              <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#038390', color: '#fff', fontWeight: 700, fontSize: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
                 {step.n}
               </div>
               <div style={{ flex: 1 }}>
@@ -275,7 +280,7 @@ export default function AustriaIdPage() {
 
         {/* What next */}
         <h2 id="next" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16, scrollMarginTop: '80px' }}>
-          Що робити <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>далі?</em>
+          Що робити <em style={{ fontStyle: 'italic', color: '#038390' }}>далі?</em>
         </h2>
         <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 24 }}>
           <p style={{ fontSize: 14, color: 'var(--charcoal)', marginBottom: 14 }}>Після того як Austria ID оформлена — ви готові до наступних кроків реєстрації бізнесу:</p>
@@ -289,15 +294,15 @@ export default function AustriaIdPage() {
               <span style={{ fontSize: 13, color: 'var(--charcoal)' }}>{item.text}</span>
             </div>
           ))}
-          <Link href="/articles/gewerbeanmeldung" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '14px 18px', borderRadius: 12, border: '1.5px solid var(--orange)', background: 'var(--peach-light)', textDecoration: 'none', marginTop: 16 }}>
+          <Link href="/articles/gewerbeanmeldung" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '14px 18px', borderRadius: 12, border: '1.5px solid #038390', background: 'var(--peach-light)', textDecoration: 'none', marginTop: 16 }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ fontSize: 18 }}>📖</span>
               <div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--orange)' }}>Читайте детально → Gewerbeanmeldung в Австрії: покрокова реєстрація</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#038390' }}>Читайте детально → Gewerbeanmeldung в Австрії: покрокова реєстрація</div>
                 <div style={{ fontSize: 11, color: 'var(--text2)', marginTop: 2 }}>Повний гайд по реєстрації самозайнятості</div>
               </div>
             </div>
-            <span style={{ fontSize: 18, color: 'var(--orange)', fontWeight: 700 }}>→</span>
+            <span style={{ fontSize: 18, color: '#038390', fontWeight: 700 }}>→</span>
           </Link>
         </div>
 
@@ -311,7 +316,7 @@ export default function AustriaIdPage() {
             { label: 'Портал держпослуг Австрії: oesterreich.gv.at', href: 'https://www.oesterreich.gv.at' },
             { label: 'Запис на термін: citizen.bmi.gv.at', href: 'https://citizen.bmi.gv.at' },
           ].map(s => (
-            <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: 13, color: 'var(--orange)', textDecoration: 'none', marginBottom: 6 }}>
+            <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: 13, color: '#038390', textDecoration: 'none', marginBottom: 6 }}>
               ↗ {s.label}
             </a>
           ))}

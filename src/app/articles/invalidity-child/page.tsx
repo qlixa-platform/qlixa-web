@@ -22,7 +22,7 @@ function NoteBox({ type, children }: { type: 'warning' | 'info' | 'tip'; childre
 
 function ExtLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: 'var(--orange)', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'var(--peach-mid)', textUnderlineOffset: 3, fontSize: 13 }}>
+    <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#038390', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'var(--peach-mid)', textUnderlineOffset: 3, fontSize: 13 }}>
       {children} ↗
     </a>
   )
@@ -32,7 +32,7 @@ function StepCard({ n, title, children, id }: { n: number; title: string; childr
   return (
     <div id={id} style={{ marginBottom: 32, scrollMarginTop: '80px' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
-        <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
+        <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#038390', color: '#fff', fontWeight: 700, fontSize: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
           {n}
         </div>
         <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>
@@ -49,7 +49,7 @@ function StepCard({ n, title, children, id }: { n: number; title: string; childr
 function DocItem({ text }: { text: string }) {
   return (
     <div style={{ display: 'flex', alignItems: 'flex-start', gap: 10, padding: '9px 13px', borderRadius: 8, background: 'var(--gray)', marginBottom: 7, border: '1px solid var(--line)' }}>
-      <span style={{ color: 'var(--orange)', fontWeight: 700, fontSize: 14, flexShrink: 0, marginTop: 1 }}>·</span>
+      <span style={{ color: '#038390', fontWeight: 700, fontSize: 14, flexShrink: 0, marginTop: 1 }}>·</span>
       <span style={{ fontSize: 13, color: 'var(--charcoal)', lineHeight: 1.55 }}>{text}</span>
     </div>
   )
@@ -123,6 +123,11 @@ export default function InvalidityChildPage() {
             ← Всі статті
           </Link>
 
+          {/* Disclaimer */}
+          <div style={{ background: '#FFF8E7', border: '1px solid rgba(245,166,35,0.3)', borderRadius: 12, padding: '16px 20px', marginBottom: 32, fontSize: 13, color: '#595959', lineHeight: 1.6 }}>
+            ⚠️ <strong>Важливо:</strong> Цей матеріал підготовлено на основі публічно доступних офіційних джерел та досвіду людей, які пройшли цей процес. QLIXA не є юридичним агентством і не надає індивідуальних консультацій. Кожен випадок розглядається індивідуально — рекомендуємо також звернутися до Sozialministeriumservice для отримання персональної консультації.
+          </div>
+
           {/* Intro */}
           <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 32 }}>
             <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>
@@ -175,7 +180,7 @@ export default function InvalidityChildPage() {
             </NoteBox>
             <NoteBox type="info">
               Для онлайн-заяви потрібна <strong>ID Austria</strong>.{' '}
-              <Link href="/articles/austria-id" style={{ color: 'var(--orange)', fontWeight: 600 }}>
+              <Link href="/articles/austria-id" style={{ color: '#038390', fontWeight: 600 }}>
                 Як її отримати — читайте у нашій статті →
               </Link>
             </NoteBox>
@@ -201,7 +206,7 @@ export default function InvalidityChildPage() {
                 { amount: '70,90 €', label: 'на місяць', desc: 'Kinderabsetzbetrag (автоматично)' },
               ].map(card => (
                 <div key={card.desc} style={{ background: 'var(--peach-light)', borderRadius: 12, padding: '16px 18px', border: '1px solid var(--orange-mid)', textAlign: 'center' }}>
-                  <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 28, color: 'var(--orange)', lineHeight: 1 }}>{card.amount}</div>
+                  <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 28, color: '#038390', lineHeight: 1 }}>{card.amount}</div>
                   <div style={{ fontSize: 11, color: 'var(--text3)', marginTop: 3 }}>{card.label}</div>
                   <div style={{ fontSize: 12, color: 'var(--charcoal)', marginTop: 6, fontWeight: 500 }}>{card.desc}</div>
                 </div>
@@ -253,7 +258,7 @@ export default function InvalidityChildPage() {
                 },
               ].map((item, i) => (
                 <div key={i} style={{ display: 'flex', gap: 14, padding: '14px 16px', borderRadius: 12, background: 'var(--gray)', border: '1px solid var(--line)' }}>
-                  <div style={{ padding: '4px 10px', borderRadius: 6, background: 'var(--orange)', color: '#fff', fontSize: 12, fontWeight: 700, flexShrink: 0, height: 'fit-content' }}>
+                  <div style={{ padding: '4px 10px', borderRadius: 6, background: '#038390', color: '#fff', fontSize: 12, fontWeight: 700, flexShrink: 0, height: 'fit-content' }}>
                     {item.range}
                   </div>
                   <span style={{ fontSize: 13, color: 'var(--charcoal)', lineHeight: 1.6 }}>{item.text}</span>
@@ -276,11 +281,11 @@ export default function InvalidityChildPage() {
           {/* Summary */}
           <div style={{ background: 'var(--peach-light)', borderRadius: 16, padding: 24, border: '1px solid var(--orange-mid)', marginBottom: 32 }}>
             <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 20 }}>
-              Підсумуємо: <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>що і в якому порядку</em>
+              Підсумуємо: <em style={{ fontStyle: 'italic', color: '#038390' }}>що і в якому порядку</em>
             </h2>
             {summarySteps.map((step, i) => (
               <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 12, marginBottom: 12 }}>
-                <div style={{ width: 26, height: 26, borderRadius: '50%', background: 'var(--orange)', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0, marginTop: 1 }}>
+                <div style={{ width: 26, height: 26, borderRadius: '50%', background: '#038390', color: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 12, fontWeight: 700, flexShrink: 0, marginTop: 1 }}>
                   {i + 1}
                 </div>
                 <span style={{ fontSize: 13, color: 'var(--charcoal)', lineHeight: 1.65 }}>{step}</span>
@@ -303,7 +308,7 @@ export default function InvalidityChildPage() {
               { label: 'oesterreich.gv.at — податкові пільги', href: 'https://www.oesterreich.gv.at' },
             ].map(s => (
               <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer"
-                style={{ display: 'block', fontSize: 13, color: 'var(--orange)', textDecoration: 'none', marginBottom: 6 }}>
+                style={{ display: 'block', fontSize: 13, color: '#038390', textDecoration: 'none', marginBottom: 6 }}>
                 ↗ {s.label}
               </a>
             ))}

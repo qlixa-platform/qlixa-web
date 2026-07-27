@@ -9,7 +9,7 @@ import { ArticleSidebar, ArticlePrevNext } from '@/components/layout/ArticleNav'
 function StepBadge({ n }: { n: number }) {
   return (
     <div style={{
-      width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)',
+      width: 36, height: 36, borderRadius: '50%', background: '#038390',
       color: '#fff', fontWeight: 700, fontSize: 15, flexShrink: 0,
       display: 'flex', alignItems: 'center', justifyContent: 'center',
     }}>
@@ -39,7 +39,7 @@ function NoteBox({ type, children }: { type: 'warning' | 'info' | 'tip'; childre
 function ExtLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
     <a href={href} target="_blank" rel="noopener noreferrer" style={{
-      color: 'var(--orange)', fontWeight: 600,
+      color: '#038390', fontWeight: 600,
       textDecoration: 'underline', textDecorationColor: 'var(--peach-mid)',
       textUnderlineOffset: 3, fontSize: 13,
     }}>
@@ -53,17 +53,17 @@ function ArticleLink({ href, title, sub }: { href: string; title: string; sub: s
     <Link href={href} style={{
       display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12,
       padding: '14px 18px', borderRadius: 12,
-      border: '1.5px solid var(--orange)', background: 'var(--peach-light)',
+      border: '1.5px solid #038390', background: 'var(--peach-light)',
       textDecoration: 'none', margin: '16px 0',
     }}>
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <span style={{ fontSize: 18 }}>📖</span>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--orange)' }}>{title}</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#038390' }}>{title}</div>
           <div style={{ fontSize: 11, color: 'var(--text2)', marginTop: 2 }}>{sub}</div>
         </div>
       </div>
-      <span style={{ fontSize: 18, color: 'var(--orange)', fontWeight: 700 }}>→</span>
+      <span style={{ fontSize: 18, color: '#038390', fontWeight: 700 }}>→</span>
     </Link>
   )
 }
@@ -93,7 +93,7 @@ function CostTable() {
                 <span style={{
                   padding: '2px 9px', borderRadius: 5, fontWeight: 700, fontSize: 12,
                   background: r.free ? 'var(--success-bg)' : 'var(--peach-light)',
-                  color: r.free ? 'var(--success)' : 'var(--orange)',
+                  color: r.free ? 'var(--success)' : '#038390',
                 }}>{r.cost}</span>
               </td>
               <td style={{ padding: '10px 14px', color: 'var(--text2)', fontSize: 12 }}>{r.note}</td>
@@ -131,7 +131,7 @@ function TranslationForm() {
       </div>
       <button style={{
         padding: '11px', borderRadius: 999, fontSize: 13, fontWeight: 700,
-        background: 'var(--orange)', color: '#fff', border: 'none', cursor: 'pointer',
+        background: '#038390', color: '#fff', border: 'none', cursor: 'pointer',
         fontFamily: 'DM Sans, sans-serif',
       }}>
         Надіслати заявку →
@@ -200,6 +200,11 @@ export default function GewerbeanmeldungPage() {
         {/* Main content */}
         <div style={{ flex: 1, minWidth: 0 }}>
 
+        {/* Disclaimer */}
+          <div style={{ background: '#FFF8E7', border: '1px solid rgba(245,166,35,0.3)', borderRadius: 12, padding: '16px 20px', marginBottom: 32, fontSize: 13, color: '#595959', lineHeight: 1.6 }}>
+            ⚠️ <strong>Важливо:</strong> Цей матеріал підготовлено на основі публічно доступних офіційних джерел та досвіду людей, які пройшли цей процес. QLIXA не є юридичним агентством і не надає індивідуальних консультацій. Вимоги та процедури можуть змінюватися — завжди перевіряйте актуальну інформацію на офіційних сайтах WKO та GISA.
+          </div>
+
         {/* Intro */}
         <div style={{
           background: '#fff', borderRadius: 16, padding: 24,
@@ -212,9 +217,9 @@ export default function GewerbeanmeldungPage() {
           </p>
           <div style={{
             padding: '13px 16px', background: 'var(--peach-light)',
-            borderRadius: 9, borderLeft: '3px solid var(--orange)', fontSize: 13, color: 'var(--charcoal)',
+            borderRadius: 9, borderLeft: '3px solid #038390', fontSize: 13, color: 'var(--charcoal)',
           }}>
-            <strong style={{ color: 'var(--orange)' }}>Спосіб подачі:</strong> онлайн або особисто.
+            <strong style={{ color: '#038390' }}>Спосіб подачі:</strong> онлайн або особисто.
             Цей гайд — про <strong>онлайн</strong>. Для офлайн —{' '}
             <ExtLink href="https://www.wko.at/gruendung/gewerbeanmeldung">запишіться у WKO</ExtLink> — там безкоштовно консультують.
           </div>
@@ -237,10 +242,10 @@ export default function GewerbeanmeldungPage() {
               ].map(c => (
                 <div key={c.title} style={{
                   padding: 15, borderRadius: 11,
-                  border: `2px solid ${c.featured ? 'var(--orange)' : 'var(--line)'}`,
+                  border: `2px solid ${c.featured ? '#038390' : 'var(--line)'}`,
                   background: c.featured ? 'var(--peach-light)' : 'var(--gray)',
                 }}>
-                  <div style={{ fontWeight: 700, fontSize: 14, color: c.featured ? 'var(--orange)' : 'var(--charcoal)', marginBottom: 3 }}>{c.title}</div>
+                  <div style={{ fontWeight: 700, fontSize: 14, color: c.featured ? '#038390' : 'var(--charcoal)', marginBottom: 3 }}>{c.title}</div>
                   <div style={{ fontSize: 11, color: 'var(--text2)', marginBottom: 8 }}>{c.sub}</div>
                   <div style={{ fontSize: 13, lineHeight: 1.6, color: 'var(--charcoal)' }}>{c.desc}</div>
                 </div>
@@ -268,7 +273,7 @@ export default function GewerbeanmeldungPage() {
             <div style={{ display: 'flex', flexDirection: 'column', gap: 8, marginBottom: 14 }}>
               {['Скан паспорта (закордонного)', 'Meldezettel — довідка про прописку в Австрії', 'Ausweis — посвідчення особи', 'Дійсний австрійський банківський рахунок', 'Довідка про несудимість'].map((doc, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 11, padding: '10px 13px', borderRadius: 9, background: 'var(--gray)', border: '1px solid var(--line)' }}>
-                  <div style={{ width: 22, height: 22, borderRadius: '50%', background: 'var(--peach-light)', color: 'var(--orange)', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{i + 1}</div>
+                  <div style={{ width: 22, height: 22, borderRadius: '50%', background: 'var(--peach-light)', color: '#038390', display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 11, fontWeight: 700, flexShrink: 0 }}>{i + 1}</div>
                   <span style={{ fontSize: 13, color: 'var(--charcoal)' }}>{doc}</span>
                 </div>
               ))}
@@ -284,13 +289,13 @@ export default function GewerbeanmeldungPage() {
               style={{
                 display: 'inline-flex', alignItems: 'center', gap: 8,
                 padding: '10px 18px', borderRadius: 999, marginBottom: 16,
-                background: 'var(--peach-light)', border: '1.5px solid var(--orange)',
-                fontSize: 13, fontWeight: 700, color: 'var(--orange)', textDecoration: 'none',
+                background: 'var(--peach-light)', border: '1.5px solid #038390',
+                fontSize: 13, fontWeight: 700, color: '#038390', textDecoration: 'none',
               }}>
               📅 Замовити австрійську довідку — bmi.gv.at ↗
             </a>
-            <div style={{ marginTop: 20, padding: 18, borderRadius: 12, border: '2px dashed var(--orange)', background: 'var(--peach-light)' }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--orange)', marginBottom: 4 }}>🔄 Потрібен переклад довідки з ДІЯ?</div>
+            <div style={{ marginTop: 20, padding: 18, borderRadius: 12, border: '2px dashed #038390', background: 'var(--peach-light)' }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#038390', marginBottom: 4 }}>🔄 Потрібен переклад довідки з ДІЯ?</div>
               <p style={{ fontSize: 13, color: 'var(--charcoal)', marginBottom: 14, lineHeight: 1.6 }}>
                 Залиште заявку — наші партнери зроблять переклад швидко і точно.
               </p>
@@ -457,7 +462,7 @@ export default function GewerbeanmeldungPage() {
           textAlign: 'center', marginBottom: 48, position: 'relative', overflow: 'hidden',
           border: '1px solid var(--orange-mid)',
         }}>
-          <div style={{ position: 'absolute', width: 180, height: 180, borderRadius: '50%', background: 'var(--orange)', opacity: 0.08, top: -40, right: -40 }} />
+          <div style={{ position: 'absolute', width: 180, height: 180, borderRadius: '50%', background: '#038390', opacity: 0.08, top: -40, right: -40 }} />
           <div style={{ position: 'relative', zIndex: 1 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/logos/favicon-planet-black.svg" alt="QLIXA" style={{ width: 40, height: 40, objectFit: 'contain', margin: '0 auto 18px', display: 'block' }} />
@@ -497,7 +502,7 @@ export default function GewerbeanmeldungPage() {
             { label: 'SVS — Beitragsrechner', href: 'https://www.svs.at/sva-beitrag/?contentid=10007.906048&portal=svsportal' },
           ].map(s => (
             <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer"
-              style={{ display: 'block', fontSize: 13, color: 'var(--orange)', textDecoration: 'none', marginBottom: 6 }}>
+              style={{ display: 'block', fontSize: 13, color: '#038390', textDecoration: 'none', marginBottom: 6 }}>
               ↗ {s.label}
             </a>
           ))}

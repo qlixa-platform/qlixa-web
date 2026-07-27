@@ -50,25 +50,25 @@ export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
                 {/* Color dot */}
                 <div style={{
                   width: 7, height: 7, borderRadius: '50%', flexShrink: 0, marginTop: 5,
-                  background: isCurrent ? 'var(--orange)' : isPublished ? 'var(--charcoal)' : 'var(--line2)',
+                  background: isCurrent ? '#038390' : isPublished ? 'var(--charcoal)' : 'var(--line2)',
                 }} />
                 <div>
                   <div style={{
                     fontSize: 10, fontWeight: 700,
-                    color: isCurrent ? 'var(--orange)' : 'var(--text3)',
+                    color: isCurrent ? '#038390' : 'var(--text3)',
                     marginBottom: 2,
                   }}>
                     {art.tag}
                   </div>
                   <div style={{
                     fontSize: 12, lineHeight: 1.4,
-                    color: isCurrent ? 'var(--orange)' : 'var(--charcoal)',
+                    color: isCurrent ? '#038390' : 'var(--charcoal)',
                     fontWeight: isCurrent ? 600 : 400,
                   }}>
                     {art.title}
                   </div>
                   {!isPublished && (
-                    <div style={{ fontSize: 9, color: 'var(--orange)', fontWeight: 700, marginTop: 3, letterSpacing: '0.5px', textTransform: 'uppercase' }}>
+                    <div style={{ fontSize: 9, color: '#038390', fontWeight: 700, marginTop: 3, letterSpacing: '0.5px', textTransform: 'uppercase' }}>
                       Скоро
                     </div>
                   )}
@@ -79,7 +79,7 @@ export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
         </div>
 
         <div style={{ padding: '10px 16px', borderTop: '1px solid var(--line)' }}>
-          <Link href="/articles" style={{ fontSize: 12, color: 'var(--orange)', fontWeight: 600, textDecoration: 'none' }}>
+          <Link href="/articles" style={{ fontSize: 12, color: '#038390', fontWeight: 600, textDecoration: 'none' }}>
             ← Всі статті
           </Link>
         </div>
@@ -113,7 +113,7 @@ export function ArticlePrevNext({ currentSlug }: { currentSlug: string }) {
           <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4 }}>
             {prev.title}
           </div>
-          <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--orange)' }}>
+          <div style={{ fontSize: 10, fontWeight: 700, color: '#038390' }}>
             {prev.tag}
           </div>
         </Link>
@@ -133,7 +133,7 @@ export function ArticlePrevNext({ currentSlug }: { currentSlug: string }) {
           <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4 }}>
             {next.title}
           </div>
-          <div style={{ fontSize: 10, fontWeight: 700, color: 'var(--orange)' }}>
+          <div style={{ fontSize: 10, fontWeight: 700, color: '#038390' }}>
             {next.tag}
           </div>
         </Link>

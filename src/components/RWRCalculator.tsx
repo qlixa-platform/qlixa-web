@@ -1,5 +1,6 @@
 'use client'
 import { useState } from 'react'
+import { loadPDFScripts, fetchLogoAsDataUrl } from '@/utils/generatePDF'
 
 const FREE_STATION = 386.43
 const MIN_SINGLE = 1308.39
@@ -149,37 +150,14 @@ export default function RWRCalculator() {
     const date = new Date().toLocaleDateString('uk-UA', { day: '2-digit', month: 'long', year: 'numeric' })
 
     // Load logo from actual file
-    let logoSrc = ''
-    try {
-      const res = await fetch('/logos/logo-name-slogan_planets_black.svg')
-      const svgText = await res.text()
-      const svgBlob = new Blob([svgText], { type: 'image/svg+xml' })
-      const svgUrl = URL.createObjectURL(svgBlob)
-      await new Promise<void>((resolve) => {
-        const img = new Image()
-        img.onload = () => {
-          const canvas = document.createElement('canvas')
-          canvas.width = img.width || 400
-          canvas.height = img.height || 120
-          const ctx = canvas.getContext('2d')!
-          ctx.drawImage(img, 0, 0)
-          logoSrc = canvas.toDataURL('image/png')
-          URL.revokeObjectURL(svgUrl)
-          resolve()
-        }
-        img.onerror = () => { URL.revokeObjectURL(svgUrl); resolve() }
-        img.src = svgUrl
-      })
-    } catch {
-      logoSrc = ''
-    }
+    const logoSrc = await fetchLogoAsDataUrl()
 
     const el = document.createElement('div')
     el.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;background:#fff;font-family:Arial,sans-serif;padding:0'
 
     el.innerHTML = `
       <div style="background:#ffffff;padding:14px 28px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E6F4F5">
-        <img src="${logoSrc}" style="width:160px;height:auto;object-fit:contain;display:block" alt="QLIXA"/>
+        <img src="${logoSrc}" style="width:140px;height:36px;object-fit:contain;object-position:left center;display:block" alt="QLIXA"/>
         <div style="text-align:right">
           <div style="font-size:10px;color:#595959">Результат розрахунку RWR+</div>
           <div style="font-size:11px;color:#038390;font-weight:700">qlixa.eu</div>
@@ -229,10 +207,10 @@ export default function RWRCalculator() {
         </table>
 
         ${!r.ok ? `
-        <div style="background:#FFF8E7;border:1px solid rgba(245,166,35,0.3);border-radius:10px;padding:16px 18px;margin-bottom:20px">
-          <div style="font-size:10px;color:#B45309;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px">Рекомендована сума на рахунку</div>
-          <div style="font-size:26px;font-weight:700;color:#F59E0B">€ ${fmt(r.savings)}</div>
-          <div style="font-size:10px;color:#888;margin-top:3px">недостача × 12 міс + 10% запас (рекомендація QLIXA)</div>
+        <div style="background:#FFF8E7;border:1px solid rgba(245,166,35,0.3);border-radius:10px;padding:20px 18px;margin-bottom:20px">
+          <div style="font-size:10px;color:#B45309;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">Рекомендована сума на рахунку</div>
+          <div style="font-size:26px;font-weight:700;color:#F59E0B;margin-bottom:8px;line-height:1.3">€ ${fmt(r.savings)}</div>
+          <div style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">недостача × 12 міс + 10% запас<br/>(рекомендація QLIXA)</div>
         </div>` : ''}
 
         <div style="font-size:9px;color:#aaa;line-height:1.6;border-top:1px solid #E6F4F5;padding-top:14px">
@@ -240,35 +218,47 @@ export default function RWRCalculator() {
         </div>
       </div>
 
-      <div style="background:#ffffff;padding:10px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #E6F4F5">
-        <img src="${logoSrc}" style="width:110px;height:auto;object-fit:contain;display:block" alt="QLIXA"/>
-        <div style="font-size:10px;color:#595959">Твій цифровий бізнес-помічник в Австрії  |  qlixa.eu</div>
-      </div>
     `
 
     document.body.appendChild(el)
 
-    const loadScript = (src: string) => new Promise<void>(resolve => {
-      const s = document.createElement('script')
-      s.src = src
-      s.onload = () => resolve()
-      document.head.appendChild(s)
-    })
-
-    Promise.all([
-      loadScript('https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js'),
-      loadScript('https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js'),
-    ]).then(() => {
+    loadPDFScripts().then(() => {
       const h2c = (window as any).html2canvas
       const { jsPDF } = (window as any).jspdf
-      h2c(el, { scale: 2, useCORS: true, backgroundColor: '#ffffff' }).then((canvas: HTMLCanvasElement) => {
-        const imgData = canvas.toDataURL('image/png')
-        const pdf = new jsPDF({ format: 'a4', unit: 'mm' })
-        const W = 210
-        const H = (canvas.height * W) / canvas.width
-        pdf.addImage(imgData, 'PNG', 0, 0, W, H)
-        pdf.save('QLIXA_RWR_Rozrakhunok.pdf')
-        document.body.removeChild(el)
+
+      // Render content block
+      h2c(el, { scale: 2, useCORS: true, allowTaint: true, backgroundColor: '#ffffff', logging: false }).then((contentCanvas: HTMLCanvasElement) => {
+
+        // Create footer block
+        const footerEl = document.createElement('div')
+        footerEl.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;background:#fff;font-family:Arial,sans-serif'
+        footerEl.innerHTML = `
+          <div style="background:#ffffff;padding:10px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #E6F4F5">
+            <img src="${logoSrc}" style="width:100px;height:26px;object-fit:contain;object-position:left center;display:block" alt="QLIXA"/>
+            <div style="font-size:10px;color:#595959">Твій цифровий бізнес-помічник в Австрії &nbsp;|&nbsp; qlixa.eu</div>
+          </div>
+        `
+        document.body.appendChild(footerEl)
+
+        h2c(footerEl, { scale: 2, useCORS: true, allowTaint: true, backgroundColor: '#ffffff', logging: false }).then((footerCanvas: HTMLCanvasElement) => {
+          document.body.removeChild(el)
+          document.body.removeChild(footerEl)
+
+          const pdf = new jsPDF({ format: 'a4', unit: 'mm' })
+          const PW = 210
+
+          // Add content
+          const contentImg = contentCanvas.toDataURL('image/png')
+          const contentH = (contentCanvas.height * PW) / contentCanvas.width
+          pdf.addImage(contentImg, 'PNG', 0, 0, PW, contentH)
+
+          // Add footer immediately after content
+          const footerImg = footerCanvas.toDataURL('image/png')
+          const footerH = (footerCanvas.height * PW) / footerCanvas.width
+          pdf.addImage(footerImg, 'PNG', 0, contentH, PW, footerH)
+
+          pdf.save('QLIXA_RWR_Rozrakhunok.pdf')
+        })
       })
     })
   }
