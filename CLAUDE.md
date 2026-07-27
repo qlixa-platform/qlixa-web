@@ -453,3 +453,166 @@ Skills мають постійно розвиватися з реального 
 - дай мені прийняти фінальне рішення
 
 Поважай мої вимоги, але не соромся оскаржувати їх коли це справді покращує продукт.
+
+---
+
+## 📋 ТЕХНІЧНИЙ БОРГ / МАЙБУТНІ ПОКРАЩЕННЯ
+
+### Design Tokens — CSS змінні (ПРІОРИТЕТ перед великим редизайном)
+
+**Проблема зараз:**
+Всі кольори прописані як inline styles в кожному компоненті (`background: '#038390'`).
+Щоб змінити колір — треба шукати по всіх файлах вручну.
+
+**Рішення — перейти на CSS змінні:**
+```css
+/* globals.css */
+:root {
+  --color-primary:    #038390;
+  --color-primary-dark: #026B76;
+  --color-charcoal:   #1A1A1A;
+  --color-white:      #FFFFFF;
+  --color-powder:     #F0F7F8;
+  --color-light-teal: #E6F4F5;
+  --color-gray:       #595959;
+  --color-gray-light: #9D9D9D;
+  --color-yellow:     #F5E642;
+  --color-red:        #CC0000;
+  --color-amber:      #F59E0B;
+  --color-green:      #10B981;
+}
+```
+
+**Тоді в компонентах:**
+```tsx
+background: 'var(--color-primary)'   // замість '#038390'
+color: 'var(--color-charcoal)'       // замість '#1A1A1A'
+```
+
+**Результат:**
+Щоб змінити весь колір сайту — міняєш 1 рядок в 1 файлі.
+
+**Коли робити:** перед запуском або перед великим редизайном.
+**Оцінка часу:** 2–3 години роботи.
+
+---
+
+### Принципи кольорів (до врахування при наступному редизайні)
+
+Уникати чистих кольорів — вони створюють різкий контраст і eye strain.
+Використовувати off-версії:
+
+| Замість | Краще |
+|---------|-------|
+| `#000000` чистий чорний | `#0C0A00`, `#28282B`, `#15161A` |
+| `#FFFFFF` чистий білий | `#FAF9F6`, `#FFFAFA`, `#F0F8FF` |
+| `#FF0000` чистий червоний | `#D21404`, `#E3242B`, `#B90E0A` |
+| `#00FF00` чистий зелений | `#5DBB63`, `#3DED97`, `#AEF359` |
+
+**Наші поточні кольори:**
+- `#1A1A1A` — ✅ вже off-black
+- `#10B981` — ✅ вже off-green  
+- `#FFFFFF` — ⚠️ можна замінити на `#FAF9F6` при редизайні
+- `#CC0000` — ⚠️ можна замінити на `#D21404` при редизайні
+---
+
+## 📰 ПРАВИЛА НОВИХ СТАТЕЙ
+
+### Структура кожної статті — обов'язково
+
+**1. Hero секція — завжди однакова:**
+```tsx
+<section style={{ background: '#F0F7F8', padding: '56px clamp(20px,6vw,80px) 40px' }}>
+  <div style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
+    
+    {/* Ліво — текст */}
+    <div style={{ flex: 1 }}>
+      {/* Теги */}
+      <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
+        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: '#038390', background: 'rgba(3,131,144,0.1)', padding: '4px 12px', borderRadius: 999 }}>КАТЕГОРІЯ</span>
+        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>ПІДКАТЕГОРІЯ</span>
+      </div>
+      {/* Заголовок */}
+      <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
+        Заголовок статті:<br/>
+        <em style={{ color: '#038390', fontStyle: 'italic' }}>підзаголовок</em>
+      </h1>
+      {/* Мета */}
+      <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', fontSize: 13, color: '#888' }}>
+        <span>🕐 X хв читання</span>
+        <span>📅 Місяць 20XX</span>
+        <span>✍️ QLIXA</span>
+      </div>
+    </div>
+
+    {/* Право — фото */}
+    <div style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
+      <img src="/articles/назва-cover.jpg" alt="..." style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
+    </div>
+
+  </div>
+</section>
+```
+
+**2. Контент секція — завжди з трьома колонками:**
+```tsx
+<section style={{ padding: '56px clamp(20px,6vw,80px)' }}>
+  <div style={{ maxWidth: 1060, margin: '0 auto', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
+    
+    <ArticleSidebar currentSlug="slug-статті" />  {/* ліво: всі статті */}
+    
+    <aside style={{ flex: '0 0 200px', position: 'sticky', top: 24, ... }}>
+      {/* Зміст — TOC */}
+    </aside>
+    
+    <div style={{ flex: 1, minWidth: 0 }}>
+      {/* Основний контент */}
+      <ArticlePrevNext currentSlug="slug-статті" />  {/* в кінці */}
+    </div>
+
+  </div>
+</section>
+```
+
+**3. TOC — правила:**
+- Кожен h2 розділ має `id="..."` і `scrollMarginTop: '80px'`
+- TOC aside: `flex: '0 0 200px'`, `position: sticky`, `top: 24`
+- Стиль посилань: колір `#595959`, hover `#038390`
+
+**4. Зображення обкладинки:**
+- Формат: JPG (не PNG)
+- Розмір: до 200KB
+- Розміри: 1536×1024px або подібне співвідношення 3:2
+- Шлях: `public/articles/назва-cover.jpg`
+
+**5. Додавання в три місця — ОБОВ'ЯЗКОВО:**
+Кожна нова стаття додається в:
+1. `src/app/page.tsx` — масив `published` (головна сторінка)
+2. `src/app/articles/page.tsx` — масив `published` (сторінка статей)
+3. `src/app/articles/[slug]/page.tsx` — окрема сторінка статті
+
+**6. Параметри картки статті:**
+```tsx
+{
+  href: '/articles/slug',
+  cover: '/articles/slug-cover.jpg',
+  tag: 'Категорія',
+  date: 'Місяць 20XX',
+  title: 'Заголовок статті',
+  desc: 'Короткий опис до 2 рядків',
+  readTime: 'X хв читання',
+  author: 'QLIXA',
+}
+```
+
+**7. Розміри карток — не змінювати:**
+- Фото: `height: 190px`, `borderRadius: 14`
+- Body grid: `minHeight: 200px`
+- Body slider: `minHeight: 230px`
+- Title: `minHeight: 58-60px`, `flex: none`
+- Desc: `flex: 1`
+
+**8. Персонаж у статтях:**
+- Використовуємо тільки "Ірина" (без прізвища)
+- Відмінюється: Ірини, Ірині, Іриною
+- НЕ писати: Muller, Müller, Ірина Мюллер

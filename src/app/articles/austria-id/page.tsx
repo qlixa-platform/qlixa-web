@@ -130,47 +130,53 @@ export default function AustriaIdPage() {
     <div style={{ minHeight: '100vh', background: 'var(--gray)' }}>
       <Navbar />
 
-      {/* Hero — photo with text overlay */}
-      <div style={{ position: 'relative', height: 340, overflow: 'hidden' }}>
-        <Image
-          src="/articles/austria-id-cover.jpg"
-          alt="Austria ID — цифровий підпис в Австрії"
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
-          priority
-        />
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.18) 35%, rgba(0,0,0,0.78) 100%)',
-        }} />
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px clamp(16px,4vw,40px)', maxWidth: 820, margin: '0 auto' }}>
-          <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
-            <span style={{ background: 'var(--orange)', color: '#fff', fontSize: 10, fontWeight: 700, letterSpacing: '0.5px', padding: '4px 11px', borderRadius: 4 }}>
-              Австрія · Документи
-            </span>
-            <span style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.8)', fontSize: 10, fontWeight: 600, padding: '4px 11px', borderRadius: 4 }}>
-              Самозайнятість
-            </span>
+        {/* Hero */}
+        <section style={{ background: '#F0F7F8', padding: '56px clamp(20px,6vw,80px) 40px' }}>
+          <div style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#038390', background: 'rgba(3,131,144,0.1)', padding: '4px 12px', borderRadius: 999 }}>Австрія · Документи</span>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>5 кроків</span>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>Для іноземців</span>
+              </div>
+              <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
+                Як оформити Austria ID:<br />
+                <em style={{ color: '#038390', fontStyle: 'italic' }}>покроковий гайд для іноземців</em>
+              </h1>
+              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: '#888' }}>
+                <span>🕐 8 хв читання</span>
+                <span>📱 5 кроків</span>
+                <span>🇺🇦 Для іноземців</span>
+              </div>
+            </div>
+            <div style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/articles/austria-id-cover.jpg" alt="Austria ID" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
+            </div>
           </div>
-          <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,3.5vw,32px)', color: '#fff', lineHeight: 1.2, marginBottom: 12, fontWeight: 400 }}>
-            Як оформити Austria ID:<br />
-            <em style={{ color: '#FFB899', fontStyle: 'italic' }}>покроковий гайд для іноземців</em>
-          </h1>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            {[{ icon: '🕐', text: '8 хв читання' }, { icon: '📱', text: '5 кроків' }, { icon: '🇺🇦', text: 'Для іноземців' }].map(m => (
-              <span key={m.text} style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'rgba(255,255,255,0.65)', fontSize: 12 }}>
-                {m.icon} {m.text}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
+        </section>
 
       {/* Article body + sidebar */}
       <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 16px 80px', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
 
         {/* Sidebar */}
         <ArticleSidebar currentSlug="austria-id" />
+        <aside style={{ flex: '0 0 200px', position: 'sticky' as const, top: 24, alignSelf: 'flex-start' as const, background: '#F0F7F8', borderRadius: 16, padding: '20px', fontSize: 13 }}>
+          <div style={{ fontWeight: 700, color: '#038390', marginBottom: 12, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>Зміст</div>
+          {[
+            ['#what', 'Що таке Austria ID'],
+            ['#why', 'Навіщо іноземцю'],
+            ['#nongradients', 'Для не-громадян'],
+            ['#steps', 'Покрокова інструкція'],
+            ['#next', 'Що далі'],
+          ].map(([href, label]) => (
+            <a key={href} href={href} style={{ display: 'block', color: '#595959', textDecoration: 'none', padding: '5px 0', borderBottom: '1px solid rgba(3,131,144,0.08)', lineHeight: 1.4 }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#595959'}>
+              {label}
+            </a>
+          ))}
+        </aside>
 
         {/* Main content */}
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -181,7 +187,7 @@ export default function AustriaIdPage() {
         </Link>
 
         {/* What is Austria ID */}
-        <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16 }}>
+        <h2 id="what" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16, scrollMarginTop: '80px' }}>
           Що таке Austria ID і навіщо вона <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>потрібна?</em>
         </h2>
 
@@ -204,7 +210,7 @@ export default function AustriaIdPage() {
         </div>
 
         {/* For whom */}
-        <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16 }}>
+        <h2 id="why" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16, scrollMarginTop: '80px' }}>
           Навіщо вона потрібна <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>іноземцю?</em>
         </h2>
         <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 24 }}>
@@ -224,7 +230,7 @@ export default function AustriaIdPage() {
         </div>
 
         {/* Warning for non-citizens */}
-        <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16 }}>
+        <h2 id="nongradients" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16, scrollMarginTop: '80px' }}>
           Важливо для <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>не-громадян Австрії</em>
         </h2>
 
@@ -250,7 +256,7 @@ export default function AustriaIdPage() {
         </div>
 
         {/* Steps */}
-        <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: '32px 0 16px' }}>
+        <h2 id="steps" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: '32px 0 16px', scrollMarginTop: '80px' }}>
           Покрокова інструкція: як <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>оформити Austria ID</em>
         </h2>
         <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 24 }}>
@@ -268,7 +274,7 @@ export default function AustriaIdPage() {
         </div>
 
         {/* What next */}
-        <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16 }}>
+        <h2 id="next" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16, scrollMarginTop: '80px' }}>
           Що робити <em style={{ fontStyle: 'italic', color: 'var(--orange)' }}>далі?</em>
         </h2>
         <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 24 }}>

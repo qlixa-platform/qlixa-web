@@ -28,9 +28,9 @@ function ExtLink({ href, children }: { href: string; children: React.ReactNode }
   )
 }
 
-function StepCard({ n, title, children }: { n: number; title: string; children: React.ReactNode }) {
+function StepCard({ n, title, children, id }: { n: number; title: string; children: React.ReactNode; id?: string }) {
   return (
-    <div style={{ marginBottom: 32 }}>
+    <div id={id} style={{ marginBottom: 32, scrollMarginTop: '80px' }}>
       <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
         <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 14, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 2 }}>
           {n}
@@ -68,47 +68,52 @@ export default function InvalidityChildPage() {
     <div style={{ minHeight: '100vh', background: 'var(--gray)' }}>
       <Navbar />
 
-      {/* Hero — photo with text overlay */}
-      <div style={{ position: 'relative', height: 340, overflow: 'hidden' }}>
-        <Image
-          src="/articles/invalidity-cover.jpg"
-          alt="Інвалідність дитини в Австрії"
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center 30%' }}
-          priority
-        />
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.2) 35%, rgba(0,0,0,0.78) 100%)',
-        }} />
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px clamp(16px,4vw,40px)', maxWidth: 820, margin: '0 auto' }}>
-          <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
-            <span style={{ background: 'var(--orange)', color: '#fff', fontSize: 10, fontWeight: 700, letterSpacing: '0.5px', padding: '4px 11px', borderRadius: 4 }}>
-              Сім&apos;я · Пільги
-            </span>
-            <span style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.8)', fontSize: 10, fontWeight: 600, padding: '4px 11px', borderRadius: 4 }}>
-              4 кроки · Повний гайд
-            </span>
+        {/* Hero */}
+        <section style={{ background: '#F0F7F8', padding: '56px clamp(20px,6vw,80px) 40px' }}>
+          <div style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#038390', background: 'rgba(3,131,144,0.1)', padding: '4px 12px', borderRadius: 999 }}>Сім&apos;я · Пільги</span>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>4 кроки</span>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>Для батьків</span>
+              </div>
+              <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
+                Інвалідність дитини в Австрії:<br />
+                <em style={{ color: '#038390', fontStyle: 'italic' }}>виплати, пільги та з чого почати</em>
+              </h1>
+              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: '#888' }}>
+                <span>🕐 10 хв читання</span>
+                <span>👨‍👩‍👧 Для батьків</span>
+                <span>🇺🇦 Для іноземців</span>
+              </div>
+            </div>
+            <div style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/articles/invalidity-cover.jpg" alt="Інвалідність дитини в Австрії" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
+            </div>
           </div>
-          <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(20px,3.2vw,30px)', color: '#fff', lineHeight: 1.2, marginBottom: 12, fontWeight: 400 }}>
-            Інвалідність дитини в Австрії:<br />
-            <em style={{ color: '#FFB899', fontStyle: 'italic' }}>виплати, пільги та з чого почати</em>
-          </h1>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            {[{ icon: '🕐', text: '10 хв читання' }, { icon: '👨‍👩‍👧', text: 'Для батьків' }, { icon: '🇺🇦', text: 'Для іноземців' }].map(m => (
-              <span key={m.text} style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'rgba(255,255,255,0.65)', fontSize: 12 }}>
-                {m.icon} {m.text}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
+        </section>
 
       {/* Article body + sidebar */}
       <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 16px 80px', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
 
         {/* Sidebar */}
         <ArticleSidebar currentSlug="invalidity-child" />
+        <aside style={{ flex: '0 0 200px', position: 'sticky' as const, top: 24, alignSelf: 'flex-start' as const, background: '#F0F7F8', borderRadius: 16, padding: '20px', fontSize: 13 }}>
+          <div style={{ fontWeight: 700, color: '#038390', marginBottom: 12, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>Зміст</div>
+          {[
+            ['#step1', 'Behindertenpass'],
+            ['#step2', 'Підвищена Familienbeihilfe'],
+            ['#step3', 'Pflegegeld'],
+            ['#step4', 'Податкові пільги'],
+          ].map(([href, label]) => (
+            <a key={href} href={href} style={{ display: 'block', color: '#595959', textDecoration: 'none', padding: '5px 0', borderBottom: '1px solid rgba(3,131,144,0.08)', lineHeight: 1.4 }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#595959'}>
+              {label}
+            </a>
+          ))}
+        </aside>
 
         {/* Main content */}
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -130,7 +135,7 @@ export default function InvalidityChildPage() {
           </div>
 
           {/* STEP 1 */}
-          <StepCard n={1} title="Австрійський Behindertenpass">
+          <StepCard id="step1" n={1} title="Австрійський Behindertenpass">
             <p style={{ fontSize: 14, lineHeight: 1.8, color: 'var(--charcoal)', marginBottom: 14 }}>
               Українське посвідчення інваліда в Австрії юридично не діє. Кожна країна ЄС проводить власну оцінку. Тож перший крок — отримати австрійський <strong>Behindertenpass</strong> — офіційну картку з фотографією, відсотком інвалідності та додатковими позначками.
             </p>
@@ -182,7 +187,7 @@ export default function InvalidityChildPage() {
           </StepCard>
 
           {/* STEP 2 */}
-          <StepCard n={2} title="Підвищена Familienbeihilfe (додатково до звичайної)">
+          <StepCard id="step2" n={2} title="Підвищена Familienbeihilfe (додатково до звичайної)">
             <p style={{ fontSize: 14, lineHeight: 1.8, color: 'var(--charcoal)', marginBottom: 10 }}>
               Після підтвердження ступеня інвалідності від 50% відкривається право на підвищену Familienbeihilfe.
             </p>
@@ -215,7 +220,7 @@ export default function InvalidityChildPage() {
           </StepCard>
 
           {/* STEP 3 */}
-          <StepCard n={3} title="Pflegegeld — допомога по догляду">
+          <StepCard id="step3" n={3} title="Pflegegeld — допомога по догляду">
             <p style={{ fontSize: 14, lineHeight: 1.8, color: 'var(--charcoal)', marginBottom: 14 }}>
               Якщо дитина потребує постійного догляду — є ще одна виплата. <strong>Pflegegeld</strong> не залежить від доходу і призначена на покриття витрат, пов&apos;язаних безпосередньо з доглядом.
             </p>
@@ -231,7 +236,7 @@ export default function InvalidityChildPage() {
           </StepCard>
 
           {/* STEP 4 */}
-          <StepCard n={4} title="Податкові пільги">
+          <StepCard id="step4" n={4} title="Податкові пільги">
             <p style={{ fontSize: 14, lineHeight: 1.8, color: 'var(--charcoal)', marginBottom: 16 }}>
               Якщо ви платите податки в Австрії — є суттєвий плюс: податкові відрахування на дитину з інвалідністю.
             </p>

@@ -3,6 +3,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import RWRCalculator from '@/components/RWRCalculator'
+import { ArticleSidebar, ArticlePrevNext } from '@/components/layout/ArticleNav'
 
 export default function RWRKartePage() {
   return (
@@ -36,7 +37,7 @@ export default function RWRKartePage() {
 
             {/* Right — photo */}
             <div style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
-              <img src="/articles/rwr-karte-cover.png" alt="RWR+ Karte" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
+              <img src="/articles/rwr-karte-cover.jpg" alt="RWR+ Karte" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
             </div>
 
           </div>
@@ -44,7 +45,8 @@ export default function RWRKartePage() {
 
         {/* Content */}
         <section style={{ padding: '56px clamp(20px,6vw,80px)' }}>
-          <div style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'flex-start' }}>
+          <div style={{ maxWidth: 1060, margin: '0 auto', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
+            <ArticleSidebar currentSlug="rwr-karte" />
 
             {/* Table of contents — sticky sidebar */}
             <aside style={{ flex: '0 0 220px', position: 'sticky' as const, top: 24, alignSelf: 'flex-start' as const, background: '#F0F7F8', borderRadius: 16, padding: '20px 20px', fontSize: 13 }}>
@@ -235,7 +237,7 @@ export default function RWRKartePage() {
                     <p style={{ fontSize: 13, color: '#595959', lineHeight: 1.6, marginBottom: 16 }}>
                       Нижче — приклад Gewinnbestätigung, яку Ірина підготувала самостійно і подала до магістрату. Це лише приклад для ознайомлення. Дані і цифри відносяться виключно до ситуації вигаданого персонажа Ірина. Не використовуйте як шаблон.
                     </p>
-                    <a href="/articles/muller-gewinnbestatigung.pdf" target="_blank" rel="noopener noreferrer"
+                    <a href="/articles/iryna-gewinnbestatigung.pdf" target="_blank" rel="noopener noreferrer"
                       style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '10px 20px', background: '#038390', color: 'white', borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: 'none' }}>
                       📄 Переглянути приклад довідки (PDF)
                     </a>
@@ -442,6 +444,7 @@ export default function RWRKartePage() {
             </div>
           </div>
         </section>
+        <ArticlePrevNext currentSlug="rwr-karte" />
       </main>
       <Footer />
     </>

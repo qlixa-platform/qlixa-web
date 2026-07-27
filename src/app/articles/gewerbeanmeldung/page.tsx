@@ -145,60 +145,57 @@ export default function GewerbeanmeldungPage() {
     <div style={{ minHeight: '100vh', background: 'var(--gray)' }}>
       <Navbar />
 
-      {/* Hero — photo with text overlay */}
-      <div style={{ position: 'relative', height: 340, overflow: 'hidden' }}>
-        <Image
-          src="/articles/gewerbeanmeldung-cover.jpg"
-          alt="Gewerbeanmeldung в Австрії"
-          fill
-          style={{ objectFit: 'cover', objectPosition: 'center 35%' }}
-          priority
-        />
-        {/* Gradient overlay */}
-        <div style={{
-          position: 'absolute', inset: 0,
-          background: 'linear-gradient(to bottom, rgba(0,0,0,0.05) 0%, rgba(0,0,0,0.15) 35%, rgba(0,0,0,0.78) 100%)',
-        }} />
-        {/* Text on top */}
-        <div style={{
-          position: 'absolute', bottom: 0, left: 0, right: 0,
-          padding: '28px clamp(16px,4vw,40px)',
-          maxWidth: 820, margin: '0 auto',
-        }}>
-          <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
-            <span style={{
-              background: 'var(--orange)', color: '#fff',
-              fontSize: 10, fontWeight: 700, letterSpacing: '0.5px',
-              padding: '4px 11px', borderRadius: 4,
-            }}>Реєстрація бізнесу</span>
-            <span style={{
-              background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.8)',
-              fontSize: 10, fontWeight: 600, padding: '4px 11px', borderRadius: 4,
-            }}>9 кроків · Повний гайд</span>
+        {/* Hero */}
+        <section style={{ background: '#F0F7F8', padding: '56px clamp(20px,6vw,80px) 40px' }}>
+          <div style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#038390', background: 'rgba(3,131,144,0.1)', padding: '4px 12px', borderRadius: 999 }}>Реєстрація бізнесу</span>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>9 кроків</span>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>Повний гайд</span>
+              </div>
+              <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
+                Gewerbeanmeldung в Австрії:<br />
+                <em style={{ color: '#038390', fontStyle: 'italic' }}>покрокова реєстрація самозайнятості</em>
+              </h1>
+              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: '#888' }}>
+                <span>🕐 15 хв читання</span>
+                <span>🆓 Freies Gewerbe — 0 €</span>
+                <span>🇺🇦 Для іноземців</span>
+              </div>
+            </div>
+            <div style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/articles/gewerbeanmeldung-cover.jpg" alt="Gewerbeanmeldung в Австрії" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
+            </div>
           </div>
-          <h1 style={{
-            fontFamily: 'DM Serif Display, serif',
-            fontSize: 'clamp(22px,3.5vw,32px)',
-            color: '#fff', lineHeight: 1.2, marginBottom: 12, fontWeight: 400,
-          }}>
-            Gewerbeanmeldung в Австрії:<br />
-            <em style={{ color: '#FFB899', fontStyle: 'italic' }}>покрокова реєстрація самозайнятості</em>
-          </h1>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            {[{ icon: '🕐', text: '15 хв читання' }, { icon: '🆓', text: 'Freies Gewerbe — 0 €' }, { icon: '🇺🇦', text: 'Для іноземців' }].map(m => (
-              <span key={m.text} style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'rgba(255,255,255,0.65)', fontSize: 12 }}>
-                {m.icon} {m.text}
-              </span>
-            ))}
-          </div>
-        </div>
-      </div>
+        </section>
 
       {/* Article body + sidebar */}
       <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 16px 80px', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
 
         {/* Sidebar */}
         <ArticleSidebar currentSlug="gewerbeanmeldung" />
+        <aside style={{ flex: '0 0 200px', position: 'sticky' as const, top: 24, alignSelf: 'flex-start' as const, background: '#F0F7F8', borderRadius: 16, padding: '20px', fontSize: 13 }}>
+          <div style={{ fontWeight: 700, color: '#038390', marginBottom: 12, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>Зміст</div>
+          {[
+            ['#step1', 'Вид діяльності'],
+            ['#step2', 'Документи'],
+            ['#step3', 'Austria ID'],
+            ['#step4', 'Реєстрація GISA'],
+            ['#step5', 'Реєстрація SVS'],
+            ['#step6', 'FinanzOnline'],
+            ['#step7', 'SEPA'],
+            ['#step8', 'Пенсійний фонд MVK'],
+            ['#step9', 'WKO'],
+          ].map(([href, label]) => (
+            <a key={href} href={href} style={{ display: 'block', color: '#595959', textDecoration: 'none', padding: '5px 0', borderBottom: '1px solid rgba(3,131,144,0.08)', lineHeight: 1.4 }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#595959'}>
+              {label}
+            </a>
+          ))}
+        </aside>
 
         {/* Main content */}
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -227,7 +224,7 @@ export default function GewerbeanmeldungPage() {
         <div style={{ marginBottom: 40 }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 18 }}>
             <StepBadge n={1} />
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>
+            <h2 id="step1" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>
               Визначитися з видом діяльності
             </h2>
           </div>
@@ -262,7 +259,7 @@ export default function GewerbeanmeldungPage() {
         <div style={{ marginBottom: 40 }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 18 }}>
             <StepBadge n={2} />
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>
+            <h2 id="step2" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>
               Підготувати документи заздалегідь
             </h2>
           </div>
@@ -306,7 +303,7 @@ export default function GewerbeanmeldungPage() {
         <div style={{ marginBottom: 40 }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 18 }}>
             <StepBadge n={3} />
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>
+            <h2 id="step3" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>
               Оформити Austria ID
             </h2>
           </div>
@@ -332,7 +329,7 @@ export default function GewerbeanmeldungPage() {
         <div style={{ marginBottom: 40 }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 18 }}>
             <StepBadge n={4} />
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>
+            <h2 id="step4" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>
               Реєстрація на сайті GISA
             </h2>
           </div>
@@ -356,7 +353,7 @@ export default function GewerbeanmeldungPage() {
         <div style={{ marginBottom: 40 }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 18 }}>
             <StepBadge n={5} />
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>
+            <h2 id="step5" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>
               Реєстрація в SVS
             </h2>
           </div>
@@ -379,7 +376,7 @@ export default function GewerbeanmeldungPage() {
         <div style={{ marginBottom: 40 }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 18 }}>
             <StepBadge n={6} />
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>
+            <h2 id="step6" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>
               Реєстрація у FinanzOnline
             </h2>
           </div>
@@ -405,7 +402,7 @@ export default function GewerbeanmeldungPage() {
         <div style={{ marginBottom: 40 }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 18 }}>
             <StepBadge n={7} />
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>
+            <h2 id="step7" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>
               Налаштувати SEPA-Lastschriftmandat
             </h2>
           </div>
@@ -420,7 +417,7 @@ export default function GewerbeanmeldungPage() {
         <div style={{ marginBottom: 40 }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 18 }}>
             <StepBadge n={8} />
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>
+            <h2 id="step8" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>
               Вибір пенсійного фонду MVK
             </h2>
           </div>
@@ -441,7 +438,7 @@ export default function GewerbeanmeldungPage() {
         <div style={{ marginBottom: 48 }}>
           <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 18 }}>
             <StepBadge n={9} />
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>
+            <h2 id="step9" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>
               Зареєструватися у WKO вашого району
             </h2>
           </div>
@@ -462,8 +459,8 @@ export default function GewerbeanmeldungPage() {
         }}>
           <div style={{ position: 'absolute', width: 180, height: 180, borderRadius: '50%', background: 'var(--orange)', opacity: 0.08, top: -40, right: -40 }} />
           <div style={{ position: 'relative', zIndex: 1 }}>
-            <Image src="/logos/logo-bird.svg" alt="QLIXA" width={80} height={65}
-              style={{ margin: '0 auto 18px', display: 'block' }} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/logos/favicon-planet-black.svg" alt="QLIXA" style={{ width: 40, height: 40, objectFit: 'contain', margin: '0 auto 18px', display: 'block' }} />
             <h2 style={{
               fontFamily: 'DM Serif Display, serif', fontSize: 30, color: 'var(--charcoal)',
               marginBottom: 16, lineHeight: 1.3,
@@ -471,9 +468,7 @@ export default function GewerbeanmeldungPage() {
               А тепер — починай заробляти! 🚀
             </h2>
             <p style={{ color: 'var(--text2)', fontSize: 16, maxWidth: 500, margin: '0 auto 28px', lineHeight: 1.8 }}>
-              А найкращий спосіб тримати фінанси під контролем — це <strong style={{ color: 'var(--charcoal)' }}>QLIXA</strong>.{' '}
-              Все одним кліком і зрозумілою мовою: рахунки, клієнти, склад, прогнози внесків і податків та автоматична звітність.{' '}
-              Без стресу і складних термінів — просто спокійно ведеш бізнес.
+              А про організацію цифр подбає <strong style={{ color: 'var(--charcoal)' }}>QLIXA</strong>. Рахунки, клієнти, склад, прогнози внесків і податків, звіти та інші цифрові інструменти — усе в одному місці, зрозумілою мовою і без зайвої бюрократії.
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
 <Link href="/pricing" style={{
@@ -481,7 +476,7 @@ export default function GewerbeanmeldungPage() {
                 background: 'transparent', color: 'var(--charcoal)', border: '2px solid var(--charcoal)',
                 textDecoration: 'none', display: 'inline-block',
               }}>
-                QLIXA — твоя бухгалтерія в Австрії
+                QLIXA — твій цифровий помічник для бізнесу в Австрії.
               </Link>
             </div>
             <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: 11, marginTop: 16 }}>

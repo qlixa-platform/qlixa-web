@@ -102,30 +102,53 @@ export default function GisaFormularPage() {
     <div style={{ minHeight: '100vh', background: 'var(--gray)' }}>
       <Navbar />
 
-      {/* Hero */}
-      <div style={{ position: 'relative', height: 340, overflow: 'hidden' }}>
-        <Image src="/articles/gisa-cover.jpg" alt="Реєстрація на сайті GISA" fill style={{ objectFit: 'cover', objectPosition: 'center 35%' }} priority />
-        <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to bottom, rgba(0,0,0,0.04) 0%, rgba(0,0,0,0.18) 35%, rgba(0,0,0,0.78) 100%)' }} />
-        <div style={{ position: 'absolute', bottom: 0, left: 0, right: 0, padding: '28px clamp(16px,4vw,40px)', maxWidth: 820, margin: '0 auto' }}>
-          <div style={{ display: 'flex', gap: 8, marginBottom: 14, flexWrap: 'wrap' }}>
-            <span style={{ background: 'var(--orange)', color: '#fff', fontSize: 10, fontWeight: 700, letterSpacing: '0.5px', padding: '4px 11px', borderRadius: 4 }}>GISA · Реєстрація</span>
-            <span style={{ background: 'rgba(255,255,255,0.15)', color: 'rgba(255,255,255,0.8)', fontSize: 10, fontWeight: 600, padding: '4px 11px', borderRadius: 4 }}>Покрокова інструкція</span>
+        {/* Hero */}
+        <section style={{ background: '#F0F7F8', padding: '56px clamp(20px,6vw,80px) 40px' }}>
+          <div style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
+            <div style={{ flex: 1 }}>
+              <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#038390', background: 'rgba(3,131,144,0.1)', padding: '4px 12px', borderRadius: 999 }}>GISA · Реєстрація</span>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>6 кроків</span>
+                <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>Для іноземців</span>
+              </div>
+              <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
+                Реєстрація на сайті GISA:<br />
+                <em style={{ color: '#038390', fontStyle: 'italic' }}>покрокова інструкція</em>
+              </h1>
+              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: '#888' }}>
+                <span>🕐 15 хв читання</span>
+                <span>💻 6 кроків</span>
+                <span>🇺🇦 Для іноземців</span>
+              </div>
+            </div>
+            <div style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/articles/gisa-cover.jpg" alt="Реєстрація на сайті GISA" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
+            </div>
           </div>
-          <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,3.5vw,32px)', color: '#fff', lineHeight: 1.2, marginBottom: 12, fontWeight: 400 }}>
-            Реєстрація на сайті GISA:<br />
-            <em style={{ color: '#FFB899', fontStyle: 'italic' }}>покрокова інструкція</em>
-          </h1>
-          <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap' }}>
-            {[{ icon: '🕐', text: '15 хв читання' }, { icon: '💻', text: '6 кроків' }, { icon: '🇺🇦', text: 'Для іноземців' }].map(m => (
-              <span key={m.text} style={{ display: 'flex', alignItems: 'center', gap: 6, color: 'rgba(255,255,255,0.65)', fontSize: 12 }}>{m.icon} {m.text}</span>
-            ))}
-          </div>
-        </div>
-      </div>
+        </section>
 
       {/* Body + sidebar */}
       <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 16px 80px', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
         <ArticleSidebar currentSlug="gisa-formular" />
+        <aside style={{ flex: '0 0 200px', position: 'sticky' as const, top: 24, alignSelf: 'flex-start' as const, background: '#F0F7F8', borderRadius: 16, padding: '20px', fontSize: 13 }}>
+          <div style={{ fontWeight: 700, color: '#038390', marginBottom: 12, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>Зміст</div>
+          {[
+            ['#step1', 'Заходимо на сайт'],
+            ['#step2', 'Тип заявника'],
+            ['#step3', 'Персональні дані'],
+            ['#step4', 'Вид діяльності'],
+            ['#step5', 'Перевірка даних'],
+            ['#step6', 'Реєстрацію завершено'],
+            ['#summary', 'Підсумок'],
+          ].map(([href, label]) => (
+            <a key={href} href={href} style={{ display: 'block', color: '#595959', textDecoration: 'none', padding: '5px 0', borderBottom: '1px solid rgba(3,131,144,0.08)', lineHeight: 1.4 }}
+              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#595959'}>
+              {label}
+            </a>
+          ))}
+        </aside>
         <div style={{ flex: 1, minWidth: 0 }}>
           <Link href="/articles" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text3)', textDecoration: 'none', marginBottom: 32 }}>← Всі статті</Link>
 
@@ -135,7 +158,7 @@ export default function GisaFormularPage() {
               У цій статті ми детально, простою мовою розберемо, як пройти <strong>реєстрацію на сайті GISA</strong> — подати заяву про відкриття підприємницької діяльності (<strong>Gewerbeanmeldung</strong>).
             </p>
             <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)' }}>
-              📌 <strong>Приклад:</strong> Ірина Müller, яка реєструється як самозайнята в сфері IT (вільна професія).
+              📌 <strong>Приклад:</strong> Ірина, яка реєструється як самозайнята в сфері IT (вільна професія).
             </p>
           </div>
 
@@ -143,7 +166,7 @@ export default function GisaFormularPage() {
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
               <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 13, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>1</div>
-              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>Заходимо на сайт</h2>
+              <h2 id="step1" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>Заходимо на сайт</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
               <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 12 }}>Перейдіть за посиланням:</p>
@@ -169,7 +192,7 @@ export default function GisaFormularPage() {
               </div>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 10 }}>Що обираємо ми?</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>Для Ірина Müller обираємо перший варіант — <strong>mit ID Austria beantragen</strong>. Після натискання система перенаправить вас на авторизацію через <strong>ID Austria</strong>.</p>
+              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>Для Ірини обираємо перший варіант — <strong>mit ID Austria beantragen</strong>. Після натискання система перенаправить вас на авторизацію через <strong>ID Austria</strong>.</p>
               <NoteBox type="tip">
                 <strong>Важлива порада:</strong> якщо у вас ще немає ID Austria, обовязково отримайте її перед початком реєстрації. Без неї процес буде довшим і складнішим.{' '}
                 <Link href="/articles/austria-id" style={{ color: 'var(--orange)', fontWeight: 600 }}>📖 Як оформити Austria ID: покроковий гайд →</Link>
@@ -182,7 +205,7 @@ export default function GisaFormularPage() {
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
               <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 13, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>2</div>
-              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>Вибір типу заявника</h2>
+              <h2 id="step2" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>Вибір типу заявника</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
               <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 16 }}>Після натискання <strong>«mit ID Austria beantragen»</strong> і авторизації відкривається друга сторінка.</p>
@@ -199,7 +222,7 @@ export default function GisaFormularPage() {
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--orange)', marginBottom: 6 }}>Головне питання: Wer stellt den Antrag?</h3>
               <p style={{ fontSize: 13, color: 'var(--text2)', marginBottom: 12 }}>Переклад: «Хто подає заяву?» Тут потрібно обрати, від кого саме йде реєстрація.</p>
 
-              <OptionItem selected de="1. Natürliche Person (auch e.U. = im Firmenbuch eingetragenes Einzelunternehmen)" tr="Фізична особа (в тому числі e.U. — одноосібне підприємство)" desc="<strong>Це ваш варіант.</strong> Ви реєструєтеся як звичайна людина, яка хоче працювати на себе. e.U. — це саме те, що буде у Ірина Müller після реєстрації (Einzelunternehmen — одноосібне підприємство)." />
+              <OptionItem selected de="1. Natürliche Person (auch e.U. = im Firmenbuch eingetragenes Einzelunternehmen)" tr="Фізична особа (в тому числі e.U. — одноосібне підприємство)" desc="<strong>Це ваш варіант.</strong> Ви реєструєтеся як звичайна людина, яка хоче працювати на себе. e.U. — це саме те, що буде у Ірини після реєстрації (Einzelunternehmen — одноосібне підприємство)." />
               <OptionItem de="2. Natürliche Person mit Geschäftsführungsbestellung" tr="Фізична особа з призначенням керівника" desc="Використовується, коли ви є директором в уже існуючій компанії (наприклад, GmbH). <strong>Нам це не підходить.</strong>" />
               <OptionItem de="3. Juristische Person (AG, GmbH, KG, OG, etc.)" tr="Юридична особа (АТ, ТОВ, командитне товариство тощо)" desc="Це для компаній, а не для окремої людини. <strong>Нам не потрібно.</strong>" />
 
@@ -208,7 +231,7 @@ export default function GisaFormularPage() {
               <OptionItem selected de="Ohne Vertretung" desc="Без представника. <strong>Ви подаєте заяву самостійно.</strong> Оберіть цей варіант." />
               <OptionItem de="Mit Vertretung (Vollmacht)" desc="Через представника з довіреністю. <strong>Нам не потрібно.</strong>" />
 
-              <NoteBox type="ok">Для Ірина Müller обираємо: <strong>Natürliche Person</strong> + <strong>Ohne Vertretung</strong>. Після вибору натискайте кнопку <strong>«Weiter»</strong> (Далі).</NoteBox>
+              <NoteBox type="ok">Для Ірини обираємо: <strong>Natürliche Person</strong> + <strong>Ohne Vertretung</strong>. Після вибору натискайте кнопку <strong>«Weiter»</strong> (Далі).</NoteBox>
               <NoteBox type="info">На цьому етапі система вже може автоматично підтягнути ваші дані (ПІБ, дата народження) завдяки ID Austria. Якщо щось не підтягнулося — перевірте.</NoteBox>
               <p style={{ fontSize: 12, color: 'var(--text3)', fontStyle: 'italic', marginTop: 14 }}>Готово для другої сторінки! Переходимо на третю сторінку.</p>
             </div>
@@ -218,7 +241,7 @@ export default function GisaFormularPage() {
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
               <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 13, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>3</div>
-              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>Персональні дані підприємця</h2>
+              <h2 id="step3" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>Персональні дані підприємця</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
               <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 10 }}>Після авторизації через ID Austria система автоматично відкриє розділ <strong>Daten</strong> (Дані). Більшість особистих даних вже підтягнулися автоматично. Вам залишається лише <strong>перевірити їх правильність</strong> та за потреби доповнити контактною інформацією.</p>
@@ -227,7 +250,7 @@ export default function GisaFormularPage() {
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 8 }}>Aufenthalt — Проживання в Австрії</h3>
               <QuoteBlock de="Die gewerbeberechtigte Person hat in den letzten fünf Jahren durchgehend in Österreich gewohnt." ua="«Чи проживала особа безперервно в Австрії протягом останніх п'яти років?»" />
               <YesNo yesLabel="Якщо ви проживаєте в Австрії понад 5 років" noLabel="Якщо ви переїхали менш ніж 5 років тому — наш випадок" selected="nein" />
-              <NoteBox type="info">У нашому прикладі Ірина Müller проживає в Австрії менше 5 років — обираємо <strong>Nein</strong>. Це нормально і не є проблемою для реєстрації бізнесу. На наступних етапах система може попросити додаткові документи.</NoteBox>
+              <NoteBox type="info">У нашому прикладі Ірина проживає в Австрії менше 5 років — обираємо <strong>Nein</strong>. Це нормально і не є проблемою для реєстрації бізнесу. На наступних етапах система може попросити додаткові документи.</NoteBox>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>Österreichische Sozialversicherungsnummer</h3>
               <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 14 }}>Це ваш <strong>австрійський номер соціального страхування</strong>. У більшості випадків він підтягується автоматично. Якщо поле порожнє — номер можна знайти на вашій <strong>e-card</strong> або в документах від <strong>ÖGK</strong> чи <strong>SVS</strong>.</p>
@@ -250,11 +273,11 @@ export default function GisaFormularPage() {
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
               <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 13, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>4</div>
-              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>Вибір виду діяльності та адреси бізнесу</h2>
+              <h2 id="step4" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>Вибір виду діяльності та адреси бізнесу</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
               <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 10 }}>Відкривається сторінка <strong>Angaben zum Gewerbe</strong> (Відомості про підприємницьку діяльність). Саме тут ми повідомляємо державі: чим будемо займатися, з якої дати починаємо, де знаходиться наш бізнес.</p>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 16 }}>Для прикладу продовжимо реєстрацію для Ірина Müller, яка працюватиме як самозайнята IT-фахівчиня.</p>
+              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 16 }}>Для прикладу продовжимо реєстрацію для Ірини, яка працюватиме як самозайнята IT-фахівчиня.</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 10 }}>Gewerbewortlaut — вид діяльності</h3>
               <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>У верхній частині сторінки знаходиться поле: <strong>Suche nach Gewerbewortlaut</strong>. Введіть ключове слово та натисніть <strong>«Gewerbewortlaut suchen»</strong>.</p>
@@ -267,7 +290,7 @@ export default function GisaFormularPage() {
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 8 }}>Чи потрібно обмежувати вид діяльності?</h3>
               <QuoteBlock de="Möchten Sie den Umfang des Gewerbes einschränken?" ua="«Чи бажаєте ви обмежити обсяг своєї діяльності?»" />
-              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>Для більшості нових підприємців робити цього не потрібно. Ірина Müller хоче мати можливість у майбутньому надавати різні IT-послуги без додаткових змін у реєстрації. Тому обираємо:</p>
+              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>Для більшості нових підприємців робити цього не потрібно. Ірина хоче мати можливість у майбутньому надавати різні IT-послуги без додаткових змін у реєстрації. Тому обираємо:</p>
               <YesNo yesLabel="Якщо хочете свідомо звузити перелік послуг" noLabel="Стандартний варіант для більшості фрилансерів та самозайнятих" selected="nein" />
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>Anmeldung gültig ab — дата початку діяльності</h3>
@@ -285,14 +308,14 @@ export default function GisaFormularPage() {
               <FieldRow label="Straße" value="Назва вулиці" />
               <FieldRow label="Hausnummer" value="Номер будинку" />
               <FieldRow label="Tür" value="Номер квартири (за наявності)" />
-              <NoteBox type="info">Оскільки Ірина Müller працює віддалено з дому — вона вказує свою <strong>фактичну адресу проживання</strong> в Австрії. Для більшості фрилансерів це стандартна практика і <strong>не потребує окремого офісу</strong>.</NoteBox>
+              <NoteBox type="info">Оскільки Ірина працює віддалено з дому — вона вказує свою <strong>фактичну адресу проживання</strong> в Австрії. Для більшості фрилансерів це стандартна практика і <strong>не потребує окремого офісу</strong>.</NoteBox>
 
               <p style={{ fontSize: 14, marginTop: 14, marginBottom: 8 }}>Перевіряємо:</p>
               <CheckList items={['Правильність обраного Gewerbe', 'Дату початку діяльності', 'Адресу бізнесу']} />
               <p style={{ fontSize: 14, marginTop: 14 }}>Після цього натискаємо <strong>Weiter</strong>.</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>Підтвердження відсутності обмежень</h3>
-              <OptionItem selected de="Gegen mich liegen keine Gewerbeausschlussgründe vor" tr="Щодо мене не існує підстав для заборони ведення підприємницької діяльності" desc="Для нашого прикладу з Ірина Müller обираємо цей варіант." />
+              <OptionItem selected de="Gegen mich liegen keine Gewerbeausschlussgründe vor" tr="Щодо мене не існує підстав для заборони ведення підприємницької діяльності" desc="Для нашого прикладу обираємо цей варіант." />
               <OptionItem de="Mir wurde eine Nachsicht erteilt" desc="Використовується лише в особливих випадках, коли людина раніше мала обмеження для ведення бізнесу, але отримала офіційний дозвіл. <strong>Не наш варіант.</strong>" />
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>Eidesstattliche Erklärung — Заява під присягою</h3>
@@ -316,7 +339,7 @@ export default function GisaFormularPage() {
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
               <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 11, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>5–6</div>
-              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>Перевірка даних та відправка заяви</h2>
+              <h2 id="step5" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>Перевірка даних та відправка заяви</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
               <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 14 }}>На цій сторінці система показує <strong>підсумок усіх даних</strong>, які ви внесли під час реєстрації. Уважно перевірте:</p>
@@ -341,7 +364,7 @@ export default function GisaFormularPage() {
           <div style={{ marginBottom: 32 }}>
             <div style={{ display: 'flex', alignItems: 'flex-start', gap: 14, marginBottom: 16 }}>
               <div style={{ width: 36, height: 36, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontWeight: 700, fontSize: 16, flexShrink: 0, display: 'flex', alignItems: 'center', justifyContent: 'center', marginTop: 2 }}>✓</div>
-              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4 }}>Реєстрацію завершено — що далі?</h2>
+              <h2 id="step6" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>Реєстрацію завершено — що далі?</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
               <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 12 }}>Після натискання кнопки <strong>Senden</strong> ваша заява буде передана до компетентного органу. Якщо всі дані заповнені правильно та не потрібні додаткові документи, зазвичай протягом кількох днів ви отримаєте електронний лист із підтвердженням реєстрації та вашим <strong>номером GISA</strong>.</p>
@@ -380,7 +403,7 @@ export default function GisaFormularPage() {
 
           {/* Підсумок */}
           <div style={{ background: 'var(--peach-light)', borderRadius: 14, padding: 22, border: '1px solid var(--orange-mid)', marginBottom: 32 }}>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, color: 'var(--charcoal)', marginBottom: 16 }}>Підсумок: що ми зробили</h2>
+            <h2 id="summary" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, color: 'var(--charcoal)', marginBottom: 16, scrollMarginTop: '80px' }}>Підсумок: що ми зробили</h2>
             {summarySteps.map((step, i) => (
               <div key={i} style={{ display: 'flex', gap: 12, marginBottom: 10, alignItems: 'flex-start' }}>
                 <div style={{ width: 24, height: 24, borderRadius: '50%', background: 'var(--orange)', color: '#fff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>{i + 1}</div>

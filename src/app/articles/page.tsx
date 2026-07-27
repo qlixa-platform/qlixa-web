@@ -8,7 +8,7 @@ import Link from 'next/link'
 const published = [
   {
     href: '/articles/rwr-karte',
-    cover: '/articles/rwr-karte-cover.png',
+    cover: '/articles/rwr-karte-cover.jpg',
     tag: 'Гайд',
     date: '2026-07-21',
     title: 'Як підготуватися до подачі на RWR+ карту',
