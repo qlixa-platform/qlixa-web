@@ -48,6 +48,18 @@ const published = [
   },
 ]
 
+// Слайдшоу на екрані ноутбука в Hero (тільки UA версія поки що)
+const HERO_SCREEN_SLIDES = [
+  '/hero-icons-animation/CLIENTS.png',
+  '/hero-icons-animation/DEADLINES.png',
+  '/hero-icons-animation/FINANZONLINE.png',
+  '/hero-icons-animation/INVOICES.png',
+  '/hero-icons-animation/KPI.png',
+  '/hero-icons-animation/TAX%20REFUND.png',
+  '/hero-icons-animation/TAX%20REPORTS.png',
+]
+const HERO_SLIDE_DURATION = 4 // секунд на одну картинку
+
 const upcoming = [
   { tag: 'SVS', title: 'Як заповнити формуляр SVS', desc: 'Соціальне страхування — що вказати щоб не переплатити.', href: '/articles/svs-formular' },
   { tag: 'FinanzOnline', title: 'Як заповнити формуляр FinanzOnline', desc: 'Реєстрація в податковій онлайн — покроково.', href: '/articles/finanz-online' },
@@ -97,6 +109,7 @@ export default function HomePage() {
         @keyframes langPop { from{opacity:0;transform:scale(0.7);} to{opacity:1;transform:scale(1);} }
         @keyframes updatePulse { 0%,100%{transform:scale(1);opacity:0.5;} 50%{transform:scale(1.6);opacity:1;} }
         @keyframes barFill { 0%{width:0%;} 80%{width:100%;} 100%{width:100%;} }
+        @keyframes heroSlideFade { 0%{opacity:0;} 3%{opacity:1;} 17%{opacity:1;} 20%{opacity:0;} 100%{opacity:0;} }
         .hiw-card { background:#fff; border-radius:22px; padding:36px 28px; transition:transform 0.2s,box-shadow 0.2s; position:relative; overflow:hidden }
         .hiw-card:hover { transform:translateY(-6px); box-shadow:0 16px 48px rgba(0,0,0,0.10) }
         .hiw-card:hover::before { opacity:1 }
@@ -228,11 +241,11 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
-      <section style={{ background: '#F0F7F8', backgroundImage: `url(/${heroBg}.webp)`, backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const }}>
+      <section style={{ background: '#FFFFFF', backgroundImage: heroBg === 'hero-background-ua' ? undefined : `url(/${heroBg}.webp)`, backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const }}>
         <div style={{ width: '100%' }}>
 
           {/* LEFT — text */}
-          <div style={{ display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', gap: 0 }}>
+          <div style={{ display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', gap: 0, maxWidth: 640 }}>
 
             {/* Badge */}
             <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20, display: 'inline-block', padding: '4px 12px', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 999, background: 'rgba(3,131,144,0.07)', width: 'fit-content' }}>
@@ -318,23 +331,59 @@ export default function HomePage() {
 
         </div>
 
-        {/* Girl image — overflows into navbar */}
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src="/hero-girl.png"
-          alt=""
-          style={{
-            position: 'absolute',
-            right: 'clamp(0px, 5vw, 80px)',
-            bottom: 0,
-            height: '115%',
-            width: 'auto',
-            objectFit: 'contain',
-            objectPosition: 'bottom',
-            zIndex: 50,
-            pointerEvents: 'none',
-          }}
-        />
+        {/* Girl + laptop image with animated screen overlay (UA only for now) */}
+        {heroBg === 'hero-background-ua' && (
+          <div
+            style={{
+              position: 'absolute',
+              right: 'clamp(0px, 5vw, 80px)',
+              bottom: 0,
+              height: '115%',
+              aspectRatio: '1889 / 1156',
+              pointerEvents: 'none',
+            }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/hero-background-girl-ua.png"
+              alt=""
+              style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
+            />
+
+            {/* Screen slideshow — координати виміряні відносно оригінального фото (1889×1156) */}
+            <div
+              style={{
+                position: 'absolute',
+                left: '32.24%',
+                top: '44.98%',
+                width: '18.00%',
+                height: '29.24%',
+                overflow: 'hidden',
+                transform: 'rotate(5deg)',
+                transformOrigin: 'center center',
+              }}
+            >
+              {HERO_SCREEN_SLIDES.map((src, i) => (
+                // eslint-disable-next-line @next/next/no-img-element
+                <img
+                  key={src}
+                  src={src}
+                  alt=""
+                  style={{
+                    position: 'absolute',
+                    inset: 0,
+                    width: '100%',
+                    height: '100%',
+                    objectFit: 'contain',
+                    opacity: 0,
+                    animation: `heroSlideFade ${HERO_SCREEN_SLIDES.length * HERO_SLIDE_DURATION}s ease-in-out infinite`,
+                    animationDelay: `${-i * HERO_SLIDE_DURATION}s`,
+                  }}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </section>
       {/* ── END HERO2 ── */}
 
