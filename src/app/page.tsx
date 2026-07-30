@@ -241,7 +241,41 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
-      <section style={{ background: '#FFFFFF', backgroundImage: heroBg === 'hero-background-ua' ? undefined : `url(/${heroBg}.webp)`, backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const }}>
+      <section style={{ background: '#FFFFFF', backgroundImage: heroBg === 'hero-background-ua' ? undefined : `url(/${heroBg}.webp)`, backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const, zIndex: 0 }}>
+
+        {/* Decorative powder half-circle behind the girl image */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            right: '-12%',
+            top: '50%',
+            transform: 'translateY(-50%)',
+            width: 'min(62vw, 900px)',
+            aspectRatio: '1 / 1',
+            borderRadius: '50%',
+            background: '#F0F7F8',
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+        />
+
+        {/* Decorative dot grid */}
+        <div
+          aria-hidden
+          style={{
+            position: 'absolute',
+            right: '28%',
+            top: '18%',
+            width: 160,
+            height: 120,
+            backgroundImage: 'radial-gradient(rgba(3,131,144,0.35) 1.6px, transparent 1.6px)',
+            backgroundSize: '18px 18px',
+            pointerEvents: 'none',
+            zIndex: 0,
+          }}
+        />
+
         <div style={{ width: '100%' }}>
 
           {/* LEFT — text */}
@@ -257,10 +291,20 @@ export default function HomePage() {
               Разом розберемось з податками,
             </h1>
 
-            {/* H1 line 2 — dark highlighted */}
-            <div style={{ marginBottom: 20 }}>
-              <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.2vw,48px)', fontWeight: 700, fontStyle: 'italic', color: '#ffffff', background: '#1A1A1A', padding: '2px 16px 6px', borderRadius: 6, lineHeight: 1.2, letterSpacing: '-0.5px', display: 'inline' }}>
-                фінансами та бізнесом
+            {/* H1 line 2 — teal text with hand-drawn underline */}
+            <div style={{ marginBottom: 28 }}>
+              <span style={{ position: 'relative', display: 'inline-block' }}>
+                <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.2vw,48px)', fontWeight: 700, fontStyle: 'italic', color: '#038390', lineHeight: 1.2, letterSpacing: '-0.5px' }}>
+                  фінансами та бізнесом
+                </span>
+                <svg
+                  viewBox="0 0 300 20"
+                  preserveAspectRatio="none"
+                  aria-hidden
+                  style={{ position: 'absolute', left: 2, right: 0, bottom: -14, width: 'calc(100% - 4px)', height: 16 }}
+                >
+                  <path d="M2,12 C60,3 120,18 180,8 C220,1 260,15 298,5" stroke="#038390" strokeWidth="4" fill="none" strokeLinecap="round" />
+                </svg>
               </span>
             </div>
 
@@ -388,9 +432,9 @@ export default function HomePage() {
       {/* ── END HERO2 ── */}
 
       {/* ── TICKER (replaces stats bar) ── */}
-      <div className="ticker-wrap" style={{ background: '#1A1A1A', padding: '14px 0', overflow: 'hidden', position: 'relative', borderTop: '1px solid rgba(255,255,255,0.06)' }}>
-        <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: 80, background: 'linear-gradient(to right, #1A1A1A, transparent)', zIndex: 2 }} />
-        <div style={{ position: 'absolute', top: 0, bottom: 0, right: 0, width: 80, background: 'linear-gradient(to left, #1A1A1A, transparent)', zIndex: 2 }} />
+      <div className="ticker-wrap" style={{ background: '#FFFFFF', padding: '14px 0', overflow: 'hidden', position: 'relative', borderTop: '1px solid #E6F4F5', borderBottom: '1px solid #E6F4F5' }}>
+        <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: 80, background: 'linear-gradient(to right, #FFFFFF, transparent)', zIndex: 2 }} />
+        <div style={{ position: 'absolute', top: 0, bottom: 0, right: 0, width: 80, background: 'linear-gradient(to left, #FFFFFF, transparent)', zIndex: 2 }} />
         <div className="ticker-track">
           {[...Array(2)].flatMap(() => [
             { text: '🌍 4 мови' },
@@ -406,8 +450,9 @@ export default function HomePage() {
             { text: '🚀 Постійно розвиваємось і додаємо нові можливості' },
             { text: '🧠 Ми знаємо, як це важко — тому зробили максимально просто' },
           ]).map((item, i) => (
-            <div key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '0 28px', fontSize: 18, color: 'rgba(255,255,255,0.7)', whiteSpace: 'nowrap', borderRight: '1px solid rgba(255,255,255,0.07)' }}>
+            <div key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '0 24px', fontSize: 16, fontWeight: 500, color: '#1A1A1A', whiteSpace: 'nowrap' }}>
               {item.text}
+              <span style={{ color: '#038390', opacity: 0.4, marginLeft: 16 }}>|</span>
             </div>
           ))}
         </div>
