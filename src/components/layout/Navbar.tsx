@@ -8,29 +8,152 @@ type NavLink = { label: string; href: string }
 type NavDropdown = { label: string; items: { label: string; href: string; desc: string }[] }
 type NavItem = NavLink | NavDropdown
 
-const navItems: NavItem[] = [
-  {
-    label: 'Як працює',
-    items: [
-      { label: 'Огляд Платформи', href: '/platform/overview', desc: 'Що вміє QLIXA' },
-      { label: 'Рахунки-фактури', href: '/how-it-works/invoicing', desc: 'Виставляй рахунки швидко' },
-      { label: 'Витрати', href: '/how-it-works/expenses', desc: 'Відстежуй всі витрати' },
-      { label: 'Звіти', href: '/how-it-works/reports', desc: 'Звітність одним кліком' },
-      { label: 'Клієнти', href: '/how-it-works/clients', desc: 'Керуй контактами' },
-      { label: 'Повернення податку', href: '/how-it-works/tax-return', desc: 'Знайди всі свої списання' },
-      { label: 'FinanzOnline', href: '/how-it-works/finanzOnline', desc: 'Без паніки та складних форм' },
-      { label: 'Дедлайни', href: '/how-it-works/deadlines', desc: 'Жодного пропущеного терміну' },
-    ],
-  },
-  {
-    label: 'Для кого',
-    href: '/#для-кого',
-  },
-  {
-    label: 'Статті',
-    href: '/articles',
-  },
+const HOW_ITEMS_HREFS = [
+  '/platform/overview',
+  '/how-it-works/invoicing',
+  '/how-it-works/expenses',
+  '/how-it-works/reports',
+  '/how-it-works/clients',
+  '/how-it-works/tax-return',
+  '/how-it-works/finanzOnline',
+  '/how-it-works/deadlines',
 ]
+
+// Переклади навбару — всі 4 мови
+const NAV_TEXT: Record<string, {
+  dropdownLabel: string
+  dropdownItems: [string, string][] // [label, desc] пар, порядок відповідає HOW_ITEMS_HREFS
+  forWhom: string
+  articles: string
+  pricing: string
+  login: string
+  searchPlaceholder: string
+  searching: (q: string) => string
+  loginTitlePrefix: string // "Увійти до " + QLIXA (QLIXA завжди окремо, стилізовано)
+  email: string
+  password: string
+  forgotPassword: string
+  loginBtn: string
+  noAccount: string
+  signUp: string
+}> = {
+  UA: {
+    dropdownLabel: 'Як працює',
+    dropdownItems: [
+      ['Огляд Платформи', 'Що вміє QLIXA'],
+      ['Рахунки-фактури', 'Виставляй рахунки швидко'],
+      ['Витрати', 'Відстежуй всі витрати'],
+      ['Звіти', 'Звітність одним кліком'],
+      ['Клієнти', 'Керуй контактами'],
+      ['Повернення податку', 'Знайди всі свої списання'],
+      ['FinanzOnline', 'Без паніки та складних форм'],
+      ['Дедлайни', 'Жодного пропущеного терміну'],
+    ],
+    forWhom: 'Для кого',
+    articles: 'Статті',
+    pricing: 'Тарифи',
+    login: 'Увійти',
+    searchPlaceholder: 'Пошук статей, гайдів...',
+    searching: (q) => `Шукаємо «${q}»...`,
+    loginTitlePrefix: 'Увійти до ',
+    email: 'Email',
+    password: 'Пароль',
+    forgotPassword: 'Забули пароль?',
+    loginBtn: 'Увійти',
+    noAccount: 'Немає акаунту?',
+    signUp: 'Зареєструватись',
+  },
+  RU: {
+    dropdownLabel: 'Как работает',
+    dropdownItems: [
+      ['Обзор платформы', 'Что умеет QLIXA'],
+      ['Счета-фактуры', 'Выставляй счета быстро'],
+      ['Расходы', 'Отслеживай все расходы'],
+      ['Отчёты', 'Отчётность в один клик'],
+      ['Клиенты', 'Управляй контактами'],
+      ['Возврат налога', 'Найди все свои списания'],
+      ['FinanzOnline', 'Без паники и сложных форм'],
+      ['Дедлайны', 'Ни одного пропущенного срока'],
+    ],
+    forWhom: 'Для кого',
+    articles: 'Статьи',
+    pricing: 'Тарифы',
+    login: 'Войти',
+    searchPlaceholder: 'Поиск статей, гайдов...',
+    searching: (q) => `Ищем «${q}»...`,
+    loginTitlePrefix: 'Войти в ',
+    email: 'Email',
+    password: 'Пароль',
+    forgotPassword: 'Забыли пароль?',
+    loginBtn: 'Войти',
+    noAccount: 'Нет аккаунта?',
+    signUp: 'Зарегистрироваться',
+  },
+  EN: {
+    dropdownLabel: 'How it works',
+    dropdownItems: [
+      ['Platform Overview', 'What QLIXA can do'],
+      ['Invoicing', 'Issue invoices fast'],
+      ['Expenses', 'Track all your expenses'],
+      ['Reports', 'Reporting in one click'],
+      ['Clients', 'Manage your contacts'],
+      ['Tax Refund', 'Find all your deductions'],
+      ['FinanzOnline', 'No panic, no complex forms'],
+      ['Deadlines', 'Never miss a deadline'],
+    ],
+    forWhom: 'For Whom',
+    articles: 'Articles',
+    pricing: 'Pricing',
+    login: 'Log in',
+    searchPlaceholder: 'Search articles, guides...',
+    searching: (q) => `Searching for "${q}"...`,
+    loginTitlePrefix: 'Log in to ',
+    email: 'Email',
+    password: 'Password',
+    forgotPassword: 'Forgot password?',
+    loginBtn: 'Log in',
+    noAccount: "Don't have an account?",
+    signUp: 'Sign up',
+  },
+  DE: {
+    dropdownLabel: 'So funktioniert’s',
+    dropdownItems: [
+      ['Plattform-Überblick', 'Was QLIXA kann'],
+      ['Rechnungen', 'Rechnungen schnell erstellen'],
+      ['Ausgaben', 'Alle Ausgaben im Blick'],
+      ['Berichte', 'Berichte mit einem Klick'],
+      ['Kunden', 'Kontakte verwalten'],
+      ['Steuerrückerstattung', 'Finde alle deine Abzüge'],
+      ['FinanzOnline', 'Keine Panik, keine komplizierten Formulare'],
+      ['Fristen', 'Keine Frist mehr verpassen'],
+    ],
+    forWhom: 'Für wen',
+    articles: 'Artikel',
+    pricing: 'Preise',
+    login: 'Anmelden',
+    searchPlaceholder: 'Artikel, Anleitungen suchen...',
+    searching: (q) => `Suche nach „${q}“...`,
+    loginTitlePrefix: 'Bei ',
+    email: 'E-Mail',
+    password: 'Passwort',
+    forgotPassword: 'Passwort vergessen?',
+    loginBtn: 'Anmelden',
+    noAccount: 'Noch kein Konto?',
+    signUp: 'Registrieren',
+  },
+}
+
+function getNavItems(lang: string): NavItem[] {
+  const t = NAV_TEXT[lang] || NAV_TEXT.UA
+  return [
+    {
+      label: t.dropdownLabel,
+      items: t.dropdownItems.map(([label, desc], i) => ({ label, desc, href: HOW_ITEMS_HREFS[i] })),
+    },
+    { label: t.forWhom, href: '/#для-кого' },
+    { label: t.articles, href: '/articles' },
+  ]
+}
 
 function Dropdown({ item, isOpen, onToggle }: {
   item: NavDropdown
@@ -93,9 +216,10 @@ function Dropdown({ item, isOpen, onToggle }: {
   )
 }
 
-function SearchModal({ onClose }: { onClose: () => void }) {
+function SearchModal({ onClose, lang }: { onClose: () => void; lang: string }) {
   const [query, setQuery] = useState('')
   const inputRef = useRef<HTMLInputElement>(null)
+  const t = NAV_TEXT[lang] || NAV_TEXT.UA
 
   useEffect(() => {
     inputRef.current?.focus()
@@ -126,7 +250,7 @@ function SearchModal({ onClose }: { onClose: () => void }) {
             <path d="M12.5 12.5L16 16" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round"/>
           </svg>
           <input ref={inputRef} value={query} onChange={e => setQuery(e.target.value)}
-            placeholder="Пошук статей, гайдів..."
+            placeholder={t.searchPlaceholder}
             style={{ flex: 1, fontSize: 14, outline: 'none', background: 'transparent', color: 'var(--charcoal)', border: 'none', fontFamily: 'DM Sans, sans-serif' }}
           />
           <button onClick={onClose} style={{
@@ -138,18 +262,18 @@ function SearchModal({ onClose }: { onClose: () => void }) {
         <div style={{ padding: '12px 16px' }}>
           {!query && (
             <div style={{ display: 'flex', flexWrap: 'wrap', gap: 8 }}>
-              {['Gewerbeanmeldung', 'Austria ID', 'SVS', 'FinanzOnline'].map(t => (
-                <button key={t} onClick={() => setQuery(t)} style={{
+              {['Gewerbeanmeldung', 'Austria ID', 'SVS', 'FinanzOnline'].map(tag => (
+                <button key={tag} onClick={() => setQuery(tag)} style={{
                   fontSize: 12, padding: '6px 12px', borderRadius: 999,
                   border: '1px solid var(--line2)', color: 'var(--text2)',
                   background: 'transparent', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
-                }}>{t}</button>
+                }}>{tag}</button>
               ))}
             </div>
           )}
           {query && (
             <p style={{ fontSize: 13, color: 'var(--text3)' }}>
-              Шукаємо «{query}»...
+              {t.searching(query)}
             </p>
           )}
         </div>
@@ -158,9 +282,10 @@ function SearchModal({ onClose }: { onClose: () => void }) {
   )
 }
 
-function LoginModal({ onClose }: { onClose: () => void }) {
+function LoginModal({ onClose, lang }: { onClose: () => void; lang: string }) {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
+  const t = NAV_TEXT[lang] || NAV_TEXT.UA
 
   useEffect(() => {
     function handleKey(e: KeyboardEvent) { if (e.key === 'Escape') onClose() }
@@ -183,7 +308,7 @@ function LoginModal({ onClose }: { onClose: () => void }) {
         <div style={{ padding: '20px 24px 16px', borderBottom: '1px solid var(--line)' }}>
           <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
             <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, color: 'var(--charcoal)' }}>
-              Увійти до <em style={{ color: 'var(--orange)', fontStyle: 'italic' }}>QLIXA</em>
+              {t.loginTitlePrefix}<em style={{ color: 'var(--orange)', fontStyle: 'italic' }}>QLIXA</em>
             </h2>
             <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}>
               <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
@@ -195,7 +320,7 @@ function LoginModal({ onClose }: { onClose: () => void }) {
         <div style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 14 }}>
           <div>
             <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text2)', marginBottom: 6 }}>
-              Email
+              {t.email}
             </label>
             <input type="email" value={email} onChange={e => setEmail(e.target.value)}
               placeholder="you@example.com"
@@ -209,8 +334,8 @@ function LoginModal({ onClose }: { onClose: () => void }) {
           </div>
           <div>
             <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 6 }}>
-              <label style={{ fontSize: 12, fontWeight: 500, color: 'var(--text2)' }}>Пароль</label>
-              <Link href="/forgot-password" style={{ fontSize: 12, color: 'var(--orange)' }}>Забули пароль?</Link>
+              <label style={{ fontSize: 12, fontWeight: 500, color: 'var(--text2)' }}>{t.password}</label>
+              <Link href="/forgot-password" style={{ fontSize: 12, color: 'var(--orange)' }}>{t.forgotPassword}</Link>
             </div>
             <input type="password" value={password} onChange={e => setPassword(e.target.value)}
               placeholder="••••••••"
@@ -227,135 +352,15 @@ function LoginModal({ onClose }: { onClose: () => void }) {
             background: 'var(--orange)', color: '#fff', border: 'none', cursor: 'pointer',
             fontFamily: 'DM Sans, sans-serif',
           }}>
-            Увійти
+            {t.loginBtn}
           </button>
           <p style={{ textAlign: 'center', fontSize: 12, color: 'var(--text3)' }}>
-            Немає акаунту?{' '}
+            {t.noAccount}{' '}
             <Link href="/register" style={{ color: 'var(--orange)', fontWeight: 600 }} onClick={onClose}>
-              Зареєструватись
+              {t.signUp}
             </Link>
           </p>
         </div>
-      </div>
-    </div>
-  )
-}
-
-function FreeTrialModal({ onClose }: { onClose: () => void }) {
-  const [form, setForm] = useState({ firstName: '', lastName: '', email: '' })
-  const [sent, setSent] = useState(false)
-
-  useEffect(() => {
-    function handleKey(e: KeyboardEvent) { if (e.key === 'Escape') onClose() }
-    document.addEventListener('keydown', handleKey)
-    return () => document.removeEventListener('keydown', handleKey)
-  }, [onClose])
-
-  function handleSubmit(e: React.FormEvent) {
-    e.preventDefault()
-    setSent(true)
-  }
-
-  return (
-    <div className="modal-overlay" style={{
-      position: 'fixed', inset: 0, zIndex: 50,
-      display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 16,
-      background: 'rgba(53,52,52,0.5)',
-    }}
-      onClick={e => { if (e.target === e.currentTarget) onClose() }}
-    >
-      <div className="modal-box" style={{
-        width: '100%', maxWidth: 380, background: '#fff',
-        borderRadius: 16, overflow: 'hidden', boxShadow: 'var(--shadow2)',
-      }}>
-        {!sent ? (
-          <>
-            <div style={{ padding: '20px 24px 16px', background: 'var(--peach-light)', borderBottom: '1px solid var(--line)' }}>
-              <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-                <div>
-                  <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.1em', textTransform: 'uppercase', color: 'var(--orange)', marginBottom: 6 }}>
-                    Безкоштовно
-                  </div>
-                  <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, color: 'var(--charcoal)' }}>
-                    Спробувати <em style={{ color: 'var(--orange)', fontStyle: 'italic' }}>QLIXA</em>
-                  </h2>
-                </div>
-                <button onClick={onClose} style={{ background: 'none', border: 'none', cursor: 'pointer', padding: 4 }}>
-                  <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
-                    <path d="M4 4l10 10M14 4L4 14" stroke="var(--text3)" strokeWidth="1.5" strokeLinecap="round"/>
-                  </svg>
-                </button>
-              </div>
-            </div>
-            <form onSubmit={handleSubmit} style={{ padding: '20px 24px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-              <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-                <div>
-                  <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text2)', marginBottom: 5 }}>Ім&apos;я</label>
-                  <input required type="text" value={form.firstName}
-                    onChange={e => setForm({ ...form, firstName: e.target.value })}
-                    placeholder="Anna"
-                    style={{ width: '100%', padding: '10px 12px', borderRadius: 8, fontSize: 13, border: '1px solid var(--line2)', outline: 'none', fontFamily: 'DM Sans, sans-serif' }}
-                    onFocus={e => e.target.style.borderColor = 'var(--orange)'}
-                    onBlur={e => e.target.style.borderColor = 'var(--line2)'}
-                  />
-                </div>
-                <div>
-                  <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text2)', marginBottom: 5 }}>Прізвище</label>
-                  <input required type="text" value={form.lastName}
-                    onChange={e => setForm({ ...form, lastName: e.target.value })}
-                    placeholder="Müller"
-                    style={{ width: '100%', padding: '10px 12px', borderRadius: 8, fontSize: 13, border: '1px solid var(--line2)', outline: 'none', fontFamily: 'DM Sans, sans-serif' }}
-                    onFocus={e => e.target.style.borderColor = 'var(--orange)'}
-                    onBlur={e => e.target.style.borderColor = 'var(--line2)'}
-                  />
-                </div>
-              </div>
-              <div>
-                <label style={{ display: 'block', fontSize: 12, fontWeight: 500, color: 'var(--text2)', marginBottom: 5 }}>Email</label>
-                <input required type="email" value={form.email}
-                  onChange={e => setForm({ ...form, email: e.target.value })}
-                  placeholder="you@example.com"
-                  style={{ width: '100%', padding: '10px 12px', borderRadius: 8, fontSize: 13, border: '1px solid var(--line2)', outline: 'none', fontFamily: 'DM Sans, sans-serif' }}
-                  onFocus={e => e.target.style.borderColor = 'var(--orange)'}
-                  onBlur={e => e.target.style.borderColor = 'var(--line2)'}
-                />
-              </div>
-              <button type="submit" style={{
-                width: '100%', padding: '12px', borderRadius: 999, fontSize: 14, fontWeight: 700,
-                background: 'var(--orange)', color: '#fff', border: 'none', cursor: 'pointer',
-                fontFamily: 'DM Sans, sans-serif', marginTop: 4,
-              }}>
-                Отримати доступ →
-              </button>
-              <p style={{ textAlign: 'center', fontSize: 11, color: 'var(--text3)' }}>
-                Без спаму. Тільки дані для тестового доступу.
-              </p>
-            </form>
-          </>
-        ) : (
-          <div style={{ padding: '40px 24px', textAlign: 'center' }}>
-            <div style={{
-              width: 56, height: 56, borderRadius: '50%', background: 'var(--success-bg)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px',
-            }}>
-              <svg width="28" height="28" viewBox="0 0 28 28" fill="none">
-                <path d="M6 14l6 6 10-10" stroke="var(--success)" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
-              </svg>
-            </div>
-            <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, marginBottom: 8 }}>
-              Чудово, <em style={{ color: 'var(--orange)', fontStyle: 'italic' }}>{form.firstName}!</em>
-            </h3>
-            <p style={{ fontSize: 13, color: 'var(--text2)', marginBottom: 20, lineHeight: 1.6 }}>
-              Ми надішлемо дані для доступу на <strong>{form.email}</strong> протягом 24 годин.
-            </p>
-            <button onClick={onClose} style={{
-              padding: '10px 24px', borderRadius: 999, fontSize: 13, fontWeight: 700,
-              background: 'var(--orange)', color: '#fff', border: 'none', cursor: 'pointer',
-            }}>
-              Закрити
-            </button>
-          </div>
-        )}
       </div>
     </div>
   )
@@ -365,7 +370,6 @@ export default function Navbar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [showSearch, setShowSearch] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
-  const [showTrial, setShowTrial] = useState(false)
 
   const [lang, setLang] = React.useState<string>('UA');
 
@@ -381,6 +385,9 @@ export default function Navbar() {
       window.dispatchEvent(new Event('qlixa-lang-change'));
     }
   };
+
+  const navItems = getNavItems(lang);
+  const t = NAV_TEXT[lang] || NAV_TEXT.UA;
 
   function toggleDropdown(label: string) {
     setOpenDropdown(prev => prev === label ? null : label)
@@ -413,7 +420,7 @@ export default function Navbar() {
                     padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
                     color: '#9D9D9D', textDecoration: 'none',
                   }}
-                    onClick={item.label === 'Для кого' ? () => { const el = document.getElementById('для-кого'); if (el) el.scrollIntoView({ behavior: 'smooth' }); } : undefined}
+                    onClick={(item as NavLink).href === '/#для-кого' ? () => { const el = document.getElementById('для-кого'); if (el) el.scrollIntoView({ behavior: 'smooth' }); } : undefined}
                     onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
                     onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
                   >
@@ -433,7 +440,7 @@ export default function Navbar() {
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
               >
-                Тарифи
+                {t.pricing}
               </Link>
             </div>
 
@@ -478,7 +485,7 @@ export default function Navbar() {
                 color: '#9D9D9D', border: '1px solid #9D9D9D',
                 background: 'transparent', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
               }}>
-                Увійти
+                {t.login}
               </button>
             </div>
 
@@ -486,9 +493,8 @@ export default function Navbar() {
         </div>
       </nav>
 
-      {showSearch && <SearchModal onClose={() => setShowSearch(false)} />}
-      {showLogin && <LoginModal onClose={() => setShowLogin(false)} />}
-      {showTrial && <FreeTrialModal onClose={() => setShowTrial(false)} />}
+      {showSearch && <SearchModal onClose={() => setShowSearch(false)} lang={lang} />}
+      {showLogin && <LoginModal onClose={() => setShowLogin(false)} lang={lang} />}
     </>
   )
 }
