@@ -4,7 +4,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArticleSidebar, ArticlePrevNext } from '@/components/layout/ArticleNav'
+import { ArticleSidebar, ArticlePrevNext, ArticleTOC } from '@/components/layout/ArticleNav'
 
 function NoteBox({ type, children }: { type: 'warning' | 'info' | 'tip'; children: React.ReactNode }) {
   const s = {
@@ -161,25 +161,17 @@ export default function AustriaIdPage() {
 
         {/* Sidebar */}
         <ArticleSidebar currentSlug="austria-id" />
-        <aside style={{ flex: '0 0 200px', position: 'sticky' as const, top: 24, alignSelf: 'flex-start' as const, background: '#F0F7F8', borderRadius: 16, padding: '20px', fontSize: 13 }}>
-          <div style={{ fontWeight: 700, color: '#038390', marginBottom: 12, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>Зміст</div>
-          {[
+
+        {/* Main content */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+
+          <ArticleTOC items={[
             ['#what', 'Що таке Austria ID'],
             ['#why', 'Навіщо іноземцю'],
             ['#nongradients', 'Для не-громадян'],
             ['#steps', 'Покрокова інструкція'],
             ['#next', 'Що далі'],
-          ].map(([href, label]) => (
-            <a key={href} href={href} style={{ display: 'block', color: '#595959', textDecoration: 'none', padding: '5px 0', borderBottom: '1px solid rgba(3,131,144,0.08)', lineHeight: 1.4 }}
-              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#595959'}>
-              {label}
-            </a>
-          ))}
-        </aside>
-
-        {/* Main content */}
-        <div style={{ flex: 1, minWidth: 0 }}>
+          ]} />
 
         {/* Back link */}
         <Link href="/articles" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text3)', textDecoration: 'none', marginBottom: 32 }}>

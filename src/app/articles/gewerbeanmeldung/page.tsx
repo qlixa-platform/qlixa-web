@@ -4,7 +4,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArticleSidebar, ArticlePrevNext } from '@/components/layout/ArticleNav'
+import { ArticleSidebar, ArticlePrevNext, ArticleTOC } from '@/components/layout/ArticleNav'
 
 function StepBadge({ n }: { n: number }) {
   return (
@@ -176,9 +176,11 @@ export default function GewerbeanmeldungPage() {
 
         {/* Sidebar */}
         <ArticleSidebar currentSlug="gewerbeanmeldung" />
-        <aside style={{ flex: '0 0 200px', position: 'sticky' as const, top: 24, alignSelf: 'flex-start' as const, background: '#F0F7F8', borderRadius: 16, padding: '20px', fontSize: 13 }}>
-          <div style={{ fontWeight: 700, color: '#038390', marginBottom: 12, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>Зміст</div>
-          {[
+
+        {/* Main content */}
+        <div style={{ flex: 1, minWidth: 0 }}>
+
+          <ArticleTOC items={[
             ['#step1', 'Вид діяльності'],
             ['#step2', 'Документи'],
             ['#step3', 'Austria ID'],
@@ -188,17 +190,7 @@ export default function GewerbeanmeldungPage() {
             ['#step7', 'SEPA'],
             ['#step8', 'Пенсійний фонд MVK'],
             ['#step9', 'WKO'],
-          ].map(([href, label]) => (
-            <a key={href} href={href} style={{ display: 'block', color: '#595959', textDecoration: 'none', padding: '5px 0', borderBottom: '1px solid rgba(3,131,144,0.08)', lineHeight: 1.4 }}
-              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#595959'}>
-              {label}
-            </a>
-          ))}
-        </aside>
-
-        {/* Main content */}
-        <div style={{ flex: 1, minWidth: 0 }}>
+          ]} />
 
         {/* Disclaimer */}
           <div style={{ background: '#FFF8E7', border: '1px solid rgba(245,166,35,0.3)', borderRadius: 12, padding: '16px 20px', marginBottom: 32, fontSize: 13, color: '#595959', lineHeight: 1.6 }}>

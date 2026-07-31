@@ -3,7 +3,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import RWRCalculator from '@/components/RWRCalculator'
-import { ArticleSidebar, ArticlePrevNext } from '@/components/layout/ArticleNav'
+import { ArticleSidebar, ArticlePrevNext, ArticleTOC } from '@/components/layout/ArticleNav'
 
 export default function RWRKartePage() {
   return (
@@ -48,10 +48,10 @@ export default function RWRKartePage() {
           <div style={{ maxWidth: 1060, margin: '0 auto', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
             <ArticleSidebar currentSlug="rwr-karte" />
 
-            {/* Table of contents — sticky sidebar */}
-            <aside style={{ flex: '0 0 220px', position: 'sticky' as const, top: 24, alignSelf: 'flex-start' as const, background: '#F0F7F8', borderRadius: 16, padding: '20px 20px', fontSize: 13 }}>
-              <div style={{ fontWeight: 700, color: '#038390', marginBottom: 12, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>Зміст</div>
-              {[
+            {/* Main article */}
+            <div style={{ flex: 1, minWidth: 0 }}>
+
+              <ArticleTOC items={[
                 ['#start', 'З чого почати'],
                 ['#docs', 'Список документів'],
                 ['#income', 'Підтвердження доходу'],
@@ -61,17 +61,7 @@ export default function RWRKartePage() {
                 ['#kids', 'Документи для дітей'],
                 ['#tips', 'Поради'],
                 ['#checklist', 'Завантажити чекліст'],
-              ].map(([href, label]) => (
-                <a key={href} href={href} style={{ display: 'block', color: '#595959', textDecoration: 'none', padding: '5px 0', borderBottom: '1px solid rgba(3,131,144,0.08)', lineHeight: 1.4 }}
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#595959'}>
-                  {label}
-                </a>
-              ))}
-            </aside>
-
-            {/* Main article */}
-            <div style={{ flex: 1, minWidth: 0 }}>
+              ]} />
 
               {/* Disclaimer */}
               <div style={{ background: '#FFF8E7', border: '1px solid rgba(245,166,35,0.3)', borderRadius: 12, padding: '16px 20px', marginBottom: 32, fontSize: 13, color: '#595959', lineHeight: 1.6 }}>

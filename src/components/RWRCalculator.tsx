@@ -14,7 +14,7 @@ function fmt(n: number) {
 function IconCircle({ children }: { children: ReactNode }) {
   return (
     <div style={{
-      width: 40, height: 40, borderRadius: '50%', background: 'rgba(3,131,144,0.1)',
+      width: 30, height: 30, borderRadius: '50%', background: 'rgba(3,131,144,0.1)',
       display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
     }}>
       {children}
@@ -24,7 +24,7 @@ function IconCircle({ children }: { children: ReactNode }) {
 
 function CalculatorIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
       <rect x="3" y="2" width="14" height="16" rx="2" stroke="#038390" strokeWidth="1.5"/>
       <rect x="5.5" y="4.5" width="9" height="3" rx="0.5" fill="#038390"/>
       <circle cx="6.5" cy="10.5" r="1" fill="#038390"/>
@@ -39,7 +39,7 @@ function CalculatorIcon() {
 
 function ShieldCheckIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
       <path d="M10 2L17 4.5V9.5C17 13.5 14 16.5 10 18C6 16.5 3 13.5 3 9.5V4.5L10 2Z" stroke="#038390" strokeWidth="1.5" strokeLinejoin="round"/>
       <path d="M7 10L9 12L13.5 7.5" stroke="#038390" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
     </svg>
@@ -48,7 +48,7 @@ function ShieldCheckIcon() {
 
 function PieChartIcon() {
   return (
-    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <svg width="16" height="16" viewBox="0 0 20 20" fill="none">
       <path d="M10 2V10L16.5 6.5C15 3.7 12.7 2 10 2Z" fill="#038390"/>
       <path d="M10 10L16.5 6.5C17.5 8.3 18 9.9 18 10C18 14.4 14.4 18 10 18C5.6 18 2 14.4 2 10C2 5.6 5.6 2 10 2V10Z" stroke="#038390" strokeWidth="1.5"/>
     </svg>
@@ -314,7 +314,8 @@ export default function RWRCalculator() {
   const wrapStyle: React.CSSProperties = {
     background: '#ffffff', borderRadius: 20, overflow: 'hidden',
     border: '2px solid rgba(3,131,144,0.25)',
-    boxShadow: '0 8px 40px rgba(3,131,144,0.12)'
+    boxShadow: '0 8px 40px rgba(3,131,144,0.12)',
+    maxWidth: '75%', margin: '0 auto',
   }
 
   const headerStyle: React.CSSProperties = {
@@ -330,43 +331,43 @@ export default function RWRCalculator() {
 
   const renderStep = () => {
     if (step === 0) return (
-      <div style={{ padding: '32px' }}>
-        <div style={{ display: 'flex', gap: 32, alignItems: 'center', flexWrap: 'wrap' as const, marginBottom: 24 }}>
+      <div style={{ padding: '24px' }}>
+        <div style={{ display: 'flex', gap: 20, alignItems: 'center', flexWrap: 'wrap' as const, marginBottom: 18 }}>
           {/* Left — text + bullets */}
-          <div style={{ flex: '1 1 320px', minWidth: 280 }}>
-            <div style={{ fontSize: 11, color: TEAL, textTransform: 'uppercase' as const, letterSpacing: '2px', fontWeight: 600, marginBottom: 10 }}>Інструмент QLIXA</div>
-            <div style={{ fontSize: 'clamp(28px,3.5vw,40px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.15, marginBottom: 20 }}>
-              RWR+<br />калькулятор<br /><span style={{ color: TEAL }}>доходу</span>
+          <div style={{ flex: '1 1 200px', minWidth: 180 }}>
+            <div style={{ fontSize: 10, color: TEAL, textTransform: 'uppercase' as const, letterSpacing: '1.5px', fontWeight: 600, marginBottom: 8 }}>Інструмент QLIXA</div>
+            <div style={{ fontSize: 'clamp(18px,2.2vw,24px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.15, marginBottom: 14 }}>
+              RWR+ калькулятор <span style={{ color: TEAL }}>доходу</span>
             </div>
-            <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 16 }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+            <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <IconCircle><CalculatorIcon /></IconCircle>
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: '#1A1A1A', marginBottom: 2 }}>Точний розрахунок</div>
-                  <div style={{ fontSize: 12, color: '#595959' }}>На основі офіційних ставок BMI 2026.</div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: '#1A1A1A', marginBottom: 1 }}>Точний розрахунок</div>
+                  <div style={{ fontSize: 11, color: '#595959' }}>Попередній прорахунок на основі ставок BMI 2026 та наших рекомендацій.</div>
                 </div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <IconCircle><ShieldCheckIcon /></IconCircle>
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: '#1A1A1A', marginBottom: 2 }}>Актуальні дані</div>
-                  <div style={{ fontSize: 12, color: '#595959' }}>Автоматичне оновлення показників.</div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: '#1A1A1A', marginBottom: 1 }}>Актуальні дані</div>
+                  <div style={{ fontSize: 11, color: '#595959' }}>Автоматичне оновлення показників.</div>
                 </div>
               </div>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
                 <IconCircle><PieChartIcon /></IconCircle>
                 <div>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: '#1A1A1A', marginBottom: 2 }}>Простий результат</div>
-                  <div style={{ fontSize: 12, color: '#595959' }}>Зрозуміло, швидко, без зайвого.</div>
+                  <div style={{ fontSize: 12, fontWeight: 700, color: '#1A1A1A', marginBottom: 1 }}>Простий результат</div>
+                  <div style={{ fontSize: 11, color: '#595959' }}>Зрозуміло, швидко, без зайвого.</div>
                 </div>
               </div>
             </div>
           </div>
 
           {/* Right — illustration */}
-          <div style={{ flex: '1 1 260px', minWidth: 220, display: 'flex', justifyContent: 'center' }}>
+          <div style={{ flex: '0 0 130px', minWidth: 110, display: 'flex', justifyContent: 'center' }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img src="/rwr-karte/calculator-illustration.png" alt="RWR+ калькулятор доходу" style={{ width: '100%', maxWidth: 360, height: 'auto', objectFit: 'contain' as const }} />
+            <img src="/rwr-karte/calculator-illustration.png" alt="RWR+ калькулятор доходу" style={{ width: '100%', maxWidth: 130, height: 'auto', objectFit: 'contain' as const }} />
           </div>
         </div>
 

@@ -4,7 +4,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArticleSidebar, ArticlePrevNext } from '@/components/layout/ArticleNav'
+import { ArticleSidebar, ArticlePrevNext, ArticleTOC } from '@/components/layout/ArticleNav'
 
 function NoteBox({ type, children }: { type: 'warning' | 'info' | 'tip' | 'ok'; children: React.ReactNode }) {
   const s = {
@@ -131,9 +131,10 @@ export default function GisaFormularPage() {
       {/* Body + sidebar */}
       <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 16px 80px', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
         <ArticleSidebar currentSlug="gisa-formular" />
-        <aside style={{ flex: '0 0 200px', position: 'sticky' as const, top: 24, alignSelf: 'flex-start' as const, background: '#F0F7F8', borderRadius: 16, padding: '20px', fontSize: 13 }}>
-          <div style={{ fontWeight: 700, color: '#038390', marginBottom: 12, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>Зміст</div>
-          {[
+        <div style={{ flex: 1, minWidth: 0 }}>
+          <Link href="/articles" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text3)', textDecoration: 'none', marginBottom: 32 }}>← Всі статті</Link>
+
+          <ArticleTOC items={[
             ['#step1', 'Заходимо на сайт'],
             ['#step2', 'Тип заявника'],
             ['#step3', 'Персональні дані'],
@@ -141,16 +142,7 @@ export default function GisaFormularPage() {
             ['#step5', 'Перевірка даних'],
             ['#step6', 'Реєстрацію завершено'],
             ['#summary', 'Підсумок'],
-          ].map(([href, label]) => (
-            <a key={href} href={href} style={{ display: 'block', color: '#595959', textDecoration: 'none', padding: '5px 0', borderBottom: '1px solid rgba(3,131,144,0.08)', lineHeight: 1.4 }}
-              onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-              onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#595959'}>
-              {label}
-            </a>
-          ))}
-        </aside>
-        <div style={{ flex: 1, minWidth: 0 }}>
-          <Link href="/articles" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text3)', textDecoration: 'none', marginBottom: 32 }}>← Всі статті</Link>
+          ]} />
 
           {/* Disclaimer */}
           <div style={{ background: '#FFF8E7', border: '1px solid rgba(245,166,35,0.3)', borderRadius: 12, padding: '16px 20px', marginBottom: 32, fontSize: 13, color: '#595959', lineHeight: 1.6 }}>

@@ -3,6 +3,37 @@
 import Link from 'next/link'
 import { articles, getAdjacentArticles } from '@/lib/articles'
 
+export function ArticleTOC({ items }: { items: [string, string][] }) {
+  return (
+    <div style={{
+      background: '#F0F7F8', borderRadius: 16,
+      padding: '20px 24px', marginBottom: 32,
+    }}>
+      <div style={{ fontWeight: 700, color: '#038390', marginBottom: 14, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>
+        Зміст
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px 24px' }}>
+        {items.map(([href, label]) => (
+          <a key={href} href={href} style={{
+            fontSize: 13, color: '#595959', textDecoration: 'none',
+            padding: '4px 0', lineHeight: 1.4,
+          }}
+            onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+            onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#595959'}
+          >
+            {label}
+          </a>
+        ))}
+      </div>
+      <style>{`
+        @media (max-width: 700px) {
+          div[style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
+    </div>
+  )
+}
+
 export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
   const published = articles.filter(a => a.published)
   const all = articles
