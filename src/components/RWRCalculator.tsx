@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, type ReactNode } from 'react'
 import { loadPDFScripts, fetchLogoAsDataUrl } from '@/utils/generatePDF'
 
 const FREE_STATION = 386.43
@@ -9,6 +9,50 @@ const MIN_CHILD = 201.88
 
 function fmt(n: number) {
   return n.toLocaleString('uk-UA', { minimumFractionDigits: 2, maximumFractionDigits: 2 })
+}
+
+function IconCircle({ children }: { children: ReactNode }) {
+  return (
+    <div style={{
+      width: 40, height: 40, borderRadius: '50%', background: 'rgba(3,131,144,0.1)',
+      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+    }}>
+      {children}
+    </div>
+  )
+}
+
+function CalculatorIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <rect x="3" y="2" width="14" height="16" rx="2" stroke="#038390" strokeWidth="1.5"/>
+      <rect x="5.5" y="4.5" width="9" height="3" rx="0.5" fill="#038390"/>
+      <circle cx="6.5" cy="10.5" r="1" fill="#038390"/>
+      <circle cx="10" cy="10.5" r="1" fill="#038390"/>
+      <circle cx="13.5" cy="10.5" r="1" fill="#038390"/>
+      <circle cx="6.5" cy="14" r="1" fill="#038390"/>
+      <circle cx="10" cy="14" r="1" fill="#038390"/>
+      <circle cx="13.5" cy="14" r="1" fill="#038390"/>
+    </svg>
+  )
+}
+
+function ShieldCheckIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M10 2L17 4.5V9.5C17 13.5 14 16.5 10 18C6 16.5 3 13.5 3 9.5V4.5L10 2Z" stroke="#038390" strokeWidth="1.5" strokeLinejoin="round"/>
+      <path d="M7 10L9 12L13.5 7.5" stroke="#038390" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+    </svg>
+  )
+}
+
+function PieChartIcon() {
+  return (
+    <svg width="20" height="20" viewBox="0 0 20 20" fill="none">
+      <path d="M10 2V10L16.5 6.5C15 3.7 12.7 2 10 2Z" fill="#038390"/>
+      <path d="M10 10L16.5 6.5C17.5 8.3 18 9.9 18 10C18 14.4 14.4 18 10 18C5.6 18 2 14.4 2 10C2 5.6 5.6 2 10 2V10Z" stroke="#038390" strokeWidth="1.5"/>
+    </svg>
+  )
 }
 
 function adjIncome(amount: number, type: 'employed' | 'self') {
@@ -286,16 +330,53 @@ export default function RWRCalculator() {
 
   const renderStep = () => {
     if (step === 0) return (
-      <div style={mainStyle}>
-        <div style={{ fontSize: 11, color: TEAL, textTransform: 'uppercase' as const, letterSpacing: '2px', fontWeight: 600, marginBottom: 10 }}>Інструмент QLIXA</div>
-        <div style={{ fontSize: 22, fontWeight: 600, color: '#1A1A1A', lineHeight: 1.3, marginBottom: 10 }}>RWR+ калькулятор доходу</div>
-        <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.5)', lineHeight: 1.7, marginBottom: 28, maxWidth: 360 }}>
-          Перевірте за 2 хвилини, чи достатньо вашого доходу для подання на RWR+ карту — і скільки потрібно на рахунку, якщо ні.
+      <div style={{ padding: '32px' }}>
+        <div style={{ display: 'flex', gap: 32, alignItems: 'center', flexWrap: 'wrap' as const, marginBottom: 24 }}>
+          {/* Left — text + bullets */}
+          <div style={{ flex: '1 1 320px', minWidth: 280 }}>
+            <div style={{ fontSize: 11, color: TEAL, textTransform: 'uppercase' as const, letterSpacing: '2px', fontWeight: 600, marginBottom: 10 }}>Інструмент QLIXA</div>
+            <div style={{ fontSize: 'clamp(28px,3.5vw,40px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.15, marginBottom: 20 }}>
+              RWR+<br />калькулятор<br /><span style={{ color: TEAL }}>доходу</span>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 16 }}>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                <IconCircle><CalculatorIcon /></IconCircle>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: '#1A1A1A', marginBottom: 2 }}>Точний розрахунок</div>
+                  <div style={{ fontSize: 12, color: '#595959' }}>На основі офіційних ставок BMI 2026.</div>
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                <IconCircle><ShieldCheckIcon /></IconCircle>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: '#1A1A1A', marginBottom: 2 }}>Актуальні дані</div>
+                  <div style={{ fontSize: 12, color: '#595959' }}>Автоматичне оновлення показників.</div>
+                </div>
+              </div>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 14 }}>
+                <IconCircle><PieChartIcon /></IconCircle>
+                <div>
+                  <div style={{ fontSize: 14, fontWeight: 700, color: '#1A1A1A', marginBottom: 2 }}>Простий результат</div>
+                  <div style={{ fontSize: 12, color: '#595959' }}>Зрозуміло, швидко, без зайвого.</div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Right — illustration */}
+          <div style={{ flex: '1 1 260px', minWidth: 220, display: 'flex', justifyContent: 'center' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/rwr-karte/calculator-illustration.png" alt="RWR+ калькулятор доходу" style={{ width: '100%', maxWidth: 360, height: 'auto', objectFit: 'contain' as const }} />
+          </div>
         </div>
-        <div style={{ background: '#FFF8E7', border: '1px solid rgba(245,166,35,0.3)', borderRadius: 10, padding: '10px 14px', fontSize: 12, color: '#595959', lineHeight: 1.5, marginBottom: 24 }}>
-          Розрахунок базується на офіційних ставках BMI 2026. Є попереднім — остаточне рішення приймає компетентний орган.
+
+        <div style={{ background: '#FFF8E7', border: '1px solid rgba(245,166,35,0.3)', borderRadius: 10, padding: '10px 14px', fontSize: 12, color: '#595959', lineHeight: 1.5, marginBottom: 20 }}>
+          Розрахунок базується на офіційних ставках BMI 2026.<br />
+          Є попереднім — остаточне рішення приймає компетентний орган.
         </div>
-        {btnNext('Почати', () => setStep(1))}
+        <button onClick={() => setStep(1)} style={{ width: '100%', background: TEAL, color: '#fff', border: 'none', borderRadius: 12, padding: '15px 28px', fontSize: 15, fontWeight: 700, cursor: 'pointer' }}>
+          Почати розрахунок →
+        </button>
       </div>
     )
 
