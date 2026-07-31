@@ -151,6 +151,54 @@ const TICKER_ITEMS: Record<string, TickerItem[]> = Object.fromEntries(
   ])
 )
 
+// Переклади Hero-секції (доступні мови — фолбек на UA, якщо мова ще не перекладена)
+const HERO_TEXT: Record<string, {
+  badge: string
+  h1Line1: string
+  h1Line2: string
+  subheading: string
+  pills: [string, string, string]
+  cta: string
+  trust: [string, string, string]
+}> = {
+  UA: {
+    badge: 'Твій цифровий бізнес-помічник в Австрії',
+    h1Line1: 'Разом розберемось з податками,',
+    h1Line2: 'фінансами та бізнесом',
+    subheading: 'Один кабінет замість купи сервісів для',
+    pills: ['Самозайнятих', 'Малого бізнесу', 'Найманих працівників'],
+    cta: 'Вибрати свій тариф →',
+    trust: ['1 200+ клієнтів', 'FinanzOnline під контролем', 'Економія €450/рік на бухгалтері'],
+  },
+  RU: {
+    badge: 'Твой цифровой бизнес-помощник в Австрии',
+    h1Line1: 'Вместе разберёмся с налогами,',
+    h1Line2: 'финансами и бизнесом',
+    subheading: 'Один кабинет вместо кучи сервисов для',
+    pills: ['Самозанятых', 'Малого бизнеса', 'Наёмных работников'],
+    cta: 'Выбрать свой тариф →',
+    trust: ['1 200+ клиентов', 'FinanzOnline под контролем', 'Экономия €450/год на бухгалтере'],
+  },
+  EN: {
+    badge: 'Your digital business assistant in Austria',
+    h1Line1: 'Together we’ll sort out taxes,',
+    h1Line2: 'finances and business',
+    subheading: 'One dashboard instead of a bunch of services for',
+    pills: ['Self-employed', 'Small business', 'Employees'],
+    cta: 'Choose your plan →',
+    trust: ['1,200+ clients', 'FinanzOnline under control', 'Save €450/year on accounting'],
+  },
+  DE: {
+    badge: 'Dein digitaler Geschäftsassistent in Österreich',
+    h1Line1: 'Gemeinsam kümmern wir uns um Steuern,',
+    h1Line2: 'Finanzen und dein Business',
+    subheading: 'Ein Konto statt vieler Services für',
+    pills: ['Selbstständige', 'Kleinunternehmen', 'Angestellte'],
+    cta: 'Tarif wählen →',
+    trust: ['1.200+ Kunden', 'FinanzOnline im Griff', 'Bis zu €450/Jahr sparen'],
+  },
+}
+
 const upcoming = [
   { tag: 'SVS', title: 'Як заповнити формуляр SVS', desc: 'Соціальне страхування — що вказати щоб не переплатити.', href: '/articles/svs-formular' },
   { tag: 'FinanzOnline', title: 'Як заповнити формуляр FinanzOnline', desc: 'Реєстрація в податковій онлайн — покроково.', href: '/articles/finanz-online' },
@@ -173,6 +221,7 @@ export default function HomePage() {
   }, []);
 
   const HERO_SCREEN_SLIDES = getHeroScreenSlides(lang);
+  const t = HERO_TEXT[lang] || HERO_TEXT.UA;
 
   return (
     <div style={{ fontFamily: 'DM Sans, sans-serif', background: '#F0F7F8', overflowX: 'hidden' }}>
@@ -376,19 +425,19 @@ export default function HomePage() {
             {/* Badge — live pulsing dot */}
             <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20, padding: '6px 14px', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 999, background: 'rgba(3,131,144,0.07)', width: 'fit-content' }}>
               <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#038390', display: 'inline-block', flexShrink: 0, animation: 'pulse 1.6s infinite' }} />
-              Твій цифровий бізнес-помічник в Австрії
+              {t.badge}
             </div>
 
             {/* H1 line 1 */}
             <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.2vw,48px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1.5px', marginBottom: 6 }}>
-              Разом розберемось з податками,
+              {t.h1Line1}
             </h1>
 
             {/* H1 line 2 — teal text with hand-drawn underline */}
             <div style={{ marginBottom: 28 }}>
               <span style={{ position: 'relative', display: 'inline-block' }}>
                 <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.2vw,48px)', fontWeight: 700, fontStyle: 'italic', color: '#038390', lineHeight: 1.2, letterSpacing: '-0.5px' }}>
-                  фінансами та бізнесом
+                  {t.h1Line2}
                 </span>
                 <svg
                   viewBox="0 0 300 20"
@@ -403,7 +452,7 @@ export default function HomePage() {
 
             {/* Subheading */}
             <p style={{ fontSize: 'clamp(17px,1.6vw,21px)', color: '#1A1A1A', lineHeight: 1.5, marginBottom: 20, fontWeight: 600 }}>
-              Один кабінет замість купи сервісів для
+              {t.subheading}
             </p>
 
             {/* Audience pills */}
@@ -412,19 +461,19 @@ export default function HomePage() {
                 style={{ fontSize: 13, fontWeight: 600, color: '#1A1A1A', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: '#FFFFFF', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#038390'; el.style.color='#ffffff'; el.style.border='1.5px solid #038390'; el.style.transform='translateY(-2px)'; el.style.boxShadow='0 4px 12px rgba(3,131,144,0.3)'; }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='#FFFFFF'; el.style.color='#1A1A1A'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
-                Самозайнятих
+                {t.pills[0]}
               </Link>
               <Link href="/for/biznes"
                 style={{ fontSize: 13, fontWeight: 600, color: '#1A1A1A', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: '#FFFFFF', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#038390'; el.style.color='#ffffff'; el.style.border='1.5px solid #038390'; el.style.transform='translateY(-2px)'; el.style.boxShadow='0 4px 12px rgba(3,131,144,0.3)'; }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='#FFFFFF'; el.style.color='#1A1A1A'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
-                Малого бізнесу
+                {t.pills[1]}
               </Link>
               <Link href="/for/naymanyy"
                 style={{ fontSize: 13, fontWeight: 600, color: '#1A1A1A', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: '#FFFFFF', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#038390'; el.style.color='#ffffff'; el.style.border='1.5px solid #038390'; el.style.transform='translateY(-2px)'; el.style.boxShadow='0 4px 12px rgba(3,131,144,0.3)'; }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='#FFFFFF'; el.style.color='#1A1A1A'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
-                Найманих працівників
+                {t.pills[2]}
               </Link>
             </div>
 
@@ -446,17 +495,13 @@ export default function HomePage() {
                   el.style.transform = '';
                   el.style.gap = '8px';
                 }}>
-                Вибрати свій тариф →
+                {t.cta}
               </a>
             </div>
 
             {/* Trust */}
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' as const, maxWidth: 480, background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(2px)', borderRadius: 8, padding: '6px 10px', width: 'fit-content' }}>
-              {[
-                '1 200+ клієнтів',
-                'FinanzOnline під контролем',
-                'Економія €450/рік на бухгалтері',
-              ].map((item, i) => (
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' as const, maxWidth: 400, background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(2px)', borderRadius: 8, padding: '6px 10px', width: 'fit-content' }}>
+              {t.trust.map((item, i) => (
                 <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                   <span style={{ fontSize: 11, color: '#888' }}>✓ {item}</span>
                   {i < 2 && <span style={{ color: '#ccc', fontSize: 11, marginLeft: 6 }}>•</span>}
