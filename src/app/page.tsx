@@ -48,17 +48,108 @@ const published = [
   },
 ]
 
-// Слайдшоу на екрані ноутбука в Hero (тільки UA версія поки що)
-const HERO_SCREEN_SLIDES = [
-  '/hero-icons-animation/CLIENTS.png',
-  '/hero-icons-animation/DEADLINES.png',
-  '/hero-icons-animation/FINANZONLINE.png',
-  '/hero-icons-animation/INVOICES.png',
-  '/hero-icons-animation/KPI.png',
-  '/hero-icons-animation/TAX%20REFUND.png',
-  '/hero-icons-animation/TAX%20REPORTS.png',
+// Слайдшоу на екрані ноутбука в Hero — окрема папка іконок під кожну мову
+const HERO_ICON_FOLDERS: Record<string, string> = {
+  UA: 'hero-icons-animation',
+  DE: 'hero-icons-animation-de',
+  EN: 'hero-icons-animation-en',
+  RU: 'hero-icons-animation-ru',
+}
+const HERO_ICON_FILES = [
+  'CLIENTS.png',
+  'DEADLINES.png',
+  'FINANZONLINE.png',
+  'INVOICES.png',
+  'KPI.png',
+  'TAX%20REFUND.png',
+  'TAX%20REPORTS.png',
 ]
+function getHeroScreenSlides(lang: string) {
+  const folder = HERO_ICON_FOLDERS[lang] || HERO_ICON_FOLDERS.UA
+  return HERO_ICON_FILES.map(f => `/${folder}/${f}`)
+}
 const HERO_SLIDE_DURATION = 2 // секунд на одну картинку
+
+// Тикер: іконка + текст, переклади на 4 мови
+type TickerItem = { icon: string; text: string }
+const TICKER_ICONS = [
+  'clients.png',
+  'suppliers.png',
+  'invoices.png',
+  'tax-declaration.png',
+  'tax-refund.png',
+  'kpi-dashboard.png',
+  'analytics.png',
+  'deadlines.png',
+  'inventory.png',
+  'finanzonline.png',
+  'automation.png',
+  'languages.png',
+]
+const TICKER_TEXT: Record<string, string[]> = {
+  UA: [
+    'Керуйте клієнтами',
+    'Керуйте постачальниками',
+    'Створюйте рахунки',
+    'Допомога з податковою декларацією',
+    'Оцінка можливого щорічного повернення податку',
+    'Контролюйте KPI',
+    'Аналізуйте показники бізнесу',
+    'Не пропускайте важливі терміни',
+    'Керуйте складом',
+    'Отримуйте допомогу з FinanzOnline',
+    'Автоматизуйте рутинні процеси',
+    'Доступно 4 мовами',
+  ],
+  EN: [
+    'Manage Clients',
+    'Manage Suppliers',
+    'Create Invoices',
+    'Tax Return Assistance',
+    'Estimate Annual Tax Refund',
+    'Track KPI',
+    'Analyze Business Performance',
+    'Stay on Top of Deadlines',
+    'Manage Inventory',
+    'Get Help with FinanzOnline',
+    'Automate Routine Tasks',
+    'Available in 4 Languages',
+  ],
+  DE: [
+    'Kunden verwalten',
+    'Lieferanten verwalten',
+    'Rechnungen erstellen',
+    'Unterstützung bei der Steuererklärung',
+    'Mögliche jährliche Steuererstattung einschätzen',
+    'KPIs verfolgen',
+    'Geschäftsentwicklung analysieren',
+    'Fristen im Blick behalten',
+    'Lager verwalten',
+    'Hilfe mit FinanzOnline',
+    'Routineaufgaben automatisieren',
+    'In 4 Sprachen verfügbar',
+  ],
+  RU: [
+    'Управляйте клиентами',
+    'Управляйте поставщиками',
+    'Создавайте счета',
+    'Помощь с налоговой декларацией',
+    'Оценка возможного ежегодного возврата налога',
+    'Контролируйте KPI',
+    'Анализируйте показатели бизнеса',
+    'Не пропускайте важные сроки',
+    'Управляйте складом',
+    'Получайте помощь с FinanzOnline',
+    'Автоматизируйте рутинные задачи',
+    'Доступно на 4 языках',
+  ],
+}
+const TICKER_ITEMS: Record<string, TickerItem[]> = Object.fromEntries(
+  Object.entries(TICKER_TEXT).map(([lang, texts]) => [
+    lang,
+    texts.map((text, i) => ({ icon: TICKER_ICONS[i], text })),
+  ])
+)
 
 const upcoming = [
   { tag: 'SVS', title: 'Як заповнити формуляр SVS', desc: 'Соціальне страхування — що вказати щоб не переплатити.', href: '/articles/svs-formular' },
@@ -69,17 +160,19 @@ const upcoming = [
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
-  const [heroBg, setHeroBg] = useState('hero-background-ua');
+  const [lang, setLang] = useState('UA');
 
   useEffect(() => {
-    const updateBg = () => {
-      const lang = localStorage.getItem('qlixa-lang') || 'UA';
-      setHeroBg(`hero-background-${lang.toLowerCase()}`);
+    const updateLang = () => {
+      const l = localStorage.getItem('qlixa-lang') || 'UA';
+      setLang(l.toUpperCase());
     };
-    updateBg();
-    window.addEventListener('qlixa-lang-change', updateBg);
-    return () => window.removeEventListener('qlixa-lang-change', updateBg);
+    updateLang();
+    window.addEventListener('qlixa-lang-change', updateLang);
+    return () => window.removeEventListener('qlixa-lang-change', updateLang);
   }, []);
+
+  const HERO_SCREEN_SLIDES = getHeroScreenSlides(lang);
 
   return (
     <div style={{ fontFamily: 'DM Sans, sans-serif', background: '#F0F7F8', overflowX: 'hidden' }}>
@@ -136,8 +229,7 @@ export default function HomePage() {
         .panel-left { background:#FFFFFF; background-image:linear-gradient(rgba(3,131,144,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(3,131,144,0.04) 1px,transparent 1px); background-size:28px 28px; padding:12px 40px 24px 40px; display:flex; flex-direction:column; justify-content:flex-start; position:relative; overflow:hidden; border-right:1.5px solid rgba(3,131,144,0.15); box-sizing:border-box; }
         .panel-right { background:#F0F7F8; background-image:linear-gradient(rgba(3,131,144,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(3,131,144,0.08) 1px,transparent 1px); background-size:28px 28px; padding:12px 40px 24px 40px; display:flex; flex-direction:column; justify-content:flex-start; position:relative; overflow:hidden; box-sizing:border-box; }
         .hero-cta { display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:10px; font-size:14px; font-weight:700; text-decoration:none; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; width:fit-content; }
-        .ticker-track { display:flex; animation:tickerMove 42s linear infinite; width:max-content; }
-        .ticker-wrap:hover .ticker-track { animation-play-state:paused; }
+        .ticker-track { display:flex; animation:tickerMove 60s linear infinite; width:max-content; }
       `}</style>
 
       <Navbar />
@@ -241,7 +333,7 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
-      <section style={{ background: '#FFFFFF', backgroundImage: heroBg === 'hero-background-ua' ? undefined : `url(/${heroBg}.webp)`, backgroundSize: 'cover', backgroundPosition: 'center right', backgroundRepeat: 'no-repeat', padding: 'clamp(24px,4vh,48px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const, zIndex: 0 }}>
+      <section style={{ background: '#FFFFFF', padding: 'clamp(24px,4vh,48px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const, zIndex: 0 }}>
 
         {/* Decorative powder half-circle behind the girl image */}
         <div
@@ -281,8 +373,9 @@ export default function HomePage() {
           {/* LEFT — text */}
           <div style={{ display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', gap: 0, maxWidth: 640 }}>
 
-            {/* Badge */}
-            <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '2.5px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20, display: 'inline-block', padding: '4px 12px', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 999, background: 'rgba(3,131,144,0.07)', width: 'fit-content' }}>
+            {/* Badge — live pulsing dot */}
+            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20, padding: '6px 14px', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 999, background: 'rgba(3,131,144,0.07)', width: 'fit-content' }}>
+              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#038390', display: 'inline-block', flexShrink: 0, animation: 'pulse 1.6s infinite' }} />
               Твій цифровий бізнес-помічник в Австрії
             </div>
 
@@ -316,21 +409,21 @@ export default function HomePage() {
             {/* Audience pills */}
             <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const, marginBottom: 32 }}>
               <Link href="/for/frilanser"
-                style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
+                style={{ fontSize: 13, fontWeight: 600, color: '#1A1A1A', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: '#FFFFFF', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#038390'; el.style.color='#ffffff'; el.style.border='1.5px solid #038390'; el.style.transform='translateY(-2px)'; el.style.boxShadow='0 4px 12px rgba(3,131,144,0.3)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='rgba(3,131,144,0.07)'; el.style.color='#026B76'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='#FFFFFF'; el.style.color='#1A1A1A'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
                 Самозайнятих
               </Link>
               <Link href="/for/biznes"
-                style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
+                style={{ fontSize: 13, fontWeight: 600, color: '#1A1A1A', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: '#FFFFFF', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#038390'; el.style.color='#ffffff'; el.style.border='1.5px solid #038390'; el.style.transform='translateY(-2px)'; el.style.boxShadow='0 4px 12px rgba(3,131,144,0.3)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='rgba(3,131,144,0.07)'; el.style.color='#026B76'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='#FFFFFF'; el.style.color='#1A1A1A'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
                 Малого бізнесу
               </Link>
               <Link href="/for/naymanyy"
-                style={{ fontSize: 13, fontWeight: 600, color: '#026B76', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: 'rgba(3,131,144,0.07)', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
+                style={{ fontSize: 13, fontWeight: 600, color: '#1A1A1A', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: '#FFFFFF', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#038390'; el.style.color='#ffffff'; el.style.border='1.5px solid #038390'; el.style.transform='translateY(-2px)'; el.style.boxShadow='0 4px 12px rgba(3,131,144,0.3)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='rgba(3,131,144,0.07)'; el.style.color='#026B76'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
+                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='#FFFFFF'; el.style.color='#1A1A1A'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
                 Найманих працівників
               </Link>
             </div>
@@ -358,7 +451,7 @@ export default function HomePage() {
             </div>
 
             {/* Trust */}
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' as const }}>
+            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' as const, maxWidth: 480, background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(2px)', borderRadius: 8, padding: '6px 10px', width: 'fit-content' }}>
               {[
                 '1 200+ клієнтів',
                 'FinanzOnline під контролем',
@@ -375,8 +468,8 @@ export default function HomePage() {
 
         </div>
 
-        {/* Girl + laptop image with animated screen overlay (UA only for now) */}
-        {heroBg === 'hero-background-ua' && (
+        {/* Girl + laptop image with animated screen overlay — same image for all languages, only the screen slideshow changes */}
+        {(
           <div
             style={{
               position: 'absolute',
@@ -431,28 +524,18 @@ export default function HomePage() {
       </section>
       {/* ── END HERO2 ── */}
 
-      {/* ── TICKER (replaces stats bar) ── */}
-      <div className="ticker-wrap" style={{ background: '#FFFFFF', padding: '14px 0', overflow: 'hidden', position: 'relative', borderTop: '1px solid #E6F4F5', borderBottom: '1px solid #E6F4F5' }}>
+      {/* ── TICKER — premium minimal, icon + text, 4 languages ── */}
+      <div className="ticker-wrap" style={{ background: '#FFFFFF', padding: '12px 0', overflow: 'hidden', position: 'relative', borderTop: '1px solid #E6F4F5', borderBottom: '1px solid #E6F4F5' }}>
         <div style={{ position: 'absolute', top: 0, bottom: 0, left: 0, width: 80, background: 'linear-gradient(to right, #FFFFFF, transparent)', zIndex: 2 }} />
         <div style={{ position: 'absolute', top: 0, bottom: 0, right: 0, width: 80, background: 'linear-gradient(to left, #FFFFFF, transparent)', zIndex: 2 }} />
         <div className="ticker-track">
-          {[...Array(2)].flatMap(() => [
-            { text: '🌍 4 мови' },
-            { text: '💰 Повертай податки легко' },
-            { text: '📊 Складна система — простими кроками' },
-            { text: '👥 Клієнти та постачальники під контролем' },
-            { text: '🛒 Склад у порядку' },
-            { text: '📄 Рахунки одним кліком' },
-            { text: '📋 Звіти ПДВ на автопілоті' },
-            { text: '📈 KPI під рукою' },
-            { text: '🧮 Розрахунки на основі твоїх даних' },
-            { text: '📋 Податкова онлайн — без паніки' },
-            { text: '🚀 Постійно розвиваємось і додаємо нові можливості' },
-            { text: '🧠 Ми знаємо, як це важко — тому зробили максимально просто' },
-          ]).map((item, i) => (
-            <div key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 10, padding: '0 24px', fontSize: 16, fontWeight: 500, color: '#1A1A1A', whiteSpace: 'nowrap' }}>
-              {item.text}
-              <span style={{ color: '#038390', opacity: 0.4, marginLeft: 16 }}>|</span>
+          {[...Array(2)].flatMap(() =>
+            TICKER_ITEMS[lang] || TICKER_ITEMS.UA
+          ).map((item, i) => (
+            <div key={i} style={{ display: 'inline-flex', alignItems: 'center', gap: 12, marginRight: 64, whiteSpace: 'nowrap' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={`/ticker-icons/${item.icon}`} alt="" style={{ width: 30, height: 30, objectFit: 'contain', display: 'block', flexShrink: 0 }} />
+              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 15, fontWeight: 500, color: '#1F2328' }}>{item.text}</span>
             </div>
           ))}
         </div>
