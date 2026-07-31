@@ -199,6 +199,146 @@ const HERO_TEXT: Record<string, {
   },
 }
 
+// Переклади секції "Що таке QLIXA" — всі 4 мови
+const QLIXA_TEXT: Record<string, {
+  badge: string
+  h2Prefix: string
+  h2Emphasis: string
+  subheading: string
+  cards: [string, string][] // [title, desc] x8
+  centerTagline: string
+}> = {
+  UA: {
+    badge: 'Що таке QLIXA',
+    h2Prefix: 'Це один кабінет замість купи різних ',
+    h2Emphasis: 'сервісів.',
+    subheading: 'Де ти зручною мовою вирішуєш щоденні фінансові та бізнес питання.',
+    cards: [
+      ['Щорічне повернення твого податку', 'Платформа підказує, які списання можна врахувати, та допомагає повернути максимум із того, що тобі належить.'],
+      ['Інтерфейс, який зрозуміє навіть новачок', 'Ніяких складних таблиць, бухгалтерських термінів і незрозумілих кнопок. Все пояснюється крок за кроком.'],
+      ['Не програма для бухгалтерів', 'Це платформа для звичайних людей. Для тих, хто хоче займатися своїм життям або бізнесом, а не годинами розбиратися в документах.'],
+      ['Розуміємо австрійську систему замість вас', 'Ми вже вивчили правила за тебе і перетворили їх на прості запитання та автоматичні підказки.'],
+      ['Більше не пропустите жодного списання', 'На основі твоїх даних платформа показує можливості, про які більшість людей навіть не знає.'],
+      ['Більше не пропустите жодного дедлайну', 'Платформа сама нагадає про важливі дати, щоб ти не отримав штраф через забудькуватість.'],
+      ['Бізнес-помічник на кожен день', 'Рахунки, клієнти, витрати, показники бізнесу та документи — все в одному зрозумілому кабінеті.'],
+      ['Складне, пояснене просто', 'Українською, англійською, російською та німецькою — обирай зручну мову і починай.'],
+    ],
+    centerTagline: 'просто про складне',
+  },
+  RU: {
+    badge: 'Что такое QLIXA',
+    h2Prefix: 'Это один кабинет вместо кучи разных ',
+    h2Emphasis: 'сервисов.',
+    subheading: 'Где ты на удобном языке решаешь ежедневные финансовые и бизнес-вопросы.',
+    cards: [
+      ['Ежегодный возврат твоего налога', 'Платформа подсказывает, какие списания можно учесть, и помогает вернуть максимум из того, что тебе причитается.'],
+      ['Интерфейс, который поймёт даже новичок', 'Никаких сложных таблиц, бухгалтерских терминов и непонятных кнопок. Всё объясняется шаг за шагом.'],
+      ['Не программа для бухгалтеров', 'Это платформа для обычных людей. Для тех, кто хочет заниматься своей жизнью или бизнесом, а не часами разбираться в документах.'],
+      ['Разбираемся в австрийской системе вместо вас', 'Мы уже изучили правила за тебя и превратили их в простые вопросы и автоматические подсказки.'],
+      ['Больше не пропустите ни одного списания', 'На основе твоих данных платформа показывает возможности, о которых большинство людей даже не знает.'],
+      ['Больше не пропустите ни одного дедлайна', 'Платформа сама напомнит о важных датах, чтобы ты не получил штраф из-за забывчивости.'],
+      ['Бизнес-помощник на каждый день', 'Счета, клиенты, расходы, показатели бизнеса и документы — всё в одном понятном кабинете.'],
+      ['Сложное, объяснённое просто', 'На украинском, английском, русском и немецком — выбирай удобный язык и начинай.'],
+    ],
+    centerTagline: 'просто о сложном',
+  },
+  EN: {
+    badge: 'What is QLIXA',
+    h2Prefix: "It's one dashboard instead of a bunch of different ",
+    h2Emphasis: 'services.',
+    subheading: "Where you handle everyday financial and business matters in a language that's comfortable for you.",
+    cards: [
+      ['Your annual tax refund', "The platform suggests which deductions you can claim and helps you get back the maximum of what you're owed."],
+      ['An interface even a beginner will understand', 'No complicated spreadsheets, accounting jargon, or confusing buttons. Everything is explained step by step.'],
+      ['Not software for accountants', "This is a platform for regular people. For those who want to focus on their life or business, not spend hours figuring out paperwork."],
+      ["We understand the Austrian system so you don't have to", "We've already studied the rules for you and turned them into simple questions and automatic hints."],
+      ['Never miss a deduction again', "Based on your data, the platform shows opportunities most people don't even know about."],
+      ['Never miss a deadline again', "The platform reminds you of important dates itself, so you don't get fined for forgetting."],
+      ['Your everyday business assistant', 'Invoices, clients, expenses, business metrics and documents — all in one clear dashboard.'],
+      ['Complex made simple', 'In Ukrainian, English, Russian, and German — choose your language and get started.'],
+    ],
+    centerTagline: 'simply about the complex',
+  },
+  DE: {
+    badge: 'Was ist QLIXA',
+    h2Prefix: 'Das ist ein Konto statt vieler verschiedener ',
+    h2Emphasis: 'Services.',
+    subheading: 'Wo du deine täglichen Finanz- und Geschäftsfragen in einer für dich verständlichen Sprache löst.',
+    cards: [
+      ['Deine jährliche Steuerrückerstattung', 'Die Plattform zeigt dir, welche Abzüge du geltend machen kannst, und hilft dir, das Maximum von dem zurückzubekommen, was dir zusteht.'],
+      ['Eine Oberfläche, die sogar Anfänger verstehen', 'Keine komplizierten Tabellen, Buchhaltungsbegriffe oder unklaren Schaltflächen. Alles wird Schritt für Schritt erklärt.'],
+      ['Kein Programm für Buchhalter', 'Das ist eine Plattform für ganz normale Menschen. Für alle, die sich um ihr Leben oder ihr Business kümmern wollen, statt stundenlang Unterlagen zu wälzen.'],
+      ['Wir verstehen das österreichische System für dich', 'Wir haben die Regeln bereits für dich studiert und in einfache Fragen und automatische Hinweise verwandelt.'],
+      ['Verpasse nie wieder einen Abzug', 'Basierend auf deinen Daten zeigt dir die Plattform Möglichkeiten, von denen die meisten Menschen nicht einmal wissen.'],
+      ['Verpasse nie wieder eine Frist', 'Die Plattform erinnert dich selbst an wichtige Termine, damit du wegen Vergesslichkeit keine Strafe bekommst.'],
+      ['Dein Business-Assistent für jeden Tag', 'Rechnungen, Kunden, Ausgaben, Geschäftskennzahlen und Dokumente — alles in einem übersichtlichen Konto.'],
+      ['Kompliziertes einfach erklärt', 'Auf Ukrainisch, Englisch, Russisch und Deutsch — wähle deine Sprache und leg los.'],
+    ],
+    centerTagline: 'einfach erklärt',
+  },
+}
+
+// Переклади секції "Для кого" — всі 4 мови
+const FORWHOM_TEXT: Record<string, {
+  badge: string
+  h2Prefix: string
+  h2Emphasis: string
+  cards: [string, string][] // [title, desc] x6
+}> = {
+  UA: {
+    badge: 'Для кого',
+    h2Prefix: 'QLIXA підходить, ',
+    h2Emphasis: 'якщо ти:',
+    cards: [
+      ['Самозайнятий / Фрілансер', 'Neue Selbstständige, Gewerbe або вільна професія — IT, дизайн, консалтинг. QLIXA пояснює кожен крок без складних термінів і зайвого стресу.'],
+      ['Маєш капітальні та закордонні доходи', 'Маєш дохід від продажу акцій, нерухомості або з-за кордону? QLIXA розрахує KESt та інші зобов’язання точно і без помилок.'],
+      ['Ведеш маленький бізнес', 'Або тільки плануєш відкрити — QLIXA пройде з тобою кожен крок від реєстрації до звітів.'],
+      ['Здаєш нерухомість', 'Або маєш дохід з кількох джерел — платформа врахує всі надходження та списання.'],
+      ['Пенсіонер з доходом', 'Додатковий дохід від підробітку — QLIXA розрахує твої зобов’язання просто і зрозуміло.'],
+      ['Найманий працівник', 'Працюєш по найму, але хочеш контролювати свої фінанси та правильно розрахувати щорічне повернення податків.'],
+    ],
+  },
+  RU: {
+    badge: 'Для кого',
+    h2Prefix: 'QLIXA подходит, ',
+    h2Emphasis: 'если ты:',
+    cards: [
+      ['Самозанятый / Фрилансер', 'Neue Selbstständige, Gewerbe или свободная профессия — IT, дизайн, консалтинг. QLIXA объясняет каждый шаг без сложных терминов и лишнего стресса.'],
+      ['Есть капитальные и заграничные доходы', 'Есть доход от продажи акций, недвижимости или из-за границы? QLIXA рассчитает KESt и другие обязательства точно и без ошибок.'],
+      ['Ведёшь маленький бизнес', 'Или только планируешь открыть — QLIXA пройдёт с тобой каждый шаг от регистрации до отчётов.'],
+      ['Сдаёшь недвижимость', 'Или имеешь доход из нескольких источников — платформа учтёт все поступления и списания.'],
+      ['Пенсионер с доходом', 'Дополнительный доход от подработки — QLIXA рассчитает твои обязательства просто и понятно.'],
+      ['Наёмный работник', 'Работаешь по найму, но хочешь контролировать свои финансы и правильно рассчитать ежегодный возврат налогов.'],
+    ],
+  },
+  EN: {
+    badge: 'For Whom',
+    h2Prefix: 'QLIXA is right for you ',
+    h2Emphasis: 'if you:',
+    cards: [
+      ['Self-employed / Freelancer', 'Neue Selbstständige, Gewerbe, or a liberal profession — IT, design, consulting. QLIXA explains every step without complex terms or unnecessary stress.'],
+      ['Have capital gains or foreign income', 'Have income from selling shares, real estate, or from abroad? QLIXA calculates KESt and other obligations accurately and without errors.'],
+      ['Run a small business', 'Or are just planning to start one — QLIXA walks you through every step from registration to reports.'],
+      ['Rent out property', 'Or have income from multiple sources — the platform accounts for all income and deductions.'],
+      ['Are a pensioner with income', 'Extra income from a side job — QLIXA calculates your obligations simply and clearly.'],
+      ['Are an employee', 'Work as an employee but want to control your finances and correctly calculate your annual tax refund.'],
+    ],
+  },
+  DE: {
+    badge: 'Für wen',
+    h2Prefix: 'QLIXA passt zu dir, ',
+    h2Emphasis: 'wenn du:',
+    cards: [
+      ['Selbstständig / Freelancer', 'Neue Selbstständige, Gewerbe oder freier Beruf — IT, Design, Consulting. QLIXA erklärt jeden Schritt ohne komplizierte Begriffe und unnötigen Stress.'],
+      ['Kapitalerträge oder Auslandseinkünfte hast', 'Einkünfte aus dem Verkauf von Aktien, Immobilien oder aus dem Ausland? QLIXA berechnet KESt und andere Verpflichtungen genau und fehlerfrei.'],
+      ['Ein kleines Unternehmen führst', 'Oder erst planst, eins zu gründen — QLIXA begleitet dich bei jedem Schritt von der Anmeldung bis zu den Berichten.'],
+      ['Immobilien vermietest', 'Oder Einkünfte aus mehreren Quellen hast — die Plattform berücksichtigt alle Einnahmen und Abzüge.'],
+      ['Rentner/in mit Einkommen bist', 'Zusätzliches Einkommen aus einem Nebenjob — QLIXA berechnet deine Verpflichtungen einfach und verständlich.'],
+      ['Angestellte/r bist', 'Arbeitest angestellt, willst aber deine Finanzen im Griff haben und deine jährliche Steuerrückerstattung richtig berechnen.'],
+    ],
+  },
+}
+
 const upcoming = [
   { tag: 'SVS', title: 'Як заповнити формуляр SVS', desc: 'Соціальне страхування — що вказати щоб не переплатити.', href: '/articles/svs-formular' },
   { tag: 'FinanzOnline', title: 'Як заповнити формуляр FinanzOnline', desc: 'Реєстрація в податковій онлайн — покроково.', href: '/articles/finanz-online' },
@@ -222,6 +362,8 @@ export default function HomePage() {
 
   const HERO_SCREEN_SLIDES = getHeroScreenSlides(lang);
   const t = HERO_TEXT[lang] || HERO_TEXT.UA;
+  const t2 = QLIXA_TEXT[lang] || QLIXA_TEXT.UA;
+  const t3 = FORWHOM_TEXT[lang] || FORWHOM_TEXT.UA;
 
   return (
     <div style={{ fontFamily: 'DM Sans, sans-serif', background: '#F0F7F8', overflowX: 'hidden' }}>
@@ -578,12 +720,12 @@ export default function HomePage() {
 
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.2)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#1A1A1A', marginBottom: 16 }}>Що таке QLIXA</div>
+            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.2)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#1A1A1A', marginBottom: 16 }}>{t2.badge}</div>
             <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.8vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 12 }}>
-              Це один кабінет замість купи різних <em style={{ fontStyle: 'italic', color: '#038390' }}>сервісів.</em>
+              {t2.h2Prefix}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t2.h2Emphasis}</em>
             </h2>
             <p style={{ fontSize: 15, color: '#595959', margin: '0 auto', lineHeight: 1.7, textAlign: 'center' }}>
-              Де ти зручною мовою вирішуєш щоденні фінансові та бізнес питання.
+              {t2.subheading}
             </p>
           </div>
 
@@ -597,9 +739,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/tax-return.png" alt="Повернення податку" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Щорічне повернення твого податку</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[0][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Платформа підказує, які списання можна врахувати, та допомагає повернути максимум із того, що тобі належить.</div>
+              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[0][1]}</div>
             </div>
 
             {/* Card 2 */}
@@ -609,9 +751,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/interface.png" alt="Інтерфейс" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Інтерфейс, який зрозуміє навіть новачок</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[1][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Ніяких складних таблиць, бухгалтерських термінів і незрозумілих кнопок. Все пояснюється крок за кроком.</div>
+              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[1][1]}</div>
             </div>
 
             {/* Card 3 */}
@@ -621,9 +763,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/not-for-accountants.png" alt="Не для бухгалтерів" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Не програма для бухгалтерів</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[2][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Це платформа для звичайних людей. Для тих, хто хоче займатися своїм життям або бізнесом, а не годинами розбиратися в документах.</div>
+              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[2][1]}</div>
             </div>
 
             {/* Card 4 */}
@@ -633,9 +775,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/laws.png" alt="Закони" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Розуміємо австрійську систему замість вас</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[3][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Ми вже вивчили правила за тебе і перетворили їх на прості запитання та автоматичні підказки.</div>
+              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[3][1]}</div>
             </div>
 
             {/* CENTER — QLIXA logo */}
@@ -643,7 +785,7 @@ export default function HomePage() {
               <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 16 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/logos/logo-name-slogan_planets_white.svg" alt="QLIXA" style={{ width: '90%', maxWidth: 220, height: 'auto' }} />
-                <div style={{ fontFamily: 'Caveat, cursive', fontSize: 22, color: '#ffffff', letterSpacing: '1px', textAlign: 'center' }}>просто про складне</div>
+                <div style={{ fontFamily: 'Caveat, cursive', fontSize: 22, color: '#ffffff', letterSpacing: '1px', textAlign: 'center' }}>{t2.centerTagline}</div>
               </div>
             </div>
 
@@ -654,9 +796,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/no-deductions-missed.png" alt="Жодного списання" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Більше не пропустите жодного списання</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[4][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>На основі твоїх даних платформа показує можливості, про які більшість людей навіть не знає.</div>
+              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[4][1]}</div>
             </div>
 
             {/* Card 6 */}
@@ -666,9 +808,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/no-deadlines-missed.png" alt="Жодного дедлайну" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Більше не пропустите жодного дедлайну</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[5][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Платформа сама нагадає про важливі дати, щоб ти не отримав штраф через забудькуватість.</div>
+              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[5][1]}</div>
             </div>
 
             {/* Card 7 */}
@@ -678,9 +820,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/business.png" alt="Бізнес-помічник" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Бізнес-помічник на кожен день</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[6][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Рахунки, клієнти, витрати, показники бізнесу та документи — все в одному зрозумілому кабінеті.</div>
+              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[6][1]}</div>
             </div>
 
             {/* Card 8 */}
@@ -690,9 +832,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/languages.png" alt="Мови" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>Складне, пояснене просто</div>
+                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[7][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>Українською, англійською, російською та німецькою — обирай зручну мову і починай.</div>
+              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[7][1]}</div>
             </div>
 
           </div>
@@ -706,9 +848,9 @@ export default function HomePage() {
 
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
-            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>Для кого</div>
+            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>{t3.badge}</div>
             <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.8vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 12 }}>
-              QLIXA підходить, <em style={{ fontStyle: 'italic', color: '#038390' }}>якщо ти:</em>
+              {t3.h2Prefix}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t3.h2Emphasis}</em>
             </h2>
           </div>
 
@@ -716,12 +858,12 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
 
             {[
-              { img: '/for-who/frilanser.png', title: 'Самозайнятий / Фрілансер', desc: 'Neue Selbstständige, Gewerbe або вільна професія — IT, дизайн, консалтинг. QLIXA пояснює кожен крок без складних термінів і зайвого стресу.', href: '/for/frilanser' },
-              { img: '/for-who/samostiynyy.png', title: 'Маєш капітальні та закордонні доходи', desc: 'Маєш дохід від продажу акцій, нерухомості або з-за кордону? QLIXA розрахує KESt та інші зобов\'язання точно і без помилок.', href: '/for/samostiynyy' },
-              { img: '/for-who/biznes.png', title: 'Ведеш маленький бізнес', desc: 'Або тільки плануєш відкрити — QLIXA пройде з тобою кожен крок від реєстрації до звітів.', href: '/for/biznes' },
-              { img: '/for-who/nerukhomist.png', title: 'Здаєш нерухомість', desc: 'Або маєш дохід з кількох джерел — платформа врахує всі надходження та списання.', href: '/for/nerukhomist' },
-              { img: '/for-who/pensioner.png', title: 'Пенсіонер з доходом', desc: "Додатковий дохід від підробітку — QLIXA розрахує твої зобов'язання просто і зрозуміло.", href: '/for/pensioner' },
-              { img: '/for-who/naymanyy.png', title: 'Найманий працівник', desc: 'Працюєш по найму, але хочеш контролювати свої фінанси та правильно розрахувати щорічне повернення податків.', href: '/for/naymanyy' },
+              { img: '/for-who/frilanser.png', href: '/for/frilanser' },
+              { img: '/for-who/samostiynyy.png', href: '/for/samostiynyy' },
+              { img: '/for-who/biznes.png', href: '/for/biznes' },
+              { img: '/for-who/nerukhomist.png', href: '/for/nerukhomist' },
+              { img: '/for-who/pensioner.png', href: '/for/pensioner' },
+              { img: '/for-who/naymanyy.png', href: '/for/naymanyy' },
             ].map((card, i) => (
               <Link key={i} href={card.href} style={{ textDecoration: 'none' }}>
                 <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', height: '100%' }}
@@ -729,10 +871,10 @@ export default function HomePage() {
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
                   <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={card.img} alt={card.title} style={{ width: 72, height: 72, objectFit: 'contain', flexShrink: 0 }} />
-                    <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{card.title}</div>
+                    <img src={card.img} alt={t3.cards[i][0]} style={{ width: 72, height: 72, objectFit: 'contain', flexShrink: 0 }} />
+                    <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t3.cards[i][0]}</div>
                   </div>
-                  <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.65 }}>{card.desc}</div>
+                  <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.65 }}>{t3.cards[i][1]}</div>
                 </div>
               </Link>
             ))}
