@@ -367,10 +367,12 @@ export default function Navbar() {
   const [showLogin, setShowLogin] = useState(false)
   const [showTrial, setShowTrial] = useState(false)
 
-  const [lang, setLang] = React.useState<string>(() => {
-    if (typeof window !== 'undefined') return localStorage.getItem('qlixa-lang') || 'UA';
-    return 'UA';
-  });
+  const [lang, setLang] = React.useState<string>('UA');
+
+  useEffect(() => {
+    const saved = localStorage.getItem('qlixa-lang');
+    if (saved) setLang(saved);
+  }, []);
 
   const handleLang = (l: string) => {
     setLang(l);

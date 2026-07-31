@@ -1,5 +1,6 @@
 import type { Metadata } from 'next'
 import '../styles/globals.css'
+import ScrollArrows from '@/components/layout/ScrollArrows'
 
 export const metadata: Metadata = {
   title: 'QLIXA — Reports in one click',
@@ -22,7 +23,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        {children}
+        <ScrollArrows />
+      </body>
     </html>
   )
 }
