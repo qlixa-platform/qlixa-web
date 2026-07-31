@@ -401,21 +401,6 @@ export default function HomePage() {
           }}
         />
 
-        {/* Decorative dot grid */}
-        <div
-          aria-hidden
-          style={{
-            position: 'absolute',
-            right: '28%',
-            top: '18%',
-            width: 160,
-            height: 120,
-            backgroundImage: 'radial-gradient(rgba(3,131,144,0.35) 1.6px, transparent 1.6px)',
-            backgroundSize: '18px 18px',
-            pointerEvents: 'none',
-            zIndex: 0,
-          }}
-        />
 
         <div style={{ width: '100%' }}>
 
