@@ -304,7 +304,7 @@ const FORWHOM_TEXT: Record<string, {
     h2Emphasis: 'если ты:',
     cards: [
       ['Самозанятый / Фрилансер', 'Neue Selbstständige, Gewerbe или свободная профессия — IT, дизайн, консалтинг. QLIXA объясняет каждый шаг без сложных терминов и лишнего стресса.'],
-      ['Есть капитальные и заграничные доходы', 'Есть доход от продажи акций, недвижимости или из-за границы? QLIXA рассчитает KESt и другие обязательства точно и без ошибок.'],
+      ['Имеешь капитальные и заграничные доходы', 'Есть доход от продажи акций, недвижимости или из-за границы? QLIXA рассчитает KESt и другие обязательства точно и без ошибок.'],
       ['Ведёшь маленький бизнес', 'Или только планируешь открыть — QLIXA пройдёт с тобой каждый шаг от регистрации до отчётов.'],
       ['Сдаёшь недвижимость', 'Или имеешь доход из нескольких источников — платформа учтёт все поступления и списания.'],
       ['Пенсионер с доходом', 'Дополнительный доход от подработки — QLIXA рассчитает твои обязательства просто и понятно.'],
@@ -963,12 +963,12 @@ export default function HomePage() {
             })).map((card) => (
               <div key={card.num} style={{ background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)', display: 'flex', flexDirection: 'column' }}>
                 {/* Image */}
-                <div style={{ width: '100%', aspectRatio: '4/3', background: '#F0F7F8', position: 'relative', overflow: 'hidden', flexShrink: 0 }}>
+                <div style={{ width: '100%', aspectRatio: '4/3', background: '#F0F7F8', position: 'relative', overflow: 'hidden', flexShrink: 0, padding: 32, boxSizing: 'border-box' as const }}>
                   <Image
                     src={card.img}
                     alt={card.title}
                     fill
-                    style={{ objectFit: 'cover' }}
+                    style={{ objectFit: 'contain' }}
                   />
 
                 </div>
