@@ -218,8 +218,8 @@ const QLIXA_TEXT: Record<string, {
       ['Інтерфейс, який зрозуміє навіть новачок', 'Ніяких складних таблиць, бухгалтерських термінів і незрозумілих кнопок. Все пояснюється крок за кроком.'],
       ['Не програма для бухгалтерів', 'Це платформа для звичайних людей. Для тих, хто хоче займатися своїм життям або бізнесом, а не годинами розбиратися в документах.'],
       ['Розуміємо австрійську систему замість вас', 'Ми вже вивчили правила за тебе і перетворили їх на прості запитання та автоматичні підказки.'],
-      ['Більше не пропустите жодного списання', 'На основі твоїх даних платформа показує можливості, про які більшість людей навіть не знає.'],
-      ['Більше не пропустите жодного дедлайну', 'Платформа сама нагадає про важливі дати, щоб ти не отримав штраф через забудькуватість.'],
+      ['Допомагаємо не проґавити списання', 'На основі твоїх даних платформа показує можливості, про які більшість людей навіть не знає.'],
+      ['Нагадуємо про важливі дедлайни', 'Платформа сама нагадає про важливі дати, щоб ти не отримав штраф через забудькуватість.'],
       ['Бізнес-помічник на кожен день', 'Рахунки, клієнти, витрати, показники бізнесу та документи — все в одному зрозумілому кабінеті.'],
       ['Складне, пояснене просто', 'Українською, англійською, російською та німецькою — обирай зручну мову і починай.'],
     ],
@@ -235,8 +235,8 @@ const QLIXA_TEXT: Record<string, {
       ['Интерфейс, который поймёт даже новичок', 'Никаких сложных таблиц, бухгалтерских терминов и непонятных кнопок. Всё объясняется шаг за шагом.'],
       ['Не программа для бухгалтеров', 'Это платформа для обычных людей. Для тех, кто хочет заниматься своей жизнью или бизнесом, а не часами разбираться в документах.'],
       ['Разбираемся в австрийской системе вместо вас', 'Мы уже изучили правила за тебя и превратили их в простые вопросы и автоматические подсказки.'],
-      ['Больше не пропустите ни одного списания', 'На основе твоих данных платформа показывает возможности, о которых большинство людей даже не знает.'],
-      ['Больше не пропустите ни одного дедлайна', 'Платформа сама напомнит о важных датах, чтобы ты не получил штраф из-за забывчивости.'],
+      ['Помогаем не упустить списания', 'На основе твоих данных платформа показывает возможности, о которых большинство людей даже не знает.'],
+      ['Напоминаем о важных дедлайнах', 'Платформа сама напомнит о важных датах, чтобы ты не получил штраф из-за забывчивости.'],
       ['Бизнес-помощник на каждый день', 'Счета, клиенты, расходы, показатели бизнеса и документы — всё в одном понятном кабинете.'],
       ['Сложное, объяснённое просто', 'На украинском, английском, русском и немецком — выбирай удобный язык и начинай.'],
     ],
@@ -252,8 +252,8 @@ const QLIXA_TEXT: Record<string, {
       ['An interface even a beginner will understand', 'No complicated spreadsheets, accounting jargon, or confusing buttons. Everything is explained step by step.'],
       ['Not software for accountants', "This is a platform for regular people. For those who want to focus on their life or business, not spend hours figuring out paperwork."],
       ["We understand the Austrian system so you don't have to", "We've already studied the rules for you and turned them into simple questions and automatic hints."],
-      ['Never miss a deduction again', "Based on your data, the platform shows opportunities most people don't even know about."],
-      ['Never miss a deadline again', "The platform reminds you of important dates itself, so you don't get fined for forgetting."],
+      ['We help you not miss deductions', "Based on your data, the platform shows opportunities most people don't even know about."],
+      ['We remind you about important deadlines', "The platform reminds you of important dates itself, so you don't get fined for forgetting."],
       ['Your everyday business assistant', 'Invoices, clients, expenses, business metrics and documents — all in one clear dashboard.'],
       ['Complex made simple', 'In Ukrainian, English, Russian, and German — choose your language and get started.'],
     ],
@@ -269,8 +269,8 @@ const QLIXA_TEXT: Record<string, {
       ['Eine Oberfläche, die sogar Anfänger verstehen', 'Keine komplizierten Tabellen, Buchhaltungsbegriffe oder unklaren Schaltflächen. Alles wird Schritt für Schritt erklärt.'],
       ['Kein Programm für Buchhalter', 'Das ist eine Plattform für ganz normale Menschen. Für alle, die sich um ihr Leben oder ihr Business kümmern wollen, statt stundenlang Unterlagen zu wälzen.'],
       ['Wir verstehen das österreichische System für dich', 'Wir haben die Regeln bereits für dich studiert und in einfache Fragen und automatische Hinweise verwandelt.'],
-      ['Verpasse nie wieder einen Abzug', 'Basierend auf deinen Daten zeigt dir die Plattform Möglichkeiten, von denen die meisten Menschen nicht einmal wissen.'],
-      ['Verpasse nie wieder eine Frist', 'Die Plattform erinnert dich selbst an wichtige Termine, damit du wegen Vergesslichkeit keine Strafe bekommst.'],
+      ['Wir helfen dir, Abzüge nicht zu verpassen', 'Basierend auf deinen Daten zeigt dir die Plattform Möglichkeiten, von denen die meisten Menschen nicht einmal wissen.'],
+      ['Wir erinnern dich an wichtige Fristen', 'Die Plattform erinnert dich selbst an wichtige Termine, damit du wegen Vergesslichkeit keine Strafe bekommst.'],
       ['Dein Business-Assistent für jeden Tag', 'Rechnungen, Kunden, Ausgaben, Geschäftskennzahlen und Dokumente — alles in einem übersichtlichen Konto.'],
       ['Kompliziertes einfach erklärt', 'Auf Ukrainisch, Englisch, Russisch und Deutsch — wähle deine Sprache und leg los.'],
     ],
@@ -339,6 +339,59 @@ const FORWHOM_TEXT: Record<string, {
   },
 }
 
+// Переклади секції "Як це працює" — всі 4 мови
+const DEMO_TEXT: Record<string, {
+  badge: string
+  h2Before: string
+  h2Emphasis: string
+  cards: { before: string; em: string; desc: string }[] // x4
+}> = {
+  UA: {
+    badge: 'Як це працює',
+    h2Before: 'Все просто — ',
+    h2Emphasis: '4 кроки',
+    cards: [
+      { before: 'Відповідаєш на ', em: 'прості питання', desc: 'Кілька простих запитань — ти вводиш свої дані та розповідаєш про свою ситуацію.' },
+      { before: 'QLIXA ', em: 'аналізує', desc: 'На основі введених тобою даних платформа показує потрібні розрахунки, суми, дедлайни та наступні кроки.' },
+      { before: 'Отримуєш ', em: 'зрозумілі підказки', desc: 'QLIXA допомагає підготувати розрахунки, шаблони, чеклісти та пояснення. Ти перевіряєш результат і вирішуєш, що робити далі.' },
+      { before: 'Ти ', em: 'залишаєшся головним', desc: 'QLIXA допомагає все структурувати та підготувати. Рішення, перевірка і відправка документів завжди залишаються за тобою.' },
+    ],
+  },
+  RU: {
+    badge: 'Как это работает',
+    h2Before: 'Всё просто — ',
+    h2Emphasis: '4 шага',
+    cards: [
+      { before: 'Отвечаешь на ', em: 'простые вопросы', desc: 'Несколько простых вопросов — ты вводишь свои данные и рассказываешь о своей ситуации.' },
+      { before: 'QLIXA ', em: 'анализирует', desc: 'На основе введённых тобой данных платформа показывает нужные расчёты, суммы, дедлайны и следующие шаги.' },
+      { before: 'Получаешь ', em: 'понятные подсказки', desc: 'QLIXA помогает подготовить расчёты, шаблоны, чек-листы и пояснения. Ты проверяешь результат и решаешь, что делать дальше.' },
+      { before: 'Ты ', em: 'остаёшься главным', desc: 'QLIXA помогает всё структурировать и подготовить. Решение, проверка и отправка документов всегда остаются за тобой.' },
+    ],
+  },
+  EN: {
+    badge: 'How it works',
+    h2Before: "It's simple — ",
+    h2Emphasis: '4 steps',
+    cards: [
+      { before: 'You answer ', em: 'simple questions', desc: 'A few simple questions — you enter your details and describe your situation.' },
+      { before: 'QLIXA ', em: 'analyzes', desc: 'Based on the data you entered, the platform shows the relevant calculations, amounts, deadlines, and next steps.' },
+      { before: 'You get ', em: 'clear guidance', desc: 'QLIXA helps you prepare calculations, templates, checklists, and explanations. You review the result and decide what to do next.' },
+      { before: 'You ', em: 'stay in control', desc: 'QLIXA helps structure and prepare everything. The decision, review, and submission of documents always remain with you.' },
+    ],
+  },
+  DE: {
+    badge: 'So funktioniert’s',
+    h2Before: 'Ganz einfach — ',
+    h2Emphasis: '4 Schritte',
+    cards: [
+      { before: 'Du beantwortest ', em: 'einfache Fragen', desc: 'Ein paar einfache Fragen — du gibst deine Daten ein und beschreibst deine Situation.' },
+      { before: 'QLIXA ', em: 'analysiert', desc: 'Basierend auf deinen Angaben zeigt dir die Plattform die passenden Berechnungen, Beträge, Fristen und nächsten Schritte.' },
+      { before: 'Du bekommst ', em: 'klare Hinweise', desc: 'QLIXA hilft dir, Berechnungen, Vorlagen, Checklisten und Erklärungen vorzubereiten. Du prüfst das Ergebnis und entscheidest, wie es weitergeht.' },
+      { before: 'Du ', em: 'bleibst am Ruder', desc: 'QLIXA hilft dir, alles zu strukturieren und vorzubereiten. Die Entscheidung, Prüfung und das Einreichen von Dokumenten liegen immer bei dir.' },
+    ],
+  },
+}
+
 const upcoming = [
   { tag: 'SVS', title: 'Як заповнити формуляр SVS', desc: 'Соціальне страхування — що вказати щоб не переплатити.', href: '/articles/svs-formular' },
   { tag: 'FinanzOnline', title: 'Як заповнити формуляр FinanzOnline', desc: 'Реєстрація в податковій онлайн — покроково.', href: '/articles/finanz-online' },
@@ -364,6 +417,7 @@ export default function HomePage() {
   const t = HERO_TEXT[lang] || HERO_TEXT.UA;
   const t2 = QLIXA_TEXT[lang] || QLIXA_TEXT.UA;
   const t3 = FORWHOM_TEXT[lang] || FORWHOM_TEXT.UA;
+  const t4 = DEMO_TEXT[lang] || DEMO_TEXT.UA;
 
   return (
     <div style={{ fontFamily: 'DM Sans, sans-serif', background: '#F0F7F8', overflowX: 'hidden' }}>
@@ -891,48 +945,22 @@ export default function HomePage() {
 
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: 52 }}>
-            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.15)', border: '1px solid rgba(3,131,144,0.35)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>Як це працює</div>
+            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.15)', border: '1px solid rgba(3,131,144,0.35)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>{t4.badge}</div>
             <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.8vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 0 }}>
-              Все просто — 4 кроки і <em style={{ fontStyle: 'italic', color: '#038390' }}>жодних складних термінів</em>
+              {t4.h2Before}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t4.h2Emphasis}</em>
             </h2>
           </div>
 
           {/* 4 cards in a row */}
           <div id="demo-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
-            {[
-              {
-                num: '1',
-                img: '/how-it-works/step-1.png',
-                title: 'Відповідаєш на прості питання.',
-                em: 'прості питання.',
-                before: 'Відповідаєш на ',
-                desc: 'Ніяких складних форм. Просто обираєш відповідь — і QLIXA вже знає твою ситуацію.',
-              },
-              {
-                num: '2',
-                img: '/how-it-works/step-2.png',
-                title: 'QLIXA розраховує.',
-                em: 'аналізує.',
-                before: 'QLIXA ',
-                desc: 'На основі твоїх даних показує суми, можливості та наступні кроки.',
-              },
-              {
-                num: '3',
-                img: '/how-it-works/step-3.png',
-                title: 'Натискаєш одну кнопку.',
-                em: 'одну кнопку.',
-                before: 'Натискаєш ',
-                desc: 'QLIXA формує звіти та готує дані для FinanzOnline автоматично.',
-              },
-              {
-                num: '4',
-                img: '/how-it-works/step-4.png',
-                title: 'Отримуєш результат.',
-                em: 'результат.',
-                before: 'Отримуєш ',
-                desc: 'Біжи працювати далі — QLIXA підготує всі дані — ти приймаєш рішення.',
-              },
-            ].map((card) => (
+            {['/how-it-works/step-1.png', '/how-it-works/step-2.png', '/how-it-works/step-3.png', '/how-it-works/step-4.png'].map((img, i) => ({
+              num: String(i + 1),
+              img,
+              title: t4.cards[i].before + t4.cards[i].em,
+              em: t4.cards[i].em,
+              before: t4.cards[i].before,
+              desc: t4.cards[i].desc,
+            })).map((card) => (
               <div key={card.num} style={{ background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)', display: 'flex', flexDirection: 'column' }}>
                 {/* Image */}
                 <div style={{ width: '100%', aspectRatio: '4/3', background: '#F0F7F8', position: 'relative', overflow: 'hidden', flexShrink: 0 }}>
