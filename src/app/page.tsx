@@ -98,7 +98,6 @@ const HERO_ICON_FILES = [
   'INVOICES.png',
   'KPI.png',
   'TAX%20REFUND.png',
-  'TAX%20REPORTS.png',
 ]
 function getHeroScreenSlides(lang: string) {
   const folder = HERO_ICON_FOLDERS[lang] || HERO_ICON_FOLDERS.UA
@@ -774,7 +773,14 @@ export default function HomePage() {
         @keyframes langPop { from{opacity:0;transform:scale(0.7);} to{opacity:1;transform:scale(1);} }
         @keyframes updatePulse { 0%,100%{transform:scale(1);opacity:0.5;} 50%{transform:scale(1.6);opacity:1;} }
         @keyframes barFill { 0%{width:0%;} 80%{width:100%;} 100%{width:100%;} }
-        @keyframes heroSlideFade { 0%{opacity:0;} 2%{opacity:1;} 11%{opacity:1;} 14.28%{opacity:0;} 100%{opacity:0;} }
+        @keyframes heroSlideFade {
+          0%    { opacity: 0; transform: translate(-50%,-50%) scale(0.75) translateY(8px); }
+          4%    { opacity: 1; transform: translate(-50%,-50%) scale(1.06) translateY(0); }
+          7%    { opacity: 1; transform: translate(-50%,-50%) scale(1) translateY(0); }
+          13%   { opacity: 1; transform: translate(-50%,-50%) scale(1) translateY(0); }
+          16.67%{ opacity: 0; transform: translate(-50%,-50%) scale(0.9) translateY(-6px); }
+          100%  { opacity: 0; transform: translate(-50%,-50%) scale(0.9) translateY(-6px); }
+        }
         .hiw-card { background:#fff; border-radius:22px; padding:36px 28px; transition:transform 0.2s,box-shadow 0.2s; position:relative; overflow:hidden }
         .hiw-card:hover { transform:translateY(-6px); box-shadow:0 16px 48px rgba(0,0,0,0.10) }
         .hiw-card:hover::before { opacity:1 }
@@ -1051,26 +1057,30 @@ export default function HomePage() {
                 overflow: 'hidden',
               }}
             >
-              {HERO_SCREEN_SLIDES.map((src, i) => (
-                // eslint-disable-next-line @next/next/no-img-element
-                <img
-                  key={src}
-                  src={src}
-                  alt=""
-                  style={{
-                    position: 'absolute',
-                    left: '50%',
-                    top: '50%',
-                    width: '80%',
-                    height: '80%',
-                    transform: 'translate(-50%, -50%)',
-                    objectFit: 'contain',
-                    opacity: 0,
-                    animation: `heroSlideFade ${HERO_SCREEN_SLIDES.length * HERO_SLIDE_DURATION}s ease-in-out infinite`,
-                    animationDelay: `${-i * HERO_SLIDE_DURATION}s`,
-                  }}
-                />
-              ))}
+              {HERO_SCREEN_SLIDES.map((src, i) => {
+                const isDeadlines = src.includes('DEADLINES.png')
+                const size = isDeadlines ? '68%' : '80%'
+                return (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img
+                    key={src}
+                    src={src}
+                    alt=""
+                    style={{
+                      position: 'absolute',
+                      left: '50%',
+                      top: '50%',
+                      width: size,
+                      height: size,
+                      transform: 'translate(-50%, -50%)',
+                      objectFit: 'contain',
+                      opacity: 0,
+                      animation: `heroSlideFade ${HERO_SCREEN_SLIDES.length * HERO_SLIDE_DURATION}s ease-in-out infinite`,
+                      animationDelay: `${-i * HERO_SLIDE_DURATION}s`,
+                    }}
+                  />
+                )
+              })}
             </div>
           </div>
         )}

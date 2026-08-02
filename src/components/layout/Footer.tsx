@@ -32,7 +32,7 @@ const FOOTER_TEXT: Record<string, {
   madeWith: string
 }> = {
   UA: {
-    tagline: 'Твій цифровий помічник для життя та бізнесу в Австрії.',
+    tagline: 'Автоматизована цифрова платформа для самозайнятих, підприємців та найманих працівників в Австрії.',
     columns: [
       ['Продукти', [{ label: 'Ціни', href: '/pricing' }, { label: 'Шаблони', href: '/templates' }, { label: 'Партнери', href: '/partners' }]],
       ['Компанія', [{ label: 'Про нас', href: '/about' }, { label: 'Статті', href: '/articles' }, { label: 'Контакти', href: '/contact' }]],
@@ -43,7 +43,7 @@ const FOOTER_TEXT: Record<string, {
     madeWith: 'Зроблено з ♥ в Австрії 🇦🇹',
   },
   RU: {
-    tagline: 'Твой цифровой помощник для жизни и бизнеса в Австрии.',
+    tagline: 'Автоматизированная цифровая платформа для самозанятых, предпринимателей и наёмных работников в Австрии.',
     columns: [
       ['Продукты', [{ label: 'Цены', href: '/pricing' }, { label: 'Шаблоны', href: '/templates' }, { label: 'Партнёры', href: '/partners' }]],
       ['Компания', [{ label: 'О нас', href: '/about' }, { label: 'Статьи', href: '/articles' }, { label: 'Контакты', href: '/contact' }]],
@@ -54,7 +54,7 @@ const FOOTER_TEXT: Record<string, {
     madeWith: 'Сделано с ♥ в Австрии 🇦🇹',
   },
   EN: {
-    tagline: 'Your digital assistant for life and business in Austria.',
+    tagline: 'An automated digital platform for the self-employed, entrepreneurs, and employees in Austria.',
     columns: [
       ['Product', [{ label: 'Pricing', href: '/pricing' }, { label: 'Templates', href: '/templates' }, { label: 'Partners', href: '/partners' }]],
       ['Company', [{ label: 'About Us', href: '/about' }, { label: 'Articles', href: '/articles' }, { label: 'Contact', href: '/contact' }]],
@@ -65,7 +65,7 @@ const FOOTER_TEXT: Record<string, {
     madeWith: 'Made with ♥ in Austria 🇦🇹',
   },
   DE: {
-    tagline: 'Dein digitaler Assistent für Leben und Business in Österreich.',
+    tagline: 'Eine automatisierte digitale Plattform für Selbstständige, Unternehmer:innen und Angestellte in Österreich.',
     columns: [
       ['Produkt', [{ label: 'Preise', href: '/pricing' }, { label: 'Vorlagen', href: '/templates' }, { label: 'Partner', href: '/partners' }]],
       ['Unternehmen', [{ label: 'Über uns', href: '/about' }, { label: 'Artikel', href: '/articles' }, { label: 'Kontakt', href: '/contact' }]],
