@@ -1,5 +1,6 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 
@@ -22,25 +23,75 @@ const socials = [
   },
 ]
 
-const footerLinks = {
-  'Продукти': [
-    { label: 'Ціни', href: '/pricing' },
-    { label: 'Шаблони', href: '/templates' },
-    { label: 'Партнери', href: '/partners' },
-  ],
-  'Компанія': [
-    { label: 'Про нас', href: '/about' },
-    { label: 'Статті', href: '/articles' },
-    { label: 'Контакти', href: '/contact' },
-  ],
-  'Правове': [
-    { label: 'Impressum', href: '/impressum' },
-    { label: 'Політика конфіденційності', href: '/privacy' },
-    { label: 'Умови використання', href: '/agb' },
-  ],
+// Переклади футера — всі 4 мови
+const FOOTER_TEXT: Record<string, {
+  tagline: string
+  columns: [string, { label: string; href: string }[]][]
+  contact: string
+  copyright: string
+  madeWith: string
+}> = {
+  UA: {
+    tagline: 'Твій цифровий помічник для життя та бізнесу в Австрії.',
+    columns: [
+      ['Продукти', [{ label: 'Ціни', href: '/pricing' }, { label: 'Шаблони', href: '/templates' }, { label: 'Партнери', href: '/partners' }]],
+      ['Компанія', [{ label: 'Про нас', href: '/about' }, { label: 'Статті', href: '/articles' }, { label: 'Контакти', href: '/contact' }]],
+      ['Правове', [{ label: 'Impressum', href: '/impressum' }, { label: 'Політика конфіденційності', href: '/privacy' }, { label: 'Умови використання', href: '/agb' }]],
+    ],
+    contact: 'Контакт',
+    copyright: '© 2026 QLIXA · info@qlixa.eu',
+    madeWith: 'Зроблено з ♥ в Австрії 🇦🇹',
+  },
+  RU: {
+    tagline: 'Твой цифровой помощник для жизни и бизнеса в Австрии.',
+    columns: [
+      ['Продукты', [{ label: 'Цены', href: '/pricing' }, { label: 'Шаблоны', href: '/templates' }, { label: 'Партнёры', href: '/partners' }]],
+      ['Компания', [{ label: 'О нас', href: '/about' }, { label: 'Статьи', href: '/articles' }, { label: 'Контакты', href: '/contact' }]],
+      ['Правовое', [{ label: 'Impressum', href: '/impressum' }, { label: 'Политика конфиденциальности', href: '/privacy' }, { label: 'Условия использования', href: '/agb' }]],
+    ],
+    contact: 'Контакт',
+    copyright: '© 2026 QLIXA · info@qlixa.eu',
+    madeWith: 'Сделано с ♥ в Австрии 🇦🇹',
+  },
+  EN: {
+    tagline: 'Your digital assistant for life and business in Austria.',
+    columns: [
+      ['Product', [{ label: 'Pricing', href: '/pricing' }, { label: 'Templates', href: '/templates' }, { label: 'Partners', href: '/partners' }]],
+      ['Company', [{ label: 'About Us', href: '/about' }, { label: 'Articles', href: '/articles' }, { label: 'Contact', href: '/contact' }]],
+      ['Legal', [{ label: 'Impressum', href: '/impressum' }, { label: 'Privacy Policy', href: '/privacy' }, { label: 'Terms of Use', href: '/agb' }]],
+    ],
+    contact: 'Contact',
+    copyright: '© 2026 QLIXA · info@qlixa.eu',
+    madeWith: 'Made with ♥ in Austria 🇦🇹',
+  },
+  DE: {
+    tagline: 'Dein digitaler Assistent für Leben und Business in Österreich.',
+    columns: [
+      ['Produkt', [{ label: 'Preise', href: '/pricing' }, { label: 'Vorlagen', href: '/templates' }, { label: 'Partner', href: '/partners' }]],
+      ['Unternehmen', [{ label: 'Über uns', href: '/about' }, { label: 'Artikel', href: '/articles' }, { label: 'Kontakt', href: '/contact' }]],
+      ['Rechtliches', [{ label: 'Impressum', href: '/impressum' }, { label: 'Datenschutz', href: '/privacy' }, { label: 'Nutzungsbedingungen', href: '/agb' }]],
+    ],
+    contact: 'Kontakt',
+    copyright: '© 2026 QLIXA · info@qlixa.eu',
+    madeWith: 'Made with ♥ in Österreich 🇦🇹',
+  },
 }
 
 export default function Footer() {
+  const [lang, setLang] = useState('UA')
+
+  useEffect(() => {
+    const updateLang = () => {
+      const l = localStorage.getItem('qlixa-lang')
+      if (l) setLang(l.toUpperCase())
+    }
+    updateLang()
+    window.addEventListener('qlixa-lang-change', updateLang)
+    return () => window.removeEventListener('qlixa-lang-change', updateLang)
+  }, [])
+
+  const t = FOOTER_TEXT[lang] || FOOTER_TEXT.UA
+
   return (
     <footer>
       <div style={{ height: 1, background: '#f0f0f0', width: '100%' }} />
@@ -63,7 +114,7 @@ export default function Footer() {
                 />
               </Link>
               <p style={{ fontSize: 12, lineHeight: 1.6, color: '#9D9D9D', marginBottom: 16 }}>
-                Твій цифровий помічник для життя та бізнесу в Австрії.
+                {t.tagline}
               </p>
               <div style={{ display: 'flex', gap: 14 }}>
                 {socials.map(s => (
@@ -79,7 +130,7 @@ export default function Footer() {
             </div>
 
             {/* Link columns */}
-            {Object.entries(footerLinks).map(([title, links]) => (
+            {t.columns.map(([title, links]) => (
               <div key={title}>
                 <div style={{
                   fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
@@ -107,7 +158,7 @@ export default function Footer() {
                 fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
                 textTransform: 'uppercase', color: '#9D9D9D', marginBottom: 16,
               }}>
-                Контакт
+                {t.contact}
               </div>
               <a href="mailto:info@qlixa.eu" style={{
                 display: 'block', fontSize: 13,
@@ -127,8 +178,8 @@ export default function Footer() {
             display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap',
             gap: 8, fontSize: 12, color: '#9D9D9D',
           }}>
-            <span>© 2026 QLIXA · info@qlixa.eu</span>
-            <span>Made with ♥ in Austria 🇦🇹</span>
+            <span>{t.copyright}</span>
+            <span>{t.madeWith}</span>
           </div>
         </div>
       </div>
