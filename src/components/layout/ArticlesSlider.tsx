@@ -21,15 +21,25 @@ type UpArticle = {
   href: string
 }
 
+const SLIDER_TEXT: Record<string, { header: string; headerEm: string; allArticles: string; readMore: string; soon: string }> = {
+  UA: { header: 'Останні', headerEm: 'статті', allArticles: 'Всі статті →', readMore: 'Читати →', soon: 'Скоро' },
+  RU: { header: 'Последние', headerEm: 'статьи', allArticles: 'Все статьи →', readMore: 'Читать →', soon: 'Скоро' },
+  EN: { header: 'Latest', headerEm: 'articles', allArticles: 'All articles →', readMore: 'Read →', soon: 'Soon' },
+  DE: { header: 'Neueste', headerEm: 'Artikel', allArticles: 'Alle Artikel →', readMore: 'Lesen →', soon: 'Bald' },
+}
+
 export default function ArticlesSlider({
   published,
   upcoming,
+  lang,
 }: {
   published: PubArticle[]
   upcoming: UpArticle[]
+  lang: string
 }) {
   const [cur, setCur] = React.useState(0)
   const visible = 4
+  const t = SLIDER_TEXT[lang] || SLIDER_TEXT.UA
 
   const allCards: Array<
     ({ type: 'pub' } & PubArticle) | ({ type: 'up' } & UpArticle)
@@ -53,11 +63,11 @@ export default function ArticlesSlider({
         {/* Header */}
         <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 28 }}>
           <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 28, color: '#1A1A1A' }}>
-            Останні <em style={{ fontStyle: 'italic', color: '#038390' }}>статті</em>
+            {t.header} <em style={{ fontStyle: 'italic', color: '#038390' }}>{t.headerEm}</em>
           </h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
             <Link href="/articles" style={{ fontSize: 13, fontWeight: 500, color: '#038390', textDecoration: 'none' }}>
-              Всі статті →
+              {t.allArticles}
             </Link>
             <div style={{ display: 'flex', gap: 8 }}>
               {([{ d: -1, i: '←' }, { d: 1, i: '→' }] as const).map(b => (
@@ -115,7 +125,7 @@ export default function ArticlesSlider({
                   <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 12, flex: 1 }}>{art.desc}</div>
                   <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'auto' }}>
                     <span style={{ fontSize: 11, color: 'rgba(26,26,26,0.55)' }}>{art.date} · {art.readTime}</span>
-                    <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)' }}>Читати →</span>
+                    <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)' }}>{t.readMore}</span>
                   </div>
                 </div>
               </Link>
@@ -127,7 +137,7 @@ export default function ArticlesSlider({
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 9 }}>
                   <div style={{ fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 4, background: '#F0F7F8', color: 'rgba(26,26,26,0.55)' }}>{art.tag}</div>
-                  <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', padding: '3px 7px', borderRadius: 3, background: 'var(--peach-light)', color: 'var(--orange)' }}>Скоро</div>
+                  <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', padding: '3px 7px', borderRadius: 3, background: 'var(--peach-light)', color: 'var(--orange)' }}>{t.soon}</div>
                 </div>
                 <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 6 }}>{art.title}</div>
                 <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.55, marginTop: 'auto' }}>{art.desc}</div>

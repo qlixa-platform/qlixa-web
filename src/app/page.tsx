@@ -8,45 +8,81 @@ import Image from 'next/image'
 import ReviewsSection from '@/components/layout/ReviewsSection'
 import ArticlesSlider from '@/components/layout/ArticlesSlider'
 
-const published = [
-  {
-    href: '/articles/rwr-karte',
-    cover: '/articles/rwr-karte-cover.jpg',
-    tag: 'Гайд',
-    date: '2026-07-21',
-    title: 'Як підготуватися до подачі на RWR+ карту',
-    desc: 'Покроковий гайд: документи, калькулятор фінансових вимог і PDF чеклісти для найманих та самозайнятих.',
-    readTime: '~15 хвилин',
-  },
-  {
-    tag: 'Реєстрація бізнесу',
-    title: 'Gewerbeanmeldung в Австрії: покрокова реєстрація самозайнятості',
-    desc: 'Іноземці в Австрії платять юристам €300–500 за типові питання про реєстрацію бізнесу. Ми зібрали всю інформацію безкоштовно — щоб ти міг зробити все сам, крок за кроком.',
-    date: 'Червень 2026', readTime: '15 хв читання',
-    href: '/articles/gewerbeanmeldung', cover: '/articles/gewerbeanmeldung-cover.jpg',
-  },
-  {
-    tag: 'Австрія · Документи',
-    title: 'Як оформити Austria ID: покроковий гайд для іноземців',
-    desc: 'Austria ID — обов\'язковий перший крок для реєстрації бізнесу, роботи з FinanzOnline та SVS. 5 кроків.',
-    date: 'Червень 2026', readTime: '8 хв читання',
-    href: '/articles/austria-id', cover: '/articles/austria-id-cover.jpg',
-  },
-  {
-    tag: 'Сім\'я · Пільги',
-    title: 'Інвалідність дитини в Австрії: виплати, пільги та з чого почати',
-    desc: 'Behindertenpass, підвищена Familienbeihilfe, Pflegegeld та податкові пільги — покроковий гайд для батьків.',
-    date: 'Червень 2026', readTime: '10 хв читання',
-    href: '/articles/invalidity-child', cover: '/articles/invalidity-cover.jpg',
-  },
-  {
-    tag: 'GISA · Реєстрація',
-    title: 'Реєстрація на сайті GISA: покрокова інструкція',
-    desc: 'Як подати заяву Gewerbeanmeldung онлайн через GISA — детально, з поясненням кожного поля та кроку.',
-    date: 'Червень 2026', readTime: '15 хв читання',
-    href: '/articles/gisa-formular', cover: '/articles/gisa-cover.jpg',
-  },
+const PUBLISHED_META = [
+  { href: '/articles/rwr-karte',         cover: '/articles/rwr-karte-cover.jpg',        date: { UA: '2026-07-21',   RU: '2026-07-21',  EN: '2026-07-21',  DE: '2026-07-21' },  readTime: { UA: '~15 хвилин',    RU: '~15 минут',   EN: '~15 min',    DE: '~15 Min.' } },
+  { href: '/articles/gewerbeanmeldung',  cover: '/articles/gewerbeanmeldung-cover.jpg', date: { UA: 'Червень 2026', RU: 'Июнь 2026',   EN: 'June 2026',   DE: 'Juni 2026' },   readTime: { UA: '15 хв читання', RU: '15 мин',      EN: '15 min read', DE: '15 Min.' } },
+  { href: '/articles/austria-id',        cover: '/articles/austria-id-cover.jpg',       date: { UA: 'Червень 2026', RU: 'Июнь 2026',   EN: 'June 2026',   DE: 'Juni 2026' },   readTime: { UA: '8 хв читання',  RU: '8 мин',       EN: '8 min read',  DE: '8 Min.' } },
+  { href: '/articles/invalidity-child',  cover: '/articles/invalidity-cover.jpg',       date: { UA: 'Червень 2026', RU: 'Июнь 2026',   EN: 'June 2026',   DE: 'Juni 2026' },   readTime: { UA: '10 хв читання', RU: '10 мин',      EN: '10 min read', DE: '10 Min.' } },
+  { href: '/articles/gisa-formular',     cover: '/articles/gisa-cover.jpg',             date: { UA: 'Червень 2026', RU: 'Июнь 2026',   EN: 'June 2026',   DE: 'Juni 2026' },   readTime: { UA: '15 хв читання', RU: '15 мин',      EN: '15 min read', DE: '15 Min.' } },
 ]
+
+const UPCOMING_HREFS = [
+  '/articles/svs-formular',
+  '/articles/finanz-online',
+  '/articles/mvk-pension',
+]
+
+const ARTICLES_TEXT: Record<string, {
+  published: { tag: string; title: string; desc: string }[]
+  upcoming:  { tag: string; title: string; desc: string }[]
+}> = {
+  UA: {
+    published: [
+      { tag: 'Гайд',                  title: 'Як підготуватися до подачі на RWR+ карту',                           desc: 'Покроковий гайд: документи, калькулятор фінансових вимог і PDF чеклісти для найманих та самозайнятих.' },
+      { tag: 'Реєстрація бізнесу',    title: 'Gewerbeanmeldung в Австрії: покрокова реєстрація самозайнятості',     desc: 'Іноземці в Австрії платять юристам €300–500 за типові питання про реєстрацію бізнесу. Ми зібрали всю інформацію безкоштовно.' },
+      { tag: 'Австрія · Документи',   title: 'Як оформити Austria ID: покроковий гайд для іноземців',               desc: 'Austria ID — обов\'язковий перший крок для реєстрації бізнесу, роботи з FinanzOnline та SVS. 5 кроків.' },
+      { tag: 'Сім\'я · Пільги',       title: 'Інвалідність дитини в Австрії: виплати, пільги та з чого почати',    desc: 'Behindertenpass, підвищена Familienbeihilfe, Pflegegeld та податкові пільги — покроковий гайд для батьків.' },
+      { tag: 'GISA · Реєстрація',     title: 'Реєстрація на сайті GISA: покрокова інструкція',                      desc: 'Як подати заяву Gewerbeanmeldung онлайн через GISA — детально, з поясненням кожного поля та кроку.' },
+    ],
+    upcoming: [
+      { tag: 'SVS',          title: 'Як заповнити формуляр SVS',           desc: 'Соціальне страхування — що вказати щоб не переплатити.' },
+      { tag: 'FinanzOnline', title: 'Як заповнити формуляр FinanzOnline',  desc: 'Реєстрація в податковій онлайн — покроково.' },
+      { tag: 'MVK',          title: 'Як обрати пенсійний фонд MVK',         desc: 'Що таке MVK і як не пропустити дедлайн 6 місяців.' },
+    ],
+  },
+  RU: {
+    published: [
+      { tag: 'Гайд',                  title: 'Как подготовиться к подаче на RWR+ карту',                             desc: 'Пошаговый гайд: документы, калькулятор финансовых требований и PDF чеклисты для наёмных и самозанятых.' },
+      { tag: 'Регистрация бизнеса',   title: 'Gewerbeanmeldung в Австрии: пошаговая регистрация самозанятости',     desc: 'Иностранцы в Австрии платят юристам €300–500 за типичные вопросы о регистрации бизнеса. Мы собрали всё бесплатно.' },
+      { tag: 'Австрия · Документы',   title: 'Как оформить Austria ID: пошаговый гайд для иностранцев',             desc: 'Austria ID — обязательный первый шаг для регистрации бизнеса, работы с FinanzOnline и SVS. 5 шагов.' },
+      { tag: 'Семья · Льготы',        title: 'Инвалидность ребёнка в Австрии: выплаты, льготы и с чего начать',    desc: 'Behindertenpass, повышенная Familienbeihilfe, Pflegegeld и налоговые льготы — пошаговый гайд для родителей.' },
+      { tag: 'GISA · Регистрация',    title: 'Регистрация на сайте GISA: пошаговая инструкция',                     desc: 'Как подать заявку Gewerbeanmeldung онлайн через GISA — подробно, с объяснением каждого поля и шага.' },
+    ],
+    upcoming: [
+      { tag: 'SVS',          title: 'Как заполнить формуляр SVS',          desc: 'Социальное страхование — что указать чтобы не переплатить.' },
+      { tag: 'FinanzOnline', title: 'Как заполнить формуляр FinanzOnline', desc: 'Регистрация в налоговой онлайн — пошагово.' },
+      { tag: 'MVK',          title: 'Как выбрать пенсионный фонд MVK',     desc: 'Что такое MVK и как не пропустить дедлайн 6 месяцев.' },
+    ],
+  },
+  EN: {
+    published: [
+      { tag: 'Guide',                  title: 'How to Prepare for Your RWR+ Card Application',                       desc: 'Step-by-step guide: documents, financial requirements calculator and PDF checklists for employed and self-employed.' },
+      { tag: 'Business Registration',  title: 'Gewerbeanmeldung in Austria: Step-by-Step Self-Employment Registration', desc: 'Foreigners in Austria pay lawyers €300–500 for typical business registration questions. We collected it all for free.' },
+      { tag: 'Austria · Documents',    title: 'How to Get Austria ID: Step-by-Step Guide for Foreigners',             desc: 'Austria ID — the mandatory first step for business registration, FinanzOnline and SVS. 5 steps.' },
+      { tag: 'Family · Benefits',      title: 'Child Disability in Austria: Payments, Benefits and Where to Start',   desc: 'Behindertenpass, increased Familienbeihilfe, Pflegegeld and tax benefits — step-by-step guide for parents.' },
+      { tag: 'GISA · Registration',    title: 'Registering on GISA Website: Step-by-Step Instructions',               desc: 'How to submit a Gewerbeanmeldung application online via GISA — in detail, explaining every field and step.' },
+    ],
+    upcoming: [
+      { tag: 'SVS',          title: 'How to Fill in the SVS Form',         desc: 'Social insurance — what to enter so you don\'t overpay.' },
+      { tag: 'FinanzOnline', title: 'How to Fill in the FinanzOnline Form', desc: 'Online tax office registration — step by step.' },
+      { tag: 'MVK',          title: 'How to Choose a Pension Fund MVK',    desc: 'What MVK is and how not to miss the 6-month deadline.' },
+    ],
+  },
+  DE: {
+    published: [
+      { tag: 'Leitfaden',              title: 'So bereitest du dich auf den RWR+-Kartenantrag vor',                   desc: 'Schritt-für-Schritt-Leitfaden: Unterlagen, Rechner für Finanznachweise und PDF-Checklisten für Angestellte und Selbstständige.' },
+      { tag: 'Gewerbeanmeldung',       title: 'Gewerbeanmeldung in Österreich: Schritt-für-Schritt zur Selbstständigkeit', desc: 'Ausländer in Österreich zahlen Anwälten €300–500 für typische Fragen zur Gewerbeanmeldung. Wir haben alles kostenlos zusammengestellt.' },
+      { tag: 'Österreich · Dokumente', title: 'Austria ID beantragen: Schritt-für-Schritt-Anleitung für Ausländer',  desc: 'Die Austria ID ist der Pflichtschritt für Gewerbeanmeldung, FinanzOnline und SVS. 5 Schritte.' },
+      { tag: 'Familie · Leistungen',   title: 'Behinderung des Kindes in Österreich: Leistungen und wie man anfängt', desc: 'Behindertenpass, erhöhte Familienbeihilfe, Pflegegeld und Steuervergünstigungen — Leitfaden für Eltern.' },
+      { tag: 'GISA · Anmeldung',       title: 'Registrierung auf der GISA-Website: Schritt-für-Schritt-Anleitung',   desc: 'Wie du die Gewerbeanmeldung online über GISA einreichst — detailliert mit Erklärung jedes Feldes und Schritts.' },
+    ],
+    upcoming: [
+      { tag: 'SVS',          title: 'So füllst du das SVS-Formular aus',          desc: 'Sozialversicherung — was du angeben musst, um nicht zu viel zu zahlen.' },
+      { tag: 'FinanzOnline', title: 'So füllst du das FinanzOnline-Formular aus', desc: 'Online-Registrierung beim Finanzamt — Schritt für Schritt.' },
+      { tag: 'MVK',          title: 'Wie du den Pensionsfonds MVK wählst',        desc: 'Was MVK ist und wie du die 6-Monats-Frist nicht verpasst.' },
+    ],
+  },
+}
 
 // Слайдшоу на екрані ноутбука в Hero — окрема папка іконок під кожну мову
 const HERO_ICON_FOLDERS: Record<string, string> = {
@@ -559,11 +595,119 @@ const WHYQLIXA_TEXT: Record<string, {
   },
 }
 
-const upcoming = [
-  { tag: 'SVS', title: 'Як заповнити формуляр SVS', desc: 'Соціальне страхування — що вказати щоб не переплатити.', href: '/articles/svs-formular' },
-  { tag: 'FinanzOnline', title: 'Як заповнити формуляр FinanzOnline', desc: 'Реєстрація в податковій онлайн — покроково.', href: '/articles/finanz-online' },
-  { tag: 'MVK', title: 'Як обрати пенсійний фонд MVK', desc: 'Що таке MVK і як не пропустити дедлайн 6 місяців.', href: '/articles/mvk-pension' },
-]
+// Переклади CTA-секції "Починай зараз" — всі 4 мови
+const CTA_TEXT: Record<string, {
+  badge: string
+  h2: string
+  pBefore: string
+  pSpan1: string
+  pMid: string
+  pSpan2: string
+  pAfter: string
+  cta: string
+}> = {
+  UA: {
+    badge: 'Починай зараз',
+    h2: 'Твоя ситуація — унікальна. Ми це розуміємо.',
+    pBefore: 'Саме тому ми створюємо не ',
+    pSpan1: 'універсальні шаблони',
+    pMid: ' — ми допомагаємо сформувати саме ',
+    pSpan2: 'ваш персональний план дій',
+    pAfter: '. Чеклісти, калькулятори, звіти та рекомендації створюються на основі введених вами даних і враховують саме вашу ситуацію.',
+    cta: 'Починай підготовку →',
+  },
+  RU: {
+    badge: 'Начни сейчас',
+    h2: 'Твоя ситуация — уникальна. Мы это понимаем.',
+    pBefore: 'Именно поэтому мы создаём не ',
+    pSpan1: 'универсальные шаблоны',
+    pMid: ' — мы помогаем сформировать именно ',
+    pSpan2: 'твой персональный план действий',
+    pAfter: '. Чек-листы, калькуляторы, отчёты и рекомендации создаются на основе введённых тобой данных и учитывают именно твою ситуацию.',
+    cta: 'Начать подготовку →',
+  },
+  EN: {
+    badge: 'Get started now',
+    h2: 'Your situation is unique. We get that.',
+    pBefore: "That's why we don't build ",
+    pSpan1: 'universal templates',
+    pMid: ' — we help you shape ',
+    pSpan2: 'your own personal action plan',
+    pAfter: '. Checklists, calculators, reports, and recommendations are created based on the data you enter and reflect your specific situation.',
+    cta: 'Start now →',
+  },
+  DE: {
+    badge: 'Jetzt starten',
+    h2: 'Deine Situation ist einzigartig. Das wissen wir.',
+    pBefore: 'Deshalb erstellen wir keine ',
+    pSpan1: 'universellen Vorlagen',
+    pMid: ' — wir helfen dir, genau ',
+    pSpan2: 'deinen persönlichen Aktionsplan',
+    pAfter: ' zu erstellen. Checklisten, Rechner, Berichte und Empfehlungen basieren auf deinen eingegebenen Daten und berücksichtigen genau deine Situation.',
+    cta: 'Jetzt starten →',
+  },
+}
+
+// Переклади секції "Часті запитання" — всі 4 мови
+const FAQ_TEXT: Record<string, {
+  badge: string
+  h2Before: string
+  h2Emphasis: string
+  items: { icon: string; q: string; a: string }[]
+}> = {
+  UA: {
+    badge: 'Часті запитання',
+    h2Before: 'Часті ',
+    h2Emphasis: 'запитання',
+    items: [
+      { icon: '😰', q: 'Самозайнятий: боюся зробити помилку в декларації — що буде?', a: 'QLIXA допоможе зібрати та впорядкувати всі дані за рік, якщо ведеш бухгалтерію на платформі. Ми підкажемо, на що звернути увагу для вигіднішого заповнення — наприклад, які витрати можна списати і як правильно їх задокументувати. Проте памʼятай: QLIXA — це цифровий помічник, а не бухгалтер чи Steuerberater. Якщо маєш складну ситуацію або сумніви — рекомендуємо додатково проконсультуватись із Steuerberater.' },
+      { icon: '💼', q: 'Найманий працівник: чи можу я повернути свої податки?', a: 'В Австрії роботодавець автоматично подає базові дані про твою зарплату до податкової — але він не вникає в твою особисту ситуацію. Саме тому більшість найманих працівників можуть самостійно подати Arbeitnehmerveranlagung і повернути частину сплачених податків. QLIXA допоможе розібратись саме у твоїй ситуації: знайде всі витрати, які можна врахувати — home office, транспорт, навчання, діти та інше. Просто і швидко, без складних термінів.' },
+      { icon: '🇩🇪', q: 'Я не говорю по-німецьки — зможу розібратись?', a: 'Так, саме для цього і створена QLIXA. Платформа повністю доступна українською, російською та англійською. Всі австрійські терміни перекладені і пояснені простими словами.' },
+      { icon: '🆕', q: 'Я тільки відкрив Gewerbe. З чого почати?', a: 'Вітаємо з відкриттям! Ось з чого варто почати в QLIXA: підключи бухгалтерію — фіксуй доходи і витрати з першого дня; виставляй рахунки клієнтам прямо з платформи; стеж за дашбордом — він покаже загальну картину твого бізнесу в реальному часі. А щоб не загубитись у перших кроках — читай наші покрокові гайди у розділі Статті.' },
+      { icon: '💰', q: 'Що саме я можу списати як витрати?', a: 'Дуже багато: ноутбук, телефон, інтернет, частина оренди (home office), курси, підписки на програми, транспорт до клієнтів і десятки інших категорій. QLIXA покаже всі варіанти для твоєї ситуації.' },
+      { icon: '🔒', q: 'Мої фінансові дані в безпеці?', a: 'Так. Сервери в ЄС, відповідність GDPR. Ми не передаємо дані третім особам. Ти можеш видалити акаунт і всі дані в будь-який момент.' },
+    ],
+  },
+  RU: {
+    badge: 'Часто задаваемые вопросы',
+    h2Before: 'Часто задаваемые ',
+    h2Emphasis: 'вопросы',
+    items: [
+      { icon: '😰', q: 'Самозанятый: боюсь сделать ошибку в декларации — что будет?', a: 'QLIXA поможет собрать и упорядочить все данные за год, если ведёшь бухгалтерию на платформе. Мы подскажем, на что обратить внимание для более выгодного заполнения — например, какие расходы можно списать и как правильно их задокументировать. Однако помни: QLIXA — это цифровой помощник, а не бухгалтер или Steuerberater. Если у тебя сложная ситуация или сомнения — рекомендуем дополнительно проконсультироваться со Steuerberater.' },
+      { icon: '💼', q: 'Наёмный работник: могу ли я вернуть свои налоги?', a: 'В Австрии работодатель автоматически подаёт базовые данные о твоей зарплате в налоговую — но он не вникает в твою личную ситуацию. Именно поэтому большинство наёмных работников могут самостоятельно подать Arbeitnehmerveranlagung и вернуть часть уплаченных налогов. QLIXA поможет разобраться именно в твоей ситуации: найдёт все расходы, которые можно учесть — home office, транспорт, обучение, дети и другое. Просто и быстро, без сложных терминов.' },
+      { icon: '🇩🇪', q: 'Я не говорю по-немецки — смогу разобраться?', a: 'Да, именно для этого и создана QLIXA. Платформа полностью доступна на украинском, русском и английском языках. Все австрийские термины переведены и объяснены простыми словами.' },
+      { icon: '🆕', q: 'Я только открыл Gewerbe. С чего начать?', a: 'Поздравляем с открытием! Вот с чего стоит начать в QLIXA: подключи бухгалтерию — фиксируй доходы и расходы с первого дня; выставляй счета клиентам прямо с платформы; следи за дашбордом — он покажет общую картину твоего бизнеса в реальном времени. А чтобы не потеряться на первых шагах — читай наши пошаговые гайды в разделе Статьи.' },
+      { icon: '💰', q: 'Что именно я могу списать как расходы?', a: 'Очень многое: ноутбук, телефон, интернет, часть аренды (home office), курсы, подписки на программы, транспорт к клиентам и десятки других категорий. QLIXA покажет все варианты для твоей ситуации.' },
+      { icon: '🔒', q: 'Мои финансовые данные в безопасности?', a: 'Да. Серверы в ЕС, соответствие GDPR. Мы не передаём данные третьим лицам. Ты можешь удалить аккаунт и все данные в любой момент.' },
+    ],
+  },
+  EN: {
+    badge: 'Frequently Asked Questions',
+    h2Before: 'Frequently Asked ',
+    h2Emphasis: 'Questions',
+    items: [
+      { icon: '😰', q: "Self-employed: I'm afraid of making a mistake in my tax return — what happens?", a: "QLIXA helps you collect and organize all your data for the year if you keep your books on the platform. We'll point out what to pay attention to for a more favorable filing — for example, which expenses you can deduct and how to document them correctly. But remember: QLIXA is a digital assistant, not an accountant or Steuerberater. If your situation is complex or you have doubts, we recommend also consulting a Steuerberater." },
+      { icon: '💼', q: 'Employee: can I get a tax refund?', a: "In Austria, your employer automatically reports basic data about your salary to the tax office — but it doesn't take your personal situation into account. That's why most employees can file an Arbeitnehmerveranlagung themselves and get back part of the taxes they paid. QLIXA helps you figure out exactly your situation: it finds all the expenses you can claim — home office, transport, education, children, and more. Simple and fast, without complex terms." },
+      { icon: '🇩🇪', q: "I don't speak German — will I be able to manage?", a: "Yes, that's exactly why QLIXA was created. The platform is fully available in Ukrainian, Russian, and English. All Austrian terms are translated and explained in simple words." },
+      { icon: '🆕', q: 'I just opened a Gewerbe. Where do I start?', a: "Congratulations on opening! Here's where to start with QLIXA: set up your bookkeeping — record income and expenses from day one; issue invoices to clients right from the platform; keep an eye on the dashboard — it shows the full picture of your business in real time. And to avoid getting lost in the first steps, read our step-by-step guides in the Articles section." },
+      { icon: '💰', q: 'What exactly can I deduct as expenses?', a: "A lot: laptop, phone, internet, part of your rent (home office), courses, software subscriptions, transport to clients, and dozens of other categories. QLIXA shows all the options for your situation." },
+      { icon: '🔒', q: 'Is my financial data safe?', a: "Yes. Servers in the EU, GDPR compliant. We don't share data with third parties. You can delete your account and all your data at any time." },
+    ],
+  },
+  DE: {
+    badge: 'Häufig gestellte Fragen',
+    h2Before: 'Häufig gestellte ',
+    h2Emphasis: 'Fragen',
+    items: [
+      { icon: '😰', q: 'Selbstständig: Ich habe Angst, einen Fehler in der Steuererklärung zu machen — was passiert dann?', a: 'QLIXA hilft dir, alle Daten des Jahres zu sammeln und zu ordnen, wenn du deine Buchhaltung auf der Plattform führst. Wir zeigen dir, worauf du für eine günstigere Erklärung achten solltest — zum Beispiel, welche Ausgaben du absetzen kannst und wie du sie richtig dokumentierst. Denk aber daran: QLIXA ist ein digitaler Assistent, kein Buchhalter oder Steuerberater. Bei einer komplexen Situation oder Zweifeln empfehlen wir zusätzlich einen Steuerberater zu konsultieren.' },
+      { icon: '💼', q: 'Angestellte/r: Kann ich meine Steuern zurückbekommen?', a: 'In Österreich meldet dein Arbeitgeber automatisch grundlegende Gehaltsdaten ans Finanzamt — geht aber nicht auf deine persönliche Situation ein. Deshalb können die meisten Angestellten selbst eine Arbeitnehmerveranlagung einreichen und einen Teil der gezahlten Steuern zurückbekommen. QLIXA hilft dir, genau deine Situation zu durchschauen: findet alle Ausgaben, die du geltend machen kannst — Home Office, Fahrtkosten, Weiterbildung, Kinder und mehr. Einfach und schnell, ohne komplizierte Begriffe.' },
+      { icon: '🇩🇪', q: 'Ich spreche kein Deutsch — komme ich trotzdem zurecht?', a: 'Ja, genau dafür wurde QLIXA entwickelt. Die Plattform ist vollständig auf Ukrainisch, Russisch und Englisch verfügbar. Alle österreichischen Begriffe sind übersetzt und einfach erklärt.' },
+      { icon: '🆕', q: 'Ich habe gerade ein Gewerbe angemeldet. Wo fange ich an?', a: 'Herzlichen Glückwunsch zur Gründung! So startest du am besten mit QLIXA: Buchhaltung einrichten — erfasse Einnahmen und Ausgaben von Tag eins an; Rechnungen direkt über die Plattform an Kunden stellen; das Dashboard im Blick behalten — es zeigt dir in Echtzeit das Gesamtbild deines Business. Und damit du bei den ersten Schritten nicht den Überblick verlierst, lies unsere Schritt-für-Schritt-Anleitungen im Bereich Artikel.' },
+      { icon: '💰', q: 'Was genau kann ich als Ausgaben absetzen?', a: 'Sehr vieles: Laptop, Handy, Internet, ein Teil der Miete (Home Office), Kurse, Software-Abos, Fahrten zu Kunden und Dutzende weitere Kategorien. QLIXA zeigt dir alle Optionen für deine Situation.' },
+      { icon: '🔒', q: 'Sind meine Finanzdaten sicher?', a: 'Ja. Server in der EU, DSGVO-konform. Wir geben deine Daten nicht an Dritte weiter. Du kannst dein Konto und alle Daten jederzeit löschen.' },
+    ],
+  },
+}
 
 export default function HomePage() {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
@@ -586,6 +730,21 @@ export default function HomePage() {
   const t3 = FORWHOM_TEXT[lang] || FORWHOM_TEXT.UA;
   const t4 = DEMO_TEXT[lang] || DEMO_TEXT.UA;
   const t5 = WHYQLIXA_TEXT[lang] || WHYQLIXA_TEXT.UA;
+  const at = ARTICLES_TEXT[lang] || ARTICLES_TEXT.UA;
+  const published = at.published.map((item, i) => ({
+    ...PUBLISHED_META[i],
+    date: PUBLISHED_META[i].date[lang as 'UA' | 'RU' | 'EN' | 'DE'] || PUBLISHED_META[i].date.UA,
+    readTime: PUBLISHED_META[i].readTime[lang as 'UA' | 'RU' | 'EN' | 'DE'] || PUBLISHED_META[i].readTime.UA,
+    ...item,
+  }));
+  const upcoming = UPCOMING_HREFS.map((href, i) => ({
+    href,
+    tag: at.upcoming[i].tag,
+    title: at.upcoming[i].title,
+    desc: at.upcoming[i].desc,
+  }));
+  const t6 = CTA_TEXT[lang] || CTA_TEXT.UA;
+  const t7 = FAQ_TEXT[lang] || FAQ_TEXT.UA;
 
   return (
     <div style={{ fontFamily: 'DM Sans, sans-serif', background: '#F0F7F8', overflowX: 'hidden' }}>
@@ -1280,21 +1439,21 @@ export default function HomePage() {
 
 
       {/* ARTICLES */}
-      <ArticlesSlider published={published} upcoming={upcoming} />
+      <ArticlesSlider published={published} upcoming={upcoming} lang={lang} />
 
       {/* ── REVIEWS ── */}
-      <ReviewsSection />
+      <ReviewsSection lang={lang} />
 
       {/* ── CTA ── */}
       <section style={{ background: 'linear-gradient(135deg, #038390 0%, #026B76 100%)', padding: '20px clamp(20px,6vw,80px)', textAlign: 'center' }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.7)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 20 }}>Починай зараз</div>
+        <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.7)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 20 }}>{t6.badge}</div>
         <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(32px,5vw,56px)', fontWeight: 400, color: '#fff', margin: '0 0 16px 0', letterSpacing: '-1px' }}>
-          Твоя ситуація — унікальна. Ми це розуміємо.
+          {t6.h2}
         </h2>
-        <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', marginBottom: 40 }}>Саме тому ми створюємо не <span style={{ background: 'rgba(255,255,255,0.25)', borderRadius: 3, padding: '1px 4px' }}>універсальні шаблони</span> — ми допомагаємо сформувати саме <span style={{ background: 'rgba(255,255,255,0.25)', borderRadius: 3, padding: '1px 4px', fontWeight: 700 }}>ваш персональний план дій</span>. Чеклісти, калькулятори, звіти та рекомендації створюються на основі введених вами даних і враховують саме вашу ситуацію.</p>
+        <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', marginBottom: 40 }}>{t6.pBefore}<span style={{ background: 'rgba(255,255,255,0.25)', borderRadius: 3, padding: '1px 4px' }}>{t6.pSpan1}</span>{t6.pMid}<span style={{ background: 'rgba(255,255,255,0.25)', borderRadius: 3, padding: '1px 4px', fontWeight: 700 }}>{t6.pSpan2}</span>{t6.pAfter}</p>
         <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
           <Link href="/pricing" style={{ padding: '16px 36px', borderRadius: 999, fontSize: 16, fontWeight: 600, background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.6)', textDecoration: 'none', display: 'inline-block' }}>
-            Починай підготовку →
+            {t6.cta}
           </Link>
         </div>
       </section>
@@ -1303,19 +1462,12 @@ export default function HomePage() {
       <section id="faq" style={{ padding: '32px clamp(20px,6vw,80px)', background: '#F0F7F8' }}>
         <div style={{ maxWidth: 720, margin: '0 auto' }}>
           <div style={{ textAlign: 'center', marginBottom: 60 }}>
-            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>Часті запитання</div>
+            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>{t7.badge}</div>
             <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,42px)', fontWeight: 400, color: '#1A1A1A', margin: 0, letterSpacing: '-0.5px' }}>
-              Часті <em style={{ fontStyle: 'italic', color: '#038390' }}>запитання</em>
+              {t7.h2Before}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t7.h2Emphasis}</em>
             </h2>
           </div>
-          {[
-            { icon: '😰', q: 'Самозайнятий: боюся зробити помилку в декларації — що буде?', a: 'QLIXA допоможе зібрати та впорядкувати всі дані за рік, якщо ведеш бухгалтерію на платформі. Ми підкажемо, на що звернути увагу для вигіднішого заповнення — наприклад, які витрати можна списати і як правильно їх задокументувати. Проте памʼятай: QLIXA — це цифровий помічник, а не бухгалтер чи Steuerberater. Якщо маєш складну ситуацію або сумніви — рекомендуємо додатково проконсультуватись із Steuerberater.' },
-            { icon: '💼', q: 'Найманий працівник: чи можу я повернути свої податки?', a: 'В Австрії роботодавець автоматично подає базові дані про твою зарплату до податкової — але він не вникає в твою особисту ситуацію. Саме тому більшість найманих працівників можуть самостійно подати Arbeitnehmerveranlagung і повернути частину сплачених податків. QLIXA допоможе розібратись саме у твоїй ситуації: знайде всі витрати, які можна врахувати — home office, транспорт, навчання, діти та інше. Просто і швидко, без складних термінів.' },
-            { icon: '🇩🇪', q: 'Я не говорю по-німецьки — зможу розібратись?', a: 'Так, саме для цього і створена QLIXA. Платформа повністю доступна українською, російською та англійською. Всі австрійські терміни перекладені і пояснені простими словами.' },
-            { icon: '🆕', q: 'Я тільки відкрив Gewerbe. З чого почати?', a: 'Вітаємо з відкриттям! Ось з чого варто почати в QLIXA: підключи бухгалтерію — фіксуй доходи і витрати з першого дня; виставляй рахунки клієнтам прямо з платформи; стеж за дашбордом — він покаже загальну картину твого бізнесу в реальному часі. А щоб не загубитись у перших кроках — читай наші покрокові гайди у розділі Статті.' },
-            { icon: '💰', q: 'Що саме я можу списати як витрати?', a: 'Дуже багато: ноутбук, телефон, інтернет, частина оренди (home office), курси, підписки на програми, транспорт до клієнтів і десятки інших категорій. QLIXA покаже всі варіанти для твоєї ситуації.' },
-            { icon: '🔒', q: 'Мої фінансові дані в безпеці?', a: 'Так. Сервери в ЄС, відповідність GDPR. Ми не передаємо дані третім особам. Ти можеш видалити акаунт і всі дані в будь-який момент.' },
-          ].map((item, i) => (
+          {t7.items.map((item, i) => (
             <div key={i} className="faq-item">
               <button className="faq-btn" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
                 <span>{item.icon} {item.q}</span>

@@ -37,9 +37,17 @@ const reviews = [
   },
 ]
 
-export default function ReviewsSection() {
+const REVIEWS_TEXT: Record<string, { badge: string; h2Before: string; h2Emphasis: string }> = {
+  UA: { badge: 'Відгуки клієнтів', h2Before: 'Що кажуть наші ', h2Emphasis: 'користувачі' },
+  RU: { badge: 'Отзывы клиентов', h2Before: 'Что говорят наши ', h2Emphasis: 'пользователи' },
+  EN: { badge: 'Customer reviews', h2Before: 'What our ', h2Emphasis: 'users say' },
+  DE: { badge: 'Kundenstimmen', h2Before: 'Was unsere ', h2Emphasis: 'Nutzer sagen' },
+}
+
+export default function ReviewsSection({ lang }: { lang: string }) {
   const [current, setCurrent] = React.useState(0)
   const total = reviews.length
+  const t = REVIEWS_TEXT[lang] || REVIEWS_TEXT.UA
 
   function goTo(n: number) {
     setCurrent(Math.max(0, Math.min(n, total - 1)))
@@ -50,9 +58,9 @@ export default function ReviewsSection() {
 
       {/* Title */}
       <div style={{ textAlign: 'center', padding: '40px 20px 32px' }}>
-        <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.2)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#1A1A1A', marginBottom: 16 }}>Відгуки клієнтів</div>
+        <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.2)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#1A1A1A', marginBottom: 16 }}>{t.badge}</div>
         <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3vw,42px)', fontWeight: 400, color: '#1A1A1A', marginTop: 10, letterSpacing: '-0.5px' }}>
-          Що кажуть наші <em style={{ fontStyle: 'italic', color: '#038390' }}>користувачі</em>
+          {t.h2Before}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t.h2Emphasis}</em>
         </h2>
       </div>
 
