@@ -201,7 +201,7 @@ export default function RWRCalculator() {
 
     el.innerHTML = `
       <div style="background:#ffffff;padding:14px 28px 12px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #E6F4F5">
-        <img src="${logoSrc}" style="width:140px;height:36px;object-fit:contain;object-position:left center;display:block" alt="QLIXA"/>
+        <img src="${logoSrc}" style="width:140px;height:41.8px;object-fit:contain;object-position:left center;display:block" alt="QLIXA"/>
         <div style="text-align:right">
           <div style="font-size:10px;color:#595959">Результат розрахунку RWR+</div>
           <div style="font-size:11px;color:#038390;font-weight:700">qlixa.eu</div>
@@ -278,7 +278,7 @@ export default function RWRCalculator() {
         footerEl.style.cssText = 'position:fixed;left:-9999px;top:0;width:794px;background:#fff;font-family:Arial,sans-serif'
         footerEl.innerHTML = `
           <div style="background:#ffffff;padding:10px 28px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid #E6F4F5">
-            <img src="${logoSrc}" style="width:100px;height:26px;object-fit:contain;object-position:left center;display:block" alt="QLIXA"/>
+            <img src="${logoSrc}" style="width:100px;height:29.9px;object-fit:contain;object-position:left center;display:block" alt="QLIXA"/>
             <div style="font-size:10px;color:#595959">Твій цифровий бізнес-помічник в Австрії &nbsp;|&nbsp; qlixa.eu</div>
           </div>
         `

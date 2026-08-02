@@ -21,11 +21,17 @@ export async function fetchLogoAsDataUrl(): Promise<string> {
     return new Promise<string>((resolve) => {
       const img = new Image()
       img.onload = () => {
+        // Точні пропорції логотипу з viewBox="0 0 479 143" — не покладаємось на
+        // img.width/height (браузер ненадійно визначає натуральний розмір SVG
+        // з width="100%"), рендеримо у 3x для чіткості на екрані з PPI.
+        const LOGO_VB_WIDTH = 479
+        const LOGO_VB_HEIGHT = 143
+        const SCALE = 3
         const canvas = document.createElement('canvas')
-        canvas.width = img.width || 400
-        canvas.height = img.height || 120
+        canvas.width = LOGO_VB_WIDTH * SCALE
+        canvas.height = LOGO_VB_HEIGHT * SCALE
         const ctx = canvas.getContext('2d')!
-        ctx.drawImage(img, 0, 0)
+        ctx.drawImage(img, 0, 0, canvas.width, canvas.height)
         const dataUrl = canvas.toDataURL('image/png')
         URL.revokeObjectURL(svgUrl)
         resolve(dataUrl)
