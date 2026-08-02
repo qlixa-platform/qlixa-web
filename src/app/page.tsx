@@ -392,6 +392,173 @@ const DEMO_TEXT: Record<string, {
   },
 }
 
+// Переклади секції "Чому ж ми створили QLIXA" — всі 4 мови
+const WHYQLIXA_TEXT: Record<string, {
+  badge: string
+  h2Line1: string
+  h2Line2Before: string
+  h2Emphasis: string
+  p: [string, string, string]
+  linkText: string
+  painBefore: string
+  painEmphasis: string
+  painCards: [string, string][] // x8
+  solutionBefore: string
+  solutionAfter: string
+  solutionP: [string, string]
+  features: { icon: string; title: string; desc: string }[] // x6
+  quoteLine1: string
+  quoteBefore: string
+  quoteEmphasis: string
+  quoteAfter: string
+  quoteP2: [string, string, string]
+}> = {
+  UA: {
+    badge: 'Чому ж ми створили QLIXA',
+    h2Line1: 'Ми просто створили платформу,',
+    h2Line2Before: 'якої нам самим ',
+    h2Emphasis: 'не вистачало',
+    p: ['Ми теж проходили цей шлях.', 'Саме тому знаємо, що відчуває людина,', 'яка тільки починає життя чи бізнес в Австрії.'],
+    linkText: 'Наша історія →',
+    painBefore: 'Це ',
+    painEmphasis: 'знайоме?',
+    painCards: [
+      ['Боїшся зробити помилку', 'Не тому що не вмієш. А тому що система здається дуже складною.'],
+      ['Забагато незрозумілих слів', 'Хочеться, щоб усе пояснили простою мовою. Без бухгалтерського словника.'],
+      ['Немає часу розбиратися', 'Після роботи хочеться бути з родиною. Не сидіти вечорами над деклараціями.'],
+      ['Кожна ситуація різна', 'Дохід. Оренда. Діти. Бізнес. Хочеться саме для своєї ситуації.'],
+      ['Консультація коштує дорого', 'А питань менше не стає.'],
+      ['Хочеться щоб пояснили моєю мовою', 'Без складних термінів. Щоб було зрозуміло з першого разу.'],
+      ['Страшно пропустити дедлайн', 'Ніхто не хоче отримати штраф лише тому, що забув дату.'],
+      ['Хочеться повернути все, що належить', 'Без сумнівів: "А може я щось пропустив?"'],
+    ],
+    solutionBefore: 'Саме тому народилась ',
+    solutionAfter: '',
+    solutionP: ['Не ще один складний інструмент.', 'А платформа, яка пояснює складне простими словами і допомагає пройти цей шлях спокійно.'],
+    features: [
+      { icon: '💬', title: 'Пояснюємо людською мовою', desc: 'Без складних термінів і стресу.' },
+      { icon: '👣', title: 'Показуємо наступний крок', desc: 'Ти завжди знаєш, що робити далі.' },
+      { icon: '🔔', title: 'Нагадуємо про дедлайни', desc: 'Щоб нічого не пропустити.' },
+      { icon: '📁', title: 'Збираємо все в одному місці', desc: 'Документи, податки, бізнес, FinanzOnline.' },
+      { icon: '💶', title: 'Допомагаємо знайти доступні списання', desc: 'Щоб повернути максимум.' },
+      { icon: '🎯', title: 'Підлаштовуємося під твою ситуацію', desc: 'Бо двох однакових історій не існує.' },
+    ],
+    quoteLine1: 'Ми не замінюємо бухгалтера —',
+    quoteBefore: 'ми робимо так, щоб ти сам ',
+    quoteEmphasis: 'розумів',
+    quoteAfter: ' свою ситуацію.',
+    quoteP2: ['Ти економиш час, гроші та нерви.', 'Ми беремо на себе складне,', 'а ти займаєшся тим, що для тебе справді важливо.'],
+  },
+  RU: {
+    badge: 'Почему мы создали QLIXA',
+    h2Line1: 'Мы просто создали платформу,',
+    h2Line2Before: 'которой нам самим ',
+    h2Emphasis: 'не хватало',
+    p: ['Мы тоже проходили этот путь.', 'Именно поэтому знаем, что чувствует человек,', 'который только начинает жизнь или бизнес в Австрии.'],
+    linkText: 'Наша история →',
+    painBefore: 'Это ',
+    painEmphasis: 'знакомо?',
+    painCards: [
+      ['Боишься совершить ошибку', 'Не потому что не умеешь. А потому что система кажется очень сложной.'],
+      ['Слишком много непонятных слов', 'Хочется, чтобы всё объяснили простым языком. Без бухгалтерского словаря.'],
+      ['Нет времени разбираться', 'После работы хочется быть с семьёй. Не сидеть вечерами над декларациями.'],
+      ['Каждая ситуация разная', 'Доход. Аренда. Дети. Бизнес. Хочется именно для своей ситуации.'],
+      ['Консультация стоит дорого', 'А вопросов меньше не становится.'],
+      ['Хочется, чтобы объяснили на моём языке', 'Без сложных терминов. Чтобы было понятно с первого раза.'],
+      ['Страшно пропустить дедлайн', 'Никто не хочет получить штраф просто потому, что забыл дату.'],
+      ['Хочется вернуть всё, что положено', 'Без сомнений: "А может я что-то пропустил?"'],
+    ],
+    solutionBefore: 'Именно поэтому родилась ',
+    solutionAfter: '',
+    solutionP: ['Не ещё один сложный инструмент.', 'А платформа, которая объясняет сложное простыми словами и помогает пройти этот путь спокойно.'],
+    features: [
+      { icon: '💬', title: 'Объясняем человеческим языком', desc: 'Без сложных терминов и стресса.' },
+      { icon: '👣', title: 'Показываем следующий шаг', desc: 'Ты всегда знаешь, что делать дальше.' },
+      { icon: '🔔', title: 'Напоминаем о дедлайнах', desc: 'Чтобы ничего не пропустить.' },
+      { icon: '📁', title: 'Собираем всё в одном месте', desc: 'Документы, налоги, бизнес, FinanzOnline.' },
+      { icon: '💶', title: 'Помогаем найти доступные списания', desc: 'Чтобы вернуть максимум.' },
+      { icon: '🎯', title: 'Подстраиваемся под твою ситуацию', desc: 'Потому что двух одинаковых историй не существует.' },
+    ],
+    quoteLine1: 'Мы не заменяем бухгалтера —',
+    quoteBefore: 'мы делаем так, чтобы ты сам ',
+    quoteEmphasis: 'понимал',
+    quoteAfter: ' свою ситуацию.',
+    quoteP2: ['Ты экономишь время, деньги и нервы.', 'Мы берём на себя сложное,', 'а ты занимаешься тем, что для тебя действительно важно.'],
+  },
+  EN: {
+    badge: 'Why we created QLIXA',
+    h2Line1: 'We simply built the platform',
+    h2Line2Before: 'we ourselves ',
+    h2Emphasis: 'were missing',
+    p: ["We've been through this path too.", "That's why we know what it feels like", 'to start a life or business in Austria.'],
+    linkText: 'Our story →',
+    painBefore: 'Sound ',
+    painEmphasis: 'familiar?',
+    painCards: [
+      ['Afraid of making a mistake', "Not because you can't handle it — it's because the system feels overwhelming."],
+      ['Too many confusing terms', 'You just want it explained in plain language. No accounting jargon.'],
+      ['No time to figure it out', "After work you want to be with family, not stuck on paperwork all evening."],
+      ['Every situation is different', 'Income. Rent. Kids. Business. You want something made for your situation.'],
+      ['Consultations are expensive', "And the questions don't stop coming."],
+      ['You want it explained in your language', 'No complex terms. Clear the first time.'],
+      ['Scared of missing a deadline', 'No one wants a fine just for forgetting a date.'],
+      ["You want to get back everything you're owed", '"Wait, did I miss something?"'],
+    ],
+    solutionBefore: "That's why ",
+    solutionAfter: ' was born',
+    solutionP: ['Not just another complicated tool.', 'A platform that explains the complex in simple words and helps you get through it calmly.'],
+    features: [
+      { icon: '💬', title: 'We explain in plain language', desc: 'No complex terms, no stress.' },
+      { icon: '👣', title: 'We show you the next step', desc: 'You always know what to do next.' },
+      { icon: '🔔', title: 'We remind you of deadlines', desc: "So nothing slips through." },
+      { icon: '📁', title: 'We bring everything together', desc: 'Documents, taxes, business, FinanzOnline.' },
+      { icon: '💶', title: 'We help you find available deductions', desc: 'To get back as much as possible.' },
+      { icon: '🎯', title: 'We adapt to your situation', desc: 'Because no two stories are the same.' },
+    ],
+    quoteLine1: "We don't replace an accountant —",
+    quoteBefore: 'we help you ',
+    quoteEmphasis: 'understand',
+    quoteAfter: ' your own situation.',
+    quoteP2: ['You save time, money, and nerves.', 'We handle the complicated part,', 'so you can focus on what really matters to you.'],
+  },
+  DE: {
+    badge: 'Warum wir QLIXA gegründet haben',
+    h2Line1: 'Wir haben einfach die Plattform gebaut,',
+    h2Line2Before: 'die uns selbst ',
+    h2Emphasis: 'gefehlt hat',
+    p: ['Diesen Weg sind wir selbst gegangen.', 'Deshalb wissen wir, wie es sich anfühlt,', 'wenn man in Österreich neu startet — privat oder beruflich.'],
+    linkText: 'Unsere Geschichte →',
+    painBefore: 'Kommt dir das ',
+    painEmphasis: 'bekannt vor?',
+    painCards: [
+      ['Angst, einen Fehler zu machen', 'Nicht weil du es nicht kannst. Sondern weil das System so kompliziert wirkt.'],
+      ['Zu viele unklare Begriffe', 'Du willst, dass man es dir einfach erklärt. Ohne Buchhaltungsjargon.'],
+      ['Keine Zeit, dich einzuarbeiten', 'Nach der Arbeit willst du bei deiner Familie sein, nicht abends über Formularen sitzen.'],
+      ['Jede Situation ist anders', 'Einkommen. Miete. Kinder. Business. Du willst eine Lösung für genau deine Situation.'],
+      ['Beratung ist teuer', 'Und die Fragen werden trotzdem nicht weniger.'],
+      ['Du willst es in deiner Sprache erklärt bekommen', 'Ohne komplizierte Begriffe. Auf Anhieb verständlich.'],
+      ['Angst, eine Frist zu verpassen', 'Niemand will eine Strafe zahlen, nur weil er ein Datum vergessen hat.'],
+      ['Du willst dir alles zurückholen, was dir zusteht', '„Habe ich vielleicht etwas übersehen?"'],
+    ],
+    solutionBefore: 'Genau deshalb ist ',
+    solutionAfter: ' entstanden',
+    solutionP: ['Kein weiteres kompliziertes Tool.', 'Sondern eine Plattform, die Kompliziertes einfach erklärt und dir hilft, diesen Weg gelassen zu gehen.'],
+    features: [
+      { icon: '💬', title: 'Wir erklären in einfacher Sprache', desc: 'Ohne komplizierte Begriffe und Stress.' },
+      { icon: '👣', title: 'Wir zeigen dir den nächsten Schritt', desc: 'Du weißt immer, was als Nächstes kommt.' },
+      { icon: '🔔', title: 'Wir erinnern dich an Fristen', desc: 'Damit dir nichts durch die Lappen geht.' },
+      { icon: '📁', title: 'Wir sammeln alles an einem Ort', desc: 'Dokumente, Steuern, Business, FinanzOnline.' },
+      { icon: '💶', title: 'Wir helfen dir, mögliche Abzüge zu finden', desc: 'Damit du so viel wie möglich zurückbekommst.' },
+      { icon: '🎯', title: 'Wir passen uns deiner Situation an', desc: 'Weil es nicht zwei gleiche Geschichten gibt.' },
+    ],
+    quoteLine1: 'Wir ersetzen keinen Steuerberater —',
+    quoteBefore: 'wir sorgen dafür, dass du deine Situation selbst ',
+    quoteEmphasis: 'verstehst',
+    quoteAfter: '.',
+    quoteP2: ['Du sparst Zeit, Geld und Nerven.', 'Wir kümmern uns um das Komplizierte,', 'und du kannst dich auf das konzentrieren, was dir wirklich wichtig ist.'],
+  },
+}
+
 const upcoming = [
   { tag: 'SVS', title: 'Як заповнити формуляр SVS', desc: 'Соціальне страхування — що вказати щоб не переплатити.', href: '/articles/svs-formular' },
   { tag: 'FinanzOnline', title: 'Як заповнити формуляр FinanzOnline', desc: 'Реєстрація в податковій онлайн — покроково.', href: '/articles/finanz-online' },
@@ -418,6 +585,7 @@ export default function HomePage() {
   const t2 = QLIXA_TEXT[lang] || QLIXA_TEXT.UA;
   const t3 = FORWHOM_TEXT[lang] || FORWHOM_TEXT.UA;
   const t4 = DEMO_TEXT[lang] || DEMO_TEXT.UA;
+  const t5 = WHYQLIXA_TEXT[lang] || WHYQLIXA_TEXT.UA;
 
   return (
     <div style={{ fontFamily: 'DM Sans, sans-serif', background: '#F0F7F8', overflowX: 'hidden' }}>
@@ -1005,20 +1173,20 @@ export default function HomePage() {
           {/* BLOCK 1 — Story header */}
           <div style={{ display: 'flex', alignItems: 'center', gap: 40, marginBottom: 40 }}>
             <div style={{ flex: 1 }}>
-              <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20 }}>Чому ж ми створили QLIXA</div>
+              <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20 }}>{t5.badge}</div>
               <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3vw,42px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.2, letterSpacing: '-1px', marginBottom: 20 }}>
-                Ми просто створили платформу,<br/>якої нам самим{' '}
-                <em style={{ fontStyle: 'italic', color: '#038390' }}>не вистачало</em>
+                {t5.h2Line1}<br/>{t5.h2Line2Before}{' '}
+                <em style={{ fontStyle: 'italic', color: '#038390' }}>{t5.h2Emphasis}</em>
               </h2>
               <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, maxWidth: 520 }}>
-                Ми теж проходили цей шлях.<br/>
-                Саме тому знаємо, що відчуває людина,<br/>
-                яка тільки починає життя чи бізнес в Австрії.
+                {t5.p[0]}<br/>
+                {t5.p[1]}<br/>
+                {t5.p[2]}
               </p>
               <Link href="/about" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 16, fontSize: 14, fontWeight: 600, color: '#038390', textDecoration: 'none' }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.textDecoration = 'underline'}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.textDecoration = 'none'}>
-                Наша історія →
+                {t5.linkText}
               </Link>
             </div>
             <div style={{ flex: '0 0 500px', display: 'flex', alignItems: 'center' }}>
@@ -1030,21 +1198,21 @@ export default function HomePage() {
           {/* BLOCK 2 — Pain cards */}
           <div style={{ textAlign: 'center', marginBottom: 28 }}>
             <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(24px,2.5vw,36px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 0 }}>
-              Це <em style={{ fontStyle: 'italic', color: '#038390' }}>знайоме?</em>
+              {t5.painBefore}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t5.painEmphasis}</em>
             </h3>
           </div>
 
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20, marginBottom: 40 }}>
             {[
-              { img: '/why-qlixa/fear-mistake.png', title: 'Боїшся зробити помилку', desc: 'Не тому що не вмієш. А тому що система здається дуже складною.' },
-              { img: '/why-qlixa/complex-words.png', title: 'Забагато незрозумілих слів', desc: 'Хочеться, щоб усе пояснили простою мовою. Без бухгалтерського словника.' },
-              { img: '/why-qlixa/no-time.png', title: 'Немає часу розбиратися', desc: 'Після роботи хочеться бути з родиною. Не сидіти вечорами над деклараціями.' },
-              { img: '/why-qlixa/unique-situation.png', title: 'Кожна ситуація різна', desc: 'Дохід. Оренда. Діти. Бізнес. Хочеться саме для своєї ситуації.' },
-              { img: '/why-qlixa/expensive.png', title: 'Консультація коштує дорого', desc: 'А питань менше не стає.' },
-              { img: '/why-qlixa/my-language.png', title: 'Хочеться щоб пояснили моєю мовою', desc: 'Без складних термінів. Щоб було зрозуміло з першого разу.' },
-              { img: '/why-qlixa/deadline.png', title: 'Страшно пропустити дедлайн', desc: 'Ніхто не хоче отримати штраф лише тому, що забув дату.' },
-              { img: '/why-qlixa/return-all.png', title: 'Хочеться повернути все, що належить', desc: 'Без сумнівів: "А може я щось пропустив?"' },
-            ].map((card, i) => (
+              '/why-qlixa/fear-mistake.png',
+              '/why-qlixa/complex-words.png',
+              '/why-qlixa/no-time.png',
+              '/why-qlixa/unique-situation.png',
+              '/why-qlixa/expensive.png',
+              '/why-qlixa/my-language.png',
+              '/why-qlixa/deadline.png',
+              '/why-qlixa/return-all.png',
+            ].map((img, i) => ({ img, title: t5.painCards[i][0], desc: t5.painCards[i][1] })).map((card, i) => (
               <div key={i}
                 style={{ background: '#F0F7F8', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.10)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'default', display: 'flex', flexDirection: 'column' as const }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform='translateY(-4px)'; el.style.boxShadow='0 12px 32px rgba(3,131,144,0.12)'; }}
@@ -1064,11 +1232,11 @@ export default function HomePage() {
           {/* BLOCK 3 — QLIXA solution */}
           <div style={{ textAlign: 'center', marginBottom: 28 }}>
             <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(24px,2.5vw,36px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 8 }}>
-              Саме тому народилась <span style={{ color: '#038390', fontWeight: 700 }}>QLIXA</span>
+              {t5.solutionBefore}<span style={{ color: '#038390', fontWeight: 700 }}>QLIXA</span>{t5.solutionAfter}
             </h3>
             <p style={{ fontSize: 16, color: '#595959', maxWidth: 600, margin: '0 auto' }}>
-              Не ще один складний інструмент.<br/>
-              А платформа, яка пояснює складне простими словами і допомагає пройти цей шлях спокійно.
+              {t5.solutionP[0]}<br/>
+              {t5.solutionP[1]}
             </p>
           </div>
 
@@ -1076,14 +1244,7 @@ export default function HomePage() {
 
             {/* Left — feature list */}
             <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 20, background: '#F0F7F8', borderRadius: 24, padding: 28, boxShadow: '0 8px 40px rgba(3,131,144,0.10)' }}>
-              {[
-                { icon: '💬', title: 'Пояснюємо людською мовою', desc: 'Без складних термінів і стресу.' },
-                { icon: '👣', title: 'Показуємо наступний крок', desc: 'Ти завжди знаєш, що робити далі.' },
-                { icon: '🔔', title: 'Нагадуємо про дедлайни', desc: 'Щоб нічого не пропустити.' },
-                { icon: '📁', title: 'Збираємо все в одному місці', desc: 'Документи, податки, бізнес, FinanzOnline.' },
-                { icon: '💶', title: 'Допомагаємо знайти всі можливі списання', desc: 'Щоб повернути максимум.' },
-                { icon: '🎯', title: 'Підлаштовуємося під твою ситуацію', desc: 'Бо двох однакових історій не існує.' },
-              ].map((item, i) => (
+              {t5.features.map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
                   <div style={{ width: 44, height: 44, background: 'white', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0, boxShadow: '0 2px 8px rgba(3,131,144,0.08)' }}>
                     {item.icon}
@@ -1101,15 +1262,15 @@ export default function HomePage() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/why-qlixa/laptop.png" alt="" style={{ width: '55%', height: 'auto', objectFit: 'contain', display: 'block', marginBottom: 16 }}/>
               <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(18px,2vw,24px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.4, textAlign: 'center', marginBottom: 16 }}>
-                Ми не замінюємо бухгалтера —<br/>
-                ми робимо так, щоб ти сам{' '}
-                <em style={{ color: '#038390' }}>розумів</em>{' '}
-                свою ситуацію.
+                {t5.quoteLine1}<br/>
+                {t5.quoteBefore}
+                <em style={{ color: '#038390' }}>{t5.quoteEmphasis}</em>
+                {t5.quoteAfter}
               </p>
               <p style={{ fontSize: 14, color: '#595959', lineHeight: 1.65, textAlign: 'center', marginBottom: 24 }}>
-                Ти економиш час, гроші та нерви.<br/>
-                Ми беремо на себе складне,<br/>
-                а ти займаєшся тим, що для тебе справді важливо.
+                {t5.quoteP2[0]}<br/>
+                {t5.quoteP2[1]}<br/>
+                {t5.quoteP2[2]}
               </p>
             </div>
 
