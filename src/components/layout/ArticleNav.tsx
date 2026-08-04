@@ -1,16 +1,64 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { articles, getAdjacentArticles } from '@/lib/articles'
 
+const ARTICLE_NAV_TEXT: Record<string, {
+  toc: string
+  allArticles: string
+  backToAll: string
+  soon: string
+  prevArticle: string
+  nextArticle: string
+}> = {
+  UA: { toc: 'Зміст', allArticles: 'Всі статті', backToAll: '← Всі статті', soon: 'Скоро', prevArticle: 'Попередня стаття', nextArticle: 'Наступна стаття' },
+  RU: { toc: 'Содержание', allArticles: 'Все статьи', backToAll: '← Все статьи', soon: 'Скоро', prevArticle: 'Предыдущая статья', nextArticle: 'Следующая статья' },
+  EN: { toc: 'Contents', allArticles: 'All Articles', backToAll: '← All Articles', soon: 'Soon', prevArticle: 'Previous article', nextArticle: 'Next article' },
+  DE: { toc: 'Inhalt', allArticles: 'Alle Artikel', backToAll: '← Alle Artikel', soon: 'Bald', prevArticle: 'Vorheriger Artikel', nextArticle: 'Nächster Artikel' },
+}
+
+const ARTICLE_META_TRANSLATIONS: Record<string, Record<string, { tag: string; title: string }>> = {
+  'rwr-karte': {
+    RU: { tag: 'Гайд', title: 'Как подготовиться к подаче на RWR+ карту' },
+    EN: { tag: 'Guide', title: 'How to prepare your RWR+ card application' },
+    DE: { tag: 'Anleitung', title: 'Wie du dich auf die RWR+ Karte vorbereitest' },
+  },
+}
+
+function localizeArticle<T extends { slug: string; tag: string; title: string }>(art: T, lang: string): T {
+  const override = ARTICLE_META_TRANSLATIONS[art.slug]?.[lang]
+  return override ? { ...art, tag: override.tag, title: override.title } : art
+}
+
+function useLang() {
+  const [lang, setLang] = useState('UA')
+  useEffect(() => {
+    const updateLang = () => {
+      const l = localStorage.getItem('qlixa-lang')
+      if (l) setLang(l.toUpperCase())
+    }
+    updateLang()
+    window.addEventListener('qlixa-lang-change', updateLang)
+    return () => window.removeEventListener('qlixa-lang-change', updateLang)
+  }, [])
+  return lang
+}
+
+function useArticleNavLang() {
+  const lang = useLang()
+  return ARTICLE_NAV_TEXT[lang] || ARTICLE_NAV_TEXT.UA
+}
+
 export function ArticleTOC({ items }: { items: [string, string][] }) {
+  const t = useArticleNavLang()
   return (
     <div style={{
       background: '#F0F7F8', borderRadius: 16,
       padding: '20px 24px', marginBottom: 32,
     }}>
       <div style={{ fontWeight: 700, color: '#038390', marginBottom: 14, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>
-        Зміст
+        {t.toc}
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px 24px' }}>
         {items.map(([href, label]) => (
@@ -35,7 +83,8 @@ export function ArticleTOC({ items }: { items: [string, string][] }) {
 }
 
 export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
-  const published = articles.filter(a => a.published)
+  const lang = useLang()
+  const t = ARTICLE_NAV_TEXT[lang] || ARTICLE_NAV_TEXT.UA
   const all = articles
 
   return (
@@ -53,14 +102,15 @@ export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
           padding: '12px 16px',
           borderBottom: '1px solid var(--line)',
           fontSize: 11, fontWeight: 700,
-          letterSpacing: '0.08em', textTransform: 'uppercase',
+          letterSpacing: '0.08em', textTransform: 'uppercase' as const,
           color: 'var(--text3)',
         }}>
-          Всі статті
+          {t.allArticles}
         </div>
 
         <div style={{ padding: 8 }}>
-          {all.map(art => {
+          {all.map(rawArt => {
+            const art = localizeArticle(rawArt, lang)
             const isCurrent = art.slug === currentSlug
             const isPublished = art.published
 
@@ -78,7 +128,6 @@ export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
                   marginBottom: 2,
                 }}
               >
-                {/* Color dot */}
                 <div style={{
                   width: 7, height: 7, borderRadius: '50%', flexShrink: 0, marginTop: 5,
                   background: isCurrent ? '#038390' : isPublished ? 'var(--charcoal)' : 'var(--line2)',
@@ -99,8 +148,8 @@ export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
                     {art.title}
                   </div>
                   {!isPublished && (
-                    <div style={{ fontSize: 9, color: '#038390', fontWeight: 700, marginTop: 3, letterSpacing: '0.5px', textTransform: 'uppercase' }}>
-                      Скоро
+                    <div style={{ fontSize: 9, color: '#038390', fontWeight: 700, marginTop: 3, letterSpacing: '0.5px', textTransform: 'uppercase' as const }}>
+                      {t.soon}
                     </div>
                   )}
                 </div>
@@ -111,7 +160,7 @@ export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
 
         <div style={{ padding: '10px 16px', borderTop: '1px solid var(--line)' }}>
           <Link href="/articles" style={{ fontSize: 12, color: '#038390', fontWeight: 600, textDecoration: 'none' }}>
-            ← Всі статті
+            {t.backToAll}
           </Link>
         </div>
       </div>
@@ -120,7 +169,11 @@ export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
 }
 
 export function ArticlePrevNext({ currentSlug }: { currentSlug: string }) {
-  const { prev, next } = getAdjacentArticles(currentSlug)
+  const lang = useLang()
+  const t = ARTICLE_NAV_TEXT[lang] || ARTICLE_NAV_TEXT.UA
+  const { prev: rawPrev, next: rawNext } = getAdjacentArticles(currentSlug)
+  const prev = rawPrev ? localizeArticle(rawPrev, lang) : null
+  const next = rawNext ? localizeArticle(rawNext, lang) : null
 
   if (!prev && !next) return null
 
@@ -132,14 +185,14 @@ export function ArticlePrevNext({ currentSlug }: { currentSlug: string }) {
     }}>
       {prev ? (
         <Link href={prev.href} style={{
-          display: 'flex', flexDirection: 'column', gap: 6,
+          display: 'flex', flexDirection: 'column' as const, gap: 6,
           padding: '16px 18px', borderRadius: 14,
           border: '1px solid var(--line)', background: '#fff',
           textDecoration: 'none',
           boxShadow: 'var(--shadow)',
         }}>
           <div style={{ fontSize: 11, color: 'var(--text3)', display: 'flex', alignItems: 'center', gap: 4 }}>
-            <span>←</span> Попередня стаття
+            <span>←</span> {t.prevArticle}
           </div>
           <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4 }}>
             {prev.title}
@@ -152,14 +205,14 @@ export function ArticlePrevNext({ currentSlug }: { currentSlug: string }) {
 
       {next ? (
         <Link href={next.href} style={{
-          display: 'flex', flexDirection: 'column', gap: 6,
+          display: 'flex', flexDirection: 'column' as const, gap: 6,
           padding: '16px 18px', borderRadius: 14,
           border: '1px solid var(--line)', background: '#fff',
-          textDecoration: 'none', textAlign: 'right',
+          textDecoration: 'none', textAlign: 'right' as const,
           boxShadow: 'var(--shadow)',
         }}>
           <div style={{ fontSize: 11, color: 'var(--text3)', display: 'flex', alignItems: 'center', gap: 4, justifyContent: 'flex-end' }}>
-            Наступна стаття <span>→</span>
+            {t.nextArticle} <span>→</span>
           </div>
           <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4 }}>
             {next.title}
