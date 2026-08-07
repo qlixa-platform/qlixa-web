@@ -428,6 +428,41 @@ const DEMO_TEXT: Record<string, {
 }
 
 // Переклади секції "Чому ж ми створили QLIXA" — всі 4 мови
+// Фірмові іконки блоку переваг (замість emoji) — порядок однаковий для всіх мов
+const WHY_ICONS = [
+  // 0 — пояснюємо людською мовою (мовна бульбашка)
+  <svg key="why0" width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="#038390" strokeWidth="1.5" strokeLinejoin="round"/>
+    <path d="M6.5 7.5h7M6.5 10h4" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>,
+  // 1 — наступний крок (стрілка вперед)
+  <svg key="why1" width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <path d="M3 10h12" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M11 5l5 5-5 5" stroke="#038390" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>,
+  // 2 — дедлайни (дзвіночок)
+  <svg key="why2" width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <path d="M10 3c-2.2 0-4 1.8-4 4v3.2c0 .5-.2 1-.6 1.4L4 13h12l-1.4-1.4c-.4-.4-.6-.9-.6-1.4V7c0-2.2-1.8-4-4-4z" stroke="#038390" strokeWidth="1.5" strokeLinejoin="round"/>
+    <path d="M8.3 15.5a1.8 1.8 0 0 0 3.4 0" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>,
+  // 3 — все в одному місці (папка)
+  <svg key="why3" width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <path d="M3 5.5a1 1 0 0 1 1-1h4l1.5 2H16a1 1 0 0 1 1 1v7.5a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V5.5z" stroke="#038390" strokeWidth="1.5" strokeLinejoin="round"/>
+  </svg>,
+  // 4 — списання (євро в колі)
+  <svg key="why4" width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <circle cx="10" cy="10" r="8" stroke="#038390" strokeWidth="1.5"/>
+    <path d="M12.2 7.2c-.5-.5-1.2-.8-2-.8-1.8 0-3.2 1.6-3.2 3.6s1.4 3.6 3.2 3.6c.8 0 1.5-.3 2-.8" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M6 9h4.5M6 11h4.5" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>,
+  // 5 — під твою ситуацію (мішень)
+  <svg key="why5" width="20" height="20" viewBox="0 0 20 20" fill="none">
+    <circle cx="10" cy="10" r="7.5" stroke="#038390" strokeWidth="1.5"/>
+    <circle cx="10" cy="10" r="4.3" stroke="#038390" strokeWidth="1.5"/>
+    <circle cx="10" cy="10" r="1.2" fill="#038390"/>
+  </svg>,
+]
+
 const WHYQLIXA_TEXT: Record<string, {
   badge: string
   h2Line1: string
@@ -441,7 +476,7 @@ const WHYQLIXA_TEXT: Record<string, {
   solutionBefore: string
   solutionAfter: string
   solutionP: [string, string]
-  features: { icon: string; title: string; desc: string }[] // x6
+  features: { title: string; desc: string }[] // x6
   quoteLine1: string
   quoteBefore: string
   quoteEmphasis: string
@@ -471,12 +506,12 @@ const WHYQLIXA_TEXT: Record<string, {
     solutionAfter: '',
     solutionP: ['Не ще один складний інструмент.', 'А платформа, яка пояснює складне простими словами і допомагає пройти цей шлях спокійно.'],
     features: [
-      { icon: '💬', title: 'Пояснюємо людською мовою', desc: 'Без складних термінів і стресу.' },
-      { icon: '👣', title: 'Показуємо наступний крок', desc: 'Ти завжди знаєш, що робити далі.' },
-      { icon: '🔔', title: 'Нагадуємо про дедлайни', desc: 'Щоб нічого не пропустити.' },
-      { icon: '📁', title: 'Збираємо все в одному місці', desc: 'Документи, податки, бізнес, FinanzOnline.' },
-      { icon: '💶', title: 'Допомагаємо знайти доступні списання', desc: 'Щоб повернути максимум.' },
-      { icon: '🎯', title: 'Підлаштовуємося під твою ситуацію', desc: 'Бо двох однакових історій не існує.' },
+      { title: 'Пояснюємо людською мовою', desc: 'Без складних термінів і стресу.' },
+      { title: 'Показуємо наступний крок', desc: 'Ти завжди знаєш, що робити далі.' },
+      { title: 'Нагадуємо про дедлайни', desc: 'Щоб нічого не пропустити.' },
+      { title: 'Збираємо все в одному місці', desc: 'Документи, податки, бізнес, FinanzOnline.' },
+      { title: 'Допомагаємо знайти доступні списання', desc: 'Щоб повернути максимум.' },
+      { title: 'Підлаштовуємося під твою ситуацію', desc: 'Бо двох однакових історій не існує.' },
     ],
     quoteLine1: 'Ми не замінюємо бухгалтера —',
     quoteBefore: 'ми робимо так, щоб ти сам ',
@@ -507,12 +542,12 @@ const WHYQLIXA_TEXT: Record<string, {
     solutionAfter: '',
     solutionP: ['Не ещё один сложный инструмент.', 'А платформа, которая объясняет сложное простыми словами и помогает пройти этот путь спокойно.'],
     features: [
-      { icon: '💬', title: 'Объясняем человеческим языком', desc: 'Без сложных терминов и стресса.' },
-      { icon: '👣', title: 'Показываем следующий шаг', desc: 'Ты всегда знаешь, что делать дальше.' },
-      { icon: '🔔', title: 'Напоминаем о дедлайнах', desc: 'Чтобы ничего не пропустить.' },
-      { icon: '📁', title: 'Собираем всё в одном месте', desc: 'Документы, налоги, бизнес, FinanzOnline.' },
-      { icon: '💶', title: 'Помогаем найти доступные списания', desc: 'Чтобы вернуть максимум.' },
-      { icon: '🎯', title: 'Подстраиваемся под твою ситуацию', desc: 'Потому что двух одинаковых историй не существует.' },
+      { title: 'Объясняем человеческим языком', desc: 'Без сложных терминов и стресса.' },
+      { title: 'Показываем следующий шаг', desc: 'Ты всегда знаешь, что делать дальше.' },
+      { title: 'Напоминаем о дедлайнах', desc: 'Чтобы ничего не пропустить.' },
+      { title: 'Собираем всё в одном месте', desc: 'Документы, налоги, бизнес, FinanzOnline.' },
+      { title: 'Помогаем найти доступные списания', desc: 'Чтобы вернуть максимум.' },
+      { title: 'Подстраиваемся под твою ситуацию', desc: 'Потому что двух одинаковых историй не существует.' },
     ],
     quoteLine1: 'Мы не заменяем бухгалтера —',
     quoteBefore: 'мы делаем так, чтобы ты сам ',
@@ -543,12 +578,12 @@ const WHYQLIXA_TEXT: Record<string, {
     solutionAfter: ' was born',
     solutionP: ['Not just another complicated tool.', 'A platform that explains the complex in simple words and helps you get through it calmly.'],
     features: [
-      { icon: '💬', title: 'We explain in plain language', desc: 'No complex terms, no stress.' },
-      { icon: '👣', title: 'We show you the next step', desc: 'You always know what to do next.' },
-      { icon: '🔔', title: 'We remind you of deadlines', desc: "So nothing slips through." },
-      { icon: '📁', title: 'We bring everything together', desc: 'Documents, taxes, business, FinanzOnline.' },
-      { icon: '💶', title: 'We help you find available deductions', desc: 'To get back as much as possible.' },
-      { icon: '🎯', title: 'We adapt to your situation', desc: 'Because no two stories are the same.' },
+      { title: 'We explain in plain language', desc: 'No complex terms, no stress.' },
+      { title: 'We show you the next step', desc: 'You always know what to do next.' },
+      { title: 'We remind you of deadlines', desc: "So nothing slips through." },
+      { title: 'We bring everything together', desc: 'Documents, taxes, business, FinanzOnline.' },
+      { title: 'We help you find available deductions', desc: 'To get back as much as possible.' },
+      { title: 'We adapt to your situation', desc: 'Because no two stories are the same.' },
     ],
     quoteLine1: "We don't replace an accountant —",
     quoteBefore: 'we help you ',
@@ -579,12 +614,12 @@ const WHYQLIXA_TEXT: Record<string, {
     solutionAfter: ' entstanden',
     solutionP: ['Kein weiteres kompliziertes Tool.', 'Sondern eine Plattform, die Kompliziertes einfach erklärt und dir hilft, diesen Weg gelassen zu gehen.'],
     features: [
-      { icon: '💬', title: 'Wir erklären in einfacher Sprache', desc: 'Ohne komplizierte Begriffe und Stress.' },
-      { icon: '👣', title: 'Wir zeigen dir den nächsten Schritt', desc: 'Du weißt immer, was als Nächstes kommt.' },
-      { icon: '🔔', title: 'Wir erinnern dich an Fristen', desc: 'Damit dir nichts durch die Lappen geht.' },
-      { icon: '📁', title: 'Wir sammeln alles an einem Ort', desc: 'Dokumente, Steuern, Business, FinanzOnline.' },
-      { icon: '💶', title: 'Wir helfen dir, mögliche Abzüge zu finden', desc: 'Damit du so viel wie möglich zurückbekommst.' },
-      { icon: '🎯', title: 'Wir passen uns deiner Situation an', desc: 'Weil es nicht zwei gleiche Geschichten gibt.' },
+      { title: 'Wir erklären in einfacher Sprache', desc: 'Ohne komplizierte Begriffe und Stress.' },
+      { title: 'Wir zeigen dir den nächsten Schritt', desc: 'Du weißt immer, was als Nächstes kommt.' },
+      { title: 'Wir erinnern dich an Fristen', desc: 'Damit dir nichts durch die Lappen geht.' },
+      { title: 'Wir sammeln alles an einem Ort', desc: 'Dokumente, Steuern, Business, FinanzOnline.' },
+      { title: 'Wir helfen dir, mögliche Abzüge zu finden', desc: 'Damit du so viel wie möglich zurückbekommst.' },
+      { title: 'Wir passen uns deiner Situation an', desc: 'Weil es nicht zwei gleiche Geschichten gibt.' },
     ],
     quoteLine1: 'Wir ersetzen keinen Steuerberater —',
     quoteBefore: 'wir sorgen dafür, dass du deine Situation selbst ',
@@ -648,23 +683,62 @@ const CTA_TEXT: Record<string, {
 }
 
 // Переклади секції "Часті запитання" — всі 4 мови
+// Фірмові іконки FAQ (замість emoji) — порядок відповідає питанням, однаковий для всіх мов
+const FAQ_ICONS = [
+  // 0 — боюся помилки (документ зі знаком оклику)
+  <svg key="faq0" width="18" height="18" viewBox="0 0 20 20" fill="none">
+    <rect x="4" y="2" width="12" height="16" rx="1.5" stroke="#038390" strokeWidth="1.5"/>
+    <path d="M10 6v5" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+    <circle cx="10" cy="14" r="1" fill="#038390"/>
+  </svg>,
+  // 1 — найманий працівник (портфель)
+  <svg key="faq1" width="18" height="18" viewBox="0 0 20 20" fill="none">
+    <rect x="2" y="7" width="16" height="10" rx="1.5" stroke="#038390" strokeWidth="1.5"/>
+    <path d="M7 7V5.5C7 4.67 7.67 4 8.5 4h3c.83 0 1.5.67 1.5 1.5V7" stroke="#038390" strokeWidth="1.5"/>
+    <path d="M2 11.5h16" stroke="#038390" strokeWidth="1.5"/>
+  </svg>,
+  // 2 — мова (мовна бульбашка)
+  <svg key="faq2" width="18" height="18" viewBox="0 0 20 20" fill="none">
+    <path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="#038390" strokeWidth="1.5" strokeLinejoin="round"/>
+    <path d="M6.5 7.5h7M6.5 10h4" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>,
+  // 3 — щойно відкрив бізнес (ракета)
+  <svg key="faq3" width="18" height="18" viewBox="0 0 20 20" fill="none">
+    <path d="M10 2c2.5 1.5 4 4.5 4 7.5 0 2-.7 3.7-1.6 5L10 18l-2.4-3.5C6.7 13.2 6 11.5 6 9.5 6 6.5 7.5 3.5 10 2Z" stroke="#038390" strokeWidth="1.5" strokeLinejoin="round"/>
+    <circle cx="10" cy="9" r="1.6" stroke="#038390" strokeWidth="1.5"/>
+    <path d="M7.5 14.5l-2 3M12.5 14.5l2 3" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>,
+  // 4 — витрати (євро в колі)
+  <svg key="faq4" width="18" height="18" viewBox="0 0 20 20" fill="none">
+    <circle cx="10" cy="10" r="8" stroke="#038390" strokeWidth="1.5"/>
+    <path d="M12.2 7.2c-.5-.5-1.2-.8-2-.8-1.8 0-3.2 1.6-3.2 3.6s1.4 3.6 3.2 3.6c.8 0 1.5-.3 2-.8" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M6 9h4.5M6 11h4.5" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>,
+  // 5 — безпека даних (замок)
+  <svg key="faq5" width="18" height="18" viewBox="0 0 20 20" fill="none">
+    <rect x="4.5" y="9" width="11" height="8" rx="1.5" stroke="#038390" strokeWidth="1.5"/>
+    <path d="M7 9V6.5a3 3 0 0 1 6 0V9" stroke="#038390" strokeWidth="1.5"/>
+    <circle cx="10" cy="13" r="1" fill="#038390"/>
+  </svg>,
+]
+
 const FAQ_TEXT: Record<string, {
   badge: string
   h2Before: string
   h2Emphasis: string
-  items: { icon: string; q: string; a: string }[]
+  items: { q: string; a: string }[]
 }> = {
   UA: {
     badge: 'Часті запитання',
     h2Before: 'Часті ',
     h2Emphasis: 'запитання',
     items: [
-      { icon: '😰', q: 'Самозайнятий: боюся зробити помилку в декларації — що буде?', a: 'QLIXA допоможе зібрати та впорядкувати всі дані за рік, якщо ведеш бухгалтерію на платформі. Ми підкажемо, на що звернути увагу для вигіднішого заповнення — наприклад, які витрати можна списати і як правильно їх задокументувати. Проте памʼятай: QLIXA — це цифровий помічник, а не бухгалтер чи Steuerberater. Якщо маєш складну ситуацію або сумніви — рекомендуємо додатково проконсультуватись із Steuerberater.' },
-      { icon: '💼', q: 'Найманий працівник: чи можу я повернути свої податки?', a: 'В Австрії роботодавець автоматично подає базові дані про твою зарплату до податкової — але він не вникає в твою особисту ситуацію. Саме тому більшість найманих працівників можуть самостійно подати Arbeitnehmerveranlagung і повернути частину сплачених податків. QLIXA допоможе розібратись саме у твоїй ситуації: знайде всі витрати, які можна врахувати — home office, транспорт, навчання, діти та інше. Просто і швидко, без складних термінів.' },
-      { icon: '🇩🇪', q: 'Я не говорю по-німецьки — зможу розібратись?', a: 'Так, саме для цього і створена QLIXA. Платформа повністю доступна українською, російською та англійською. Всі австрійські терміни перекладені і пояснені простими словами.' },
-      { icon: '🆕', q: 'Я тільки відкрив Gewerbe. З чого почати?', a: 'Вітаємо з відкриттям! Ось з чого варто почати в QLIXA: підключи бухгалтерію — фіксуй доходи і витрати з першого дня; виставляй рахунки клієнтам прямо з платформи; стеж за дашбордом — він покаже загальну картину твого бізнесу в реальному часі. А щоб не загубитись у перших кроках — читай наші покрокові гайди у розділі Статті.' },
-      { icon: '💰', q: 'Що саме я можу списати як витрати?', a: 'Дуже багато: ноутбук, телефон, інтернет, частина оренди (home office), курси, підписки на програми, транспорт до клієнтів і десятки інших категорій. QLIXA покаже всі варіанти для твоєї ситуації.' },
-      { icon: '🔒', q: 'Мої фінансові дані в безпеці?', a: 'Так. Сервери в ЄС, відповідність GDPR. Ми не передаємо дані третім особам. Ти можеш видалити акаунт і всі дані в будь-який момент.' },
+      { q: 'Самозайнятий: боюся зробити помилку в декларації — що буде?', a: 'QLIXA допоможе зібрати та впорядкувати всі дані за рік, якщо ведеш бухгалтерію на платформі. Ми підкажемо, на що звернути увагу для вигіднішого заповнення — наприклад, які витрати можна списати і як правильно їх задокументувати. Проте памʼятай: QLIXA — це цифровий помічник, а не бухгалтер чи Steuerberater. Якщо маєш складну ситуацію або сумніви — рекомендуємо додатково проконсультуватись із Steuerberater.' },
+      { q: 'Найманий працівник: чи можу я повернути свої податки?', a: 'В Австрії роботодавець автоматично подає базові дані про твою зарплату до податкової — але він не вникає в твою особисту ситуацію. Саме тому більшість найманих працівників можуть самостійно подати Arbeitnehmerveranlagung і повернути частину сплачених податків. QLIXA допоможе розібратись саме у твоїй ситуації: знайде всі витрати, які можна врахувати — home office, транспорт, навчання, діти та інше. Просто і швидко, без складних термінів.' },
+      { q: 'Я не говорю по-німецьки — зможу розібратись?', a: 'Так, саме для цього і створена QLIXA. Платформа повністю доступна українською, російською та англійською. Всі австрійські терміни перекладені і пояснені простими словами.' },
+      { q: 'Я тільки відкрив Gewerbe. З чого почати?', a: 'Вітаємо з відкриттям! Ось з чого варто почати в QLIXA: підключи бухгалтерію — фіксуй доходи і витрати з першого дня; виставляй рахунки клієнтам прямо з платформи; стеж за дашбордом — він покаже загальну картину твого бізнесу в реальному часі. А щоб не загубитись у перших кроках — читай наші покрокові гайди у розділі Статті.' },
+      { q: 'Що саме я можу списати як витрати?', a: 'Дуже багато: ноутбук, телефон, інтернет, частина оренди (home office), курси, підписки на програми, транспорт до клієнтів і десятки інших категорій. QLIXA покаже всі варіанти для твоєї ситуації.' },
+      { q: 'Мої фінансові дані в безпеці?', a: 'Так. Сервери в ЄС, відповідність GDPR. Ми не передаємо дані третім особам. Ти можеш видалити акаунт і всі дані в будь-який момент.' },
     ],
   },
   RU: {
@@ -672,12 +746,12 @@ const FAQ_TEXT: Record<string, {
     h2Before: 'Часто задаваемые ',
     h2Emphasis: 'вопросы',
     items: [
-      { icon: '😰', q: 'Самозанятый: боюсь сделать ошибку в декларации — что будет?', a: 'QLIXA поможет собрать и упорядочить все данные за год, если ведёшь бухгалтерию на платформе. Мы подскажем, на что обратить внимание для более выгодного заполнения — например, какие расходы можно списать и как правильно их задокументировать. Однако помни: QLIXA — это цифровой помощник, а не бухгалтер или Steuerberater. Если у тебя сложная ситуация или сомнения — рекомендуем дополнительно проконсультироваться со Steuerberater.' },
-      { icon: '💼', q: 'Наёмный работник: могу ли я вернуть свои налоги?', a: 'В Австрии работодатель автоматически подаёт базовые данные о твоей зарплате в налоговую — но он не вникает в твою личную ситуацию. Именно поэтому большинство наёмных работников могут самостоятельно подать Arbeitnehmerveranlagung и вернуть часть уплаченных налогов. QLIXA поможет разобраться именно в твоей ситуации: найдёт все расходы, которые можно учесть — home office, транспорт, обучение, дети и другое. Просто и быстро, без сложных терминов.' },
-      { icon: '🇩🇪', q: 'Я не говорю по-немецки — смогу разобраться?', a: 'Да, именно для этого и создана QLIXA. Платформа полностью доступна на украинском, русском и английском языках. Все австрийские термины переведены и объяснены простыми словами.' },
-      { icon: '🆕', q: 'Я только открыл Gewerbe. С чего начать?', a: 'Поздравляем с открытием! Вот с чего стоит начать в QLIXA: подключи бухгалтерию — фиксируй доходы и расходы с первого дня; выставляй счета клиентам прямо с платформы; следи за дашбордом — он покажет общую картину твоего бизнеса в реальном времени. А чтобы не потеряться на первых шагах — читай наши пошаговые гайды в разделе Статьи.' },
-      { icon: '💰', q: 'Что именно я могу списать как расходы?', a: 'Очень многое: ноутбук, телефон, интернет, часть аренды (home office), курсы, подписки на программы, транспорт к клиентам и десятки других категорий. QLIXA покажет все варианты для твоей ситуации.' },
-      { icon: '🔒', q: 'Мои финансовые данные в безопасности?', a: 'Да. Серверы в ЕС, соответствие GDPR. Мы не передаём данные третьим лицам. Ты можешь удалить аккаунт и все данные в любой момент.' },
+      { q: 'Самозанятый: боюсь сделать ошибку в декларации — что будет?', a: 'QLIXA поможет собрать и упорядочить все данные за год, если ведёшь бухгалтерию на платформе. Мы подскажем, на что обратить внимание для более выгодного заполнения — например, какие расходы можно списать и как правильно их задокументировать. Однако помни: QLIXA — это цифровой помощник, а не бухгалтер или Steuerberater. Если у тебя сложная ситуация или сомнения — рекомендуем дополнительно проконсультироваться со Steuerberater.' },
+      { q: 'Наёмный работник: могу ли я вернуть свои налоги?', a: 'В Австрии работодатель автоматически подаёт базовые данные о твоей зарплате в налоговую — но он не вникает в твою личную ситуацию. Именно поэтому большинство наёмных работников могут самостоятельно подать Arbeitnehmerveranlagung и вернуть часть уплаченных налогов. QLIXA поможет разобраться именно в твоей ситуации: найдёт все расходы, которые можно учесть — home office, транспорт, обучение, дети и другое. Просто и быстро, без сложных терминов.' },
+      { q: 'Я не говорю по-немецки — смогу разобраться?', a: 'Да, именно для этого и создана QLIXA. Платформа полностью доступна на украинском, русском и английском языках. Все австрийские термины переведены и объяснены простыми словами.' },
+      { q: 'Я только открыл Gewerbe. С чего начать?', a: 'Поздравляем с открытием! Вот с чего стоит начать в QLIXA: подключи бухгалтерию — фиксируй доходы и расходы с первого дня; выставляй счета клиентам прямо с платформы; следи за дашбордом — он покажет общую картину твоего бизнеса в реальном времени. А чтобы не потеряться на первых шагах — читай наши пошаговые гайды в разделе Статьи.' },
+      { q: 'Что именно я могу списать как расходы?', a: 'Очень многое: ноутбук, телефон, интернет, часть аренды (home office), курсы, подписки на программы, транспорт к клиентам и десятки других категорий. QLIXA покажет все варианты для твоей ситуации.' },
+      { q: 'Мои финансовые данные в безопасности?', a: 'Да. Серверы в ЕС, соответствие GDPR. Мы не передаём данные третьим лицам. Ты можешь удалить аккаунт и все данные в любой момент.' },
     ],
   },
   EN: {
@@ -685,12 +759,12 @@ const FAQ_TEXT: Record<string, {
     h2Before: 'Frequently Asked ',
     h2Emphasis: 'Questions',
     items: [
-      { icon: '😰', q: "Self-employed: I'm afraid of making a mistake in my tax return — what happens?", a: "QLIXA helps you collect and organize all your data for the year if you keep your books on the platform. We'll point out what to pay attention to for a more favorable filing — for example, which expenses you can deduct and how to document them correctly. But remember: QLIXA is a digital assistant, not an accountant or Steuerberater. If your situation is complex or you have doubts, we recommend also consulting a Steuerberater." },
-      { icon: '💼', q: 'Employee: can I get a tax refund?', a: "In Austria, your employer automatically reports basic data about your salary to the tax office — but it doesn't take your personal situation into account. That's why most employees can file an Arbeitnehmerveranlagung themselves and get back part of the taxes they paid. QLIXA helps you figure out exactly your situation: it finds all the expenses you can claim — home office, transport, education, children, and more. Simple and fast, without complex terms." },
-      { icon: '🇩🇪', q: "I don't speak German — will I be able to manage?", a: "Yes, that's exactly why QLIXA was created. The platform is fully available in Ukrainian, Russian, and English. All Austrian terms are translated and explained in simple words." },
-      { icon: '🆕', q: 'I just opened a Gewerbe. Where do I start?', a: "Congratulations on opening! Here's where to start with QLIXA: set up your bookkeeping — record income and expenses from day one; issue invoices to clients right from the platform; keep an eye on the dashboard — it shows the full picture of your business in real time. And to avoid getting lost in the first steps, read our step-by-step guides in the Articles section." },
-      { icon: '💰', q: 'What exactly can I deduct as expenses?', a: "A lot: laptop, phone, internet, part of your rent (home office), courses, software subscriptions, transport to clients, and dozens of other categories. QLIXA shows all the options for your situation." },
-      { icon: '🔒', q: 'Is my financial data safe?', a: "Yes. Servers in the EU, GDPR compliant. We don't share data with third parties. You can delete your account and all your data at any time." },
+      { q: "Self-employed: I'm afraid of making a mistake in my tax return — what happens?", a: "QLIXA helps you collect and organize all your data for the year if you keep your books on the platform. We'll point out what to pay attention to for a more favorable filing — for example, which expenses you can deduct and how to document them correctly. But remember: QLIXA is a digital assistant, not an accountant or Steuerberater. If your situation is complex or you have doubts, we recommend also consulting a Steuerberater." },
+      { q: 'Employee: can I get a tax refund?', a: "In Austria, your employer automatically reports basic data about your salary to the tax office — but it doesn't take your personal situation into account. That's why most employees can file an Arbeitnehmerveranlagung themselves and get back part of the taxes they paid. QLIXA helps you figure out exactly your situation: it finds all the expenses you can claim — home office, transport, education, children, and more. Simple and fast, without complex terms." },
+      { q: "I don't speak German — will I be able to manage?", a: "Yes, that's exactly why QLIXA was created. The platform is fully available in Ukrainian, Russian, and English. All Austrian terms are translated and explained in simple words." },
+      { q: 'I just opened a Gewerbe. Where do I start?', a: "Congratulations on opening! Here's where to start with QLIXA: set up your bookkeeping — record income and expenses from day one; issue invoices to clients right from the platform; keep an eye on the dashboard — it shows the full picture of your business in real time. And to avoid getting lost in the first steps, read our step-by-step guides in the Articles section." },
+      { q: 'What exactly can I deduct as expenses?', a: "A lot: laptop, phone, internet, part of your rent (home office), courses, software subscriptions, transport to clients, and dozens of other categories. QLIXA shows all the options for your situation." },
+      { q: 'Is my financial data safe?', a: "Yes. Servers in the EU, GDPR compliant. We don't share data with third parties. You can delete your account and all your data at any time." },
     ],
   },
   DE: {
@@ -698,12 +772,12 @@ const FAQ_TEXT: Record<string, {
     h2Before: 'Häufig gestellte ',
     h2Emphasis: 'Fragen',
     items: [
-      { icon: '😰', q: 'Selbstständig: Ich habe Angst, einen Fehler in der Steuererklärung zu machen — was passiert dann?', a: 'QLIXA hilft dir, alle Daten des Jahres zu sammeln und zu ordnen, wenn du deine Buchhaltung auf der Plattform führst. Wir zeigen dir, worauf du für eine günstigere Erklärung achten solltest — zum Beispiel, welche Ausgaben du absetzen kannst und wie du sie richtig dokumentierst. Denk aber daran: QLIXA ist ein digitaler Assistent, kein Buchhalter oder Steuerberater. Bei einer komplexen Situation oder Zweifeln empfehlen wir zusätzlich einen Steuerberater zu konsultieren.' },
-      { icon: '💼', q: 'Angestellte/r: Kann ich meine Steuern zurückbekommen?', a: 'In Österreich meldet dein Arbeitgeber automatisch grundlegende Gehaltsdaten ans Finanzamt — geht aber nicht auf deine persönliche Situation ein. Deshalb können die meisten Angestellten selbst eine Arbeitnehmerveranlagung einreichen und einen Teil der gezahlten Steuern zurückbekommen. QLIXA hilft dir, genau deine Situation zu durchschauen: findet alle Ausgaben, die du geltend machen kannst — Home Office, Fahrtkosten, Weiterbildung, Kinder und mehr. Einfach und schnell, ohne komplizierte Begriffe.' },
-      { icon: '🇩🇪', q: 'Ich spreche kein Deutsch — komme ich trotzdem zurecht?', a: 'Ja, genau dafür wurde QLIXA entwickelt. Die Plattform ist vollständig auf Ukrainisch, Russisch und Englisch verfügbar. Alle österreichischen Begriffe sind übersetzt und einfach erklärt.' },
-      { icon: '🆕', q: 'Ich habe gerade ein Gewerbe angemeldet. Wo fange ich an?', a: 'Herzlichen Glückwunsch zur Gründung! So startest du am besten mit QLIXA: Buchhaltung einrichten — erfasse Einnahmen und Ausgaben von Tag eins an; Rechnungen direkt über die Plattform an Kunden stellen; das Dashboard im Blick behalten — es zeigt dir in Echtzeit das Gesamtbild deines Business. Und damit du bei den ersten Schritten nicht den Überblick verlierst, lies unsere Schritt-für-Schritt-Anleitungen im Bereich Artikel.' },
-      { icon: '💰', q: 'Was genau kann ich als Ausgaben absetzen?', a: 'Sehr vieles: Laptop, Handy, Internet, ein Teil der Miete (Home Office), Kurse, Software-Abos, Fahrten zu Kunden und Dutzende weitere Kategorien. QLIXA zeigt dir alle Optionen für deine Situation.' },
-      { icon: '🔒', q: 'Sind meine Finanzdaten sicher?', a: 'Ja. Server in der EU, DSGVO-konform. Wir geben deine Daten nicht an Dritte weiter. Du kannst dein Konto und alle Daten jederzeit löschen.' },
+      { q: 'Selbstständig: Ich habe Angst, einen Fehler in der Steuererklärung zu machen — was passiert dann?', a: 'QLIXA hilft dir, alle Daten des Jahres zu sammeln und zu ordnen, wenn du deine Buchhaltung auf der Plattform führst. Wir zeigen dir, worauf du für eine günstigere Erklärung achten solltest — zum Beispiel, welche Ausgaben du absetzen kannst und wie du sie richtig dokumentierst. Denk aber daran: QLIXA ist ein digitaler Assistent, kein Buchhalter oder Steuerberater. Bei einer komplexen Situation oder Zweifeln empfehlen wir zusätzlich einen Steuerberater zu konsultieren.' },
+      { q: 'Angestellte/r: Kann ich meine Steuern zurückbekommen?', a: 'In Österreich meldet dein Arbeitgeber automatisch grundlegende Gehaltsdaten ans Finanzamt — geht aber nicht auf deine persönliche Situation ein. Deshalb können die meisten Angestellten selbst eine Arbeitnehmerveranlagung einreichen und einen Teil der gezahlten Steuern zurückbekommen. QLIXA hilft dir, genau deine Situation zu durchschauen: findet alle Ausgaben, die du geltend machen kannst — Home Office, Fahrtkosten, Weiterbildung, Kinder und mehr. Einfach und schnell, ohne komplizierte Begriffe.' },
+      { q: 'Ich spreche kein Deutsch — komme ich trotzdem zurecht?', a: 'Ja, genau dafür wurde QLIXA entwickelt. Die Plattform ist vollständig auf Ukrainisch, Russisch und Englisch verfügbar. Alle österreichischen Begriffe sind übersetzt und einfach erklärt.' },
+      { q: 'Ich habe gerade ein Gewerbe angemeldet. Wo fange ich an?', a: 'Herzlichen Glückwunsch zur Gründung! So startest du am besten mit QLIXA: Buchhaltung einrichten — erfasse Einnahmen und Ausgaben von Tag eins an; Rechnungen direkt über die Plattform an Kunden stellen; das Dashboard im Blick behalten — es zeigt dir in Echtzeit das Gesamtbild deines Business. Und damit du bei den ersten Schritten nicht den Überblick verlierst, lies unsere Schritt-für-Schritt-Anleitungen im Bereich Artikel.' },
+      { q: 'Was genau kann ich als Ausgaben absetzen?', a: 'Sehr vieles: Laptop, Handy, Internet, ein Teil der Miete (Home Office), Kurse, Software-Abos, Fahrten zu Kunden und Dutzende weitere Kategorien. QLIXA zeigt dir alle Optionen für deine Situation.' },
+      { q: 'Sind meine Finanzdaten sicher?', a: 'Ja. Server in der EU, DSGVO-konform. Wir geben deine Daten nicht an Dritte weiter. Du kannst dein Konto und alle Daten jederzeit löschen.' },
     ],
   },
 }
@@ -1418,7 +1492,7 @@ export default function HomePage() {
               {t5.features.map((item, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
                   <div style={{ width: 44, height: 44, background: 'white', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0, boxShadow: '0 2px 8px rgba(3,131,144,0.08)' }}>
-                    {item.icon}
+                    {WHY_ICONS[i]}
                   </div>
                   <div>
                     <div style={{ fontSize: 14, fontWeight: 700, color: '#1A1A1A', marginBottom: 2 }}>{item.title}</div>
@@ -1482,7 +1556,12 @@ export default function HomePage() {
           {t7.items.map((item, i) => (
             <div key={i} className="faq-item">
               <button className="faq-btn" onClick={() => setOpenFaq(openFaq === i ? null : i)}>
-                <span>{item.icon} {item.q}</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+                  <span style={{ width: 32, height: 32, borderRadius: '50%', background: 'rgba(3,131,144,0.1)', display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0 }}>
+                    {FAQ_ICONS[i]}
+                  </span>
+                  {item.q}
+                </span>
                 <span style={{ color: '#038390', fontSize: 20, fontWeight: 400, flexShrink: 0, transition: 'transform 0.2s', display: 'inline-block', transform: openFaq === i ? 'rotate(45deg)' : 'none' }}>+</span>
               </button>
               {openFaq === i && (
