@@ -746,7 +746,7 @@ export default function HomePage() {
   const t7 = FAQ_TEXT[lang] || FAQ_TEXT.UA;
 
   return (
-    <div style={{ fontFamily: 'DM Sans, sans-serif', background: '#F0F7F8', overflowX: 'hidden' }}>
+    <div style={{ fontFamily: 'DM Sans, sans-serif', background: '#F0F7F8' }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');
         @keyframes float1 { 0%,100%{transform:rotate(-6deg) translateY(0)} 50%{transform:rotate(-6deg) translateY(-12px)} }
@@ -811,6 +811,8 @@ export default function HomePage() {
       `}</style>
 
       <Navbar />
+
+      <div style={{ overflowX: 'hidden' }}>
 
       {false && (
       <div style={{ paddingTop: 0 }}>
@@ -1492,6 +1494,7 @@ export default function HomePage() {
       </section>
 
       <Footer />
+      </div>
     </div>
   )
 }

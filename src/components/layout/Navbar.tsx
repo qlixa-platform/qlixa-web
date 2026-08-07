@@ -25,6 +25,7 @@ const NAV_TEXT: Record<string, {
   dropdownItems: [string, string][] // [label, desc] пар, порядок відповідає HOW_ITEMS_HREFS
   forWhom: string
   articles: string
+  tools: string
   pricing: string
   login: string
   searchPlaceholder: string
@@ -51,6 +52,7 @@ const NAV_TEXT: Record<string, {
     ],
     forWhom: 'Для кого',
     articles: 'Статті',
+    tools: 'Інструменти',
     pricing: 'Тарифи',
     login: 'Увійти',
     searchPlaceholder: 'Пошук статей, гайдів...',
@@ -77,6 +79,7 @@ const NAV_TEXT: Record<string, {
     ],
     forWhom: 'Для кого',
     articles: 'Статьи',
+    tools: 'Инструменты',
     pricing: 'Тарифы',
     login: 'Войти',
     searchPlaceholder: 'Поиск статей, гайдов...',
@@ -103,6 +106,7 @@ const NAV_TEXT: Record<string, {
     ],
     forWhom: 'For Whom',
     articles: 'Articles',
+    tools: 'Tools',
     pricing: 'Pricing',
     login: 'Log in',
     searchPlaceholder: 'Search articles, guides...',
@@ -129,6 +133,7 @@ const NAV_TEXT: Record<string, {
     ],
     forWhom: 'Für wen',
     articles: 'Artikel',
+    tools: 'Tools',
     pricing: 'Preise',
     login: 'Anmelden',
     searchPlaceholder: 'Artikel, Anleitungen suchen...',
@@ -152,6 +157,7 @@ function getNavItems(lang: string): NavItem[] {
     },
     { label: t.forWhom, href: '/#для-кого' },
     { label: t.articles, href: '/articles' },
+    { label: t.tools, href: '/tools' },
   ]
 }
 

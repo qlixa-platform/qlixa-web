@@ -23,62 +23,139 @@ const socials = [
   },
 ]
 
+type FooterColumn = { title: string; titleHref?: string; links: { label: string; href: string }[] }
+
 // Переклади футера — всі 4 мови
 const FOOTER_TEXT: Record<string, {
   tagline: string
-  columns: [string, { label: string; href: string }[]][]
+  columns: FooterColumn[]
   contact: string
   copyright: string
   madeWith: string
+  errorTrigger: string
+  modalTitle: string
+  modalSubtitle: string
+  nameLabel: string
+  namePlaceholder: string
+  emailPlaceholder: string
+  descLabel: string
+  descPlaceholder: string
+  cancel: string
+  send: string
+  mailSubject: string
+  mailBodyName: string
+  mailBodyEmail: string
+  mailBodyDesc: string
+  mailBodyPage: string
 }> = {
   UA: {
     tagline: 'Автоматизована цифрова платформа для самозайнятих, підприємців та найманих працівників в Австрії.',
     columns: [
-      ['Продукти', [{ label: 'Ціни', href: '/pricing' }, { label: 'Шаблони', href: '/templates' }, { label: 'Партнери', href: '/partners' }]],
-      ['Компанія', [{ label: 'Про нас', href: '/about' }, { label: 'Статті', href: '/articles' }, { label: 'Контакти', href: '/contact' }]],
-      ['Правове', [{ label: 'Impressum', href: '/impressum' }, { label: 'Політика конфіденційності', href: '/privacy' }, { label: 'Умови використання', href: '/agb' }]],
+      { title: 'Компанія', links: [{ label: 'Про нас', href: '/about' }, { label: 'Статті', href: '/articles' }, { label: 'Контакти', href: '/contact' }] },
+      { title: 'Правове', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Політика конфіденційності', href: '/privacy' }, { label: 'Умови використання', href: '/agb' }] },
     ],
     contact: 'Контакт',
-    copyright: '© 2026 QLIXA · info@qlixa.eu',
+    copyright: '© 2026 QLIXA®',
     madeWith: 'Зроблено з ♥ в Австрії 🇦🇹',
+    errorTrigger: 'Знайшли помилку?',
+    modalTitle: 'Повідомлення про помилку',
+    modalSubtitle: 'Введіть ваше ім’я та email, щоб отримати відповідь, яку підготують фахівці QLIXA.',
+    nameLabel: 'Ім’я',
+    namePlaceholder: 'Ваше ім’я',
+    emailPlaceholder: 'your@email.com',
+    descLabel: 'Будь ласка, опишіть суть помилки:',
+    descPlaceholder: 'Опишіть, що саме не так...',
+    cancel: 'Скасувати',
+    send: 'Відправити',
+    mailSubject: 'Повідомлення про помилку на сайті QLIXA',
+    mailBodyName: 'Ім’я:',
+    mailBodyEmail: 'Email:',
+    mailBodyDesc: 'Опис помилки:',
+    mailBodyPage: 'Сторінка:',
   },
   RU: {
     tagline: 'Автоматизированная цифровая платформа для самозанятых, предпринимателей и наёмных работников в Австрии.',
     columns: [
-      ['Продукты', [{ label: 'Цены', href: '/pricing' }, { label: 'Шаблоны', href: '/templates' }, { label: 'Партнёры', href: '/partners' }]],
-      ['Компания', [{ label: 'О нас', href: '/about' }, { label: 'Статьи', href: '/articles' }, { label: 'Контакты', href: '/contact' }]],
-      ['Правовое', [{ label: 'Impressum', href: '/impressum' }, { label: 'Политика конфиденциальности', href: '/privacy' }, { label: 'Условия использования', href: '/agb' }]],
+      { title: 'Компания', links: [{ label: 'О нас', href: '/about' }, { label: 'Статьи', href: '/articles' }, { label: 'Контакты', href: '/contact' }] },
+      { title: 'Правовое', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Политика конфиденциальности', href: '/privacy' }, { label: 'Условия использования', href: '/agb' }] },
     ],
     contact: 'Контакт',
-    copyright: '© 2026 QLIXA · info@qlixa.eu',
+    copyright: '© 2026 QLIXA®',
     madeWith: 'Сделано с ♥ в Австрии 🇦🇹',
+    errorTrigger: 'Нашли ошибку?',
+    modalTitle: 'Сообщение об ошибке',
+    modalSubtitle: 'Введите ваше имя и email, чтобы получить ответ, который подготовят специалисты QLIXA.',
+    nameLabel: 'Имя',
+    namePlaceholder: 'Ваше имя',
+    emailPlaceholder: 'your@email.com',
+    descLabel: 'Пожалуйста, опишите суть ошибки:',
+    descPlaceholder: 'Опишите, что именно не так...',
+    cancel: 'Отменить',
+    send: 'Отправить',
+    mailSubject: 'Сообщение об ошибке на сайте QLIXA',
+    mailBodyName: 'Имя:',
+    mailBodyEmail: 'Email:',
+    mailBodyDesc: 'Описание ошибки:',
+    mailBodyPage: 'Страница:',
   },
   EN: {
     tagline: 'An automated digital platform for the self-employed, entrepreneurs, and employees in Austria.',
     columns: [
-      ['Product', [{ label: 'Pricing', href: '/pricing' }, { label: 'Templates', href: '/templates' }, { label: 'Partners', href: '/partners' }]],
-      ['Company', [{ label: 'About Us', href: '/about' }, { label: 'Articles', href: '/articles' }, { label: 'Contact', href: '/contact' }]],
-      ['Legal', [{ label: 'Impressum', href: '/impressum' }, { label: 'Privacy Policy', href: '/privacy' }, { label: 'Terms of Use', href: '/agb' }]],
+      { title: 'Company', links: [{ label: 'About Us', href: '/about' }, { label: 'Articles', href: '/articles' }, { label: 'Contact', href: '/contact' }] },
+      { title: 'Legal', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Privacy Policy', href: '/privacy' }, { label: 'Terms of Use', href: '/agb' }] },
     ],
     contact: 'Contact',
-    copyright: '© 2026 QLIXA · info@qlixa.eu',
+    copyright: '© 2026 QLIXA®',
     madeWith: 'Made with ♥ in Austria 🇦🇹',
+    errorTrigger: 'Found a mistake?',
+    modalTitle: 'Report an Error',
+    modalSubtitle: 'Enter your name and email so the QLIXA team can get back to you.',
+    nameLabel: 'Name',
+    namePlaceholder: 'Your name',
+    emailPlaceholder: 'your@email.com',
+    descLabel: 'Please describe the issue:',
+    descPlaceholder: "Describe what's wrong...",
+    cancel: 'Cancel',
+    send: 'Send',
+    mailSubject: 'Error report on the QLIXA website',
+    mailBodyName: 'Name:',
+    mailBodyEmail: 'Email:',
+    mailBodyDesc: 'Description:',
+    mailBodyPage: 'Page:',
   },
   DE: {
     tagline: 'Eine automatisierte digitale Plattform für Selbstständige, Unternehmer:innen und Angestellte in Österreich.',
     columns: [
-      ['Produkt', [{ label: 'Preise', href: '/pricing' }, { label: 'Vorlagen', href: '/templates' }, { label: 'Partner', href: '/partners' }]],
-      ['Unternehmen', [{ label: 'Über uns', href: '/about' }, { label: 'Artikel', href: '/articles' }, { label: 'Kontakt', href: '/contact' }]],
-      ['Rechtliches', [{ label: 'Impressum', href: '/impressum' }, { label: 'Datenschutz', href: '/privacy' }, { label: 'Nutzungsbedingungen', href: '/agb' }]],
+      { title: 'Unternehmen', links: [{ label: 'Über uns', href: '/about' }, { label: 'Artikel', href: '/articles' }, { label: 'Kontakt', href: '/contact' }] },
+      { title: 'Rechtliches', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Datenschutz', href: '/privacy' }, { label: 'Nutzungsbedingungen', href: '/agb' }] },
     ],
     contact: 'Kontakt',
-    copyright: '© 2026 QLIXA · info@qlixa.eu',
+    copyright: '© 2026 QLIXA®',
     madeWith: 'Made with ♥ in Österreich 🇦🇹',
+    errorTrigger: 'Fehler gefunden?',
+    modalTitle: 'Fehler melden',
+    modalSubtitle: 'Gib deinen Namen und deine E-Mail-Adresse ein, damit dir das QLIXA-Team antworten kann.',
+    nameLabel: 'Name',
+    namePlaceholder: 'Dein Name',
+    emailPlaceholder: 'deine@email.com',
+    descLabel: 'Bitte beschreibe den Fehler:',
+    descPlaceholder: 'Beschreibe, was nicht stimmt...',
+    cancel: 'Abbrechen',
+    send: 'Senden',
+    mailSubject: 'Fehlermeldung auf der QLIXA-Website',
+    mailBodyName: 'Name:',
+    mailBodyEmail: 'E-Mail:',
+    mailBodyDesc: 'Fehlerbeschreibung:',
+    mailBodyPage: 'Seite:',
   },
 }
 
 export default function Footer() {
   const [lang, setLang] = useState('UA')
+  const [showModal, setShowModal] = useState(false)
+  const [name, setName] = useState('')
+  const [email, setEmail] = useState('')
+  const [desc, setDesc] = useState('')
 
   useEffect(() => {
     const updateLang = () => {
@@ -91,6 +168,20 @@ export default function Footer() {
   }, [])
 
   const t = FOOTER_TEXT[lang] || FOOTER_TEXT.UA
+
+  const closeModal = () => {
+    setShowModal(false)
+    setName(''); setEmail(''); setDesc('')
+  }
+
+  const handleSend = () => {
+    if (!name || !email || !desc) return
+    const page = typeof window !== 'undefined' ? window.location.href : ''
+    const body = `${t.mailBodyName} ${name}\n${t.mailBodyEmail} ${email}\n${t.mailBodyPage} ${page}\n\n${t.mailBodyDesc}\n${desc}`
+    const mailtoUrl = `mailto:info@qlixa.eu?subject=${encodeURIComponent(t.mailSubject)}&body=${encodeURIComponent(body)}`
+    window.location.href = mailtoUrl
+    closeModal()
+  }
 
   return (
     <footer>
@@ -116,29 +207,30 @@ export default function Footer() {
               <p style={{ fontSize: 12, lineHeight: 1.6, color: '#9D9D9D', marginBottom: 16 }}>
                 {t.tagline}
               </p>
-              <div style={{ display: 'flex', gap: 14 }}>
-                {socials.map(s => (
-                  <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer"
-                    title={s.name} style={{ color: '#9D9D9D' }}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
-                  >
-                    {s.icon}
-                  </a>
-                ))}
-              </div>
             </div>
 
             {/* Link columns */}
-            {t.columns.map(([title, links]) => (
-              <div key={title}>
-                <div style={{
-                  fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
-                  textTransform: 'uppercase', color: '#9D9D9D', marginBottom: 16,
-                }}>
-                  {title}
-                </div>
-                {links.map(link => (
+            {t.columns.map(col => (
+              <div key={col.title}>
+                {col.titleHref ? (
+                  <Link href={col.titleHref} style={{
+                    display: 'block', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
+                    textTransform: 'uppercase', color: '#9D9D9D', marginBottom: 16, textDecoration: 'none',
+                  }}
+                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
+                  >
+                    {col.title}
+                  </Link>
+                ) : (
+                  <div style={{
+                    fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
+                    textTransform: 'uppercase', color: '#9D9D9D', marginBottom: 16,
+                  }}>
+                    {col.title}
+                  </div>
+                )}
+                {col.links.map(link => (
                   <Link key={link.href} href={link.href} style={{
                     display: 'block', fontSize: 13,
                     color: '#9D9D9D', textDecoration: 'none', marginBottom: 10,
@@ -169,20 +261,90 @@ export default function Footer() {
               >
                 info@qlixa.eu
               </a>
+              <button onClick={() => setShowModal(true)} style={{
+                display: 'block', fontSize: 13, background: 'none', border: 'none', padding: 0,
+                color: '#9D9D9D', textDecoration: 'underline', cursor: 'pointer', textAlign: 'left',
+              }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
+              >
+                {t.errorTrigger}
+              </button>
             </div>
           </div>
 
-          {/* Bottom bar */}
+          {/* Bottom bar — copyright | social icons | made with */}
           <div style={{
             paddingTop: 24, borderTop: '1px solid #f0f0f0',
-            display: 'flex', justifyContent: 'space-between', flexWrap: 'wrap',
-            gap: 8, fontSize: 12, color: '#9D9D9D',
+            display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap',
+            gap: 16, fontSize: 12, color: '#9D9D9D',
           }}>
             <span>{t.copyright}</span>
+
+            <div style={{ display: 'flex', gap: 14 }}>
+              {socials.map(s => (
+                <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer"
+                  title={s.name} style={{ color: '#9D9D9D', display: 'flex' }}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
+                >
+                  {s.icon}
+                </a>
+              ))}
+            </div>
+
             <span>{t.madeWith}</span>
           </div>
         </div>
       </div>
+
+      {/* Error report modal */}
+      {showModal && (
+        <div onClick={closeModal} style={{
+          position: 'fixed', inset: 0, background: 'rgba(26,26,26,0.5)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          padding: 16, zIndex: 200,
+        }}>
+          <div onClick={e => e.stopPropagation()} style={{
+            background: '#fff', borderRadius: 20, padding: '32px 28px',
+            maxWidth: 440, width: '100%', boxShadow: '0 20px 60px rgba(0,0,0,0.2)',
+          }}>
+            <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, fontWeight: 400, color: '#1A1A1A', marginBottom: 8 }}>
+              {t.modalTitle}
+            </h3>
+            <p style={{ fontSize: 13, color: '#595959', lineHeight: 1.6, marginBottom: 20 }}>
+              {t.modalSubtitle}
+            </p>
+
+            <input value={name} onChange={e => setName(e.target.value)} placeholder={t.namePlaceholder}
+              style={{ width: '100%', padding: '11px 14px', borderRadius: 10, border: '1px solid #E6F4F5', fontSize: 14, marginBottom: 10, outline: 'none', fontFamily: 'DM Sans, sans-serif', boxSizing: 'border-box' as const }} />
+            <input value={email} onChange={e => setEmail(e.target.value)} placeholder={t.emailPlaceholder} type="email"
+              style={{ width: '100%', padding: '11px 14px', borderRadius: 10, border: '1px solid #E6F4F5', fontSize: 14, marginBottom: 16, outline: 'none', fontFamily: 'DM Sans, sans-serif', boxSizing: 'border-box' as const }} />
+
+            <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#1A1A1A', marginBottom: 8 }}>
+              {t.descLabel}
+            </label>
+            <textarea value={desc} onChange={e => setDesc(e.target.value)} placeholder={t.descPlaceholder} rows={4}
+              style={{ width: '100%', padding: '11px 14px', borderRadius: 10, border: '1px solid #E6F4F5', fontSize: 14, marginBottom: 24, outline: 'none', fontFamily: 'DM Sans, sans-serif', resize: 'vertical' as const, boxSizing: 'border-box' as const }} />
+
+            <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
+              <button onClick={closeModal} style={{
+                padding: '11px 20px', borderRadius: 10, border: '1px solid #E6F4F5',
+                background: '#fff', color: '#595959', fontSize: 13, fontWeight: 600, cursor: 'pointer',
+              }}>
+                {t.cancel}
+              </button>
+              <button onClick={handleSend} disabled={!name || !email || !desc} style={{
+                padding: '11px 24px', borderRadius: 10, border: 'none',
+                background: (!name || !email || !desc) ? '#9D9D9D' : '#038390', color: '#fff',
+                fontSize: 13, fontWeight: 700, cursor: (!name || !email || !desc) ? 'not-allowed' : 'pointer',
+              }}>
+                {t.send}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </footer>
   )
 }
