@@ -30,6 +30,7 @@ const FOOTER_TEXT: Record<string, {
   tagline: string
   columns: FooterColumn[]
   contact: string
+  contactLink: string
   copyright: string
   madeWith: string
   errorTrigger: string
@@ -51,10 +52,11 @@ const FOOTER_TEXT: Record<string, {
   UA: {
     tagline: 'Автоматизована цифрова платформа для самозайнятих, підприємців та найманих працівників в Австрії.',
     columns: [
-      { title: 'Компанія', links: [{ label: 'Про нас', href: '/about' }, { label: 'Статті', href: '/articles' }, { label: 'Контакти', href: '/contact' }] },
+      { title: 'Платформа', links: [{ label: 'Про нас', href: '/about' }, { label: 'Статті', href: '/articles' }, { label: 'Інструменти', href: '/tools' }] },
       { title: 'Правове', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Політика конфіденційності', href: '/privacy' }, { label: 'Умови використання', href: '/agb' }] },
     ],
     contact: 'Контакт',
+    contactLink: 'Контакти',
     copyright: '© 2026 QLIXA®',
     madeWith: 'Зроблено з ♥ в Австрії 🇦🇹',
     errorTrigger: 'Знайшли помилку?',
@@ -76,10 +78,11 @@ const FOOTER_TEXT: Record<string, {
   RU: {
     tagline: 'Автоматизированная цифровая платформа для самозанятых, предпринимателей и наёмных работников в Австрии.',
     columns: [
-      { title: 'Компания', links: [{ label: 'О нас', href: '/about' }, { label: 'Статьи', href: '/articles' }, { label: 'Контакты', href: '/contact' }] },
+      { title: 'Платформа', links: [{ label: 'О нас', href: '/about' }, { label: 'Статьи', href: '/articles' }, { label: 'Инструменты', href: '/tools' }] },
       { title: 'Правовое', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Политика конфиденциальности', href: '/privacy' }, { label: 'Условия использования', href: '/agb' }] },
     ],
     contact: 'Контакт',
+    contactLink: 'Контакты',
     copyright: '© 2026 QLIXA®',
     madeWith: 'Сделано с ♥ в Австрии 🇦🇹',
     errorTrigger: 'Нашли ошибку?',
@@ -101,10 +104,11 @@ const FOOTER_TEXT: Record<string, {
   EN: {
     tagline: 'An automated digital platform for the self-employed, entrepreneurs, and employees in Austria.',
     columns: [
-      { title: 'Company', links: [{ label: 'About Us', href: '/about' }, { label: 'Articles', href: '/articles' }, { label: 'Contact', href: '/contact' }] },
+      { title: 'Platform', links: [{ label: 'About Us', href: '/about' }, { label: 'Articles', href: '/articles' }, { label: 'Tools', href: '/tools' }] },
       { title: 'Legal', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Privacy Policy', href: '/privacy' }, { label: 'Terms of Use', href: '/agb' }] },
     ],
     contact: 'Contact',
+    contactLink: 'Contact',
     copyright: '© 2026 QLIXA®',
     madeWith: 'Made with ♥ in Austria 🇦🇹',
     errorTrigger: 'Found a mistake?',
@@ -126,10 +130,11 @@ const FOOTER_TEXT: Record<string, {
   DE: {
     tagline: 'Eine automatisierte digitale Plattform für Selbstständige, Unternehmer:innen und Angestellte in Österreich.',
     columns: [
-      { title: 'Unternehmen', links: [{ label: 'Über uns', href: '/about' }, { label: 'Artikel', href: '/articles' }, { label: 'Kontakt', href: '/contact' }] },
+      { title: 'Plattform', links: [{ label: 'Über uns', href: '/about' }, { label: 'Artikel', href: '/articles' }, { label: 'Tools', href: '/tools' }] },
       { title: 'Rechtliches', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Datenschutz', href: '/privacy' }, { label: 'Nutzungsbedingungen', href: '/agb' }] },
     ],
     contact: 'Kontakt',
+    contactLink: 'Kontakt',
     copyright: '© 2026 QLIXA®',
     madeWith: 'Made with ♥ in Österreich 🇦🇹',
     errorTrigger: 'Fehler gefunden?',
@@ -252,6 +257,15 @@ export default function Footer() {
               }}>
                 {t.contact}
               </div>
+              <Link href="/contact" style={{
+                display: 'block', fontSize: 13,
+                color: '#9D9D9D', textDecoration: 'none', marginBottom: 10,
+              }}
+                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
+              >
+                {t.contactLink}
+              </Link>
               <a href="mailto:info@qlixa.eu" style={{
                 display: 'block', fontSize: 13,
                 color: '#9D9D9D', textDecoration: 'none', marginBottom: 10,

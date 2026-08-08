@@ -24,6 +24,16 @@ const ARTICLE_META_TRANSLATIONS: Record<string, Record<string, { tag: string; ti
     EN: { tag: 'Guide', title: 'How to prepare your RWR+ card application' },
     DE: { tag: 'Anleitung', title: 'Wie du dich auf die RWR+ Karte vorbereitest' },
   },
+  'gewerbeanmeldung': {
+    RU: { tag: 'Регистрация бизнеса', title: 'Gewerbeanmeldung в Австрии: пошаговая регистрация самозанятости' },
+    EN: { tag: 'Business Registration', title: 'Gewerbeanmeldung in Austria: step-by-step self-employment registration' },
+    DE: { tag: 'Geschäftsregistrierung', title: 'Gewerbeanmeldung in Österreich: Schritt-für-Schritt-Registrierung der Selbstständigkeit' },
+  },
+  'austria-id': {
+    RU: { tag: 'Австрия · Документы', title: 'Как оформить Austria ID: пошаговый гайд для иностранцев' },
+    EN: { tag: 'Austria · Documents', title: 'How to get an Austria ID: step-by-step guide for foreigners' },
+    DE: { tag: 'Österreich · Dokumente', title: 'Austria ID beantragen: Schritt-für-Schritt-Anleitung für Ausländer' },
+  },
 }
 
 function localizeArticle<T extends { slug: string; tag: string; title: string }>(art: T, lang: string): T {
