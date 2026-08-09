@@ -34,6 +34,11 @@ const ARTICLE_META_TRANSLATIONS: Record<string, Record<string, { tag: string; ti
     EN: { tag: 'Austria · Documents', title: 'How to get an Austria ID: step-by-step guide for foreigners' },
     DE: { tag: 'Österreich · Dokumente', title: 'Austria ID beantragen: Schritt-für-Schritt-Anleitung für Ausländer' },
   },
+  'invalidity-child': {
+    RU: { tag: 'Семья · Льготы', title: 'Инвалидность ребёнка в Австрии: выплаты, льготы и с чего начать' },
+    EN: { tag: 'Family · Benefits', title: 'Child disability in Austria: payments, benefits, and where to start' },
+    DE: { tag: 'Familie · Leistungen', title: 'Kindesbehinderung in Österreich: Leistungen, Vergünstigungen und erste Schritte' },
+  },
 }
 
 function localizeArticle<T extends { slug: string; tag: string; title: string }>(art: T, lang: string): T {
