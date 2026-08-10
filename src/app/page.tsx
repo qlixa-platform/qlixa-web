@@ -186,51 +186,47 @@ const TICKER_ITEMS: Record<string, TickerItem[]> = Object.fromEntries(
   ])
 )
 
-// Переклади Hero-секції (доступні мови — фолбек на UA, якщо мова ще не перекладена)
+// Переклади Hero-секції — поки що тільки UA, RU/EN/DE додамо після затвердження верстки
+type HeroCard = {
+  eyebrow: string
+  title: string
+  desc: string
+  checklist: string[]
+  cta: string
+  href: string
+}
 const HERO_TEXT: Record<string, {
   badge: string
-  h1Line1: string
-  h1Line2: string
-  subheading: string
-  pills: [string, string, string]
-  cta: string
-  trust: [string, string, string]
+  h1: string
+  needLabel: string
+  cards: [HeroCard, HeroCard]
+  trust: string
+  disclaimer: string
 }> = {
   UA: {
-    badge: 'Твій цифровий бізнес-помічник в Австрії',
-    h1Line1: 'Разом розберемось з податками,',
-    h1Line2: 'фінансами та бізнесом',
-    subheading: 'Один кабінет замість купи сервісів для',
-    pills: ['Самозайнятих', 'Малого бізнесу', 'Найманих працівників'],
-    cta: 'Вибрати свій тариф →',
-    trust: ['1 200+ клієнтів', 'FinanzOnline під контролем', 'Економія €450/рік на бухгалтері'],
-  },
-  RU: {
-    badge: 'Твой цифровой бизнес-помощник в Австрии',
-    h1Line1: 'Вместе разберёмся с налогами,',
-    h1Line2: 'финансами и бизнесом',
-    subheading: 'Один кабинет вместо кучи сервисов для',
-    pills: ['Самозанятых', 'Малого бизнеса', 'Наёмных работников'],
-    cta: 'Выбрать свой тариф →',
-    trust: ['1 200+ клиентов', 'FinanzOnline под контролем', 'Экономия €450/год на бухгалтере'],
-  },
-  EN: {
-    badge: 'Your digital business assistant in Austria',
-    h1Line1: 'Together we’ll sort out taxes,',
-    h1Line2: 'finances and business',
-    subheading: 'One dashboard instead of a bunch of services for',
-    pills: ['Self-employed', 'Small business', 'Employees'],
-    cta: 'Choose your plan →',
-    trust: ['1,200+ clients', 'FinanzOnline under control', 'Save €450/year on accounting'],
-  },
-  DE: {
-    badge: 'Dein digitaler Geschäftsassistent in Österreich',
-    h1Line1: 'Gemeinsam kümmern wir uns um Steuern,',
-    h1Line2: 'Finanzen und dein Business',
-    subheading: 'Ein Konto statt vieler Services für',
-    pills: ['Selbstständige', 'Kleinunternehmen', 'Angestellte'],
-    cta: 'Tarif wählen →',
-    trust: ['1.200+ Kunden', 'FinanzOnline im Griff', 'Bis zu €450/Jahr sparen'],
+    badge: 'Твій автоматизований цифровий бізнес-помічник в Австрії',
+    h1: 'Працюєш чи ведеш бізнес в Австрії?',
+    needLabel: 'Тоді тобі це потрібно!',
+    cards: [
+      {
+        eyebrow: '\u{1F469}‍\u{1F4BC} Працюєш за наймом?',
+        title: 'Поверни переплачений податок',
+        desc: 'Не знаєш, що саме можна списати? QLIXA проводить тебе через персональну анкету і враховує роботу, сім’ю, доходи та інші обставини, які можуть впливати на твоє податкове повернення.',
+        checklist: ['Персональна податкова анкета', 'Можливі податкові відрахування', 'Готовий документ для FinanzOnline', 'Проста мова, без бухгалтерських термінів'],
+        cta: 'Розрахувати моє повернення →',
+        href: '/for/naymanyy',
+      },
+      {
+        eyebrow: '\u{1F469}‍\u{1F4BB} Є бізнес?',
+        title: 'Веди фінанси самостійно',
+        desc: 'Втрачаєш час на таблиці замість клієнтів? QLIXA збирає все в одному кабінеті — від клієнтів до звітності — і допомагає бути готовим до звітного періоду.',
+        checklist: ['Клієнти та рахунки', 'Доходи та витрати', 'ПДВ та звітність', 'Дедлайни та KPI'],
+        cta: 'Переглянути кабінет →',
+        href: '/for/biznes',
+      },
+    ],
+    trust: 'Створено спеціально для \u{1F1E6}\u{1F1F9} Австрії · перекладено на 4 мови · структуровано за актуальними правилами австрійської податкової системи',
+    disclaimer: 'QLIXA — інструмент для підготовки, а не консультація. Завжди перевіряй дані перед подачею.',
   },
 }
 
@@ -855,6 +851,13 @@ export default function HomePage() {
           16.67%{ opacity: 0; transform: translate(-50%,-50%) scale(0.9) translateY(-6px); }
           100%  { opacity: 0; transform: translate(-50%,-50%) scale(0.9) translateY(-6px); }
         }
+        @keyframes checklistCycle {
+          0%    { opacity: 0; transform: translateY(8px); }
+          5%    { opacity: 1; transform: translateY(0); }
+          20%   { opacity: 1; transform: translateY(0); }
+          25%   { opacity: 0; transform: translateY(-8px); }
+          100%  { opacity: 0; transform: translateY(-8px); }
+        }
         .hiw-card { background:#fff; border-radius:22px; padding:36px 28px; transition:transform 0.2s,box-shadow 0.2s; position:relative; overflow:hidden }
         .hiw-card:hover { transform:translateY(-6px); box-shadow:0 16px 48px rgba(0,0,0,0.10) }
         .hiw-card:hover::before { opacity:1 }
@@ -987,179 +990,77 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
-      <section style={{ background: '#FFFFFF', padding: 'clamp(24px,4vh,48px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'visible', position: 'relative' as const, zIndex: 0 }}>
+      <section style={{ background: '#FFFFFF', padding: 'clamp(20px,3vh,32px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0 }}>
 
-        {/* Decorative powder half-circle behind the girl image */}
-        <div
-          aria-hidden
-          style={{
-            position: 'absolute',
-            right: '-12%',
-            top: '50%',
-            transform: 'translateY(-50%)',
-            width: 'min(62vw, 900px)',
-            aspectRatio: '1 / 1',
-            borderRadius: '50%',
-            background: '#F0F7F8',
-            pointerEvents: 'none',
-            zIndex: 0,
-          }}
-        />
+        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const }}>
 
-
-        <div style={{ width: '100%' }}>
-
-          {/* LEFT — text */}
-          <div style={{ display: 'flex', flexDirection: 'column' as const, justifyContent: 'center', gap: 0, maxWidth: 640 }}>
-
-            {/* Badge — live pulsing dot */}
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 12, fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20, padding: '6px 14px', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 999, background: 'rgba(3,131,144,0.07)', width: 'fit-content' }}>
-              <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#038390', display: 'inline-block', flexShrink: 0, animation: 'pulse 1.6s infinite' }} />
-              {t.badge}
-            </div>
-
-            {/* H1 line 1 */}
-            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.2vw,48px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1.5px', marginBottom: 6 }}>
-              {t.h1Line1}
-            </h1>
-
-            {/* H1 line 2 — teal text with hand-drawn underline */}
-            <div style={{ marginBottom: 28 }}>
-              <span style={{ position: 'relative', display: 'inline-block' }}>
-                <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.2vw,48px)', fontWeight: 700, fontStyle: 'italic', color: '#038390', lineHeight: 1.2, letterSpacing: '-0.5px' }}>
-                  {t.h1Line2}
-                </span>
-                <svg
-                  viewBox="0 0 300 20"
-                  preserveAspectRatio="none"
-                  aria-hidden
-                  style={{ position: 'absolute', left: 2, right: 0, bottom: -14, width: 'calc(100% - 4px)', height: 16 }}
-                >
-                  <path d="M2,12 C60,3 120,18 180,8 C220,1 260,15 298,5" stroke="#038390" strokeWidth="4" fill="none" strokeLinecap="round" />
-                </svg>
-              </span>
-            </div>
-
-            {/* Subheading */}
-            <p style={{ fontSize: 'clamp(17px,1.6vw,21px)', color: '#1A1A1A', lineHeight: 1.5, marginBottom: 20, fontWeight: 600 }}>
-              {t.subheading}
-            </p>
-
-            {/* Audience pills */}
-            <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const, marginBottom: 32 }}>
-              <Link href="/for/frilanser"
-                style={{ fontSize: 13, fontWeight: 600, color: '#1A1A1A', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: '#FFFFFF', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
-                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#038390'; el.style.color='#ffffff'; el.style.border='1.5px solid #038390'; el.style.transform='translateY(-2px)'; el.style.boxShadow='0 4px 12px rgba(3,131,144,0.3)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='#FFFFFF'; el.style.color='#1A1A1A'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
-                {t.pills[0]}
-              </Link>
-              <Link href="/for/biznes"
-                style={{ fontSize: 13, fontWeight: 600, color: '#1A1A1A', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: '#FFFFFF', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
-                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#038390'; el.style.color='#ffffff'; el.style.border='1.5px solid #038390'; el.style.transform='translateY(-2px)'; el.style.boxShadow='0 4px 12px rgba(3,131,144,0.3)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='#FFFFFF'; el.style.color='#1A1A1A'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
-                {t.pills[1]}
-              </Link>
-              <Link href="/for/naymanyy"
-                style={{ fontSize: 13, fontWeight: 600, color: '#1A1A1A', border: '1.5px solid rgba(3,131,144,0.35)', borderRadius: 999, padding: '6px 16px', background: '#FFFFFF', whiteSpace: 'nowrap' as const, textDecoration: 'none', cursor: 'pointer', transition: 'all 0.2s ease', display: 'inline-block' }}
-                onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.background='#038390'; el.style.color='#ffffff'; el.style.border='1.5px solid #038390'; el.style.transform='translateY(-2px)'; el.style.boxShadow='0 4px 12px rgba(3,131,144,0.3)'; }}
-                onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.background='#FFFFFF'; el.style.color='#1A1A1A'; el.style.border='1.5px solid rgba(3,131,144,0.35)'; el.style.transform=''; el.style.boxShadow=''; }}>
-                {t.pills[2]}
-              </Link>
-            </div>
-
-            {/* CTA */}
-            <div style={{ marginBottom: 28 }}>
-              <a href="/pricing"
-                style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '16px 36px', background: '#038390', color: '#fff', borderRadius: 14, fontSize: 16, fontWeight: 800, textDecoration: 'none', boxShadow: '0 6px 20px rgba(3,131,144,0.4), 3px 3px 0 #026B76', letterSpacing: '0.2px', transition: 'all 0.2s ease', cursor: 'pointer' }}
-                onMouseEnter={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = '#026B76';
-                  el.style.boxShadow = '0 8px 28px rgba(3,131,144,0.55), 2px 2px 0 #015f68';
-                  el.style.transform = 'translateY(-2px)';
-                  el.style.gap = '12px';
-                }}
-                onMouseLeave={e => {
-                  const el = e.currentTarget as HTMLElement;
-                  el.style.background = '#038390';
-                  el.style.boxShadow = '0 6px 20px rgba(3,131,144,0.4), 3px 3px 0 #026B76';
-                  el.style.transform = '';
-                  el.style.gap = '8px';
-                }}>
-                {t.cta}
-              </a>
-            </div>
-
-            {/* Trust */}
-            <div style={{ display: 'flex', gap: 6, alignItems: 'center', flexWrap: 'wrap' as const, maxWidth: 400, background: 'rgba(255,255,255,0.85)', backdropFilter: 'blur(2px)', borderRadius: 8, padding: '6px 10px', width: 'fit-content' }}>
-              {t.trust.map((item, i) => (
-                <span key={i} style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                  <span style={{ fontSize: 11, color: '#888' }}>✓ {item}</span>
-                  {i < 2 && <span style={{ color: '#ccc', fontSize: 11, marginLeft: 6 }}>•</span>}
-                </span>
-              ))}
-            </div>
-
+          {/* Badge — live pulsing dot */}
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(11px,1.3vh,12px)', fontWeight: 700, letterSpacing: '0.8px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 'clamp(14px,2.2vh,20px)', padding: 'clamp(5px,0.8vh,7px) 14px', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 999, background: 'rgba(3,131,144,0.07)' }}>
+            <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#038390', display: 'inline-block', flexShrink: 0, animation: 'pulse 1.6s infinite' }} />
+            {t.badge}
           </div>
+
+          {/* H1 — question, always one line */}
+          <h1 style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(26px,4.6vh,44px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 'clamp(18px,2.6vh,24px)', whiteSpace: 'nowrap' as const }}>
+            {t.h1}
+          </h1>
+
+          {/* "What do you need" — should catch the eye like H1 */}
+          <div style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(18px,2.4vh,23px)', fontWeight: 700, color: '#038390', marginBottom: 'clamp(14px,2vh,20px)' }}>
+            {t.needLabel}
+          </div>
+
+          {/* Two cards — full width, matching next section's container */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(14px,1.8vh,18px)', marginBottom: 'clamp(16px,2.2vh,20px)', textAlign: 'left' as const }}>
+            {t.cards.map((card, ci) => (
+              <div key={ci} style={{ background: '#fff', borderRadius: 18, border: '1px solid rgba(3,131,144,0.15)', padding: 'clamp(18px,2.4vh,26px) clamp(20px,1.8vw,28px)', boxShadow: '0 4px 20px rgba(3,131,144,0.06)' }}>
+                <div style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(11px,1vh,12px)', fontWeight: 700, letterSpacing: '0.4px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 'clamp(6px,1vh,10px)' }}>
+                  {card.eyebrow}
+                </div>
+                <div style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(19px,2.4vh,24px)', fontWeight: 700, color: '#1A1A1A', marginBottom: 'clamp(6px,1vh,9px)', lineHeight: 1.2 }}>
+                  {card.title}
+                </div>
+                <p style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(12.5px,1.3vh,14px)', fontWeight: 400, color: '#595959', lineHeight: 1.45, marginBottom: 'clamp(8px,1.3vh,13px)' }}>
+                  {card.desc}
+                </p>
+
+                {/* Cycling checklist — one item visible at a time */}
+                <div style={{ position: 'relative' as const, height: 'clamp(16px,1.8vh,19px)', marginBottom: 'clamp(10px,1.5vh,16px)', overflow: 'hidden' }}>
+                  {card.checklist.map((item, ii) => (
+                    <div key={ii} style={{
+                      position: 'absolute' as const, left: 0, top: 0, right: 0,
+                      fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(12.5px,1.3vh,14px)', fontWeight: 600, color: '#1A1A1A',
+                      opacity: 0,
+                      animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
+                      animationDelay: `${-ii * 2.2}s`,
+                    }}>
+                      ✓ {item}
+                    </div>
+                  ))}
+                </div>
+
+                <Link href={card.href} style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8,
+                  padding: 'clamp(10px,1.4vh,12px) 20px', background: '#038390', color: '#fff',
+                  borderRadius: 10, fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(12.5px,1.3vh,14px)', fontWeight: 700, textDecoration: 'none',
+                }}>
+                  {card.cta}
+                </Link>
+              </div>
+            ))}
+          </div>
+
+          {/* Trust line */}
+          <p style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(11px,1.15vh,12.5px)', fontWeight: 500, color: '#595959', marginBottom: 'clamp(3px,0.6vh,6px)' }}>
+            {t.trust}
+          </p>
+
+          {/* Disclaimer */}
+          <p style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(10px,1vh,11px)', fontWeight: 400, color: '#9D9D9D', maxWidth: 560, margin: '0 auto' }}>
+            {t.disclaimer}
+          </p>
 
         </div>
-
-        {/* Girl + laptop image with animated screen overlay — same image for all languages, only the screen slideshow changes */}
-        {(
-          <div
-            style={{
-              position: 'absolute',
-              right: 'clamp(0px, 5vw, 80px)',
-              bottom: 0,
-              height: '95%',
-              aspectRatio: '1889 / 1156',
-              pointerEvents: 'none',
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/hero-background-girl-ua.png"
-              alt=""
-              style={{ width: '100%', height: '100%', objectFit: 'contain', display: 'block' }}
-            />
-
-            {/* Screen slideshow — координати виміряні відносно оригінального фото (1889×1156) */}
-            <div
-              style={{
-                position: 'absolute',
-                left: '32.24%',
-                top: '44.98%',
-                width: '18.00%',
-                height: '29.24%',
-                overflow: 'hidden',
-              }}
-            >
-              {HERO_SCREEN_SLIDES.map((src, i) => {
-                const isDeadlines = src.includes('DEADLINES.png')
-                const size = isDeadlines ? '68%' : '80%'
-                return (
-                  // eslint-disable-next-line @next/next/no-img-element
-                  <img
-                    key={src}
-                    src={src}
-                    alt=""
-                    style={{
-                      position: 'absolute',
-                      left: '50%',
-                      top: '50%',
-                      width: size,
-                      height: size,
-                      transform: 'translate(-50%, -50%)',
-                      objectFit: 'contain',
-                      opacity: 0,
-                      animation: `heroSlideFade ${HERO_SCREEN_SLIDES.length * HERO_SLIDE_DURATION}s ease-in-out infinite`,
-                      animationDelay: `${-i * HERO_SLIDE_DURATION}s`,
-                    }}
-                  />
-                )
-              })}
-            </div>
-          </div>
-        )}
       </section>
       {/* ── END HERO2 ── */}
 
