@@ -198,7 +198,6 @@ type HeroCard = {
 const HERO_TEXT: Record<string, {
   badge: string
   h1: string
-  needLabel: string
   cards: [HeroCard, HeroCard]
   trust: string
   disclaimer: string
@@ -206,10 +205,9 @@ const HERO_TEXT: Record<string, {
   UA: {
     badge: 'Твій автоматизований цифровий бізнес-помічник в Австрії',
     h1: 'Працюєш чи ведеш бізнес в Австрії?',
-    needLabel: 'Тоді тобі це потрібно!',
     cards: [
       {
-        eyebrow: '\u{1F469}‍\u{1F4BC} Працюєш за наймом?',
+        eyebrow: 'Працюєш за наймом?',
         title: 'Поверни переплачений податок',
         desc: 'Не знаєш, що саме можна списати? QLIXA проводить тебе через персональну анкету і враховує роботу, сім’ю, доходи та інші обставини, які можуть впливати на твоє податкове повернення.',
         checklist: ['Персональна податкова анкета', 'Можливі податкові відрахування', 'Готовий документ для FinanzOnline', 'Проста мова, без бухгалтерських термінів'],
@@ -217,7 +215,7 @@ const HERO_TEXT: Record<string, {
         href: '/for/naymanyy',
       },
       {
-        eyebrow: '\u{1F469}‍\u{1F4BB} Є бізнес?',
+        eyebrow: 'Є бізнес?',
         title: 'Веди фінанси самостійно',
         desc: 'Втрачаєш час на таблиці замість клієнтів? QLIXA збирає все в одному кабінеті — від клієнтів до звітності — і допомагає бути готовим до звітного періоду.',
         checklist: ['Клієнти та рахунки', 'Доходи та витрати', 'ПДВ та звітність', 'Дедлайни та KPI'],
@@ -226,7 +224,7 @@ const HERO_TEXT: Record<string, {
       },
     ],
     trust: 'Створено спеціально для \u{1F1E6}\u{1F1F9} Австрії · перекладено на 4 мови · структуровано за актуальними правилами австрійської податкової системи',
-    disclaimer: 'QLIXA — інструмент для підготовки, а не консультація. Завжди перевіряй дані перед подачею.',
+    disclaimer: 'QLIXA — інструмент для підготовки. Завжди перевіряй дані перед подачею.',
   },
 }
 
@@ -995,68 +993,75 @@ export default function HomePage() {
         <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const }}>
 
           {/* Badge — live pulsing dot */}
-          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 7, fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(11px,1.3vh,12px)', fontWeight: 700, letterSpacing: '0.8px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 'clamp(14px,2.2vh,20px)', padding: 'clamp(5px,0.8vh,7px) 14px', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 999, background: 'rgba(3,131,144,0.07)' }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, fontSize: 'clamp(11px,1.3vh,12px)', fontWeight: 800, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 'clamp(14px,2.2vh,20px)', padding: 'clamp(5px,0.8vh,7px) 14px', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 999, background: 'rgba(3,131,144,0.07)' }}>
             <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#038390', display: 'inline-block', flexShrink: 0, animation: 'pulse 1.6s infinite' }} />
             {t.badge}
           </div>
 
-          {/* H1 — question, always one line */}
-          <h1 style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(26px,4.6vh,44px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 'clamp(18px,2.6vh,24px)', whiteSpace: 'nowrap' as const }}>
-            {t.h1}
-          </h1>
-
-          {/* "What do you need" — should catch the eye like H1 */}
-          <div style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(18px,2.4vh,23px)', fontWeight: 700, color: '#038390', marginBottom: 'clamp(14px,2vh,20px)' }}>
-            {t.needLabel}
+          {/* H1 flanked by two illustrations — always one line */}
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 'clamp(12px,2vw,28px)', marginBottom: 'clamp(18px,2.6vh,26px)' }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/for-who/naymanyy.png" alt="" style={{ height: 'clamp(60px,9vh,100px)', width: 'auto', objectFit: 'contain' as const, flexShrink: 0 }} />
+            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(24px,4.4vh,42px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', whiteSpace: 'nowrap' as const, margin: 0 }}>
+              {t.h1}
+            </h1>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img src="/for-who/frilanser.png" alt="" style={{ height: 'clamp(60px,9vh,100px)', width: 'auto', objectFit: 'contain' as const, flexShrink: 0 }} />
           </div>
 
-          {/* Two cards — full width, matching next section's container */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(14px,1.8vh,18px)', marginBottom: 'clamp(16px,2.2vh,20px)', textAlign: 'left' as const }}>
+          {/* Two cards — floating headline above each, symmetric height, matching next section's container width */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(20px,2.4vh,28px)', marginBottom: 'clamp(16px,2.2vh,20px)', alignItems: 'stretch' as const }}>
             {t.cards.map((card, ci) => (
-              <div key={ci} style={{ background: '#fff', borderRadius: 18, border: '1px solid rgba(3,131,144,0.15)', padding: 'clamp(18px,2.4vh,26px) clamp(20px,1.8vw,28px)', boxShadow: '0 4px 20px rgba(3,131,144,0.06)' }}>
-                <div style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(11px,1vh,12px)', fontWeight: 700, letterSpacing: '0.4px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 'clamp(6px,1vh,10px)' }}>
-                  {card.eyebrow}
+              <div key={ci} style={{ display: 'flex', flexDirection: 'column' as const, height: '100%' }}>
+                <div style={{ textAlign: 'center' as const, position: 'relative' as const, zIndex: 1, marginBottom: 'clamp(-14px,-1.6vh,-10px)' }}>
+                  <span style={{ background: '#FFFFFF', padding: '0 14px', fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(19px,2.5vh,25px)', fontWeight: 700, color: '#038390' }}>
+                    {card.eyebrow}
+                  </span>
                 </div>
-                <div style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(19px,2.4vh,24px)', fontWeight: 700, color: '#1A1A1A', marginBottom: 'clamp(6px,1vh,9px)', lineHeight: 1.2 }}>
-                  {card.title}
-                </div>
-                <p style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(12.5px,1.3vh,14px)', fontWeight: 400, color: '#595959', lineHeight: 1.45, marginBottom: 'clamp(8px,1.3vh,13px)' }}>
-                  {card.desc}
-                </p>
+                <div style={{ flex: 1, display: 'flex', flexDirection: 'column' as const, background: '#fff', borderRadius: 20, border: '2px solid rgba(3,131,144,0.18)', padding: 'clamp(24px,3.2vh,34px) clamp(20px,1.8vw,28px) clamp(20px,2.6vh,28px)', boxShadow: '0 6px 24px rgba(3,131,144,0.08)', textAlign: 'center' as const }}>
+                  <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(20px,2.7vh,26px)', fontWeight: 700, color: '#1A1A1A', marginBottom: 'clamp(8px,1.1vh,12px)', lineHeight: 1.2 }}>
+                    {card.title}
+                  </div>
+                  <p style={{ fontSize: 'clamp(13px,1.35vh,14.5px)', fontWeight: 400, color: '#595959', lineHeight: 1.5, marginBottom: 'clamp(10px,1.4vh,14px)' }}>
+                    {card.desc}
+                  </p>
 
-                {/* Cycling checklist — one item visible at a time */}
-                <div style={{ position: 'relative' as const, height: 'clamp(16px,1.8vh,19px)', marginBottom: 'clamp(10px,1.5vh,16px)', overflow: 'hidden' }}>
-                  {card.checklist.map((item, ii) => (
-                    <div key={ii} style={{
-                      position: 'absolute' as const, left: 0, top: 0, right: 0,
-                      fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(12.5px,1.3vh,14px)', fontWeight: 600, color: '#1A1A1A',
-                      opacity: 0,
-                      animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
-                      animationDelay: `${-ii * 2.2}s`,
-                    }}>
-                      ✓ {item}
-                    </div>
-                  ))}
-                </div>
+                  {/* Cycling checklist — one item visible at a time */}
+                  <div style={{ position: 'relative' as const, height: 'clamp(16px,1.8vh,19px)', marginBottom: 'clamp(12px,1.7vh,18px)', overflow: 'hidden' }}>
+                    {card.checklist.map((item, ii) => (
+                      <div key={ii} style={{
+                        position: 'absolute' as const, left: 0, right: 0, textAlign: 'center' as const,
+                        fontSize: 'clamp(13px,1.35vh,14.5px)', fontWeight: 600, color: '#1A1A1A',
+                        opacity: 0,
+                        animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
+                        animationDelay: `${-ii * 2.2}s`,
+                      }}>
+                        ✓ {item}
+                      </div>
+                    ))}
+                  </div>
 
-                <Link href={card.href} style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 8,
-                  padding: 'clamp(10px,1.4vh,12px) 20px', background: '#038390', color: '#fff',
-                  borderRadius: 10, fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(12.5px,1.3vh,14px)', fontWeight: 700, textDecoration: 'none',
-                }}>
-                  {card.cta}
-                </Link>
+                  <div style={{ flex: 1 }} />
+
+                  <Link href={card.href} style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 8, justifyContent: 'center' as const,
+                    padding: 'clamp(11px,1.5vh,13px) 24px', background: '#038390', color: '#fff',
+                    borderRadius: 11, fontSize: 'clamp(13px,1.4vh,14.5px)', fontWeight: 700, textDecoration: 'none',
+                  }}>
+                    {card.cta}
+                  </Link>
+                </div>
               </div>
             ))}
           </div>
 
           {/* Trust line */}
-          <p style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(11px,1.15vh,12.5px)', fontWeight: 500, color: '#595959', marginBottom: 'clamp(3px,0.6vh,6px)' }}>
+          <p style={{ fontSize: 'clamp(11px,1.15vh,12.5px)', fontWeight: 500, color: '#595959', marginBottom: 'clamp(3px,0.6vh,6px)' }}>
             {t.trust}
           </p>
 
           {/* Disclaimer */}
-          <p style={{ fontFamily: 'Golos Text, sans-serif', fontSize: 'clamp(10px,1vh,11px)', fontWeight: 400, color: '#9D9D9D', maxWidth: 560, margin: '0 auto' }}>
+          <p style={{ fontSize: 'clamp(10px,1vh,11px)', fontWeight: 400, color: '#9D9D9D', maxWidth: 560, margin: '0 auto' }}>
             {t.disclaimer}
           </p>
 
