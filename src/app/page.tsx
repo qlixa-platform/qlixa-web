@@ -244,6 +244,50 @@ const HERO_TEXT: Record<string, {
     ],
     trust: 'Designed specifically for 🇦🇹 Austria · available in 4 languages · structured according to current Austrian tax regulations',
   },
+  RU: {
+    badge: 'Твой автоматизированный бизнес-помощник в Австрии',
+    cards: [
+      {
+        eyebrow: 'Работаешь по найму?',
+        title: 'Рассчитает переплаченный налог',
+        desc: 'Не знаешь, что именно можно списать? QLIXA проводит тебя через персональную анкету и учитывает работу, семью, доходы и другие обстоятельства, которые могут влиять на твой налоговый возврат.',
+        checklist: ['Персональная налоговая анкета', 'Возможные налоговые вычеты', 'Готовый документ для FinanzOnline', 'Простой язык, без бухгалтерских терминов'],
+        cta: 'Рассчитать мой возврат →',
+        href: '/for/naymanyy',
+      },
+      {
+        eyebrow: 'Есть бизнес?',
+        title: 'Поможет вести финансы самостоятельно',
+        desc: 'Теряешь время на таблицы вместо клиентов? QLIXA собирает всё в одном кабинете — от клиентов до отчётности — и помогает быть готовым к отчётному периоду.',
+        checklist: ['Клиенты и счета', 'Доходы и расходы', 'НДС и отчётность', 'Дедлайны и KPI'],
+        cta: 'Посмотреть кабинет →',
+        href: '/for/biznes',
+      },
+    ],
+    trust: 'Создано специально для 🇦🇹 Австрии · переведено на 4 языка · структурировано по актуальным правилам австрийской налоговой системы',
+  },
+  DE: {
+    badge: 'Dein automatisierter Geschäftsassistent in Österreich',
+    cards: [
+      {
+        eyebrow: 'Angestellt?',
+        title: 'Berechnet deine zu viel gezahlte Steuer',
+        desc: 'Weißt du nicht, was du absetzen kannst? QLIXA führt dich durch einen persönlichen Fragebogen und berücksichtigt deinen Job, deine Familie, dein Einkommen und andere Umstände, die deine Steuerrückerstattung beeinflussen können.',
+        checklist: ['Persönlicher Steuerfragebogen', 'Mögliche Steuerabsetzungen', 'Fertiges Dokument für FinanzOnline', 'Einfache Sprache, ohne Buchhaltungsjargon'],
+        cta: 'Meine Rückerstattung berechnen →',
+        href: '/for/naymanyy',
+      },
+      {
+        eyebrow: 'Hast du ein Unternehmen?',
+        title: 'Hilft dir, deine Finanzen selbst zu verwalten',
+        desc: 'Verlierst du Zeit mit Tabellen statt mit Kunden? QLIXA bringt alles in einem Dashboard zusammen — von Kunden bis zur Berichterstattung — und hilft dir, für die Steuerperiode bereit zu sein.',
+        checklist: ['Kunden und Rechnungen', 'Einnahmen und Ausgaben', 'USt und Berichte', 'Fristen und KPIs'],
+        cta: 'Dashboard ansehen →',
+        href: '/for/biznes',
+      },
+    ],
+    trust: 'Speziell für 🇦🇹 Österreich entwickelt · verfügbar in 4 Sprachen · nach aktuellen österreichischen Steuervorschriften strukturiert',
+  },
 }
 
 // Переклади секції "Що таке QLIXA" — всі 4 мови
@@ -1015,17 +1059,17 @@ export default function HomePage() {
         padding: '20px clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0,
       }}>
 
-        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const, height: '100%', display: 'flex', flexDirection: 'column' as const }}>
+        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const }}>
 
-          <div style={{ maxWidth: 900, marginLeft: 'auto', marginRight: 'auto' }}>
+          <div style={{ maxWidth: 1035, marginLeft: 'auto', marginRight: 'auto' }}>
 
             {/* Row 1 — image + eyebrow heading */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 28, fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
               {t.cards.map((card, ci) => (
                 <div key={ci} style={{ textAlign: 'center' as const }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={ci === 0 ? '/hero/naymanyy-hero.png' : '/hero/frilanser-hero.png'} alt="" style={{ height: 76, width: 'auto', objectFit: 'contain' as const, margin: '0 auto 4px' }} />
-                  <div style={{ fontSize: 19, fontWeight: 800, color: '#1A1A1A' }}>
+                  <img src={ci === 0 ? '/hero/naymanyy-hero.png' : '/hero/frilanser-hero.png'} alt="" style={{ height: 88, width: 'auto', objectFit: 'contain' as const, margin: '0 auto 5px' }} />
+                  <div style={{ fontSize: 22, fontWeight: 800, color: '#1A1A1A' }}>
                     {card.eyebrow}
                   </div>
                 </div>
@@ -1034,31 +1078,31 @@ export default function HomePage() {
 
             {/* Big badge headline — NORMAL document flow (not absolute), with real margin above and below. This self-adjusts to whatever height row 1 and row 2 actually are, instead of a guessed absolute pixel offset. */}
             <div style={{
-              fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontWeight: 800, fontSize: 37, lineHeight: '44px',
+              fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontWeight: 800, fontSize: 43, lineHeight: '50px',
               color: '#1A1A1A', textAlign: 'center' as const, whiteSpace: 'nowrap' as const,
               textTransform: 'capitalize' as const,
-              marginTop: 18, marginBottom: 18,
+              marginTop: 21, marginBottom: 21,
             }}>
               {t.badge}
             </div>
 
             {/* Row 2 — highlight title + desc + checklist + button */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, marginBottom: 16, fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 28, marginBottom: 20, fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
               {t.cards.map((card, ci) => (
                 <div key={ci} style={{ textAlign: 'center' as const }}>
-                  <div style={{ fontSize: 15.5, fontWeight: 700, color: '#1A1A1A', marginBottom: 6, minHeight: 20 }}>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 7, minHeight: 23 }}>
                     {card.title}
                   </div>
-                  <p style={{ fontSize: 12, fontWeight: 400, color: '#595959', lineHeight: 1.45, marginBottom: 9, minHeight: 52 }}>
+                  <p style={{ fontSize: 14, fontWeight: 400, color: '#595959', lineHeight: 1.45, marginBottom: 11, minHeight: 60 }}>
                     {card.desc}
                   </p>
 
-                  {/* Cycling checklist — one item visible at a time. Extra height + line-height + padding so descenders (е.g. "р") never get clipped */}
-                  <div style={{ position: 'relative' as const, height: 26, marginBottom: 12, overflow: 'hidden' }}>
+                  {/* Cycling checklist — one item visible at a time */}
+                  <div style={{ position: 'relative' as const, height: 30, marginBottom: 14, overflow: 'hidden' }}>
                     {card.checklist.map((item, ii) => (
                       <div key={ii} style={{
                         position: 'absolute' as const, left: 0, right: 0, textAlign: 'center' as const,
-                        fontSize: 14, fontWeight: 600, color: '#1A1A1A', lineHeight: '26px',
+                        fontSize: 16, fontWeight: 600, color: '#1A1A1A', lineHeight: '30px',
                         opacity: 0,
                         animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
                         animationDelay: `${-ii * 2.2}s`,
@@ -1069,9 +1113,9 @@ export default function HomePage() {
                   </div>
 
                   <Link href={card.href} style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 8, justifyContent: 'center' as const,
-                    padding: '10px 20px', background: '#038390', color: '#fff',
-                    borderRadius: 10, fontSize: 12.5, fontWeight: 700, textDecoration: 'none',
+                    display: 'inline-flex', alignItems: 'center', gap: 9, justifyContent: 'center' as const,
+                    padding: '12px 24px', background: '#038390', color: '#fff',
+                    borderRadius: 11, fontSize: 14.5, fontWeight: 700, textDecoration: 'none',
                   }}>
                     {card.cta}
                   </Link>
@@ -1081,8 +1125,8 @@ export default function HomePage() {
 
           </div>
 
-          {/* Trust line — pinned to the bottom of the Hero section */}
-          <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 11.5, fontWeight: 500, color: '#595959', marginTop: 'auto', marginBottom: 0 }}>
+          {/* Trust line */}
+          <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 13, fontWeight: 500, color: '#595959' }}>
             {t.trust}
           </p>
 
@@ -1109,7 +1153,7 @@ export default function HomePage() {
 
 
       {/* ── ЩО ТАКЕ QLIXA ── */}
-      <section style={{ background: '#ffffff', padding: '72px clamp(20px,6vw,80px)' }}>
+      <section style={{ background: '#ffffff', padding: '40px clamp(20px,6vw,80px) 26px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
           {/* Header */}
@@ -1237,7 +1281,7 @@ export default function HomePage() {
 
 
       {/* ── ДЛЯ КОГО ── */}
-      <section id="для-кого" style={{ background: '#FFFFFF', padding: '72px clamp(20px,6vw,80px)' }}>
+      <section id="для-кого" style={{ background: '#FFFFFF', padding: '26px clamp(20px,6vw,80px) 26px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
           {/* Header */}
@@ -1280,7 +1324,7 @@ export default function HomePage() {
 
 
       {/* ── DEMO ── */}
-      <section id="demo" style={{ background: '#ffffff', padding: '72px clamp(20px,6vw,80px)' }}>
+      <section id="demo" style={{ background: '#ffffff', padding: '26px clamp(20px,6vw,80px) 26px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
           {/* Header */}
@@ -1339,7 +1383,7 @@ export default function HomePage() {
 
 
       {/* ── WHY QLIXA — redesigned ── */}
-      <section style={{ background: '#ffffff', padding: '48px clamp(20px,6vw,80px) 32px' }}>
+      <section style={{ background: '#ffffff', padding: '26px clamp(20px,6vw,80px) 32px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
           {/* BLOCK 1 — Story header */}
