@@ -201,11 +201,11 @@ const HERO_TEXT: Record<string, {
   trust: string
 }> = {
   UA: {
-    badge: 'Твій автоматизований цифровий бізнес-помічник в Австрії',
+    badge: 'Твій автоматизований бізнес-помічник в Австрії',
     cards: [
       {
         eyebrow: 'Працюєш за наймом?',
-        title: 'Поверни переплачений податок',
+        title: 'Розрахує переплачений податок',
         desc: 'Не знаєш, що саме можна списати? QLIXA проводить тебе через персональну анкету і враховує роботу, сім’ю, доходи та інші обставини, які можуть впливати на твоє податкове повернення.',
         checklist: ['Персональна податкова анкета', 'Можливі податкові відрахування', 'Готовий документ для FinanzOnline', 'Проста мова, без бухгалтерських термінів'],
         cta: 'Розрахувати моє повернення →',
@@ -213,7 +213,7 @@ const HERO_TEXT: Record<string, {
       },
       {
         eyebrow: 'Є бізнес?',
-        title: 'Веди фінанси самостійно',
+        title: 'Допоможе вести фінанси самостійно',
         desc: 'Втрачаєш час на таблиці замість клієнтів? QLIXA збирає все в одному кабінеті — від клієнтів до звітності — і допомагає бути готовим до звітного періоду.',
         checklist: ['Клієнти та рахунки', 'Доходи та витрати', 'ПДВ та звітність', 'Дедлайни та KPI'],
         cta: 'Переглянути кабінет →',
@@ -223,11 +223,11 @@ const HERO_TEXT: Record<string, {
     trust: 'Створено спеціально для \u{1F1E6}\u{1F1F9} Австрії · перекладено на 4 мови · структуровано за актуальними правилами австрійської податкової системи',
   },
   EN: {
-    badge: 'Your digital business assistant in Austria',
+    badge: 'Your automated business assistant in Austria',
     cards: [
       {
         eyebrow: 'Work as an employee?',
-        title: 'Get your tax refund',
+        title: 'Calculates your overpaid tax',
         desc: "Not sure what you can deduct? QLIXA walks you through a personal questionnaire and takes into account your job, family, income, and other circumstances that may affect your tax refund.",
         checklist: ['Personal tax questionnaire', 'Possible tax deductions', 'Ready-made document for FinanzOnline', 'Plain language, no accounting jargon'],
         cta: 'Calculate my refund →',
@@ -235,7 +235,7 @@ const HERO_TEXT: Record<string, {
       },
       {
         eyebrow: 'Have a business?',
-        title: 'Manage your finances yourself',
+        title: 'Helps you manage finances yourself',
         desc: 'Losing time on spreadsheets instead of clients? QLIXA brings everything together in one dashboard — from clients to reporting — and helps you stay ready for tax season.',
         checklist: ['Clients and invoices', 'Income and expenses', 'VAT and reporting', 'Deadlines and KPIs'],
         cta: 'View dashboard →',
@@ -1006,66 +1006,83 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
-      <section style={{ background: '#FFFFFF', padding: '28px clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0 }}>
+      <section style={{
+        backgroundColor: '#FFFFFF',
+        backgroundImage: 'url(/hero/hero-bg-line.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat' as const,
+        padding: '20px clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0,
+      }}>
 
         <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const }}>
 
-          {/* Badge — main eye-catching line, Inter font, Title Case (not all caps) */}
-          <div style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontWeight: 700, fontSize: 48, lineHeight: '48px', marginBottom: 24, textTransform: 'capitalize' as const, color: '#1A1A1A', textAlign: 'center' as const }}>
-            {t.badge}
-          </div>
+          <div style={{ maxWidth: 900, marginLeft: 'auto', marginRight: 'auto' }}>
 
-          {/* Two cards — image + heading + divider + highlight + desc + checklist + button, all inside one bordered card. Inter font throughout. */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22, marginBottom: 16, alignItems: 'stretch' as const, maxWidth: 880, marginLeft: 'auto', marginRight: 'auto' }}>
-            {t.cards.map((card, ci) => (
-              <div key={ci} style={{ display: 'flex', flexDirection: 'column' as const, height: '100%', background: '#fff', borderRadius: 16, border: '1px solid rgba(3,131,144,0.15)', padding: '18px 22px 20px', boxShadow: '0 4px 16px rgba(3,131,144,0.06)', textAlign: 'center' as const, fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={ci === 0 ? '/for-who/naymanyy.png' : '/for-who/frilanser.png'} alt="" style={{ height: 76, width: 'auto', objectFit: 'contain' as const, margin: '0 auto 8px' }} />
-
-                <div style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 10 }}>
-                  {card.eyebrow}
+            {/* Row 1 — image + eyebrow heading */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+              {t.cards.map((card, ci) => (
+                <div key={ci} style={{ textAlign: 'center' as const }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={ci === 0 ? '/hero/naymanyy-hero.png' : '/hero/frilanser-hero.png'} alt="" style={{ height: 76, width: 'auto', objectFit: 'contain' as const, margin: '0 auto 4px' }} />
+                  <div style={{ fontSize: 19, fontWeight: 800, color: '#1A1A1A' }}>
+                    {card.eyebrow}
+                  </div>
                 </div>
+              ))}
+            </div>
 
-                <div style={{ height: 1, background: '#E6F4F5', marginBottom: 10 }} />
+            {/* Big badge headline — NORMAL document flow (not absolute), with real margin above and below. This self-adjusts to whatever height row 1 and row 2 actually are, instead of a guessed absolute pixel offset. */}
+            <div style={{
+              fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontWeight: 800, fontSize: 37, lineHeight: '44px',
+              color: '#1A1A1A', textAlign: 'center' as const, whiteSpace: 'nowrap' as const,
+              textTransform: 'capitalize' as const,
+              marginTop: 18, marginBottom: 18,
+            }}>
+              {t.badge}
+            </div>
 
-                <div style={{ fontSize: 14.5, fontWeight: 700, color: '#1A1A1A', marginBottom: 7, minHeight: 20 }}>
-                  {card.title}
+            {/* Row 2 — highlight title + desc + checklist + button */}
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, marginBottom: 16, fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+              {t.cards.map((card, ci) => (
+                <div key={ci} style={{ textAlign: 'center' as const }}>
+                  <div style={{ fontSize: 15.5, fontWeight: 700, color: '#1A1A1A', marginBottom: 6, minHeight: 20 }}>
+                    {card.title}
+                  </div>
+                  <p style={{ fontSize: 12, fontWeight: 400, color: '#595959', lineHeight: 1.45, marginBottom: 9, minHeight: 52 }}>
+                    {card.desc}
+                  </p>
+
+                  {/* Cycling checklist — one item visible at a time */}
+                  <div style={{ position: 'relative' as const, height: 15, marginBottom: 11, overflow: 'hidden' }}>
+                    {card.checklist.map((item, ii) => (
+                      <div key={ii} style={{
+                        position: 'absolute' as const, left: 0, right: 0, textAlign: 'center' as const,
+                        fontSize: 12, fontWeight: 600, color: '#1A1A1A',
+                        opacity: 0,
+                        animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
+                        animationDelay: `${-ii * 2.2}s`,
+                      }}>
+                        ✓ {item}
+                      </div>
+                    ))}
+                  </div>
+
+                  <Link href={card.href} style={{
+                    display: 'inline-flex', alignItems: 'center', gap: 8, justifyContent: 'center' as const,
+                    padding: '10px 20px', background: '#038390', color: '#fff',
+                    borderRadius: 10, fontSize: 12.5, fontWeight: 700, textDecoration: 'none',
+                  }}>
+                    {card.cta}
+                  </Link>
                 </div>
-                <p style={{ fontSize: 12.5, fontWeight: 400, color: '#595959', lineHeight: 1.5, marginBottom: 9, minHeight: 52 }}>
-                  {card.desc}
-                </p>
+              ))}
+            </div>
 
-                {/* Cycling checklist — one item visible at a time */}
-                <div style={{ position: 'relative' as const, height: 16, marginBottom: 12, overflow: 'hidden' }}>
-                  {card.checklist.map((item, ii) => (
-                    <div key={ii} style={{
-                      position: 'absolute' as const, left: 0, right: 0, textAlign: 'center' as const,
-                      fontSize: 12, fontWeight: 600, color: '#1A1A1A',
-                      opacity: 0,
-                      animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
-                      animationDelay: `${-ii * 2.2}s`,
-                    }}>
-                      ✓ {item}
-                    </div>
-                  ))}
-                </div>
-
-                <div style={{ flex: 1 }} />
-
-                <Link href={card.href} style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 8, justifyContent: 'center' as const,
-                  padding: '11px 22px', background: '#038390', color: '#fff',
-                  borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: 'none',
-                  alignSelf: 'center' as const, fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
-                }}>
-                  {card.cta}
-                </Link>
-              </div>
-            ))}
           </div>
 
           {/* Trust line */}
-          <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 12, fontWeight: 500, color: '#595959' }}>
+          <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 11.5, fontWeight: 500, color: '#595959' }}>
             {t.trust}
           </p>
 
