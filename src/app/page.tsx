@@ -222,6 +222,28 @@ const HERO_TEXT: Record<string, {
     ],
     trust: 'Створено спеціально для \u{1F1E6}\u{1F1F9} Австрії · перекладено на 4 мови · структуровано за актуальними правилами австрійської податкової системи',
   },
+  EN: {
+    badge: 'Your digital business assistant in Austria',
+    cards: [
+      {
+        eyebrow: 'Work as an employee?',
+        title: 'Get your tax refund',
+        desc: "Not sure what you can deduct? QLIXA walks you through a personal questionnaire and takes into account your job, family, income, and other circumstances that may affect your tax refund.",
+        checklist: ['Personal tax questionnaire', 'Possible tax deductions', 'Ready-made document for FinanzOnline', 'Plain language, no accounting jargon'],
+        cta: 'Calculate my refund →',
+        href: '/for/naymanyy',
+      },
+      {
+        eyebrow: 'Have a business?',
+        title: 'Manage your finances yourself',
+        desc: 'Losing time on spreadsheets instead of clients? QLIXA brings everything together in one dashboard — from clients to reporting — and helps you stay ready for tax season.',
+        checklist: ['Clients and invoices', 'Income and expenses', 'VAT and reporting', 'Deadlines and KPIs'],
+        cta: 'View dashboard →',
+        href: '/for/biznes',
+      },
+    ],
+    trust: 'Designed specifically for 🇦🇹 Austria · available in 4 languages · structured according to current Austrian tax regulations',
+  },
 }
 
 // Переклади секції "Що таке QLIXA" — всі 4 мови
@@ -988,61 +1010,62 @@ export default function HomePage() {
 
         <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const }}>
 
-          {/* Badge — now the main eye-catching line: bold + underlined, no pill */}
-          <div style={{ fontSize: 20, fontWeight: 800, letterSpacing: '-0.2px', color: '#038390', marginBottom: 32, textDecoration: 'underline', textDecorationThickness: '2px', textUnderlineOffset: '5px' }}>
+          {/* Badge — main eye-catching line, Inter font, Title Case (not all caps) */}
+          <div style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontWeight: 700, fontSize: 48, lineHeight: '48px', marginBottom: 24, textTransform: 'capitalize' as const, color: '#1A1A1A', textAlign: 'center' as const }}>
             {t.badge}
           </div>
 
-          {/* Two cards — each with its own illustration above the floating headline, symmetric height, matching next section's container width */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 24, marginBottom: 18, alignItems: 'stretch' as const }}>
+          {/* Two cards — image + heading + divider + highlight + desc + checklist + button, all inside one bordered card. Inter font throughout. */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 22, marginBottom: 16, alignItems: 'stretch' as const, maxWidth: 880, marginLeft: 'auto', marginRight: 'auto' }}>
             {t.cards.map((card, ci) => (
-              <div key={ci} style={{ display: 'flex', flexDirection: 'column' as const, height: '100%' }}>
+              <div key={ci} style={{ display: 'flex', flexDirection: 'column' as const, height: '100%', background: '#fff', borderRadius: 16, border: '1px solid rgba(3,131,144,0.15)', padding: '18px 22px 20px', boxShadow: '0 4px 16px rgba(3,131,144,0.06)', textAlign: 'center' as const, fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src={ci === 0 ? '/for-who/naymanyy.png' : '/for-who/frilanser.png'} alt="" style={{ height: 64, width: 'auto', objectFit: 'contain' as const, margin: '0 auto 8px' }} />
-                <div style={{ textAlign: 'center' as const, position: 'relative' as const, zIndex: 1, marginBottom: -12 }}>
-                  <span style={{ background: '#FFFFFF', padding: '0 14px', fontFamily: 'DM Serif Display, serif', fontSize: 23, fontWeight: 700, color: '#038390' }}>
-                    {card.eyebrow}
-                  </span>
+                <img src={ci === 0 ? '/for-who/naymanyy.png' : '/for-who/frilanser.png'} alt="" style={{ height: 76, width: 'auto', objectFit: 'contain' as const, margin: '0 auto 8px' }} />
+
+                <div style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 10 }}>
+                  {card.eyebrow}
                 </div>
-                <div style={{ flex: 1, display: 'flex', flexDirection: 'column' as const, background: '#fff', borderRadius: 20, border: '2px solid rgba(3,131,144,0.18)', padding: '30px 26px 24px', boxShadow: '0 6px 24px rgba(3,131,144,0.08)', textAlign: 'center' as const }}>
-                  <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 23, fontWeight: 700, color: '#1A1A1A', marginBottom: 10, lineHeight: 1.25, minHeight: 30 }}>
-                    {card.title}
-                  </div>
-                  <p style={{ fontSize: 13.5, fontWeight: 400, color: '#595959', lineHeight: 1.5, marginBottom: 12, minHeight: 60 }}>
-                    {card.desc}
-                  </p>
 
-                  {/* Cycling checklist — one item visible at a time */}
-                  <div style={{ position: 'relative' as const, height: 18, marginBottom: 16, overflow: 'hidden' }}>
-                    {card.checklist.map((item, ii) => (
-                      <div key={ii} style={{
-                        position: 'absolute' as const, left: 0, right: 0, textAlign: 'center' as const,
-                        fontSize: 13.5, fontWeight: 600, color: '#1A1A1A',
-                        opacity: 0,
-                        animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
-                        animationDelay: `${-ii * 2.2}s`,
-                      }}>
-                        ✓ {item}
-                      </div>
-                    ))}
-                  </div>
+                <div style={{ height: 1, background: '#E6F4F5', marginBottom: 10 }} />
 
-                  <div style={{ flex: 1 }} />
-
-                  <Link href={card.href} style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 8, justifyContent: 'center' as const,
-                    padding: '12px 24px', background: '#038390', color: '#fff',
-                    borderRadius: 11, fontSize: 13.5, fontWeight: 700, textDecoration: 'none',
-                  }}>
-                    {card.cta}
-                  </Link>
+                <div style={{ fontSize: 14.5, fontWeight: 700, color: '#1A1A1A', marginBottom: 7, minHeight: 20 }}>
+                  {card.title}
                 </div>
+                <p style={{ fontSize: 12.5, fontWeight: 400, color: '#595959', lineHeight: 1.5, marginBottom: 9, minHeight: 52 }}>
+                  {card.desc}
+                </p>
+
+                {/* Cycling checklist — one item visible at a time */}
+                <div style={{ position: 'relative' as const, height: 16, marginBottom: 12, overflow: 'hidden' }}>
+                  {card.checklist.map((item, ii) => (
+                    <div key={ii} style={{
+                      position: 'absolute' as const, left: 0, right: 0, textAlign: 'center' as const,
+                      fontSize: 12, fontWeight: 600, color: '#1A1A1A',
+                      opacity: 0,
+                      animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
+                      animationDelay: `${-ii * 2.2}s`,
+                    }}>
+                      ✓ {item}
+                    </div>
+                  ))}
+                </div>
+
+                <div style={{ flex: 1 }} />
+
+                <Link href={card.href} style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8, justifyContent: 'center' as const,
+                  padding: '11px 22px', background: '#038390', color: '#fff',
+                  borderRadius: 10, fontSize: 13, fontWeight: 700, textDecoration: 'none',
+                  alignSelf: 'center' as const, fontFamily: 'Inter, system-ui, -apple-system, sans-serif',
+                }}>
+                  {card.cta}
+                </Link>
               </div>
             ))}
           </div>
 
           {/* Trust line */}
-          <p style={{ fontSize: 12, fontWeight: 500, color: '#595959' }}>
+          <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 12, fontWeight: 500, color: '#595959' }}>
             {t.trust}
           </p>
 
