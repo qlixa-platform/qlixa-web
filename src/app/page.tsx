@@ -1015,7 +1015,7 @@ export default function HomePage() {
         padding: '20px clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0,
       }}>
 
-        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const }}>
+        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const, height: '100%', display: 'flex', flexDirection: 'column' as const }}>
 
           <div style={{ maxWidth: 900, marginLeft: 'auto', marginRight: 'auto' }}>
 
@@ -1053,12 +1053,12 @@ export default function HomePage() {
                     {card.desc}
                   </p>
 
-                  {/* Cycling checklist — one item visible at a time */}
-                  <div style={{ position: 'relative' as const, height: 15, marginBottom: 11, overflow: 'hidden' }}>
+                  {/* Cycling checklist — one item visible at a time. Extra height + line-height + padding so descenders (е.g. "р") never get clipped */}
+                  <div style={{ position: 'relative' as const, height: 26, marginBottom: 12, overflow: 'hidden' }}>
                     {card.checklist.map((item, ii) => (
                       <div key={ii} style={{
                         position: 'absolute' as const, left: 0, right: 0, textAlign: 'center' as const,
-                        fontSize: 12, fontWeight: 600, color: '#1A1A1A',
+                        fontSize: 14, fontWeight: 600, color: '#1A1A1A', lineHeight: '26px',
                         opacity: 0,
                         animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
                         animationDelay: `${-ii * 2.2}s`,
@@ -1081,8 +1081,8 @@ export default function HomePage() {
 
           </div>
 
-          {/* Trust line */}
-          <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 11.5, fontWeight: 500, color: '#595959' }}>
+          {/* Trust line — pinned to the bottom of the Hero section */}
+          <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 11.5, fontWeight: 500, color: '#595959', marginTop: 'auto', marginBottom: 0 }}>
             {t.trust}
           </p>
 
