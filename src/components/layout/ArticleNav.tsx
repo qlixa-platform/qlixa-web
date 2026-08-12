@@ -39,6 +39,11 @@ const ARTICLE_META_TRANSLATIONS: Record<string, Record<string, { tag: string; ti
     EN: { tag: 'Family · Benefits', title: 'Child disability in Austria: payments, benefits, and where to start' },
     DE: { tag: 'Familie · Leistungen', title: 'Kindesbehinderung in Österreich: Leistungen, Vergünstigungen und erste Schritte' },
   },
+  'gisa-formular': {
+    RU: { tag: 'GISA · Регистрация', title: 'Регистрация на сайте GISA: пошаговая инструкция' },
+    EN: { tag: 'GISA · Registration', title: 'Registering on the GISA website: a step-by-step guide' },
+    DE: { tag: 'GISA · Anmeldung', title: 'Anmeldung auf der GISA-Website: Schritt-für-Schritt-Anleitung' },
+  },
 }
 
 function localizeArticle<T extends { slug: string; tag: string; title: string }>(art: T, lang: string): T {

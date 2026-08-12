@@ -1076,9 +1076,11 @@ export default function HomePage() {
               ))}
             </div>
 
-            {/* Big badge headline — NORMAL document flow (not absolute), with real margin above and below. This self-adjusts to whatever height row 1 and row 2 actually are, instead of a guessed absolute pixel offset. */}
+            {/* Big badge headline — NORMAL document flow (not absolute), with real margin above and below. Font size is smaller for RU/DE only, since their translations are longer and were overflowing the viewport at the UA/EN size. */}
             <div style={{
-              fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontWeight: 800, fontSize: 43, lineHeight: '50px',
+              fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontWeight: 800,
+              fontSize: lang === 'RU' ? 34 : lang === 'DE' ? 37 : 43,
+              lineHeight: lang === 'RU' ? '40px' : lang === 'DE' ? '43px' : '50px',
               color: '#1A1A1A', textAlign: 'center' as const, whiteSpace: 'nowrap' as const,
               textTransform: 'capitalize' as const,
               marginTop: 21, marginBottom: 21,
