@@ -6,6 +6,11 @@ export const metadata: Metadata = {
   title: 'QLIXA — Reports in one click',
   description: 'Smart online accounting platform for foreigners in Austria. Buchhaltung made simple.',
   keywords: 'accounting austria, buchhaltung, foreigners austria, business austria, QLIXA',
+  icons: {
+    icon: '/logos/favicon-planet-black.svg',
+    shortcut: '/logos/favicon-planet-black.svg',
+    apple: '/logos/favicon-planet-black.svg',
+  },
   openGraph: {
     title: 'QLIXA — Reports in one click',
     description: 'Smart online accounting platform for foreigners in Austria.',

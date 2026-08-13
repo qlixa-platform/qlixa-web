@@ -407,15 +407,15 @@ export default function AboutPage() {
             {t.learning}
           </p>
 
-          {/* Dark block */}
-          <div style={{ background: '#1A1A1A', borderRadius: 20, padding: '40px 44px' }}>
-            <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.85)', lineHeight: 1.85, marginBottom: 20 }}>
+          {/* Light block */}
+          <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '40px 44px' }}>
+            <p style={{ fontSize: 17, color: '#1A1A1A', lineHeight: 1.85, marginBottom: 20 }}>
               {t.d1Before}<span style={{ display: 'inline', background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.3)', borderRadius: 6, padding: '2px 8px' }}>{t.d1Box}</span>{t.d1After}
             </p>
-            <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.85)', lineHeight: 1.85, marginBottom: 20 }}>
+            <p style={{ fontSize: 17, color: '#1A1A1A', lineHeight: 1.85, marginBottom: 20 }}>
               {t.d2}
             </p>
-            <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.7)', lineHeight: 1.85 }}>
+            <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.85 }}>
               {t.d3Before}<span style={{ textDecoration: 'underline', textDecorationColor: '#038390', textDecorationThickness: 3, textUnderlineOffset: 4 }}>{t.d3Underline}</span>{t.d3After}
             </p>
           </div>
