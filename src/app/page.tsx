@@ -560,7 +560,7 @@ const WHYQLIXA_TEXT: Record<string, {
     ],
     solutionBefore: 'Саме тому народилась ',
     solutionAfter: '',
-    solutionP: ['Не ще один складний інструмент.', 'А платформа, яка пояснює складне простими словами і допомагає пройти цей шлях спокійно.'],
+    solutionP: ['Не ще один складний сервіс.', 'А платформа, яка допомагає і працювати за наймом, і вести бізнес — без зайвого стресу.'],
     features: [
       { title: 'Пояснюємо людською мовою', desc: 'Без складних термінів і стресу.' },
       { title: 'Показуємо наступний крок', desc: 'Ти завжди знаєш, що робити далі.' },
@@ -596,7 +596,7 @@ const WHYQLIXA_TEXT: Record<string, {
     ],
     solutionBefore: 'Именно поэтому родилась ',
     solutionAfter: '',
-    solutionP: ['Не ещё один сложный инструмент.', 'А платформа, которая объясняет сложное простыми словами и помогает пройти этот путь спокойно.'],
+    solutionP: ['Не ещё один сложный сервис.', 'А платформа, которая помогает и работать по найму, и вести бизнес — без лишнего стресса.'],
     features: [
       { title: 'Объясняем человеческим языком', desc: 'Без сложных терминов и стресса.' },
       { title: 'Показываем следующий шаг', desc: 'Ты всегда знаешь, что делать дальше.' },
@@ -632,7 +632,7 @@ const WHYQLIXA_TEXT: Record<string, {
     ],
     solutionBefore: "That's why ",
     solutionAfter: ' was born',
-    solutionP: ['Not just another complicated tool.', 'A platform that explains the complex in simple words and helps you get through it calmly.'],
+    solutionP: ['Not just another complicated tool.', 'A platform that helps you work as an employee or run your own business — without the extra stress.'],
     features: [
       { title: 'We explain in plain language', desc: 'No complex terms, no stress.' },
       { title: 'We show you the next step', desc: 'You always know what to do next.' },
@@ -668,7 +668,7 @@ const WHYQLIXA_TEXT: Record<string, {
     ],
     solutionBefore: 'Genau deshalb ist ',
     solutionAfter: ' entstanden',
-    solutionP: ['Kein weiteres kompliziertes Tool.', 'Sondern eine Plattform, die Kompliziertes einfach erklärt und dir hilft, diesen Weg gelassen zu gehen.'],
+    solutionP: ['Kein weiteres kompliziertes Tool.', 'Sondern eine Plattform, die dir hilft, als Angestellte:r zu arbeiten oder dein eigenes Unternehmen zu führen — ganz ohne zusätzlichen Stress.'],
     features: [
       { title: 'Wir erklären in einfacher Sprache', desc: 'Ohne komplizierte Begriffe und Stress.' },
       { title: 'Wir zeigen dir den nächsten Schritt', desc: 'Du weißt immer, was als Nächstes kommt.' },
@@ -1161,7 +1161,7 @@ export default function HomePage() {
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.08)', border: '1px solid rgba(3,131,144,0.2)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#1A1A1A', marginBottom: 16 }}>{t2.badge}</div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.8vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 12 }}>
+            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.4vw,46px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 12 }}>
               {t2.h2Prefix}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t2.h2Emphasis}</em>
             </h2>
             <p style={{ fontSize: 15, color: '#595959', margin: '0 auto', lineHeight: 1.7, textAlign: 'center' }}>
@@ -1289,7 +1289,7 @@ export default function HomePage() {
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: 48 }}>
             <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>{t3.badge}</div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.8vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 12 }}>
+            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.4vw,46px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 12 }}>
               {t3.h2Prefix}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t3.h2Emphasis}</em>
             </h2>
           </div>
@@ -1332,7 +1332,7 @@ export default function HomePage() {
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: 52 }}>
             <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.15)', border: '1px solid rgba(3,131,144,0.35)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>{t4.badge}</div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.8vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 0 }}>
+            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.4vw,46px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 0 }}>
               {t4.h2Before}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t4.h2Emphasis}</em>
             </h2>
           </div>
@@ -1414,13 +1414,13 @@ export default function HomePage() {
           </div>
 
           {/* BLOCK 2 — Pain cards */}
-          <div style={{ textAlign: 'center', marginBottom: 28 }}>
-            <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(24px,2.5vw,36px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 0 }}>
+          <div style={{ textAlign: 'center', marginBottom: 32 }}>
+            <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.4vw,46px)', fontWeight: 700, color: '#1A1A1A', marginBottom: 0 }}>
               {t5.painBefore}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t5.painEmphasis}</em>
             </h3>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 20, marginBottom: 40 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20, marginBottom: 40 }}>
             {[
               '/why-qlixa/fear-mistake.png',
               '/why-qlixa/complex-words.png',
@@ -1432,16 +1432,16 @@ export default function HomePage() {
               '/why-qlixa/return-all.png',
             ].map((img, i) => ({ img, title: t5.painCards[i][0], desc: t5.painCards[i][1] })).map((card, i) => (
               <div key={i}
-                style={{ background: '#F0F7F8', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.10)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'default', display: 'flex', flexDirection: 'column' as const }}
+                style={{ background: '#F0F7F8', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.10)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'default', display: 'flex', flexDirection: 'row' as const, alignItems: 'center', padding: 20, gap: 20 }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform='translateY(-4px)'; el.style.boxShadow='0 12px 32px rgba(3,131,144,0.12)'; }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform=''; el.style.boxShadow=''; }}>
-                <div style={{ width: '100%', aspectRatio: '1/1', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '24px 24px 0' }}>
+                <div style={{ flex: '0 0 96px', width: 96, height: 96, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={card.img} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }}/>
                 </div>
-                <div style={{ padding: '16px 20px 24px' }}>
-                  <div style={{ fontSize: 14, fontWeight: 700, color: '#1A1A1A', marginBottom: 6, lineHeight: 1.3 }}>{card.title}</div>
-                  <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.65 }}>{card.desc}</div>
+                <div style={{ flex: 1, minWidth: 0 }}>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 6, lineHeight: 1.3 }}>{card.title}</div>
+                  <div style={{ fontSize: 14.5, fontWeight: 500, color: '#404040', lineHeight: 1.6 }}>{card.desc}</div>
                 </div>
               </div>
             ))}
@@ -1449,7 +1449,7 @@ export default function HomePage() {
 
           {/* BLOCK 3 — QLIXA solution */}
           <div style={{ textAlign: 'center', marginBottom: 28 }}>
-            <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(24px,2.5vw,36px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 8 }}>
+            <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.4vw,46px)', fontWeight: 700, color: '#1A1A1A', marginBottom: 8 }}>
               {t5.solutionBefore}<span style={{ color: '#038390', fontWeight: 700 }}>QLIXA</span>{t5.solutionAfter}
             </h3>
             <p style={{ fontSize: 16, color: '#595959', maxWidth: 600, margin: '0 auto' }}>
@@ -1468,8 +1468,8 @@ export default function HomePage() {
                     {WHY_ICONS[i]}
                   </div>
                   <div>
-                    <div style={{ fontSize: 14, fontWeight: 700, color: '#1A1A1A', marginBottom: 2 }}>{item.title}</div>
-                    <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.5 }}>{item.desc}</div>
+                    <div style={{ fontSize: 17, fontWeight: 700, color: '#1A1A1A', marginBottom: 3 }}>{item.title}</div>
+                    <div style={{ fontSize: 14.5, fontWeight: 500, color: '#404040', lineHeight: 1.55 }}>{item.desc}</div>
                   </div>
                 </div>
               ))}
