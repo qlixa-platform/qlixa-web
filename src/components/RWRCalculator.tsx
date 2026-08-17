@@ -790,7 +790,7 @@ export default function RWRCalculator() {
     <div style={wrapStyle}>
       <div style={headerStyle}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-          <img src="/logos/favicon-planet-black.svg" alt="QLIXA" style={{ width: 40, height: 40, objectFit: 'contain' as const }}/>
+          <img src="/logos/favicon-planet-origin.svg" alt="QLIXA" style={{ width: 40, height: 40, objectFit: 'contain' as const }}/>
           <div style={{ fontSize: 17, fontWeight: 700, color: '#1A1A1A', letterSpacing: '0.5px', lineHeight: 1 }}>{t.headerTitle}</div>
         </div>
         {step > 0 && step < 99 && (

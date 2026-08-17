@@ -1095,7 +1095,7 @@ export default function HomePage() {
                   <div style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 7, minHeight: 23 }}>
                     {card.title}
                   </div>
-                  <p style={{ fontSize: 14, fontWeight: 400, color: '#595959', lineHeight: 1.45, marginBottom: 11, minHeight: 60 }}>
+                  <p style={{ fontSize: 15, fontWeight: 500, color: '#404040', lineHeight: 1.5, marginBottom: 11, minHeight: 60 }}>
                     {card.desc}
                   </p>
 
@@ -1117,7 +1117,7 @@ export default function HomePage() {
                   <Link href={card.href} style={{
                     display: 'inline-flex', alignItems: 'center', gap: 9, justifyContent: 'center' as const,
                     padding: '12px 24px', background: '#038390', color: '#fff',
-                    borderRadius: 11, fontSize: 14.5, fontWeight: 700, textDecoration: 'none',
+                    borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none',
                   }}>
                     {card.cta}
                   </Link>
@@ -1128,7 +1128,7 @@ export default function HomePage() {
           </div>
 
           {/* Trust line */}
-          <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 13, fontWeight: 500, color: '#595959' }}>
+          <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 15, fontWeight: 500, color: '#404040' }}>
             {t.trust}
           </p>
 
@@ -1179,9 +1179,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/tax-return.png" alt="Повернення податку" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[0][0]}</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[0][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[0][1]}</div>
+              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[0][1]}</div>
             </div>
 
             {/* Card 2 */}
@@ -1191,9 +1191,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/interface.png" alt="Інтерфейс" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[1][0]}</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[1][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[1][1]}</div>
+              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[1][1]}</div>
             </div>
 
             {/* Card 3 */}
@@ -1203,9 +1203,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/not-for-accountants.png" alt="Не для бухгалтерів" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[2][0]}</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[2][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[2][1]}</div>
+              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[2][1]}</div>
             </div>
 
             {/* Card 4 */}
@@ -1215,9 +1215,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/laws.png" alt="Закони" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[3][0]}</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[3][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[3][1]}</div>
+              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[3][1]}</div>
             </div>
 
             {/* CENTER — QLIXA logo */}
@@ -1236,9 +1236,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/no-deductions-missed.png" alt="Жодного списання" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[4][0]}</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[4][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[4][1]}</div>
+              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[4][1]}</div>
             </div>
 
             {/* Card 6 */}
@@ -1248,9 +1248,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/no-deadlines-missed.png" alt="Жодного дедлайну" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[5][0]}</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[5][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[5][1]}</div>
+              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[5][1]}</div>
             </div>
 
             {/* Card 7 */}
@@ -1260,9 +1260,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/business.png" alt="Бізнес-помічник" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[6][0]}</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[6][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[6][1]}</div>
+              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[6][1]}</div>
             </div>
 
             {/* Card 8 */}
@@ -1272,9 +1272,9 @@ export default function HomePage() {
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/languages.png" alt="Мови" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 14, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.25 }}>{t2.cards[7][0]}</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[7][0]}</div>
               </div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.7 }}>{t2.cards[7][1]}</div>
+              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[7][1]}</div>
             </div>
 
           </div>
@@ -1314,7 +1314,7 @@ export default function HomePage() {
                     <img src={card.img} alt={t3.cards[i][0]} style={{ width: 72, height: 72, objectFit: 'contain', flexShrink: 0 }} />
                     <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t3.cards[i][0]}</div>
                   </div>
-                  <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.65 }}>{t3.cards[i][1]}</div>
+                  <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t3.cards[i][1]}</div>
                 </div>
               </Link>
             ))}
@@ -1363,7 +1363,7 @@ export default function HomePage() {
                   <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, fontWeight: 400, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
                     {card.before}<em style={{ fontStyle: 'italic', color: '#038390' }}>{card.em}</em>
                   </h3>
-                  <p style={{ fontSize: 13, color: '#595959', lineHeight: 1.65, margin: 0 }}>{card.desc}</p>
+                  <p style={{ fontSize: 15, color: '#404040', lineHeight: 1.6, margin: 0 }}>{card.desc}</p>
                 </div>
               </div>
             ))}
@@ -1401,7 +1401,7 @@ export default function HomePage() {
                 {t5.p[1]}<br/>
                 {t5.p[2]}
               </p>
-              <Link href="/about" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 16, fontSize: 14, fontWeight: 600, color: '#038390', textDecoration: 'none' }}
+              <Link href="/about" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 16, fontSize: 15, fontWeight: 600, color: '#038390', textDecoration: 'none' }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.textDecoration = 'underline'}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.textDecoration = 'none'}>
                 {t5.linkText}
@@ -1441,7 +1441,7 @@ export default function HomePage() {
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
                   <div style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 6, lineHeight: 1.3 }}>{card.title}</div>
-                  <div style={{ fontSize: 14.5, fontWeight: 500, color: '#404040', lineHeight: 1.6 }}>{card.desc}</div>
+                  <div style={{ fontSize: 15, fontWeight: 500, color: '#404040', lineHeight: 1.6 }}>{card.desc}</div>
                 </div>
               </div>
             ))}
@@ -1485,7 +1485,7 @@ export default function HomePage() {
                 <em style={{ color: '#038390' }}>{t5.quoteEmphasis}</em>
                 {t5.quoteAfter}
               </p>
-              <p style={{ fontSize: 14, color: '#595959', lineHeight: 1.65, textAlign: 'center', marginBottom: 24 }}>
+              <p style={{ fontSize: 15, color: '#404040', lineHeight: 1.6, textAlign: 'center', marginBottom: 24 }}>
                 {t5.quoteP2[0]}<br/>
                 {t5.quoteP2[1]}<br/>
                 {t5.quoteP2[2]}

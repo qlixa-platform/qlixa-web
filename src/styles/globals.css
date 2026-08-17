@@ -28,6 +28,37 @@
   --peach-light:  #F0F7F8;
   --peach-mid:    rgba(3,131,144,0.15);
   --peach:        #F0F7F8;
+
+  /* ── Design tokens (finalized Aug 2026) ──────────────────────────
+     Single source of truth for colors + type scale.
+     Minimum readable sizes established from the "Це знайомо?" section:
+     no text on the site should go smaller than --font-size-body (15px). */
+
+  /* Full brand color palette */
+  --color-primary:      #038390;
+  --color-primary-dark: #026B76;
+  --color-charcoal:     #1A1A1A;
+  --color-white:        #FFFFFF;
+  --color-powder:       #F0F7F8;
+  --color-light-teal:   #E6F4F5;
+  --color-gray:         #595959;
+  --color-gray-light:   #9D9D9D;
+  --color-yellow:       #F5E642;
+  --color-red:          #CC0000;
+  --color-amber:        #F59E0B;
+  --color-green:        #10B981;
+
+  /* Text colors — semantic, by role */
+  --color-text-primary:   #1A1A1A; /* headings, emphasis, bold highlighted text */
+  --color-text-secondary: #404040; /* body/description text — darker than the old --text2 for better readability */
+  --color-text-muted:     #9D9D9D; /* captions, footer, truly secondary text only */
+
+  /* Type scale — semantic tokens, not raw pixel values */
+  --font-size-display:  clamp(30px, 3.4vw, 46px); /* big serif section headings (H2/H3), weight 700 */
+  --font-size-emphasis: 18px; /* bold highlighted text — e.g. card titles, minimum emphasis size site-wide */
+  --font-size-body:     15px; /* minimum body/description text size site-wide — nothing should go smaller */
+  --font-weight-emphasis: 700;
+  --font-weight-body:     500;
 }
 
 * {

@@ -17,14 +17,14 @@ function NoteBox({ type, children }: { type: 'warning' | 'info' | 'tip' | 'ok'; 
   return (
     <div style={{ background: s.bg, border: `1px solid ${s.border}`, borderRadius: 12, padding: '13px 16px', margin: '12px 0', display: 'flex', gap: 11, alignItems: 'flex-start' }}>
       <span style={{ fontSize: 16, flexShrink: 0, marginTop: 1 }}>{s.icon}</span>
-      <div style={{ fontSize: 13, lineHeight: 1.7, color: 'var(--charcoal)' }}>{children}</div>
+      <div style={{ fontSize: 15, lineHeight: 1.65, color: 'var(--charcoal)' }}>{children}</div>
     </div>
   )
 }
 
 function ExtLink({ href, children }: { href: string; children: React.ReactNode }) {
   return (
-    <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#038390', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'var(--peach-mid)', textUnderlineOffset: 3, fontSize: 13 }}>
+    <a href={href} target="_blank" rel="noopener noreferrer" style={{ color: '#038390', fontWeight: 600, textDecoration: 'underline', textDecorationColor: 'var(--peach-mid)', textUnderlineOffset: 3, fontSize: 15 }}>
       {children} ↗
     </a>
   )
@@ -33,8 +33,8 @@ function ExtLink({ href, children }: { href: string; children: React.ReactNode }
 function QuoteBlock({ de, tr, label }: { de: string; tr: string; label: string }) {
   return (
     <div style={{ background: 'var(--gray)', borderRadius: 9, padding: '13px 16px', border: '1px solid var(--line)', margin: '10px 0' }}>
-      <div style={{ fontSize: 13, fontStyle: 'italic', color: 'var(--charcoal)', marginBottom: 4 }}>„{de}"</div>
-      <div style={{ fontSize: 12, color: 'var(--text2)' }}>{label}: {tr}</div>
+      <div style={{ fontSize: 15, fontStyle: 'italic', color: 'var(--charcoal)', marginBottom: 4 }}>„{de}"</div>
+      <div style={{ fontSize: 15, color: 'var(--text2)' }}>{label}: {tr}</div>
     </div>
   )
 }
@@ -44,9 +44,9 @@ function OptionItem({ selected, de, tr, desc }: { selected?: boolean; de: string
     <div style={{ display: 'flex', gap: 10, padding: '12px 14px', borderRadius: 9, background: selected ? 'var(--peach-light)' : 'var(--gray)', border: `1px solid ${selected ? '#038390' : 'var(--line)'}`, alignItems: 'flex-start', marginBottom: 8 }}>
       <span style={{ fontSize: 15, flexShrink: 0, marginTop: 1, color: selected ? '#038390' : 'var(--text3)' }}>{selected ? '✅' : '○'}</span>
       <div>
-        <div style={{ fontSize: 13, fontWeight: 700, color: selected ? '#038390' : 'var(--charcoal)', marginBottom: 2 }}>{de}</div>
+        <div style={{ fontSize: 16, fontWeight: 700, color: selected ? '#038390' : 'var(--charcoal)', marginBottom: 2 }}>{de}</div>
         {tr && <div style={{ fontSize: 11, color: 'var(--text3)', fontStyle: 'italic', margin: '2px 0 4px' }}>{tr}</div>}
-        {desc && <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.55 }} dangerouslySetInnerHTML={{ __html: desc }} />}
+        {desc && <div style={{ fontSize: 15, color: 'var(--text2)', lineHeight: 1.55 }} dangerouslySetInnerHTML={{ __html: desc }} />}
       </div>
     </div>
   )
@@ -57,11 +57,11 @@ function YesNo({ yesLabel, noLabel, selected }: { yesLabel: string; noLabel: str
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, margin: '10px 0' }}>
       <div style={{ padding: '13px 14px', borderRadius: 9, border: `2px solid ${selected === 'ja' ? '#038390' : 'var(--line)'}`, background: selected === 'ja' ? 'var(--peach-light)' : 'var(--gray)', textAlign: 'center' }}>
         <div style={{ fontSize: 18, fontWeight: 700, color: selected === 'ja' ? '#038390' : 'var(--text3)' }}>{selected === 'ja' ? '✅ ' : ''}Ja</div>
-        <div style={{ fontSize: 11, color: 'var(--text2)', marginTop: 4, lineHeight: 1.4 }}>{yesLabel}</div>
+        <div style={{ fontSize: 15, color: 'var(--text2)', marginTop: 4, lineHeight: 1.4 }}>{yesLabel}</div>
       </div>
       <div style={{ padding: '13px 14px', borderRadius: 9, border: `2px solid ${selected === 'nein' ? '#038390' : 'var(--line)'}`, background: selected === 'nein' ? 'var(--peach-light)' : 'var(--gray)', textAlign: 'center' }}>
         <div style={{ fontSize: 18, fontWeight: 700, color: selected === 'nein' ? '#038390' : 'var(--text3)' }}>{selected === 'nein' ? '✅ ' : ''}Nein</div>
-        <div style={{ fontSize: 11, color: 'var(--text2)', marginTop: 4, lineHeight: 1.4 }}>{noLabel}</div>
+        <div style={{ fontSize: 15, color: 'var(--text2)', marginTop: 4, lineHeight: 1.4 }}>{noLabel}</div>
       </div>
     </div>
   )
@@ -70,8 +70,8 @@ function YesNo({ yesLabel, noLabel, selected }: { yesLabel: string; noLabel: str
 function FieldRow({ label, value }: { label: string; value: string }) {
   return (
     <div style={{ display: 'flex', gap: 10, padding: '10px 13px', borderRadius: 8, background: 'var(--gray)', border: '1px solid var(--line)', marginBottom: 7 }}>
-      <div style={{ fontSize: 12, fontWeight: 700, color: 'var(--charcoal)', minWidth: 140, flexShrink: 0 }}>{label}</div>
-      <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.5 }}>{value}</div>
+      <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', minWidth: 140, flexShrink: 0 }}>{label}</div>
+      <div style={{ fontSize: 15, color: 'var(--text2)', lineHeight: 1.5 }}>{value}</div>
     </div>
   )
 }
@@ -80,7 +80,7 @@ function CheckList({ items }: { items: string[] }) {
   return (
     <div style={{ display: 'flex', flexDirection: 'column', gap: 7, margin: '10px 0' }}>
       {items.map((item, i) => (
-        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '9px 13px', borderRadius: 8, background: '#EBF5EE', border: '1px solid #81C784', fontSize: 13, color: 'var(--charcoal)' }}>
+        <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '9px 13px', borderRadius: 8, background: '#EBF5EE', border: '1px solid #81C784', fontSize: 15, color: 'var(--charcoal)' }}>
           ✅ {item}
         </div>
       ))}
@@ -175,7 +175,7 @@ const GISA_TEXT: Record<string, any> = {
     step4H3_7: 'Eidesstattliche Erklärung — Заява під присягою',
     step4P12: 'На цьому етапі система пропонує подати офіційну заяву під присягою про відсутність обмежень для ведення підприємницької діяльності.',
     step4Opt3: { de: 'Ich gebe die Eidesstattliche Erklärung ab', tr: 'Я подаю заяву під присягою', desc: 'Рекомендуємо обрати цей варіант — він підтверджує відсутність обмежень без додаткових документів і <strong>пришвидшує розгляд заяви</strong>.' },
-    step4Warning: <>Також поставте галочку біля пункту:<br /><em>„Ich nehme die Aufklärung über den Inhalt der Eidesstattlichen Erklärung und die Konsequenzen von falschen Angaben zur Kenntnis."</em><br /><span style={{ color: 'var(--text2)', fontSize: 12 }}>Це означає, що ви ознайомилися зі змістом декларації та розумієте відповідальність за надання неправдивої інформації. <strong>Для продовження реєстрації цей пункт необхідно підтвердити.</strong></span></>,
+    step4Warning: <>Також поставте галочку біля пункту:<br /><em>„Ich nehme die Aufklärung über den Inhalt der Eidesstattlichen Erklärung und die Konsequenzen von falschen Angaben zur Kenntnis."</em><br /><span style={{ color: 'var(--text2)', fontSize: 15 }}>Це означає, що ви ознайомилися зі змістом декларації та розумієте відповідальність за надання неправдивої інформації. <strong>Для продовження реєстрації цей пункт необхідно підтвердити.</strong></span></>,
     step4H3_8: 'Введення імені та прізвища — електронний підпис',
     step4P13: <>Наприкінці потрібно ввести своє ім'я та прізвище. Це прирівнюється до <strong>електронного підпису декларації</strong>.</>,
     step4FieldVorname: { label: 'Vorname', value: 'Ірина' }, step4FieldFamilienname: { label: 'Familienname', value: 'Müller' },
@@ -186,7 +186,7 @@ const GISA_TEXT: Record<string, any> = {
     step5Info: <>Якщо потрібно щось виправити, повертайтеся за допомогою кнопки <strong>Zurück</strong> (назад) або <strong>Daten bearbeiten</strong> (редагувати дані).</>,
     step5P2: <>Якщо всі дані вказані правильно, натискаємо <strong>Senden</strong>. Після цього заява буде надіслана до компетентного органу для обробки.</>,
     step5H3: 'Важливо щодо додаткових документів',
-    step5Ok: <>Оскільки ми подавали заяву через ID Austria, система відображає: <strong>«Es müssen keine Beilagen übermittelt werden.»</strong><br /><span style={{ color: 'var(--text2)', fontSize: 12 }}>Переклад: Додаткові документи подавати не потрібно.</span></>,
+    step5Ok: <>Оскільки ми подавали заяву через ID Austria, система відображає: <strong>«Es müssen keine Beilagen übermittelt werden.»</strong><br /><span style={{ color: 'var(--text2)', fontSize: 15 }}>Переклад: Додаткові документи подавати не потрібно.</span></>,
     step5Warning: <>Однак якщо ви проживаєте в Австрії <strong>менше 5 років</strong>, австрійські органи можуть запросити додаткові документи. Найчастіше це:<ul style={{ margin: '8px 0 0 16px', lineHeight: 1.8 }}><li>довідка про несудимість з країни попереднього проживання;</li><li>документи, що підтверджують особу або місце проживання.</li></ul>Рекомендуємо заздалегідь підготувати ці документи та мати їхній <strong>офіційний переклад німецькою</strong>.</>,
     step6Title: 'Реєстрацію завершено — що далі?',
     step6P1: <>Після натискання кнопки <strong>Senden</strong> ваша заява буде передана до компетентного органу. Якщо всі дані заповнені правильно та не потрібні додаткові документи, зазвичай протягом кількох днів ви отримаєте електронний лист із підтвердженням реєстрації та вашим <strong>номером GISA</strong>.</>,
@@ -291,7 +291,7 @@ const GISA_TEXT: Record<string, any> = {
     step4H3_7: 'Eidesstattliche Erklärung — Заявление под присягой',
     step4P12: 'На этом этапе система предлагает подать официальное заявление под присягой об отсутствии ограничений для ведения предпринимательской деятельности.',
     step4Opt3: { de: 'Ich gebe die Eidesstattliche Erklärung ab', tr: 'Я подаю заявление под присягой', desc: 'Рекомендуем выбрать этот вариант — он подтверждает отсутствие ограничений без дополнительных документов и <strong>ускоряет рассмотрение заявления</strong>.' },
-    step4Warning: <>Также поставьте галочку рядом с пунктом:<br /><em>„Ich nehme die Aufklärung über den Inhalt der Eidesstattlichen Erklärung und die Konsequenzen von falschen Angaben zur Kenntnis."</em><br /><span style={{ color: 'var(--text2)', fontSize: 12 }}>Это означает, что вы ознакомились с содержанием декларации и понимаете ответственность за предоставление ложной информации. <strong>Для продолжения регистрации этот пункт необходимо подтвердить.</strong></span></>,
+    step4Warning: <>Также поставьте галочку рядом с пунктом:<br /><em>„Ich nehme die Aufklärung über den Inhalt der Eidesstattlichen Erklärung und die Konsequenzen von falschen Angaben zur Kenntnis."</em><br /><span style={{ color: 'var(--text2)', fontSize: 15 }}>Это означает, что вы ознакомились с содержанием декларации и понимаете ответственность за предоставление ложной информации. <strong>Для продолжения регистрации этот пункт необходимо подтвердить.</strong></span></>,
     step4H3_8: 'Ввод имени и фамилии — электронная подпись',
     step4P13: <>В конце нужно ввести своё имя и фамилию. Это приравнивается к <strong>электронной подписи декларации</strong>.</>,
     step4FieldVorname: { label: 'Vorname', value: 'Ирина' }, step4FieldFamilienname: { label: 'Familienname', value: 'Müller' },
@@ -302,7 +302,7 @@ const GISA_TEXT: Record<string, any> = {
     step5Info: <>Если нужно что-то исправить, возвращайтесь с помощью кнопки <strong>Zurück</strong> (назад) или <strong>Daten bearbeiten</strong> (редактировать данные).</>,
     step5P2: <>Если все данные указаны правильно, нажимаем <strong>Senden</strong>. После этого заявление будет отправлено в компетентный орган для обработки.</>,
     step5H3: 'Важно насчёт дополнительных документов',
-    step5Ok: <>Поскольку мы подавали заявление через ID Austria, система отображает: <strong>«Es müssen keine Beilagen übermittelt werden.»</strong><br /><span style={{ color: 'var(--text2)', fontSize: 12 }}>Перевод: Дополнительные документы подавать не нужно.</span></>,
+    step5Ok: <>Поскольку мы подавали заявление через ID Austria, система отображает: <strong>«Es müssen keine Beilagen übermittelt werden.»</strong><br /><span style={{ color: 'var(--text2)', fontSize: 15 }}>Перевод: Дополнительные документы подавать не нужно.</span></>,
     step5Warning: <>Однако если вы проживаете в Австрии <strong>менее 5 лет</strong>, австрийские органы могут запросить дополнительные документы. Чаще всего это:<ul style={{ margin: '8px 0 0 16px', lineHeight: 1.8 }}><li>справка о несудимости из страны предыдущего проживания;</li><li>документы, подтверждающие личность или место жительства.</li></ul>Рекомендуем заранее подготовить эти документы и иметь их <strong>официальный перевод на немецкий</strong>.</>,
     step6Title: 'Регистрация завершена — что дальше?',
     step6P1: <>После нажатия кнопки <strong>Senden</strong> ваше заявление будет передано в компетентный орган. Если все данные заполнены правильно и не нужны дополнительные документы, обычно в течение нескольких дней вы получите электронное письмо с подтверждением регистрации и вашим <strong>номером GISA</strong>.</>,
@@ -407,7 +407,7 @@ const GISA_TEXT: Record<string, any> = {
     step4H3_7: 'Eidesstattliche Erklärung — sworn statement',
     step4P12: 'At this stage the system offers to submit an official sworn statement confirming there are no restrictions on conducting business activity.',
     step4Opt3: { de: 'Ich gebe die Eidesstattliche Erklärung ab', tr: 'I am submitting the sworn statement', desc: 'We recommend choosing this option — it confirms there are no restrictions without extra documents and <strong>speeds up the review of the application</strong>.' },
-    step4Warning: <>Also tick the checkbox next to:<br /><em>„Ich nehme die Aufklärung über den Inhalt der Eidesstattlichen Erklärung und die Konsequenzen von falschen Angaben zur Kenntnis."</em><br /><span style={{ color: 'var(--text2)', fontSize: 12 }}>This means you have read the content of the declaration and understand the responsibility for providing false information. <strong>This point must be confirmed to continue registration.</strong></span></>,
+    step4Warning: <>Also tick the checkbox next to:<br /><em>„Ich nehme die Aufklärung über den Inhalt der Eidesstattlichen Erklärung und die Konsequenzen von falschen Angaben zur Kenntnis."</em><br /><span style={{ color: 'var(--text2)', fontSize: 15 }}>This means you have read the content of the declaration and understand the responsibility for providing false information. <strong>This point must be confirmed to continue registration.</strong></span></>,
     step4H3_8: 'Entering your first and last name — electronic signature',
     step4P13: <>At the end you need to enter your first and last name. This is equivalent to an <strong>electronic signature of the declaration</strong>.</>,
     step4FieldVorname: { label: 'Vorname', value: 'Iryna' }, step4FieldFamilienname: { label: 'Familienname', value: 'Müller' },
@@ -418,7 +418,7 @@ const GISA_TEXT: Record<string, any> = {
     step5Info: <>If something needs correcting, go back using the <strong>Zurück</strong> (back) button or <strong>Daten bearbeiten</strong> (edit data).</>,
     step5P2: <>If all the data is correct, we click <strong>Senden</strong>. After that, the application will be sent to the competent authority for processing.</>,
     step5H3: 'Important note on additional documents',
-    step5Ok: <>Since we submitted the application via ID Austria, the system shows: <strong>\u201cEs müssen keine Beilagen übermittelt werden.\u201d</strong><br /><span style={{ color: 'var(--text2)', fontSize: 12 }}>Translation: No additional documents need to be submitted.</span></>,
+    step5Ok: <>Since we submitted the application via ID Austria, the system shows: <strong>\u201cEs müssen keine Beilagen übermittelt werden.\u201d</strong><br /><span style={{ color: 'var(--text2)', fontSize: 15 }}>Translation: No additional documents need to be submitted.</span></>,
     step5Warning: <>However, if you\u2019ve lived in Austria <strong>less than 5 years</strong>, the Austrian authorities may request additional documents. Most often these are:<ul style={{ margin: '8px 0 0 16px', lineHeight: 1.8 }}><li>a certificate of no criminal record from your previous country of residence;</li><li>documents confirming your identity or place of residence.</li></ul>We recommend preparing these documents in advance and having their <strong>official German translation</strong>.</>,
     step6Title: 'Registration complete — what\u2019s next?',
     step6P1: <>After clicking the <strong>Senden</strong> button, your application will be forwarded to the competent authority. If all the data is filled in correctly and no additional documents are needed, you\u2019ll usually receive a confirmation email with your <strong>GISA number</strong> within a few days.</>,
@@ -523,7 +523,7 @@ const GISA_TEXT: Record<string, any> = {
     step4H3_7: 'Eidesstattliche Erklärung',
     step4P12: 'An dieser Stelle bietet das System an, eine offizielle eidesstattliche Erklärung über das Fehlen von Ausschlussgründen für die Gewerbeausübung abzugeben.',
     step4Opt3: { de: 'Ich gebe die Eidesstattliche Erklärung ab', tr: 'Ich gebe die eidesstattliche Erklärung ab', desc: 'Wir empfehlen diese Option — sie bestätigt das Fehlen von Ausschlussgründen ohne zusätzliche Dokumente und <strong>beschleunigt die Bearbeitung des Antrags</strong>.' },
-    step4Warning: <>Setze außerdem ein Häkchen bei:<br /><em>„Ich nehme die Aufklärung über den Inhalt der Eidesstattlichen Erklärung und die Konsequenzen von falschen Angaben zur Kenntnis."</em><br /><span style={{ color: 'var(--text2)', fontSize: 12 }}>Das bedeutet, dass du dich über den Inhalt der Erklärung informiert hast und die Verantwortung für falsche Angaben verstehst. <strong>Dieser Punkt muss zur Fortsetzung der Anmeldung bestätigt werden.</strong></span></>,
+    step4Warning: <>Setze außerdem ein Häkchen bei:<br /><em>„Ich nehme die Aufklärung über den Inhalt der Eidesstattlichen Erklärung und die Konsequenzen von falschen Angaben zur Kenntnis."</em><br /><span style={{ color: 'var(--text2)', fontSize: 15 }}>Das bedeutet, dass du dich über den Inhalt der Erklärung informiert hast und die Verantwortung für falsche Angaben verstehst. <strong>Dieser Punkt muss zur Fortsetzung der Anmeldung bestätigt werden.</strong></span></>,
     step4H3_8: 'Eingabe von Vor- und Nachname — elektronische Unterschrift',
     step4P13: <>Am Ende musst du deinen Vor- und Nachnamen eingeben. Das entspricht einer <strong>elektronischen Unterschrift der Erklärung</strong>.</>,
     step4FieldVorname: { label: 'Vorname', value: 'Iryna' }, step4FieldFamilienname: { label: 'Familienname', value: 'Müller' },
@@ -534,7 +534,7 @@ const GISA_TEXT: Record<string, any> = {
     step5Info: <>Falls etwas korrigiert werden muss, gehe über den Button <strong>Zurück</strong> oder <strong>Daten bearbeiten</strong> zurück.</>,
     step5P2: <>Sind alle Daten korrekt, klicken wir auf <strong>Senden</strong>. Danach wird der Antrag zur Bearbeitung an die zuständige Behörde übermittelt.</>,
     step5H3: 'Wichtiger Hinweis zu zusätzlichen Unterlagen',
-    step5Ok: <>Da wir den Antrag über ID Austria gestellt haben, zeigt das System: <strong>„Es müssen keine Beilagen übermittelt werden."</strong><br /><span style={{ color: 'var(--text2)', fontSize: 12 }}>Das bedeutet: Es müssen keine zusätzlichen Dokumente eingereicht werden.</span></>,
+    step5Ok: <>Da wir den Antrag über ID Austria gestellt haben, zeigt das System: <strong>„Es müssen keine Beilagen übermittelt werden."</strong><br /><span style={{ color: 'var(--text2)', fontSize: 15 }}>Das bedeutet: Es müssen keine zusätzlichen Dokumente eingereicht werden.</span></>,
     step5Warning: <>Wenn du jedoch <strong>weniger als 5 Jahre</strong> in Österreich lebst, können die österreichischen Behörden zusätzliche Unterlagen anfordern. Meistens sind das:<ul style={{ margin: '8px 0 0 16px', lineHeight: 1.8 }}><li>ein Führungszeugnis aus dem vorherigen Wohnsitzland;</li><li>Dokumente zur Bestätigung der Identität oder des Wohnsitzes.</li></ul>Wir empfehlen, diese Unterlagen im Voraus vorzubereiten und eine <strong>offizielle deutsche Übersetzung</strong> davon zu haben.</>,
     step6Title: 'Anmeldung abgeschlossen — was nun?',
     step6P1: <>Nach dem Klick auf <strong>Senden</strong> wird dein Antrag an die zuständige Behörde weitergeleitet. Sind alle Daten korrekt ausgefüllt und keine zusätzlichen Unterlagen erforderlich, erhältst du üblicherweise innerhalb weniger Tage eine E-Mail mit der Anmeldebestätigung und deiner <strong>GISA-Nummer</strong>.</>,
@@ -588,7 +588,7 @@ export default function GisaFormularPage() {
                 {t.titleLine1}<br />
                 <em style={{ color: '#038390', fontStyle: 'italic' }}>{t.titleEm}</em>
               </h1>
-              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: '#888' }}>
+              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 15, color: '#595959' }}>
                 <span>{t.metaTime}</span>
                 <span>{t.metaSteps}</span>
                 <span>{t.metaForeigners}</span>
@@ -605,19 +605,19 @@ export default function GisaFormularPage() {
       <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 16px 80px', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
         <ArticleSidebar currentSlug="gisa-formular" />
         <div style={{ flex: 1, minWidth: 0 }}>
-          <Link href="/articles" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 13, color: 'var(--text3)', textDecoration: 'none', marginBottom: 32 }}>{t.backLink}</Link>
+          <Link href="/articles" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 15, color: 'var(--text3)', textDecoration: 'none', marginBottom: 32 }}>{t.backLink}</Link>
 
           <ArticleTOC items={t.toc} />
 
           {/* Disclaimer */}
-          <div style={{ background: '#FFF8E7', border: '1px solid rgba(245,166,35,0.3)', borderRadius: 12, padding: '16px 20px', marginBottom: 32, fontSize: 13, color: '#595959', lineHeight: 1.6 }}>
+          <div style={{ background: '#FFF8E7', border: '1px solid rgba(245,166,35,0.3)', borderRadius: 12, padding: '16px 20px', marginBottom: 32, fontSize: 15, color: '#404040', lineHeight: 1.6 }}>
             ⚠️ <strong>{lang === 'UA' ? 'Важливо:' : lang === 'RU' ? 'Важно:' : lang === 'DE' ? 'Wichtig:' : 'Important:'}</strong> {t.disclaimer}
           </div>
 
           {/* Intro */}
           <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 28 }}>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 10 }}>{t.introP1}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)' }}>{t.introP2}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.75, color: 'var(--charcoal)', marginBottom: 10 }}>{t.introP1}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.75, color: 'var(--charcoal)' }}>{t.introP2}</p>
           </div>
 
           {/* STEP 1 */}
@@ -627,9 +627,9 @@ export default function GisaFormularPage() {
               <h2 id="step1" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>{t.step1Title}</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 12 }}>{t.step1LinkLabel}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 12 }}>{t.step1LinkLabel}</p>
               <ExtLink href="https://www.gisa.gv.at/online-gewerbeanmeldung">{t.step1LinkText}</ExtLink>
-              <p style={{ fontSize: 14, lineHeight: 1.85, margin: '12px 0 16px' }}>{t.step1P1}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, margin: '12px 0 16px' }}>{t.step1P1}</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 10 }}>{t.step1H3_1}</h3>
               <OptionItem {...t.step1Opt1} />
@@ -638,21 +638,21 @@ export default function GisaFormularPage() {
               <h3 style={{ fontSize: 15, fontWeight: 700, color: '#038390', margin: '20px 0 10px' }}>{t.step1H3_2}</h3>
               <div style={{ display: 'grid', gap: 12, gridTemplateColumns: '1fr 1fr', marginBottom: 16 }}>
                 <div style={{ padding: 14, borderRadius: 10, border: '2px solid #038390', background: 'var(--peach-light)' }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: '#038390', marginBottom: 3 }}>{t.step1Way1Title}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#038390', marginBottom: 3 }}>{t.step1Way1Title}</div>
                   <div style={{ fontSize: 11, fontStyle: 'italic', color: '#038390', marginBottom: 5 }}>{t.step1Way1Tr}</div>
-                  <div style={{ fontSize: 12, color: 'var(--charcoal)', lineHeight: 1.6 }}>{t.step1Way1Desc}</div>
+                  <div style={{ fontSize: 15, color: 'var(--charcoal)', lineHeight: 1.55 }}>{t.step1Way1Desc}</div>
                 </div>
                 <div style={{ padding: 14, borderRadius: 10, border: '1px solid var(--line)', background: 'var(--gray)' }}>
-                  <div style={{ fontSize: 13, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 3 }}>{t.step1Way2Title}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 3 }}>{t.step1Way2Title}</div>
                   <div style={{ fontSize: 11, fontStyle: 'italic', color: 'var(--text3)', marginBottom: 5 }}>{t.step1Way2Tr}</div>
-                  <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.6 }}>{t.step1Way2Desc}</div>
+                  <div style={{ fontSize: 15, color: 'var(--text2)', lineHeight: 1.55 }}>{t.step1Way2Desc}</div>
                 </div>
               </div>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 10 }}>{t.step1H3_3}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>{t.step1P2}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 10 }}>{t.step1P2}</p>
               <NoteBox type="tip">{t.step1Tip}</NoteBox>
-              <p style={{ fontSize: 12, color: 'var(--text3)', fontStyle: 'italic', marginTop: 14 }}>{t.step1Footer}</p>
+              <p style={{ fontSize: 15, color: 'var(--text3)', fontStyle: 'italic', marginTop: 14 }}>{t.step1Footer}</p>
             </div>
           </div>
 
@@ -663,26 +663,26 @@ export default function GisaFormularPage() {
               <h2 id="step2" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>{t.step2Title}</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
-              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 16 }}>{t.step2P1}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 16 }}>{t.step2P1}</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 8 }}>{t.step2H3_1}</h3>
-              <p style={{ fontSize: 12, color: 'var(--text2)', marginBottom: 8 }}>{t.step2ProgressLabel}</p>
+              <p style={{ fontSize: 15, color: 'var(--text2)', marginBottom: 8 }}>{t.step2ProgressLabel}</p>
               <div style={{ display: 'flex', gap: 4, flexWrap: 'wrap' as const, marginBottom: 10 }}>
                 {t.step2ProgressSteps.map((s: string, i: number) => (
                   <span key={s} style={{ padding: '5px 10px', borderRadius: 5, fontSize: 11, fontWeight: 600, background: i === 1 ? '#038390' : 'var(--gray)', color: i === 1 ? '#fff' : 'var(--text3)', border: `1px solid ${i === 1 ? '#038390' : 'var(--line)'}` }}>{s}</span>
                 ))}
               </div>
-              <p style={{ fontSize: 13, color: 'var(--text2)', marginBottom: 16 }}>{t.step2P2}</p>
+              <p style={{ fontSize: 15, color: 'var(--text2)', marginBottom: 16 }}>{t.step2P2}</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: '#038390', marginBottom: 6 }}>{t.step2H3_2}</h3>
-              <p style={{ fontSize: 13, color: 'var(--text2)', marginBottom: 12 }}>{t.step2P3}</p>
+              <p style={{ fontSize: 15, color: 'var(--text2)', marginBottom: 12 }}>{t.step2P3}</p>
 
               <OptionItem selected {...t.step2Opt1} />
               <OptionItem {...t.step2Opt2} />
               <OptionItem {...t.step2Opt3} />
 
               <NoteBox type="info">{t.step2Info}</NoteBox>
-              <p style={{ fontSize: 12, color: 'var(--text3)', fontStyle: 'italic', marginTop: 14 }}>{t.step2Footer}</p>
+              <p style={{ fontSize: 15, color: 'var(--text3)', fontStyle: 'italic', marginTop: 14 }}>{t.step2Footer}</p>
             </div>
           </div>
 
@@ -693,8 +693,8 @@ export default function GisaFormularPage() {
               <h2 id="step3" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>{t.step3Title}</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 10 }}>{t.step3P1}</p>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 16 }}>{t.step3P2}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 10 }}>{t.step3P1}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 16 }}>{t.step3P2}</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 8 }}>{t.step3H3_1}</h3>
               <QuoteBlock de={t.step3Quote1.de} tr={t.step3Quote1.tr} label={t.translationLabel} />
@@ -702,15 +702,15 @@ export default function GisaFormularPage() {
               <NoteBox type="info">{t.step3Info1}</NoteBox>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>{t.step3H3_2}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 14 }}>{t.step3P3}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 14 }}>{t.step3P3}</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>{t.step3H3_3}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 10 }}>{t.step3P4}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 10 }}>{t.step3P4}</p>
               <NoteBox type="info">{t.step3Info2}</NoteBox>
               <NoteBox type="tip">{t.step3Tip}</NoteBox>
 
-              <p style={{ fontSize: 14, marginTop: 14, marginBottom: 8 }}>{t.step3P5}</p>
-              <p style={{ fontSize: 12, color: 'var(--text3)', fontStyle: 'italic' }}>{t.step3Footer}</p>
+              <p style={{ fontSize: 15, marginTop: 14, marginBottom: 8 }}>{t.step3P5}</p>
+              <p style={{ fontSize: 15, color: 'var(--text3)', fontStyle: 'italic' }}>{t.step3Footer}</p>
             </div>
           </div>
 
@@ -721,54 +721,54 @@ export default function GisaFormularPage() {
               <h2 id="step4" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>{t.step4Title}</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 10 }}>{t.step4P1}</p>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 16 }}>{t.step4P2}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 10 }}>{t.step4P1}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 16 }}>{t.step4P2}</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 10 }}>{t.step4H3_1}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>{t.step4P3}</p>
-              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>{t.step4P4}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 10 }}>{t.step4P3}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 10 }}>{t.step4P4}</p>
               <div style={{ background: 'var(--peach-light)', borderRadius: 9, padding: '13px 16px', border: '1px solid var(--orange-mid)', marginBottom: 10 }}>
-                <div style={{ fontSize: 14, fontWeight: 700, color: '#038390', marginBottom: 4 }}>{t.step4BoxTitle}</div>
-                <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.5 }}>{t.step4BoxDesc}</div>
+                <div style={{ fontSize: 16, fontWeight: 700, color: '#038390', marginBottom: 4 }}>{t.step4BoxTitle}</div>
+                <div style={{ fontSize: 15, color: 'var(--text2)', lineHeight: 1.5 }}>{t.step4BoxDesc}</div>
               </div>
-              <p style={{ fontSize: 13, color: 'var(--text2)', marginBottom: 16 }}>{t.step4P5}</p>
+              <p style={{ fontSize: 15, color: 'var(--text2)', marginBottom: 16 }}>{t.step4P5}</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 8 }}>{t.step4H3_2}</h3>
               <QuoteBlock de={t.step4Quote.de} tr={t.step4Quote.tr} label={t.translationLabel} />
-              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>{t.step4P6}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 10 }}>{t.step4P6}</p>
               <YesNo yesLabel={t.step4YesLabel1} noLabel={t.step4NoLabel1} selected="nein" />
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>{t.step4H3_3}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 14 }}>{t.step4P7}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 14 }}>{t.step4P7}</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 8 }}>{t.step4H3_4}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>{t.step4P8}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 10 }}>{t.step4P8}</p>
               <YesNo yesLabel={t.step4YesLabel2} noLabel={t.step4NoLabel2} selected="nein" />
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>{t.step4H3_5}</h3>
               <NoteBox type="ok">{t.step4Ok}</NoteBox>
-              <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 10 }}>{t.step4P9}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 10 }}>{t.step4P9}</p>
               {t.step4Fields.map((f: any) => <FieldRow key={f.label} label={f.label} value={f.value} />)}
               <NoteBox type="info">{t.step4Info}</NoteBox>
 
-              <p style={{ fontSize: 14, marginTop: 14, marginBottom: 8 }}>{t.step4P10}</p>
+              <p style={{ fontSize: 15, marginTop: 14, marginBottom: 8 }}>{t.step4P10}</p>
               <CheckList items={t.step4CheckItems} />
-              <p style={{ fontSize: 14, marginTop: 14 }}>{t.step4P11}</p>
+              <p style={{ fontSize: 15, marginTop: 14 }}>{t.step4P11}</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>{t.step4H3_6}</h3>
               <OptionItem selected {...t.step4Opt1} />
               <OptionItem {...t.step4Opt2} />
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '20px 0 8px' }}>{t.step4H3_7}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 10 }}>{t.step4P12}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 10 }}>{t.step4P12}</p>
               <OptionItem selected {...t.step4Opt3} />
               <NoteBox type="warning">{t.step4Warning}</NoteBox>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', margin: '18px 0 8px' }}>{t.step4H3_8}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 10 }}>{t.step4P13}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 10 }}>{t.step4P13}</p>
               <FieldRow label={t.step4FieldVorname.label} value={t.step4FieldVorname.value} />
               <FieldRow label={t.step4FieldFamilienname.label} value={t.step4FieldFamilienname.value} />
-              <p style={{ fontSize: 14, marginTop: 12 }}>{t.step4P14}</p>
+              <p style={{ fontSize: 15, marginTop: 12 }}>{t.step4P14}</p>
             </div>
           </div>
 
@@ -779,10 +779,10 @@ export default function GisaFormularPage() {
               <h2 id="step5" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>{t.step5Title}</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 14 }}>{t.step5P1}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 14 }}>{t.step5P1}</p>
               <CheckList items={t.step5CheckItems} />
               <NoteBox type="info">{t.step5Info}</NoteBox>
-              <p style={{ fontSize: 14, marginTop: 14, marginBottom: 8 }}>{t.step5P2}</p>
+              <p style={{ fontSize: 15, marginTop: 14, marginBottom: 8 }}>{t.step5P2}</p>
 
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 10 }}>{t.step5H3}</h3>
               <NoteBox type="ok">{t.step5Ok}</NoteBox>
@@ -797,10 +797,10 @@ export default function GisaFormularPage() {
               <h2 id="step6" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', margin: 0, paddingTop: 4, scrollMarginTop: '80px' }}>{t.step6Title}</h2>
             </div>
             <div style={{ background: '#fff', borderRadius: 14, padding: 22, border: '1px solid var(--line)', boxShadow: 'var(--shadow)' }}>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 12 }}>{t.step6P1}</p>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 16 }}>{t.step6P2}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 12 }}>{t.step6P1}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 16 }}>{t.step6P2}</p>
               <h3 style={{ fontSize: 15, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 8 }}>{t.step6H3}</h3>
-              <p style={{ fontSize: 14, lineHeight: 1.85, marginBottom: 10 }}>{t.step6P3}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.75, marginBottom: 10 }}>{t.step6P3}</p>
               <ExtLink href="https://www.gisa.gv.at/abfrage">{t.step6LinkText}</ExtLink>
             </div>
           </div>
@@ -810,7 +810,7 @@ export default function GisaFormularPage() {
             <div style={{ position: 'absolute' as const, width: 180, height: 180, borderRadius: '50%', background: '#038390', opacity: 0.07, top: -40, right: -40 }} />
             <div style={{ position: 'relative' as const, zIndex: 1 }}>
               <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 26, color: '#fff', marginBottom: 14, fontWeight: 400 }}>{t.congratsTitle}</h2>
-              <p style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, maxWidth: 500, margin: '0 auto' }}>{t.congratsP}</p>
+              <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', lineHeight: 1.75, maxWidth: 500, margin: '0 auto' }}>{t.congratsP}</p>
             </div>
           </div>
 
@@ -818,8 +818,8 @@ export default function GisaFormularPage() {
 
           <Link href="/articles/gewerbeanmeldung" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '14px 18px', borderRadius: 12, border: '1.5px solid #038390', background: 'var(--peach-light)', textDecoration: 'none', margin: '16px 0' }}>
             <div>
-              <div style={{ fontSize: 13, fontWeight: 700, color: '#038390' }}>{t.nextArticleTitle}</div>
-              <div style={{ fontSize: 11, color: 'var(--text2)', marginTop: 2 }}>{t.nextArticleSub}</div>
+              <div style={{ fontSize: 16, fontWeight: 700, color: '#038390' }}>{t.nextArticleTitle}</div>
+              <div style={{ fontSize: 15, color: 'var(--text2)', marginTop: 2 }}>{t.nextArticleSub}</div>
             </div>
             <span style={{ fontSize: 18, color: '#038390', fontWeight: 700 }}>→</span>
           </Link>
@@ -830,7 +830,7 @@ export default function GisaFormularPage() {
             {t.summarySteps.map((step: string, i: number) => (
               <div key={i} style={{ display: 'flex', gap: 12, marginBottom: 10, alignItems: 'flex-start' }}>
                 <div style={{ width: 24, height: 24, borderRadius: '50%', background: '#038390', color: '#fff', fontSize: 11, fontWeight: 700, display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0, marginTop: 1 }}>{i + 1}</div>
-                <span style={{ fontSize: 13, color: 'var(--charcoal)', lineHeight: 1.6 }}>{step}</span>
+                <span style={{ fontSize: 15, color: 'var(--charcoal)', lineHeight: 1.6 }}>{step}</span>
               </div>
             ))}
           </div>
@@ -839,10 +839,10 @@ export default function GisaFormularPage() {
           <div style={{ borderTop: '1px solid var(--line)', paddingTop: 22 }}>
             <p style={{ fontSize: 10, fontWeight: 700, letterSpacing: '0.08em', textTransform: 'uppercase' as const, color: 'var(--text3)', marginBottom: 10 }}>{t.sourcesLabel}</p>
             {t.sources.map((s: any) => (
-              <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: 13, color: '#038390', textDecoration: 'none', marginBottom: 6 }}>↗ {s.label}</a>
+              <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer" style={{ display: 'block', fontSize: 15, color: '#038390', textDecoration: 'none', marginBottom: 6 }}>↗ {s.label}</a>
             ))}
           </div>
-          <div style={{ background: 'var(--gray)', borderRadius: 10, padding: '13px 16px', fontSize: 12, color: 'var(--text3)', lineHeight: 1.6, marginTop: 24, border: '1px solid var(--line)' }}>
+          <div style={{ background: 'var(--gray)', borderRadius: 10, padding: '13px 16px', fontSize: 15, color: 'var(--text3)', lineHeight: 1.6, marginTop: 24, border: '1px solid var(--line)' }}>
             {t.footerNote}
           </div>
 

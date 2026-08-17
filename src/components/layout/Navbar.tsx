@@ -54,7 +54,7 @@ const NAV_TEXT: Record<string, {
     articles: 'Статті',
     tools: 'Інструменти',
     pricing: 'Тарифи',
-    login: 'Увійти',
+    login: 'Кабінет',
     searchPlaceholder: 'Пошук статей, гайдів...',
     searching: (q) => `Шукаємо «${q}»...`,
     loginTitlePrefix: 'Увійти до ',
@@ -81,7 +81,7 @@ const NAV_TEXT: Record<string, {
     articles: 'Статьи',
     tools: 'Инструменты',
     pricing: 'Тарифы',
-    login: 'Войти',
+    login: 'Кабинет',
     searchPlaceholder: 'Поиск статей, гайдов...',
     searching: (q) => `Ищем «${q}»...`,
     loginTitlePrefix: 'Войти в ',
@@ -108,7 +108,7 @@ const NAV_TEXT: Record<string, {
     articles: 'Articles',
     tools: 'Tools',
     pricing: 'Pricing',
-    login: 'Log in',
+    login: 'Cabinet',
     searchPlaceholder: 'Search articles, guides...',
     searching: (q) => `Searching for "${q}"...`,
     loginTitlePrefix: 'Log in to ',
@@ -135,7 +135,7 @@ const NAV_TEXT: Record<string, {
     articles: 'Artikel',
     tools: 'Tools',
     pricing: 'Preise',
-    login: 'Anmelden',
+    login: 'Kabinett',
     searchPlaceholder: 'Artikel, Anleitungen suchen...',
     searching: (q) => `Suche nach „${q}“...`,
     loginTitlePrefix: 'Bei ',
@@ -486,13 +486,14 @@ export default function Navbar() {
                   <path d="M12.5 12.5L16 16" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </button>
-              <button onClick={() => setShowLogin(true)} style={{
+              <a href="https://cabinet-ten-lac.vercel.app" style={{
                 padding: '8px 16px', borderRadius: 10, fontSize: 14, fontWeight: 500,
                 color: '#9D9D9D', border: '1px solid #9D9D9D',
                 background: 'transparent', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
+                textDecoration: 'none', display: 'inline-block',
               }}>
                 {t.login}
-              </button>
+              </a>
             </div>
 
           </div>
