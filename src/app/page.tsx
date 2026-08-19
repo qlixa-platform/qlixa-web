@@ -208,7 +208,7 @@ const HERO_TEXT: Record<string, {
         title: 'Розрахує переплачений податок',
         desc: 'Не знаєш, що саме можна списати? QLIXA проводить тебе через персональну анкету і враховує роботу, сім’ю, доходи та інші обставини, які можуть впливати на твоє податкове повернення.',
         checklist: ['Персональна податкова анкета', 'Можливі податкові відрахування', 'Готовий документ для FinanzOnline', 'Проста мова, без бухгалтерських термінів'],
-        cta: 'Розрахувати моє повернення →',
+        cta: 'Перевірити моє податкове повернення →',
         href: '/for/naymanyy',
       },
       {
@@ -1056,7 +1056,7 @@ export default function HomePage() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat' as const,
-        padding: '20px clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0,
+        padding: 'clamp(8px,2vh,20px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0,
       }}>
 
         <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const }}>
@@ -1064,11 +1064,11 @@ export default function HomePage() {
           <div style={{ maxWidth: 1035, marginLeft: 'auto', marginRight: 'auto' }}>
 
             {/* Row 1 — image + eyebrow heading */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 28, fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(12px,3vh,28px)', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
               {t.cards.map((card, ci) => (
                 <div key={ci} style={{ textAlign: 'center' as const }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={ci === 0 ? '/hero/naymanyy-hero.png' : '/hero/frilanser-hero.png'} alt="" style={{ height: 88, width: 'auto', objectFit: 'contain' as const, margin: '0 auto 5px' }} />
+                  <img src={ci === 0 ? '/hero/naymanyy-hero.png' : '/hero/frilanser-hero.png'} alt="" style={{ height: 'clamp(50px,9vh,88px)', width: 'auto', objectFit: 'contain' as const, margin: '0 auto 5px' }} />
                   <div style={{ fontSize: 22, fontWeight: 800, color: '#1A1A1A' }}>
                     {card.eyebrow}
                   </div>
@@ -1083,28 +1083,28 @@ export default function HomePage() {
               lineHeight: lang === 'RU' ? '40px' : lang === 'DE' ? '43px' : '50px',
               color: '#1A1A1A', textAlign: 'center' as const, whiteSpace: 'nowrap' as const,
               textTransform: 'capitalize' as const,
-              marginTop: 21, marginBottom: 21,
+              marginTop: 'clamp(8px,2vh,21px)', marginBottom: 'clamp(8px,2vh,21px)',
             }}>
               {t.badge}
             </div>
 
             {/* Row 2 — highlight title + desc + checklist + button */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 28, marginBottom: 20, fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(12px,3vh,28px)', marginBottom: 'clamp(8px,2vh,20px)', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
               {t.cards.map((card, ci) => (
                 <div key={ci} style={{ textAlign: 'center' as const }}>
-                  <div style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 7, minHeight: 23 }}>
+                  <div style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 'clamp(3px,1vh,7px)', minHeight: 'clamp(18px,3vh,23px)' }}>
                     {card.title}
                   </div>
-                  <p style={{ fontSize: 15, fontWeight: 500, color: '#404040', lineHeight: 1.5, marginBottom: 11, minHeight: 92 }}>
+                  <p style={{ fontSize: 15, fontWeight: 500, color: '#404040', lineHeight: 1.5, marginBottom: 'clamp(4px,1vh,11px)', minHeight: 'clamp(50px,10vh,92px)' }}>
                     {card.desc}
                   </p>
 
                   {/* Cycling checklist — one item visible at a time */}
-                  <div style={{ position: 'relative' as const, height: 30, marginBottom: 14, overflow: 'hidden' }}>
+                  <div style={{ position: 'relative' as const, height: 'clamp(22px,3.3vh,30px)', marginBottom: 'clamp(6px,1.5vh,14px)', overflow: 'hidden' }}>
                     {card.checklist.map((item, ii) => (
                       <div key={ii} style={{
                         position: 'absolute' as const, left: 0, right: 0, textAlign: 'center' as const,
-                        fontSize: 16, fontWeight: 600, color: '#1A1A1A', lineHeight: '30px',
+                        fontSize: 16, fontWeight: 600, color: '#1A1A1A', lineHeight: 'clamp(22px,3.3vh,30px)',
                         opacity: 0,
                         animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
                         animationDelay: `${-ii * 2.2}s`,
