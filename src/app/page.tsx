@@ -1155,7 +1155,7 @@ export default function HomePage() {
 
 
       {/* ── ЩО ТАКЕ QLIXA ── */}
-      <section style={{ background: '#ffffff', padding: '40px clamp(20px,6vw,80px) 26px' }}>
+      <section style={{ background: '#ffffff', padding: '40px clamp(20px,6vw,80px) 38px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
           {/* Header */}
@@ -1170,7 +1170,7 @@ export default function HomePage() {
           </div>
 
           {/* 3×3 grid with QLIXA center */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gridTemplateRows: 'repeat(3, 1fr)', gap: 14, height: 522 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
 
             {/* Card 1 */}
             <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
@@ -1283,7 +1283,7 @@ export default function HomePage() {
 
 
       {/* ── ДЛЯ КОГО ── */}
-      <section id="для-кого" style={{ background: '#FFFFFF', padding: '26px clamp(20px,6vw,80px) 26px' }}>
+      <section id="для-кого" style={{ background: '#FFFFFF', padding: '38px clamp(20px,6vw,80px) 38px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
           {/* Header */}
@@ -1326,7 +1326,7 @@ export default function HomePage() {
 
 
       {/* ── DEMO ── */}
-      <section id="demo" style={{ background: '#ffffff', padding: '26px clamp(20px,6vw,80px) 26px' }}>
+      <section id="demo" style={{ background: '#ffffff', padding: '38px clamp(20px,6vw,80px) 26px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
           {/* Header */}
