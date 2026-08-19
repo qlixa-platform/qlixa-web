@@ -1095,7 +1095,7 @@ export default function HomePage() {
                   <div style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 7, minHeight: 23 }}>
                     {card.title}
                   </div>
-                  <p style={{ fontSize: 15, fontWeight: 500, color: '#404040', lineHeight: 1.5, marginBottom: 11, minHeight: 60 }}>
+                  <p style={{ fontSize: 15, fontWeight: 500, color: '#404040', lineHeight: 1.5, marginBottom: 11, minHeight: 92 }}>
                     {card.desc}
                   </p>
 
