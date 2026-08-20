@@ -1460,32 +1460,21 @@ export default function HomePage() {
 
           <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, alignItems: 'stretch' }}>
 
-            {/* Left — feature list */}
-            <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 20, background: '#F0F7F8', borderRadius: 24, padding: 28, boxShadow: '0 8px 40px rgba(3,131,144,0.10)' }}>
-              {t5.features.map((item, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 16 }}>
-                  <div style={{ width: 44, height: 44, background: 'white', borderRadius: 12, display: 'flex', alignItems: 'center', justifyContent: 'center', fontSize: 20, flexShrink: 0, boxShadow: '0 2px 8px rgba(3,131,144,0.08)' }}>
-                    {WHY_ICONS[i]}
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 17, fontWeight: 700, color: '#1A1A1A', marginBottom: 3 }}>{item.title}</div>
-                    <div style={{ fontSize: 14.5, fontWeight: 500, color: '#404040', lineHeight: 1.55 }}>{item.desc}</div>
-                  </div>
-                </div>
-              ))}
+            {/* Left — laptop image */}
+            <div style={{ background: '#F0F7F8', borderRadius: 24, padding: 28, boxShadow: '0 8px 40px rgba(3,131,144,0.10)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/why-qlixa/laptop.png" alt="" style={{ width: '75%', height: 'auto', objectFit: 'contain', display: 'block' }}/>
             </div>
 
-            {/* Right — quote card */}
+            {/* Right — quote text */}
             <div style={{ background: '#F0F7F8', borderRadius: 24, padding: 28, boxShadow: '0 8px 40px rgba(3,131,144,0.10)', display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/why-qlixa/laptop.png" alt="" style={{ width: '55%', height: 'auto', objectFit: 'contain', display: 'block', marginBottom: 16 }}/>
               <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(18px,2vw,24px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.4, textAlign: 'center', marginBottom: 16 }}>
                 {t5.quoteLine1}<br/>
                 {t5.quoteBefore}
                 <em style={{ color: '#038390' }}>{t5.quoteEmphasis}</em>
                 {t5.quoteAfter}
               </p>
-              <p style={{ fontSize: 15, color: '#404040', lineHeight: 1.6, textAlign: 'center', marginBottom: 24 }}>
+              <p style={{ fontSize: 15, color: '#404040', lineHeight: 1.6, textAlign: 'center' }}>
                 {t5.quoteP2[0]}<br/>
                 {t5.quoteP2[1]}<br/>
                 {t5.quoteP2[2]}
