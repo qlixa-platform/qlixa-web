@@ -486,7 +486,7 @@ export default function Navbar() {
                   <path d="M12.5 12.5L16 16" stroke="rgba(255,255,255,0.4)" strokeWidth="1.5" strokeLinecap="round"/>
                 </svg>
               </button>
-              <a href="https://cabinet-ten-lac.vercel.app" style={{
+              <a href="https://app.qlixa.eu" style={{
                 padding: '8px 16px', borderRadius: 10, fontSize: 14, fontWeight: 500,
                 color: '#9D9D9D', border: '1px solid #9D9D9D',
                 background: 'transparent', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
