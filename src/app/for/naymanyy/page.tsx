@@ -379,10 +379,13 @@ export default function Page() {
       {/* ── 1+2. HERO ── */}
       <section style={{ background: '#FFFFFF', padding: '56px clamp(20px,6vw,80px) 64px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'start' }}>
+          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'stretch' }}>
 
-            <div>
-              <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 16 }}>
+            <div style={{ display: 'flex', flexDirection: 'column' as const }}>
+              <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(34px,4.6vw,54px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.12, letterSpacing: '-1px', marginBottom: 18 }}>
+                {t.h1Before}<span style={{ color: '#038390' }}>{t.h1Emphasis}</span>
+              </h1>
+              <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 16, width: 'fit-content' }}>
                 {t.badge}
               </div>
               <p style={{ fontSize: 16, fontWeight: 700, color: '#1A1A1A', marginBottom: 6 }}>{t.heroQ}</p>
@@ -400,20 +403,13 @@ export default function Page() {
               <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.6, marginBottom: 6, maxWidth: 520 }}>
                 {t.heroDesc}
               </p>
-              <p style={{ fontSize: 15, color: '#595959', marginBottom: 28 }}>
+              <p style={{ fontSize: 15, color: '#595959' }}>
                 {t.heroNote}
-              </p>
-
-              <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(32px,4.2vw,50px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 20 }}>
-                {t.h1Before}<span style={{ color: '#038390' }}>{t.h1Emphasis}</span>
-              </h1>
-              <p style={{ fontSize: 17, color: '#404040', lineHeight: 1.6, maxWidth: 520 }}>
-                {t.heroSubtext}
               </p>
             </div>
 
             {/* Pricing card */}
-            <div style={{ background: '#F0F7F8', border: '2px solid #038390', borderRadius: 20, padding: 28 }}>
+            <div style={{ background: '#F0F7F8', border: '2px solid #038390', borderRadius: 20, padding: 28, display: 'flex', flexDirection: 'column' as const }}>
               <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 4 }}>
                 <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 40, fontWeight: 700, color: '#1A1A1A' }}>€{t.price}</span>
                 <span style={{ fontSize: 16, color: '#595959' }}>{t.period}</span>
@@ -433,6 +429,11 @@ export default function Page() {
             </div>
 
           </div>
+
+          {/* Full-width subtext below both columns */}
+          <p style={{ fontSize: 17, color: '#404040', lineHeight: 1.5, marginTop: 32, whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' as const }}>
+            {t.heroSubtext}
+          </p>
         </div>
       </section>
 
