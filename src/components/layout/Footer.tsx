@@ -191,7 +191,7 @@ export default function Footer() {
   return (
     <footer>
       <div style={{ height: 1, background: '#f0f0f0', width: '100%' }} />
-      <div style={{ background: '#ffffff' }}>
+      <div style={{ background: `#ffffff url('/footer/footer-mountains.png') bottom / cover no-repeat` }}>
         <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 16px' }}>
           <div style={{
             display: 'grid',
