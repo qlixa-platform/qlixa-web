@@ -194,11 +194,13 @@ type HeroCard = {
   checklist: string[]
   cta: string
   href: string
+  isSoon?: boolean
 }
 const HERO_TEXT: Record<string, {
   badge: string
   cards: [HeroCard, HeroCard]
   trust: string
+  soonLabel: string
 }> = {
   UA: {
     badge: 'Твій автоматизований бізнес-помічник в Австрії',
@@ -218,9 +220,11 @@ const HERO_TEXT: Record<string, {
         checklist: ['Клієнти та рахунки', 'Доходи та витрати', 'ПДВ та звітність', 'Дедлайни та KPI'],
         cta: 'Переглянути кабінет →',
         href: '/for/biznes',
+        isSoon: true,
       },
     ],
     trust: 'Створено спеціально для \u{1F1E6}\u{1F1F9} Австрії · перекладено на 4 мови · структуровано за актуальними правилами австрійської податкової системи',
+    soonLabel: 'Скоро',
   },
   EN: {
     badge: 'Your automated business assistant in Austria',
@@ -240,9 +244,11 @@ const HERO_TEXT: Record<string, {
         checklist: ['Clients and invoices', 'Income and expenses', 'VAT and reporting', 'Deadlines and KPIs'],
         cta: 'View dashboard →',
         href: '/for/biznes',
+        isSoon: true,
       },
     ],
     trust: 'Designed specifically for 🇦🇹 Austria · available in 4 languages · structured according to current Austrian tax regulations',
+    soonLabel: 'Coming soon',
   },
   RU: {
     badge: 'Твой автоматизированный бизнес-помощник в Австрии',
@@ -262,9 +268,11 @@ const HERO_TEXT: Record<string, {
         checklist: ['Клиенты и счета', 'Доходы и расходы', 'НДС и отчётность', 'Дедлайны и KPI'],
         cta: 'Посмотреть кабинет →',
         href: '/for/biznes',
+        isSoon: true,
       },
     ],
     trust: 'Создано специально для 🇦🇹 Австрии · переведено на 4 языка · структурировано по актуальным правилам австрийской налоговой системы',
+    soonLabel: 'Скоро',
   },
   DE: {
     badge: 'Dein automatisierter Geschäftsassistent in Österreich',
@@ -284,9 +292,11 @@ const HERO_TEXT: Record<string, {
         checklist: ['Kunden und Rechnungen', 'Einnahmen und Ausgaben', 'USt und Berichte', 'Fristen und KPIs'],
         cta: 'Dashboard ansehen →',
         href: '/for/biznes',
+        isSoon: true,
       },
     ],
     trust: 'Speziell für 🇦🇹 Österreich entwickelt · verfügbar in 4 Sprachen · nach aktuellen österreichischen Steuervorschriften strukturiert',
+    soonLabel: 'Demnächst',
   },
 }
 
@@ -298,6 +308,7 @@ const QLIXA_TEXT: Record<string, {
   subheading: string
   cards: [string, string][] // [title, desc] x8
   centerTagline: string
+  soonLabel: string
 }> = {
   UA: {
     badge: 'Що таке QLIXA',
@@ -315,6 +326,7 @@ const QLIXA_TEXT: Record<string, {
       ['Складне, пояснене просто', 'Українською, англійською, російською та німецькою — обирай зручну мову і починай.'],
     ],
     centerTagline: 'просто про складне',
+    soonLabel: 'Скоро',
   },
   RU: {
     badge: 'Что такое QLIXA',
@@ -332,6 +344,7 @@ const QLIXA_TEXT: Record<string, {
       ['Сложное, объяснённое просто', 'На украинском, английском, русском и немецком — выбирай удобный язык и начинай.'],
     ],
     centerTagline: 'просто о сложном',
+    soonLabel: 'Скоро',
   },
   EN: {
     badge: 'What is QLIXA',
@@ -349,6 +362,7 @@ const QLIXA_TEXT: Record<string, {
       ['Complex made simple', 'In Ukrainian, English, Russian, and German — choose your language and get started.'],
     ],
     centerTagline: 'simply about the complex',
+    soonLabel: 'Coming soon',
   },
   DE: {
     badge: 'Was ist QLIXA',
@@ -366,6 +380,7 @@ const QLIXA_TEXT: Record<string, {
       ['Kompliziertes einfach erklärt', 'Auf Ukrainisch, Englisch, Russisch und Deutsch — wähle deine Sprache und leg los.'],
     ],
     centerTagline: 'einfach erklärt',
+    soonLabel: 'Demnächst',
   },
 }
 
@@ -375,58 +390,63 @@ const FORWHOM_TEXT: Record<string, {
   h2Prefix: string
   h2Emphasis: string
   cards: [string, string][] // [title, desc] x6
+  soonLabel: string
 }> = {
   UA: {
     badge: 'Для кого',
     h2Prefix: 'QLIXA підходить, ',
     h2Emphasis: 'якщо ти:',
     cards: [
-      ['Самозайнятий / Фрілансер', 'Neue Selbstständige, Gewerbe або вільна професія — IT, дизайн, консалтинг. QLIXA пояснює кожен крок без складних термінів і зайвого стресу.'],
-      ['Маєш капітальні та закордонні доходи', 'Маєш дохід від продажу акцій, нерухомості або з-за кордону? QLIXA розрахує KESt та інші зобов’язання точно і без помилок.'],
-      ['Ведеш маленький бізнес', 'Або тільки плануєш відкрити — QLIXA пройде з тобою кожен крок від реєстрації до звітів.'],
-      ['Здаєш нерухомість', 'Або маєш дохід з кількох джерел — платформа врахує всі надходження та списання.'],
-      ['Пенсіонер з доходом', 'Додатковий дохід від підробітку — QLIXA розрахує твої зобов’язання просто і зрозуміло.'],
       ['Найманий працівник', 'Працюєш по найму, але хочеш контролювати свої фінанси та правильно розрахувати щорічне повернення податків.'],
+      ['Пенсіонер з доходом', 'Додатковий дохід від підробітку — QLIXA розрахує твої зобов’язання просто і зрозуміло.'],
+      ['Маєш капітальні та закордонні доходи', 'Маєш дохід від продажу акцій, нерухомості або з-за кордону? QLIXA розрахує KESt та інші зобов’язання точно і без помилок.'],
+      ['Здаєш нерухомість', 'Або маєш дохід з кількох джерел — платформа врахує всі надходження та списання.'],
+      ['Самозайнятий / Фрілансер', 'Neue Selbstständige, Gewerbe або вільна професія — IT, дизайн, консалтинг. QLIXA пояснює кожен крок без складних термінів і зайвого стресу.'],
+      ['Ведеш маленький бізнес', 'Або тільки плануєш відкрити — QLIXA пройде з тобою кожен крок від реєстрації до звітів.'],
     ],
+    soonLabel: 'Скоро',
   },
   RU: {
     badge: 'Для кого',
     h2Prefix: 'QLIXA подходит, ',
     h2Emphasis: 'если ты:',
     cards: [
-      ['Самозанятый / Фрилансер', 'Neue Selbstständige, Gewerbe или свободная профессия — IT, дизайн, консалтинг. QLIXA объясняет каждый шаг без сложных терминов и лишнего стресса.'],
-      ['Имеешь капитальные и заграничные доходы', 'Есть доход от продажи акций, недвижимости или из-за границы? QLIXA рассчитает KESt и другие обязательства точно и без ошибок.'],
-      ['Ведёшь маленький бизнес', 'Или только планируешь открыть — QLIXA пройдёт с тобой каждый шаг от регистрации до отчётов.'],
-      ['Сдаёшь недвижимость', 'Или имеешь доход из нескольких источников — платформа учтёт все поступления и списания.'],
-      ['Пенсионер с доходом', 'Дополнительный доход от подработки — QLIXA рассчитает твои обязательства просто и понятно.'],
       ['Наёмный работник', 'Работаешь по найму, но хочешь контролировать свои финансы и правильно рассчитать ежегодный возврат налогов.'],
+      ['Пенсионер с доходом', 'Дополнительный доход от подработки — QLIXA рассчитает твои обязательства просто и понятно.'],
+      ['Имеешь капитальные и заграничные доходы', 'Есть доход от продажи акций, недвижимости или из-за границы? QLIXA рассчитает KESt и другие обязательства точно и без ошибок.'],
+      ['Сдаёшь недвижимость', 'Или имеешь доход из нескольких источников — платформа учтёт все поступления и списания.'],
+      ['Самозанятый / Фрилансер', 'Neue Selbstständige, Gewerbe или свободная профессия — IT, дизайн, консалтинг. QLIXA объясняет каждый шаг без сложных терминов и лишнего стресса.'],
+      ['Ведёшь маленький бизнес', 'Или только планируешь открыть — QLIXA пройдёт с тобой каждый шаг от регистрации до отчётов.'],
     ],
+    soonLabel: 'Скоро',
   },
   EN: {
     badge: 'For Whom',
     h2Prefix: 'QLIXA is right for you ',
     h2Emphasis: 'if you:',
     cards: [
-      ['Self-employed / Freelancer', 'Neue Selbstständige, Gewerbe, or a liberal profession — IT, design, consulting. QLIXA explains every step without complex terms or unnecessary stress.'],
-      ['Have capital gains or foreign income', 'Have income from selling shares, real estate, or from abroad? QLIXA calculates KESt and other obligations accurately and without errors.'],
-      ['Run a small business', 'Or are just planning to start one — QLIXA walks you through every step from registration to reports.'],
-      ['Rent out property', 'Or have income from multiple sources — the platform accounts for all income and deductions.'],
-      ['Are a pensioner with income', 'Extra income from a side job — QLIXA calculates your obligations simply and clearly.'],
       ['Are an employee', 'Work as an employee but want to control your finances and correctly calculate your annual tax refund.'],
+      ['Are a pensioner with income', 'Extra income from a side job — QLIXA calculates your obligations simply and clearly.'],
+      ['Have capital gains or foreign income', 'Have income from selling shares, real estate, or from abroad? QLIXA calculates KESt and other obligations accurately and without errors.'],
+      ['Rent out property', 'Or have income from multiple sources — the platform accounts for all income and deductions.'],
+      ['Self-employed / Freelancer', 'Neue Selbstständige, Gewerbe, or a liberal profession — IT, design, consulting. QLIXA explains every step without complex terms or unnecessary stress.'],
+      ['Run a small business', 'Or are just planning to start one — QLIXA walks you through every step from registration to reports.'],
     ],
+    soonLabel: 'Coming soon',
   },
   DE: {
     badge: 'Für wen',
     h2Prefix: 'QLIXA passt zu dir, ',
     h2Emphasis: 'wenn du:',
     cards: [
-      ['Selbstständig / Freelancer', 'Neue Selbstständige, Gewerbe oder freier Beruf — IT, Design, Consulting. QLIXA erklärt jeden Schritt ohne komplizierte Begriffe und unnötigen Stress.'],
-      ['Kapitalerträge oder Auslandseinkünfte hast', 'Einkünfte aus dem Verkauf von Aktien, Immobilien oder aus dem Ausland? QLIXA berechnet KESt und andere Verpflichtungen genau und fehlerfrei.'],
-      ['Ein kleines Unternehmen führst', 'Oder erst planst, eins zu gründen — QLIXA begleitet dich bei jedem Schritt von der Anmeldung bis zu den Berichten.'],
-      ['Immobilien vermietest', 'Oder Einkünfte aus mehreren Quellen hast — die Plattform berücksichtigt alle Einnahmen und Abzüge.'],
-      ['Rentner/in mit Einkommen bist', 'Zusätzliches Einkommen aus einem Nebenjob — QLIXA berechnet deine Verpflichtungen einfach und verständlich.'],
       ['Angestellte/r bist', 'Arbeitest angestellt, willst aber deine Finanzen im Griff haben und deine jährliche Steuerrückerstattung richtig berechnen.'],
+      ['Rentner/in mit Einkommen bist', 'Zusätzliches Einkommen aus einem Nebenjob — QLIXA berechnet deine Verpflichtungen einfach und verständlich.'],
+      ['Kapitalerträge oder Auslandseinkünfte hast', 'Einkünfte aus dem Verkauf von Aktien, Immobilien oder aus dem Ausland? QLIXA berechnet KESt und andere Verpflichtungen genau und fehlerfrei.'],
+      ['Immobilien vermietest', 'Oder Einkünfte aus mehreren Quellen hast — die Plattform berücksichtigt alle Einnahmen und Abzüge.'],
+      ['Selbstständig / Freelancer', 'Neue Selbstständige, Gewerbe oder freier Beruf — IT, Design, Consulting. QLIXA erklärt jeden Schritt ohne komplizierte Begriffe und unnötigen Stress.'],
+      ['Ein kleines Unternehmen führst', 'Oder erst planst, eins zu gründen — QLIXA begleitet dich bei jedem Schritt von der Anmeldung bis zu den Berichten.'],
     ],
+    soonLabel: 'Demnächst',
   },
 }
 
@@ -435,51 +455,52 @@ const DEMO_TEXT: Record<string, {
   badge: string
   h2Before: string
   h2Emphasis: string
-  cards: { before: string; em: string; desc: string }[] // x4
+  cards: { title: string; cta: string; href: string; isSoon?: boolean }[] // x3
+  soonLabel: string
 }> = {
   UA: {
     badge: 'Як це працює',
-    h2Before: 'Все просто — ',
-    h2Emphasis: '4 кроки',
+    h2Before: 'Огляд ',
+    h2Emphasis: 'платформи',
     cards: [
-      { before: 'Відповідаєш на ', em: 'прості питання', desc: 'Кілька простих запитань — ти вводиш свої дані та розповідаєш про свою ситуацію.' },
-      { before: 'QLIXA ', em: 'аналізує', desc: 'На основі введених тобою даних платформа показує потрібні розрахунки, суми, дедлайни та наступні кроки.' },
-      { before: 'Отримуєш ', em: 'зрозумілі підказки', desc: 'QLIXA допомагає підготувати розрахунки, шаблони, чеклісти та пояснення. Ти перевіряєш результат і вирішуєш, що робити далі.' },
-      { before: 'Ти ', em: 'залишаєшся головним', desc: 'QLIXA допомагає все структурувати та підготувати. Рішення, перевірка і відправка документів завжди залишаються за тобою.' },
+      { title: 'Тариф Найманий працівник', cta: 'Можливості', href: '/for/naymanyy' },
+      { title: 'Тариф Самозайнятий', cta: 'Дізнатися першими', href: 'mailto:info@qlixa.eu?subject=Self-employed%20plan', isSoon: true },
+      { title: 'Тариф Бізнес', cta: 'Дізнатися першими', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
     ],
+    soonLabel: 'Скоро',
   },
   RU: {
     badge: 'Как это работает',
-    h2Before: 'Всё просто — ',
-    h2Emphasis: '4 шага',
+    h2Before: 'Обзор ',
+    h2Emphasis: 'платформы',
     cards: [
-      { before: 'Отвечаешь на ', em: 'простые вопросы', desc: 'Несколько простых вопросов — ты вводишь свои данные и рассказываешь о своей ситуации.' },
-      { before: 'QLIXA ', em: 'анализирует', desc: 'На основе введённых тобой данных платформа показывает нужные расчёты, суммы, дедлайны и следующие шаги.' },
-      { before: 'Получаешь ', em: 'понятные подсказки', desc: 'QLIXA помогает подготовить расчёты, шаблоны, чек-листы и пояснения. Ты проверяешь результат и решаешь, что делать дальше.' },
-      { before: 'Ты ', em: 'остаёшься главным', desc: 'QLIXA помогает всё структурировать и подготовить. Решение, проверка и отправка документов всегда остаются за тобой.' },
+      { title: 'Тариф Наёмный работник', cta: 'Возможности', href: '/for/naymanyy' },
+      { title: 'Тариф Самозанятый', cta: 'Узнать первыми', href: 'mailto:info@qlixa.eu?subject=Self-employed%20plan', isSoon: true },
+      { title: 'Тариф Бизнес', cta: 'Узнать первыми', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
     ],
+    soonLabel: 'Скоро',
   },
   EN: {
     badge: 'How it works',
-    h2Before: "It's simple — ",
-    h2Emphasis: '4 steps',
+    h2Before: 'Platform ',
+    h2Emphasis: 'overview',
     cards: [
-      { before: 'You answer ', em: 'simple questions', desc: 'A few simple questions — you enter your details and describe your situation.' },
-      { before: 'QLIXA ', em: 'analyzes', desc: 'Based on the data you entered, the platform shows the relevant calculations, amounts, deadlines, and next steps.' },
-      { before: 'You get ', em: 'clear guidance', desc: 'QLIXA helps you prepare calculations, templates, checklists, and explanations. You review the result and decide what to do next.' },
-      { before: 'You ', em: 'stay in control', desc: 'QLIXA helps structure and prepare everything. The decision, review, and submission of documents always remain with you.' },
+      { title: 'Employee plan', cta: 'See features', href: '/for/naymanyy' },
+      { title: 'Self-employed plan', cta: 'Be the first to know', href: 'mailto:info@qlixa.eu?subject=Self-employed%20plan', isSoon: true },
+      { title: 'Business plan', cta: 'Be the first to know', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
     ],
+    soonLabel: 'Coming soon',
   },
   DE: {
     badge: 'So funktioniert’s',
-    h2Before: 'Ganz einfach — ',
-    h2Emphasis: '4 Schritte',
+    h2Before: 'Plattform-',
+    h2Emphasis: 'Überblick',
     cards: [
-      { before: 'Du beantwortest ', em: 'einfache Fragen', desc: 'Ein paar einfache Fragen — du gibst deine Daten ein und beschreibst deine Situation.' },
-      { before: 'QLIXA ', em: 'analysiert', desc: 'Basierend auf deinen Angaben zeigt dir die Plattform die passenden Berechnungen, Beträge, Fristen und nächsten Schritte.' },
-      { before: 'Du bekommst ', em: 'klare Hinweise', desc: 'QLIXA hilft dir, Berechnungen, Vorlagen, Checklisten und Erklärungen vorzubereiten. Du prüfst das Ergebnis und entscheidest, wie es weitergeht.' },
-      { before: 'Du ', em: 'bleibst am Ruder', desc: 'QLIXA hilft dir, alles zu strukturieren und vorzubereiten. Die Entscheidung, Prüfung und das Einreichen von Dokumenten liegen immer bei dir.' },
+      { title: 'Tarif Angestellte:r', cta: 'Funktionen', href: '/for/naymanyy' },
+      { title: 'Tarif Selbstständig', cta: 'Als Erste:r erfahren', href: 'mailto:info@qlixa.eu?subject=Self-employed%20plan', isSoon: true },
+      { title: 'Tarif Business', cta: 'Als Erste:r erfahren', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
     ],
+    soonLabel: 'Demnächst',
   },
 }
 
@@ -1114,13 +1135,24 @@ export default function HomePage() {
                     ))}
                   </div>
 
-                  <Link href={card.href} style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 9, justifyContent: 'center' as const,
-                    padding: '12px 24px', background: '#038390', color: '#fff',
-                    borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none',
-                  }}>
-                    {card.cta}
-                  </Link>
+                  <div style={{ display: 'inline-block', position: card.isSoon ? 'relative' as const : undefined }}>
+                    <Link href={card.href} style={{
+                      display: 'inline-flex', alignItems: 'center', gap: 9, justifyContent: 'center' as const,
+                      padding: '12px 24px', background: '#038390', color: '#fff',
+                      borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none',
+                    }}>
+                      {card.cta}
+                    </Link>
+                    {card.isSoon && (
+                      <span style={{
+                        position: 'absolute' as const, top: -10, right: -10,
+                        fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642',
+                        padding: '3px 9px', borderRadius: 999, zIndex: 1, boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+                      }}>
+                        {t.soonLabel}
+                      </span>
+                    )}
+                  </div>
                 </div>
               ))}
             </div>
@@ -1254,13 +1286,20 @@ export default function HomePage() {
             </div>
 
             {/* Card 7 */}
-            <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
+            <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', position: 'relative' as const }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
+              <span style={{
+                position: 'absolute' as const, top: 14, right: 14,
+                fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642',
+                padding: '3px 9px', borderRadius: 999, zIndex: 1,
+              }}>
+                {t2.soonLabel}
+              </span>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/business.png" alt="Бізнес-помічник" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[6][0]}</div>
+                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3, paddingRight: 60 }}>{t2.cards[6][0]}</div>
               </div>
               <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[6][1]}</div>
             </div>
@@ -1298,21 +1337,30 @@ export default function HomePage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
 
             {[
-              { img: '/for-who/frilanser.png', href: '/for/frilanser' },
-              { img: '/for-who/samostiynyy.png', href: '/for/samostiynyy' },
-              { img: '/for-who/biznes.png', href: '/for/biznes' },
-              { img: '/for-who/nerukhomist.png', href: '/for/nerukhomist' },
-              { img: '/for-who/pensioner.png', href: '/for/pensioner' },
               { img: '/for-who/naymanyy.png', href: '/for/naymanyy' },
+              { img: '/for-who/pensioner.png', href: '/for/pensioner' },
+              { img: '/for-who/samostiynyy.png', href: '/for/samostiynyy' },
+              { img: '/for-who/nerukhomist.png', href: '/for/nerukhomist' },
+              { img: '/for-who/frilanser.png', href: '/for/frilanser', isSoon: true },
+              { img: '/for-who/biznes.png', href: '/for/biznes', isSoon: true },
             ].map((card, i) => (
               <Link key={i} href={card.href} style={{ textDecoration: 'none' }}>
-                <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', height: '100%' }}
+                <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', height: '100%', position: 'relative' as const }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
+                  {card.isSoon && (
+                    <span style={{
+                      position: 'absolute' as const, top: 14, right: 14,
+                      fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642',
+                      padding: '3px 9px', borderRadius: 999, zIndex: 1,
+                    }}>
+                      {t3.soonLabel}
+                    </span>
+                  )}
                   <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={card.img} alt={t3.cards[i][0]} style={{ width: 72, height: 72, objectFit: 'contain', flexShrink: 0 }} />
-                    <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t3.cards[i][0]}</div>
+                    <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3, paddingRight: card.isSoon ? 60 : 0 }}>{t3.cards[i][0]}</div>
                   </div>
                   <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t3.cards[i][1]}</div>
                 </div>
@@ -1337,17 +1385,26 @@ export default function HomePage() {
             </h2>
           </div>
 
-          {/* 4 cards in a row */}
-          <div id="demo-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 16 }}>
-            {['/how-it-works/step-1.png', '/how-it-works/step-2.png', '/how-it-works/step-3.png', '/how-it-works/step-4.png'].map((img, i) => ({
+          {/* 3 cards in a row */}
+          <div id="demo-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
+            {['/how-it-works/step-1.png', '/how-it-works/step-2.png', '/how-it-works/step-4.png'].map((img, i) => ({
               num: String(i + 1),
               img,
-              title: t4.cards[i].before + t4.cards[i].em,
-              em: t4.cards[i].em,
-              before: t4.cards[i].before,
-              desc: t4.cards[i].desc,
+              title: t4.cards[i].title,
+              cta: t4.cards[i].cta,
+              href: t4.cards[i].href,
+              isSoon: t4.cards[i].isSoon,
             })).map((card) => (
-              <div key={card.num} style={{ background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)', display: 'flex', flexDirection: 'column' }}>
+              <div key={card.num} style={{ background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)', display: 'flex', flexDirection: 'column', position: 'relative' as const }}>
+                {card.isSoon && (
+                  <span style={{
+                    position: 'absolute' as const, top: 16, right: 16,
+                    fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642',
+                    padding: '3px 9px', borderRadius: 999, zIndex: 1,
+                  }}>
+                    {t4.soonLabel}
+                  </span>
+                )}
                 {/* Image */}
                 <div style={{ width: '100%', aspectRatio: '4/3', background: '#F0F7F8', position: 'relative', overflow: 'hidden', flexShrink: 0, padding: 32, boxSizing: 'border-box' as const }}>
                   <Image
@@ -1356,20 +1413,21 @@ export default function HomePage() {
                     fill
                     style={{ objectFit: 'contain' }}
                   />
-
                 </div>
                 {/* Text */}
-                <div style={{ padding: '20px 22px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: 8 }}>
-                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, fontWeight: 400, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
-                    {card.before}<em style={{ fontStyle: 'italic', color: '#038390' }}>{card.em}</em>
+                <div style={{ padding: '20px 22px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
+                    {card.title}
                   </h3>
-                  <p style={{ fontSize: 15, color: '#404040', lineHeight: 1.6, margin: 0 }}>{card.desc}</p>
+                  <a href={card.href} style={{ fontSize: 15, fontWeight: 700, color: '#038390', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                    {card.cta} →
+                  </a>
                 </div>
               </div>
             ))}
           </div>
 
-          {/* Tablet: 2x2 grid override */}
+          {/* Tablet: 2x1 grid override */}
           <style>{`
             @media (max-width: 900px) {
               #demo-grid { grid-template-columns: repeat(2, 1fr) !important; }

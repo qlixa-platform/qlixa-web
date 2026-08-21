@@ -21,10 +21,31 @@ export default function Page() {
 
           {/* RIGHT — text */}
           <div style={{ flex: 1, minWidth: 0 }}>
-            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 20 }}>Для кого</div>
-            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(36px,5vw,56px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1.5px', marginBottom: 20 }}>Маленький бізнес</h1>
-            <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, marginBottom: 16, maxWidth: 480 }}>Відкрив або плануєш відкрити бізнес — QLIXA пройде з тобою кожен крок від реєстрації до звітів.</p>
-            <div style={{ display: 'inline-block', padding: '8px 20px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.2)', fontSize: 12, fontWeight: 600, color: '#038390', marginBottom: 32 }}>Контент скоро буде</div>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 20, flexWrap: 'wrap' as const }}>
+              <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390' }}>Для бізнесу</div>
+              <div style={{ display: 'inline-block', padding: '4px 12px', borderRadius: 999, fontSize: 11, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642' }}>Скоро</div>
+            </div>
+            <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(32px,4.4vw,48px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 18 }}>Кабінет для малого бізнесу</h1>
+            <p style={{ fontSize: 16, color: '#404040', lineHeight: 1.65, marginBottom: 24, maxWidth: 480 }}>
+              Команда QLIXA вже працює над зручним кабінетом для ведення малого бізнесу в Австрії — щоб все, що потрібно для щоденної роботи й звітності, було в одному місці.
+            </p>
+
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 32, maxWidth: 480 }}>
+              {['Клієнти та рахунки', 'Склад і товари', 'Доходи та витрати', 'ПДВ та звітність', 'Дедлайни та KPI', 'Дані для FinanzOnline'].map((f, i) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 7 }}>
+                  <span style={{ color: '#038390', fontWeight: 700, fontSize: 14, flexShrink: 0, marginTop: 1 }}>✓</span>
+                  <span style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.4 }}>{f}</span>
+                </div>
+              ))}
+            </div>
+
+            <a href="mailto:info@qlixa.eu?subject=Business%20plan" style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', background: '#038390', color: '#fff',
+              borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none', marginBottom: 24,
+            }}>
+              Дізнатися першими →
+            </a>
+
             <div>
               <Link href="/" style={{ fontSize: 15, fontWeight: 700, color: '#038390', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>← Повернутись на головну</Link>
             </div>

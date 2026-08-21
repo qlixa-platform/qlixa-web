@@ -1,6 +1,7 @@
 'use client'
 
 import { useState, useEffect } from 'react'
+import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 
@@ -10,6 +11,12 @@ const T: Record<string, any> = {
   UA: {
     badge: 'Для найманих працівників',
     heroQ: 'Працюєш за наймом в Австрії?',
+    relatedLinks: [
+      { label: 'Маєш капітальні та закордонні доходи', href: '/for/samostiynyy' },
+      { label: 'Здаєш нерухомість', href: '/for/nerukhomist' },
+      { label: 'Або маєш дохід з кількох джерел', href: '/for/nerukhomist' },
+      { label: 'Пенсіонер з доходом', href: '/for/pensioner' },
+    ],
     heroDesc: 'Цей тариф для тебе, якщо ти хочеш самостійно подати декларацію, не знаєш, які витрати можна врахувати, маєш сім\u2019ю, дітей або інші обставини, що можуть впливати на податкове повернення.',
     heroNote: 'Не потрібно бути бухгалтером — QLIXA проведе тебе крок за кроком.',
     h1Before: 'Розрахуй своє податкове повернення ',
@@ -88,6 +95,12 @@ const T: Record<string, any> = {
   RU: {
     badge: 'Для наёмных работников',
     heroQ: 'Работаешь по найму в Австрии?',
+    relatedLinks: [
+      { label: 'Есть капитальные и заграничные доходы', href: '/for/samostiynyy' },
+      { label: 'Сдаёшь недвижимость', href: '/for/nerukhomist' },
+      { label: 'Или доход из нескольких источников', href: '/for/nerukhomist' },
+      { label: 'Пенсионер с доходом', href: '/for/pensioner' },
+    ],
     heroDesc: 'Этот тариф для тебя, если ты хочешь самостоятельно подать декларацию, не знаешь, какие расходы можно учесть, имеешь семью, детей или другие обстоятельства, которые могут влиять на налоговый возврат.',
     heroNote: 'Не нужно быть бухгалтером — QLIXA проведёт тебя шаг за шагом.',
     h1Before: 'Рассчитай свой налоговый возврат ',
@@ -166,6 +179,12 @@ const T: Record<string, any> = {
   DE: {
     badge: 'Für Angestellte',
     heroQ: 'Arbeitest du angestellt in Österreich?',
+    relatedLinks: [
+      { label: 'Hast Kapital- oder Auslandseinkünfte', href: '/for/samostiynyy' },
+      { label: 'Vermietest eine Immobilie', href: '/for/nerukhomist' },
+      { label: 'Oder hast Einkünfte aus mehreren Quellen', href: '/for/nerukhomist' },
+      { label: 'Pensionist:in mit Einkommen', href: '/for/pensioner' },
+    ],
     heroDesc: 'Dieser Tarif ist für dich, wenn du deine Steuererklärung selbst einreichen möchtest, nicht weißt, welche Ausgaben du geltend machen kannst, eine Familie, Kinder oder andere Umstände hast, die deine Steuerrückerstattung beeinflussen können.',
     heroNote: 'Du musst kein:e Buchhalter:in sein — QLIXA führt dich Schritt für Schritt.',
     h1Before: 'Berechne deine Steuerrückerstattung ',
@@ -244,6 +263,12 @@ const T: Record<string, any> = {
   EN: {
     badge: 'For employees',
     heroQ: 'Working as an employee in Austria?',
+    relatedLinks: [
+      { label: 'Have capital or foreign income', href: '/for/samostiynyy' },
+      { label: 'Rent out property', href: '/for/nerukhomist' },
+      { label: 'Or have income from multiple sources', href: '/for/nerukhomist' },
+      { label: 'Retiree with income', href: '/for/pensioner' },
+    ],
     heroDesc: 'This plan is for you if you want to file your tax return yourself, aren\u2019t sure which expenses you can claim, have a family, children, or other circumstances that could affect your tax refund.',
     heroNote: 'You don\u2019t need to be an accountant — QLIXA guides you step by step.',
     h1Before: 'Calculate your tax refund ',
@@ -361,6 +386,17 @@ export default function Page() {
                 {t.badge}
               </div>
               <p style={{ fontSize: 16, fontWeight: 700, color: '#1A1A1A', marginBottom: 6 }}>{t.heroQ}</p>
+              <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8, marginBottom: 14 }}>
+                {t.relatedLinks.map((link: { label: string; href: string }, i: number) => (
+                  <Link key={i} href={link.href} style={{
+                    fontSize: 13, fontWeight: 600, color: '#038390', background: 'rgba(3,131,144,0.08)',
+                    border: '1px solid rgba(3,131,144,0.2)', padding: '5px 12px', borderRadius: 999,
+                    textDecoration: 'none',
+                  }}>
+                    {link.label}
+                  </Link>
+                ))}
+              </div>
               <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.6, marginBottom: 6, maxWidth: 520 }}>
                 {t.heroDesc}
               </p>
@@ -513,12 +549,14 @@ export default function Page() {
             {t.block6H2}
           </h2>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16, textAlign: 'left' as const, marginBottom: 28 }}>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, textAlign: 'left' as const, marginBottom: 28 }}>
             {t.categories.map((c: { icon: string; title: string; desc: string }, i: number) => (
-              <div key={i} style={{ background: '#F0F7F8', borderRadius: 16, padding: 20, border: '1px solid rgba(3,131,144,0.10)' }}>
-                <div style={{ fontSize: 24, marginBottom: 10 }}>{c.icon}</div>
-                <div style={{ fontSize: 16, fontWeight: 700, color: '#1A1A1A', marginBottom: 6 }}>{c.title}</div>
-                <div style={{ fontSize: 15, color: '#595959', lineHeight: 1.5 }}>{c.desc}</div>
+              <div key={i} style={{ background: '#F0F7F8', borderRadius: 12, padding: 14, border: '1px solid rgba(3,131,144,0.10)', display: 'flex', gap: 10, alignItems: 'flex-start' }}>
+                <span style={{ fontSize: 18, flexShrink: 0 }}>{c.icon}</span>
+                <div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#1A1A1A', marginBottom: 2, lineHeight: 1.3 }}>{c.title}</div>
+                  <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.4 }}>{c.desc}</div>
+                </div>
               </div>
             ))}
           </div>
@@ -552,28 +590,24 @@ export default function Page() {
       </section>
 
       {/* ── 8. CTA-ПОВТОР ── */}
-      <section style={{ background: 'linear-gradient(135deg, #038390 0%, #026B76 100%)', padding: '48px clamp(20px,6vw,80px)' }}>
-        <div style={{ maxWidth: 1000, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 32, flexWrap: 'wrap' as const }}>
-          <div>
-            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(24px,2.8vw,34px)', fontWeight: 700, color: '#fff', marginBottom: 10, lineHeight: 1.25 }}>
-              {t.block8H2}
-            </h2>
-            <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.85)', lineHeight: 1.5 }}>
-              {t.block8Sub}
-            </p>
-          </div>
-          <div style={{ textAlign: 'center' as const, flexShrink: 0 }}>
-            <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 28, fontWeight: 700, color: '#fff', marginBottom: 2 }}>€{t.price} <span style={{ fontSize: 15, fontWeight: 400 }}>{t.period}</span></div>
-            <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.75)', marginBottom: 14 }}>{t.priceNote}</div>
-            <a href={CABINET_CTA} style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', background: '#fff', color: '#038390',
-              borderRadius: 12, fontSize: 15, fontWeight: 700, textDecoration: 'none',
-            }}>
-              {t.ctaMain}
-            </a>
-            <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.75)', marginTop: 10, maxWidth: 260 }}>
-              {t.underCta}
-            </div>
+      <section style={{ background: 'linear-gradient(135deg, #038390 0%, #026B76 100%)', padding: '56px clamp(20px,6vw,80px)' }}>
+        <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' as const }}>
+          <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(24px,2.8vw,34px)', fontWeight: 700, color: '#fff', marginBottom: 10, lineHeight: 1.25 }}>
+            {t.block8H2}
+          </h2>
+          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.85)', lineHeight: 1.5, marginBottom: 24, whiteSpace: 'nowrap' as const }}>
+            {t.block8Sub}
+          </p>
+          <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 28, fontWeight: 700, color: '#fff', marginBottom: 2 }}>€{t.price} <span style={{ fontSize: 15, fontWeight: 400 }}>{t.period}</span></div>
+          <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.75)', marginBottom: 18, whiteSpace: 'nowrap' as const }}>{t.priceNote}</div>
+          <a href={CABINET_CTA} style={{
+            display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', background: '#fff', color: '#038390',
+            borderRadius: 12, fontSize: 15, fontWeight: 700, textDecoration: 'none', marginBottom: 14,
+          }}>
+            {t.ctaMain}
+          </a>
+          <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.75)', whiteSpace: 'nowrap' as const }}>
+            {t.underCta}
           </div>
         </div>
       </section>

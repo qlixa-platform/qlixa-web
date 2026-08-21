@@ -5,24 +5,20 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 type NavLink = { label: string; href: string }
-type NavDropdown = { label: string; items: { label: string; href: string; desc: string }[] }
+type NavDropdown = { label: string; items: { label: string; href: string; desc: string; isSoon?: boolean }[] }
 type NavItem = NavLink | NavDropdown
 
 const HOW_ITEMS_HREFS = [
-  '/platform/overview',
-  '/how-it-works/invoicing',
-  '/how-it-works/expenses',
-  '/how-it-works/reports',
-  '/how-it-works/clients',
-  '/how-it-works/tax-return',
-  '/how-it-works/finanzOnline',
-  '/how-it-works/deadlines',
+  '/for/naymanyy',
+  '/pricing',
+  '/pricing',
 ]
 
 // Переклади навбару — всі 4 мови
 const NAV_TEXT: Record<string, {
   dropdownLabel: string
-  dropdownItems: [string, string][] // [label, desc] пар, порядок відповідає HOW_ITEMS_HREFS
+  dropdownItems: [string, string, boolean?][] // [bold, small, isSoon?] пар, порядок відповідає HOW_ITEMS_HREFS
+  soonLabel: string
   forWhom: string
   articles: string
   tools: string
@@ -41,15 +37,11 @@ const NAV_TEXT: Record<string, {
   UA: {
     dropdownLabel: 'Як працює',
     dropdownItems: [
-      ['Огляд Платформи', 'Що вміє QLIXA'],
-      ['Рахунки-фактури', 'Виставляй рахунки швидко'],
-      ['Витрати', 'Відстежуй всі витрати'],
-      ['Звіти', 'Звітність одним кліком'],
-      ['Клієнти', 'Керуй контактами'],
-      ['Повернення податку', 'Знайди всі свої списання'],
-      ['FinanzOnline', 'Без паніки та складних форм'],
-      ['Дедлайни', 'Жодного пропущеного терміну'],
+      ['Огляд Платформи', 'Тариф Найманий'],
+      ['Огляд Платформи', 'Тариф Самозайнятий', true],
+      ['Огляд Платформи', 'Тариф Бізнес', true],
     ],
+    soonLabel: 'Скоро',
     forWhom: 'Для кого',
     articles: 'Статті',
     tools: 'Інструменти',
@@ -68,15 +60,11 @@ const NAV_TEXT: Record<string, {
   RU: {
     dropdownLabel: 'Как работает',
     dropdownItems: [
-      ['Обзор платформы', 'Что умеет QLIXA'],
-      ['Счета-фактуры', 'Выставляй счета быстро'],
-      ['Расходы', 'Отслеживай все расходы'],
-      ['Отчёты', 'Отчётность в один клик'],
-      ['Клиенты', 'Управляй контактами'],
-      ['Возврат налога', 'Найди все свои списания'],
-      ['FinanzOnline', 'Без паники и сложных форм'],
-      ['Дедлайны', 'Ни одного пропущенного срока'],
+      ['Обзор платформы', 'Тариф Наёмный'],
+      ['Обзор платформы', 'Тариф Самозанятый', true],
+      ['Обзор платформы', 'Тариф Бизнес', true],
     ],
+    soonLabel: 'Скоро',
     forWhom: 'Для кого',
     articles: 'Статьи',
     tools: 'Инструменты',
@@ -95,15 +83,11 @@ const NAV_TEXT: Record<string, {
   EN: {
     dropdownLabel: 'How it works',
     dropdownItems: [
-      ['Platform Overview', 'What QLIXA can do'],
-      ['Invoicing', 'Issue invoices fast'],
-      ['Expenses', 'Track all your expenses'],
-      ['Reports', 'Reporting in one click'],
-      ['Clients', 'Manage your contacts'],
-      ['Tax Refund', 'Find all your deductions'],
-      ['FinanzOnline', 'No panic, no complex forms'],
-      ['Deadlines', 'Never miss a deadline'],
+      ['Platform Overview', 'Employee plan'],
+      ['Platform Overview', 'Self-employed plan', true],
+      ['Platform Overview', 'Business plan', true],
     ],
+    soonLabel: 'Coming soon',
     forWhom: 'For Whom',
     articles: 'Articles',
     tools: 'Tools',
@@ -122,15 +106,11 @@ const NAV_TEXT: Record<string, {
   DE: {
     dropdownLabel: 'So funktioniert’s',
     dropdownItems: [
-      ['Plattform-Überblick', 'Was QLIXA kann'],
-      ['Rechnungen', 'Rechnungen schnell erstellen'],
-      ['Ausgaben', 'Alle Ausgaben im Blick'],
-      ['Berichte', 'Berichte mit einem Klick'],
-      ['Kunden', 'Kontakte verwalten'],
-      ['Steuerrückerstattung', 'Finde alle deine Abzüge'],
-      ['FinanzOnline', 'Keine Panik, keine komplizierten Formulare'],
-      ['Fristen', 'Keine Frist mehr verpassen'],
+      ['Plattform-Überblick', 'Tarif Angestellte'],
+      ['Plattform-Überblick', 'Tarif Selbstständig', true],
+      ['Plattform-Überblick', 'Tarif Business', true],
     ],
+    soonLabel: 'Demnächst',
     forWhom: 'Für wen',
     articles: 'Artikel',
     tools: 'Tools',
@@ -153,7 +133,7 @@ function getNavItems(lang: string): NavItem[] {
   return [
     {
       label: t.dropdownLabel,
-      items: t.dropdownItems.map(([label, desc], i) => ({ label, desc, href: HOW_ITEMS_HREFS[i] })),
+      items: t.dropdownItems.map(([label, desc, isSoon], i) => ({ label, desc, href: HOW_ITEMS_HREFS[i], isSoon: !!isSoon })),
     },
     { label: t.forWhom, href: '/#для-кого' },
     { label: t.articles, href: '/articles' },
@@ -161,10 +141,11 @@ function getNavItems(lang: string): NavItem[] {
   ]
 }
 
-function Dropdown({ item, isOpen, onToggle }: {
+function Dropdown({ item, isOpen, onToggle, soonLabel }: {
   item: NavDropdown
   isOpen: boolean
   onToggle: () => void
+  soonLabel: string
 }) {
   const ref = useRef<HTMLDivElement>(null)
 
@@ -203,8 +184,8 @@ function Dropdown({ item, isOpen, onToggle }: {
           border: '1px solid var(--line)', boxShadow: 'var(--shadow2)', zIndex: 50,
         }}>
           <div style={{ padding: 8 }}>
-            {item.items.map((sub) => (
-              <Link key={sub.href} href={sub.href} onClick={onToggle} style={{
+            {item.items.map((sub, i) => (
+              <Link key={`${sub.label}-${sub.desc}-${i}`} href={sub.href} onClick={onToggle} style={{
                 display: 'flex', flexDirection: 'column', padding: '10px 12px',
                 borderRadius: 8, textDecoration: 'none',
               }}
@@ -212,7 +193,14 @@ function Dropdown({ item, isOpen, onToggle }: {
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}
               >
                 <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--charcoal)' }}>{sub.label}</span>
-                <span style={{ fontSize: 11, color: 'var(--text3)', marginTop: 2 }}>{sub.desc}</span>
+                <span style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 2 }}>
+                  <span style={{ fontSize: 11, color: 'var(--text3)' }}>{sub.desc}</span>
+                  {sub.isSoon && (
+                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642', padding: '2px 8px', borderRadius: 999 }}>
+                      {soonLabel}
+                    </span>
+                  )}
+                </span>
               </Link>
             ))}
           </div>
@@ -433,7 +421,7 @@ export default function Navbar() {
                     {item.label}
                   </Link>
                 ) : (
-                  <Dropdown key={item.label} item={item}
+                  <Dropdown key={item.label} item={item} soonLabel={t.soonLabel}
                     isOpen={openDropdown === item.label}
                     onToggle={() => toggleDropdown(item.label)}
                   />
