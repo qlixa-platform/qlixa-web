@@ -4,7 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 
-const CABINET_URL = 'https://app.qlixa.eu'
+const CABINET_URL = 'https://cabinet-ten-lac.vercel.app/login'
 
 // Переклади сторінки "Тарифи" — UA / RU / EN / DE
 const PRICING_TEXT: Record<string, any> = {

@@ -4,7 +4,7 @@ import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 
-const CABINET_CTA = 'https://app.qlixa.eu?plan=employee'
+const CABINET_CTA = 'https://cabinet-ten-lac.vercel.app/login?plan=employee'
 
 function CTAButton({ children, big = false }: { children: React.ReactNode; big?: boolean }) {
   return (
