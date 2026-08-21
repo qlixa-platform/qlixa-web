@@ -3,6 +3,7 @@
 import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import NotifyMeButton from '@/components/NotifyMeButton'
 
 const CABINET_URL = 'https://cabinet-ten-lac.vercel.app/login'
 
@@ -407,9 +408,11 @@ export default function PricingPage() {
               </div>
             </div>
 
-            <a href="mailto:info@qlixa.eu?subject=Self-employed%20plan" style={{ ...rowCta, background: '#038390', color: '#fff' }}>
-              {t.selfEmployed.ctaComingSoon}
-            </a>
+            <NotifyMeButton
+              label={t.selfEmployed.ctaComingSoon}
+              source="pricing-self-employed"
+              triggerStyle={{ ...rowCta, width: '100%', boxSizing: 'border-box' as const }}
+            />
 
             <p style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.55 }}>
               {t.selfEmployed.comingSoonText}
@@ -427,9 +430,11 @@ export default function PricingPage() {
             <div style={rowPrice} />
             <div style={rowPeriodNote} />
 
-            <a href="mailto:info@qlixa.eu?subject=Business%20plan" style={{ ...rowCta, background: '#038390', color: '#fff' }}>
-              {t.business.cta}
-            </a>
+            <NotifyMeButton
+              label={t.business.cta}
+              source="pricing-business"
+              triggerStyle={{ ...rowCta, width: '100%', boxSizing: 'border-box' as const }}
+            />
 
             <p style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.55 }}>
               {t.business.comingSoonText}

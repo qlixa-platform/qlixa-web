@@ -3,6 +3,7 @@
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import NotifyMeButton from '@/components/NotifyMeButton'
 
 export default function Page() {
   return (
@@ -39,12 +40,11 @@ export default function Page() {
               ))}
             </div>
 
-            <a href="mailto:info@qlixa.eu?subject=Business%20plan" style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 26px', background: '#038390', color: '#fff',
-              borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none', marginBottom: 24,
-            }}>
-              Дізнатися першими →
-            </a>
+            <NotifyMeButton
+              label="Дізнатися першими →"
+              source="for-biznes-page"
+              triggerStyle={{ marginBottom: 24 }}
+            />
 
             <div>
               <Link href="/" style={{ fontSize: 15, fontWeight: 700, color: '#038390', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>← Повернутись на головну</Link>

@@ -7,6 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import ReviewsSection from '@/components/layout/ReviewsSection'
 import ArticlesSlider from '@/components/layout/ArticlesSlider'
+import NotifyMeButton from '@/components/NotifyMeButton'
 
 const PUBLISHED_META = [
   { href: '/articles/rwr-karte',         cover: '/articles/rwr-karte-cover.jpg',        date: { UA: '2026-07-21',   RU: '2026-07-21',  EN: '2026-07-21',  DE: '2026-07-21' },  readTime: { UA: '~15 хвилин',    RU: '~15 минут',   EN: '~15 min',    DE: '~15 Min.' } },
@@ -1419,9 +1420,20 @@ export default function HomePage() {
                   <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
                     {card.title}
                   </h3>
-                  <a href={card.href} style={{ fontSize: 15, fontWeight: 700, color: '#038390', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
-                    {card.cta} →
-                  </a>
+                  {card.isSoon ? (
+                    <NotifyMeButton
+                      label={`${card.cta} →`}
+                      source={`homepage-demo-${card.title}`}
+                      triggerStyle={{
+                        background: 'transparent', padding: 0, borderRadius: 0,
+                        fontSize: 15, fontWeight: 700, color: '#038390', width: 'fit-content',
+                      }}
+                    />
+                  ) : (
+                    <a href={card.href} style={{ fontSize: 15, fontWeight: 700, color: '#038390', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                      {card.cta} →
+                    </a>
+                  )}
                 </div>
               </div>
             ))}
