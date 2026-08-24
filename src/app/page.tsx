@@ -207,7 +207,7 @@ const HERO_TEXT: Record<string, {
     badge: 'Твій автоматизований бізнес-помічник в Австрії',
     cards: [
       {
-        eyebrow: 'Працюєш за наймом?',
+        eyebrow: 'Найманий працівник?',
         title: 'Розрахує переплачений податок',
         desc: 'Не знаєш, що саме можна списати? QLIXA проводить тебе через персональну анкету і враховує роботу, сім’ю, доходи та інші обставини, які можуть впливати на твоє податкове повернення.',
         checklist: ['Персональна податкова анкета', 'Можливі податкові відрахування', 'Готовий документ для FinanzOnline', 'Проста мова, без бухгалтерських термінів'],
@@ -215,7 +215,7 @@ const HERO_TEXT: Record<string, {
         href: '/for/naymanyy',
       },
       {
-        eyebrow: 'Є бізнес?',
+        eyebrow: 'Бізнес?',
         title: 'Допоможе вести фінанси самостійно',
         desc: 'Втрачаєш час на таблиці замість клієнтів? QLIXA збирає все в одному кабінеті — від клієнтів до звітності — і допомагає бути готовим до звітного періоду.',
         checklist: ['Клієнти та рахунки', 'Доходи та витрати', 'ПДВ та звітність', 'Дедлайни та KPI'],
@@ -231,7 +231,7 @@ const HERO_TEXT: Record<string, {
     badge: 'Your automated business assistant in Austria',
     cards: [
       {
-        eyebrow: 'Work as an employee?',
+        eyebrow: 'Employee?',
         title: 'Calculates your overpaid tax',
         desc: "Not sure what you can deduct? QLIXA walks you through a personal questionnaire and takes into account your job, family, income, and other circumstances that may affect your tax refund.",
         checklist: ['Personal tax questionnaire', 'Possible tax deductions', 'Ready-made document for FinanzOnline', 'Plain language, no accounting jargon'],
@@ -239,7 +239,7 @@ const HERO_TEXT: Record<string, {
         href: '/for/naymanyy',
       },
       {
-        eyebrow: 'Have a business?',
+        eyebrow: 'Business?',
         title: 'Helps you manage finances yourself',
         desc: 'Losing time on spreadsheets instead of clients? QLIXA brings everything together in one dashboard — from clients to reporting — and helps you stay ready for tax season.',
         checklist: ['Clients and invoices', 'Income and expenses', 'VAT and reporting', 'Deadlines and KPIs'],
@@ -255,7 +255,7 @@ const HERO_TEXT: Record<string, {
     badge: 'Твой автоматизированный бизнес-помощник в Австрии',
     cards: [
       {
-        eyebrow: 'Работаешь по найму?',
+        eyebrow: 'Наёмный работник?',
         title: 'Рассчитает переплаченный налог',
         desc: 'Не знаешь, что именно можно списать? QLIXA проводит тебя через персональную анкету и учитывает работу, семью, доходы и другие обстоятельства, которые могут влиять на твой налоговый возврат.',
         checklist: ['Персональная налоговая анкета', 'Возможные налоговые вычеты', 'Готовый документ для FinanzOnline', 'Простой язык, без бухгалтерских терминов'],
@@ -263,7 +263,7 @@ const HERO_TEXT: Record<string, {
         href: '/for/naymanyy',
       },
       {
-        eyebrow: 'Есть бизнес?',
+        eyebrow: 'Бизнес?',
         title: 'Поможет вести финансы самостоятельно',
         desc: 'Теряешь время на таблицы вместо клиентов? QLIXA собирает всё в одном кабинете — от клиентов до отчётности — и помогает быть готовым к отчётному периоду.',
         checklist: ['Клиенты и счета', 'Доходы и расходы', 'НДС и отчётность', 'Дедлайны и KPI'],
@@ -279,7 +279,7 @@ const HERO_TEXT: Record<string, {
     badge: 'Dein automatisierter Geschäftsassistent in Österreich',
     cards: [
       {
-        eyebrow: 'Angestellt?',
+        eyebrow: 'Angestellte:r?',
         title: 'Berechnet deine zu viel gezahlte Steuer',
         desc: 'Weißt du nicht, was du absetzen kannst? QLIXA führt dich durch einen persönlichen Fragebogen und berücksichtigt deinen Job, deine Familie, dein Einkommen und andere Umstände, die deine Steuerrückerstattung beeinflussen können.',
         checklist: ['Persönlicher Steuerfragebogen', 'Mögliche Steuerabsetzungen', 'Fertiges Dokument für FinanzOnline', 'Einfache Sprache, ohne Buchhaltungsjargon'],
@@ -287,7 +287,7 @@ const HERO_TEXT: Record<string, {
         href: '/for/naymanyy',
       },
       {
-        eyebrow: 'Hast du ein Unternehmen?',
+        eyebrow: 'Business?',
         title: 'Hilft dir, deine Finanzen selbst zu verwalten',
         desc: 'Verlierst du Zeit mit Tabellen statt mit Kunden? QLIXA bringt alles in einem Dashboard zusammen — von Kunden bis zur Berichterstattung — und hilft dir, für die Steuerperiode bereit zu sein.',
         checklist: ['Kunden und Rechnungen', 'Einnahmen und Ausgaben', 'USt und Berichte', 'Fristen und KPIs'],
@@ -1074,7 +1074,7 @@ export default function HomePage() {
       {/* ── HERO ── */}
       <section style={{
         backgroundColor: '#FFFFFF',
-        backgroundImage: 'url(/hero/hero-bg-line.png)',
+        backgroundImage: 'url(/hero/hero_mountains.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat' as const,
@@ -1083,50 +1083,63 @@ export default function HomePage() {
 
         <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const }}>
 
+          {/* Headline — centered within Hero, font-size scales DOWN per language so the
+              rendered text always fits within the 1200px section width (matching all
+              other sections on the site). EN is the baseline (43px); every other
+              language is sized relative to how much longer its actual string is. */}
+          <div style={{
+            fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900,
+            fontSize: lang === 'RU' ? 30 : lang === 'DE' ? 30 : lang === 'UA' ? 34 : 43,
+            lineHeight: lang === 'RU' ? '36px' : lang === 'DE' ? '36px' : lang === 'UA' ? '40px' : '50px',
+            color: '#1A1A1A', textAlign: 'center' as const, whiteSpace: 'nowrap' as const,
+            textTransform: 'capitalize' as const,
+            marginTop: 'clamp(30px,9.9vh,89px)', marginBottom: 'clamp(28px,9.2vh,82.9px)',
+          }}>
+            {t.badge}
+          </div>
+
+          {/* Two-column card block — container centered within Hero, text left-aligned inside each column.
+              Each column is a flex column stretched to the grid row's full height (CSS Grid
+              already equalizes both columns' heights); the checklist+button block uses
+              marginTop:'auto' to always sit flush at the bottom, regardless of how many
+              lines the description wraps to in any given language/font — this is robust
+              against translation-length differences without guessing pixel heights. */}
           <div style={{ maxWidth: 1035, marginLeft: 'auto', marginRight: 'auto' }}>
-
-            {/* Row 1 — image + eyebrow heading */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(12px,3vh,28px)', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
+            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(20px,4vw,48px)', fontFamily: 'Arial, sans-serif' }}>
               {t.cards.map((card, ci) => (
-                <div key={ci} style={{ textAlign: 'center' as const }}>
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={ci === 0 ? '/hero/naymanyy-hero.png' : '/hero/frilanser-hero.png'} alt="" style={{ height: 'clamp(50px,9vh,88px)', width: 'auto', objectFit: 'contain' as const, margin: '0 auto 5px' }} />
-                  <div style={{ fontSize: 22, fontWeight: 800, color: '#1A1A1A' }}>
-                    {card.eyebrow}
+                <div key={ci} style={{ textAlign: 'left' as const, display: 'flex', flexDirection: 'column' as const, height: '100%' }}>
+
+                  {/* Icon + short teal label — left-aligned, 15px gap below */}
+                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 'clamp(9px,1.7vh,15px)' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={ci === 0 ? '/hero/hero_employee.png' : '/hero/hero_business.png'} alt="" style={{ height: 'clamp(38px,6.6vh,59px)', width: 'auto', objectFit: 'contain' as const, flexShrink: 0 }} />
+                    <div style={{ fontSize: 22, fontWeight: 800, color: '#038390' }}>
+                      {card.eyebrow}
+                    </div>
                   </div>
-                </div>
-              ))}
-            </div>
 
-            {/* Big badge headline — NORMAL document flow (not absolute), with real margin above and below. Font size is smaller for RU/DE only, since their translations are longer and were overflowing the viewport at the UA/EN size. */}
-            <div style={{
-              fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontWeight: 800,
-              fontSize: lang === 'RU' ? 34 : lang === 'DE' ? 37 : 43,
-              lineHeight: lang === 'RU' ? '40px' : lang === 'DE' ? '43px' : '50px',
-              color: '#1A1A1A', textAlign: 'center' as const, whiteSpace: 'nowrap' as const,
-              textTransform: 'capitalize' as const,
-              marginTop: 'clamp(8px,2vh,21px)', marginBottom: 'clamp(8px,2vh,21px)',
-            }}>
-              {t.badge}
-            </div>
-
-            {/* Row 2 — highlight title + desc + checklist + button */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(12px,3vh,28px)', marginBottom: 'clamp(8px,2vh,20px)', fontFamily: 'Inter, system-ui, -apple-system, sans-serif' }}>
-              {t.cards.map((card, ci) => (
-                <div key={ci} style={{ textAlign: 'center' as const }}>
-                  <div style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 'clamp(3px,1vh,7px)', minHeight: 'clamp(18px,3vh,23px)' }}>
+                  {/* Subtitle — Arial Black, 11px gap below */}
+                  <div style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 20, fontWeight: 900, color: '#1A1A1A', marginBottom: 'clamp(6px,1.2vh,11px)', minHeight: 'clamp(20px,3.5vh,26px)' }}>
                     {card.title}
                   </div>
-                  <p style={{ fontSize: 15, fontWeight: 500, color: '#404040', lineHeight: 1.5, marginBottom: 'clamp(4px,1vh,11px)', minHeight: 'clamp(50px,10vh,92px)' }}>
+
+                  {/* Description — Arial Bold, 28px gap below. No fixed minHeight —
+                      whatever height the real text wraps to is fine, because the
+                      checklist+button block below is pinned to the bottom via marginTop:auto. */}
+                  <p style={{
+                    fontFamily: 'Arial, sans-serif', fontSize: 15, fontWeight: 700, color: '#404040', lineHeight: 1.4,
+                    marginBottom: 'clamp(16px,3.1vh,28px)',
+                  }}>
                     {card.desc}
                   </p>
 
-                  {/* Cycling checklist — one item visible at a time */}
-                  <div style={{ position: 'relative' as const, height: 'clamp(22px,3.3vh,30px)', marginBottom: 'clamp(6px,1.5vh,14px)', overflow: 'hidden' }}>
+                  {/* Cycling checklist — 40px gap below, pinned to bottom of column */}
+                  <div style={{ position: 'relative' as const, height: 'clamp(22px,3.3vh,30px)', marginBottom: 'clamp(22px,4.4vh,40px)', overflow: 'hidden', marginTop: 'auto' }}>
                     {card.checklist.map((item, ii) => (
                       <div key={ii} style={{
-                        position: 'absolute' as const, left: 0, right: 0, textAlign: 'center' as const,
-                        fontSize: 16, fontWeight: 600, color: '#1A1A1A', lineHeight: 'clamp(22px,3.3vh,30px)',
+                        position: 'absolute' as const, left: 0, right: 0, textAlign: 'left' as const,
+                        fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif',
+                        fontSize: 16, fontWeight: 700, color: '#1A1A1A', lineHeight: 'clamp(22px,3.3vh,30px)',
                         opacity: 0,
                         animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
                         animationDelay: `${-ii * 2.2}s`,
@@ -1136,11 +1149,13 @@ export default function HomePage() {
                     ))}
                   </div>
 
-                  <div style={{ display: 'inline-block', position: card.isSoon ? 'relative' as const : undefined }}>
+                  {/* Button — Iryna's graphic (533.7×50.2px aspect ratio ≈ 10.63:1), text overlaid */}
+                  <div style={{ position: 'relative' as const, width: 'min(100%, 360px)' }}>
                     <Link href={card.href} style={{
-                      display: 'inline-flex', alignItems: 'center', gap: 9, justifyContent: 'center' as const,
-                      padding: '12px 24px', background: '#038390', color: '#fff',
-                      borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
+                      width: '100%', aspectRatio: '533.7 / 50.2',
+                      backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
+                      fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 15, fontWeight: 900, color: '#fff', textDecoration: 'none',
                     }}>
                       {card.cta}
                     </Link>
@@ -1157,11 +1172,10 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-
           </div>
 
-          {/* Trust line */}
-          <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 15, fontWeight: 500, color: '#404040' }}>
+          {/* Trust line — centered within Hero */}
+          <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 15, fontWeight: 500, color: '#404040', textAlign: 'center' as const, marginTop: 'clamp(20px,5.5vh,55px)' }}>
             {t.trust}
           </p>
 

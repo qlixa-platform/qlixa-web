@@ -48,13 +48,14 @@ const PRICING_TEXT: Record<string, any> = {
       currency: '€',
       monthlyPrice: '9.90',
       monthlyPeriod: '/ місяць',
-      annualPrice: '89',
+      annualPrice: '79.90',
       annualPeriod: '/ рік',
       annualBadge: 'Вигідніше',
       toggleMonthly: 'Місячно',
       toggleAnnual: 'Річно',
       periodNote: 'Оплата за обраний період',
-      comingSoonText: 'Команда розробляє зручні інструменти для ведення бізнесу: облік доходів і витрат, клієнти та рахунки, KPI та звітність.',
+      comingSoonDesc: 'Команда QLIXA вже працює над зручним кабінетом для ведення малого бізнесу в Австрії — щоб все, що потрібно для щоденної роботи й звітності, було в одному місці.',
+      comingSoonChecklist: ['Клієнти та рахунки', 'Склад і товари', 'Доходи та витрати', 'ПДВ та звітність', 'Дедлайни та KPI', 'Дані для FinanzOnline'],
       ctaComingSoon: 'Дізнатися першими',
     },
 
@@ -106,13 +107,14 @@ const PRICING_TEXT: Record<string, any> = {
       currency: '€',
       monthlyPrice: '9.90',
       monthlyPeriod: '/ месяц',
-      annualPrice: '89',
+      annualPrice: '79.90',
       annualPeriod: '/ год',
       annualBadge: 'Выгоднее',
       toggleMonthly: 'Помесячно',
       toggleAnnual: 'Ежегодно',
       periodNote: 'Оплата за выбранный период',
-      comingSoonText: 'Команда разрабатывает удобные инструменты для ведения бизнеса: учёт доходов и расходов, клиенты и счета, KPI и отчётность.',
+      comingSoonDesc: 'Команда QLIXA уже работает над удобным кабинетом для ведения малого бизнеса в Австрии — чтобы всё необходимое для ежедневной работы и отчётности было в одном месте.',
+      comingSoonChecklist: ['Клиенты и счета', 'Склад и товары', 'Доходы и расходы', 'НДС и отчётность', 'Дедлайны и KPI', 'Данные для FinanzOnline'],
       ctaComingSoon: 'Узнать первыми',
     },
 
@@ -164,13 +166,14 @@ const PRICING_TEXT: Record<string, any> = {
       currency: '€',
       monthlyPrice: '9.90',
       monthlyPeriod: '/ month',
-      annualPrice: '89',
+      annualPrice: '79.90',
       annualPeriod: '/ year',
       annualBadge: 'Better value',
       toggleMonthly: 'Monthly',
       toggleAnnual: 'Annual',
       periodNote: 'Payment for the chosen period',
-      comingSoonText: 'Our team is building convenient tools for running your business: income and expense tracking, clients and invoices, KPIs and reporting.',
+      comingSoonDesc: 'The QLIXA team is already working on a convenient dashboard for running a small business in Austria — so everything you need for daily work and reporting is in one place.',
+      comingSoonChecklist: ['Clients and invoices', 'Inventory and stock', 'Income and expenses', 'VAT and reporting', 'Deadlines and KPIs', 'Data for FinanzOnline'],
       ctaComingSoon: 'Be the first to know',
     },
 
@@ -222,13 +225,14 @@ const PRICING_TEXT: Record<string, any> = {
       currency: '€',
       monthlyPrice: '9.90',
       monthlyPeriod: '/ Monat',
-      annualPrice: '89',
+      annualPrice: '79.90',
       annualPeriod: '/ Jahr',
       annualBadge: 'Günstiger',
       toggleMonthly: 'Monatlich',
       toggleAnnual: 'Jährlich',
       periodNote: 'Zahlung für den gewählten Zeitraum',
-      comingSoonText: 'Unser Team entwickelt praktische Tools für die Unternehmensführung: Einnahmen- und Ausgabenverfolgung, Kunden und Rechnungen, KPIs und Berichte.',
+      comingSoonDesc: 'Das QLIXA-Team arbeitet bereits an einem praktischen Kabinett für die Führung eines kleinen Unternehmens in Österreich — damit alles, was du für die tägliche Arbeit und die Berichterstattung brauchst, an einem Ort ist.',
+      comingSoonChecklist: ['Kunden und Rechnungen', 'Lager und Waren', 'Einnahmen und Ausgaben', 'USt und Berichte', 'Fristen und KPIs', 'Daten für FinanzOnline'],
       ctaComingSoon: 'Als Erste:r erfahren',
     },
 
@@ -240,6 +244,21 @@ const PRICING_TEXT: Record<string, any> = {
       cta: 'Als Erste:r erfahren',
     },
   },
+}
+
+// Динамічний розрахунок ПДВ 20% — рахується з реальної ціни, ніколи не хардкодиться,
+// щоб числа завжди збігались, навіть якщо ціна колись зміниться.
+function vatLine(priceStr: string, lang: string): string {
+  const price = parseFloat(priceStr)
+  const vat = price * 0.2
+  const total = price * 1.2
+  const fmt = (n: number) => n.toFixed(2)
+  switch (lang) {
+    case 'RU': return `+ НДС 20% (€${fmt(vat)}) = €${fmt(total)} Итого с НДС`
+    case 'EN': return `+ VAT 20% (€${fmt(vat)}) = €${fmt(total)} total incl. VAT`
+    case 'DE': return `+ USt 20% (€${fmt(vat)}) = €${fmt(total)} gesamt inkl. USt`
+    default: return `+ ПДВ 20% (€${fmt(vat)}) = €${fmt(total)} Разом з ПДВ`
+  }
 }
 
 export default function PricingPage() {
@@ -294,6 +313,7 @@ export default function PricingPage() {
               <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 34, fontWeight: 700, color: '#1A1A1A' }}>{t.employee.currency}{t.employee.price}</span>
               <span style={{ fontSize: 15, color: '#595959', marginLeft: 6 }}>{t.employee.period}</span>
             </div>
+            <p style={{ fontSize: 12, color: '#9D9D9D', marginBottom: 4 }}>{vatLine(t.employee.price, lang)}</p>
             <p style={rowPeriodNote}>{t.employee.periodNote}</p>
 
             <a href={`${CABINET_URL}?plan=employee`} style={{ ...rowCta, background: '#038390', color: '#fff' }}>
@@ -383,6 +403,9 @@ export default function PricingPage() {
                 {billing === 'monthly' ? t.selfEmployed.monthlyPeriod : t.selfEmployed.annualPeriod}
               </span>
             </div>
+            <p style={{ fontSize: 12, color: '#9D9D9D', marginBottom: 4 }}>
+              {vatLine(billing === 'monthly' ? t.selfEmployed.monthlyPrice : t.selfEmployed.annualPrice, lang)}
+            </p>
             <div style={rowPeriodNote}>
               <div style={{ display: 'inline-flex', background: '#fff', borderRadius: 999, padding: 3, border: '1px solid #E6F4F5' }}>
                 <button onClick={() => setBilling('monthly')} style={{
@@ -414,9 +437,17 @@ export default function PricingPage() {
               triggerStyle={{ ...rowCta, width: '100%', boxSizing: 'border-box' as const }}
             />
 
-            <p style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.55 }}>
-              {t.selfEmployed.comingSoonText}
+            <p style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.55, marginBottom: 14 }}>
+              {t.selfEmployed.comingSoonDesc}
             </p>
+            <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
+              {t.selfEmployed.comingSoonChecklist.map((item: string, i: number) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                  <span style={{ color: '#038390', fontWeight: 700, fontSize: 15, flexShrink: 0, marginTop: 1 }}>✓</span>
+                  <span style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.4 }}>{item}</span>
+                </div>
+              ))}
+            </div>
           </div>
 
           {/* Card 3 — Business (Coming soon, no price) — mirrors Employee's row structure with empty spacers where price/period would be */}

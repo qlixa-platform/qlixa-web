@@ -10,7 +10,7 @@ type NavItem = NavLink | NavDropdown
 
 const HOW_ITEMS_HREFS = [
   '/for/naymanyy',
-  '/pricing',
+  '/for/biznes',
   '/pricing',
 ]
 
