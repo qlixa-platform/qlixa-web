@@ -256,9 +256,9 @@ const HERO_TEXT: Record<string, {
     badge: 'Твой автоматизированный бизнес-помощник в Австрии',
     cards: [
       {
-        eyebrow: 'Наёмный работник?',
+        eyebrow: 'Наёмный?',
         title: 'Рассчитает переплаченный налог',
-        desc: 'Не знаешь, что именно можно списать? QLIXA проводит тебя через персональную анкету и учитывает работу, семью, доходы и другие обстоятельства, которые могут влиять на твой налоговый возврат.',
+        desc: 'Личная анкета · Работа, семья, доходы · Точные вычеты',
         checklist: ['Персональная налоговая анкета', 'Возможные налоговые вычеты', 'Готовый документ для FinanzOnline', 'Простой язык, без бухгалтерских терминов'],
         cta: 'Рассчитать мой возврат →',
         href: '/for/naymanyy',
@@ -266,7 +266,7 @@ const HERO_TEXT: Record<string, {
       {
         eyebrow: 'Бизнес?',
         title: 'Поможет вести финансы самостоятельно',
-        desc: 'Теряешь время на таблицы вместо клиентов? QLIXA собирает всё в одном кабинете — от клиентов до отчётности — и помогает быть готовым к отчётному периоду.',
+        desc: 'Всё в одном кабинете · Клиенты и отчётность · Всегда готовы',
         checklist: ['Клиенты и счета', 'Доходы и расходы', 'НДС и отчётность', 'Дедлайны и KPI'],
         cta: 'Посмотреть кабинет →',
         href: '/for/biznes',
@@ -1091,7 +1091,7 @@ export default function HomePage() {
 
         <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const }}>
 
-          {lang === 'EN' ? (
+          {(lang === 'EN' || lang === 'RU') ? (
             <div style={{ maxWidth: 1035, marginLeft: 'auto', marginRight: 'auto' }}>
 
               {/* Row 1 — icon + short teal label, same grid as Row 2 so left edges match */}
@@ -1100,7 +1100,7 @@ export default function HomePage() {
                   <div key={ci} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' as const, gap: 'clamp(4px,0.8vw,6px)' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img src={ci === 0 ? '/hero/hero_employee.png' : '/hero/hero_business.png'} alt="" style={{ height: 'clamp(28px,4.5vw,50px)', width: 'auto', objectFit: 'contain' as const, flexShrink: 0 }} />
-                    <div style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 'clamp(22px,3.8vw,42px)', fontWeight: 800, color: '#038390', lineHeight: 1 }}>
+                    <div style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 'clamp(22px,3.8vw,42px)', fontWeight: 800, color: '#038390', lineHeight: 1, whiteSpace: 'nowrap' as const }}>
                       {card.eyebrow}
                     </div>
                   </div>
@@ -1111,7 +1111,7 @@ export default function HomePage() {
                   the site: clamp(min, vw, max), centered, max-width capped at 1200px
                   (matching all other sections), text wraps naturally if needed instead
                   of being forced onto one line. */}
-              <div style={{ marginTop: 'clamp(20px,4.5vw,62px)', marginBottom: 'clamp(16px,3.3vw,44px)' }}>
+              <div style={{ marginTop: 'clamp(20px,4.5vw,62px)', marginBottom: 'clamp(16px,3.3vw,44px)', height: 'clamp(28px,4vw,50px)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
                 <FitHeadline
                   text={t.badge}
                   startSize={43}
@@ -1126,7 +1126,7 @@ export default function HomePage() {
                 {t.cards.map((card, ci) => (
                   <div key={ci} style={{ textAlign: 'left' as const, display: 'flex', flexDirection: 'column' as const }}>
 
-                    <div style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 'clamp(14px,1.6vw,16px)', fontWeight: 900, color: '#1A1A1A', marginBottom: 'clamp(6px,0.8vw,10px)' }}>
+                    <div style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 'clamp(14px,1.6vw,16px)', fontWeight: 900, color: '#1A1A1A', marginBottom: 'clamp(6px,0.8vw,10px)', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' as const }}>
                       {card.title}
                     </div>
 
