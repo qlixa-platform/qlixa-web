@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
+import FitHeadline from '@/components/FitHeadline'
 import Image from 'next/image'
 import ReviewsSection from '@/components/layout/ReviewsSection'
 import ArticlesSlider from '@/components/layout/ArticlesSlider'
@@ -233,7 +234,7 @@ const HERO_TEXT: Record<string, {
       {
         eyebrow: 'Employee?',
         title: 'Calculates your overpaid tax',
-        desc: "Not sure what you can deduct? QLIXA walks you through a personal questionnaire and takes into account your job, family, income, and other circumstances that may affect your tax refund.",
+        desc: 'Personal questionnaire · Job, family & income · Accurate deductions',
         checklist: ['Personal tax questionnaire', 'Possible tax deductions', 'Ready-made document for FinanzOnline', 'Plain language, no accounting jargon'],
         cta: 'Calculate my refund →',
         href: '/for/naymanyy',
@@ -241,7 +242,7 @@ const HERO_TEXT: Record<string, {
       {
         eyebrow: 'Business?',
         title: 'Helps you manage finances yourself',
-        desc: 'Losing time on spreadsheets instead of clients? QLIXA brings everything together in one dashboard — from clients to reporting — and helps you stay ready for tax season.',
+        desc: 'All-in-one dashboard · Clients & reporting · Always tax-ready',
         checklist: ['Clients and invoices', 'Income and expenses', 'VAT and reporting', 'Deadlines and KPIs'],
         cta: 'View dashboard →',
         href: '/for/biznes',
@@ -1072,6 +1073,13 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
+      {/* Rebuilt using the SAME vw-based clamp() pattern already used site-wide
+          (e.g. "Що таке QLIXA" heading below uses clamp(30px,3.4vw,46px)) instead
+          of the earlier px+vh mix — this scales proportionally with viewport WIDTH,
+          so it looks visually consistent across different monitor sizes, and text
+          is allowed to wrap naturally instead of being forced onto one line via
+          whiteSpace:nowrap. This is "Option A" from the 3 options discussed with
+          Iryna: lowest risk, matches the rest of the site, no JS needed. */}
       <section style={{
         backgroundColor: '#FFFFFF',
         backgroundImage: 'url(/hero/hero_mountains.png)',
@@ -1083,28 +1091,121 @@ export default function HomePage() {
 
         <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const }}>
 
-          {/* Headline — centered within Hero, font-size scales DOWN per language so the
-              rendered text always fits within the 1200px section width (matching all
-              other sections on the site). EN is the baseline (43px); every other
-              language is sized relative to how much longer its actual string is. */}
-          <div style={{
-            fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900,
-            fontSize: lang === 'RU' ? 30 : lang === 'DE' ? 30 : lang === 'UA' ? 34 : 43,
-            lineHeight: lang === 'RU' ? '36px' : lang === 'DE' ? '36px' : lang === 'UA' ? '40px' : '50px',
-            color: '#1A1A1A', textAlign: 'center' as const, whiteSpace: 'nowrap' as const,
-            textTransform: 'capitalize' as const,
-            marginTop: 'clamp(30px,9.9vh,89px)', marginBottom: 'clamp(28px,9.2vh,82.9px)',
-          }}>
-            {t.badge}
-          </div>
+          {lang === 'EN' ? (
+            <div style={{ maxWidth: 1035, marginLeft: 'auto', marginRight: 'auto' }}>
 
-          {/* Two-column card block — container centered within Hero, text left-aligned inside each column.
-              Each column is a flex column stretched to the grid row's full height (CSS Grid
-              already equalizes both columns' heights); the checklist+button block uses
-              marginTop:'auto' to always sit flush at the bottom, regardless of how many
-              lines the description wraps to in any given language/font — this is robust
-              against translation-length differences without guessing pixel heights. */}
+              {/* Row 1 — icon + short teal label, same grid as Row 2 so left edges match */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(20px,4vw,48px)', fontFamily: 'Arial, sans-serif', paddingTop: 'clamp(12px,4vw,50px)' }}>
+                {t.cards.map((card, ci) => (
+                  <div key={ci} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' as const, gap: 'clamp(4px,0.8vw,6px)' }}>
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img src={ci === 0 ? '/hero/hero_employee.png' : '/hero/hero_business.png'} alt="" style={{ height: 'clamp(28px,4.5vw,50px)', width: 'auto', objectFit: 'contain' as const, flexShrink: 0 }} />
+                    <div style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 'clamp(22px,3.8vw,42px)', fontWeight: 800, color: '#038390', lineHeight: 1 }}>
+                      {card.eyebrow}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Headline — same pattern as the "Що таке QLIXA" heading elsewhere on
+                  the site: clamp(min, vw, max), centered, max-width capped at 1200px
+                  (matching all other sections), text wraps naturally if needed instead
+                  of being forced onto one line. */}
+              <div style={{ marginTop: 'clamp(20px,4.5vw,62px)', marginBottom: 'clamp(16px,3.3vw,44px)' }}>
+                <FitHeadline
+                  text={t.badge}
+                  startSize={43}
+                  minSize={20}
+                  maxWidth={1200}
+                  style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, color: '#1A1A1A', textTransform: 'capitalize', lineHeight: 1.15 }}
+                />
+              </div>
+
+              {/* Row 2 — subtitle + one-line thesis desc + checklist + button */}
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(20px,4vw,48px)', fontFamily: 'Arial, sans-serif' }}>
+                {t.cards.map((card, ci) => (
+                  <div key={ci} style={{ textAlign: 'left' as const, display: 'flex', flexDirection: 'column' as const }}>
+
+                    <div style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 'clamp(14px,1.6vw,16px)', fontWeight: 900, color: '#1A1A1A', marginBottom: 'clamp(6px,0.8vw,10px)' }}>
+                      {card.title}
+                    </div>
+
+                    {/* Description — short theses on ONE line, dot-separated */}
+                    <p style={{
+                      fontFamily: 'Arial, sans-serif', fontSize: 'clamp(12px,1.1vw,14px)', fontWeight: 700, color: '#404040',
+                      whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' as const,
+                      marginBottom: 'clamp(12px,2vw,23px)',
+                    }}>
+                      {card.desc}
+                    </p>
+
+                    <div style={{ position: 'relative' as const, height: 'clamp(15px,1.6vw,21px)', marginBottom: 'clamp(16px,3vw,34px)', overflow: 'hidden' }}>
+                      {card.checklist.map((item, ii) => (
+                        <div key={ii} style={{
+                          position: 'absolute' as const, left: 0, right: 0, textAlign: 'left' as const,
+                          fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif',
+                          fontSize: 'clamp(13px,1.4vw,15px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 'clamp(15px,1.6vw,21px)',
+                          opacity: 0,
+                          animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
+                          animationDelay: `${-ii * 2.2}s`,
+                        }}>
+                          ✓ {item}
+                        </div>
+                      ))}
+                    </div>
+
+                    <div style={{ position: 'relative' as const, width: 'min(100%, 453px)' }}>
+                      <Link href={card.href} style={{
+                        display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
+                        width: '100%', aspectRatio: '453 / 42',
+                        backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
+                        fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 'clamp(13px,1.4vw,15px)', fontWeight: 900, color: '#fff', textDecoration: 'none',
+                      }}>
+                        {card.cta}
+                      </Link>
+                      {card.isSoon && (
+                        <span style={{
+                          position: 'absolute' as const, top: -10, right: -10,
+                          fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642',
+                          padding: '3px 9px', borderRadius: 999, zIndex: 1, boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
+                        }}>
+                          {t.soonLabel}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+                ))}
+              </div>
+
+              {/* Trust line — same vw scaling, always fits and stays visible */}
+              <p style={{ fontFamily: 'Arial, sans-serif', fontSize: 'clamp(12px,1.2vw,15px)', fontWeight: 400, color: '#404040', textAlign: 'center' as const, marginTop: 'clamp(16px,4vw,60px)' }}>
+                {t.trust}
+              </p>
+            </div>
+          ) : (
           <div style={{ maxWidth: 1035, marginLeft: 'auto', marginRight: 'auto' }}>
+
+            {/* Headline — centered within Hero, font-size scales DOWN per language so the
+                rendered text always fits within the 1200px section width (matching all
+                other sections on the site). EN is the baseline (43px); every other
+                language is sized relative to how much longer its actual string is. */}
+            <div style={{
+              fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900,
+              fontSize: lang === 'RU' ? 30 : lang === 'DE' ? 30 : lang === 'UA' ? 34 : 43,
+              lineHeight: lang === 'RU' ? '36px' : lang === 'DE' ? '36px' : lang === 'UA' ? '40px' : '50px',
+              color: '#1A1A1A', textAlign: 'center' as const, whiteSpace: 'nowrap' as const,
+              textTransform: 'capitalize' as const,
+              marginTop: 'clamp(30px,9.9vh,89px)', marginBottom: 'clamp(28px,9.2vh,82.9px)',
+            }}>
+              {t.badge}
+            </div>
+
+            {/* Two-column card block — container centered within Hero, text left-aligned inside each column.
+                Each column is a flex column stretched to the grid row's full height (CSS Grid
+                already equalizes both columns' heights); the checklist+button block uses
+                marginTop:'auto' to always sit flush at the bottom, regardless of how many
+                lines the description wraps to in any given language/font — this is robust
+                against translation-length differences without guessing pixel heights. */}
             <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(20px,4vw,48px)', fontFamily: 'Arial, sans-serif' }}>
               {t.cards.map((card, ci) => (
                 <div key={ci} style={{ textAlign: 'left' as const, display: 'flex', flexDirection: 'column' as const, height: '100%' }}>
@@ -1172,12 +1273,14 @@ export default function HomePage() {
                 </div>
               ))}
             </div>
-          </div>
 
-          {/* Trust line — centered within Hero */}
-          <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 15, fontWeight: 500, color: '#404040', textAlign: 'center' as const, marginTop: 'clamp(20px,5.5vh,55px)' }}>
-            {t.trust}
-          </p>
+            {/* Trust line — centered within Hero */}
+            <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 15, fontWeight: 500, color: '#404040', textAlign: 'center' as const, marginTop: 'clamp(20px,5.5vh,55px)' }}>
+              {t.trust}
+            </p>
+
+          </div>
+          )}
 
         </div>
       </section>
