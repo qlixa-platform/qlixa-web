@@ -209,17 +209,17 @@ const HERO_TEXT: Record<string, {
     cards: [
       {
         eyebrow: 'Найманий?',
-        title: 'Розрахує переплачений податок',
-        desc: 'Особиста анкета · Робота, сім’я, доходи · Точні відрахування',
-        checklist: ['Персональна податкова анкета', 'Можливі податкові відрахування', 'Готовий документ для FinanzOnline', 'Проста мова, без бухгалтерських термінів'],
-        cta: 'Розрахувати моє повернення →',
+        title: 'Допоможе повернути переплачений податок',
+        desc: 'Анкета QLIXA врахує роботу, сім’ю, доходи, списання',
+        checklist: ['Ти відповідаєш на прості запитання', 'Анкета підлаштовується під твою ситуацію', 'QLIXA розраховує можливе повернення', 'Ти отримуєш готовий документ для FinanzOnline'],
+        cta: 'Перевірити моє податкове повернення →',
         href: '/for/naymanyy',
       },
       {
         eyebrow: 'Бізнес?',
         title: 'Допоможе вести фінанси самостійно',
-        desc: 'Все в одному кабінеті · Клієнти та звітність · Завжди готові',
-        checklist: ['Клієнти та рахунки', 'Доходи та витрати', 'ПДВ та звітність', 'Дедлайни та KPI'],
+        desc: 'З кабінетом QLIXA — просто вести бізнес та бути готовим до звітності',
+        checklist: ['Додаєш клієнтів, доходи, витрати, склад…', 'QLIXA автоматично їх структурує', 'Бачиш головні показники та зміни', 'Отримуєш готові звіти'],
         cta: 'Переглянути кабінет →',
         href: '/for/biznes',
         isSoon: true,
@@ -233,17 +233,17 @@ const HERO_TEXT: Record<string, {
     cards: [
       {
         eyebrow: 'Employee?',
-        title: 'Calculates your overpaid tax',
-        desc: 'Personal questionnaire · Job, family & income · Accurate deductions',
-        checklist: ['Personal tax questionnaire', 'Possible tax deductions', 'Ready-made document for FinanzOnline', 'Plain language, no accounting jargon'],
+        title: 'Helps you get back your overpaid tax',
+        desc: 'QLIXA’s questionnaire covers job, family, income, deductions',
+        checklist: ['You answer simple questions', 'The questionnaire adapts to your situation', 'QLIXA calculates your possible refund', 'You get a ready-made document for FinanzOnline'],
         cta: 'Calculate my refund →',
         href: '/for/naymanyy',
       },
       {
         eyebrow: 'Business?',
         title: 'Helps you manage finances yourself',
-        desc: 'All-in-one dashboard · Clients & reporting · Always tax-ready',
-        checklist: ['Clients and invoices', 'Income and expenses', 'VAT and reporting', 'Deadlines and KPIs'],
+        desc: 'With the QLIXA dashboard — simply run your business',
+        checklist: ['You add clients, income, expenses, inventory…', 'QLIXA automatically structures them', 'You see key metrics and changes', 'You get ready-made reports'],
         cta: 'View dashboard →',
         href: '/for/biznes',
         isSoon: true,
@@ -257,17 +257,17 @@ const HERO_TEXT: Record<string, {
     cards: [
       {
         eyebrow: 'Наёмный?',
-        title: 'Рассчитает переплаченный налог',
-        desc: 'Личная анкета · Работа, семья, доходы · Точные вычеты',
-        checklist: ['Персональная налоговая анкета', 'Возможные налоговые вычеты', 'Готовый документ для FinanzOnline', 'Простой язык, без бухгалтерских терминов'],
+        title: 'Поможет вернуть переплаченный налог',
+        desc: 'Анкета QLIXA учтёт работу, семью, доходы, списания',
+        checklist: ['Ты отвечаешь на простые вопросы', 'Анкета подстраивается под твою ситуацию', 'QLIXA рассчитывает возможный возврат', 'Ты получаешь готовый документ для FinanzOnline'],
         cta: 'Рассчитать мой возврат →',
         href: '/for/naymanyy',
       },
       {
         eyebrow: 'Бизнес?',
         title: 'Поможет вести финансы самостоятельно',
-        desc: 'Всё в одном кабинете · Клиенты и отчётность · Всегда готовы',
-        checklist: ['Клиенты и счета', 'Доходы и расходы', 'НДС и отчётность', 'Дедлайны и KPI'],
+        desc: 'С кабинетом QLIXA — просто вести бизнес',
+        checklist: ['Добавляешь клиентов, доходы, расходы, склад…', 'QLIXA автоматически их структурирует', 'Видишь главные показатели и изменения', 'Получаешь готовые отчёты'],
         cta: 'Посмотреть кабинет →',
         href: '/for/biznes',
         isSoon: true,
@@ -281,17 +281,17 @@ const HERO_TEXT: Record<string, {
     cards: [
       {
         eyebrow: 'Angestellte:r?',
-        title: 'Berechnet deine zu viel gezahlte Steuer',
-        desc: 'Persönlicher Fragebogen · Job, Familie & Einkommen · Genaue Abzüge',
-        checklist: ['Persönlicher Steuerfragebogen', 'Mögliche Steuerabsetzungen', 'Fertiges Dokument für FinanzOnline', 'Einfache Sprache, ohne Buchhaltungsjargon'],
+        title: 'Hilft dir, deine zu viel gezahlte Steuer zurückzuholen',
+        desc: 'Der QLIXA-Fragebogen berücksichtigt Job, Familie, Einkommen, Abzüge',
+        checklist: ['Du beantwortest einfache Fragen', 'Der Fragebogen passt sich deiner Situation an', 'QLIXA berechnet deine mögliche Rückerstattung', 'Du erhältst ein fertiges Dokument für FinanzOnline'],
         cta: 'Meine Rückerstattung berechnen →',
         href: '/for/naymanyy',
       },
       {
         eyebrow: 'Business?',
         title: 'Hilft dir, deine Finanzen selbst zu verwalten',
-        desc: 'Alles an einem Ort · Kunden & Berichte · Immer steuerbereit',
-        checklist: ['Kunden und Rechnungen', 'Einnahmen und Ausgaben', 'USt und Berichte', 'Fristen und KPIs'],
+        desc: 'Mit dem QLIXA-Kabinett einfach dein Geschäft führen',
+        checklist: ['Du fügst Kunden, Einnahmen, Ausgaben, Lager hinzu…', 'QLIXA strukturiert sie automatisch', 'Du siehst die wichtigsten Kennzahlen und Veränderungen', 'Du erhältst fertige Berichte'],
         cta: 'Dashboard ansehen →',
         href: '/for/biznes',
         isSoon: true,
@@ -1095,7 +1095,7 @@ export default function HomePage() {
             <div style={{ maxWidth: 1035, marginLeft: 'auto', marginRight: 'auto' }}>
 
               {/* Row 1 — icon + short teal label, same grid as Row 2 so left edges match */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(20px,4vw,48px)', fontFamily: 'Arial, sans-serif', paddingTop: 'clamp(12px,4vw,50px)' }}>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(20px,4vw,48px)', fontFamily: 'Arial, sans-serif', paddingTop: 'clamp(8px,6.4vh,50px)' }}>
                 {t.cards.map((card, ci) => (
                   <div key={ci} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' as const, gap: 'clamp(4px,0.8vw,6px)' }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1111,7 +1111,7 @@ export default function HomePage() {
                   the site: clamp(min, vw, max), centered, max-width capped at 1200px
                   (matching all other sections), text wraps naturally if needed instead
                   of being forced onto one line. */}
-              <div style={{ marginTop: 'clamp(20px,4.5vw,62px)', marginBottom: 'clamp(16px,3.3vw,44px)', height: 'clamp(28px,4vw,50px)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
+              <div style={{ marginTop: 'clamp(12px,7.9vh,62px)', marginBottom: 'clamp(10px,5.6vh,44px)', height: 'clamp(24px,6.4vh,50px)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
                 <FitHeadline
                   text={t.badge}
                   startSize={43}
@@ -1126,25 +1126,35 @@ export default function HomePage() {
                 {t.cards.map((card, ci) => (
                   <div key={ci} style={{ textAlign: 'left' as const, display: 'flex', flexDirection: 'column' as const }}>
 
-                    <div style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 'clamp(14px,1.6vw,16px)', fontWeight: 900, color: '#1A1A1A', marginBottom: 'clamp(6px,0.8vw,10px)', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' as const }}>
-                      {card.title}
+                    <div style={{ marginBottom: 'clamp(4px,1.3vh,10px)' }}>
+                      <FitHeadline
+                        text={card.title}
+                        startSize={16}
+                        minSize={10}
+                        maxWidth={600}
+                        align="left"
+                        style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, color: '#1A1A1A' }}
+                      />
                     </div>
 
-                    {/* Description — short theses on ONE line, dot-separated */}
-                    <p style={{
-                      fontFamily: 'Arial, sans-serif', fontSize: 'clamp(12px,1.1vw,14px)', fontWeight: 700, color: '#404040',
-                      whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' as const,
-                      marginBottom: 'clamp(12px,2vw,23px)',
-                    }}>
-                      {card.desc}
-                    </p>
+                    <div style={{ marginBottom: 'clamp(8px,2.9vh,23px)' }}>
+                      <FitHeadline
+                        text={card.desc}
+                        startSize={14}
+                        minSize={9}
+                        maxWidth={600}
+                        align="left"
+                        style={{ fontFamily: 'Arial, sans-serif', fontWeight: 700, color: '#404040' }}
+                      />
+                    </div>
 
-                    <div style={{ position: 'relative' as const, height: 'clamp(15px,1.6vw,21px)', marginBottom: 'clamp(16px,3vw,34px)', overflow: 'hidden' }}>
+                    <div style={{ position: 'relative' as const, height: 'clamp(14px,2.7vh,21px)', marginBottom: 'clamp(10px,4.3vh,34px)', overflow: 'hidden' }}>
                       {card.checklist.map((item, ii) => (
                         <div key={ii} style={{
                           position: 'absolute' as const, left: 0, right: 0, textAlign: 'left' as const,
                           fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif',
-                          fontSize: 'clamp(13px,1.4vw,15px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 'clamp(15px,1.6vw,21px)',
+                          fontSize: 'clamp(13px,1.4vw,15px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 'clamp(14px,2.7vh,21px)',
+                          whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' as const,
                           opacity: 0,
                           animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
                           animationDelay: `${-ii * 2.2}s`,
@@ -1177,11 +1187,7 @@ export default function HomePage() {
                 ))}
               </div>
 
-              {/* Trust line — same shrink-to-fit algorithm as the main headline:
-                  guaranteed to stay on ONE line, font shrinks in 0.5px steps if needed.
-                  marginBottom adds breathing room so it never sits flush against the
-                  very bottom edge of the Hero section. */}
-              <div style={{ marginTop: 'clamp(16px,4vw,60px)', marginBottom: 'clamp(6px,2.5vw,28px)' }}>
+              <div style={{ marginTop: 'clamp(10px,7.6vh,60px)', marginBottom: 'clamp(4px,3.6vh,28px)' }}>
                 <FitHeadline
                   text={t.trust}
                   startSize={15}

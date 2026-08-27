@@ -6,18 +6,12 @@ type Props = {
   text: string
   startSize: number
   minSize?: number
-  maxWidth: number // px — container the text must fit inside, never wraps
+  maxWidth: number
+  align?: 'center' | 'left'
   style?: React.CSSProperties
 }
 
-/**
- * Renders text that is GUARANTEED to stay on one line (whiteSpace: nowrap).
- * On mount and on every window resize, it measures the text's real rendered
- * width and shrinks the font-size in 0.5px steps until it fits within
- * `maxWidth` (or the available container width, whichever is smaller) —
- * never allowing the line to wrap.
- */
-export default function FitHeadline({ text, startSize, minSize = 16, maxWidth, style }: Props) {
+export default function FitHeadline({ text, startSize, minSize = 16, maxWidth, align = 'center', style }: Props) {
   const containerRef = useRef<HTMLDivElement>(null)
   const textRef = useRef<HTMLSpanElement>(null)
   const [fontSize, setFontSize] = useState(startSize)
@@ -41,7 +35,7 @@ export default function FitHeadline({ text, startSize, minSize = 16, maxWidth, s
   }, [text, startSize, minSize])
 
   return (
-    <div ref={containerRef} style={{ width: '100%', maxWidth, marginLeft: 'auto', marginRight: 'auto', textAlign: 'center' as const, overflow: 'hidden' }}>
+    <div ref={containerRef} style={{ width: '100%', maxWidth: align === 'center' ? maxWidth : undefined, marginLeft: align === 'center' ? 'auto' : undefined, marginRight: align === 'center' ? 'auto' : undefined, textAlign: align, overflow: 'hidden' }}>
       <span ref={textRef} style={{ whiteSpace: 'nowrap' as const, display: 'inline-block', fontSize, ...style }}>
         {text}
       </span>
