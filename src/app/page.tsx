@@ -208,17 +208,17 @@ const HERO_TEXT: Record<string, {
     badge: 'Твій автоматизований бізнес-помічник в Австрії',
     cards: [
       {
-        eyebrow: 'Найманий працівник?',
+        eyebrow: 'Найманий?',
         title: 'Розрахує переплачений податок',
-        desc: 'Не знаєш, що саме можна списати? QLIXA проводить тебе через персональну анкету і враховує роботу, сім’ю, доходи та інші обставини, які можуть впливати на твоє податкове повернення.',
+        desc: 'Особиста анкета · Робота, сім’я, доходи · Точні відрахування',
         checklist: ['Персональна податкова анкета', 'Можливі податкові відрахування', 'Готовий документ для FinanzOnline', 'Проста мова, без бухгалтерських термінів'],
-        cta: 'Перевірити моє податкове повернення →',
+        cta: 'Розрахувати моє повернення →',
         href: '/for/naymanyy',
       },
       {
         eyebrow: 'Бізнес?',
         title: 'Допоможе вести фінанси самостійно',
-        desc: 'Втрачаєш час на таблиці замість клієнтів? QLIXA збирає все в одному кабінеті — від клієнтів до звітності — і допомагає бути готовим до звітного періоду.',
+        desc: 'Все в одному кабінеті · Клієнти та звітність · Завжди готові',
         checklist: ['Клієнти та рахунки', 'Доходи та витрати', 'ПДВ та звітність', 'Дедлайни та KPI'],
         cta: 'Переглянути кабінет →',
         href: '/for/biznes',
@@ -282,7 +282,7 @@ const HERO_TEXT: Record<string, {
       {
         eyebrow: 'Angestellte:r?',
         title: 'Berechnet deine zu viel gezahlte Steuer',
-        desc: 'Weißt du nicht, was du absetzen kannst? QLIXA führt dich durch einen persönlichen Fragebogen und berücksichtigt deinen Job, deine Familie, dein Einkommen und andere Umstände, die deine Steuerrückerstattung beeinflussen können.',
+        desc: 'Persönlicher Fragebogen · Job, Familie & Einkommen · Genaue Abzüge',
         checklist: ['Persönlicher Steuerfragebogen', 'Mögliche Steuerabsetzungen', 'Fertiges Dokument für FinanzOnline', 'Einfache Sprache, ohne Buchhaltungsjargon'],
         cta: 'Meine Rückerstattung berechnen →',
         href: '/for/naymanyy',
@@ -290,7 +290,7 @@ const HERO_TEXT: Record<string, {
       {
         eyebrow: 'Business?',
         title: 'Hilft dir, deine Finanzen selbst zu verwalten',
-        desc: 'Verlierst du Zeit mit Tabellen statt mit Kunden? QLIXA bringt alles in einem Dashboard zusammen — von Kunden bis zur Berichterstattung — und hilft dir, für die Steuerperiode bereit zu sein.',
+        desc: 'Alles an einem Ort · Kunden & Berichte · Immer steuerbereit',
         checklist: ['Kunden und Rechnungen', 'Einnahmen und Ausgaben', 'USt und Berichte', 'Fristen und KPIs'],
         cta: 'Dashboard ansehen →',
         href: '/for/biznes',
@@ -1086,12 +1086,12 @@ export default function HomePage() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat' as const,
-        padding: 'clamp(8px,2vh,20px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0,
+        padding: 'clamp(8px,2vh,20px) clamp(20px,4vw,60px) clamp(8px,2vh,32px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0,
       }}>
 
         <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const }}>
 
-          {(lang === 'EN' || lang === 'RU') ? (
+          {(lang === 'EN' || lang === 'RU' || lang === 'UA' || lang === 'DE') ? (
             <div style={{ maxWidth: 1035, marginLeft: 'auto', marginRight: 'auto' }}>
 
               {/* Row 1 — icon + short teal label, same grid as Row 2 so left edges match */}
@@ -1177,10 +1177,19 @@ export default function HomePage() {
                 ))}
               </div>
 
-              {/* Trust line — same vw scaling, always fits and stays visible */}
-              <p style={{ fontFamily: 'Arial, sans-serif', fontSize: 'clamp(12px,1.2vw,15px)', fontWeight: 400, color: '#404040', textAlign: 'center' as const, marginTop: 'clamp(16px,4vw,60px)' }}>
-                {t.trust}
-              </p>
+              {/* Trust line — same shrink-to-fit algorithm as the main headline:
+                  guaranteed to stay on ONE line, font shrinks in 0.5px steps if needed.
+                  marginBottom adds breathing room so it never sits flush against the
+                  very bottom edge of the Hero section. */}
+              <div style={{ marginTop: 'clamp(16px,4vw,60px)', marginBottom: 'clamp(6px,2.5vw,28px)' }}>
+                <FitHeadline
+                  text={t.trust}
+                  startSize={15}
+                  minSize={9}
+                  maxWidth={1200}
+                  style={{ fontFamily: 'Arial, sans-serif', fontWeight: 400, color: '#404040' }}
+                />
+              </div>
             </div>
           ) : (
           <div style={{ maxWidth: 1035, marginLeft: 'auto', marginRight: 'auto' }}>
