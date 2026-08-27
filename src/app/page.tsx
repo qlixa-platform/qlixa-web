@@ -242,7 +242,7 @@ const HERO_TEXT: Record<string, {
       {
         eyebrow: 'Business?',
         title: 'Helps you manage finances yourself',
-        desc: 'With the QLIXA dashboard — simply run your business',
+        desc: 'With the QLIXA dashboard — simply run your business and stay ready for reporting',
         checklist: ['You add clients, income, expenses, inventory…', 'QLIXA automatically structures them', 'You see key metrics and changes', 'You get ready-made reports'],
         cta: 'View dashboard →',
         href: '/for/biznes',
@@ -266,7 +266,7 @@ const HERO_TEXT: Record<string, {
       {
         eyebrow: 'Бизнес?',
         title: 'Поможет вести финансы самостоятельно',
-        desc: 'С кабинетом QLIXA — просто вести бизнес',
+        desc: 'С кабинетом QLIXA — просто вести бизнес и быть готовым к отчётности',
         checklist: ['Добавляешь клиентов, доходы, расходы, склад…', 'QLIXA автоматически их структурирует', 'Видишь главные показатели и изменения', 'Получаешь готовые отчёты'],
         cta: 'Посмотреть кабинет →',
         href: '/for/biznes',
@@ -290,7 +290,7 @@ const HERO_TEXT: Record<string, {
       {
         eyebrow: 'Business?',
         title: 'Hilft dir, deine Finanzen selbst zu verwalten',
-        desc: 'Mit dem QLIXA-Kabinett einfach dein Geschäft führen',
+        desc: 'Mit dem QLIXA-Kabinett einfach dein Geschäft führen und bereit für die Berichterstattung sein',
         checklist: ['Du fügst Kunden, Einnahmen, Ausgaben, Lager hinzu…', 'QLIXA strukturiert sie automatisch', 'Du siehst die wichtigsten Kennzahlen und Veränderungen', 'Du erhältst fertige Berichte'],
         cta: 'Dashboard ansehen →',
         href: '/for/biznes',
