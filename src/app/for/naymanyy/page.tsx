@@ -417,19 +417,6 @@ export default function Page() {
             </FitRow>
           </div>
 
-          {/* heroDesc — shrink-to-fit, tries to stay on ONE line since it's a small secondary text */}
-          <div style={{ marginBottom: 6 }}>
-            <FitHeadline
-              text={t.heroDesc}
-              startSize={15}
-              minSize={8}
-              maxWidth={800}
-              style={{ color: '#595959', fontFamily: 'inherit' }}
-            />
-          </div>
-
-          {/* heroNote removed per request */}
-
           {lang === 'UA' && (
             <div id="free-check" style={{ display: 'flex', justifyContent: 'center' as const, scrollMarginTop: 100 }}>
               <FreeQuestionnaire cabinetUrl={CABINET_CTA} />
@@ -437,8 +424,19 @@ export default function Page() {
           )}
         </div>
 
-        {/* heroSubtext — bigger, full site width (1200px, matches every other section) */}
-        <div style={{ maxWidth: 1200, margin: '32px auto 0' }}>
+        {/* heroDesc and heroSubtext — BOTH at full site width (1200px), so heroDesc
+            gets the same room to grow its font-size as heroSubtext, instead of being
+            squeezed down to an illegibly tiny size inside the narrower 800px column. */}
+        <div style={{ maxWidth: 1200, margin: '24px auto 0' }}>
+          <FitHeadline
+            text={t.heroDesc}
+            startSize={20}
+            minSize={13}
+            maxWidth={1200}
+            style={{ color: '#595959', fontFamily: 'inherit' }}
+          />
+        </div>
+        <div style={{ maxWidth: 1200, margin: '16px auto 0' }}>
           <FitHeadline
             text={t.heroSubtext}
             startSize={20}

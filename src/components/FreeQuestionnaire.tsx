@@ -1,6 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import FitHeadline from './FitHeadline'
 
 type Props = {
   cabinetUrl: string
@@ -28,6 +29,15 @@ type Step = 'closed' | 'q1' | 'notEmployee' | 'checklist' | 'result'
 export default function FreeQuestionnaire({ cabinetUrl }: Props) {
   const [step, setStep] = useState<Step>('closed')
   const [checked, setChecked] = useState<Set<string>>(new Set())
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    if (step !== 'closed') {
+      setMounted(false)
+      const id = requestAnimationFrame(() => setMounted(true))
+      return () => cancelAnimationFrame(id)
+    }
+  }, [step])
 
   function toggle(cat: string) {
     setChecked(prev => {
@@ -63,11 +73,16 @@ export default function FreeQuestionnaire({ cabinetUrl }: Props) {
   }
 
   return (
-    <div style={{ background: '#F0F7F8', border: '1px solid rgba(3,131,144,0.15)', borderRadius: 20, padding: 28, marginTop: 18, maxWidth: 640 }}>
+    <div style={{
+      background: '#F0F7F8', border: '1px solid rgba(3,131,144,0.15)', borderRadius: 20, padding: 28,
+      marginTop: 18, maxWidth: 760, maxHeight: 'min(900px, 85vh)', overflowY: 'auto' as const,
+      opacity: mounted ? 1 : 0, transform: mounted ? 'translateX(0)' : 'translateX(24px)',
+      transition: 'opacity 0.4s ease-out, transform 0.4s ease-out',
+    }}>
 
       {step === 'q1' && (
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 10 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 10 }}>
             Крок 1 з 2
           </div>
           <p style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 20 }}>
@@ -117,7 +132,7 @@ export default function FreeQuestionnaire({ cabinetUrl }: Props) {
 
       {step === 'checklist' && (
         <div>
-          <div style={{ fontSize: 12, fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 10 }}>
+          <div style={{ fontSize: 13, fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 10 }}>
             Крок 2 з 2
           </div>
           <p style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 6 }}>
@@ -126,19 +141,20 @@ export default function FreeQuestionnaire({ cabinetUrl }: Props) {
           <p style={{ fontSize: 14, color: '#595959', marginBottom: 18 }}>
             Познач усе, що підходить — деталі уточнювати не потрібно.
           </p>
-          <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10, marginBottom: 24 }}>
+          {/* 3-per-row grid, per Iryna's request — more horizontal than the old 1-per-row stack */}
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, marginBottom: 24 }}>
             {CATEGORIES.map(cat => (
               <label key={cat} style={{
-                display: 'flex', alignItems: 'center', gap: 12, padding: '12px 14px', background: '#fff',
+                display: 'flex', alignItems: 'flex-start', gap: 8, padding: '10px 12px', background: '#fff',
                 border: `1px solid ${checked.has(cat) ? '#038390' : '#E6F4F5'}`, borderRadius: 11, cursor: 'pointer',
               }}>
                 <input
                   type="checkbox"
                   checked={checked.has(cat)}
                   onChange={() => toggle(cat)}
-                  style={{ width: 18, height: 18, accentColor: '#038390', flexShrink: 0 }}
+                  style={{ width: 16, height: 16, accentColor: '#038390', flexShrink: 0, marginTop: 1 }}
                 />
-                <span style={{ fontSize: 15, color: '#1A1A1A' }}>{cat}</span>
+                <span style={{ fontSize: 13, color: '#1A1A1A', lineHeight: 1.35 }}>{cat}</span>
               </label>
             ))}
           </div>
@@ -155,14 +171,21 @@ export default function FreeQuestionnaire({ cabinetUrl }: Props) {
         <div>
           {resultTier === 'green' && (
             <>
-              <p style={{ fontSize: 20, fontWeight: 700, color: '#065F46', marginBottom: 10 }}>Є що перевірити 👀</p>
-              <p style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.6, marginBottom: 16 }}>
-                За вашими відповідями є витрати або обставини, які можуть мати значення для вашого податкового результату.
-              </p>
-              <div style={{ fontSize: 13, fontWeight: 700, color: '#595959', marginBottom: 8 }}>Категорії для перевірки:</div>
-              <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 6, marginBottom: 18 }}>
+              <p style={{ fontSize: 18, fontWeight: 700, color: '#065F46', marginBottom: 10 }}>Є що перевірити 👀</p>
+              <div style={{ marginBottom: 16 }}>
+                <FitHeadline
+                  text="За вашими відповідями є витрати або обставини, які можуть мати значення для вашого податкового результату."
+                  startSize={15}
+                  minSize={10}
+                  maxWidth={700}
+                  align="left"
+                  style={{ color: '#1A1A1A', fontFamily: 'inherit' }}
+                />
+              </div>
+              <div style={{ fontSize: 14, fontWeight: 700, color: '#595959', marginBottom: 8 }}>Категорії для перевірки:</div>
+              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 6, marginBottom: 18 }}>
                 {Array.from(checked).map(cat => (
-                  <div key={cat} style={{ fontSize: 15, color: '#1A1A1A' }}>✓ {cat}</div>
+                  <div key={cat} style={{ fontSize: 13, color: '#1A1A1A', lineHeight: 1.35 }}>✓ {cat}</div>
                 ))}
               </div>
               <p style={{ fontSize: 14, color: '#595959', marginBottom: 20 }}>
@@ -179,14 +202,21 @@ export default function FreeQuestionnaire({ cabinetUrl }: Props) {
 
           {resultTier === 'yellow' && (
             <>
-              <p style={{ fontSize: 20, fontWeight: 700, color: '#92400E', marginBottom: 10 }}>Можливе повернення — але потрібно перевірити детальніше</p>
-              <p style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.6, marginBottom: 8 }}>
-                Ваші відповіді показують кілька факторів, які можуть впливати на податковий результат.
-              </p>
+              <p style={{ fontSize: 18, fontWeight: 700, color: '#92400E', marginBottom: 10 }}>Можливе повернення — але потрібно перевірити детальніше</p>
+              <div style={{ marginBottom: 8 }}>
+                <FitHeadline
+                  text="Ваші відповіді показують кілька факторів, які можуть впливати на податковий результат."
+                  startSize={15}
+                  minSize={10}
+                  maxWidth={700}
+                  align="left"
+                  style={{ color: '#1A1A1A', fontFamily: 'inherit' }}
+                />
+              </div>
               {checkedCount > 0 && (
-                <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 6, marginBottom: 12 }}>
+                <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 6, marginBottom: 12 }}>
                   {Array.from(checked).map(cat => (
-                    <div key={cat} style={{ fontSize: 15, color: '#1A1A1A' }}>✓ {cat}</div>
+                    <div key={cat} style={{ fontSize: 13, color: '#1A1A1A', lineHeight: 1.35 }}>✓ {cat}</div>
                   ))}
                 </div>
               )}
@@ -204,10 +234,17 @@ export default function FreeQuestionnaire({ cabinetUrl }: Props) {
 
           {resultTier === 'gray' && (
             <>
-              <p style={{ fontSize: 20, fontWeight: 700, color: '#404040', marginBottom: 10 }}>Поки що явних додаткових категорій не знайдено</p>
-              <p style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.6, marginBottom: 8 }}>
-                За вашими відповідями ми не бачимо очевидних додаткових категорій для перевірки.
-              </p>
+              <p style={{ fontSize: 18, fontWeight: 700, color: '#404040', marginBottom: 10 }}>Поки що явних додаткових категорій не знайдено</p>
+              <div style={{ marginBottom: 8 }}>
+                <FitHeadline
+                  text="За вашими відповідями ми не бачимо очевидних додаткових категорій для перевірки."
+                  startSize={15}
+                  minSize={10}
+                  maxWidth={700}
+                  align="left"
+                  style={{ color: '#1A1A1A', fontFamily: 'inherit' }}
+                />
+              </div>
               <p style={{ fontSize: 14, color: '#595959', marginBottom: 20 }}>
                 Це не означає, що повернення податку немає. Остаточний результат залежить від вашої повної ситуації та даних, які враховуються Finanzamt.
               </p>
