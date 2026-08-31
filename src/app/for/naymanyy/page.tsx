@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import FreeQuestionnaire from '@/components/FreeQuestionnaire'
+import FitHeadline from '@/components/FitHeadline'
+import FitRow from '@/components/FitRow'
 
 const CABINET_CTA = 'https://cabinet-ten-lac.vercel.app/login?plan=employee'
 
@@ -17,7 +20,7 @@ const T: Record<string, any> = {
       { label: 'Або маєш дохід з кількох джерел', href: '/for/nerukhomist' },
       { label: 'Пенсіонер з доходом', href: '/for/pensioner' },
     ],
-    heroDesc: 'Цей тариф для тебе, якщо ти хочеш самостійно подати декларацію, не знаєш, які витрати можна врахувати, маєш сім\u2019ю, дітей або інші обставини, що можуть впливати на податкове повернення.',
+    heroDesc: 'Цей інструмент для тебе, якщо ти хочеш самостійно подати декларацію, не знаєш, які витрати можна врахувати, маєш сім\u2019ю, дітей або інші обставини, що можуть впливати на податкове повернення.',
     heroNote: 'Не потрібно бути бухгалтером — QLIXA проведе тебе крок за кроком.',
     h1Before: 'Розрахуй своє податкове повернення ',
     h1Emphasis: 'в Австрії',
@@ -378,62 +381,71 @@ export default function Page() {
 
       {/* ── 1+2. HERO ── */}
       <section style={{ background: '#FFFFFF', padding: '56px clamp(20px,6vw,80px) 64px' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto' }}>
-          <div style={{ display: 'grid', gridTemplateColumns: '1.3fr 1fr', gap: 48, alignItems: 'stretch' }}>
+        <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' as const }}>
 
-            <div style={{ display: 'flex', flexDirection: 'column' as const }}>
-              <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(34px,4.6vw,54px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.12, letterSpacing: '-1px', marginBottom: 18 }}>
-                {t.h1Before}<span style={{ color: '#038390' }}>{t.h1Emphasis}</span>
-              </h1>
-              <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 16, width: 'fit-content' }}>
-                {t.badge}
-              </div>
-              <p style={{ fontSize: 16, fontWeight: 700, color: '#1A1A1A', marginBottom: 6 }}>{t.heroQ}</p>
-              <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8, marginBottom: 14 }}>
-                {t.relatedLinks.map((link: { label: string; href: string }, i: number) => (
-                  <Link key={i} href={link.href} style={{
-                    fontSize: 13, fontWeight: 600, color: '#038390', background: 'rgba(3,131,144,0.08)',
-                    border: '1px solid rgba(3,131,144,0.2)', padding: '5px 12px', borderRadius: 999,
-                    textDecoration: 'none',
-                  }}>
-                    {link.label}
-                  </Link>
-                ))}
-              </div>
-              <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.6, marginBottom: 6, maxWidth: 520 }}>
-                {t.heroDesc}
-              </p>
-              <p style={{ fontSize: 15, color: '#595959' }}>
-                {t.heroNote}
-              </p>
-            </div>
-
-            {/* Pricing card */}
-            <div style={{ background: '#F0F7F8', border: '2px solid #038390', borderRadius: 20, padding: 28, display: 'flex', flexDirection: 'column' as const }}>
-              <div style={{ display: 'flex', alignItems: 'baseline', gap: 6, marginBottom: 4 }}>
-                <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 40, fontWeight: 700, color: '#1A1A1A' }}>€{t.price}</span>
-                <span style={{ fontSize: 16, color: '#595959' }}>{t.period}</span>
-              </div>
-              <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.5, marginBottom: 22 }}>
-                {t.priceNote}
-              </p>
-              <CTAButton href={CABINET_CTA} big>{t.ctaMain}</CTAButton>
-              <div style={{ marginTop: 22, display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
-                {t.features.map((f: string, i: number) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-                    <span style={{ color: '#038390', fontWeight: 700, fontSize: 15, flexShrink: 0, marginTop: 1 }}>✓</span>
-                    <span style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.4 }}>{f}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
+          <div style={{ marginBottom: 18 }}>
+            <FitHeadline
+              text={`${t.h1Before}${t.h1Emphasis}`}
+              startSize={48}
+              minSize={26}
+              maxWidth={800}
+              style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 700, color: '#1A1A1A', letterSpacing: '-1px' }}
+            />
           </div>
 
-          {/* Full-width subtext below both columns */}
-          <p style={{ fontSize: 17, color: '#404040', lineHeight: 1.5, marginTop: 32, whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' as const }}>
-            {t.heroSubtext}
+          <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 16 }}>
+            {t.badge}
+          </div>
+
+          {/* heroQ — UPPERCASE per Iryna's request */}
+          <p style={{ fontSize: 16, fontWeight: 700, color: '#1A1A1A', marginBottom: 6, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>
+            {t.heroQ}
           </p>
+
+          {/* Related-link pills — FitRow scales the WHOLE row (never clips, never wraps) */}
+          <div style={{ marginBottom: 14 }}>
+            <FitRow>
+              {t.relatedLinks.map((link: { label: string; href: string }, i: number) => (
+                <Link key={i} href={link.href} style={{
+                  fontSize: 13, fontWeight: 600, color: '#038390', background: 'rgba(3,131,144,0.08)',
+                  border: '1px solid rgba(3,131,144,0.2)', padding: '5px 12px', borderRadius: 999,
+                  textDecoration: 'none', whiteSpace: 'nowrap' as const, flexShrink: 0,
+                }}>
+                  {link.label}
+                </Link>
+              ))}
+            </FitRow>
+          </div>
+
+          {/* heroDesc — shrink-to-fit, tries to stay on ONE line since it's a small secondary text */}
+          <div style={{ marginBottom: 6 }}>
+            <FitHeadline
+              text={t.heroDesc}
+              startSize={15}
+              minSize={8}
+              maxWidth={800}
+              style={{ color: '#595959', fontFamily: 'inherit' }}
+            />
+          </div>
+
+          {/* heroNote removed per request */}
+
+          {lang === 'UA' && (
+            <div id="free-check" style={{ display: 'flex', justifyContent: 'center' as const, scrollMarginTop: 100 }}>
+              <FreeQuestionnaire cabinetUrl={CABINET_CTA} />
+            </div>
+          )}
+        </div>
+
+        {/* heroSubtext — bigger, full site width (1200px, matches every other section) */}
+        <div style={{ maxWidth: 1200, margin: '32px auto 0' }}>
+          <FitHeadline
+            text={t.heroSubtext}
+            startSize={20}
+            minSize={13}
+            maxWidth={1200}
+            style={{ color: '#404040', fontFamily: 'inherit', fontWeight: 500 }}
+          />
         </div>
       </section>
 
@@ -452,11 +464,28 @@ export default function Page() {
           <p style={{ fontSize: 16, fontWeight: 600, color: '#1A1A1A', lineHeight: 1.65, marginBottom: 32 }}>
             {t.block3P2}
           </p>
-          <div style={{ display: 'inline-flex', alignItems: 'flex-start', gap: 12, background: '#FFFFFF', border: '1px solid rgba(3,131,144,0.2)', borderLeft: '4px solid #038390', borderRadius: 12, padding: '18px 24px', textAlign: 'left' as const, maxWidth: 560 }}>
+          <div style={{ display: 'inline-flex', alignItems: 'center', gap: 20, background: '#FFFFFF', border: '1px solid rgba(3,131,144,0.2)', borderLeft: '4px solid #038390', borderRadius: 12, padding: '18px 24px', textAlign: 'left' as const, maxWidth: 720 }}>
             <div>
               <div style={{ fontSize: 17, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.45 }}>{t.quoteQ}</div>
               <div style={{ fontSize: 17, fontWeight: 700, color: '#038390', lineHeight: 1.45 }}>{t.quoteA}</div>
             </div>
+            <svg width="44" height="20" viewBox="0 0 44 20" style={{ flexShrink: 0 }}>
+              <line x1="2" y1="10" x2="34" y2="10" stroke="#1A1A1A" strokeWidth="4" strokeLinecap="round">
+                <animate attributeName="x2" values="20;36;20" dur="1.4s" repeatCount="indefinite" />
+              </line>
+              <polygon points="34,3 44,10 34,17" fill="#1A1A1A">
+                <animate attributeName="points" values="20,3 30,10 20,17;36,3 46,10 36,17;20,3 30,10 20,17" dur="1.4s" repeatCount="indefinite" />
+              </polygon>
+            </svg>
+            {lang === 'UA' && (
+              <a href="#free-check" style={{
+                display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 22px', background: '#038390',
+                color: '#fff', borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none',
+                whiteSpace: 'nowrap' as const, flexShrink: 0,
+              }}>
+                Перевірити безкоштовно →
+              </a>
+            )}
           </div>
         </div>
       </section>
@@ -570,44 +599,62 @@ export default function Page() {
 
       {/* ── 7. ЩО ТИ ОТРИМАЄШ ── */}
       <section style={{ background: '#F0F7F8', padding: '64px clamp(20px,6vw,80px)' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto' }}>
-          <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.4vw,42px)', fontWeight: 700, color: '#1A1A1A', textAlign: 'center' as const, marginBottom: 40 }}>
+        <div style={{ maxWidth: 900, margin: '0 auto' }}>
+          <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.4vw,42px)', fontWeight: 700, color: '#1A1A1A', textAlign: 'center' as const, marginBottom: 32 }}>
             {t.block7H2}
           </h2>
 
-          {t.steps.map((step: { n: string; title: string; desc: string }, i: number) => (
-            <div key={i}>
-              <div style={{ display: 'flex', alignItems: 'flex-start', gap: 20, background: '#FFFFFF', borderRadius: 16, padding: 22, border: '1px solid #E6F4F5' }}>
-                <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 26, fontWeight: 700, color: '#038390', flexShrink: 0, width: 44 }}>{step.n}</div>
+          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 16 }}>
+            {t.steps.map((step: { n: string; title: string; desc: string }, i: number) => (
+              <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 14, background: '#FFFFFF', borderRadius: 14, padding: 18, border: '1px solid #E6F4F5' }}>
+                <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, fontWeight: 700, color: '#038390', flexShrink: 0, width: 30 }}>{step.n}</div>
                 <div>
-                  <div style={{ fontSize: 17, fontWeight: 700, color: '#1A1A1A', marginBottom: 4 }}>{step.title}</div>
-                  <div style={{ fontSize: 15, color: '#595959', lineHeight: 1.5 }}>{step.desc}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#1A1A1A', marginBottom: 3, lineHeight: 1.3 }}>{step.title}</div>
+                  <div style={{ fontSize: 14, color: '#595959', lineHeight: 1.45 }}>{step.desc}</div>
                 </div>
               </div>
-              {i < t.steps.length - 1 && <div style={{ textAlign: 'center' as const, fontSize: 20, color: '#038390', padding: '8px 0' }}>↓</div>}
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </section>
 
       {/* ── 8. CTA-ПОВТОР ── */}
       <section style={{ background: 'linear-gradient(135deg, #038390 0%, #026B76 100%)', padding: '56px clamp(20px,6vw,80px)' }}>
         <div style={{ maxWidth: 700, margin: '0 auto', textAlign: 'center' as const }}>
-          <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(24px,2.8vw,34px)', fontWeight: 700, color: '#fff', marginBottom: 10, lineHeight: 1.25 }}>
-            {t.block8H2}
-          </h2>
-          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.85)', lineHeight: 1.5, marginBottom: 24, whiteSpace: 'nowrap' as const }}>
+          <div style={{ marginBottom: 10 }}>
+            <FitHeadline
+              text={t.block8H2}
+              startSize={34}
+              minSize={18}
+              maxWidth={700}
+              style={{ fontFamily: 'DM Serif Display, serif', fontWeight: 700, color: '#fff', lineHeight: 1.25 }}
+            />
+          </div>
+          <p style={{ fontSize: 15, color: 'rgba(255,255,255,0.85)', lineHeight: 1.5, marginBottom: 28, whiteSpace: 'nowrap' as const }}>
             {t.block8Sub}
           </p>
-          <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 28, fontWeight: 700, color: '#fff', marginBottom: 2 }}>€{t.price} <span style={{ fontSize: 15, fontWeight: 400 }}>{t.period}</span></div>
-          <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.75)', marginBottom: 18, whiteSpace: 'nowrap' as const }}>{t.priceNote}</div>
+
           <a href={CABINET_CTA} style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8, padding: '14px 28px', background: '#fff', color: '#038390',
-            borderRadius: 12, fontSize: 15, fontWeight: 700, textDecoration: 'none', marginBottom: 14,
+            display: 'block', background: '#fff', borderRadius: 18, padding: '24px 28px', textDecoration: 'none',
+            maxWidth: 380, margin: '0 auto',
           }}>
-            {t.ctaMain}
+            <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 10 }}>
+              Тариф «Найманий працівник»
+            </div>
+            <div style={{ display: 'flex', alignItems: 'baseline', justifyContent: 'center' as const, gap: 6, marginBottom: 4 }}>
+              <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 34, fontWeight: 700, color: '#1A1A1A' }}>€{t.price}</span>
+              <span style={{ fontSize: 15, color: '#595959' }}>{t.period}</span>
+            </div>
+            <div style={{ fontSize: 13, color: '#595959', marginBottom: 18 }}>{t.priceNote}</div>
+            <div style={{
+              display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 28px', background: '#038390', color: '#fff',
+              borderRadius: 11, fontSize: 15, fontWeight: 700,
+            }}>
+              {t.ctaMain}
+            </div>
           </a>
-          <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.75)', whiteSpace: 'nowrap' as const }}>
+
+          <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.75)', marginTop: 18, whiteSpace: 'nowrap' as const }}>
             {t.underCta}
           </div>
         </div>
@@ -627,20 +674,6 @@ export default function Page() {
               </div>
             ))}
           </div>
-        </div>
-      </section>
-
-      {/* ── 10. ФІНАЛЬНИЙ CTA ── */}
-      <section style={{ background: '#1A1A1A', padding: '56px clamp(20px,6vw,80px)', textAlign: 'center' as const }}>
-        <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(26px,3vw,38px)', fontWeight: 700, color: '#fff', marginBottom: 12 }}>
-          {t.block10H2}
-        </h2>
-        <p style={{ fontSize: 16, color: 'rgba(255,255,255,0.7)', lineHeight: 1.5, marginBottom: 24 }}>
-          {t.block10P1}<br/>{t.block10P2}
-        </p>
-        <CTAButton href={CABINET_CTA} big>{t.ctaMain}</CTAButton>
-        <div style={{ fontSize: 15, color: 'rgba(255,255,255,0.6)', marginTop: 14 }}>
-          {t.footNote}
         </div>
       </section>
 
