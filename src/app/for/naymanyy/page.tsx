@@ -476,13 +476,19 @@ export default function Page() {
               </polygon>
             </svg>
             {lang === 'UA' && (
-              <a href="#free-check" style={{
-                display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 22px', background: '#038390',
-                color: '#fff', borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none',
-                whiteSpace: 'nowrap' as const, flexShrink: 0,
-              }}>
+              <button
+                onClick={() => {
+                  window.dispatchEvent(new CustomEvent('open-free-questionnaire'))
+                  document.getElementById('free-check')?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+                }}
+                style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 8, padding: '13px 22px', background: '#038390',
+                  color: '#fff', borderRadius: 11, fontSize: 15, fontWeight: 700, border: 'none', cursor: 'pointer',
+                  whiteSpace: 'nowrap' as const, flexShrink: 0,
+                }}
+              >
                 Перевірити безкоштовно →
-              </a>
+              </button>
             )}
           </div>
         </div>

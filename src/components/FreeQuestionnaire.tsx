@@ -39,6 +39,17 @@ export default function FreeQuestionnaire({ cabinetUrl }: Props) {
     }
   }, [step])
 
+  // Lets OTHER buttons on the page (e.g. the one in the "Не потрібно знати..."
+  // section) open this same questionnaire instance, without prop-drilling state
+  // through the whole page.
+  useEffect(() => {
+    function handleOpen() {
+      setStep(prev => (prev === 'closed' ? 'q1' : prev))
+    }
+    window.addEventListener('open-free-questionnaire', handleOpen)
+    return () => window.removeEventListener('open-free-questionnaire', handleOpen)
+  }, [])
+
   function toggle(cat: string) {
     setChecked(prev => {
       const next = new Set(prev)
