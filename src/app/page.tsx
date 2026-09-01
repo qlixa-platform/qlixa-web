@@ -1385,13 +1385,10 @@ export default function HomePage() {
               <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[3][1]}</div>
             </div>
 
-            {/* CENTER — QLIXA logo */}
-            <div style={{ background: '#1A1A1A', borderRadius: 24, padding: '8px 12px', boxShadow: '4px 4px 0 #1A1A1A', border: '1.5px solid #1A1A1A', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 6, position: 'relative', overflow: 'hidden' }}>
-              <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 16 }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/logos/logo-name-slogan_planets_white.svg" alt="QLIXA" style={{ width: '90%', maxWidth: 220, height: 'auto' }} />
-                <div style={{ fontFamily: 'Caveat, cursive', fontSize: 22, color: '#ffffff', letterSpacing: '1px', textAlign: 'center' }}>{t2.centerTagline}</div>
-              </div>
+            {/* CENTER — hero mockup image */}
+            <div style={{ background: '#FFFFFF', borderRadius: 24, padding: '8px 12px', boxShadow: '4px 4px 0 #1A1A1A', border: '1.5px solid #1A1A1A', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 6, position: 'relative', overflow: 'hidden' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/platform/hero-mockup.png" alt="QLIXA" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             </div>
 
             {/* Card 5 */}

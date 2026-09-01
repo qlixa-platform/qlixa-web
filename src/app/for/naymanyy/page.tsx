@@ -380,10 +380,10 @@ export default function Page() {
       <Navbar />
 
       {/* ── 1+2. HERO ── */}
-      <section style={{ background: '#FFFFFF', padding: '56px clamp(20px,6vw,80px) 64px' }}>
-        <div style={{ maxWidth: 800, margin: '0 auto', textAlign: 'center' as const }}>
+      <section style={{ background: '#FFFFFF', padding: '40px clamp(20px,6vw,80px) 48px' }}>
+        <div style={{ maxWidth: 950, margin: '0 auto', textAlign: 'center' as const }}>
 
-          <div style={{ marginBottom: 18 }}>
+          <div style={{ marginBottom: 14 }}>
             <FitHeadline
               text={`${t.h1Before}${t.h1Emphasis}`}
               startSize={48}
@@ -393,21 +393,21 @@ export default function Page() {
             />
           </div>
 
-          <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 16 }}>
+          <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 12, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 14 }}>
             {t.badge}
           </div>
 
           {/* heroQ — UPPERCASE per Iryna's request */}
-          <p style={{ fontSize: 16, fontWeight: 700, color: '#1A1A1A', marginBottom: 6, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>
+          <p style={{ fontSize: 17, fontWeight: 700, color: '#1A1A1A', marginBottom: 6, textTransform: 'uppercase' as const, letterSpacing: '0.5px' }}>
             {t.heroQ}
           </p>
 
           {/* Related-link pills — FitRow scales the WHOLE row (never clips, never wraps) */}
-          <div style={{ marginBottom: 14 }}>
+          <div style={{ marginBottom: 12 }}>
             <FitRow>
               {t.relatedLinks.map((link: { label: string; href: string }, i: number) => (
                 <Link key={i} href={link.href} style={{
-                  fontSize: 13, fontWeight: 600, color: '#038390', background: 'rgba(3,131,144,0.08)',
+                  fontSize: 14, fontWeight: 600, color: '#038390', background: 'rgba(3,131,144,0.08)',
                   border: '1px solid rgba(3,131,144,0.2)', padding: '5px 12px', borderRadius: 999,
                   textDecoration: 'none', whiteSpace: 'nowrap' as const, flexShrink: 0,
                 }}>
@@ -417,6 +417,13 @@ export default function Page() {
             </FitRow>
           </div>
 
+          {/* heroDesc — normal wrapping text, centered, allowed to break onto ~2 lines
+              (constrained maxWidth forces the wrap instead of stretching to 1 very
+              long line); bigger, more readable font per Iryna's request. */}
+          <p style={{ fontSize: 19, lineHeight: 1.5, color: '#595959', maxWidth: 950, marginLeft: 'auto', marginRight: 'auto', marginBottom: 4 }}>
+            {t.heroDesc}
+          </p>
+
           {lang === 'UA' && (
             <div id="free-check" style={{ display: 'flex', justifyContent: 'center' as const, scrollMarginTop: 100 }}>
               <FreeQuestionnaire cabinetUrl={CABINET_CTA} />
@@ -424,18 +431,7 @@ export default function Page() {
           )}
         </div>
 
-        {/* heroDesc and heroSubtext — BOTH at full site width (1200px), so heroDesc
-            gets the same room to grow its font-size as heroSubtext, instead of being
-            squeezed down to an illegibly tiny size inside the narrower 800px column. */}
-        <div style={{ maxWidth: 1200, margin: '24px auto 0' }}>
-          <FitHeadline
-            text={t.heroDesc}
-            startSize={20}
-            minSize={13}
-            maxWidth={1200}
-            style={{ color: '#595959', fontFamily: 'inherit' }}
-          />
-        </div>
+        {/* heroSubtext — full site width (1200px), matches every other section */}
         <div style={{ maxWidth: 1200, margin: '16px auto 0' }}>
           <FitHeadline
             text={t.heroSubtext}
