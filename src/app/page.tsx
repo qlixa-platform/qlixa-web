@@ -1082,220 +1082,26 @@ export default function HomePage() {
           Iryna: lowest risk, matches the rest of the site, no JS needed. */}
       <section style={{
         backgroundColor: '#FFFFFF',
-        backgroundImage: 'url(/hero/hero_mountains.png)',
+        backgroundImage: 'url(/hero/hero_laptop.png)',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat' as const,
-        padding: 'clamp(8px,2vh,20px) clamp(20px,4vw,60px) clamp(8px,2vh,32px)', display: 'flex', alignItems: 'center', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0,
+        padding: 'clamp(8px,2vh,20px) clamp(20px,4vw,60px) 0px', display: 'flex', alignItems: 'stretch', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0,
       }}>
 
-        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const }}>
+        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const, height: '100%', display: 'flex', flexDirection: 'column' as const }}>
 
-          {(lang === 'EN' || lang === 'RU' || lang === 'UA' || lang === 'DE') ? (
-            <div style={{ maxWidth: 1035, marginLeft: 'auto', marginRight: 'auto' }}>
+          <div style={{ flex: 1 }} />
 
-              {/* Row 1 — icon + short teal label, same grid as Row 2 so left edges match */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(20px,4vw,48px)', fontFamily: 'Arial, sans-serif', paddingTop: 'clamp(8px,6.4vh,50px)' }}>
-                {t.cards.map((card, ci) => (
-                  <div key={ci} style={{ display: 'flex', alignItems: 'center', justifyContent: 'flex-start' as const, gap: 'clamp(4px,0.8vw,6px)' }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={ci === 0 ? '/hero/hero_employee.png' : '/hero/hero_business.png'} alt="" style={{ height: 'clamp(28px,4.5vw,50px)', width: 'auto', objectFit: 'contain' as const, flexShrink: 0 }} />
-                    <div style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 'clamp(22px,3.8vw,42px)', fontWeight: 800, color: '#038390', lineHeight: 1, whiteSpace: 'nowrap' as const }}>
-                      {card.eyebrow}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              {/* Headline — same pattern as the "Що таке QLIXA" heading elsewhere on
-                  the site: clamp(min, vw, max), centered, max-width capped at 1200px
-                  (matching all other sections), text wraps naturally if needed instead
-                  of being forced onto one line. */}
-              <div style={{ marginTop: 'clamp(12px,7.9vh,62px)', marginBottom: 'clamp(10px,5.6vh,44px)', height: 'clamp(24px,6.4vh,50px)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
-                <FitHeadline
-                  text={t.badge}
-                  startSize={43}
-                  minSize={20}
-                  maxWidth={1200}
-                  style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, color: '#1A1A1A', textTransform: 'capitalize', lineHeight: 1.15 }}
-                />
-              </div>
-
-              {/* Row 2 — subtitle + one-line thesis desc + checklist + button */}
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(20px,4vw,48px)', fontFamily: 'Arial, sans-serif' }}>
-                {t.cards.map((card, ci) => (
-                  <div key={ci} style={{ textAlign: 'left' as const, display: 'flex', flexDirection: 'column' as const }}>
-
-                    <div style={{ marginBottom: 'clamp(4px,1.3vh,10px)' }}>
-                      <FitHeadline
-                        text={card.title}
-                        startSize={16}
-                        minSize={10}
-                        maxWidth={600}
-                        align="left"
-                        style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, color: '#1A1A1A' }}
-                      />
-                    </div>
-
-                    <div style={{ marginBottom: 'clamp(8px,2.9vh,23px)' }}>
-                      <FitHeadline
-                        text={card.desc}
-                        startSize={14}
-                        minSize={9}
-                        maxWidth={600}
-                        align="left"
-                        style={{ fontFamily: 'Arial, sans-serif', fontWeight: 700, color: '#404040' }}
-                      />
-                    </div>
-
-                    <div style={{ position: 'relative' as const, height: 'clamp(14px,2.7vh,21px)', marginBottom: 'clamp(10px,4.3vh,34px)', overflow: 'hidden' }}>
-                      {card.checklist.map((item, ii) => (
-                        <div key={ii} style={{
-                          position: 'absolute' as const, left: 0, right: 0, textAlign: 'left' as const,
-                          fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif',
-                          fontSize: 'clamp(13px,1.4vw,15px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 'clamp(14px,2.7vh,21px)',
-                          whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' as const,
-                          opacity: 0,
-                          animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
-                          animationDelay: `${-ii * 2.2}s`,
-                        }}>
-                          ✓ {item}
-                        </div>
-                      ))}
-                    </div>
-
-                    <div style={{ position: 'relative' as const, width: 'min(100%, 453px)' }}>
-                      <Link href={card.href} style={{
-                        display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
-                        width: '100%', aspectRatio: '453 / 42',
-                        backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
-                        fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 'clamp(13px,1.4vw,15px)', fontWeight: 900, color: '#fff', textDecoration: 'none',
-                      }}>
-                        {card.cta}
-                      </Link>
-                      {card.isSoon && (
-                        <span style={{
-                          position: 'absolute' as const, top: -10, right: -10,
-                          fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642',
-                          padding: '3px 9px', borderRadius: 999, zIndex: 1, boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-                        }}>
-                          {t.soonLabel}
-                        </span>
-                      )}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ marginTop: 'clamp(10px,7.6vh,60px)', marginBottom: 'clamp(4px,3.6vh,28px)' }}>
-                <FitHeadline
-                  text={t.trust}
-                  startSize={15}
-                  minSize={9}
-                  maxWidth={1200}
-                  style={{ fontFamily: 'Arial, sans-serif', fontWeight: 400, color: '#404040' }}
-                />
-              </div>
-            </div>
-          ) : (
-          <div style={{ maxWidth: 1035, marginLeft: 'auto', marginRight: 'auto' }}>
-
-            {/* Headline — centered within Hero, font-size scales DOWN per language so the
-                rendered text always fits within the 1200px section width (matching all
-                other sections on the site). EN is the baseline (43px); every other
-                language is sized relative to how much longer its actual string is. */}
-            <div style={{
-              fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900,
-              fontSize: lang === 'RU' ? 30 : lang === 'DE' ? 30 : lang === 'UA' ? 34 : 43,
-              lineHeight: lang === 'RU' ? '36px' : lang === 'DE' ? '36px' : lang === 'UA' ? '40px' : '50px',
-              color: '#1A1A1A', textAlign: 'center' as const, whiteSpace: 'nowrap' as const,
-              textTransform: 'capitalize' as const,
-              marginTop: 'clamp(30px,9.9vh,89px)', marginBottom: 'clamp(28px,9.2vh,82.9px)',
-            }}>
-              {t.badge}
-            </div>
-
-            {/* Two-column card block — container centered within Hero, text left-aligned inside each column.
-                Each column is a flex column stretched to the grid row's full height (CSS Grid
-                already equalizes both columns' heights); the checklist+button block uses
-                marginTop:'auto' to always sit flush at the bottom, regardless of how many
-                lines the description wraps to in any given language/font — this is robust
-                against translation-length differences without guessing pixel heights. */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: 'clamp(20px,4vw,48px)', fontFamily: 'Arial, sans-serif' }}>
-              {t.cards.map((card, ci) => (
-                <div key={ci} style={{ textAlign: 'left' as const, display: 'flex', flexDirection: 'column' as const, height: '100%' }}>
-
-                  {/* Icon + short teal label — left-aligned, 15px gap below */}
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: 'clamp(9px,1.7vh,15px)' }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={ci === 0 ? '/hero/hero_employee.png' : '/hero/hero_business.png'} alt="" style={{ height: 'clamp(38px,6.6vh,59px)', width: 'auto', objectFit: 'contain' as const, flexShrink: 0 }} />
-                    <div style={{ fontSize: 22, fontWeight: 800, color: '#038390' }}>
-                      {card.eyebrow}
-                    </div>
-                  </div>
-
-                  {/* Subtitle — Arial Black, 11px gap below */}
-                  <div style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 20, fontWeight: 900, color: '#1A1A1A', marginBottom: 'clamp(6px,1.2vh,11px)', minHeight: 'clamp(20px,3.5vh,26px)' }}>
-                    {card.title}
-                  </div>
-
-                  {/* Description — Arial Bold, 28px gap below. No fixed minHeight —
-                      whatever height the real text wraps to is fine, because the
-                      checklist+button block below is pinned to the bottom via marginTop:auto. */}
-                  <p style={{
-                    fontFamily: 'Arial, sans-serif', fontSize: 15, fontWeight: 700, color: '#404040', lineHeight: 1.4,
-                    marginBottom: 'clamp(16px,3.1vh,28px)',
-                  }}>
-                    {card.desc}
-                  </p>
-
-                  {/* Cycling checklist — 40px gap below, pinned to bottom of column */}
-                  <div style={{ position: 'relative' as const, height: 'clamp(22px,3.3vh,30px)', marginBottom: 'clamp(22px,4.4vh,40px)', overflow: 'hidden', marginTop: 'auto' }}>
-                    {card.checklist.map((item, ii) => (
-                      <div key={ii} style={{
-                        position: 'absolute' as const, left: 0, right: 0, textAlign: 'left' as const,
-                        fontFamily: 'Arial Rounded MT Bold, Arial, sans-serif',
-                        fontSize: 16, fontWeight: 700, color: '#1A1A1A', lineHeight: 'clamp(22px,3.3vh,30px)',
-                        opacity: 0,
-                        animation: `checklistCycle ${card.checklist.length * 2.2}s ease-in-out infinite`,
-                        animationDelay: `${-ii * 2.2}s`,
-                      }}>
-                        ✓ {item}
-                      </div>
-                    ))}
-                  </div>
-
-                  {/* Button — Iryna's graphic (533.7×50.2px aspect ratio ≈ 10.63:1), text overlaid */}
-                  <div style={{ position: 'relative' as const, width: 'min(100%, 360px)' }}>
-                    <Link href={card.href} style={{
-                      display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
-                      width: '100%', aspectRatio: '533.7 / 50.2',
-                      backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
-                      fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 15, fontWeight: 900, color: '#fff', textDecoration: 'none',
-                    }}>
-                      {card.cta}
-                    </Link>
-                    {card.isSoon && (
-                      <span style={{
-                        position: 'absolute' as const, top: -10, right: -10,
-                        fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642',
-                        padding: '3px 9px', borderRadius: 999, zIndex: 1, boxShadow: '0 2px 6px rgba(0,0,0,0.15)',
-                      }}>
-                        {t.soonLabel}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            {/* Trust line — centered within Hero */}
-            <p style={{ fontFamily: 'Inter, system-ui, -apple-system, sans-serif', fontSize: 15, fontWeight: 500, color: '#404040', textAlign: 'center' as const, marginTop: 'clamp(20px,5.5vh,55px)' }}>
-              {t.trust}
-            </p>
-
+          <div style={{ paddingTop: 'clamp(20px,6vh,60px)', paddingBottom: 0 }}>
+            <FitHeadline
+              text={t.trust}
+              startSize={15}
+              minSize={9}
+              maxWidth={1200}
+              style={{ fontFamily: 'Arial, sans-serif', fontWeight: 400, color: '#404040' }}
+            />
           </div>
-          )}
 
         </div>
       </section>
