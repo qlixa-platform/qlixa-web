@@ -1069,11 +1069,38 @@ export default function HomePage() {
         padding: 'clamp(8px,2vh,20px) clamp(20px,4vw,60px) 0px', display: 'flex', alignItems: 'stretch', boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0,
       }}>
 
-        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'center' as const, height: '100%', display: 'flex', flexDirection: 'column' as const }}>
+        <div style={{ width: '100%', maxWidth: 1200, margin: '0 auto', textAlign: 'left' as const, height: '100%', position: 'relative' as const }}>
 
-          <div style={{ flex: 1 }} />
+          <div style={{ position: 'absolute' as const, left: 113, top: 235, fontFamily: 'Arial, sans-serif', fontWeight: 700, fontSize: 30, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+            3 steps to your tax return in Austria.
+          </div>
 
-          <div style={{ paddingTop: 'clamp(20px,6vh,60px)', paddingBottom: 0 }}>
+          <div style={{ position: 'absolute' as const, left: 113, top: 272, fontFamily: 'Arial, sans-serif', fontWeight: 700, fontSize: 17, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+            ✓ No need to fill in your tax return yourself
+          </div>
+
+          {[
+            { cx: 181, title: 'Tell us about you', desc: 'Answer simple questions about your basic information, family and work situation.' },
+            { cx: 389, title: 'Answer the QLIXA Questionnaire', desc: 'QLIXA asks the right questions based on your situation. Our questionnaire delves deep into your situation and finds possible deductions.' },
+            { cx: 606, title: 'Get your tax return', desc: 'Get your estimated refund before filing so you know what to expect. Receive a fully completed declaration ready to submit in FinanzOnline.' },
+          ].map((step, i) => (
+            <div key={i} style={{ position: 'absolute' as const, left: step.cx - 95, top: 460, width: 190, textAlign: 'center' as const }}>
+              <div style={{ fontFamily: 'Arial, sans-serif', fontWeight: 700, fontSize: 14, color: '#038390', marginBottom: 6, lineHeight: 1.25 }}>
+                {step.title}
+              </div>
+              <div style={{ fontFamily: 'Arial, sans-serif', fontSize: 11, color: '#404040', lineHeight: 1.4 }}>
+                {step.desc}
+              </div>
+            </div>
+          ))}
+
+          <Link
+            href={t.cards[0].href}
+            aria-label={t.cards[0].cta}
+            style={{ position: 'absolute' as const, left: 113, top: 582, width: 227, height: 37, display: 'block' }}
+          />
+
+          <div style={{ position: 'absolute' as const, bottom: 0, left: 0, right: 0, paddingBottom: 8 }}>
             <FitHeadline
               text={t.trust}
               startSize={15}
