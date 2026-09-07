@@ -1063,98 +1063,12 @@ export default function HomePage() {
           relative to the 1440px canvas the pt values were measured against. */}
       <section style={{
         backgroundColor: '#FFFFFF',
-        padding: 'clamp(16px,3vh,40px) clamp(20px,4vw,60px)', display: 'flex', alignItems: 'center',
-        boxSizing: 'border-box' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', position: 'relative' as const, zIndex: 0,
-      }}>
-
-        <div style={{ width: '100%', maxWidth: 1400, margin: '0 auto', display: 'flex', flexDirection: 'column' as const, height: '100%' }}>
-
-          <div style={{ display: 'flex', alignItems: 'center', gap: 'clamp(20px,4vw,60px)', flex: 1 }}>
-
-            <div style={{ flex: '1 1 55%', minWidth: 0 }}>
-
-              <div style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(28px,4vw,48px)', lineHeight: 1.1, color: '#1A1A1A' }}>
-                3 STEPS
-              </div>
-              <div style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(16px,2.4vw,29px)', lineHeight: 1.15, color: '#1A1A1A', marginBottom: 'clamp(10px,2vh,20px)' }}>
-                TO YOUR TAX RETURN IN AUSTRIA.
-              </div>
-
-              <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 'clamp(16px,3vh,32px)' }}>
-                <span style={{
-                  display: 'inline-flex', alignItems: 'center', justifyContent: 'center' as const,
-                  width: 18, height: 18, borderRadius: '50%', border: '2px solid #038390', color: '#038390', fontSize: 11, fontWeight: 900, flexShrink: 0,
-                }}>✓</span>
-                <span style={{ fontFamily: 'Arial, sans-serif', fontWeight: 700, fontSize: 'clamp(11px,1.1vw,16px)', color: '#1A1A1A' }}>
-                  NO NEED TO FILL IN YOUR TAX RETURN YOURSELF
-                </span>
-              </div>
-
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12, marginBottom: 'clamp(16px,3vh,28px)', position: 'relative' as const }}>
-                <div style={{ position: 'absolute' as const, top: 26, left: '16%', right: '16%', height: 0, borderTop: '2px dashed #B9D9DC', zIndex: 0 }} />
-                {[
-                  { icon: '💬', title: 'Tell us about you', desc: 'Answer simple questions about your basic information, family and work situation.' },
-                  { icon: '❓', title: 'Answer the QLIXA Questionnaire', desc: 'QLIXA asks the right questions based on your situation. Our questionnaire delves deep into your situation and finds possible deductions.' },
-                  { icon: '📄', title: 'Get your tax return', desc: 'Get your estimated refund before filing so you know what to expect. Receive a fully completed declaration ready to submit in FinanzOnline.' },
-                ].map((step, i) => (
-                  <div key={i} style={{ position: 'relative' as const, zIndex: 1, textAlign: 'center' as const }}>
-                    <div style={{
-                      width: 'clamp(38px,4.2vw,56px)', height: 'clamp(38px,4.2vw,56px)', borderRadius: '50%', background: '#fff', border: '1px solid #E6F4F5',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(16px,1.8vw,24px)', margin: '0 auto 4px',
-                      boxShadow: '0 2px 8px rgba(0,0,0,0.05)',
-                    }}>{step.icon}</div>
-                    <div style={{
-                      width: 20, height: 20, borderRadius: '50%', border: '1px solid #B9D9DC', color: '#595959',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 10, fontWeight: 700,
-                      margin: '0 auto 8px', background: '#fff',
-                    }}>{i + 1}</div>
-                    <div style={{ fontFamily: 'Arial, sans-serif', fontWeight: 700, fontSize: 'clamp(10px,0.95vw,14px)', color: '#038390', marginBottom: 4, lineHeight: 1.25 }}>
-                      {step.title}
-                    </div>
-                    <div style={{ fontFamily: 'Arial, sans-serif', fontSize: 'clamp(8px,0.75vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-                      {step.desc}
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div style={{ position: 'relative' as const, width: 'min(100%, 280px)' }}>
-                <Link href={t.cards[0].href} style={{
-                  display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
-                  width: '100%', aspectRatio: '453 / 42',
-                  backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
-                  fontFamily: 'Arial Black, Arial, sans-serif', fontSize: 'clamp(11px,1vw,15px)', fontWeight: 900, color: '#fff', textDecoration: 'none',
-                }}>
-                  {t.cards[0].cta}
-                </Link>
-              </div>
-            </div>
-
-            <div style={{ flex: '1 1 40%', minWidth: 0, display: 'flex', alignItems: 'center', justifyContent: 'center' as const, height: '100%' }}>
-              <div style={{
-                width: '100%', aspectRatio: '4 / 3', maxHeight: '90%',
-                border: '2px dashed #B9D9DC', borderRadius: 16, background: '#F0F7F8',
-                display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
-                fontFamily: 'Arial, sans-serif', fontSize: 14, color: '#9D9D9D', textAlign: 'center' as const, padding: 20,
-              }}>
-                [ Laptop + phone mockup placeholder — will be replaced with the real image ]
-              </div>
-            </div>
-
-          </div>
-
-          <div style={{ textAlign: 'center' as const, paddingTop: 8 }}>
-            <FitHeadline
-              text={t.trust}
-              startSize={15}
-              minSize={9}
-              maxWidth={1200}
-              style={{ fontFamily: 'Arial, sans-serif', fontWeight: 400, color: '#404040' }}
-            />
-          </div>
-
-        </div>
-      </section>
+        backgroundImage: 'url(/hero/hero_laptop.png)',
+        backgroundSize: 'cover',
+        backgroundPosition: 'center',
+        backgroundRepeat: 'no-repeat' as const,
+        height: 'calc(100vh - 114px)',
+      }} />
       {/* ── END HERO2 ── */}
 
       {/* ── TICKER — premium minimal, icon + text, 4 languages ── */}
