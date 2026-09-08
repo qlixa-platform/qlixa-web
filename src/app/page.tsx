@@ -1053,44 +1053,48 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
-      {/* KEY FIX: the inner content div uses aspect-ratio (locked to the 1200×786
-          design canvas) INSTEAD OF a vh-based height. Font-sizes use vw (scale
-          with WIDTH) while positions use % (scale with HEIGHT) — as long as
-          height is ALWAYS derived from width via aspect-ratio, these two stay
-          proportionally locked together at any window size or zoom level. When
-          height was vh-based (independent of width), a wide-but-short window
-          could give a big vw-based font with too little %-height space below
-          it, causing lines to overlap — exactly what was reported at 100% zoom
-          vs 67% zoom (different effective window aspect ratios). */}
+      {/* Aspect-ratio 1200/648 (not 786) crops away the empty space that used
+          to sit below the trust line — Hero now ends exactly where its content
+          ends. Every element below is its OWN separate, labeled, absolutely-
+          positioned div (not shared via .map()), so each can be nudged
+          independently just by editing that one div's left/top. */}
       <section style={{ background: '#FFFFFF', padding: '0 clamp(20px,6vw,80px)', boxSizing: 'border-box' as const }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', aspectRatio: '1200 / 786', position: 'relative' as const, overflow: 'hidden' }}>
+        {/* ▼▼▼ HERO_CONTENT_CONTAINER — everything belonging to the Hero
+            section lives inside this ONE div. ▼▼▼ */}
+        <div style={{ maxWidth: 1200, margin: '0 auto', aspectRatio: '1200 / 648', position: 'relative' as const, overflow: 'hidden' }}>
 
+          {/* LAPTOP_IMAGE */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/hero/laptop_hero_only.png"
             alt=""
-            style={{ position: 'absolute' as const, left: '46.867%', top: '32.774%', width: '53.133%', height: '47.303%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
+            style={{ position: 'absolute' as const, left: '46.867%', top: '39.766%', width: '53.133%', height: '57.372%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
           />
 
-          <div style={{ position: 'absolute' as const, left: '0%', top: '1.412%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(20px,5.833vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+          {/* HEADLINE_LINE1 — "3 STEPS" */}
+          <div style={{ position: 'absolute' as const, left: '0%', top: '1.713%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(20px,5.833vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
             3 STEPS
           </div>
-          <div style={{ position: 'absolute' as const, left: '0%', top: '12.4%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(12px,3.5vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+          {/* HEADLINE_LINE2 — "TO YOUR TAX RETURN IN AUSTRIA." */}
+          <div style={{ position: 'absolute' as const, left: '0%', top: '15.041%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(12px,3.5vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
             TO YOUR TAX RETURN IN AUSTRIA.
           </div>
 
-          <div style={{ position: 'absolute' as const, left: '0%', top: '22.5%', width: 'clamp(9px,1.3vw,15.6px)', height: 'clamp(9px,1.3vw,15.6px)', borderRadius: '50%', background: '#1F7489' }} />
-          <div style={{ position: 'absolute' as const, left: '1.742%', top: '20.774%', fontFamily: 'Charter, Georgia, serif', fontWeight: 700, fontSize: 'clamp(9px,2vw,24px)', color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+          {/* CHECKMARK_BULLET — small teal circle */}
+          <div style={{ position: 'absolute' as const, left: '0%', top: '27.293%', width: 'clamp(9px,1.3vw,15.6px)', height: 'clamp(9px,1.3vw,15.6px)', borderRadius: '50%', background: '#1F7489' }} />
+          {/* CHECKMARK_TEXT — "NO NEED TO FILL IN YOUR TAX RETURN YOURSELF" */}
+          <div style={{ position: 'absolute' as const, left: '1.742%', top: '25.199%', fontFamily: 'Charter, Georgia, serif', fontWeight: 700, fontSize: 'clamp(9px,2vw,24px)', color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
             NO NEED TO FILL IN YOUR TAX RETURN YOURSELF
           </div>
 
-          <div style={{ position: 'absolute' as const, left: '10.575%', top: '35.697%', width: '13.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
-          <div style={{ position: 'absolute' as const, left: '28.258%', top: '35.697%', width: '13.700%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
+          {/* DASHED_LINE_1_2 — connector between step 1 and step 2 circles */}
+          <div style={{ position: 'absolute' as const, left: '10.575%', top: '43.301%', width: '13.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
+          {/* DASHED_LINE_2_3 — connector between step 2 and step 3 circles */}
+          <div style={{ position: 'absolute' as const, left: '28.258%', top: '43.301%', width: '13.700%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
 
-          {/* Step 1 — big white circle + chat-icon SVG + number "1", all grouped
-              in ONE wrapper div sized to match the circle. To move this whole
-              group, edit ONLY this wrapper's left/top. */}
-          <div style={{ position: 'absolute' as const, left: '7%', top: '30%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
+          {/* STEP1_ICON_GROUP — big white circle + chat-icon SVG + number "1".
+              Move the whole group by editing ONLY this div's left/top. */}
+          <div style={{ position: 'absolute' as const, left: '7%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
             <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
             <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(20px,3.4vw,41px)', height: 'clamp(20px,3.4vw,41px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
@@ -1102,8 +1106,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Step 2 — big white circle + question-mark SVG + number "2". */}
-          <div style={{ position: 'absolute' as const, left: '27.14%', top: '30%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
+          {/* STEP2_ICON_GROUP — big white circle + question-mark SVG + number "2". */}
+          <div style={{ position: 'absolute' as const, left: '27.14%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
             <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
             <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(20px,3.4vw,41px)', height: 'clamp(20px,3.4vw,41px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
@@ -1116,8 +1120,8 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Step 3 — big white circle + document SVG + number "3". */}
-          <div style={{ position: 'absolute' as const, left: '44.98%', top: '30%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
+          {/* STEP3_ICON_GROUP — big white circle + document SVG + number "3". */}
+          <div style={{ position: 'absolute' as const, left: '44.98%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
             <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
             <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(20px,3.4vw,41px)', height: 'clamp(20px,3.4vw,41px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
@@ -1132,32 +1136,64 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* Titles + descriptions — separate array, unaffected by wherever the
-              icon groups above get moved. */}
-          {[
-            { titleLeftPct: 0, titleWidthPct: 14.84, title: ['Tell us', 'about you'],
-              desc: ['Answer simple', 'questions about your', 'basic information, family', 'and work situation.'] },
-            { titleLeftPct: 14.84, titleWidthPct: 25.39, title: ['Answer the QLIXA', 'Questionnaire'],
-              desc: ['QLIXA asks the right', 'questions based on your', 'situation.'] },
-            { titleLeftPct: 37.5, titleWidthPct: 14.84, title: ['Get your', 'tax return'],
-              desc: ['Get your estimated', 'refund before filing', 'so you know what', 'to expect.'] },
-          ].map((step, i) => (
-            <React.Fragment key={i}>
-              <div style={{ position: 'absolute' as const, left: `${step.titleLeftPct}%`, top: '47.5%', width: `${step.titleWidthPct}%`, textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
-                {step.title.map((line, j) => <div key={j}>{line}</div>)}
-              </div>
-              <div style={{ position: 'absolute' as const, left: `${step.titleLeftPct}%`, top: '55%', width: `${step.titleWidthPct}%`, textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-                {step.desc.map((line, j) => <div key={j}>{line}</div>)}
-              </div>
-            </React.Fragment>
-          ))}
+          {/* STEP1_TITLE — "Tell us about you" */}
+          <div style={{ position: 'absolute' as const, left: '0%', top: '57.618%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+            <div>Tell us</div>
+            <div>about you</div>
+          </div>
 
-          {/* Button — aspect-ratio matches hero_button.png's REAL file dimensions
-              (457×77px) exactly, so resizing it never distorts/stretches it. */}
+          {/* STEP1_DESC — "Answer simple questions about your basic information, family and work situation." */}
+          <div style={{ position: 'absolute' as const, left: '0%', top: '66.715%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+            <div>Answer simple</div>
+            <div>questions about your</div>
+            <div>basic information, family</div>
+            <div>and work situation.</div>
+          </div>
+
+          {/* STEP2_TITLE — "Answer the QLIXA Questionnaire" */}
+          <div style={{ position: 'absolute' as const, left: '14.84%', top: '57.618%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+            <div>Answer the QLIXA</div>
+            <div>Questionnaire</div>
+          </div>
+
+          {/* STEP2_DESC — "QLIXA asks the right questions based on your situation." */}
+          <div style={{ position: 'absolute' as const, left: '14.84%', top: '66.715%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+            <div>QLIXA asks the right</div>
+            <div>questions based on your</div>
+            <div>situation.</div>
+          </div>
+
+          {/* STEP2_EXTRA_DESC — "Our questionnaire delves deep into your situation
+              and finds possible deductions." — placed next to STEP2_DESC, overlap
+              is expected by design, Iryna will nudge left/top/width herself. */}
+          <div style={{ position: 'absolute' as const, left: '40.23%', top: '66.715%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+            <div>Our questionnaire</div>
+            <div>delves deep into your</div>
+            <div>situation and finds</div>
+            <div>possible deductions.</div>
+          </div>
+
+          {/* STEP3_TITLE — "Get your tax return" */}
+          <div style={{ position: 'absolute' as const, left: '37.5%', top: '57.618%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+            <div>Get your</div>
+            <div>tax return</div>
+          </div>
+
+          {/* STEP3_DESC — "Get your estimated refund before filing so you know what to expect." */}
+          <div style={{ position: 'absolute' as const, left: '37.5%', top: '66.715%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+            <div>Get your estimated</div>
+            <div>refund before filing</div>
+            <div>so you know what</div>
+            <div>to expect.</div>
+          </div>
+
+          {/* BUTTON — "Calculate my refund →". aspect-ratio matches
+              hero_button.png's REAL file dimensions (457×77px) exactly, so
+              resizing it never distorts/stretches it. */}
           <Link
             href={t.cards[0].href}
             style={{
-              position: 'absolute' as const, left: '0.933%', top: '67.328%', width: '35.867%', aspectRatio: '457 / 77',
+              position: 'absolute' as const, left: '0.933%', top: '81.673%', width: '35.867%', aspectRatio: '457 / 77',
               display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
               backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
               fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.17vw,14px)', fontWeight: 700, color: '#fff', textDecoration: 'none',
@@ -1166,11 +1202,14 @@ export default function HomePage() {
             {t.cards[0].cta}
           </Link>
 
-          <div style={{ position: 'absolute' as const, left: 0, right: 0, top: '78.868%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.42vw,17px)', color: '#404040', whiteSpace: 'nowrap' as const }}>
+          {/* TRUST_LINE — "Designed specifically for 🇦🇹 Austria..." — this is
+              the LAST element; the container's height ends exactly here. */}
+          <div style={{ position: 'absolute' as const, left: 0, right: 0, top: '95.679%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.42vw,17px)', color: '#404040', whiteSpace: 'nowrap' as const }}>
             {t.trust}
           </div>
 
         </div>
+        {/* ▲▲▲ END HERO_CONTENT_CONTAINER ▲▲▲ */}
       </section>
       {/* ── END HERO2 ── */}
 
