@@ -1059,16 +1059,25 @@ export default function HomePage() {
           positioned div (not shared via .map()), so each can be nudged
           independently just by editing that one div's left/top. */}
       <section style={{ background: '#FFFFFF', padding: '0 clamp(20px,6vw,80px)', boxSizing: 'border-box' as const }}>
-        {/* ▼▼▼ HERO_CONTENT_CONTAINER — everything belonging to the Hero
-            section lives inside this ONE div. ▼▼▼ */}
+        {/* ▼▼▼ HERO_CROP_WRAPPER — this OUTER box controls Hero's visible
+            height. Change ONLY this wrapper's aspect-ratio to trim empty
+            space after the trust line — it crops (overflow:hidden), it does
+            NOT rescale or distort anything, because the INNER box below
+            keeps its ORIGINAL 1200/648 ratio untouched. ▼▼▼ */}
         <div style={{ maxWidth: 1200, margin: '0 auto', aspectRatio: '1200 / 648', position: 'relative' as const, overflow: 'hidden' }}>
+        {/* ▼▼▼ HERO_CONTENT_CONTAINER — everything belonging to the Hero
+            section lives inside this ONE div. Its aspect-ratio (1200/648)
+            must stay EXACTLY as is — every child's top/left % below is
+            calibrated against this number. ▼▼▼ */}
+        <div style={{ position: 'absolute' as const, top: 0, left: 0, width: '100%', aspectRatio: '1200 / 648' }}>
 
+          
           {/* LAPTOP_IMAGE */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/hero/laptop_hero_only.png"
             alt=""
-            style={{ position: 'absolute' as const, left: '46.867%', top: '39.766%', width: '53.133%', height: '57.372%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
+            style={{ position: 'absolute' as const, left: '50%', top: '32.766%', width: '70%', height: '50%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
           />
 
           {/* HEADLINE_LINE1 — "3 STEPS" */}
@@ -1087,6 +1096,14 @@ export default function HomePage() {
             NO NEED TO FILL IN YOUR TAX RETURN YOURSELF
           </div>
 
+          {/* ▼▼▼ CIRCLES_AND_STEPS_GROUP — the dashed connector line + all 3
+              step icon-groups (circle+icon+number) + all step titles and
+              descriptions. To move the WHOLE group together, edit ONLY this
+              wrapper's left/top (it currently matches inset:0, i.e. no offset
+              — children keep their existing % values unchanged, computed
+              against this wrapper instead of the outer container, which is
+              the same size, so nothing visually shifts). ▼▼▼ */}
+          <div style={{ position: 'absolute' as const, left: 0, top: -20, width: '100%', height: '100%' }}>
           {/* DASHED_LINE_1_2_3 — connector between step 1,2 and step 3 circles */}
           <div style={{ position: 'absolute' as const, left: '8.575%', top: '43.301%', width: '33.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
           
@@ -1178,6 +1195,9 @@ export default function HomePage() {
             <div>completed tax return, ready</div>
             <div>to submit via FinanzOnline.</div>
           </div>
+          </div>
+          {/* ▲▲▲ END CIRCLES_AND_STEPS_GROUP ▲▲▲ */}
+
 
           {/* BUTTON — "Calculate my refund →". aspect-ratio matches
               hero_button.png's REAL file dimensions (457×77px) exactly, so
@@ -1185,7 +1205,7 @@ export default function HomePage() {
           <Link
             href={t.cards[0].href}
             style={{
-              position: 'absolute' as const, left: '0%', top: '77%', width: '27.867%', aspectRatio: '700 / 77',
+              position: 'absolute' as const, left: '0%', top: '74%', width: '27.867%', aspectRatio: '700 / 77',
               display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
               backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
               fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.17vw,14px)', fontWeight: 700, color: '#fff', textDecoration: 'none',
@@ -1196,12 +1216,14 @@ export default function HomePage() {
 
           {/* TRUST_LINE — "Designed specifically for 🇦🇹 Austria..." — this is
               the LAST element; the container's height ends exactly here. */}
-          <div style={{ position: 'absolute' as const, left: 0, right: 0, top: '95.679%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.42vw,17px)', color: '#404040', whiteSpace: 'nowrap' as const }}>
+          <div style={{ position: 'absolute' as const, left: 0, right: 0, top: '83%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.42vw,17px)', color: '#404040', whiteSpace: 'nowrap' as const }}>
             {t.trust}
           </div>
 
         </div>
         {/* ▲▲▲ END HERO_CONTENT_CONTAINER ▲▲▲ */}
+        </div>
+        {/* ▲▲▲ END HERO_CROP_WRAPPER ▲▲▲ */}
       </section>
       {/* ── END HERO2 ── */}
 
