@@ -1154,21 +1154,14 @@ export default function HomePage() {
             <div>Questionnaire</div>
           </div>
 
-          {/* STEP2_DESC — "QLIXA asks the right questions based on your situation." */}
-          <div style={{ position: 'absolute' as const, left: '7.84%', top: '65%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-            <div>QLIXA asks the right</div>
-            <div>questions based on your</div>
-            <div>situation.</div>
-          </div>
-
           {/* STEP2_EXTRA_DESC — "Our questionnaire delves deep into your situation
               and finds possible deductions." — placed next to STEP2_DESC, overlap
               is expected by design, Iryna will nudge left/top/width herself. */}
-          <div style={{ position: 'absolute' as const, left: '20.23%', top: '65%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-            <div>Our questionnaire</div>
-            <div>delves deep into your</div>
-            <div>situation and finds</div>
-            <div>possible deductions.</div>
+          <div style={{ position: 'absolute' as const, left: '13.23%', top: '65%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+            <div>QLIXA adapts the questions to your</div>
+            <div>situation, going deeper when needed</div>
+            <div>to check relevant deduction categories</div>
+            <div>and important details.</div>
           </div>
 
           {/* STEP3_TITLE — "Get your tax return" */}
@@ -1177,22 +1170,13 @@ export default function HomePage() {
             <div>tax return</div>
           </div>
 
-          {/* STEP3_DESC — "Get your estimated refund before filing so you know what to expect." */}
-          <div style={{ position: 'absolute' as const, left: '37.5%', top: '65%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-            <div>Get your estimated</div>
-            <div>refund before filing</div>
-            <div>so you know what</div>
-            <div>to expect.</div>
-          </div>
-
-          {/* STEP3_EXTRA_DESC — "Receive a fully completed declaration ready to
-              submit in FinanzOnline." — placed next to STEP3_DESC, overlap is
+          {/* STEP3_EXTRA_DESC — "Get a preliminary refund estimate and a fully completed tax return, readyto submit via FinanzOnline." — placed next to STEP3_DESC, overlap is
               expected by design, Iryna will nudge left/top/width herself. */}
-          <div style={{ position: 'absolute' as const, left: '42.5%', top: '65%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-            <div>Receive a fully</div>
-            <div>completed declaration</div>
-            <div>ready to submit in</div>
-            <div>FinanzOnline.</div>
+          <div style={{ position: 'absolute' as const, left: '37.5%', top: '65%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+            <div>Get a preliminary refund</div>
+            <div>estimate and a fully</div>
+            <div>completed tax return, ready</div>
+            <div>to submit via FinanzOnline.</div>
           </div>
 
           {/* BUTTON — "Calculate my refund →". aspect-ratio matches
@@ -1201,7 +1185,7 @@ export default function HomePage() {
           <Link
             href={t.cards[0].href}
             style={{
-              position: 'absolute' as const, left: '0.933%', top: '81.673%', width: '35.867%', aspectRatio: '457 / 77',
+              position: 'absolute' as const, left: '0%', top: '77%', width: '27.867%', aspectRatio: '700 / 77',
               display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
               backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
               fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.17vw,14px)', fontWeight: 700, color: '#fff', textDecoration: 'none',

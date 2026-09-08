@@ -7,240 +7,180 @@ import NotifyMeButton from '@/components/NotifyMeButton'
 
 const CABINET_URL = 'https://cabinet-ten-lac.vercel.app/login'
 
-// Переклади сторінки "Тарифи" — UA / RU / EN / DE
+// Переклади сторінки "Продукти QLIXA" — UA / RU / EN / DE
 const PRICING_TEXT: Record<string, any> = {
   UA: {
-    h1: 'Обери тариф під свою ситуацію',
-    subtitle: 'Простий доступ до інструментів QLIXA — для найманих працівників, самозайнятих та бізнесу.',
+    h1: 'Обери свій продукт QLIXA',
+    subtitle: 'Просто відповідай на питання — QLIXA допоможе підготувати твою податкову декларацію в Австрії.',
 
-    employee: {
-      badge: 'Найманий працівник',
-      desc: 'Для тих, хто працює за наймом в Австрії та хоче самостійно розібратися зі своїм податковим поверненням.',
+    taxReturn: {
+      badge: 'QLIXA Tax Return',
+      desc: 'Для тих, хто хоче самостійно підготувати податкову декларацію в Австрії — незалежно від того, працюєш ти за наймом, самозайнятий чи маєш кілька джерел доходу.',
       price: '19.90',
       currency: '€',
       period: '/ рік',
       periodNote: 'Разова оплата за тарифний період',
-      featurePairs: [
-        ['Особистий кабінет', 'Журнал інших доходів'],
-        ['Журнал витрат за категоріями', 'Панель аналізу вашої ситуації'],
-        ['Журнал поїздок', null],
+      features: [
+        'Особистий кабінет',
+        'Персональна автоматизована анкета QLIXA',
+        'Аналіз твоєї ситуації',
+        'Перевірка можливих категорій списань',
+        'Попередній розрахунок можливого повернення',
+        'Повністю заповнена податкова декларація',
+        'Підготовка для подання через FinanzOnline',
       ],
-      resultTitle: '★ 1× Розрахунок можливого повернення + генерація декларації',
-      resultNote: 'Потрібна декларація за попередній рік? Додаткові генерації можна придбати окремо.',
+      highlightTitle: '★ Анкета QLIXA детально розбирає саме твою ситуацію',
+      highlightText: 'Ти просто відповідаєш на зрозумілі питання. QLIXA аналізує відповіді, перевіряє можливі категорії списань, показує попередній розрахунок та готує повністю заповнену декларацію.',
       validUntil: 'Доступ до 30 червня наступного року',
-      validNote: 'Заповнюйте все одразу або додавайте дані протягом року.',
+      validNote: 'Пройди анкету одразу або повертайся до неї частинами — як тобі зручно.',
       howItWorksLabel: 'Як це працює?',
       howItWorksTitle: 'Як це працює?',
       howItWorksSteps: [
-        { title: 'Збирайте дані', desc: 'Заповнюйте інформацію про доходи, витрати, навчання, обладнання, поїздки та інші обставини протягом року в журналах особистого кабінету.' },
-        { title: 'Заповніть спеціальну анкету QLIXA', desc: 'QLIXA аналізує введені дані та допомагає визначити, які категорії можуть бути важливими саме у вашій ситуації.' },
-        { title: 'Отримайте результат', desc: 'Після перевірки даних можна виконати орієнтовний розрахунок можливого повернення та сформувати податкову декларацію. Остаточне рішення приймає Finanzamt.' },
+        { title: 'Відповідай на питання', desc: 'Персональна анкета QLIXA ставить зрозумілі питання про твою ситуацію: роботу, доходи, витрати та інші обставини.' },
+        { title: 'QLIXA аналізує відповіді', desc: 'Система перевіряє можливі категорії списань саме для твоєї ситуації та робить попередній розрахунок можливого повернення.' },
+        { title: 'Отримай декларацію', desc: 'QLIXA готує повністю заповнену податкову декларацію для перевірки та подання через FinanzOnline. Остаточне рішення приймає Finanzamt.' },
       ],
-      howItWorksFooter: 'Можна зробити все одразу або вести дані протягом року — як вам зручно.',
-      disclaimer: 'QLIXA не гарантує конкретну суму повернення. Результат залежить від вашої індивідуальної ситуації та остаточного рішення Finanzamt.',
-      cta: 'Обрати тариф',
-    },
-
-    selfEmployed: {
-      badge: 'Самозайнятий',
-      status: 'Скоро',
-      desc: 'Для тих, хто веде власну справу і хоче тримати фінанси в порядку.',
-      currency: '€',
-      monthlyPrice: '9.90',
-      monthlyPeriod: '/ місяць',
-      annualPrice: '79.90',
-      annualPeriod: '/ рік',
-      annualBadge: 'Вигідніше',
-      toggleMonthly: 'Місячно',
-      toggleAnnual: 'Річно',
-      periodNote: 'Оплата за обраний період',
-      comingSoonDesc: 'Команда QLIXA вже працює над зручним кабінетом для ведення малого бізнесу в Австрії — щоб все, що потрібно для щоденної роботи й звітності, було в одному місці.',
-      comingSoonChecklist: ['Клієнти та рахунки', 'Склад і товари', 'Доходи та витрати', 'ПДВ та звітність', 'Дедлайни та KPI', 'Дані для FinanzOnline'],
-      ctaComingSoon: 'Дізнатися першими',
+      howItWorksFooter: 'Можна пройти анкету за один раз або повертатися до неї частинами — як тобі зручно.',
+      disclaimer: 'QLIXA не гарантує конкретну суму повернення. Результат залежить від твоєї індивідуальної ситуації та остаточного рішення Finanzamt.',
+      cta: 'Підготувати декларацію →',
     },
 
     business: {
-      badge: 'Бізнес',
+      badge: 'QLIXA Business',
       status: 'Скоро',
-      desc: 'Для компаній та команд, яким потрібні спільні фінансові інструменти.',
-      comingSoonText: 'Ми вже працюємо над інструментами QLIXA для бізнесу — командний доступ, спільна звітність, керування співробітниками.',
+      desc: 'Для GmbH та бізнесу, яким потрібні окремі інструменти для управління бізнесом.',
       cta: 'Дізнатися першими',
     },
   },
 
   RU: {
-    h1: 'Выбери тариф под свою ситуацию',
-    subtitle: 'Простой доступ к инструментам QLIXA — для наёмных работников, самозанятых и бизнеса.',
+    h1: 'Выбери свой продукт QLIXA',
+    subtitle: 'Просто отвечай на вопросы — QLIXA поможет подготовить твою налоговую декларацию в Австрии.',
 
-    employee: {
-      badge: 'Наёмный работник',
-      desc: 'Для тех, кто работает по найму в Австрии и хочет самостоятельно разобраться со своим налоговым возвратом.',
+    taxReturn: {
+      badge: 'QLIXA Tax Return',
+      desc: 'Для тех, кто хочет самостоятельно подготовить налоговую декларацию в Австрии — независимо от того, работаешь ты по найму, самозанятый или имеешь несколько источников дохода.',
       price: '19.90',
       currency: '€',
       period: '/ год',
       periodNote: 'Разовая оплата за тарифный период',
-      featurePairs: [
-        ['Личный кабинет', 'Журнал других доходов'],
-        ['Журнал расходов по категориям', 'Панель анализа вашей ситуации'],
-        ['Журнал поездок', null],
+      features: [
+        'Личный кабинет',
+        'Персональная автоматизированная анкета QLIXA',
+        'Анализ твоей ситуации',
+        'Проверка возможных категорий списаний',
+        'Предварительный расчёт возможного возврата',
+        'Полностью заполненная налоговая декларация',
+        'Подготовка к подаче через FinanzOnline',
       ],
-      resultTitle: '★ 1× Расчёт возможного возврата + генерация декларации',
-      resultNote: 'Нужна декларация за прошлый год? Дополнительные генерации можно приобрести отдельно.',
+      highlightTitle: '★ Анкета QLIXA детально разбирает именно твою ситуацию',
+      highlightText: 'Ты просто отвечаешь на понятные вопросы. QLIXA анализирует ответы, проверяет возможные категории списаний, показывает предварительный расчёт и готовит полностью заполненную декларацию.',
       validUntil: 'Доступ до 30 июня следующего года',
-      validNote: 'Заполняйте всё сразу или добавляйте данные в течение года.',
+      validNote: 'Пройди анкету сразу или возвращайся к ней частями — как тебе удобно.',
       howItWorksLabel: 'Как это работает?',
       howItWorksTitle: 'Как это работает?',
       howItWorksSteps: [
-        { title: 'Собирайте данные', desc: 'Заполняйте информацию о доходах, расходах, обучении, оборудовании, поездках и других обстоятельствах в течение года в журналах личного кабинета.' },
-        { title: 'Заполните специальную анкету QLIXA', desc: 'QLIXA анализирует введённые данные и помогает определить, какие категории могут быть важны именно в вашей ситуации.' },
-        { title: 'Получите результат', desc: 'После проверки данных можно выполнить ориентировочный расчёт возможного возврата и сформировать налоговую декларацию. Окончательное решение принимает Finanzamt.' },
+        { title: 'Отвечай на вопросы', desc: 'Персональная анкета QLIXA задаёт понятные вопросы о твоей ситуации: работа, доходы, расходы и другие обстоятельства.' },
+        { title: 'QLIXA анализирует ответы', desc: 'Система проверяет возможные категории списаний именно для твоей ситуации и делает предварительный расчёт возможного возврата.' },
+        { title: 'Получи декларацию', desc: 'QLIXA готовит полностью заполненную налоговую декларацию для проверки и подачи через FinanzOnline. Окончательное решение принимает Finanzamt.' },
       ],
-      howItWorksFooter: 'Можно сделать всё сразу или вести данные в течение года — как вам удобно.',
-      disclaimer: 'QLIXA не гарантирует конкретную сумму возврата. Результат зависит от вашей индивидуальной ситуации и окончательного решения Finanzamt.',
-      cta: 'Выбрать тариф',
-    },
-
-    selfEmployed: {
-      badge: 'Самозанятый',
-      status: 'Скоро',
-      desc: 'Для тех, кто ведёт собственное дело и хочет держать финансы в порядке.',
-      currency: '€',
-      monthlyPrice: '9.90',
-      monthlyPeriod: '/ месяц',
-      annualPrice: '79.90',
-      annualPeriod: '/ год',
-      annualBadge: 'Выгоднее',
-      toggleMonthly: 'Помесячно',
-      toggleAnnual: 'Ежегодно',
-      periodNote: 'Оплата за выбранный период',
-      comingSoonDesc: 'Команда QLIXA уже работает над удобным кабинетом для ведения малого бизнеса в Австрии — чтобы всё необходимое для ежедневной работы и отчётности было в одном месте.',
-      comingSoonChecklist: ['Клиенты и счета', 'Склад и товары', 'Доходы и расходы', 'НДС и отчётность', 'Дедлайны и KPI', 'Данные для FinanzOnline'],
-      ctaComingSoon: 'Узнать первыми',
+      howItWorksFooter: 'Можно пройти анкету за один раз или возвращаться к ней частями — как тебе удобно.',
+      disclaimer: 'QLIXA не гарантирует конкретную сумму возврата. Результат зависит от твоей индивидуальной ситуации и окончательного решения Finanzamt.',
+      cta: 'Подготовить декларацию →',
     },
 
     business: {
-      badge: 'Бизнес',
+      badge: 'QLIXA Business',
       status: 'Скоро',
-      desc: 'Для компаний и команд, которым нужны общие финансовые инструменты.',
-      comingSoonText: 'Мы уже работаем над инструментами QLIXA для бизнеса — командный доступ, общая отчётность, управление сотрудниками.',
+      desc: 'Для GmbH и бизнеса, которым нужны отдельные инструменты для управления бизнесом.',
       cta: 'Узнать первыми',
     },
   },
 
   EN: {
-    h1: 'Choose the plan that fits your situation',
-    subtitle: 'Simple access to QLIXA tools — for employees, self-employed people, and businesses.',
+    h1: 'Choose your QLIXA product',
+    subtitle: 'Just answer the questions — QLIXA will help prepare your tax return in Austria.',
 
-    employee: {
-      badge: 'Employee',
-      desc: 'For people working as an employee in Austria who want to sort out their tax refund themselves.',
+    taxReturn: {
+      badge: 'QLIXA Tax Return',
+      desc: 'For anyone who wants to prepare their Austrian tax return themselves — whether you are employed, self-employed, or have several sources of income.',
       price: '19.90',
       currency: '€',
       period: '/ year',
       periodNote: 'One-time payment for the plan period',
-      featurePairs: [
-        ['Personal dashboard', 'Other income log'],
-        ['Expense log by category', 'Situation analysis panel'],
-        ['Travel log', null],
+      features: [
+        'Personal dashboard',
+        'Personal automated QLIXA questionnaire',
+        'Analysis of your situation',
+        'Check of possible deduction categories',
+        'Preliminary estimate of your possible refund',
+        'Fully completed tax return',
+        'Ready to submit via FinanzOnline',
       ],
-      resultTitle: '★ 1× Refund calculation + tax return generation',
-      resultNote: 'Need a return for a previous year? Extra generations can be purchased separately.',
+      highlightTitle: '★ The QLIXA questionnaire looks closely at your specific situation',
+      highlightText: 'You simply answer clear questions. QLIXA analyzes your answers, checks possible deduction categories, shows a preliminary estimate, and prepares a fully completed tax return.',
       validUntil: 'Access until June 30 of the following year',
-      validNote: 'Fill it in all at once, or add data throughout the year.',
+      validNote: 'Go through the questionnaire at once or come back to it in parts — whatever works for you.',
       howItWorksLabel: 'How does it work?',
       howItWorksTitle: 'How does it work?',
       howItWorksSteps: [
-        { title: 'Collect your data', desc: 'Enter information about income, expenses, training, equipment, trips and other circumstances throughout the year in the dashboard logs.' },
-        { title: 'Fill out the QLIXA questionnaire', desc: 'QLIXA analyzes the data you entered and helps identify which categories may matter for your specific situation.' },
-        { title: 'Get your result', desc: 'After checking your data, you can run an estimated refund calculation and generate a tax return. The final decision is made by the Finanzamt.' },
+        { title: 'Answer the questions', desc: 'The personal QLIXA questionnaire asks clear questions about your situation: work, income, expenses and other circumstances.' },
+        { title: 'QLIXA analyzes your answers', desc: 'It checks possible deduction categories for your specific situation and produces a preliminary estimate of your possible refund.' },
+        { title: 'Get your tax return', desc: 'QLIXA prepares a fully completed tax return for you to review and submit via FinanzOnline. The final decision is made by the Finanzamt.' },
       ],
-      howItWorksFooter: 'You can do it all at once or add data throughout the year — whatever works for you.',
-      disclaimer: 'QLIXA does not guarantee a specific refund amount. The result depends on your individual situation and the Finanzamt\u2019s final decision.',
-      cta: 'Choose plan',
-    },
-
-    selfEmployed: {
-      badge: 'Self-employed',
-      status: 'Coming soon',
-      desc: 'For people running their own business who want to keep their finances organized.',
-      currency: '€',
-      monthlyPrice: '9.90',
-      monthlyPeriod: '/ month',
-      annualPrice: '79.90',
-      annualPeriod: '/ year',
-      annualBadge: 'Better value',
-      toggleMonthly: 'Monthly',
-      toggleAnnual: 'Annual',
-      periodNote: 'Payment for the chosen period',
-      comingSoonDesc: 'The QLIXA team is already working on a convenient dashboard for running a small business in Austria — so everything you need for daily work and reporting is in one place.',
-      comingSoonChecklist: ['Clients and invoices', 'Inventory and stock', 'Income and expenses', 'VAT and reporting', 'Deadlines and KPIs', 'Data for FinanzOnline'],
-      ctaComingSoon: 'Be the first to know',
+      howItWorksFooter: 'You can go through the questionnaire in one sitting or come back to it in parts — whatever works for you.',
+      disclaimer: 'QLIXA does not guarantee a specific refund amount. The result depends on your individual situation and the Finanzamt’s final decision.',
+      cta: 'Prepare my tax return →',
     },
 
     business: {
-      badge: 'Business',
+      badge: 'QLIXA Business',
       status: 'Coming soon',
-      desc: 'For companies and teams who need shared financial tools.',
-      comingSoonText: 'We are already working on QLIXA tools for business — team access, shared reporting, employee management.',
+      desc: 'For GmbHs and businesses that need dedicated tools to run their business.',
       cta: 'Be the first to know',
     },
   },
 
   DE: {
-    h1: 'Wähle den Tarif für deine Situation',
-    subtitle: 'Einfacher Zugang zu QLIXA-Tools — für Angestellte, Selbstständige und Unternehmen.',
+    h1: 'Wähle dein QLIXA-Produkt',
+    subtitle: 'Beantworte einfach die Fragen — QLIXA hilft dir, deine Steuererklärung in Österreich vorzubereiten.',
 
-    employee: {
-      badge: 'Angestellte:r',
-      desc: 'Für alle, die in Österreich angestellt arbeiten und ihre Steuerrückerstattung selbst in die Hand nehmen möchten.',
+    taxReturn: {
+      badge: 'QLIXA Tax Return',
+      desc: 'Für alle, die ihre österreichische Steuererklärung selbst vorbereiten möchten — egal ob angestellt, selbstständig oder mit mehreren Einkommensquellen.',
       price: '19.90',
       currency: '€',
       period: '/ Jahr',
       periodNote: 'Einmalige Zahlung für den Tarifzeitraum',
-      featurePairs: [
-        ['Persönliches Konto', 'Journal für sonstige Einkünfte'],
-        ['Ausgaben-Journal nach Kategorien', 'Analyse-Panel deiner Situation'],
-        ['Reise-Journal', null],
+      features: [
+        'Persönliches Konto',
+        'Persönlicher automatisierter QLIXA-Fragebogen',
+        'Analyse deiner Situation',
+        'Prüfung möglicher Absetzkategorien',
+        'Vorläufige Berechnung deiner möglichen Rückerstattung',
+        'Vollständig ausgefüllte Steuererklärung',
+        'Bereit zur Übermittlung über FinanzOnline',
       ],
-      resultTitle: '★ 1× Berechnung der Rückerstattung + Erstellung der Steuererklärung',
-      resultNote: 'Brauchst du eine Erklärung für ein Vorjahr? Zusätzliche Erstellungen kannst du separat dazukaufen.',
+      highlightTitle: '★ Der QLIXA-Fragebogen betrachtet genau deine Situation im Detail',
+      highlightText: 'Du beantwortest einfach klare Fragen. QLIXA analysiert deine Antworten, prüft mögliche Absetzkategorien, zeigt eine vorläufige Berechnung und erstellt eine vollständig ausgefüllte Steuererklärung.',
       validUntil: 'Zugang bis 30. Juni des Folgejahres',
-      validNote: 'Alles auf einmal ausfüllen oder Daten übers Jahr verteilt ergänzen.',
+      validNote: 'Den Fragebogen auf einmal ausfüllen oder in Teilen dazu zurückkehren — ganz wie es dir passt.',
       howItWorksLabel: 'Wie funktioniert das?',
       howItWorksTitle: 'Wie funktioniert das?',
       howItWorksSteps: [
-        { title: 'Daten sammeln', desc: 'Trage Informationen zu Einkommen, Ausgaben, Weiterbildung, Ausstattung, Reisen und anderen Umständen im Laufe des Jahres in den Journalen deines Kontos ein.' },
-        { title: 'QLIXA-Fragebogen ausfüllen', desc: 'QLIXA analysiert die eingegebenen Daten und hilft zu erkennen, welche Kategorien für deine Situation relevant sein könnten.' },
-        { title: 'Ergebnis erhalten', desc: 'Nach der Datenprüfung kannst du eine geschätzte Rückerstattung berechnen und eine Steuererklärung erstellen. Die endgültige Entscheidung trifft das Finanzamt.' },
+        { title: 'Beantworte die Fragen', desc: 'Der persönliche QLIXA-Fragebogen stellt klare Fragen zu deiner Situation: Arbeit, Einkommen, Ausgaben und weitere Umstände.' },
+        { title: 'QLIXA analysiert deine Antworten', desc: 'Er prüft mögliche Absetzkategorien für deine konkrete Situation und erstellt eine vorläufige Berechnung deiner möglichen Rückerstattung.' },
+        { title: 'Erhalte deine Steuererklärung', desc: 'QLIXA erstellt eine vollständig ausgefüllte Steuererklärung zur Prüfung und Übermittlung über FinanzOnline. Die endgültige Entscheidung trifft das Finanzamt.' },
       ],
-      howItWorksFooter: 'Du kannst alles auf einmal erledigen oder die Daten übers Jahr verteilt eintragen — ganz wie es dir passt.',
+      howItWorksFooter: 'Du kannst den Fragebogen auf einmal ausfüllen oder in Teilen dazu zurückkehren — ganz wie es dir passt.',
       disclaimer: 'QLIXA garantiert keinen bestimmten Rückerstattungsbetrag. Das Ergebnis hängt von deiner individuellen Situation und der endgültigen Entscheidung des Finanzamts ab.',
-      cta: 'Tarif wählen',
-    },
-
-    selfEmployed: {
-      badge: 'Selbstständig',
-      status: 'Demnächst',
-      desc: 'Für alle, die ihr eigenes Unternehmen führen und ihre Finanzen im Griff behalten möchten.',
-      currency: '€',
-      monthlyPrice: '9.90',
-      monthlyPeriod: '/ Monat',
-      annualPrice: '79.90',
-      annualPeriod: '/ Jahr',
-      annualBadge: 'Günstiger',
-      toggleMonthly: 'Monatlich',
-      toggleAnnual: 'Jährlich',
-      periodNote: 'Zahlung für den gewählten Zeitraum',
-      comingSoonDesc: 'Das QLIXA-Team arbeitet bereits an einem praktischen Kabinett für die Führung eines kleinen Unternehmens in Österreich — damit alles, was du für die tägliche Arbeit und die Berichterstattung brauchst, an einem Ort ist.',
-      comingSoonChecklist: ['Kunden und Rechnungen', 'Lager und Waren', 'Einnahmen und Ausgaben', 'USt und Berichte', 'Fristen und KPIs', 'Daten für FinanzOnline'],
-      ctaComingSoon: 'Als Erste:r erfahren',
+      cta: 'Steuererklärung vorbereiten →',
     },
 
     business: {
-      badge: 'Business',
+      badge: 'QLIXA Business',
       status: 'Demnächst',
-      desc: 'Für Unternehmen und Teams, die gemeinsame Finanz-Tools benötigen.',
-      comingSoonText: 'Wir arbeiten bereits an QLIXA-Tools für Unternehmen — Team-Zugriff, gemeinsame Berichte, Mitarbeiterverwaltung.',
+      desc: 'Für GmbHs und Unternehmen, die eigene Tools für die Unternehmensführung benötigen.',
       cta: 'Als Erste:r erfahren',
     },
   },
@@ -263,7 +203,6 @@ function vatLine(priceStr: string, lang: string): string {
 
 export default function PricingPage() {
   const [lang, setLang] = useState('UA')
-  const [billing, setBilling] = useState<'monthly' | 'annual'>('annual')
   const [showHowItWorks, setShowHowItWorks] = useState(false)
 
   useEffect(() => {
@@ -277,9 +216,9 @@ export default function PricingPage() {
   }, [])
 
   const langData = PRICING_TEXT[lang] || PRICING_TEXT.UA
-  const t = { ...langData, employee: { ...PRICING_TEXT.UA.employee, ...langData.employee } }
+  const t = { ...langData, taxReturn: { ...PRICING_TEXT.UA.taxReturn, ...langData.taxReturn } }
 
-  // Shared row styles — used identically across all 3 cards so badge/price/button always line up
+  // Shared row styles — used identically across both cards so badge/price/button always line up
   const rowBadge: React.CSSProperties = { fontSize: 12, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, marginBottom: 10, minHeight: 15, display: 'flex', alignItems: 'center', gap: 8 }
   const rowDesc: React.CSSProperties = { fontSize: 15, lineHeight: 1.5, marginBottom: 18, minHeight: 68 }
   const rowPrice: React.CSSProperties = { marginBottom: 2, minHeight: 56, display: 'flex', alignItems: 'baseline' }
@@ -300,55 +239,45 @@ export default function PricingPage() {
         </p>
       </section>
 
-      {/* Pricing cards — all 3 use the exact same row structure/sizes, so badge/price/button always align */}
+      {/* Product cards — both use the exact same row structure/sizes, so badge/price/button always align */}
       <section style={{ background: '#FFFFFF', padding: '24px clamp(20px,4vw,60px) 56px' }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 20, alignItems: 'stretch' }}>
+        <div style={{ maxWidth: 800, margin: '0 auto', width: '100%', display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20, alignItems: 'stretch' }}>
 
-          {/* Card 1 — Employee */}
-          <div style={{ display: 'flex', flexDirection: 'column' as const, background: '#FFFFFF', borderRadius: 18, border: '1px solid #E6F4F5', padding: 26, position: 'relative' as const }}>
-            <div style={{ ...rowBadge, color: '#038390' }}>{t.employee.badge}</div>
-            <p style={{ ...rowDesc, color: '#404040' }}>{t.employee.desc}</p>
+          {/* Card 1 — QLIXA Tax Return (active paid product) */}
+          <div style={{ display: 'flex', flexDirection: 'column' as const, background: '#FFFFFF', borderRadius: 18, border: '2px solid #038390', padding: 26, position: 'relative' as const }}>
+            <div style={{ ...rowBadge, color: '#038390' }}>{t.taxReturn.badge}</div>
+            <p style={{ ...rowDesc, color: '#404040' }}>{t.taxReturn.desc}</p>
 
             <div style={rowPrice}>
-              <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 34, fontWeight: 700, color: '#1A1A1A' }}>{t.employee.currency}{t.employee.price}</span>
-              <span style={{ fontSize: 15, color: '#595959', marginLeft: 6 }}>{t.employee.period}</span>
+              <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 34, fontWeight: 700, color: '#1A1A1A' }}>{t.taxReturn.currency}{t.taxReturn.price}</span>
+              <span style={{ fontSize: 15, color: '#595959', marginLeft: 6 }}>{t.taxReturn.period}</span>
             </div>
-            <p style={{ fontSize: 12, color: '#9D9D9D', marginBottom: 4 }}>{vatLine(t.employee.price, lang)}</p>
-            <p style={rowPeriodNote}>{t.employee.periodNote}</p>
+            <p style={{ fontSize: 12, color: '#9D9D9D', marginBottom: 4 }}>{vatLine(t.taxReturn.price, lang)}</p>
+            <p style={rowPeriodNote}>{t.taxReturn.periodNote}</p>
 
             <a href={`${CABINET_URL}?plan=employee`} style={{ ...rowCta, background: '#038390', color: '#fff' }}>
-              {t.employee.cta}
+              {t.taxReturn.cta}
             </a>
 
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', columnGap: 12, rowGap: 10, marginBottom: 18 }}>
-              {t.employee.featurePairs.map((pair: [string, string | null], i: number) => (
-                <React.Fragment key={i}>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: 6 }}>
-                    <span style={{ color: '#038390', fontWeight: 700, flexShrink: 0, fontSize: 14, marginTop: 1 }}>✓</span>
-                    <span style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.35 }}>{pair[0]}</span>
-                  </div>
-                  <div style={{ display: 'flex', alignItems: 'flex-start', gap: 6 }}>
-                    {pair[1] && (
-                      <>
-                        <span style={{ color: '#038390', fontWeight: 700, flexShrink: 0, fontSize: 14, marginTop: 1 }}>✓</span>
-                        <span style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.35 }}>{pair[1]}</span>
-                      </>
-                    )}
-                  </div>
-                </React.Fragment>
+            <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10, marginBottom: 18 }}>
+              {t.taxReturn.features.map((item: string, i: number) => (
+                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 6 }}>
+                  <span style={{ color: '#038390', fontWeight: 700, flexShrink: 0, fontSize: 14, marginTop: 1 }}>✓</span>
+                  <span style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.35 }}>{item}</span>
+                </div>
               ))}
             </div>
 
             <div style={{ borderTop: '1px solid #E6F4F5', paddingTop: 16, marginBottom: 16 }}>
               <div style={{ background: '#F0F7F8', borderRadius: 12, padding: '12px 14px' }}>
-                <div style={{ fontSize: 15, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.4, marginBottom: 4 }}>{t.employee.resultTitle}</div>
-                <div style={{ fontSize: 12, color: '#9D9D9D', lineHeight: 1.4 }}>{t.employee.resultNote}</div>
+                <div style={{ fontSize: 15, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.4, marginBottom: 4 }}>{t.taxReturn.highlightTitle}</div>
+                <div style={{ fontSize: 12, color: '#595959', lineHeight: 1.45 }}>{t.taxReturn.highlightText}</div>
               </div>
             </div>
 
             <div style={{ marginBottom: 14 }}>
-              <div style={{ fontSize: 15, fontWeight: 700, color: '#1A1A1A', marginBottom: 3 }}>{t.employee.validUntil}</div>
-              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.4 }}>{t.employee.validNote}</div>
+              <div style={{ fontSize: 15, fontWeight: 700, color: '#1A1A1A', marginBottom: 3 }}>{t.taxReturn.validUntil}</div>
+              <div style={{ fontSize: 13, color: '#595959', lineHeight: 1.4 }}>{t.taxReturn.validNote}</div>
             </div>
 
             <div
@@ -358,7 +287,7 @@ export default function PricingPage() {
             >
               <div style={{ display: 'inline-flex', alignItems: 'center', gap: 5, fontSize: 13, fontWeight: 700, color: '#038390', cursor: 'default' }}>
                 <span style={{ width: 15, height: 15, borderRadius: '50%', border: '1.5px solid #038390', display: 'inline-flex', alignItems: 'center', justifyContent: 'center', fontSize: 10, flexShrink: 0 }}>i</span>
-                {t.employee.howItWorksLabel}
+                {t.taxReturn.howItWorksLabel}
               </div>
 
               {showHowItWorks && (
@@ -366,9 +295,9 @@ export default function PricingPage() {
                   position: 'absolute' as const, bottom: '100%', left: 0, marginBottom: 8, width: 620, zIndex: 10,
                   background: '#FFFFFF', border: '1px solid #E6F4F5', borderRadius: 14, boxShadow: '0 12px 32px rgba(3,131,144,0.18)', padding: 18,
                 }}>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: '#1A1A1A', marginBottom: 12 }}>{t.employee.howItWorksTitle}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#1A1A1A', marginBottom: 12 }}>{t.taxReturn.howItWorksTitle}</div>
                   <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, marginBottom: 12 }}>
-                    {t.employee.howItWorksSteps.map((step: { title: string; desc: string }, i: number) => (
+                    {t.taxReturn.howItWorksSteps.map((step: { title: string; desc: string }, i: number) => (
                       <div key={i}>
                         <div style={{ fontSize: 13, fontWeight: 700, color: '#038390', marginBottom: 4 }}>{i + 1}. {step.title}</div>
                         <div style={{ fontSize: 12, color: '#404040', lineHeight: 1.45 }}>{step.desc}</div>
@@ -376,81 +305,18 @@ export default function PricingPage() {
                     ))}
                   </div>
                   <div style={{ fontSize: 12, color: '#9D9D9D', lineHeight: 1.4, borderTop: '1px solid #E6F4F5', paddingTop: 10 }}>
-                    {t.employee.howItWorksFooter}
+                    {t.taxReturn.howItWorksFooter}
                   </div>
                 </div>
               )}
             </div>
 
-            <p style={{ fontSize: 11, color: '#9D9D9D', lineHeight: 1.4 }}>
-              {t.employee.disclaimer}
+            <p style={{ fontSize: 12, color: '#595959', lineHeight: 1.45 }}>
+              {t.taxReturn.disclaimer}
             </p>
           </div>
 
-          {/* Card 2 — Self-employed (Coming soon, price/toggle visible) — mirrors Employee's row structure exactly */}
-          <div style={{ display: 'flex', flexDirection: 'column' as const, background: '#F0F7F8', borderRadius: 18, border: '2px solid #038390', padding: 26 }}>
-            <div style={{ ...rowBadge, color: '#038390' }}>
-              {t.selfEmployed.badge}
-              <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642', padding: '2px 8px', borderRadius: 999 }}>{t.selfEmployed.status}</span>
-            </div>
-            <p style={{ ...rowDesc, color: '#404040' }}>{t.selfEmployed.desc}</p>
-
-            <div style={rowPrice}>
-              <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 34, fontWeight: 700, color: '#1A1A1A' }}>
-                {t.selfEmployed.currency}{billing === 'monthly' ? t.selfEmployed.monthlyPrice : t.selfEmployed.annualPrice}
-              </span>
-              <span style={{ fontSize: 15, color: '#595959', marginLeft: 6 }}>
-                {billing === 'monthly' ? t.selfEmployed.monthlyPeriod : t.selfEmployed.annualPeriod}
-              </span>
-            </div>
-            <p style={{ fontSize: 12, color: '#9D9D9D', marginBottom: 4 }}>
-              {vatLine(billing === 'monthly' ? t.selfEmployed.monthlyPrice : t.selfEmployed.annualPrice, lang)}
-            </p>
-            <div style={rowPeriodNote}>
-              <div style={{ display: 'inline-flex', background: '#fff', borderRadius: 999, padding: 3, border: '1px solid #E6F4F5' }}>
-                <button onClick={() => setBilling('monthly')} style={{
-                  padding: '5px 12px', borderRadius: 999, border: 'none', cursor: 'pointer',
-                  background: billing === 'monthly' ? '#038390' : 'transparent',
-                  color: billing === 'monthly' ? '#fff' : '#595959',
-                  fontSize: 12, fontWeight: 700, fontFamily: 'DM Sans, sans-serif',
-                }}>
-                  {t.selfEmployed.toggleMonthly}
-                </button>
-                <button onClick={() => setBilling('annual')} style={{
-                  padding: '5px 12px', borderRadius: 999, border: 'none', cursor: 'pointer',
-                  background: billing === 'annual' ? '#038390' : 'transparent',
-                  color: billing === 'annual' ? '#fff' : '#595959',
-                  fontSize: 12, fontWeight: 700, fontFamily: 'DM Sans, sans-serif',
-                  display: 'inline-flex', alignItems: 'center', gap: 5,
-                }}>
-                  {t.selfEmployed.toggleAnnual}
-                  <span style={{ fontSize: 9, fontWeight: 800, background: billing === 'annual' ? 'rgba(255,255,255,0.25)' : '#E6F4F5', color: billing === 'annual' ? '#fff' : '#038390', padding: '1px 6px', borderRadius: 999 }}>
-                    {t.selfEmployed.annualBadge}
-                  </span>
-                </button>
-              </div>
-            </div>
-
-            <NotifyMeButton
-              label={t.selfEmployed.ctaComingSoon}
-              source="pricing-self-employed"
-              triggerStyle={{ ...rowCta, width: '100%', boxSizing: 'border-box' as const }}
-            />
-
-            <p style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.55, marginBottom: 14 }}>
-              {t.selfEmployed.comingSoonDesc}
-            </p>
-            <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
-              {t.selfEmployed.comingSoonChecklist.map((item: string, i: number) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-                  <span style={{ color: '#038390', fontWeight: 700, fontSize: 15, flexShrink: 0, marginTop: 1 }}>✓</span>
-                  <span style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.4 }}>{item}</span>
-                </div>
-              ))}
-            </div>
-          </div>
-
-          {/* Card 3 — Business (Coming soon, no price) — mirrors Employee's row structure with empty spacers where price/period would be */}
+          {/* Card 2 — QLIXA Business (Coming soon, no price) — mirrors Card 1's row structure with empty spacers where price/period would be */}
           <div style={{ display: 'flex', flexDirection: 'column' as const, background: '#E6F4F5', borderRadius: 18, padding: 26 }}>
             <div style={{ ...rowBadge, color: '#026B76' }}>
               {t.business.badge}
@@ -466,10 +332,6 @@ export default function PricingPage() {
               source="pricing-business"
               triggerStyle={{ ...rowCta, width: '100%', boxSizing: 'border-box' as const }}
             />
-
-            <p style={{ fontSize: 15, color: '#1A1A1A', lineHeight: 1.55 }}>
-              {t.business.comingSoonText}
-            </p>
           </div>
 
         </div>
