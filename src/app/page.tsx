@@ -1064,7 +1064,7 @@ export default function HomePage() {
             space after the trust line — it crops (overflow:hidden), it does
             NOT rescale or distort anything, because the INNER box below
             keeps its ORIGINAL 1200/648 ratio untouched. ▼▼▼ */}
-        <div style={{ maxWidth: 1200, margin: '0 auto', aspectRatio: '1200 / 648', position: 'relative' as const, overflow: 'hidden' }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', aspectRatio: '1200 / 566', position: 'relative' as const, overflow: 'hidden' }}>
         {/* ▼▼▼ HERO_CONTENT_CONTAINER — everything belonging to the Hero
             section lives inside this ONE div. Its aspect-ratio (1200/648)
             must stay EXACTLY as is — every child's top/left % below is
