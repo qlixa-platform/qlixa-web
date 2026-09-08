@@ -433,11 +433,15 @@ const FORWHOM_TEXT: Record<string, {
 }
 
 // Переклади секції "Як це працює" — всі 4 мови
+// Продуктова архітектура спрощена до 2 карток: QLIXA Tax Return (активний продукт
+// для найманих, самозайнятих, фрілансерів, пенсіонерів тощо) і QLIXA Business
+// (майбутній продукт для GmbH, "Скоро"). Немає більше окремих тарифів
+// "Найманий працівник" / "Самозайнятий" / "Бізнес".
 const DEMO_TEXT: Record<string, {
   badge: string
   h2Before: string
   h2Emphasis: string
-  cards: { title: string; cta: string; href: string; isSoon?: boolean }[] // x3
+  cards: { img: string; title: string; desc: string; cta: string; href: string; isSoon?: boolean }[] // x2
   soonLabel: string
 }> = {
   UA: {
@@ -445,9 +449,8 @@ const DEMO_TEXT: Record<string, {
     h2Before: 'Огляд ',
     h2Emphasis: 'платформи',
     cards: [
-      { title: 'Тариф Найманий працівник', cta: 'Можливості', href: '/for/naymanyy' },
-      { title: 'Тариф Самозайнятий', cta: 'Дізнатися першими', href: 'mailto:info@qlixa.eu?subject=Self-employed%20plan', isSoon: true },
-      { title: 'Тариф Бізнес', cta: 'Дізнатися першими', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
+      { img: '/how-it-works/step-1.png', title: 'QLIXA Tax Return', desc: 'Один простий шлях до готової податкової декларації: відповідаєш на питання — QLIXA аналізує твою ситуацію, показує попередній розрахунок можливого повернення та готує декларацію.', cta: 'Можливості', href: '/for/naymanyy' },
+      { img: '/how-it-works/step-4.png', title: 'QLIXA Business', desc: 'Окремий продукт для GmbH та бізнесу — зараз у розробці.', cta: 'Дізнатися першими', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
     ],
     soonLabel: 'Скоро',
   },
@@ -456,9 +459,8 @@ const DEMO_TEXT: Record<string, {
     h2Before: 'Обзор ',
     h2Emphasis: 'платформы',
     cards: [
-      { title: 'Тариф Наёмный работник', cta: 'Возможности', href: '/for/naymanyy' },
-      { title: 'Тариф Самозанятый', cta: 'Узнать первыми', href: 'mailto:info@qlixa.eu?subject=Self-employed%20plan', isSoon: true },
-      { title: 'Тариф Бизнес', cta: 'Узнать первыми', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
+      { img: '/how-it-works/step-1.png', title: 'QLIXA Tax Return', desc: 'Один простой путь к готовой налоговой декларации: отвечаешь на вопросы — QLIXA анализирует твою ситуацию, показывает предварительный расчёт возможного возврата и готовит декларацию.', cta: 'Возможности', href: '/for/naymanyy' },
+      { img: '/how-it-works/step-4.png', title: 'QLIXA Business', desc: 'Отдельный продукт для GmbH и бизнеса — сейчас в разработке.', cta: 'Узнать первыми', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
     ],
     soonLabel: 'Скоро',
   },
@@ -467,9 +469,8 @@ const DEMO_TEXT: Record<string, {
     h2Before: 'Platform ',
     h2Emphasis: 'overview',
     cards: [
-      { title: 'Employee plan', cta: 'See features', href: '/for/naymanyy' },
-      { title: 'Self-employed plan', cta: 'Be the first to know', href: 'mailto:info@qlixa.eu?subject=Self-employed%20plan', isSoon: true },
-      { title: 'Business plan', cta: 'Be the first to know', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
+      { img: '/how-it-works/step-1.png', title: 'QLIXA Tax Return', desc: 'One simple path to a completed tax declaration: you answer questions — QLIXA analyzes your situation, shows a preliminary refund estimate, and prepares your declaration.', cta: 'See features', href: '/for/naymanyy' },
+      { img: '/how-it-works/step-4.png', title: 'QLIXA Business', desc: 'A separate product for GmbH and business — currently in development.', cta: 'Be the first to know', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
     ],
     soonLabel: 'Coming soon',
   },
@@ -478,9 +479,8 @@ const DEMO_TEXT: Record<string, {
     h2Before: 'Plattform-',
     h2Emphasis: 'Überblick',
     cards: [
-      { title: 'Tarif Angestellte:r', cta: 'Funktionen', href: '/for/naymanyy' },
-      { title: 'Tarif Selbstständig', cta: 'Als Erste:r erfahren', href: 'mailto:info@qlixa.eu?subject=Self-employed%20plan', isSoon: true },
-      { title: 'Tarif Business', cta: 'Als Erste:r erfahren', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
+      { img: '/how-it-works/step-1.png', title: 'QLIXA Tax Return', desc: 'Ein einfacher Weg zu deiner fertigen Steuererklärung: Du beantwortest Fragen — QLIXA analysiert deine Situation, zeigt eine vorläufige Rückerstattungsschätzung und bereitet deine Erklärung vor.', cta: 'Funktionen', href: '/for/naymanyy' },
+      { img: '/how-it-works/step-4.png', title: 'QLIXA Business', desc: 'Ein eigenes Produkt für GmbH und Unternehmen — aktuell in Entwicklung.', cta: 'Als Erste:r erfahren', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
     ],
     soonLabel: 'Demnächst',
   },
@@ -1053,41 +1053,39 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
-      {/* Uses the EXACT SAME container pattern as every other section on the site
-          (section padding: '... clamp(20px,6vw,80px) ...' + inner div
-          maxWidth:1200 centered) instead of a fixed 1440px pixel canvas. This is
-          what makes Hero's left/right edges track the "What is QLIXA" cards'
-          edges at ANY zoom level or window width — a fixed-px canvas could never
-          do this, since it doesn't participate in the site's responsive scaling.
-          All positions are PERCENTAGES of this 1200px logical container, rebased
-          from the original SVG design (which had an 80px margin) so that 0% now
-          lines up with card 1's left edge and 100% lines up with card 3's right
-          edge in the "Що таке QLIXA" section. */}
-      <section style={{ background: '#FFFFFF', padding: '32px clamp(20px,6vw,80px) 0', position: 'relative' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', boxSizing: 'border-box' as const }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', height: '100%', position: 'relative' as const }}>
+      {/* KEY FIX: the inner content div uses aspect-ratio (locked to the 1200×786
+          design canvas) INSTEAD OF a vh-based height. Font-sizes use vw (scale
+          with WIDTH) while positions use % (scale with HEIGHT) — as long as
+          height is ALWAYS derived from width via aspect-ratio, these two stay
+          proportionally locked together at any window size or zoom level. When
+          height was vh-based (independent of width), a wide-but-short window
+          could give a big vw-based font with too little %-height space below
+          it, causing lines to overlap — exactly what was reported at 100% zoom
+          vs 67% zoom (different effective window aspect ratios). */}
+      <section style={{ background: '#FFFFFF', padding: '0 clamp(20px,6vw,80px)', boxSizing: 'border-box' as const }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', aspectRatio: '1200 / 786', position: 'relative' as const, overflow: 'hidden' }}>
 
-          {/* Laptop + phone mockup — right edge capped at 100% (card 3's right edge) */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/hero/laptop_hero_only.png"
             alt=""
-            style={{ position: 'absolute' as const, left: '50.867%', top: '32.532%', width: '49.133%', height: '42.303%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
+            style={{ position: 'absolute' as const, left: '46.867%', top: '32.774%', width: '53.133%', height: '47.303%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
           />
 
-          <div style={{ position: 'absolute' as const, left: '0%', top: '16.412%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(28px,5.4vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+          <div style={{ position: 'absolute' as const, left: '0%', top: '1.412%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(20px,5.833vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
             3 STEPS
           </div>
-          <div style={{ position: 'absolute' as const, left: '0%', top: '24.835%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(17px,3.27vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+          <div style={{ position: 'absolute' as const, left: '0%', top: '12.4%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(12px,3.5vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
             TO YOUR TAX RETURN IN AUSTRIA.
           </div>
 
-          <div style={{ position: 'absolute' as const, left: '0%', top: '36.6%', width: 16, height: 16, borderRadius: '50%', background: '#1F7489' }} />
-          <div style={{ position: 'absolute' as const, left: '1.88%', top: '36.6%', fontFamily: 'Charter, Georgia, serif', fontWeight: 700, fontSize: 'clamp(10px,1.83vw,24px)', color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+          <div style={{ position: 'absolute' as const, left: '0%', top: '22.5%', width: 'clamp(9px,1.3vw,15.6px)', height: 'clamp(9px,1.3vw,15.6px)', borderRadius: '50%', background: '#1F7489' }} />
+          <div style={{ position: 'absolute' as const, left: '1.742%', top: '20.774%', fontFamily: 'Charter, Georgia, serif', fontWeight: 700, fontSize: 'clamp(9px,2vw,24px)', color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
             NO NEED TO FILL IN YOUR TAX RETURN YOURSELF
           </div>
 
-          <div style={{ position: 'absolute' as const, left: '9.9%', top: '46%', width: '10.8%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
-          <div style={{ position: 'absolute' as const, left: '28.2%', top: '46%', width: '10.8%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
+          <div style={{ position: 'absolute' as const, left: '9.575%', top: '35.697%', width: '12.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
+          <div style={{ position: 'absolute' as const, left: '28.258%', top: '35.697%', width: '13.700%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
 
           {[
             { cxPct: 5.78, icon: '/hero/icons/step1-speech.png', titleLeftPct: 0, titleWidthPct: 14.84, title: 'Tell us about you',
@@ -1098,34 +1096,36 @@ export default function HomePage() {
               desc: ['Get your estimated', 'refund before filing', 'so you know what', 'to expect.'] },
           ].map((step, i) => (
             <React.Fragment key={i}>
-              <div style={{ position: 'absolute' as const, left: `${step.cxPct}%`, top: '41%', width: 'clamp(50px,6vw,86px)', height: 'clamp(50px,6vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
+              <div style={{ position: 'absolute' as const, left: `${step.cxPct}%`, top: '30%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={step.icon} alt="" style={{ position: 'absolute' as const, left: `${step.cxPct}%`, top: '43.8%', width: 'clamp(30px,3.6vw,52px)', transform: 'translateX(-50%)', objectFit: 'contain' as const }} />
-              <div style={{ position: 'absolute' as const, left: `${step.cxPct}%`, top: '53%', width: 20, height: 20, transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 12, fontWeight: 700, color: '#595959' }}>
+              <img src={step.icon} alt="" style={{ position: 'absolute' as const, left: `${step.cxPct}%`, top: '43.8%', width: 'clamp(25px,4.33vw,52px)', transform: 'translateX(-50%)', objectFit: 'contain' as const }} />
+              <div style={{ position: 'absolute' as const, left: `${step.cxPct}%`, top: '43%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
                 {i + 1}
               </div>
-              <div style={{ position: 'absolute' as const, left: `${step.titleLeftPct}%`, top: '57.5%', width: `${step.titleWidthPct}%`, textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(10px,1.03vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+              <div style={{ position: 'absolute' as const, left: `${step.titleLeftPct}%`, top: '47.5%', width: `${step.titleWidthPct}%`, textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
                 {step.title}
               </div>
-              <div style={{ position: 'absolute' as const, left: `${step.titleLeftPct}%`, top: '62%', width: `${step.titleWidthPct}%`, textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(8px,0.78vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+              <div style={{ position: 'absolute' as const, left: `${step.titleLeftPct}%`, top: '55%', width: `${step.titleWidthPct}%`, textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
                 {step.desc.map((line, j) => <div key={j}>{line}</div>)}
               </div>
             </React.Fragment>
           ))}
 
+          {/* Button — aspect-ratio matches hero_button.png's REAL file dimensions
+              (457×77px) exactly, so resizing it never distorts/stretches it. */}
           <Link
             href={t.cards[0].href}
             style={{
-              position: 'absolute' as const, left: '0.23%', top: '72%', width: '15.78%', minWidth: 150, aspectRatio: '202 / 34',
+              position: 'absolute' as const, left: '0.933%', top: '67.328%', width: '35.867%', aspectRatio: '457 / 77',
               display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
               backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
-              fontFamily: 'Arial, sans-serif', fontSize: 'clamp(11px,1.08vw,14px)', fontWeight: 700, color: '#fff', textDecoration: 'none',
+              fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.17vw,14px)', fontWeight: 700, color: '#fff', textDecoration: 'none',
             }}
           >
             {t.cards[0].cta}
           </Link>
 
-          <div style={{ position: 'absolute' as const, left: 0, right: 0, top: '81%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(11px,1.38vw,17px)', color: '#404040', whiteSpace: 'nowrap' as const }}>
+          <div style={{ position: 'absolute' as const, left: 0, right: 0, top: '78.868%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.42vw,17px)', color: '#404040', whiteSpace: 'nowrap' as const }}>
             {t.trust}
           </div>
 
@@ -1336,8 +1336,8 @@ export default function HomePage() {
 
 
       {/* ── DEMO ── */}
-      <section id="demo" style={{ background: '#ffffff', padding: '38px clamp(20px,6vw,80px) 26px' }}>
-        <div style={{ maxWidth: 1100, margin: '0 auto' }}>
+      <section id="demo" style={{ background: '#ffffff', padding: '38px clamp(20px,6vw,80px) 26px', scrollMarginTop: 80 }}>
+        <div id="how-it-works" style={{ maxWidth: 1100, margin: '0 auto', scrollMarginTop: 80 }}>
 
           {/* Header */}
           <div style={{ textAlign: 'center', marginBottom: 52 }}>
@@ -1347,17 +1347,18 @@ export default function HomePage() {
             </h2>
           </div>
 
-          {/* 3 cards in a row */}
-          <div id="demo-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 16 }}>
-            {['/how-it-works/step-1.png', '/how-it-works/step-2.png', '/how-it-works/step-4.png'].map((img, i) => ({
-              num: String(i + 1),
-              img,
-              title: t4.cards[i].title,
-              cta: t4.cards[i].cta,
-              href: t4.cards[i].href,
-              isSoon: t4.cards[i].isSoon,
-            })).map((card) => (
-              <div key={card.num} style={{ background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)', display: 'flex', flexDirection: 'column', position: 'relative' as const }}>
+          {/* 2 cards, alternating image/text sides:
+              card 1 (QLIXA Tax Return) = image left / text right,
+              card 2 (QLIXA Business)   = text left / image right.
+              Reuses the same card look (bg/radius/border) and the same
+              image (next/image fill + padding) and CTA patterns as before —
+              only the grid-of-3 became a stack of 2 wide row cards. */}
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
+            {t4.cards.map((card, i) => (
+              <div key={card.title} style={{
+                background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)',
+                display: 'flex', flexDirection: i % 2 === 0 ? 'row' : 'row-reverse', alignItems: 'center', position: 'relative' as const,
+              }}>
                 {card.isSoon && (
                   <span style={{
                     position: 'absolute' as const, top: 16, right: 16,
@@ -1368,7 +1369,7 @@ export default function HomePage() {
                   </span>
                 )}
                 {/* Image */}
-                <div style={{ width: '100%', aspectRatio: '4/3', background: '#F0F7F8', position: 'relative', overflow: 'hidden', flexShrink: 0, padding: 32, boxSizing: 'border-box' as const }}>
+                <div style={{ flex: '0 0 42%', aspectRatio: '4/3', position: 'relative', overflow: 'hidden', padding: 32, boxSizing: 'border-box' as const }}>
                   <Image
                     src={card.img}
                     alt={card.title}
@@ -1377,10 +1378,13 @@ export default function HomePage() {
                   />
                 </div>
                 {/* Text */}
-                <div style={{ padding: '20px 22px 24px', flex: 1, display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
+                <div style={{ flex: 1, minWidth: 0, padding: '24px 36px', display: 'flex', flexDirection: 'column', gap: 12 }}>
+                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
                     {card.title}
                   </h3>
+                  <p style={{ fontSize: 15, color: '#404040', lineHeight: 1.6, margin: 0, maxWidth: 480 }}>
+                    {card.desc}
+                  </p>
                   {card.isSoon ? (
                     <NotifyMeButton
                       label={`${card.cta} →`}
@@ -1399,16 +1403,6 @@ export default function HomePage() {
               </div>
             ))}
           </div>
-
-          {/* Tablet: 2x1 grid override */}
-          <style>{`
-            @media (max-width: 900px) {
-              #demo-grid { grid-template-columns: repeat(2, 1fr) !important; }
-            }
-            @media (max-width: 540px) {
-              #demo-grid { grid-template-columns: 1fr !important; }
-            }
-          `}</style>
 
         </div>
       </section>

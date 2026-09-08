@@ -5,20 +5,11 @@ import Image from 'next/image'
 import Link from 'next/link'
 
 type NavLink = { label: string; href: string }
-type NavDropdown = { label: string; items: { label: string; href: string; desc: string; isSoon?: boolean }[] }
-type NavItem = NavLink | NavDropdown
-
-const HOW_ITEMS_HREFS = [
-  '/for/naymanyy',
-  '/for/biznes',
-  '/pricing',
-]
+type NavItem = NavLink
 
 // Переклади навбару — всі 4 мови
 const NAV_TEXT: Record<string, {
-  dropdownLabel: string
-  dropdownItems: [string, string, boolean?][] // [bold, small, isSoon?] пар, порядок відповідає HOW_ITEMS_HREFS
-  soonLabel: string
+  howItWorksLabel: string
   forWhom: string
   articles: string
   tools: string
@@ -35,13 +26,7 @@ const NAV_TEXT: Record<string, {
   signUp: string
 }> = {
   UA: {
-    dropdownLabel: 'Як працює',
-    dropdownItems: [
-      ['Огляд Платформи', 'Тариф Найманий'],
-      ['Огляд Платформи', 'Тариф Самозайнятий', true],
-      ['Огляд Платформи', 'Тариф Бізнес', true],
-    ],
-    soonLabel: 'Скоро',
+    howItWorksLabel: 'Як працює',
     forWhom: 'Для кого',
     articles: 'Статті',
     tools: 'Інструменти',
@@ -58,13 +43,7 @@ const NAV_TEXT: Record<string, {
     signUp: 'Зареєструватись',
   },
   RU: {
-    dropdownLabel: 'Как работает',
-    dropdownItems: [
-      ['Обзор платформы', 'Тариф Наёмный'],
-      ['Обзор платформы', 'Тариф Самозанятый', true],
-      ['Обзор платформы', 'Тариф Бизнес', true],
-    ],
-    soonLabel: 'Скоро',
+    howItWorksLabel: 'Как работает',
     forWhom: 'Для кого',
     articles: 'Статьи',
     tools: 'Инструменты',
@@ -81,13 +60,7 @@ const NAV_TEXT: Record<string, {
     signUp: 'Зарегистрироваться',
   },
   EN: {
-    dropdownLabel: 'How it works',
-    dropdownItems: [
-      ['Platform Overview', 'Employee plan'],
-      ['Platform Overview', 'Self-employed plan', true],
-      ['Platform Overview', 'Business plan', true],
-    ],
-    soonLabel: 'Coming soon',
+    howItWorksLabel: 'How it works',
     forWhom: 'For Whom',
     articles: 'Articles',
     tools: 'Tools',
@@ -104,13 +77,7 @@ const NAV_TEXT: Record<string, {
     signUp: 'Sign up',
   },
   DE: {
-    dropdownLabel: 'So funktioniert’s',
-    dropdownItems: [
-      ['Plattform-Überblick', 'Tarif Angestellte'],
-      ['Plattform-Überblick', 'Tarif Selbstständig', true],
-      ['Plattform-Überblick', 'Tarif Business', true],
-    ],
-    soonLabel: 'Demnächst',
+    howItWorksLabel: 'So funktioniert’s',
     forWhom: 'Für wen',
     articles: 'Artikel',
     tools: 'Tools',
@@ -131,83 +98,11 @@ const NAV_TEXT: Record<string, {
 function getNavItems(lang: string): NavItem[] {
   const t = NAV_TEXT[lang] || NAV_TEXT.UA
   return [
-    {
-      label: t.dropdownLabel,
-      items: t.dropdownItems.map(([label, desc, isSoon], i) => ({ label, desc, href: HOW_ITEMS_HREFS[i], isSoon: !!isSoon })),
-    },
+    { label: t.howItWorksLabel, href: '/#how-it-works' },
     { label: t.forWhom, href: '/#для-кого' },
     { label: t.articles, href: '/articles' },
     { label: t.tools, href: '/tools' },
   ]
-}
-
-function Dropdown({ item, isOpen, onToggle, soonLabel }: {
-  item: NavDropdown
-  isOpen: boolean
-  onToggle: () => void
-  soonLabel: string
-}) {
-  const ref = useRef<HTMLDivElement>(null)
-
-  useEffect(() => {
-    function handleClick(e: MouseEvent) {
-      if (ref.current && !ref.current.contains(e.target as Node)) {
-        if (isOpen) onToggle()
-      }
-    }
-    document.addEventListener('mousedown', handleClick)
-    return () => document.removeEventListener('mousedown', handleClick)
-  }, [isOpen, onToggle])
-
-  return (
-    <div ref={ref} style={{ position: 'relative' }}>
-      <button
-        onClick={onToggle}
-        style={{
-          display: 'flex', alignItems: 'center', gap: 4,
-          padding: '8px 12px', borderRadius: 8, border: 'none', background: 'transparent',
-          fontSize: 14, fontWeight: 500, cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
-          color: isOpen ? '#038390' : '#9D9D9D',
-        }}
-      >
-        {item.label}
-        <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
-          style={{ transition: 'transform 0.15s', transform: isOpen ? 'rotate(180deg)' : 'rotate(0deg)' }}>
-          <path d="M3 5l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
-        </svg>
-      </button>
-
-      {isOpen && (
-        <div className="dropdown-menu" style={{
-          position: 'absolute', top: '100%', left: 0, marginTop: 8,
-          width: 240, background: '#fff', borderRadius: 14,
-          border: '1px solid var(--line)', boxShadow: 'var(--shadow2)', zIndex: 50,
-        }}>
-          <div style={{ padding: 8 }}>
-            {item.items.map((sub, i) => (
-              <Link key={`${sub.label}-${sub.desc}-${i}`} href={sub.href} onClick={onToggle} style={{
-                display: 'flex', flexDirection: 'column', padding: '10px 12px',
-                borderRadius: 8, textDecoration: 'none',
-              }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.background = 'var(--peach-light)'}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.background = 'transparent'}
-              >
-                <span style={{ fontSize: 13, fontWeight: 500, color: 'var(--charcoal)' }}>{sub.label}</span>
-                <span style={{ display: 'flex', alignItems: 'center', gap: 6, marginTop: 2 }}>
-                  <span style={{ fontSize: 11, color: 'var(--text3)' }}>{sub.desc}</span>
-                  {sub.isSoon && (
-                    <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642', padding: '2px 8px', borderRadius: 999 }}>
-                      {soonLabel}
-                    </span>
-                  )}
-                </span>
-              </Link>
-            ))}
-          </div>
-        </div>
-      )}
-    </div>
-  )
 }
 
 function SearchModal({ onClose, lang }: { onClose: () => void; lang: string }) {
@@ -361,7 +256,6 @@ function LoginModal({ onClose, lang }: { onClose: () => void; lang: string }) {
 }
 
 export default function Navbar() {
-  const [openDropdown, setOpenDropdown] = useState<string | null>(null)
   const [showSearch, setShowSearch] = useState(false)
   const [showLogin, setShowLogin] = useState(false)
 
@@ -383,8 +277,8 @@ export default function Navbar() {
   const navItems = getNavItems(lang);
   const t = NAV_TEXT[lang] || NAV_TEXT.UA;
 
-  function toggleDropdown(label: string) {
-    setOpenDropdown(prev => prev === label ? null : label)
+  function scrollToAnchor(id: string) {
+    return () => { const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' }); }
   }
 
   return (
@@ -409,23 +303,20 @@ export default function Navbar() {
             {/* Desktop nav */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 4, paddingLeft: '40px' }} className="hidden-mobile">
               {navItems.map(item => (
-                'href' in item ? (
-                  <Link key={item.label} href={(item as NavLink).href} style={{
-                    padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
-                    color: '#9D9D9D', textDecoration: 'none',
-                  }}
-                    onClick={(item as NavLink).href === '/#для-кого' ? () => { const el = document.getElementById('для-кого'); if (el) el.scrollIntoView({ behavior: 'smooth' }); } : undefined}
-                    onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
-                  >
-                    {item.label}
-                  </Link>
-                ) : (
-                  <Dropdown key={item.label} item={item} soonLabel={t.soonLabel}
-                    isOpen={openDropdown === item.label}
-                    onToggle={() => toggleDropdown(item.label)}
-                  />
-                )
+                <Link key={item.label} href={item.href} style={{
+                  padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
+                  color: '#9D9D9D', textDecoration: 'none',
+                }}
+                  onClick={
+                    item.href === '/#для-кого' ? scrollToAnchor('для-кого') :
+                    item.href === '/#how-it-works' ? scrollToAnchor('how-it-works') :
+                    undefined
+                  }
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
+                >
+                  {item.label}
+                </Link>
               ))}
               <Link href="/pricing" style={{
                 padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
