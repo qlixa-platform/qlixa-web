@@ -1087,14 +1087,12 @@ export default function HomePage() {
             NO NEED TO FILL IN YOUR TAX RETURN YOURSELF
           </div>
 
-          {/* DASHED_LINE_1_2 — connector between step 1 and step 2 circles */}
-          <div style={{ position: 'absolute' as const, left: '10.575%', top: '43.301%', width: '13.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
-          {/* DASHED_LINE_2_3 — connector between step 2 and step 3 circles */}
-          <div style={{ position: 'absolute' as const, left: '28.258%', top: '43.301%', width: '13.700%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
-
+          {/* DASHED_LINE_1_2_3 — connector between step 1,2 and step 3 circles */}
+          <div style={{ position: 'absolute' as const, left: '8.575%', top: '43.301%', width: '33.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
+          
           {/* STEP1_ICON_GROUP — big white circle + chat-icon SVG + number "1".
               Move the whole group by editing ONLY this div's left/top. */}
-          <div style={{ position: 'absolute' as const, left: '7%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
+          <div style={{ position: 'absolute' as const, left: '5.5%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
             <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
             <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(20px,3.4vw,41px)', height: 'clamp(20px,3.4vw,41px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
@@ -1107,7 +1105,7 @@ export default function HomePage() {
           </div>
 
           {/* STEP2_ICON_GROUP — big white circle + question-mark SVG + number "2". */}
-          <div style={{ position: 'absolute' as const, left: '27.14%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
+          <div style={{ position: 'absolute' as const, left: '26.14%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
             <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
             <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(20px,3.4vw,41px)', height: 'clamp(20px,3.4vw,41px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
               <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
@@ -1137,13 +1135,13 @@ export default function HomePage() {
           </div>
 
           {/* STEP1_TITLE — "Tell us about you" */}
-          <div style={{ position: 'absolute' as const, left: '0%', top: '57.618%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+          <div style={{ position: 'absolute' as const, left: '0%', top: '57.618%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
             <div>Tell us</div>
             <div>about you</div>
           </div>
 
           {/* STEP1_DESC — "Answer simple questions about your basic information, family and work situation." */}
-          <div style={{ position: 'absolute' as const, left: '0%', top: '66.715%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+          <div style={{ position: 'absolute' as const, left: '0%', top: '65%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
             <div>Answer simple</div>
             <div>questions about your</div>
             <div>basic information, family</div>
@@ -1151,13 +1149,13 @@ export default function HomePage() {
           </div>
 
           {/* STEP2_TITLE — "Answer the QLIXA Questionnaire" */}
-          <div style={{ position: 'absolute' as const, left: '14.84%', top: '57.618%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+          <div style={{ position: 'absolute' as const, left: '13.5%', top: '57.618%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
             <div>Answer the QLIXA</div>
             <div>Questionnaire</div>
           </div>
 
           {/* STEP2_DESC — "QLIXA asks the right questions based on your situation." */}
-          <div style={{ position: 'absolute' as const, left: '14.84%', top: '66.715%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+          <div style={{ position: 'absolute' as const, left: '7.84%', top: '65%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
             <div>QLIXA asks the right</div>
             <div>questions based on your</div>
             <div>situation.</div>
@@ -1166,7 +1164,7 @@ export default function HomePage() {
           {/* STEP2_EXTRA_DESC — "Our questionnaire delves deep into your situation
               and finds possible deductions." — placed next to STEP2_DESC, overlap
               is expected by design, Iryna will nudge left/top/width herself. */}
-          <div style={{ position: 'absolute' as const, left: '40.23%', top: '66.715%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+          <div style={{ position: 'absolute' as const, left: '20.23%', top: '65%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
             <div>Our questionnaire</div>
             <div>delves deep into your</div>
             <div>situation and finds</div>
@@ -1180,11 +1178,21 @@ export default function HomePage() {
           </div>
 
           {/* STEP3_DESC — "Get your estimated refund before filing so you know what to expect." */}
-          <div style={{ position: 'absolute' as const, left: '37.5%', top: '66.715%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+          <div style={{ position: 'absolute' as const, left: '37.5%', top: '65%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
             <div>Get your estimated</div>
             <div>refund before filing</div>
             <div>so you know what</div>
             <div>to expect.</div>
+          </div>
+
+          {/* STEP3_EXTRA_DESC — "Receive a fully completed declaration ready to
+              submit in FinanzOnline." — placed next to STEP3_DESC, overlap is
+              expected by design, Iryna will nudge left/top/width herself. */}
+          <div style={{ position: 'absolute' as const, left: '42.5%', top: '65%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+            <div>Receive a fully</div>
+            <div>completed declaration</div>
+            <div>ready to submit in</div>
+            <div>FinanzOnline.</div>
           </div>
 
           {/* BUTTON — "Calculate my refund →". aspect-ratio matches

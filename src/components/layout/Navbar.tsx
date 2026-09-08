@@ -10,6 +10,7 @@ type NavItem = NavLink
 // Переклади навбару — всі 4 мови
 const NAV_TEXT: Record<string, {
   howItWorksLabel: string
+  taxReturn: string
   forWhom: string
   articles: string
   tools: string
@@ -27,6 +28,7 @@ const NAV_TEXT: Record<string, {
 }> = {
   UA: {
     howItWorksLabel: 'Як працює',
+    taxReturn: 'QLIXA Tax Return',
     forWhom: 'Для кого',
     articles: 'Статті',
     tools: 'Інструменти',
@@ -44,6 +46,7 @@ const NAV_TEXT: Record<string, {
   },
   RU: {
     howItWorksLabel: 'Как работает',
+    taxReturn: 'QLIXA Tax Return',
     forWhom: 'Для кого',
     articles: 'Статьи',
     tools: 'Инструменты',
@@ -61,6 +64,7 @@ const NAV_TEXT: Record<string, {
   },
   EN: {
     howItWorksLabel: 'How it works',
+    taxReturn: 'QLIXA Tax Return',
     forWhom: 'For Whom',
     articles: 'Articles',
     tools: 'Tools',
@@ -78,6 +82,7 @@ const NAV_TEXT: Record<string, {
   },
   DE: {
     howItWorksLabel: 'So funktioniert’s',
+    taxReturn: 'QLIXA Tax Return',
     forWhom: 'Für wen',
     articles: 'Artikel',
     tools: 'Tools',
@@ -99,6 +104,7 @@ function getNavItems(lang: string): NavItem[] {
   const t = NAV_TEXT[lang] || NAV_TEXT.UA
   return [
     { label: t.howItWorksLabel, href: '/#how-it-works' },
+    { label: t.taxReturn, href: '/how-it-works/tax-return' },
     { label: t.forWhom, href: '/#для-кого' },
     { label: t.articles, href: '/articles' },
     { label: t.tools, href: '/tools' },
