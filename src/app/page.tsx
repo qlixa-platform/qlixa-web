@@ -178,11 +178,20 @@ type HeroCard = {
   href: string
   isSoon?: boolean
 }
+type HeroCopy = {
+  h1: [string, string]
+  supporting: string
+  step1: { title: string[]; desc: string[] }
+  step2: { title: string[]; desc: string[] }
+  step3: { title: string[]; desc: string[] }
+  cta: string
+}
 const HERO_TEXT: Record<string, {
   badge: string
   cards: [HeroCard, HeroCard]
   trust: string
   soonLabel: string
+  hero: HeroCopy
 }> = {
   UA: {
     badge: 'Твій автоматизований бізнес-помічник в Австрії',
@@ -207,6 +216,23 @@ const HERO_TEXT: Record<string, {
     ],
     trust: 'Створено спеціально для \u{1F1E6}\u{1F1F9} Австрії · перекладено на 4 мови · структуровано за актуальними правилами австрійської податкової системи',
     soonLabel: 'Скоро',
+    hero: {
+      h1: ['3 КРОКИ', 'ДО ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ.'],
+      supporting: 'НЕ ТРЕБА САМОМУ ЗАПОВНЮВАТИ ПОДАТКОВУ ДЕКЛАРАЦІЮ',
+      step1: {
+        title: ['Розкажи', 'про себе'],
+        desc: ['Дай прості відповіді', 'про себе, свою сім’ю', 'та робочу', 'ситуацію.'],
+      },
+      step2: {
+        title: ['Пройди анкету', 'QLIXA'],
+        desc: ['QLIXA підлаштовує запитання', 'під твою ситуацію та за потреби', 'заглиблюється, щоб перевірити можливі', 'категорії списань і важливі деталі.'],
+      },
+      step3: {
+        title: ['Отримай', 'декларацію'],
+        desc: ['Отримай попередній розрахунок', 'повернення та повністю', 'заповнену декларацію, готову', 'до подання через FinanzOnline.'],
+      },
+      cta: 'Розрахувати повернення →',
+    },
   },
   EN: {
     badge: 'Your automated business assistant in Austria',
@@ -231,6 +257,23 @@ const HERO_TEXT: Record<string, {
     ],
     trust: 'Designed specifically for 🇦🇹 Austria · available in 4 languages · structured according to current Austrian tax regulations',
     soonLabel: 'Coming soon',
+    hero: {
+      h1: ['3 STEPS', 'TO YOUR TAX RETURN IN AUSTRIA.'],
+      supporting: 'NO NEED TO FILL IN YOUR TAX RETURN YOURSELF',
+      step1: {
+        title: ['Tell us', 'about you'],
+        desc: ['Answer simple', 'questions about your', 'basic information, family', 'and work situation.'],
+      },
+      step2: {
+        title: ['Answer the QLIXA', 'Questionnaire'],
+        desc: ['QLIXA adapts the questions to your', 'situation, going deeper when needed', 'to check relevant deduction categories', 'and important details.'],
+      },
+      step3: {
+        title: ['Get your', 'tax return'],
+        desc: ['Get a preliminary refund', 'estimate and a fully', 'completed tax return, ready', 'to submit via FinanzOnline.'],
+      },
+      cta: 'Calculate my refund →',
+    },
   },
   RU: {
     badge: 'Твой автоматизированный бизнес-помощник в Австрии',
@@ -255,6 +298,23 @@ const HERO_TEXT: Record<string, {
     ],
     trust: 'Создано специально для 🇦🇹 Австрии · переведено на 4 языка · структурировано по актуальным правилам австрийской налоговой системы',
     soonLabel: 'Скоро',
+    hero: {
+      h1: ['3 ШАГА', 'К НАЛОГОВОЙ ДЕКЛАРАЦИИ В АВСТРИИ.'],
+      supporting: 'НЕ НУЖНО САМОМУ ЗАПОЛНЯТЬ НАЛОГОВУЮ ДЕКЛАРАЦИЮ',
+      step1: {
+        title: ['Расскажи', 'о себе'],
+        desc: ['Ответь на простые', 'вопросы о себе, семье', 'и своей рабочей', 'ситуации.'],
+      },
+      step2: {
+        title: ['Пройди анкету', 'QLIXA'],
+        desc: ['QLIXA подстраивает вопросы под', 'твою ситуацию и при необходимости', 'копает глубже, проверяя возможные', 'категории списаний и важные детали.'],
+      },
+      step3: {
+        title: ['Получи', 'декларацию'],
+        desc: ['Получи предварительный расчёт', 'возврата и полностью', 'заполненную декларацию, готовую', 'к подаче через FinanzOnline.'],
+      },
+      cta: 'Рассчитать мой возврат →',
+    },
   },
   DE: {
     badge: 'Dein automatisierter Geschäftsassistent in Österreich',
@@ -279,6 +339,23 @@ const HERO_TEXT: Record<string, {
     ],
     trust: 'Speziell für 🇦🇹 Österreich entwickelt · verfügbar in 4 Sprachen · nach aktuellen österreichischen Steuervorschriften strukturiert',
     soonLabel: 'Demnächst',
+    hero: {
+      h1: ['3 SCHRITTE', 'ZUR STEUERERKLÄRUNG IN ÖSTERREICH.'],
+      supporting: 'DU MUSST DEINE STEUERERKLÄRUNG NICHT SELBST AUSFÜLLEN',
+      step1: {
+        title: ['Erzähl uns', 'von dir'],
+        desc: ['Beantworte einfache', 'Fragen zu dir, deiner', 'Familie und deiner', 'beruflichen Situation.'],
+      },
+      step2: {
+        title: ['Beantworte den QLIXA-', 'Fragebogen'],
+        desc: ['QLIXA passt die Fragen an deine', 'Situation an und fragt bei Bedarf', 'genauer nach – prüft mögliche', 'Abzugskategorien und wichtige Details.'],
+      },
+      step3: {
+        title: ['Erhalte deine', 'Steuererklärung'],
+        desc: ['Du erhältst eine vorläufige', 'Rückerstattungs-Schätzung und eine', 'fertig ausgefüllte Steuererklärung,', 'bereit zur Abgabe über FinanzOnline.'],
+      },
+      cta: 'Meine Rückerstattung berechnen →',
+    },
   },
 }
 
@@ -1082,18 +1159,18 @@ export default function HomePage() {
 
           {/* HEADLINE_LINE1 — "3 STEPS" */}
           <div style={{ position: 'absolute' as const, left: '0%', top: '1.713%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(20px,5.833vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
-            3 STEPS
+            {t.hero.h1[0]}
           </div>
           {/* HEADLINE_LINE2 — "TO YOUR TAX RETURN IN AUSTRIA." */}
           <div style={{ position: 'absolute' as const, left: '0%', top: '15.041%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(12px,3.5vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
-            TO YOUR TAX RETURN IN AUSTRIA.
+            {t.hero.h1[1]}
           </div>
 
           {/* CHECKMARK_BULLET — small teal circle */}
           <div style={{ position: 'absolute' as const, left: '0%', top: '27.293%', width: 'clamp(9px,1.3vw,15.6px)', height: 'clamp(9px,1.3vw,15.6px)', borderRadius: '50%', background: '#1F7489' }} />
           {/* CHECKMARK_TEXT — "NO NEED TO FILL IN YOUR TAX RETURN YOURSELF" */}
           <div style={{ position: 'absolute' as const, left: '1.742%', top: '25.199%', fontFamily: 'Charter, Georgia, serif', fontWeight: 700, fontSize: 'clamp(9px,2vw,24px)', color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
-            NO NEED TO FILL IN YOUR TAX RETURN YOURSELF
+            {t.hero.supporting}
           </div>
 
           {/* ▼▼▼ CIRCLES_AND_STEPS_GROUP — the dashed connector line + all 3
@@ -1153,47 +1230,35 @@ export default function HomePage() {
 
           {/* STEP1_TITLE — "Tell us about you" */}
           <div style={{ position: 'absolute' as const, left: '0%', top: '57.618%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
-            <div>Tell us</div>
-            <div>about you</div>
+            {t.hero.step1.title.map((line, i) => <div key={i}>{line}</div>)}
           </div>
 
           {/* STEP1_DESC — "Answer simple questions about your basic information, family and work situation." */}
           <div style={{ position: 'absolute' as const, left: '0%', top: '65%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-            <div>Answer simple</div>
-            <div>questions about your</div>
-            <div>basic information, family</div>
-            <div>and work situation.</div>
+            {t.hero.step1.desc.map((line, i) => <div key={i}>{line}</div>)}
           </div>
 
           {/* STEP2_TITLE — "Answer the QLIXA Questionnaire" */}
           <div style={{ position: 'absolute' as const, left: '13.5%', top: '57.618%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
-            <div>Answer the QLIXA</div>
-            <div>Questionnaire</div>
+            {t.hero.step2.title.map((line, i) => <div key={i}>{line}</div>)}
           </div>
 
           {/* STEP2_EXTRA_DESC — "Our questionnaire delves deep into your situation
               and finds possible deductions." — placed next to STEP2_DESC, overlap
               is expected by design, Iryna will nudge left/top/width herself. */}
           <div style={{ position: 'absolute' as const, left: '13.23%', top: '65%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-            <div>QLIXA adapts the questions to your</div>
-            <div>situation, going deeper when needed</div>
-            <div>to check relevant deduction categories</div>
-            <div>and important details.</div>
+            {t.hero.step2.desc.map((line, i) => <div key={i}>{line}</div>)}
           </div>
 
           {/* STEP3_TITLE — "Get your tax return" */}
           <div style={{ position: 'absolute' as const, left: '37.5%', top: '57.618%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
-            <div>Get your</div>
-            <div>tax return</div>
+            {t.hero.step3.title.map((line, i) => <div key={i}>{line}</div>)}
           </div>
 
           {/* STEP3_EXTRA_DESC — "Get a preliminary refund estimate and a fully completed tax return, readyto submit via FinanzOnline." — placed next to STEP3_DESC, overlap is
               expected by design, Iryna will nudge left/top/width herself. */}
           <div style={{ position: 'absolute' as const, left: '37.5%', top: '65%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-            <div>Get a preliminary refund</div>
-            <div>estimate and a fully</div>
-            <div>completed tax return, ready</div>
-            <div>to submit via FinanzOnline.</div>
+            {t.hero.step3.desc.map((line, i) => <div key={i}>{line}</div>)}
           </div>
           </div>
           {/* ▲▲▲ END CIRCLES_AND_STEPS_GROUP ▲▲▲ */}
@@ -1211,7 +1276,7 @@ export default function HomePage() {
               fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.17vw,14px)', fontWeight: 700, color: '#fff', textDecoration: 'none',
             }}
           >
-            {t.cards[0].cta}
+            {t.hero.cta}
           </Link>
 
           {/* TRUST_LINE — "Designed specifically for 🇦🇹 Austria..." — this is
