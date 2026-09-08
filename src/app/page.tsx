@@ -1084,26 +1084,67 @@ export default function HomePage() {
             NO NEED TO FILL IN YOUR TAX RETURN YOURSELF
           </div>
 
-          <div style={{ position: 'absolute' as const, left: '9.575%', top: '35.697%', width: '12.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
+          <div style={{ position: 'absolute' as const, left: '10.575%', top: '35.697%', width: '13.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
           <div style={{ position: 'absolute' as const, left: '28.258%', top: '35.697%', width: '13.700%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
 
+          {/* Step 1 — big white circle + chat-icon SVG + number "1", all grouped
+              in ONE wrapper div sized to match the circle. To move this whole
+              group, edit ONLY this wrapper's left/top. */}
+          <div style={{ position: 'absolute' as const, left: '7%', top: '30%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
+            <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
+            <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(20px,3.4vw,41px)', height: 'clamp(20px,3.4vw,41px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
+                <path d="M4 5C4 3.89543 4.89543 3 6 3H18C19.1046 3 20 3.89543 20 5V14C20 15.1046 19.1046 16 18 16H9L5 20V16H6C4.89543 16 4 15.1046 4 14V5Z" stroke="#038390" strokeWidth="1.8" strokeLinejoin="round" fill="#E6F4F5" />
+              </svg>
+            </div>
+            <div style={{ position: 'absolute' as const, left: '50%', top: '118%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
+              1
+            </div>
+          </div>
+
+          {/* Step 2 — big white circle + question-mark SVG + number "2". */}
+          <div style={{ position: 'absolute' as const, left: '27.14%', top: '30%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
+            <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
+            <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(20px,3.4vw,41px)', height: 'clamp(20px,3.4vw,41px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
+                <path d="M8.5 9C8.5 6.5 10.2 5 12 5C13.8 5 15.5 6.2 15.5 8.2C15.5 10.8 12.5 11 12.5 14" stroke="#038390" strokeWidth="1.8" strokeLinecap="round" />
+                <circle cx="12.5" cy="18" r="1.3" fill="#038390" />
+              </svg>
+            </div>
+            <div style={{ position: 'absolute' as const, left: '50%', top: '118%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
+              2
+            </div>
+          </div>
+
+          {/* Step 3 — big white circle + document SVG + number "3". */}
+          <div style={{ position: 'absolute' as const, left: '44.98%', top: '30%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
+            <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
+            <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(20px,3.4vw,41px)', height: 'clamp(20px,3.4vw,41px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
+              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
+                <path d="M6 3H14L19 8V20C19 20.5523 18.5523 21 18 21H6C5.44772 21 5 20.5523 5 20V4C5 3.44772 5.44772 3 6 3Z" stroke="#038390" strokeWidth="1.8" strokeLinejoin="round" fill="#E6F4F5" />
+                <path d="M14 3V8H19" stroke="#038390" strokeWidth="1.8" strokeLinejoin="round" />
+                <line x1="8" y1="12" x2="15" y2="12" stroke="#038390" strokeWidth="1.4" strokeLinecap="round" />
+                <line x1="8" y1="15" x2="15" y2="15" stroke="#038390" strokeWidth="1.4" strokeLinecap="round" />
+              </svg>
+            </div>
+            <div style={{ position: 'absolute' as const, left: '50%', top: '118%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
+              3
+            </div>
+          </div>
+
+          {/* Titles + descriptions — separate array, unaffected by wherever the
+              icon groups above get moved. */}
           {[
-            { cxPct: 5.78, icon: '/hero/icons/step1-speech.png', titleLeftPct: 0, titleWidthPct: 14.84, title: 'Tell us about you',
+            { titleLeftPct: 0, titleWidthPct: 14.84, title: ['Tell us', 'about you'],
               desc: ['Answer simple', 'questions about your', 'basic information, family', 'and work situation.'] },
-            { cxPct: 24.14, icon: '/hero/icons/step2-question.png', titleLeftPct: 14.84, titleWidthPct: 25.39, title: 'Answer the QLIXA Questionnaire',
+            { titleLeftPct: 14.84, titleWidthPct: 25.39, title: ['Answer the QLIXA', 'Questionnaire'],
               desc: ['QLIXA asks the right', 'questions based on your', 'situation.'] },
-            { cxPct: 43.98, icon: '/hero/icons/step3-document.png', titleLeftPct: 37.5, titleWidthPct: 14.84, title: 'Get your tax return',
+            { titleLeftPct: 37.5, titleWidthPct: 14.84, title: ['Get your', 'tax return'],
               desc: ['Get your estimated', 'refund before filing', 'so you know what', 'to expect.'] },
           ].map((step, i) => (
             <React.Fragment key={i}>
-              <div style={{ position: 'absolute' as const, left: `${step.cxPct}%`, top: '30%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={step.icon} alt="" style={{ position: 'absolute' as const, left: `${step.cxPct}%`, top: '43.8%', width: 'clamp(25px,4.33vw,52px)', transform: 'translateX(-50%)', objectFit: 'contain' as const }} />
-              <div style={{ position: 'absolute' as const, left: `${step.cxPct}%`, top: '43%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
-                {i + 1}
-              </div>
               <div style={{ position: 'absolute' as const, left: `${step.titleLeftPct}%`, top: '47.5%', width: `${step.titleWidthPct}%`, textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
-                {step.title}
+                {step.title.map((line, j) => <div key={j}>{line}</div>)}
               </div>
               <div style={{ position: 'absolute' as const, left: `${step.titleLeftPct}%`, top: '55%', width: `${step.titleWidthPct}%`, textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
                 {step.desc.map((line, j) => <div key={j}>{line}</div>)}
