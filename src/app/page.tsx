@@ -393,12 +393,12 @@ const FORWHOM_TEXT: Record<string, {
     h2Prefix: 'QLIXA подходит, ',
     h2Emphasis: 'если ты:',
     cards: [
-      ['Наёмный работник', 'Работаешь по найму, но хочешь контролировать свои финансы и правильно рассчитать ежегодный возврат налогов.'],
-      ['Пенсионер с доходом', 'Дополнительный доход от подработки — QLIXA рассчитает твои обязательства просто и понятно.'],
-      ['Имеешь капитальные и заграничные доходы', 'Есть доход от продажи акций, недвижимости или из-за границы? QLIXA рассчитает KESt и другие обязательства точно и без ошибок.'],
-      ['Сдаёшь недвижимость', 'Или имеешь доход из нескольких источников — платформа учтёт все поступления и списания.'],
-      ['Самозанятый / Фрилансер', 'Neue Selbstständige, Gewerbe или свободная профессия — IT, дизайн, консалтинг. QLIXA объясняет каждый шаг без сложных терминов и лишнего стресса.'],
-      ['Ведёшь маленький бизнес', 'Или только планируешь открыть — QLIXA пройдёт с тобой каждый шаг от регистрации до отчётов.'],
+      ['Наёмный работник', 'Работаешь по найму? QLIXA поможет разобраться с возможными списаниями, рассчитать предварительный возврат и подготовить декларацию.'],
+      ['Пенсионер с доходом', 'Получаешь пенсию и дополнительный доход? QLIXA поможет учесть доходы и подготовить твою налоговую декларацию.'],
+      ['Есть доходы от инвестиций или из-за границы', 'Есть доход от инвестиций или из другой страны? QLIXA поможет учесть нужную информацию при подготовке декларации.'],
+      ['Сдаёшь недвижимость', 'Сдаёшь жильё или имеешь несколько источников дохода? QLIXA поможет собрать и учесть всё для декларации.'],
+      ['Самозанятый / Фрилансер', 'Neue Selbstständige, Gewerbe или свободная профессия? QLIXA поможет разобраться с доходами и расходами и подготовить декларацию.'],
+      ['Ведёшь небольшой бизнес', 'Есть доходы и расходы от своего дела? QLIXA поможет учесть их и подготовить твою налоговую декларацию.'],
     ],
     soonLabel: 'Скоро',
   },
@@ -1071,13 +1071,13 @@ export default function HomePage() {
           <img
             src="/hero/laptop_hero_only.png"
             alt=""
-            style={{ position: 'absolute' as const, left: '49.84%', top: '4.6%', width: '50.16%', height: '76.3%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
+            style={{ position: 'absolute' as const, left: '50.867%', top: '32.532%', width: '49.133%', height: '42.303%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
           />
 
-          <div style={{ position: 'absolute' as const, left: '0%', top: '16.4%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(28px,5.4vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+          <div style={{ position: 'absolute' as const, left: '0%', top: '16.412%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(28px,5.4vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
             3 STEPS
           </div>
-          <div style={{ position: 'absolute' as const, left: '0.16%', top: '28.9%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(17px,3.27vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+          <div style={{ position: 'absolute' as const, left: '0%', top: '24.835%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(17px,3.27vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
             TO YOUR TAX RETURN IN AUSTRIA.
           </div>
 
@@ -1303,8 +1303,8 @@ export default function HomePage() {
               { img: '/for-who/pensioner.png', href: '/for/pensioner' },
               { img: '/for-who/samostiynyy.png', href: '/for/samostiynyy' },
               { img: '/for-who/nerukhomist.png', href: '/for/nerukhomist' },
-              { img: '/for-who/frilanser.png', href: '/for/frilanser', isSoon: true },
-              { img: '/for-who/biznes.png', href: '/for/biznes', isSoon: true },
+              { img: '/for-who/frilanser.png', href: '/for/frilanser', isSoon: false },
+              { img: '/for-who/biznes.png', href: '/for/biznes', isSoon: false },
             ].map((card, i) => (
               <Link key={i} href={card.href} style={{ textDecoration: 'none' }}>
                 <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', height: '100%', position: 'relative' as const }}
