@@ -1053,22 +1053,84 @@ export default function HomePage() {
       )}
 
       {/* ── HERO ── */}
-      {/* Hero's aspect-ratio is locked to hero_laptop.png's own native ratio
-          (1444×790 ≈ 1.828:1) instead of a fixed calc(100vh-114px) height. Text is
-          positioned in PERCENT (not px), so at ANY window width the text stays
-          aligned with the background image's icon/button graphics — px-based
-          positioning broke on window sizes other than the one it was calibrated
-          against. Font-sizes below are converted from Iryna's exact pt values
-          (measured in her design file) via 1pt = 1.3333px, then expressed as vw
-          relative to the 1440px canvas the pt values were measured against. */}
-      <section style={{
-        backgroundColor: '#FFFFFF',
-        backgroundImage: 'url(/hero/hero_laptop.png)',
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        backgroundRepeat: 'no-repeat' as const,
-        height: 'calc(100vh - 114px)',
-      }} />
+      {/* Uses the EXACT SAME container pattern as every other section on the site
+          (section padding: '... clamp(20px,6vw,80px) ...' + inner div
+          maxWidth:1200 centered) instead of a fixed 1440px pixel canvas. This is
+          what makes Hero's left/right edges track the "What is QLIXA" cards'
+          edges at ANY zoom level or window width — a fixed-px canvas could never
+          do this, since it doesn't participate in the site's responsive scaling.
+          All positions are PERCENTAGES of this 1200px logical container, rebased
+          from the original SVG design (which had an 80px margin) so that 0% now
+          lines up with card 1's left edge and 100% lines up with card 3's right
+          edge in the "Що таке QLIXA" section. */}
+      <section style={{ background: '#FFFFFF', padding: '32px clamp(20px,6vw,80px) 0', position: 'relative' as const, height: 'calc(100vh - 114px)', overflow: 'hidden', boxSizing: 'border-box' as const }}>
+        <div style={{ maxWidth: 1200, margin: '0 auto', height: '100%', position: 'relative' as const }}>
+
+          {/* Laptop + phone mockup — right edge capped at 100% (card 3's right edge) */}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/hero/laptop_hero_only.png"
+            alt=""
+            style={{ position: 'absolute' as const, left: '49.84%', top: '4.6%', width: '50.16%', height: '76.3%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
+          />
+
+          <div style={{ position: 'absolute' as const, left: '0%', top: '16.4%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(28px,5.4vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+            3 STEPS
+          </div>
+          <div style={{ position: 'absolute' as const, left: '0.16%', top: '28.9%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(17px,3.27vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+            TO YOUR TAX RETURN IN AUSTRIA.
+          </div>
+
+          <div style={{ position: 'absolute' as const, left: '0%', top: '36.6%', width: 16, height: 16, borderRadius: '50%', background: '#1F7489' }} />
+          <div style={{ position: 'absolute' as const, left: '1.88%', top: '36.6%', fontFamily: 'Charter, Georgia, serif', fontWeight: 700, fontSize: 'clamp(10px,1.83vw,24px)', color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+            NO NEED TO FILL IN YOUR TAX RETURN YOURSELF
+          </div>
+
+          <div style={{ position: 'absolute' as const, left: '9.9%', top: '46%', width: '10.8%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
+          <div style={{ position: 'absolute' as const, left: '28.2%', top: '46%', width: '10.8%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
+
+          {[
+            { cxPct: 5.78, icon: '/hero/icons/step1-speech.png', titleLeftPct: 0, titleWidthPct: 14.84, title: 'Tell us about you',
+              desc: ['Answer simple', 'questions about your', 'basic information, family', 'and work situation.'] },
+            { cxPct: 24.14, icon: '/hero/icons/step2-question.png', titleLeftPct: 14.84, titleWidthPct: 25.39, title: 'Answer the QLIXA Questionnaire',
+              desc: ['QLIXA asks the right', 'questions based on your', 'situation.'] },
+            { cxPct: 43.98, icon: '/hero/icons/step3-document.png', titleLeftPct: 37.5, titleWidthPct: 14.84, title: 'Get your tax return',
+              desc: ['Get your estimated', 'refund before filing', 'so you know what', 'to expect.'] },
+          ].map((step, i) => (
+            <React.Fragment key={i}>
+              <div style={{ position: 'absolute' as const, left: `${step.cxPct}%`, top: '41%', width: 'clamp(50px,6vw,86px)', height: 'clamp(50px,6vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={step.icon} alt="" style={{ position: 'absolute' as const, left: `${step.cxPct}%`, top: '43.8%', width: 'clamp(30px,3.6vw,52px)', transform: 'translateX(-50%)', objectFit: 'contain' as const }} />
+              <div style={{ position: 'absolute' as const, left: `${step.cxPct}%`, top: '53%', width: 20, height: 20, transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 12, fontWeight: 700, color: '#595959' }}>
+                {i + 1}
+              </div>
+              <div style={{ position: 'absolute' as const, left: `${step.titleLeftPct}%`, top: '57.5%', width: `${step.titleWidthPct}%`, textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(10px,1.03vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+                {step.title}
+              </div>
+              <div style={{ position: 'absolute' as const, left: `${step.titleLeftPct}%`, top: '62%', width: `${step.titleWidthPct}%`, textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(8px,0.78vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+                {step.desc.map((line, j) => <div key={j}>{line}</div>)}
+              </div>
+            </React.Fragment>
+          ))}
+
+          <Link
+            href={t.cards[0].href}
+            style={{
+              position: 'absolute' as const, left: '0.23%', top: '72%', width: '15.78%', minWidth: 150, aspectRatio: '202 / 34',
+              display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
+              backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
+              fontFamily: 'Arial, sans-serif', fontSize: 'clamp(11px,1.08vw,14px)', fontWeight: 700, color: '#fff', textDecoration: 'none',
+            }}
+          >
+            {t.cards[0].cta}
+          </Link>
+
+          <div style={{ position: 'absolute' as const, left: 0, right: 0, top: '81%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(11px,1.38vw,17px)', color: '#404040', whiteSpace: 'nowrap' as const }}>
+            {t.trust}
+          </div>
+
+        </div>
+      </section>
       {/* ── END HERO2 ── */}
 
       {/* ── TICKER — premium minimal, icon + text, 4 languages ── */}
