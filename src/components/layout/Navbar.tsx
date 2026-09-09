@@ -269,7 +269,28 @@ export default function Navbar() {
 
   useEffect(() => {
     const saved = localStorage.getItem('qlixa-lang');
-    if (saved) setLang(saved);
+    if (saved) {
+      setLang(saved);
+      return;
+    }
+    // First-time visitor, nothing saved yet — detect the browser/device
+    // language and use that instead of always defaulting to Ukrainian.
+    // navigator.languages (ordered by preference) is checked before the
+    // single navigator.language, since some browsers only populate the list.
+    const browserLangs = (navigator.languages && navigator.languages.length > 0)
+      ? navigator.languages
+      : [navigator.language];
+    const SUPPORTED = ['UA', 'DE', 'EN', 'RU'];
+    const LANG_MAP: Record<string, string> = { uk: 'UA', de: 'DE', en: 'EN', ru: 'RU' };
+    let detected = 'EN'; // sensible fallback if none of the 4 match at all
+    for (const bl of browserLangs) {
+      const code = bl.split('-')[0].toLowerCase();
+      if (LANG_MAP[code]) { detected = LANG_MAP[code]; break; }
+    }
+    if (!SUPPORTED.includes(detected)) detected = 'EN';
+    setLang(detected);
+    localStorage.setItem('qlixa-lang', detected);
+    window.dispatchEvent(new Event('qlixa-lang-change'));
   }, []);
 
   const handleLang = (l: string) => {
