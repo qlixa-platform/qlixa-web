@@ -1495,11 +1495,11 @@ export default function HomePage() {
 
 
       {/* ── DEMO ── */}
-      <section id="demo" style={{ background: '#ffffff', padding: '38px clamp(20px,6vw,80px) 26px', scrollMarginTop: 80 }}>
+      <section id="demo" style={{ background: '#ffffff', padding: '28px clamp(20px,6vw,80px) 28px', scrollMarginTop: 80 }}>
         <div id="how-it-works" style={{ maxWidth: 1100, margin: '0 auto', scrollMarginTop: 80 }}>
 
           {/* Header */}
-          <div style={{ textAlign: 'center', marginBottom: 52 }}>
+          <div style={{ textAlign: 'center', marginBottom: 28 }}>
             <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.15)', border: '1px solid rgba(3,131,144,0.35)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase', color: '#038390', marginBottom: 16 }}>{t4.badge}</div>
             <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.4vw,46px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 0 }}>
               {t4.h2Before}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t4.h2Emphasis}</em>
@@ -1512,35 +1512,39 @@ export default function HomePage() {
               Reuses the same card look (bg/radius/border) and the same
               image (next/image fill + padding) and CTA patterns as before —
               only the grid-of-3 became a stack of 2 wide row cards. */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            {t4.cards.map((card, i) => (
+          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+            {t4.cards.map((card) => (
               <div key={card.title} style={{
                 background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)',
-                display: 'flex', flexDirection: i % 2 === 0 ? 'row' : 'row-reverse', alignItems: 'center', position: 'relative' as const,
+                display: 'flex', flexDirection: 'row', alignItems: 'center', position: 'relative' as const,
               }}>
-                {card.isSoon && (
-                  <span style={{
-                    position: 'absolute' as const, top: 16, right: 16,
-                    fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642',
-                    padding: '3px 9px', borderRadius: 999, zIndex: 1,
-                  }}>
-                    {t4.soonLabel}
-                  </span>
-                )}
                 {/* Image */}
-                <div style={{ flex: '0 0 42%', aspectRatio: '4/3', position: 'relative', overflow: 'hidden', padding: 32, boxSizing: 'border-box' as const }}>
+                <div style={{ flex: '0 0 32%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20, boxSizing: 'border-box' as const }}>
                   <Image
                     src={card.img}
                     alt={card.title}
-                    fill
-                    style={{ objectFit: 'contain' }}
+                    width={0}
+                    height={0}
+                    sizes="(max-width: 900px) 90vw, 340px"
+                    style={{ width: 'auto', height: 'auto', maxWidth: '100%', maxHeight: 150, objectFit: 'contain', display: 'block' }}
                   />
                 </div>
                 {/* Text */}
-                <div style={{ flex: 1, minWidth: 0, padding: '24px 36px', display: 'flex', flexDirection: 'column', gap: 12 }}>
-                  <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
-                    {card.title}
-                  </h3>
+                <div style={{ flex: 1, minWidth: 0, padding: '20px 32px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                  {card.isSoon ? (
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+                      <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
+                        {card.title}
+                      </h3>
+                      <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642', padding: '3px 9px', borderRadius: 999, flexShrink: 0 }}>
+                        {t4.soonLabel}
+                      </span>
+                    </div>
+                  ) : (
+                    <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
+                      {card.title}
+                    </h3>
+                  )}
                   <p style={{ fontSize: 15, color: '#404040', lineHeight: 1.6, margin: 0, maxWidth: 480 }}>
                     {card.desc}
                   </p>
