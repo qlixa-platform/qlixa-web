@@ -101,7 +101,7 @@ const CALC_TEXT: Record<string, any> = {
     back: '← Назад', next: 'Далі', stepWord: 'Крок',
     step0: {
       badge: 'Інструмент QLIXA', titleBefore: 'RWR+ калькулятор ', titleEm: 'доходу',
-      f1t: 'Точний розрахунок', f1d: 'Попередній прорахунок на основі ставок BMI 2026 та наших рекомендацій.',
+      f1t: 'Попередній розрахунок', f1d: 'Попередній розрахунок на основі офіційних показників 2026 року та введених даних.',
       f2t: 'Актуальні дані', f2d: 'Автоматичне оновлення показників.',
       f3t: 'Простий результат', f3d: 'Зрозуміло, швидко, без зайвого.',
       discLine1: 'Розрахунок базується на офіційних ставках BMI 2026.',
@@ -153,7 +153,7 @@ const CALC_TEXT: Record<string, any> = {
     back: '← Назад', next: 'Далее', stepWord: 'Шаг',
     step0: {
       badge: 'Инструмент QLIXA', titleBefore: 'RWR+ калькулятор ', titleEm: 'дохода',
-      f1t: 'Точный расчёт', f1d: 'Предварительный расчёт на основе ставок BMI 2026 и наших рекомендаций.',
+      f1t: 'Предварительный расчёт', f1d: 'Предварительный расчёт на основе официальных показателей 2026 года и введённых данных.',
       f2t: 'Актуальные данные', f2d: 'Автоматическое обновление показателей.',
       f3t: 'Простой результат', f3d: 'Понятно, быстро, без лишнего.',
       discLine1: 'Расчёт основан на официальных ставках BMI 2026.',
@@ -205,7 +205,7 @@ const CALC_TEXT: Record<string, any> = {
     back: '← Back', next: 'Next', stepWord: 'Step',
     step0: {
       badge: 'QLIXA Tool', titleBefore: 'RWR+ income ', titleEm: 'calculator',
-      f1t: 'Accurate calculation', f1d: 'A preliminary calculation based on BMI 2026 rates and our recommendations.',
+      f1t: 'Preliminary calculation', f1d: 'A preliminary calculation based on official 2026 figures and the data you entered.',
       f2t: 'Up-to-date data', f2d: 'Automatic updates of the figures.',
       f3t: 'Simple result', f3d: 'Clear, fast, no clutter.',
       discLine1: 'The calculation is based on the official BMI 2026 rates.',
@@ -257,7 +257,7 @@ const CALC_TEXT: Record<string, any> = {
     back: '← Zurück', next: 'Weiter', stepWord: 'Schritt',
     step0: {
       badge: 'QLIXA-Tool', titleBefore: 'RWR+ ', titleEm: 'Einkommensrechner',
-      f1t: 'Genaue Berechnung', f1d: 'Eine vorläufige Berechnung auf Basis der BMI-2026-Sätze und unserer Empfehlungen.',
+      f1t: 'Vorläufige Berechnung', f1d: 'Eine vorläufige Berechnung auf Basis der offiziellen Werte für 2026 und deiner eingegebenen Daten.',
       f2t: 'Aktuelle Daten', f2d: 'Automatische Aktualisierung der Werte.',
       f3t: 'Einfaches Ergebnis', f3d: 'Klar, schnell, ohne unnötigen Ballast.',
       discLine1: 'Die Berechnung basiert auf den offiziellen BMI-2026-Sätzen.',

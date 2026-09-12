@@ -29,11 +29,11 @@ const ARTICLES_TEXT: Record<string, {
 }> = {
   UA: {
     published: [
-      { tag: 'Гайд',                  title: 'Як підготуватися до подачі на RWR+ карту',                           desc: 'Покроковий гайд: документи, калькулятор фінансових вимог і PDF чеклісти для найманих та самозайнятих.' },
-      { tag: 'Реєстрація бізнесу',    title: 'Gewerbeanmeldung в Австрії: покрокова реєстрація самозайнятості',     desc: 'Іноземці в Австрії платять юристам €300–500 за типові питання про реєстрацію бізнесу. Ми зібрали всю інформацію безкоштовно.' },
-      { tag: 'Австрія · Документи',   title: 'Як оформити Austria ID: покроковий гайд для іноземців',               desc: 'Austria ID — обов\'язковий перший крок для реєстрації бізнесу, роботи з FinanzOnline та SVS. 5 кроків.' },
-      { tag: 'Сім\'я · Пільги',       title: 'Інвалідність дитини в Австрії: виплати, пільги та з чого почати',    desc: 'Behindertenpass, підвищена Familienbeihilfe, Pflegegeld та податкові пільги — покроковий гайд для батьків.' },
-      { tag: 'GISA · Реєстрація',     title: 'Реєстрація на сайті GISA: покрокова інструкція',                      desc: 'Як подати заяву Gewerbeanmeldung онлайн через GISA — детально, з поясненням кожного поля та кроку.' },
+      { tag: 'Гайд',                  title: 'Як підготуватися до подачі на RWR+ карту',                           desc: 'Покроковий огляд підготовки до подачі: документи, фінансові вимоги та чеклісти для різних робочих ситуацій.' },
+      { tag: 'Реєстрація бізнесу',    title: 'Gewerbeanmeldung в Австрії: покрокова реєстрація самозайнятості',     desc: 'Покроковий огляд Gewerbeanmeldung: які документи можуть знадобитися, куди подавати заяву та на що звернути увагу під час реєстрації.' },
+      { tag: 'Австрія · Документи',   title: 'Як оформити ID Austria: покроковий гайд для іноземців',               desc: 'Як оформити ID Austria та використовувати її для доступу до цифрових державних сервісів, зокрема FinanzOnline.' },
+      { tag: 'Сім\'я · Пільги',       title: 'Інвалідність дитини в Австрії: виплати, пільги та з чого почати',    desc: 'Огляд основних тем для батьків: Behindertenpass, підвищена Familienbeihilfe, Pflegegeld та можливі податкові пільги.' },
+      { tag: 'GISA · Реєстрація',     title: 'Реєстрація на сайті GISA: покрокова інструкція',                      desc: 'Покрокова інструкція з онлайн-подання Gewerbeanmeldung через GISA з поясненням основних полів і етапів.' },
     ],
     upcoming: [
       { tag: 'SVS',          title: 'Як заповнити формуляр SVS',           desc: 'Соціальне страхування — що вказати щоб не переплатити.' },
@@ -43,11 +43,11 @@ const ARTICLES_TEXT: Record<string, {
   },
   RU: {
     published: [
-      { tag: 'Гайд',                  title: 'Как подготовиться к подаче на RWR+ карту',                             desc: 'Пошаговый гайд: документы, калькулятор финансовых требований и PDF чеклисты для наёмных и самозанятых.' },
-      { tag: 'Регистрация бизнеса',   title: 'Gewerbeanmeldung в Австрии: пошаговая регистрация самозанятости',     desc: 'Иностранцы в Австрии платят юристам €300–500 за типичные вопросы о регистрации бизнеса. Мы собрали всё бесплатно.' },
-      { tag: 'Австрия · Документы',   title: 'Как оформить Austria ID: пошаговый гайд для иностранцев',             desc: 'Austria ID — обязательный первый шаг для регистрации бизнеса, работы с FinanzOnline и SVS. 5 шагов.' },
-      { tag: 'Семья · Льготы',        title: 'Инвалидность ребёнка в Австрии: выплаты, льготы и с чего начать',    desc: 'Behindertenpass, повышенная Familienbeihilfe, Pflegegeld и налоговые льготы — пошаговый гайд для родителей.' },
-      { tag: 'GISA · Регистрация',    title: 'Регистрация на сайте GISA: пошаговая инструкция',                     desc: 'Как подать заявку Gewerbeanmeldung онлайн через GISA — подробно, с объяснением каждого поля и шага.' },
+      { tag: 'Гайд',                  title: 'Как подготовиться к подаче на RWR+ карту',                             desc: 'Пошаговый обзор подготовки к подаче: документы, финансовые требования и чек-листы для разных рабочих ситуаций.' },
+      { tag: 'Регистрация бизнеса',   title: 'Gewerbeanmeldung в Австрии: пошаговая регистрация самозанятости',     desc: 'Пошаговый обзор Gewerbeanmeldung: какие документы могут понадобиться, куда подавать заявление и на что обратить внимание при регистрации.' },
+      { tag: 'Австрия · Документы',   title: 'Как оформить ID Austria: пошаговый гайд для иностранцев',             desc: 'Как оформить ID Austria и использовать её для доступа к цифровым государственным сервисам, включая FinanzOnline.' },
+      { tag: 'Семья · Льготы',        title: 'Инвалидность ребёнка в Австрии: выплаты, льготы и с чего начать',    desc: 'Обзор основных тем для родителей: Behindertenpass, повышенная Familienbeihilfe, Pflegegeld и возможные налоговые льготы.' },
+      { tag: 'GISA · Регистрация',    title: 'Регистрация на сайте GISA: пошаговая инструкция',                     desc: 'Пошаговая инструкция по онлайн-подаче Gewerbeanmeldung через GISA с пояснением основных полей и этапов.' },
     ],
     upcoming: [
       { tag: 'SVS',          title: 'Как заполнить формуляр SVS',          desc: 'Социальное страхование — что указать чтобы не переплатить.' },
@@ -57,11 +57,11 @@ const ARTICLES_TEXT: Record<string, {
   },
   EN: {
     published: [
-      { tag: 'Guide',                  title: 'How to Prepare for Your RWR+ Card Application',                       desc: 'Step-by-step guide: documents, financial requirements calculator and PDF checklists for employed and self-employed.' },
-      { tag: 'Business Registration',  title: 'Gewerbeanmeldung in Austria: Step-by-Step Self-Employment Registration', desc: 'Foreigners in Austria pay lawyers €300–500 for typical business registration questions. We collected it all for free.' },
-      { tag: 'Austria · Documents',    title: 'How to Get Austria ID: Step-by-Step Guide for Foreigners',             desc: 'Austria ID — the mandatory first step for business registration, FinanzOnline and SVS. 5 steps.' },
-      { tag: 'Family · Benefits',      title: 'Child Disability in Austria: Payments, Benefits and Where to Start',   desc: 'Behindertenpass, increased Familienbeihilfe, Pflegegeld and tax benefits — step-by-step guide for parents.' },
-      { tag: 'GISA · Registration',    title: 'Registering on GISA Website: Step-by-Step Instructions',               desc: 'How to submit a Gewerbeanmeldung application online via GISA — in detail, explaining every field and step.' },
+      { tag: 'Guide',                  title: 'How to Prepare for Your RWR+ Card Application',                       desc: 'A step-by-step overview of how to prepare: documents, financial requirements and checklists for different work situations.' },
+      { tag: 'Business Registration',  title: 'Gewerbeanmeldung in Austria: Step-by-Step Self-Employment Registration', desc: 'A step-by-step overview of Gewerbeanmeldung: which documents may be needed, where to submit the application and what to consider during registration.' },
+      { tag: 'Austria · Documents',    title: 'How to Get ID Austria: Step-by-Step Guide for Foreigners',             desc: 'How to set up ID Austria and use it to access digital government services, including FinanzOnline.' },
+      { tag: 'Family · Benefits',      title: 'Child Disability in Austria: Payments, Benefits and Where to Start',   desc: 'An overview of key topics for parents: Behindertenpass, increased Familienbeihilfe, Pflegegeld and possible tax benefits.' },
+      { tag: 'GISA · Registration',    title: 'Registering on GISA Website: Step-by-Step Instructions',               desc: 'A step-by-step guide to submitting a Gewerbeanmeldung online via GISA, with explanations of the main fields and stages.' },
     ],
     upcoming: [
       { tag: 'SVS',          title: 'How to Fill in the SVS Form',         desc: 'Social insurance — what to enter so you don\'t overpay.' },
@@ -71,11 +71,11 @@ const ARTICLES_TEXT: Record<string, {
   },
   DE: {
     published: [
-      { tag: 'Leitfaden',              title: 'So bereitest du dich auf den RWR+-Kartenantrag vor',                   desc: 'Schritt-für-Schritt-Leitfaden: Unterlagen, Rechner für Finanznachweise und PDF-Checklisten für Angestellte und Selbstständige.' },
-      { tag: 'Gewerbeanmeldung',       title: 'Gewerbeanmeldung in Österreich: Schritt-für-Schritt zur Selbstständigkeit', desc: 'Ausländer in Österreich zahlen Anwälten €300–500 für typische Fragen zur Gewerbeanmeldung. Wir haben alles kostenlos zusammengestellt.' },
-      { tag: 'Österreich · Dokumente', title: 'Austria ID beantragen: Schritt-für-Schritt-Anleitung für Ausländer',  desc: 'Die Austria ID ist der Pflichtschritt für Gewerbeanmeldung, FinanzOnline und SVS. 5 Schritte.' },
-      { tag: 'Familie · Leistungen',   title: 'Behinderung des Kindes in Österreich: Leistungen und wie man anfängt', desc: 'Behindertenpass, erhöhte Familienbeihilfe, Pflegegeld und Steuervergünstigungen — Leitfaden für Eltern.' },
-      { tag: 'GISA · Anmeldung',       title: 'Registrierung auf der GISA-Website: Schritt-für-Schritt-Anleitung',   desc: 'Wie du die Gewerbeanmeldung online über GISA einreichst — detailliert mit Erklärung jedes Feldes und Schritts.' },
+      { tag: 'Leitfaden',              title: 'So bereitest du dich auf den RWR+-Kartenantrag vor',                   desc: 'Ein Schritt-für-Schritt-Überblick zur Vorbereitung: Dokumente, finanzielle Voraussetzungen und Checklisten für unterschiedliche Arbeitssituationen.' },
+      { tag: 'Gewerbeanmeldung',       title: 'Gewerbeanmeldung in Österreich: Schritt-für-Schritt zur Selbstständigkeit', desc: 'Ein Schritt-für-Schritt-Überblick zur Gewerbeanmeldung: welche Unterlagen benötigt werden können, wo die Anmeldung erfolgt und worauf bei der Registrierung zu achten ist.' },
+      { tag: 'Österreich · Dokumente', title: 'ID Austria beantragen: Schritt-für-Schritt-Anleitung für Ausländer',  desc: 'So richtest du die ID Austria ein und nutzt sie für den Zugang zu digitalen Behördenservices, darunter FinanzOnline.' },
+      { tag: 'Familie · Leistungen',   title: 'Behinderung des Kindes in Österreich: Leistungen und wie man anfängt', desc: 'Ein Überblick über wichtige Themen für Eltern: Behindertenpass, erhöhte Familienbeihilfe, Pflegegeld und mögliche steuerliche Begünstigungen.' },
+      { tag: 'GISA · Anmeldung',       title: 'Registrierung auf der GISA-Website: Schritt-für-Schritt-Anleitung',   desc: 'Eine Schritt-für-Schritt-Anleitung zur Online-Gewerbeanmeldung über GISA mit Erklärungen zu den wichtigsten Feldern und Schritten.' },
     ],
     upcoming: [
       { tag: 'SVS',          title: 'So füllst du das SVS-Formular aus',          desc: 'Sozialversicherung — was du angeben musst, um nicht zu viel zu zahlen.' },

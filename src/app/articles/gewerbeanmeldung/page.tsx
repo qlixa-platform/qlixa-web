@@ -69,140 +69,67 @@ function ArticleLink({ href, title, sub }: { href: string; title: string; sub: s
   )
 }
 
-function CostTable({ headers, rows }: { headers: string[]; rows: { type: string; cost: string; free: boolean; note: string }[] }) {
-  return (
-    <div style={{ overflowX: 'auto', margin: '16px 0' }}>
-      <table style={{ width: '100%', borderCollapse: 'collapse', fontSize: 13 }}>
-        <thead>
-          <tr style={{ background: 'var(--charcoal)' }}>
-            {headers.map(h => (
-              <th key={h} style={{ padding: '10px 14px', textAlign: 'left', color: '#fff', fontSize: 12, fontWeight: 600 }}>{h}</th>
-            ))}
-          </tr>
-        </thead>
-        <tbody>
-          {rows.map((r, i) => (
-            <tr key={i} style={{ background: i % 2 === 0 ? '#fff' : 'var(--gray)' }}>
-              <td style={{ padding: '10px 14px', color: 'var(--charcoal)', fontWeight: 500 }}>{r.type}</td>
-              <td style={{ padding: '10px 14px' }}>
-                <span style={{
-                  padding: '2px 9px', borderRadius: 5, fontWeight: 700, fontSize: 12,
-                  background: r.free ? 'var(--success-bg)' : 'var(--peach-light)',
-                  color: r.free ? 'var(--success)' : '#038390',
-                }}>{r.cost}</span>
-              </td>
-              <td style={{ padding: '10px 14px', color: 'var(--text2)', fontSize: 12 }}>{r.note}</td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
-    </div>
-  )
-}
-
-function TranslationForm({ t }: { t: any }) {
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
-        <input type="text" placeholder={t.formFirstName} style={{
-          padding: '10px 13px', borderRadius: 8, border: '1px solid var(--line2)',
-          fontSize: 13, outline: 'none', fontFamily: 'DM Sans, sans-serif',
-        }} />
-        <input type="text" placeholder={t.formLastName} style={{
-          padding: '10px 13px', borderRadius: 8, border: '1px solid var(--line2)',
-          fontSize: 13, outline: 'none', fontFamily: 'DM Sans, sans-serif',
-        }} />
-      </div>
-      <input type="email" placeholder={t.formEmail} style={{
-        width: '100%', padding: '10px 13px', borderRadius: 8, border: '1px solid var(--line2)',
-        fontSize: 13, outline: 'none', fontFamily: 'DM Sans, sans-serif',
-      }} />
-      <div style={{
-        padding: '12px 13px', borderRadius: 8, border: '2px dashed var(--line2)',
-        fontSize: 13, color: 'var(--text3)', background: '#fff', textAlign: 'center', cursor: 'pointer',
-      }}>
-        {t.formUpload}
-      </div>
-      <button style={{
-        padding: '11px', borderRadius: 999, fontSize: 13, fontWeight: 700,
-        background: '#038390', color: '#fff', border: 'none', cursor: 'pointer',
-        fontFamily: 'DM Sans, sans-serif',
-      }}>
-        {t.formSubmit}
-      </button>
-    </div>
-  )
-}
-
-// Переклади статті "Gewerbeanmeldung в Австрії" — UA + RU (EN/DE додамо наступними кроками)
+// Переклади статті "Gewerbeanmeldung в Австрії" — UA / RU / EN / DE
 const GA_TEXT: Record<string, any> = {
   UA: {
     tag1: 'Реєстрація бізнесу', tag2: '9 кроків', tag3: 'Повний гайд',
     titleLine1: 'Gewerbeanmeldung в Австрії:', titleEm: 'покрокова реєстрація самозайнятості',
     metaTime: '🕐 15 хв читання', metaFree: '🆓 Freies Gewerbe — 0 €', metaForeigners: '🇺🇦 Для іноземців',
     toc: [
-      ['#step1', 'Вид діяльності'], ['#step2', 'Документи'], ['#step3', 'Austria ID'],
-      ['#step4', 'Реєстрація GISA'], ['#step5', 'Реєстрація SVS'], ['#step6', 'FinanzOnline'],
+      ['#step1', 'Вид діяльності'], ['#step2', 'Документи'], ['#step3', 'ID Austria'],
+      ['#step4', 'Реєстрація GISA'], ['#step5', 'SVS'], ['#step6', 'FinanzOnline'],
       ['#step7', 'SEPA'], ['#step8', 'Пенсійний фонд MVK'], ['#step9', 'WKO'],
     ],
-    disclaimer: 'Цей матеріал підготовлено на основі публічно доступних офіційних джерел та досвіду людей, які пройшли цей процес. QLIXA не є юридичним агентством і не надає індивідуальних консультацій. Вимоги та процедури можуть змінюватися — завжди перевіряйте актуальну інформацію на офіційних сайтах WKO та GISA.',
+    disclaimer: 'Матеріал має інформаційний характер і не є юридичною, податковою або бізнес-консультацією. Вимоги та процедури можуть змінюватися й залежати від конкретної діяльності та ситуації. Перед поданням перевір актуальну інформацію на офіційних сайтах WKO, USP та GISA або у компетентному органі.',
     introP: 'Українці, румуни, серби та інші іноземці в Австрії часто не розуміють: яка форма підходить, чи потрібна ліцензія, куди йти, які документи нести, скільки коштує і що буде з податками. У цьому гайді — реєстрація онлайн крок за кроком.',
     submissionLabel: 'Спосіб подачі:', submissionText: 'онлайн або особисто. Цей гайд — про онлайн. Для офлайн — ',
-    offlineLinkText: 'запишіться у WKO', offlineAfter: ' — там безкоштовно консультують.',
+    offlineLinkText: 'зверніться до WKO Gründerservice', offlineAfter: ' у вашому районі.',
     step1H2: 'Визначитися з видом діяльності', step1P: 'Спочатку потрібно зрозуміти — яка у вас діяльність:',
     step1Cards: [
-      { title: 'Freies Gewerbe', sub: 'Вільна діяльність без ліцензії', desc: 'Більшість IT, дизайн, консалтинг, фотографія, переклади. Реєстрація безкоштовна з 2017 року.', featured: true },
-      { title: 'Reglementiertes Gewerbe', sub: 'Потрібен Befähigungsnachweis', desc: 'Лікарі, архітектори, електрики тощо. Необхідно підтвердити кваліфікацію.', featured: false },
+      { title: 'Freies Gewerbe', sub: 'Вільна діяльність без ліцензії', desc: 'Не потребує підтвердження кваліфікації (Befähigungsnachweis). Реєстрація безкоштовна з 2017 року.', featured: true },
+      { title: 'Reglementiertes Gewerbe', sub: 'Потрібен Befähigungsnachweis', desc: 'Потребує підтвердження кваліфікації саме для вашого виду діяльності.', featured: false },
     ],
-    costLabel: 'Вартість реєстрації (§ 13 GewO, GebG):',
-    costHeaders: ['Форма / тип бізнесу', 'Вартість', 'Примітка'],
-    costRows: [
-      { type: 'Einzelunternehmen — freies Gewerbe', cost: '0 €', free: true, note: 'Безкоштовно з 2017 р.' },
-      { type: 'Einzelunternehmen — reglementiert', cost: '~14–100 €', free: false, note: 'Залежно від виду діяльності' },
-      { type: 'GmbH (нотаріус + Firmenbuch)', cost: '~2 000–4 000 €', free: false, note: '+ мін. капітал 35 000 €' },
-      { type: 'FlexCo (нотаріус + Firmenbuch)', cost: '~1 200–2 500 €', free: false, note: '+ мін. капітал 10 000 €' },
-    ],
+    step1Direction: 'Чи потрібна Gewerbeberechtigung і чи діяльність вільна або регламентована — залежить від точного виду діяльності (Gewerbewortlaut). Перед реєстрацією перевір точну назву та вид діяльності через WKO або офіційні сервіси GISA.',
+    costLabel: 'Вартість реєстрації (§ 13 GewO):',
+    costCoreText: 'Сама Gewerbeanmeldung за Gewerbeordnung зазвичай не має реєстраційного збору.',
+    costExtraText: 'Додаткові витрати можуть виникнути залежно від виду діяльності, необхідних підтверджень, перекладів або інших процедур.',
     step1Link1: '📋 Список КВЕДів (ÖNACE 2008)', step1Link2: '🔍 Перевірка в GISA',
-    step2H2: 'Підготувати документи заздалегідь', step2P: 'Ці документи знадобляться на різних етапах — готуйте одразу всі:',
-    step2Docs: ['Скан паспорта (закордонного)', 'Meldezettel — довідка про прописку в Австрії', 'Ausweis — посвідчення особи', 'Дійсний австрійський банківський рахунок', 'Довідка про несудимість'],
-    step2NoteInfo: <> <strong>Банківський рахунок:</strong> для Einzelunternehmen окремий рахунок не обов&apos;язковий, але рекомендований. Для GmbH / FlexCo — обов&apos;язковий.</>,
-    step2NoteWarning: 'Якщо ви проживаєте в Австрії менше 5 років, при реєстрації Gewerbe майже завжди вимагають довідку про несудимість. Довідка видається країною вашого громадянства або останньої країни довготривалого проживання. Вона має бути не старше 3 місяців на момент подачі. Обов’язковий офіційний переклад на німецьку мову, виконаний присяжним перекладачем. Для українців — довідку можна згенерувати онлайн через «Дія». QLIXA може допомогти з автоперекладом через наших партнерів.',
-    orderLinkText: '📅 Замовити австрійську довідку — bmi.gv.at ↗',
-    translationBoxTitle: '🔄 Потрібен переклад довідки з ДІЯ?',
-    translationBoxText: 'Залиште заявку — наші партнери з вами зв’яжуться.',
-    formFirstName: 'Ім’я (латиницею)', formLastName: 'Прізвище (латиницею)', formEmail: 'Email для зв’язку',
-    formUpload: '📎 Завантажити файл з ДІЯ (PDF або JPG)', formSubmit: 'Надіслати заявку →',
-    step3H2: 'Оформити Austria ID',
-    step3P: 'Austria ID — ваш цифровий підпис для входу в державні сервіси (GISA, FinanzOnline, SVS). Без нього онлайн реєстрація неможлива.',
-    step3NoteWarning: 'Для негромадян Австрії зробити Austria ID онлайн може не вийти — залежить від землі. Будьте готові до особистого відвідування.',
+    step2H2: 'Підготувати документи заздалегідь',
+    step2P: 'Ці документи можуть знадобитися на різних етапах — але не кожен документ обов’язковий для кожного випадку: конкретний перелік залежить від громадянства, статусу проживання, тривалості перебування в Австрії, зміни імені та того, чи діяльність регламентована.',
+    step2Docs: ['Скан паспорта (закордонного)', 'Meldezettel — довідка про прописку в Австрії', 'Ausweis — посвідчення особи', 'Дійсний австрійський банківський рахунок', 'Довідка про несудимість (за певних умов, див. нижче)'],
+    step2NoteInfo: <> <strong>Банківський рахунок:</strong> для Einzelunternehmen окремий рахунок не обов&apos;язковий, але рекомендований.</>,
+    step2NoteWarning: 'Особи, які не проживають в Австрії або проживають тут менше п’яти років, за загальним правилом мають подати довідку про несудимість країни громадянства чи попередньої країни тривалого проживання — оригінал із завіреним перекладом на німецьку мову, не старшу за три місяці на момент подання. Ця вимога знімається, якщо натомість подається присяжна заява (eidesstattliche Erklärung). Для громадян України цю довідку можна, зокрема, отримати онлайн через «Дію» — але формат документа та вимоги до перекладу варто уточнити в компетентному органі перед подачею.',
+    orderLinkText: '📅 Записатися на прийом — bmi.gv.at ↗',
+    step3H2: 'Оформити ID Austria',
+    step3P: 'ID Austria — засіб електронної ідентифікації, який використовується для доступу до багатьох державних цифрових сервісів в Австрії (зокрема GISA, FinanzOnline, SVS) і може використовуватися для онлайн-процедур.',
+    step3NoteWarning: 'Для деяких негромадян Австрії оформлення ID Austria повністю онлайн може бути недоступне — це залежить від землі (Bundesland). Будьте готові до особистого відвідування.',
     step3AppointmentLink: '📅 Записатися на термін — bmi.gv.at',
-    step3ArticleTitle: 'Читайте детально → Як оформити Austria ID: покроковий гайд', step3ArticleSub: 'Відкривається в новому вікні · Повна інструкція',
+    step3ArticleTitle: 'Читайте детально → Як оформити ID Austria: покроковий гайд', step3ArticleSub: 'Відкривається в новому вікні · Повна інструкція',
     step4H2: 'Реєстрація на сайті GISA',
     step4P: 'GISA — Gewerbeinformationssystem Austria — офіційний портал для реєстрації Gewerbe.',
     step4GisaLink: '🌐 Перейти на GISA — Online-Gewerbeanmeldung',
-    step4NoteInfo: 'Після реєстрації чекайте кілька днів — дані з GISA знадобляться для заповнення форми у FinanzOnline.',
+    step4NoteInfo: 'Якщо всі умови виконано, для більшості видів Gewerbe діяльність можна розпочинати вже з моменту дійсної реєстрації. Для окремих регламентованих видів діяльності можуть діяти інші строки. Дані з GISA також знадобляться для наступних кроків, зокрема для форми у FinanzOnline.',
     step4ArticleTitle: 'Читайте детально → Як заповнити формуляр GISA', step4ArticleSub: 'Покроковий гайд з поясненнями кожного поля',
-    step5H2: 'Реєстрація в SVS',
-    step5P: 'SVS (Sozialversicherungsanstalt der Selbständigen) — соціальне страхування самозайнятих. Вхід через Austria ID.',
-    step5NoteTip: 'До страхування SVS можна підключити всіх членів сім’ї та навіть найближчих родичів.',
-    step5ArticleTitle: 'Читайте детально → Як заповнити формуляр SVS', step5ArticleSub: 'Що вказати, щоб не переплатити та підключити сім’ю',
+    step5H2: 'Перевірити реєстрацію та дані в SVS',
+    step5P: 'SVS (Sozialversicherungsanstalt der Selbständigen) — соціальне страхування самозайнятих. Після Gewerbeanmeldung орган, що реєструє Gewerbe, зазвичай сам передає дані до SVS — окрема ручна реєстрація в SVS для Gewerbetreibende, як правило, не потрібна. Перевірте свій статус страхування та дані в кабінеті SVS (вхід через ID Austria) і за потреби доповніть інформацію. Зверніть увагу: логіка повідомлення SVS для Neue Selbständige (нової самозайнятості без Gewerbe) інша.',
+    step5NoteTip: 'За певних умов до медичного страхування SVS можуть бути співзастраховані окремі члени сім’ї (наприклад, чоловік/дружина, зареєстрований партнер, діти) — точні умови співстрахування варто перевірити безпосередньо в SVS.',
+    step5ArticleTitle: 'Читайте детально → Як заповнити формуляр SVS', step5ArticleSub: 'Що потрібно вказати та як працює реєстрація в SVS',
     step6H2: 'Реєстрація у FinanzOnline',
-    step6P: 'Вхід через Austria ID. До цього моменту вам вже має прийти лист від GISA, і ви повинні спрогнозувати оборот — бо SVS одразу почне нараховувати внески.',
-    step6TipBefore: 'Не знаєте скільки платити SVS?', step6TipLink: 'SVS Beitragsrechner', step6TipAfter: ' — а якщо там нічого не зрозуміло, саме тому ми створили QLIXA 😉',
-    step6NoteWarning: <>Обов&apos;язково потрібна <strong>фізична адреса</strong> для отримання листа від FinanzOnline — туди приходять логіни та паролі.</>,
-    step6NoteInfo: <>При реєстрації можна додати лише <strong>один КВЕД</strong>. Щоб додати ще — напишіть лист у вільній формі та відправте на email вашого Bezirkshauptmannschaft.</>,
-    step7H2: 'Налаштувати SEPA-Lastschriftmandat',
-    step7P: <>У кабінеті FinanzOnline знайдіть через пошук <strong>«SEPA-Lastschriftmandat»</strong> і заповніть форму для автоматичного списання SVS та інших платежів з вашого рахунку.</>,
-    step8H2: 'Вибір пенсійного фонду MVK',
-    step8P: <>Протягом <strong>6 місяців</strong> після реєстрації оберіть Mitarbeitervorsorgekasse (MVK) — § 6 BMSVG. Це 1.53% від доходу щомісяця — ваш пенсійний накопичувальний рахунок.</>,
-    step8ArticleTitle: 'Читайте детально → Як обрати пенсійний фонд MVK', step8ArticleSub: 'Що таке MVK і як не пропустити дедлайн 6 місяців',
-    step9H2: 'Зареєструватися у WKO вашого району',
-    step9P: <>WKO (Wirtschaftskammer Österreich) — торгово-промислова палата. У вашому районному відділенні можуть бути <strong>безкоштовні консультації</strong>, вебінари та зустрічі.</>,
+    step6P: 'Вхід через ID Austria (або через окрему реєстрацію FinanzOnline, якщо ID Austria ще немає). У Fragebogen zur Betriebseröffnung потрібно вказати очікуваний оборот — ця оцінка потрібна Finanzamt, щоб визначити, чи перевищується поріг ПДВ (55 000 € на рік), і встановити попередні податкові платежі. Це не пов’язано з внесками SVS.',
+    step6TipBefore: 'Внески SVS для нових Gewerbetreibende спочатку розраховуються від мінімальної бази автоматично, незалежно від прогнозу обороту у FinanzOnline.', step6TipLink: 'SVS Beitragsrechner', step6TipAfter: ' допоможе орієнтовно оцінити суму внесків.',
+    step6NoteWarning: <>Якщо ви реєструєтесь у FinanzOnline <strong>без ID Austria</strong>, початкові логін і пароль надсилаються поштовим листом — тому знадобиться адреса, за якою ви можете отримати кореспонденцію. З <strong>ID Austria</strong> можна увійти одразу, без очікування листа.</>,
+    step6NoteInfo: 'Якщо пізніше потрібно додати або змінити код діяльності (ÖNACE) чи інші дані реєстрації, актуальну процедуру уточнюйте безпосередньо у вашому Finanzamt або Gewerbebehörde — точний порядок може відрізнятися залежно від відомства.',
+    step7H2: 'Налаштувати SEPA-Lastschriftmandat (за бажанням)',
+    step7P: <>У кабінеті FinanzOnline можна налаштувати <strong>SEPA-Lastschriftmandat</strong> для автоматичного списання платежів, які адмініструє Finanzamt (наприклад, авансових платежів з податку на прибуток). Це не поширюється на внески SVS — SVS адмініструє власний, окремий процес прямого дебетування, який налаштовується окремо в кабінеті SVS.</>,
+    step8H2: 'Вибір MVK (Selbständigenvorsorge)',
+    step8P: <>Протягом <strong>6 місяців</strong> після реєстрації потрібно обрати Mitarbeitervorsorgekasse (MVK) — § 6 BMSVG. Внесок становить 1,53% від доходу щомісяця і накопичується на вашому рахунку Selbständigenvorsorge. Якщо фонд не обрано самостійно, вас приєднають до одного з фондів автоматично.</>,
+    step8ArticleTitle: 'Читайте детально → Як обрати MVK', step8ArticleSub: 'Що таке MVK та які строки потрібно знати',
+    step9H2: 'Скористатися сервісами WKO',
+    step9P: <>WKO (Wirtschaftskammer Österreich) — торгово-промислова палата. Членство в WKO зазвичай виникає автоматично разом з отриманням Gewerbeberechtigung — окремо реєструватися для цього не потрібно. У вашому районному відділенні можуть бути <strong>консультації для початківців (Gründerservice)</strong>, вебінари та зустрічі.</>,
     step9Link: '🏢 WKO — інформація про реєстрацію',
-    ctaH2: 'А тепер — починай заробляти! 🚀',
-    ctaP: <>А про організацію цифр подбає <strong style={{ color: 'var(--charcoal)' }}>QLIXA</strong>. Рахунки, клієнти, склад, прогнози внесків і податків, звіти та інші цифрові інструменти — усе в одному місці, зрозумілою мовою і без зайвої бюрократії.</>,
-    ctaLinkText: 'QLIXA — твій цифровий помічник для бізнесу в Австрії.',
-    ctaTagline: 'Reports in one click — і спокій у голові.',
+    ctaH2: 'Продовжуй розбиратися крок за кроком',
+    ctaP: 'У QLIXA можна знайти безкоштовні гайди, чеклисти, інструкції та інструменти про податки, документи, самозайнятість і життя в Австрії.',
+    ctaLinkText: 'Переглянути безкоштовні матеріали →',
     sourcesLabel: 'Офіційні джерела',
   },
   RU: {
@@ -210,68 +137,60 @@ const GA_TEXT: Record<string, any> = {
     titleLine1: 'Gewerbeanmeldung в Австрии:', titleEm: 'пошаговая регистрация самозанятости',
     metaTime: '🕐 15 мин чтения', metaFree: '🆓 Freies Gewerbe — 0 €', metaForeigners: '🇺🇦 Для иностранцев',
     toc: [
-      ['#step1', 'Вид деятельности'], ['#step2', 'Документы'], ['#step3', 'Austria ID'],
-      ['#step4', 'Регистрация GISA'], ['#step5', 'Регистрация SVS'], ['#step6', 'FinanzOnline'],
+      ['#step1', 'Вид деятельности'], ['#step2', 'Документы'], ['#step3', 'ID Austria'],
+      ['#step4', 'Регистрация GISA'], ['#step5', 'SVS'], ['#step6', 'FinanzOnline'],
       ['#step7', 'SEPA'], ['#step8', 'Пенсионный фонд MVK'], ['#step9', 'WKO'],
     ],
-    disclaimer: 'Этот материал подготовлен на основе публично доступных официальных источников и опыта людей, которые прошли этот процесс. QLIXA не является юридическим агентством и не предоставляет индивидуальных консультаций. Требования и процедуры могут меняться — всегда проверяйте актуальную информацию на официальных сайтах WKO и GISA.',
+    disclaimer: 'Материал имеет информационный характер и не является юридической, налоговой или бизнес-консультацией. Требования и процедуры могут меняться и зависеть от конкретной деятельности и ситуации. Перед подачей проверьте актуальную информацию на официальных сайтах WKO, USP и GISA или в компетентном органе.',
     introP: 'Украинцы, румыны, сербы и другие иностранцы в Австрии часто не понимают: какая форма подходит, нужна ли лицензия, куда идти, какие документы нести, сколько это стоит и что будет с налогами. В этом гайде — регистрация онлайн шаг за шагом.',
     submissionLabel: 'Способ подачи:', submissionText: 'онлайн или лично. Этот гайд — про онлайн. Для офлайн — ',
-    offlineLinkText: 'запишитесь в WKO', offlineAfter: ' — там бесплатно консультируют.',
+    offlineLinkText: 'обратитесь в WKO Gründerservice', offlineAfter: ' в вашем районе.',
     step1H2: 'Определиться с видом деятельности', step1P: 'Сначала нужно понять — какая у вас деятельность:',
     step1Cards: [
-      { title: 'Freies Gewerbe', sub: 'Свободная деятельность без лицензии', desc: 'Большинство IT, дизайн, консалтинг, фотография, переводы. Регистрация бесплатна с 2017 года.', featured: true },
-      { title: 'Reglementiertes Gewerbe', sub: 'Нужен Befähigungsnachweis', desc: 'Врачи, архитекторы, электрики и т.д. Необходимо подтвердить квалификацию.', featured: false },
+      { title: 'Freies Gewerbe', sub: 'Свободная деятельность без лицензии', desc: 'Не требует подтверждения квалификации (Befähigungsnachweis). Регистрация бесплатна с 2017 года.', featured: true },
+      { title: 'Reglementiertes Gewerbe', sub: 'Нужен Befähigungsnachweis', desc: 'Требует подтверждения квалификации именно для вашего вида деятельности.', featured: false },
     ],
-    costLabel: 'Стоимость регистрации (§ 13 GewO, GebG):',
-    costHeaders: ['Форма / тип бизнеса', 'Стоимость', 'Примечание'],
-    costRows: [
-      { type: 'Einzelunternehmen — freies Gewerbe', cost: '0 €', free: true, note: 'Бесплатно с 2017 г.' },
-      { type: 'Einzelunternehmen — reglementiert', cost: '~14–100 €', free: false, note: 'В зависимости от вида деятельности' },
-      { type: 'GmbH (нотариус + Firmenbuch)', cost: '~2 000–4 000 €', free: false, note: '+ мин. капитал 35 000 €' },
-      { type: 'FlexCo (нотариус + Firmenbuch)', cost: '~1 200–2 500 €', free: false, note: '+ мин. капитал 10 000 €' },
-    ],
+    step1Direction: 'Нужна ли Gewerbeberechtigung и является ли деятельность свободной или регламентированной, зависит от точного вида деятельности (Gewerbewortlaut). Перед регистрацией проверьте точное название и вид деятельности через WKO или официальные сервисы GISA.',
+    costLabel: 'Стоимость регистрации (§ 13 GewO):',
+    costCoreText: 'Сама Gewerbeanmeldung согласно Gewerbeordnung обычно не облагается регистрационным сбором.',
+    costExtraText: 'Дополнительные расходы могут возникнуть в зависимости от вида деятельности, необходимых подтверждений, переводов или других процедур.',
     step1Link1: '📋 Список кодов ÖNACE (ÖNACE 2008)', step1Link2: '🔍 Проверка в GISA',
-    step2H2: 'Подготовить документы заранее', step2P: 'Эти документы понадобятся на разных этапах — готовьте сразу все:',
-    step2Docs: ['Скан паспорта (загранпаспорта)', 'Meldezettel — справка о прописке в Австрии', 'Ausweis — удостоверение личности', 'Действующий австрийский банковский счёт', 'Справка о несудимости'],
-    step2NoteInfo: <><strong>Банковский счёт:</strong> для Einzelunternehmen отдельный счёт не обязателен, но рекомендован. Для GmbH / FlexCo — обязателен.</>,
-    step2NoteWarning: 'Если вы проживаете в Австрии менее 5 лет, при регистрации Gewerbe почти всегда требуют справку о несудимости. Справка выдаётся страной вашего гражданства или последней страны долгосрочного проживания. Она должна быть не старше 3 месяцев на момент подачи. Обязателен официальный перевод на немецкий язык, выполненный присяжным переводчиком. Для украинцев — справку можно сгенерировать онлайн через «Дию». QLIXA может помочь с переводом через наших партнёров.',
-    orderLinkText: '📅 Заказать австрийскую справку — bmi.gv.at ↗',
-    translationBoxTitle: '🔄 Нужен перевод справки из Дії?',
-    translationBoxText: 'Оставьте заявку — наши партнёры с вами свяжутся.',
-    formFirstName: 'Имя (латиницей)', formLastName: 'Фамилия (латиницей)', formEmail: 'Email для связи',
-    formUpload: '📎 Загрузить файл из Дії (PDF или JPG)', formSubmit: 'Отправить заявку →',
-    step3H2: 'Оформить Austria ID',
-    step3P: 'Austria ID — ваша цифровая подпись для входа в государственные сервисы (GISA, FinanzOnline, SVS). Без неё онлайн-регистрация невозможна.',
-    step3NoteWarning: 'Для неграждан Австрии сделать Austria ID онлайн может не получиться — зависит от земли. Будьте готовы к личному визиту.',
+    step2H2: 'Подготовить документы заранее',
+    step2P: 'Эти документы могут понадобиться на разных этапах — но не каждый документ обязателен в каждом случае: конкретный перечень зависит от гражданства, статуса проживания, длительности пребывания в Австрии, смены имени и того, регламентирована ли деятельность.',
+    step2Docs: ['Скан паспорта (загранпаспорта)', 'Meldezettel — справка о прописке в Австрии', 'Ausweis — удостоверение личности', 'Действующий австрийский банковский счёт', 'Справка о несудимости (при определённых условиях, см. ниже)'],
+    step2NoteInfo: <><strong>Банковский счёт:</strong> для Einzelunternehmen отдельный счёт не обязателен, но рекомендован.</>,
+    step2NoteWarning: 'Лица, которые не проживают в Австрии или проживают здесь менее пяти лет, как правило, должны предоставить справку о несудимости страны гражданства или предыдущей страны длительного проживания — оригинал с заверенным переводом на немецкий язык, не старше трёх месяцев на момент подачи. Это требование снимается, если вместо этого подаётся присяжное заявление (eidesstattliche Erklärung). Для граждан Украины эту справку можно, в частности, получить онлайн через «Дию» — но формат документа и требования к переводу стоит уточнить в компетентном органе перед подачей.',
+    orderLinkText: '📅 Записаться на приём — bmi.gv.at ↗',
+    step3H2: 'Оформить ID Austria',
+    step3P: 'ID Austria — средство электронной идентификации, которое используется для доступа ко многим государственным цифровым сервисам в Австрии (в том числе GISA, FinanzOnline, SVS) и может использоваться для онлайн-процедур.',
+    step3NoteWarning: 'Для некоторых неграждан Австрии оформление ID Austria полностью онлайн может быть недоступно — это зависит от земли (Bundesland). Будьте готовы к личному визиту.',
     step3AppointmentLink: '📅 Записаться на приём — bmi.gv.at',
-    step3ArticleTitle: 'Читайте подробно → Как оформить Austria ID: пошаговый гайд', step3ArticleSub: 'Открывается в новом окне · Полная инструкция',
+    step3ArticleTitle: 'Читайте подробно → Как оформить ID Austria: пошаговый гайд', step3ArticleSub: 'Открывается в новом окне · Полная инструкция',
     step4H2: 'Регистрация на сайте GISA',
     step4P: 'GISA — Gewerbeinformationssystem Austria — официальный портал для регистрации Gewerbe.',
     step4GisaLink: '🌐 Перейти на GISA — Online-Gewerbeanmeldung',
-    step4NoteInfo: 'После регистрации подождите несколько дней — данные из GISA понадобятся для заполнения формы в FinanzOnline.',
+    step4NoteInfo: 'Если все условия выполнены, для большинства видов Gewerbe деятельность можно начинать уже с момента действительной регистрации. Для отдельных регламентированных видов деятельности могут действовать другие сроки. Данные из GISA также понадобятся для следующих шагов, в частности для формы в FinanzOnline.',
     step4ArticleTitle: 'Читайте подробно → Как заполнить формуляр GISA', step4ArticleSub: 'Пошаговый гайд с объяснением каждого поля',
-    step5H2: 'Регистрация в SVS',
-    step5P: 'SVS (Sozialversicherungsanstalt der Selbständigen) — социальное страхование самозанятых. Вход через Austria ID.',
-    step5NoteTip: 'К страхованию SVS можно подключить всех членов семьи и даже ближайших родственников.',
-    step5ArticleTitle: 'Читайте подробно → Как заполнить формуляр SVS', step5ArticleSub: 'Что указать, чтобы не переплатить и подключить семью',
+    step5H2: 'Проверить регистрацию и данные в SVS',
+    step5P: 'SVS (Sozialversicherungsanstalt der Selbständigen) — социальное страхование самозанятых. После Gewerbeanmeldung орган, регистрирующий Gewerbe, как правило, сам передаёт данные в SVS — отдельная ручная регистрация в SVS для Gewerbetreibende обычно не требуется. Проверьте свой статус страхования и данные в кабинете SVS (вход через ID Austria) и при необходимости дополните информацию. Обратите внимание: логика уведомления SVS для Neue Selbständige (новой самозанятости без Gewerbe) отличается.',
+    step5NoteTip: 'При определённых условиях к медицинскому страхованию SVS могут быть присоединены отдельные члены семьи (например, супруг/супруга, зарегистрированный партнёр, дети) — точные условия совместного страхования стоит уточнить непосредственно в SVS.',
+    step5ArticleTitle: 'Читайте подробно → Как заполнить формуляр SVS', step5ArticleSub: 'Какие данные нужно указать и как работает регистрация в SVS',
     step6H2: 'Регистрация в FinanzOnline',
-    step6P: 'Вход через Austria ID. К этому моменту вам уже должно прийти письмо от GISA, и вы должны спрогнозировать оборот — потому что SVS сразу начнёт начислять взносы.',
-    step6TipBefore: 'Не знаете, сколько платить SVS?', step6TipLink: 'SVS Beitragsrechner', step6TipAfter: ' — а если там ничего не понятно, именно поэтому мы создали QLIXA 😉',
-    step6NoteWarning: <>Обязательно нужен <strong>физический адрес</strong> для получения письма от FinanzOnline — туда приходят логины и пароли.</>,
-    step6NoteInfo: <>При регистрации можно добавить только <strong>один код деятельности (ÖNACE)</strong>. Чтобы добавить ещё — напишите письмо в свободной форме и отправьте на email вашего Bezirkshauptmannschaft.</>,
-    step7H2: 'Настроить SEPA-Lastschriftmandat',
-    step7P: <>В кабинете FinanzOnline найдите через поиск <strong>«SEPA-Lastschriftmandat»</strong> и заполните форму для автоматического списания SVS и других платежей с вашего счёта.</>,
-    step8H2: 'Выбор пенсионного фонда MVK',
-    step8P: <>В течение <strong>6 месяцев</strong> после регистрации выберите Mitarbeitervorsorgekasse (MVK) — § 6 BMSVG. Это 1.53% от дохода ежемесячно — ваш пенсионный накопительный счёт.</>,
-    step8ArticleTitle: 'Читайте подробно → Как выбрать пенсионный фонд MVK', step8ArticleSub: 'Что такое MVK и как не пропустить дедлайн 6 месяцев',
-    step9H2: 'Зарегистрироваться в WKO вашего района',
-    step9P: <>WKO (Wirtschaftskammer Österreich) — торгово-промышленная палата. В вашем районном отделении могут быть <strong>бесплатные консультации</strong>, вебинары и встречи.</>,
+    step6P: 'Вход через ID Austria (или через отдельную регистрацию в FinanzOnline, если ID Austria ещё нет). В Fragebogen zur Betriebseröffnung нужно указать ожидаемый оборот — эта оценка нужна Finanzamt, чтобы определить, превышается ли порог НДС (55 000 € в год), и установить предварительные налоговые платежи. Это не связано со взносами SVS.',
+    step6TipBefore: 'Взносы SVS для новых Gewerbetreibende изначально рассчитываются от минимальной базы автоматически, независимо от прогноза оборота в FinanzOnline.', step6TipLink: 'SVS Beitragsrechner', step6TipAfter: ' поможет ориентировочно оценить сумму взносов.',
+    step6NoteWarning: <>Если вы регистрируетесь в FinanzOnline <strong>без ID Austria</strong>, первоначальные логин и пароль присылаются письмом по почте — поэтому понадобится адрес, по которому вы можете получить корреспонденцию. С <strong>ID Austria</strong> можно войти сразу, не дожидаясь письма.</>,
+    step6NoteInfo: 'Если позже нужно добавить или изменить код деятельности (ÖNACE) или другие регистрационные данные, актуальную процедуру уточняйте непосредственно в вашем Finanzamt или Gewerbebehörde — точный порядок может отличаться в зависимости от ведомства.',
+    step7H2: 'Настроить SEPA-Lastschriftmandat (по желанию)',
+    step7P: <>В кабинете FinanzOnline можно настроить <strong>SEPA-Lastschriftmandat</strong> для автоматического списания платежей, которые администрирует Finanzamt (например, авансовых платежей по налогу на прибыль). Это не распространяется на взносы SVS — SVS администрирует собственный, отдельный процесс прямого дебетования, который настраивается отдельно в кабинете SVS.</>,
+    step8H2: 'Выбор MVK (Selbständigenvorsorge)',
+    step8P: <>В течение <strong>6 месяцев</strong> после регистрации нужно выбрать Mitarbeitervorsorgekasse (MVK) — § 6 BMSVG. Взнос составляет 1,53% от дохода ежемесячно и накапливается на вашем счёте Selbständigenvorsorge. Если фонд не выбран самостоятельно, вас присоединят к одному из фондов автоматически.</>,
+    step8ArticleTitle: 'Читайте подробно → Как выбрать MVK', step8ArticleSub: 'Что такое MVK и какие сроки нужно знать',
+    step9H2: 'Воспользоваться сервисами WKO',
+    step9P: <>WKO (Wirtschaftskammer Österreich) — торгово-промышленная палата. Членство в WKO обычно возникает автоматически вместе с получением Gewerbeberechtigung — отдельно регистрироваться для этого не нужно. В вашем районном отделении могут быть <strong>консультации для начинающих (Gründerservice)</strong>, вебинары и встречи.</>,
     step9Link: '🏢 WKO — информация о регистрации',
-    ctaH2: 'А теперь — начинай зарабатывать! 🚀',
-    ctaP: <>А об организации цифр позаботится <strong style={{ color: 'var(--charcoal)' }}>QLIXA</strong>. Счета, клиенты, склад, прогнозы взносов и налогов, отчёты и другие цифровые инструменты — всё в одном месте, понятным языком и без лишней бюрократии.</>,
-    ctaLinkText: 'QLIXA — твой цифровой помощник для бизнеса в Австрии.',
-    ctaTagline: 'Reports in one click — и спокойствие в голове.',
+    ctaH2: 'Продолжай разбираться шаг за шагом',
+    ctaP: 'В QLIXA можно найти бесплатные гайды, чеклисты, инструкции и инструменты о налогах, документах, самозанятости и жизни в Австрии.',
+    ctaLinkText: 'Посмотреть бесплатные материалы →',
     sourcesLabel: 'Официальные источники',
   },
   EN: {
@@ -279,68 +198,60 @@ const GA_TEXT: Record<string, any> = {
     titleLine1: 'Gewerbeanmeldung in Austria:', titleEm: 'step-by-step self-employment registration',
     metaTime: '🕐 15 min read', metaFree: '🆓 Freies Gewerbe — €0', metaForeigners: '🇺🇦 For foreigners',
     toc: [
-      ['#step1', 'Type of Activity'], ['#step2', 'Documents'], ['#step3', 'Austria ID'],
-      ['#step4', 'GISA Registration'], ['#step5', 'SVS Registration'], ['#step6', 'FinanzOnline'],
+      ['#step1', 'Type of Activity'], ['#step2', 'Documents'], ['#step3', 'ID Austria'],
+      ['#step4', 'GISA Registration'], ['#step5', 'SVS'], ['#step6', 'FinanzOnline'],
       ['#step7', 'SEPA'], ['#step8', 'MVK Pension Fund'], ['#step9', 'WKO'],
     ],
-    disclaimer: 'This material is based on publicly available official sources and the experience of people who have gone through this process. QLIXA is not a legal agency and does not provide individual consultations. Requirements and procedures may change — always check the current information on the official WKO and GISA websites.',
+    disclaimer: 'This material is for informational purposes only and does not constitute legal, tax, or business advice. Requirements and procedures may change and depend on the specific activity and situation. Before submitting, check the current information on the official WKO, USP, and GISA websites or with the competent authority.',
     introP: "Ukrainians, Romanians, Serbians, and other foreigners in Austria often don't understand: which form fits, whether a license is needed, where to go, which documents to bring, how much it costs, and what happens with taxes. This guide covers registration online, step by step.",
     submissionLabel: 'How to apply:', submissionText: 'online or in person. This guide covers online. For offline — ',
-    offlineLinkText: 'book an appointment at WKO', offlineAfter: ' — they offer free consultations there.',
+    offlineLinkText: 'contact the WKO Gründerservice', offlineAfter: ' in your district.',
     step1H2: 'Decide on your type of activity', step1P: 'First, you need to understand what kind of activity you have:',
     step1Cards: [
-      { title: 'Freies Gewerbe', sub: 'Free activity, no license needed', desc: 'Most IT, design, consulting, photography, translation. Registration has been free since 2017.', featured: true },
-      { title: 'Reglementiertes Gewerbe', sub: 'Requires a Befähigungsnachweis', desc: 'Doctors, architects, electricians, etc. You need to prove your qualification.', featured: false },
+      { title: 'Freies Gewerbe', sub: 'Free activity, no license needed', desc: 'Does not require proof of qualification (Befähigungsnachweis). Registration has been free since 2017.', featured: true },
+      { title: 'Reglementiertes Gewerbe', sub: 'Requires a Befähigungsnachweis', desc: 'Requires proof of qualification for your specific activity.', featured: false },
     ],
-    costLabel: 'Registration cost (§ 13 GewO, GebG):',
-    costHeaders: ['Form / Business Type', 'Cost', 'Note'],
-    costRows: [
-      { type: 'Einzelunternehmen — freies Gewerbe', cost: '€0', free: true, note: 'Free since 2017' },
-      { type: 'Einzelunternehmen — reglementiert', cost: '~€14–100', free: false, note: 'Depends on activity type' },
-      { type: 'GmbH (notary + Firmenbuch)', cost: '~€2,000–4,000', free: false, note: '+ min. capital €35,000' },
-      { type: 'FlexCo (notary + Firmenbuch)', cost: '~€1,200–2,500', free: false, note: '+ min. capital €10,000' },
-    ],
+    step1Direction: 'Whether a Gewerbeberechtigung is required, and whether an activity is free or regulated, depends on the exact activity (Gewerbewortlaut). Before registering, check the exact name and type of your activity via WKO or the official GISA services.',
+    costLabel: 'Registration cost (§ 13 GewO):',
+    costCoreText: 'Gewerbeanmeldung itself, under the Gewerbeordnung, generally does not carry a registration fee.',
+    costExtraText: 'Additional costs may arise depending on the type of activity, required proof documents, translations, or other procedures.',
     step1Link1: '📋 List of activity codes (ÖNACE 2008)', step1Link2: '🔍 Check in GISA',
-    step2H2: 'Prepare your documents in advance', step2P: "You'll need these documents at various stages — prepare them all at once:",
-    step2Docs: ['Scanned passport (international)', 'Meldezettel — proof of registration in Austria', 'Ausweis — identity document', 'A valid Austrian bank account', 'Criminal record certificate'],
-    step2NoteInfo: <> <strong>Bank account:</strong> for Einzelunternehmen a separate account isn&apos;t mandatory but is recommended. For GmbH / FlexCo — it is mandatory.</>,
-    step2NoteWarning: "If you've lived in Austria for less than 5 years, a criminal record certificate is almost always required when registering a Gewerbe. The certificate is issued by your country of citizenship or your last country of long-term residence. It must be no older than 3 months at the time of submission. An official German translation by a certified translator is required. For Ukrainians, the certificate can be generated online through Diia. QLIXA can help with translation through our partners.",
-    orderLinkText: '📅 Order the Austrian certificate — bmi.gv.at ↗',
-    translationBoxTitle: '🔄 Need a translation of your Diia certificate?',
-    translationBoxText: 'Leave a request — our partners will contact you.',
-    formFirstName: 'First name (in Latin letters)', formLastName: 'Last name (in Latin letters)', formEmail: 'Email for contact',
-    formUpload: '📎 Upload your Diia file (PDF or JPG)', formSubmit: 'Submit request →',
-    step3H2: 'Get your Austria ID',
-    step3P: 'Austria ID is your digital signature for accessing government services (GISA, FinanzOnline, SVS). Online registration is impossible without it.',
-    step3NoteWarning: 'For non-Austrian citizens, getting an Austria ID online may not be possible — it depends on the state (Bundesland). Be prepared for an in-person visit.',
+    step2H2: 'Prepare your documents in advance',
+    step2P: "You may need these documents at various stages — but not every document is required in every case: the exact list depends on citizenship, residence status, length of residence in Austria, name changes, and whether the activity is regulated.",
+    step2Docs: ['Scanned passport (international)', 'Meldezettel — proof of registration in Austria', 'Ausweis — identity document', 'A valid Austrian bank account', 'Criminal record certificate (under certain conditions, see below)'],
+    step2NoteInfo: <> <strong>Bank account:</strong> for Einzelunternehmen a separate account isn&apos;t mandatory but is recommended.</>,
+    step2NoteWarning: "People who don't live in Austria, or have lived there for less than five years, generally must submit a criminal record certificate from their country of citizenship or last country of long-term residence — the original with a certified German translation, no older than three months at the time of submission. This requirement is waived if a sworn statement (eidesstattliche Erklärung) is submitted instead. For Ukrainian citizens, this certificate can, among other options, be obtained online via Diia — but the document format and translation requirements should be confirmed with the competent authority before submission.",
+    orderLinkText: '📅 Book an appointment — bmi.gv.at ↗',
+    step3H2: 'Get your ID Austria',
+    step3P: 'ID Austria is an electronic identification means used to access many Austrian government digital services (including GISA, FinanzOnline, SVS) and may be used for online procedures.',
+    step3NoteWarning: 'For some non-Austrian citizens, getting an ID Austria fully online may not be possible — it depends on the state (Bundesland). Be prepared for an in-person visit.',
     step3AppointmentLink: '📅 Book an appointment — bmi.gv.at',
-    step3ArticleTitle: 'Read more → How to get an Austria ID: step-by-step guide', step3ArticleSub: 'Opens in a new window · Full instructions',
+    step3ArticleTitle: 'Read more → How to get an ID Austria: step-by-step guide', step3ArticleSub: 'Opens in a new window · Full instructions',
     step4H2: 'Register on the GISA website',
     step4P: 'GISA — Gewerbeinformationssystem Austria — the official portal for registering a Gewerbe.',
     step4GisaLink: '🌐 Go to GISA — Online-Gewerbeanmeldung',
-    step4NoteInfo: 'After registering, wait a few days — the data from GISA will be needed to fill out the FinanzOnline form.',
+    step4NoteInfo: 'If all requirements are met, for most Gewerbe types the activity can generally be carried out from the date of valid registration. Different timelines may apply for certain regulated activities. The data from GISA will also be needed for later steps, including the FinanzOnline form.',
     step4ArticleTitle: 'Read more → How to fill out the GISA form', step4ArticleSub: 'Step-by-step guide explaining each field',
-    step5H2: 'Register with SVS',
-    step5P: 'SVS (Sozialversicherungsanstalt der Selbständigen) is social insurance for the self-employed. Log in via Austria ID.',
-    step5NoteTip: 'You can add all your family members, and even close relatives, to SVS insurance.',
-    step5ArticleTitle: 'Read more → How to fill out the SVS form', step5ArticleSub: 'What to specify to avoid overpaying and to add your family',
+    step5H2: 'Check your SVS registration and details',
+    step5P: "SVS (Sozialversicherungsanstalt der Selbständigen) is social insurance for the self-employed. After Gewerbeanmeldung, the authority that registers the Gewerbe generally forwards the relevant data to SVS itself — a separate manual SVS registration is usually not needed for Gewerbetreibende. Check your insurance status and details in your SVS account (log in via ID Austria) and provide additional information if required. Note: the SVS notification logic differs for Neue Selbständige (new self-employment without a Gewerbe).",
+    step5NoteTip: 'Under certain conditions, specific family members (such as a spouse, registered partner, or children) may be co-insured under SVS health insurance — check the exact eligibility conditions directly with SVS.',
+    step5ArticleTitle: 'Read more → How to fill out the SVS form', step5ArticleSub: 'What information is required and how SVS registration works',
     step6H2: 'Register with FinanzOnline',
-    step6P: "Log in via Austria ID. By this point you should have already received a letter from GISA, and you'll need to forecast your turnover — because SVS will start charging contributions right away.",
-    step6TipBefore: "Don't know how much to pay SVS?", step6TipLink: 'SVS Beitragsrechner', step6TipAfter: " — and if you can't make sense of it, that's exactly why we built QLIXA 😉",
-    step6NoteWarning: <>You definitely need a <strong>physical address</strong> to receive the letter from FinanzOnline — your login and password are sent there.</>,
-    step6NoteInfo: <>You can only add <strong>one activity code (ÖNACE)</strong> at registration. To add more, write a free-form letter and send it to your Bezirkshauptmannschaft&apos;s email.</>,
-    step7H2: 'Set up your SEPA-Lastschriftmandat',
-    step7P: <>In your FinanzOnline account, search for <strong>&quot;SEPA-Lastschriftmandat&quot;</strong> and fill out the form to enable automatic payment of SVS and other charges from your account.</>,
-    step8H2: 'Choose your MVK pension fund',
-    step8P: <>Within <strong>6 months</strong> of registering, choose a Mitarbeitervorsorgekasse (MVK) — § 6 BMSVG. This is 1.53% of your income each month — your pension savings account.</>,
-    step8ArticleTitle: 'Read more → How to choose an MVK pension fund', step8ArticleSub: 'What MVK is and how not to miss the 6-month deadline',
-    step9H2: 'Register with your local WKO',
-    step9P: <>WKO (Wirtschaftskammer Österreich) is the chamber of commerce. Your local branch may offer <strong>free consultations</strong>, webinars, and meetups.</>,
+    step6P: "Log in via ID Austria (or via a separate FinanzOnline registration if you don't have ID Austria yet). In the Fragebogen zur Betriebseröffnung, you need to state your expected turnover — this estimate is used by the Finanzamt to check whether the VAT threshold (€55,000/year) is exceeded and to set advance tax payments. This is unrelated to SVS contributions.",
+    step6TipBefore: "SVS contributions for new Gewerbetreibende are initially calculated automatically from the minimum contribution base, regardless of the turnover forecast in FinanzOnline.", step6TipLink: 'SVS Beitragsrechner', step6TipAfter: ' can help you estimate the approximate amount.',
+    step6NoteWarning: <>If you register with FinanzOnline <strong>without ID Austria</strong>, your initial login and password are sent by post — so you&apos;ll need an address where you can receive mail. With <strong>ID Austria</strong>, you can log in immediately, without waiting for a letter.</>,
+    step6NoteInfo: "If you need to add or change an activity code (ÖNACE) or other registration details later, check the current procedure directly with your Finanzamt or Gewerbebehörde — the exact process may vary by authority.",
+    step7H2: 'Set up a SEPA-Lastschriftmandat (optional)',
+    step7P: <>In your FinanzOnline account, you can set up a <strong>SEPA-Lastschriftmandat</strong> for automatic payment of charges administered by the Finanzamt (such as income tax advance payments). This does not cover SVS contributions — SVS runs its own, separate direct-debit process, set up separately in your SVS account.</>,
+    step8H2: 'Choosing your MVK (Selbständigenvorsorge)',
+    step8P: <>Within <strong>6 months</strong> of registering, you need to choose a Mitarbeitervorsorgekasse (MVK) — § 6 BMSVG. The contribution is 1.53% of your income each month, paid into your Selbständigenvorsorge account. If you don&apos;t choose a fund yourself, you&apos;ll be assigned to one automatically.</>,
+    step8ArticleTitle: 'Read more → How to choose an MVK', step8ArticleSub: 'What MVK is and which deadlines you should know',
+    step9H2: 'Use WKO services',
+    step9P: <>WKO (Wirtschaftskammer Österreich) is the chamber of commerce. Membership in WKO generally arises automatically together with obtaining a Gewerbeberechtigung — you don&apos;t need to register separately for it. Your local branch may offer <strong>consultations for founders (Gründerservice)</strong>, webinars, and meetups.</>,
     step9Link: '🏢 WKO — registration information',
-    ctaH2: 'Now — start earning! 🚀',
-    ctaP: <>And QLIXA will take care of organizing the numbers. Invoices, clients, inventory, contribution and tax forecasts, reports, and other digital tools — all in one place, in plain language, without unnecessary bureaucracy.</>,
-    ctaLinkText: 'QLIXA — your digital business assistant in Austria.',
-    ctaTagline: 'Reports in one click — and peace of mind.',
+    ctaH2: 'Keep going, step by step',
+    ctaP: 'QLIXA has free guides, checklists, instructions, and tools about taxes, documents, self-employment, and life in Austria.',
+    ctaLinkText: 'Browse free resources →',
     sourcesLabel: 'Official sources',
   },
   DE: {
@@ -348,68 +259,60 @@ const GA_TEXT: Record<string, any> = {
     titleLine1: 'Gewerbeanmeldung in Österreich:', titleEm: 'Schritt-für-Schritt-Registrierung der Selbstständigkeit',
     metaTime: '🕐 15 Min. Lesezeit', metaFree: '🆓 Freies Gewerbe — 0 €', metaForeigners: '🇺🇦 Für Ausländer',
     toc: [
-      ['#step1', 'Tätigkeitsart'], ['#step2', 'Dokumente'], ['#step3', 'Austria ID'],
-      ['#step4', 'GISA-Anmeldung'], ['#step5', 'SVS-Anmeldung'], ['#step6', 'FinanzOnline'],
+      ['#step1', 'Tätigkeitsart'], ['#step2', 'Dokumente'], ['#step3', 'ID Austria'],
+      ['#step4', 'GISA-Anmeldung'], ['#step5', 'SVS'], ['#step6', 'FinanzOnline'],
       ['#step7', 'SEPA'], ['#step8', 'MVK-Pensionskasse'], ['#step9', 'WKO'],
     ],
-    disclaimer: 'Dieses Material basiert auf öffentlich zugänglichen offiziellen Quellen und den Erfahrungen von Menschen, die diesen Prozess durchlaufen haben. QLIXA ist keine Rechtsberatung und bietet keine individuelle Beratung. Anforderungen und Verfahren können sich ändern — überprüfe immer die aktuellen Informationen auf den offiziellen Websites von WKO und GISA.',
+    disclaimer: 'Dieses Material dient nur zu Informationszwecken und stellt keine Rechts-, Steuer- oder Unternehmensberatung dar. Anforderungen und Verfahren können sich ändern und hängen von der konkreten Tätigkeit und Situation ab. Überprüfe vor der Einreichung die aktuellen Informationen auf den offiziellen Websites von WKO, USP und GISA oder bei der zuständigen Behörde.',
     introP: 'Ukrainer, Rumänen, Serben und andere Ausländer in Österreich verstehen oft nicht: welche Form passt, ob eine Lizenz nötig ist, wohin man gehen muss, welche Dokumente man mitbringen muss, wie viel es kostet und was mit den Steuern passiert. In diesem Leitfaden geht es um die Online-Registrierung Schritt für Schritt.',
     submissionLabel: 'Art der Antragstellung:', submissionText: 'online oder persönlich. Dieser Leitfaden behandelt online. Für offline — ',
-    offlineLinkText: 'vereinbare einen Termin bei der WKO', offlineAfter: ' — dort wird kostenlos beraten.',
+    offlineLinkText: 'wende dich an das WKO Gründerservice', offlineAfter: ' in deinem Bezirk.',
     step1H2: 'Die Tätigkeitsart bestimmen', step1P: 'Zuerst musst du verstehen, welche Tätigkeit du hast:',
     step1Cards: [
-      { title: 'Freies Gewerbe', sub: 'Freie Tätigkeit ohne Lizenz', desc: 'Die meisten IT-, Design-, Beratungs-, Foto- und Übersetzungstätigkeiten. Die Anmeldung ist seit 2017 kostenlos.', featured: true },
-      { title: 'Reglementiertes Gewerbe', sub: 'Befähigungsnachweis erforderlich', desc: 'Ärzte, Architekten, Elektriker usw. Die Qualifikation muss nachgewiesen werden.', featured: false },
+      { title: 'Freies Gewerbe', sub: 'Freie Tätigkeit ohne Lizenz', desc: 'Erfordert keinen Befähigungsnachweis. Die Anmeldung ist seit 2017 kostenlos.', featured: true },
+      { title: 'Reglementiertes Gewerbe', sub: 'Befähigungsnachweis erforderlich', desc: 'Erfordert einen Befähigungsnachweis für deine konkrete Tätigkeit.', featured: false },
     ],
-    costLabel: 'Registrierungskosten (§ 13 GewO, GebG):',
-    costHeaders: ['Form / Unternehmenstyp', 'Kosten', 'Anmerkung'],
-    costRows: [
-      { type: 'Einzelunternehmen — freies Gewerbe', cost: '0 €', free: true, note: 'Kostenlos seit 2017' },
-      { type: 'Einzelunternehmen — reglementiert', cost: '~14–100 €', free: false, note: 'Abhängig von der Tätigkeitsart' },
-      { type: 'GmbH (Notar + Firmenbuch)', cost: '~2.000–4.000 €', free: false, note: '+ Mindestkapital 35.000 €' },
-      { type: 'FlexCo (Notar + Firmenbuch)', cost: '~1.200–2.500 €', free: false, note: '+ Mindestkapital 10.000 €' },
-    ],
+    step1Direction: 'Ob eine Gewerbeberechtigung erforderlich ist und ob eine Tätigkeit frei oder reglementiert ist, hängt vom genauen Gewerbewortlaut ab. Prüfe vor der Anmeldung die genaue Bezeichnung und Art deiner Tätigkeit über die WKO oder die offiziellen GISA-Dienste.',
+    costLabel: 'Registrierungskosten (§ 13 GewO):',
+    costCoreText: 'Die Gewerbeanmeldung selbst ist nach der Gewerbeordnung in der Regel gebührenfrei.',
+    costExtraText: 'Zusätzliche Kosten können je nach Tätigkeitsart, erforderlichen Nachweisen, Übersetzungen oder anderen Verfahren entstehen.',
     step1Link1: '📋 Liste der ÖNACE-Codes (ÖNACE 2008)', step1Link2: '🔍 Prüfung in GISA',
-    step2H2: 'Dokumente frühzeitig vorbereiten', step2P: 'Diese Dokumente werden in verschiedenen Phasen benötigt — bereite gleich alle vor:',
-    step2Docs: ['Scan des Reisepasses (Auslandsreisepass)', 'Meldezettel — Bestätigung der Meldung in Österreich', 'Ausweis — Personalausweis', 'Ein gültiges österreichisches Bankkonto', 'Strafregisterauszug'],
-    step2NoteInfo: <> <strong>Bankkonto:</strong> Für Einzelunternehmen ist ein separates Konto nicht verpflichtend, aber empfohlen. Für GmbH / FlexCo — verpflichtend.</>,
-    step2NoteWarning: 'Wenn du weniger als 5 Jahre in Österreich lebst, wird bei der Gewerbeanmeldung fast immer ein Strafregisterauszug verlangt. Der Auszug wird vom Land deiner Staatsbürgerschaft oder deinem letzten Land des langfristigen Aufenthalts ausgestellt. Er darf zum Zeitpunkt der Einreichung nicht älter als 3 Monate sein. Eine offizielle deutsche Übersetzung durch einen beeidigten Übersetzer ist erforderlich. Für Ukrainer kann der Auszug online über Diia generiert werden. QLIXA kann bei der Übersetzung über unsere Partner helfen.',
-    orderLinkText: '📅 Österreichischen Auszug bestellen — bmi.gv.at ↗',
-    translationBoxTitle: '🔄 Brauchst du eine Übersetzung deines Diia-Auszugs?',
-    translationBoxText: 'Hinterlasse eine Anfrage — unsere Partner melden sich bei dir.',
-    formFirstName: 'Vorname (in lateinischer Schrift)', formLastName: 'Nachname (in lateinischer Schrift)', formEmail: 'E-Mail für Kontakt',
-    formUpload: '📎 Diia-Datei hochladen (PDF oder JPG)', formSubmit: 'Anfrage senden →',
-    step3H2: 'Austria ID beantragen',
-    step3P: 'Die Austria ID ist deine digitale Signatur für den Zugang zu staatlichen Diensten (GISA, FinanzOnline, SVS). Ohne sie ist eine Online-Anmeldung nicht möglich.',
-    step3NoteWarning: 'Für Nicht-Österreicher:innen kann die Austria ID online möglicherweise nicht funktionieren — abhängig vom Bundesland. Sei auf einen persönlichen Besuch vorbereitet.',
+    step2H2: 'Dokumente frühzeitig vorbereiten',
+    step2P: 'Diese Dokumente werden möglicherweise in verschiedenen Phasen benötigt — aber nicht jedes Dokument ist in jedem Fall erforderlich: Die genaue Liste hängt von Staatsbürgerschaft, Aufenthaltsstatus, Aufenthaltsdauer in Österreich, Namensänderungen und davon ab, ob die Tätigkeit reglementiert ist.',
+    step2Docs: ['Scan des Reisepasses (Auslandsreisepass)', 'Meldezettel — Bestätigung der Meldung in Österreich', 'Ausweis — Personalausweis', 'Ein gültiges österreichisches Bankkonto', 'Strafregisterauszug (unter bestimmten Voraussetzungen, siehe unten)'],
+    step2NoteInfo: <> <strong>Bankkonto:</strong> Für Einzelunternehmen ist ein separates Konto nicht verpflichtend, aber empfohlen.</>,
+    step2NoteWarning: 'Personen, die nicht in Österreich wohnhaft sind oder weniger als fünf Jahre hier wohnhaft sind, müssen in der Regel einen Strafregisterauszug ihres Herkunfts- bzw. bisherigen Aufenthaltsstaates vorlegen — im Original mit beglaubigter deutscher Übersetzung, nicht älter als drei Monate zum Zeitpunkt der Einreichung. Diese Anforderung entfällt, wenn stattdessen eine eidesstattliche Erklärung abgegeben wird. Für ukrainische Staatsbürger:innen kann dieser Auszug unter anderem online über Diia bezogen werden — das genaue Format und die Übersetzungsanforderungen sollten aber vorab bei der zuständigen Behörde geklärt werden.',
+    orderLinkText: '📅 Termin vereinbaren — bmi.gv.at ↗',
+    step3H2: 'ID Austria beantragen',
+    step3P: 'Die ID Austria ist ein elektronisches Identifizierungsmittel für den Zugang zu vielen staatlichen digitalen Diensten in Österreich (u. a. GISA, FinanzOnline, SVS) und kann für Online-Verfahren verwendet werden.',
+    step3NoteWarning: 'Für manche Nicht-Österreicher:innen ist die vollständige Online-Beantragung der ID Austria möglicherweise nicht möglich — das hängt vom Bundesland ab. Sei auf einen persönlichen Besuch vorbereitet.',
     step3AppointmentLink: '📅 Termin vereinbaren — bmi.gv.at',
-    step3ArticleTitle: 'Mehr lesen → Austria ID beantragen: Schritt-für-Schritt-Anleitung', step3ArticleSub: 'Öffnet sich in einem neuen Fenster · Vollständige Anleitung',
+    step3ArticleTitle: 'Mehr lesen → ID Austria beantragen: Schritt-für-Schritt-Anleitung', step3ArticleSub: 'Öffnet sich in einem neuen Fenster · Vollständige Anleitung',
     step4H2: 'Registrierung auf der GISA-Website',
     step4P: 'GISA — Gewerbeinformationssystem Austria — das offizielle Portal für die Gewerbeanmeldung.',
     step4GisaLink: '🌐 Zu GISA — Online-Gewerbeanmeldung',
-    step4NoteInfo: 'Warte nach der Anmeldung ein paar Tage — die Daten von GISA werden benötigt, um das Formular bei FinanzOnline auszufüllen.',
+    step4NoteInfo: 'Wenn alle Voraussetzungen erfüllt sind, kann die Tätigkeit bei den meisten Gewerbearten grundsätzlich ab dem Zeitpunkt der rechtswirksamen Anmeldung ausgeübt werden. Für einzelne reglementierte Tätigkeiten können andere Fristen gelten. Die Daten aus GISA werden außerdem für die nächsten Schritte benötigt, unter anderem für das Formular bei FinanzOnline.',
     step4ArticleTitle: 'Mehr lesen → Wie man das GISA-Formular ausfüllt', step4ArticleSub: 'Schritt-für-Schritt-Anleitung mit Erklärung jedes Feldes',
-    step5H2: 'Anmeldung bei der SVS',
-    step5P: 'SVS (Sozialversicherungsanstalt der Selbständigen) — Sozialversicherung für Selbstständige. Anmeldung über Austria ID.',
-    step5NoteTip: 'Du kannst alle Familienmitglieder und sogar nahe Verwandte in die SVS-Versicherung aufnehmen.',
-    step5ArticleTitle: 'Mehr lesen → Wie man das SVS-Formular ausfüllt', step5ArticleSub: 'Was anzugeben ist, um nicht zu viel zu zahlen und die Familie mitzuversichern',
+    step5H2: 'Anmeldung und Daten bei der SVS prüfen',
+    step5P: 'SVS (Sozialversicherungsanstalt der Selbständigen) — Sozialversicherung für Selbstständige. Nach der Gewerbeanmeldung übermittelt die Behörde, die das Gewerbe registriert, die relevanten Daten in der Regel selbst an die SVS — eine separate manuelle Anmeldung bei der SVS ist für Gewerbetreibende meist nicht nötig. Prüfe deinen Versicherungsstatus und deine Daten im SVS-Kundenportal (Anmeldung über ID Austria) und ergänze bei Bedarf Angaben. Beachte: Die Meldelogik der SVS unterscheidet sich für Neue Selbständige (neue Selbstständigkeit ohne Gewerbe).',
+    step5NoteTip: 'Unter bestimmten Voraussetzungen können einzelne Angehörige (z. B. Ehepartner:in, eingetragene:r Partner:in, Kinder) in der SVS-Krankenversicherung mitversichert werden — die genauen Voraussetzungen solltest du direkt bei der SVS prüfen.',
+    step5ArticleTitle: 'Mehr lesen → Wie man das SVS-Formular ausfüllt', step5ArticleSub: 'Welche Angaben erforderlich sind und wie die Anmeldung bei der SVS funktioniert',
     step6H2: 'Registrierung bei FinanzOnline',
-    step6P: 'Anmeldung über Austria ID. Zu diesem Zeitpunkt solltest du bereits einen Brief von GISA erhalten haben, und du musst deinen Umsatz prognostizieren — denn SVS beginnt sofort mit der Beitragsberechnung.',
-    step6TipBefore: 'Weißt du nicht, wie viel SVS zu zahlen ist?', step6TipLink: 'SVS Beitragsrechner', step6TipAfter: ' — und wenn du dort nichts verstehst, genau deshalb haben wir QLIXA entwickelt 😉',
-    step6NoteWarning: <>Du brauchst unbedingt eine <strong>physische Adresse</strong>, um den Brief von FinanzOnline zu erhalten — dorthin kommen Logins und Passwörter.</>,
-    step6NoteInfo: <>Bei der Anmeldung kann nur <strong>ein ÖNACE-Code</strong> hinzugefügt werden. Um weitere hinzuzufügen, schreibe einen formlosen Brief und sende ihn an die E-Mail deiner Bezirkshauptmannschaft.</>,
-    step7H2: 'SEPA-Lastschriftmandat einrichten',
-    step7P: <>Suche im FinanzOnline-Konto nach <strong>&#8222;SEPA-Lastschriftmandat&#8220;</strong> und fülle das Formular aus, um SVS und andere Zahlungen automatisch von deinem Konto abbuchen zu lassen.</>,
-    step8H2: 'Wahl der MVK-Pensionskasse',
-    step8P: <>Wähle innerhalb von <strong>6 Monaten</strong> nach der Anmeldung eine Mitarbeitervorsorgekasse (MVK) — § 6 BMSVG. Das sind 1,53% deines Einkommens monatlich — dein Pensionsvorsorgekonto.</>,
-    step8ArticleTitle: 'Mehr lesen → Wie man eine MVK-Pensionskasse wählt', step8ArticleSub: 'Was MVK ist und wie du die 6-Monats-Frist nicht verpasst',
-    step9H2: 'Bei der WKO deines Bezirks registrieren',
-    step9P: <>WKO (Wirtschaftskammer Österreich) — die Wirtschaftskammer. In deiner Bezirksstelle gibt es möglicherweise <strong>kostenlose Beratungen</strong>, Webinare und Treffen.</>,
+    step6P: 'Anmeldung über ID Austria (oder über eine separate FinanzOnline-Registrierung, falls du noch keine ID Austria hast). Im Fragebogen zur Betriebseröffnung musst du deinen erwarteten Umsatz angeben — diese Schätzung dient dem Finanzamt dazu, zu prüfen, ob die Umsatzsteuergrenze (55.000 € pro Jahr) überschritten wird, und Vorauszahlungen festzulegen. Das hat nichts mit den SVS-Beiträgen zu tun.',
+    step6TipBefore: 'Die SVS-Beiträge für neue Gewerbetreibende werden anfangs automatisch von der Mindestbeitragsgrundlage berechnet, unabhängig von der Umsatzprognose in FinanzOnline.', step6TipLink: 'SVS Beitragsrechner', step6TipAfter: ' hilft dir, die ungefähre Beitragshöhe einzuschätzen.',
+    step6NoteWarning: <>Wenn du dich bei FinanzOnline <strong>ohne ID Austria</strong> anmeldest, werden dein erstes Login und Passwort per Post zugesendet — dafür brauchst du eine Adresse, an der du Post empfangen kannst. Mit <strong>ID Austria</strong> kannst du dich sofort anmelden, ohne auf den Brief zu warten.</>,
+    step6NoteInfo: 'Wenn du später einen Tätigkeitscode (ÖNACE) hinzufügen oder ändern musst oder andere Anmeldedaten aktualisieren möchtest, kläre das aktuelle Verfahren direkt mit deinem Finanzamt oder deiner Gewerbebehörde — der genaue Ablauf kann je nach Behörde unterschiedlich sein.',
+    step7H2: 'SEPA-Lastschriftmandat einrichten (optional)',
+    step7P: <>In deinem FinanzOnline-Konto kannst du ein <strong>SEPA-Lastschriftmandat</strong> einrichten, um vom Finanzamt verwaltete Zahlungen (z. B. Einkommensteuer-Vorauszahlungen) automatisch abbuchen zu lassen. Das gilt nicht für SVS-Beiträge — die SVS hat einen eigenen, separaten Lastschriftprozess, den du gesondert in deinem SVS-Konto einrichtest.</>,
+    step8H2: 'Wahl der MVK (Selbständigenvorsorge)',
+    step8P: <>Wähle innerhalb von <strong>6 Monaten</strong> nach der Anmeldung eine Mitarbeitervorsorgekasse (MVK) — § 6 BMSVG. Der Beitrag beträgt 1,53 % deines Einkommens monatlich und wird auf deinem Selbständigenvorsorge-Konto angespart. Wenn du selbst keine Kasse wählst, wirst du automatisch einer zugeteilt.</>,
+    step8ArticleTitle: 'Mehr lesen → Wie man eine MVK wählt', step8ArticleSub: 'Was eine MVK ist und welche Fristen wichtig sind',
+    step9H2: 'WKO-Services nutzen',
+    step9P: <>WKO (Wirtschaftskammer Österreich) — die Wirtschaftskammer. Die Mitgliedschaft in der WKO entsteht in der Regel automatisch mit dem Erwerb der Gewerbeberechtigung — eine gesonderte Anmeldung dafür ist nicht nötig. In deiner Bezirksstelle gibt es möglicherweise <strong>Beratungen für Gründer:innen (Gründerservice)</strong>, Webinare und Treffen.</>,
     step9Link: '🏢 WKO — Informationen zur Anmeldung',
-    ctaH2: 'Und jetzt — fang an zu verdienen! 🚀',
-    ctaP: <>Um die Organisation der Zahlen kümmert sich QLIXA. Rechnungen, Kunden, Lager, Prognosen für Beiträge und Steuern, Berichte und andere digitale Tools — alles an einem Ort, in klarer Sprache und ohne unnötige Bürokratie.</>,
-    ctaLinkText: 'QLIXA — dein digitaler Business-Assistent in Österreich.',
-    ctaTagline: 'Reports in one click — und Ruhe im Kopf.',
+    ctaH2: 'Schritt für Schritt weitermachen',
+    ctaP: 'Bei QLIXA findest du kostenlose Leitfäden, Checklisten, Anleitungen und Tools zu Steuern, Dokumenten, Selbstständigkeit und dem Leben in Österreich.',
+    ctaLinkText: 'Kostenlose Materialien ansehen →',
     sourcesLabel: 'Offizielle Quellen',
   },
 }
@@ -515,8 +418,11 @@ export default function GewerbeanmeldungPage() {
                 </div>
               ))}
             </div>
-            <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--charcoal)', marginBottom: 10 }}>{t.costLabel}</p>
-            <CostTable headers={t.costHeaders} rows={t.costRows} />
+            <NoteBox type="info">{t.step1Direction}</NoteBox>
+            <p style={{ fontSize: 14, fontWeight: 600, color: 'var(--charcoal)', marginBottom: 6 }}>{t.costLabel}</p>
+            <p style={{ fontSize: 13, lineHeight: 1.7, color: 'var(--text2)', marginBottom: 14 }}>
+              {t.costCoreText} {t.costExtraText}
+            </p>
             <div style={{ display: 'flex', gap: 16, flexWrap: 'wrap', marginTop: 14 }}>
               <ExtLink href="https://www.wko.at/statistik/oenace/oenace2008.pdf">{t.step1Link1}</ExtLink>
               <ExtLink href="https://www.gisa.gv.at/abfrage">{t.step1Link2}</ExtLink>
@@ -554,13 +460,6 @@ export default function GewerbeanmeldungPage() {
               }}>
               {t.orderLinkText}
             </a>
-            <div style={{ marginTop: 20, padding: 18, borderRadius: 12, border: '2px dashed #038390', background: 'var(--peach-light)' }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: '#038390', marginBottom: 4 }}>{t.translationBoxTitle}</div>
-              <p style={{ fontSize: 13, color: 'var(--charcoal)', marginBottom: 14, lineHeight: 1.6 }}>
-                {t.translationBoxText}
-              </p>
-              <TranslationForm t={t} />
-            </div>
           </div>
         </div>
 
@@ -724,7 +623,7 @@ export default function GewerbeanmeldungPage() {
               {t.ctaP}
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/pricing" style={{
+              <Link href="/articles" style={{
                 padding: '14px 28px', borderRadius: 999, fontSize: 14, fontWeight: 700,
                 background: 'transparent', color: 'var(--charcoal)', border: '2px solid var(--charcoal)',
                 textDecoration: 'none', display: 'inline-block',
@@ -732,9 +631,6 @@ export default function GewerbeanmeldungPage() {
                 {t.ctaLinkText}
               </Link>
             </div>
-            <p style={{ color: 'rgba(255,255,255,0.2)', fontSize: 11, marginTop: 16 }}>
-              {t.ctaTagline}
-            </p>
           </div>
         </div>
 
@@ -746,8 +642,10 @@ export default function GewerbeanmeldungPage() {
           {[
             { label: 'GISA — Online-Gewerbeanmeldung', href: 'https://www.gisa.gv.at/online-gewerbeanmeldung' },
             { label: 'WKO — Gewerbeanmeldung', href: 'https://www.wko.at/gruendung/gewerbeanmeldung' },
+            { label: 'USP — Gewerbeanmeldung', href: 'https://www.usp.gv.at/gruendung/EAP/gewerbeanmeldung.html' },
             { label: 'BMWET — Gewerbeanmeldung', href: 'https://www.bmwet.gv.at/Themen/Unternehmen/Gewerbe/Gewerbeanmeldung.html' },
             { label: 'SVS — Beitragsrechner', href: 'https://www.svs.at/sva-beitrag/?contentid=10007.906048&portal=svsportal' },
+            { label: 'BMF — FinanzOnline: Anmeldung', href: 'https://www.bmf.gv.at/services/finanzonline/informationen-fuer-unternehmer-und-gemeinden/anmeldung-unternehmer-gemeinden.html' },
           ].map(s => (
             <a key={s.href} href={s.href} target="_blank" rel="noopener noreferrer"
               style={{ display: 'block', fontSize: 13, color: '#038390', textDecoration: 'none', marginBottom: 6 }}>
