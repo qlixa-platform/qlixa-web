@@ -769,51 +769,46 @@ const CTA_TEXT: Record<string, {
   badge: string
   h2: string
   pBefore: string
-  pSpan1: string
-  pMid: string
-  pSpan2: string
+  pHighlight: string
   pAfter: string
   cta: string
+  trust: string
 }> = {
   UA: {
-    badge: 'Починай зараз',
-    h2: 'Відповідай на запитання — решту структурує QLIXA',
-    pBefore: 'Анкета змінюється залежно від твоїх відповідей і ставить ',
-    pSpan1: 'додаткові запитання, коли це потрібно',
-    pMid: '. На виході — ',
-    pSpan2: 'попередній розрахунок можливого повернення',
-    pAfter: ' та податкова декларація, підготовлена до перевірки й подання.',
-    cta: 'Починай підготовку →',
+    badge: 'ГОТОВА ДЕКЛАРАЦІЯ — КРОК ЗА КРОКОМ',
+    h2: 'Підготуй свою податкову декларацію з QLIXA',
+    pBefore: 'Відповідай на запитання — QLIXA підлаштує анкету під твою ситуацію, покаже ',
+    pHighlight: 'попередній розрахунок можливого повернення',
+    pAfter: ' та допоможе підготувати декларацію до перевірки й подання.',
+    cta: 'Почати підготовку →',
+    trust: 'Без запису на прийом · Без комісії від суми повернення · Самостійне подання через FinanzOnline',
   },
   RU: {
-    badge: 'Начни сейчас',
-    h2: 'Отвечай на вопросы — остальное структурирует QLIXA',
-    pBefore: 'Анкета меняется в зависимости от твоих ответов и задаёт ',
-    pSpan1: 'дополнительные вопросы, когда это необходимо',
-    pMid: '. В результате ты получаешь ',
-    pSpan2: 'предварительный расчёт возможного возврата',
-    pAfter: ' и налоговую декларацию, подготовленную для проверки и подачи.',
+    badge: 'НАЛОГОВАЯ ДЕКЛАРАЦИЯ — ШАГ ЗА ШАГОМ',
+    h2: 'Подготовь свою налоговую декларацию с QLIXA',
+    pBefore: 'Отвечай на вопросы — QLIXA подстроит анкету под твою ситуацию, покажет ',
+    pHighlight: 'предварительный расчёт возможного возврата',
+    pAfter: ' и поможет подготовить декларацию к проверке и подаче.',
     cta: 'Начать подготовку →',
+    trust: 'Без записи на приём · Без комиссии от суммы возврата · Самостоятельная подача через FinanzOnline',
   },
   EN: {
-    badge: 'Get started now',
-    h2: 'Answer the questions — QLIXA structures the rest',
-    pBefore: 'The questionnaire changes based on your answers and asks ',
-    pSpan1: 'additional questions when needed',
-    pMid: '. The result is a ',
-    pSpan2: 'preliminary estimate of your possible refund',
-    pAfter: ' and a tax return prepared for review and submission.',
-    cta: 'Start now →',
+    badge: 'YOUR TAX RETURN — STEP BY STEP',
+    h2: 'Prepare your Austrian tax return with QLIXA',
+    pBefore: 'Answer the questions — QLIXA adapts the questionnaire to your situation, shows a ',
+    pHighlight: 'preliminary estimate of your possible refund',
+    pAfter: ' and helps prepare your tax return for review and submission.',
+    cta: 'Start preparing →',
+    trust: 'No appointment · No commission on your refund · Submit it yourself via FinanzOnline',
   },
   DE: {
-    badge: 'Jetzt starten',
-    h2: 'Beantworte die Fragen — QLIXA strukturiert den Rest',
-    pBefore: 'Der Fragebogen passt sich deinen Antworten an und stellt bei Bedarf ',
-    pSpan1: 'zusätzliche Fragen',
-    pMid: '. Am Ende erhältst du eine ',
-    pSpan2: 'vorläufige Berechnung einer möglichen Rückerstattung',
-    pAfter: ' und eine Steuererklärung, die zur Prüfung und Einreichung vorbereitet ist.',
-    cta: 'Jetzt starten →',
+    badge: 'DEINE STEUERERKLÄRUNG — SCHRITT FÜR SCHRITT',
+    h2: 'Bereite deine Steuererklärung mit QLIXA vor',
+    pBefore: 'Beantworte die Fragen — QLIXA passt den Fragebogen an deine Situation an, zeigt eine ',
+    pHighlight: 'vorläufige Berechnung einer möglichen Rückerstattung',
+    pAfter: ' und hilft bei der Vorbereitung deiner Steuererklärung zur Prüfung und Einreichung.',
+    cta: 'Vorbereitung starten →',
+    trust: 'Kein Termin · Keine Provision auf deine Rückerstattung · Selbstständig über FinanzOnline einreichen',
   },
 }
 
@@ -894,7 +889,7 @@ const FAQ_TEXT: Record<string, {
       { q: 'Для кого підходить QLIXA Tax Return?', a: 'QLIXA Tax Return створена не лише для найманих працівників. Анкета може враховувати різні ситуації: роботу за наймом, самозайнятість або Gewerbe, доходи від оренди, інвестицій чи з-за кордону, пенсію з додатковими доходами, а також поєднання кількох джерел доходу.' },
       { q: 'Чи потрібно мені розбиратися в австрійських податках?', a: 'Ні, спеціальні податкові знання не потрібні. Замість самостійного заповнення податкових форм ти відповідаєш на запитання про доходи, роботу, сімейну ситуацію, витрати та інші обставини. Наступні запитання залежать від твоїх відповідей.' },
       { q: 'Чи є попередній розрахунок точною сумою повернення?', a: 'Ні. Розрахунок є попереднім і формується на основі введених тобою даних. Фактичний результат визначається після подання та опрацювання декларації податковим органом.' },
-      { q: 'QLIXA подає декларацію замість мене?', a: 'Ні. QLIXA допомагає підготувати податкову декларацію на основі введених тобою даних. Перед поданням ти перевіряєш результат і самостійно подаєш декларацію через FinanzOnline.' },
+      { q: 'QLIXA подає декларацію замість мене?', a: 'Ні. QLIXA допомагає підготувати податкову декларацію на основі введених тобою даних. Перед поданням ти перевіряєш результат і самостійно подаєш декларацію через FinanzOnline. А щоб це було простіше, QLIXA підготувала безкоштовну покрокову інструкцію з подання декларації через FinanzOnline — від входу в систему до відправлення декларації.' },
       { q: 'QLIXA — це податковий консультант чи бухгалтер?', a: 'Ні. QLIXA — автоматизований інструмент для самостійної підготовки податкової декларації. QLIXA не є Steuerberater, бухгалтером, юридичним або фінансовим консультантом і не надає індивідуальних податкових, юридичних чи фінансових консультацій. Якщо твоя ситуація потребує професійної оцінки, варто звернутися до відповідного фахівця.' },
       { q: 'Чи безпечно зберігати мої дані в QLIXA?', a: 'QLIXA обробляє персональні дані відповідно до вимог захисту даних. Детальна інформація про те, які дані обробляються, для яких цілей і як вони захищаються, доступна в Політиці конфіденційності.' },
     ],
@@ -911,7 +906,7 @@ const FAQ_TEXT: Record<string, {
       { q: 'Для кого подходит QLIXA Tax Return?', a: 'QLIXA Tax Return создана не только для наёмных работников. Анкета может учитывать разные ситуации: работу по найму, самозанятость или Gewerbe, доход от аренды, инвестиций или из-за границы, пенсию с дополнительным доходом, а также сочетание нескольких источников дохода.' },
       { q: 'Нужно ли мне разбираться в австрийских налогах?', a: 'Специальные знания в области налогов не нужны. Вместо самостоятельного заполнения налоговых форм ты отвечаешь на вопросы о доходах, работе, семейной ситуации, расходах и других обстоятельствах. Следующие вопросы зависят от твоих ответов.' },
       { q: 'Предварительный расчёт — это точная сумма возврата?', a: 'Нет. Расчёт является предварительным и формируется на основе введённых тобой данных. Фактический результат определяется после подачи и обработки декларации налоговым органом.' },
-      { q: 'QLIXA подаёт декларацию вместо меня?', a: 'Нет. QLIXA помогает подготовить налоговую декларацию на основе введённых тобой данных. Перед подачей ты проверяешь результат и самостоятельно подаёшь декларацию через FinanzOnline.' },
+      { q: 'QLIXA подаёт декларацию вместо меня?', a: 'Нет. QLIXA помогает подготовить налоговую декларацию на основе введённых тобой данных. Перед подачей ты проверяешь результат и самостоятельно подаёшь декларацию через FinanzOnline. Чтобы сделать этот процесс проще, QLIXA подготовила бесплатную пошаговую инструкцию по подаче декларации через FinanzOnline — от входа в систему до отправки декларации.' },
       { q: 'QLIXA — это налоговый консультант или бухгалтер?', a: 'Нет. QLIXA — автоматизированный инструмент для самостоятельной подготовки налоговой декларации. QLIXA не является Steuerberater, бухгалтером, юридическим или финансовым консультантом и не предоставляет индивидуальные налоговые, юридические или финансовые консультации. Если твоя ситуация требует профессиональной оценки, стоит обратиться к соответствующему специалисту.' },
       { q: 'Мои данные в безопасности?', a: 'QLIXA обрабатывает персональные данные в соответствии с требованиями по защите данных. Подробная информация о том, какие данные обрабатываются, для каких целей и как они защищаются, доступна в Политике конфиденциальности.' },
     ],
@@ -928,7 +923,7 @@ const FAQ_TEXT: Record<string, {
       { q: 'Who is QLIXA Tax Return for?', a: 'QLIXA Tax Return is not only for employees. The questionnaire can cover different situations, including employment, self-employment or a Gewerbe, rental income, investment or foreign income, a pension with additional income, and combinations of several income sources.' },
       { q: 'Do I need to understand Austrian taxes?', a: 'No special tax knowledge is required. Instead of filling out tax forms yourself, you answer questions about your income, work, family situation, expenses and other circumstances. The next questions depend on your answers.' },
       { q: 'Is the preliminary estimate the exact amount I will receive?', a: 'No. The calculation is preliminary and is based on the information you enter. The actual result is determined after the tax return has been submitted and processed by the tax authority.' },
-      { q: 'Does QLIXA submit my tax return for me?', a: 'No. QLIXA helps prepare your tax return based on the information you enter. Before submission, you review the result and submit the tax return yourself through FinanzOnline.' },
+      { q: 'Does QLIXA submit my tax return for me?', a: 'No. QLIXA helps prepare your tax return based on the information you enter. Before submission, you review the result and submit the tax return yourself through FinanzOnline. To make this easier, QLIXA provides a free step-by-step guide to submitting your tax return through FinanzOnline — from signing in to sending the declaration.' },
       { q: 'Is QLIXA a tax adviser or accountant?', a: 'No. QLIXA is an automated tool for preparing your tax return yourself. QLIXA is not a tax adviser, accountant, legal adviser or financial adviser and does not provide individual tax, legal or financial advice. If your situation requires professional assessment, you should contact an appropriate professional.' },
       { q: 'Is my data safe with QLIXA?', a: 'QLIXA processes personal data in accordance with applicable data-protection requirements. Detailed information about what data is processed, for what purposes and how it is protected is available in the Privacy Policy.' },
     ],
@@ -945,7 +940,7 @@ const FAQ_TEXT: Record<string, {
       { q: 'Für wen ist QLIXA Tax Return geeignet?', a: 'QLIXA Tax Return ist nicht nur für Arbeitnehmerinnen und Arbeitnehmer gedacht. Der Fragebogen kann unterschiedliche Situationen berücksichtigen, darunter Anstellung, Selbstständigkeit oder Gewerbe, Mieteinkünfte, Kapital- oder Auslandseinkünfte, Pension mit zusätzlichen Einkünften sowie Kombinationen mehrerer Einkommensquellen.' },
       { q: 'Muss ich mich mit österreichischen Steuern auskennen?', a: 'Nein, besondere Steuerkenntnisse sind nicht erforderlich. Anstatt Steuerformulare selbst auszufüllen, beantwortest du Fragen zu Einkommen, Arbeit, Familiensituation, Ausgaben und weiteren Umständen. Die nächsten Fragen hängen von deinen Antworten ab.' },
       { q: 'Ist die vorläufige Berechnung genau der Betrag, den ich zurückbekomme?', a: 'Nein. Die Berechnung ist vorläufig und basiert auf den von dir eingegebenen Daten. Das tatsächliche Ergebnis wird nach Einreichung und Bearbeitung der Steuererklärung durch die Abgabenbehörde festgestellt.' },
-      { q: 'Reicht QLIXA meine Steuererklärung für mich ein?', a: 'Nein. QLIXA hilft dabei, deine Steuererklärung anhand deiner eingegebenen Daten vorzubereiten. Vor der Einreichung prüfst du das Ergebnis und reichst die Steuererklärung selbst über FinanzOnline ein.' },
+      { q: 'Reicht QLIXA meine Steuererklärung für mich ein?', a: 'Nein. QLIXA hilft dabei, deine Steuererklärung anhand deiner eingegebenen Daten vorzubereiten. Vor der Einreichung prüfst du das Ergebnis und reichst die Steuererklärung selbst über FinanzOnline ein. Damit das einfacher wird, stellt QLIXA eine kostenlose Schritt-für-Schritt-Anleitung für die Einreichung über FinanzOnline bereit — von der Anmeldung bis zum Absenden der Steuererklärung.' },
       { q: 'Ist QLIXA ein Steuerberater oder Buchhalter?', a: 'Nein. QLIXA ist ein automatisiertes Tool zur selbstständigen Vorbereitung deiner Steuererklärung. QLIXA ist kein Steuerberater, Buchhalter, Rechtsberater oder Finanzberater und bietet keine individuelle Steuer-, Rechts- oder Finanzberatung. Wenn deine Situation eine professionelle Beurteilung erfordert, solltest du dich an eine entsprechende Fachperson wenden.' },
       { q: 'Sind meine Daten bei QLIXA sicher?', a: 'QLIXA verarbeitet personenbezogene Daten gemäß den geltenden Datenschutzanforderungen. Detaillierte Informationen darüber, welche Daten verarbeitet werden, zu welchen Zwecken und wie sie geschützt werden, findest du in der Datenschutzerklärung.' },
     ],
@@ -1702,22 +1697,36 @@ export default function HomePage() {
             </section>
 
 
-      {/* ARTICLES */}
-      <ArticlesSlider published={published} upcoming={upcoming} lang={lang} />
-
-      {/* ── CTA ── */}
-      <section style={{ background: 'linear-gradient(135deg, #038390 0%, #026B76 100%)', padding: '20px clamp(20px,6vw,80px)', textAlign: 'center' }}>
-        <div style={{ fontSize: 13, fontWeight: 700, color: 'rgba(255,255,255,0.7)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 20 }}>{t6.badge}</div>
-        <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(32px,5vw,56px)', fontWeight: 400, color: '#fff', margin: '0 0 16px 0', letterSpacing: '-1px' }}>
+      {/* ── CTA — compact final conversion section. Headline has no extra
+          max-width wrapper (uses the section's full padded width, same as
+          every other element here) and uses a fluid clamp() tuned to the
+          site's existing section-heading ratio (~3.4vw → 4vw here, since
+          this headline is a few characters shorter than the "Як це працює" /
+          "Створена з досвіду" headlines that already use 3.4vw comfortably)
+          so the ~43-44 char sentence in every locale reads as one large line
+          at normal desktop/laptop widths, scales down smoothly as the
+          viewport narrows, and is free to wrap on tablet/mobile — no JS
+          shrink-to-fit, no fixed px override. */}
+      <section style={{ background: 'linear-gradient(135deg, #038390 0%, #026B76 100%)', padding: '56px clamp(20px,6vw,80px)', textAlign: 'center' }}>
+        <div style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.7)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 14 }}>{t6.badge}</div>
+        <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,4vw,54px)', fontWeight: 400, color: '#fff', lineHeight: 1.15, margin: '0 0 16px 0', letterSpacing: '-1px' }}>
           {t6.h2}
         </h2>
-        <p style={{ fontSize: 18, color: 'rgba(255,255,255,0.7)', marginBottom: 40 }}>{t6.pBefore}<span style={{ background: 'rgba(255,255,255,0.25)', borderRadius: 3, padding: '1px 4px' }}>{t6.pSpan1}</span>{t6.pMid}<span style={{ background: 'rgba(255,255,255,0.25)', borderRadius: 3, padding: '1px 4px', fontWeight: 700 }}>{t6.pSpan2}</span>{t6.pAfter}</p>
-        <div style={{ display: 'flex', gap: 16, justifyContent: 'center', flexWrap: 'wrap' }}>
+        <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.85)', lineHeight: 1.6, maxWidth: 640, margin: '0 auto 24px' }}>
+          {t6.pBefore}<span style={{ background: 'rgba(255,255,255,0.2)', borderRadius: 3, padding: '1px 4px', fontWeight: 700 }}>{t6.pHighlight}</span>{t6.pAfter}
+        </p>
+        <div style={{ marginBottom: 16 }}>
           <Link href="/pricing" style={{ padding: '16px 36px', borderRadius: 999, fontSize: 16, fontWeight: 600, background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.6)', textDecoration: 'none', display: 'inline-block' }}>
             {t6.cta}
           </Link>
         </div>
+        <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>
+          {t6.trust}
+        </div>
       </section>
+
+      {/* ARTICLES */}
+      <ArticlesSlider published={published} upcoming={upcoming} lang={lang} />
 
       {/* ── FAQ — after CTA ── */}
       <section id="faq" style={{ padding: '32px clamp(20px,6vw,80px)', background: '#F0F7F8' }}>
