@@ -820,11 +820,10 @@ const CTA_TEXT: Record<string, {
 // Переклади секції "Часті запитання" — всі 4 мови
 // Фірмові іконки FAQ (замість emoji) — порядок відповідає питанням, однаковий для всіх мов
 const FAQ_ICONS = [
-  // 0 — боюся помилки (документ зі знаком оклику)
+  // 0 — що таке QLIXA (документ з рядками — анкета/декларація)
   <svg key="faq0" width="18" height="18" viewBox="0 0 20 20" fill="none">
     <rect x="4" y="2" width="12" height="16" rx="1.5" stroke="#038390" strokeWidth="1.5"/>
-    <path d="M10 6v5" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
-    <circle cx="10" cy="14" r="1" fill="#038390"/>
+    <path d="M7 6h6M7 9h6M7 12h3" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
   </svg>,
   // 1 — найманий працівник (портфель)
   <svg key="faq1" width="18" height="18" viewBox="0 0 20 20" fill="none">
@@ -832,25 +831,45 @@ const FAQ_ICONS = [
     <path d="M7 7V5.5C7 4.67 7.67 4 8.5 4h3c.83 0 1.5.67 1.5 1.5V7" stroke="#038390" strokeWidth="1.5"/>
     <path d="M2 11.5h16" stroke="#038390" strokeWidth="1.5"/>
   </svg>,
-  // 2 — мова (мовна бульбашка)
+  // 2 — QLIXA vs Steuerberater / QLIXA не є консультантом (постать людини)
   <svg key="faq2" width="18" height="18" viewBox="0 0 20 20" fill="none">
+    <circle cx="10" cy="7" r="3" stroke="#038390" strokeWidth="1.5"/>
+    <path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>,
+  // 3 — як працює анкета (стрілка — наступний крок)
+  <svg key="faq3" width="18" height="18" viewBox="0 0 20 20" fill="none">
+    <path d="M3 10h12" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+    <path d="M11 5l5 5-5 5" stroke="#038390" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>,
+  // 4 — для кого підходить (мішень — під твою ситуацію)
+  <svg key="faq4" width="18" height="18" viewBox="0 0 20 20" fill="none">
+    <circle cx="10" cy="10" r="7.5" stroke="#038390" strokeWidth="1.5"/>
+    <circle cx="10" cy="10" r="4.3" stroke="#038390" strokeWidth="1.5"/>
+    <circle cx="10" cy="10" r="1.2" fill="#038390"/>
+  </svg>,
+  // 5 — не потрібні податкові знання (мовна бульбашка — прості запитання)
+  <svg key="faq5" width="18" height="18" viewBox="0 0 20 20" fill="none">
     <path d="M3 4h14v9H8l-3.5 3V13H3V4z" stroke="#038390" strokeWidth="1.5" strokeLinejoin="round"/>
     <path d="M6.5 7.5h7M6.5 10h4" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
   </svg>,
-  // 3 — щойно відкрив бізнес (ракета)
-  <svg key="faq3" width="18" height="18" viewBox="0 0 20 20" fill="none">
-    <path d="M10 2c2.5 1.5 4 4.5 4 7.5 0 2-.7 3.7-1.6 5L10 18l-2.4-3.5C6.7 13.2 6 11.5 6 9.5 6 6.5 7.5 3.5 10 2Z" stroke="#038390" strokeWidth="1.5" strokeLinejoin="round"/>
-    <circle cx="10" cy="9" r="1.6" stroke="#038390" strokeWidth="1.5"/>
-    <path d="M7.5 14.5l-2 3M12.5 14.5l2 3" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
-  </svg>,
-  // 4 — витрати (євро в колі)
-  <svg key="faq4" width="18" height="18" viewBox="0 0 20 20" fill="none">
+  // 6 — попередній розрахунок (євро в колі)
+  <svg key="faq6" width="18" height="18" viewBox="0 0 20 20" fill="none">
     <circle cx="10" cy="10" r="8" stroke="#038390" strokeWidth="1.5"/>
     <path d="M12.2 7.2c-.5-.5-1.2-.8-2-.8-1.8 0-3.2 1.6-3.2 3.6s1.4 3.6 3.2 3.6c.8 0 1.5-.3 2-.8" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
     <path d="M6 9h4.5M6 11h4.5" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
   </svg>,
-  // 5 — безпека даних (замок)
-  <svg key="faq5" width="18" height="18" viewBox="0 0 20 20" fill="none">
+  // 7 — подання декларації (галочка в колі)
+  <svg key="faq7" width="18" height="18" viewBox="0 0 20 20" fill="none">
+    <circle cx="10" cy="10" r="8" stroke="#038390" strokeWidth="1.5"/>
+    <path d="M6.5 10.2l2.3 2.3 4.7-5" stroke="#038390" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+  </svg>,
+  // 8 — QLIXA не є Steuerberater/бухгалтером (постать людини)
+  <svg key="faq8" width="18" height="18" viewBox="0 0 20 20" fill="none">
+    <circle cx="10" cy="7" r="3" stroke="#038390" strokeWidth="1.5"/>
+    <path d="M4 17c0-3.3 2.7-6 6-6s6 2.7 6 6" stroke="#038390" strokeWidth="1.5" strokeLinecap="round"/>
+  </svg>,
+  // 9 — безпека даних (замок)
+  <svg key="faq9" width="18" height="18" viewBox="0 0 20 20" fill="none">
     <rect x="4.5" y="9" width="11" height="8" rx="1.5" stroke="#038390" strokeWidth="1.5"/>
     <path d="M7 9V6.5a3 3 0 0 1 6 0V9" stroke="#038390" strokeWidth="1.5"/>
     <circle cx="10" cy="13" r="1" fill="#038390"/>
@@ -868,12 +887,16 @@ const FAQ_TEXT: Record<string, {
     h2Before: 'Часті ',
     h2Emphasis: 'запитання',
     items: [
-      { q: 'Самозайнятий: боюся зробити помилку в декларації — що буде?', a: 'QLIXA допоможе зібрати та впорядкувати всі дані за рік, якщо ведеш бухгалтерію на платформі. Ми підкажемо, на що звернути увагу для вигіднішого заповнення — наприклад, які витрати можна списати і як правильно їх задокументувати. Проте памʼятай: QLIXA — це цифровий помічник, а не бухгалтер чи Steuerberater. Якщо маєш складну ситуацію або сумніви — рекомендуємо додатково проконсультуватись із Steuerberater.' },
-      { q: 'Найманий працівник: чи можу я повернути свої податки?', a: 'В Австрії роботодавець автоматично подає базові дані про твою зарплату до податкової — але він не вникає в твою особисту ситуацію. Саме тому більшість найманих працівників можуть самостійно подати Arbeitnehmerveranlagung і повернути частину сплачених податків. QLIXA допоможе розібратись саме у твоїй ситуації: знайде всі витрати, які можна врахувати — home office, транспорт, навчання, діти та інше. Просто і швидко, без складних термінів.' },
-      { q: 'Я не говорю по-німецьки — зможу розібратись?', a: 'Так, саме для цього і створена QLIXA. Платформа повністю доступна українською, російською та англійською. Всі австрійські терміни перекладені і пояснені простими словами.' },
-      { q: 'Я тільки відкрив Gewerbe. З чого почати?', a: 'Вітаємо з відкриттям! Ось з чого варто почати в QLIXA: підключи бухгалтерію — фіксуй доходи і витрати з першого дня; виставляй рахунки клієнтам прямо з платформи; стеж за дашбордом — він покаже загальну картину твого бізнесу в реальному часі. А щоб не загубитись у перших кроках — читай наші покрокові гайди у розділі Статті.' },
-      { q: 'Що саме я можу списати як витрати?', a: 'Дуже багато: ноутбук, телефон, інтернет, частина оренди (home office), курси, підписки на програми, транспорт до клієнтів і десятки інших категорій. QLIXA покаже всі варіанти для твоєї ситуації.' },
-      { q: 'Мої фінансові дані в безпеці?', a: 'Так. Сервери в ЄС, відповідність GDPR. Ми не передаємо дані третім особам. Ти можеш видалити акаунт і всі дані в будь-який момент.' },
+      { q: 'Що таке QLIXA?', a: 'QLIXA — автоматизований інструмент для самостійної підготовки податкової декларації в Австрії. Замість самостійного заповнення податкових форм ти проходиш адаптивну анкету. QLIXA підлаштовує запитання під твої відповіді, допомагає зібрати потрібну інформацію та підготувати декларацію до перевірки й подання.' },
+      { q: 'Навіщо мені подавати декларацію, якщо я працюю за наймом?', a: 'Роботодавець передає до податкової дані про твою зарплату, але може не мати інформації про всі твої особисті обставини та витрати, які можуть мати значення для податкової декларації. QLIXA допомагає пройти через можливі категорії крок за кроком і перевірити, яка інформація може стосуватися саме твоєї ситуації. Тому навіть для найманого працівника підготовка власної податкової декларації може мати сенс.' },
+      { q: 'Навіщо мені QLIXA, якщо я можу звернутися до Steuerberater?', a: 'QLIXA не замінює Steuerberater. Це інструмент для тих, хто хоче самостійно підготувати свою податкову декларацію: пройти потрібні запитання, зібрати інформацію, перевірити можливі категорії списань та отримати підготовлену декларацію. Після цього ти вирішуєш сам: перевірити й подати декларацію через FinanzOnline або, якщо твоя ситуація потребує професійної оцінки, звернутися до Steuerberater.' },
+      { q: 'QLIXA Tax Return — як це працює?', a: 'Ти заповнюєш анкету та відповідаєш на запитання про свою ситуацію. QLIXA підлаштовує наступні запитання залежно від твоїх відповідей і за потреби ставить додаткові. Після завершення ти отримуєш попередній розрахунок можливого повернення та податкову декларацію, підготовлену до перевірки й подання.' },
+      { q: 'Для кого підходить QLIXA Tax Return?', a: 'QLIXA Tax Return створена не лише для найманих працівників. Анкета може враховувати різні ситуації: роботу за наймом, самозайнятість або Gewerbe, доходи від оренди, інвестицій чи з-за кордону, пенсію з додатковими доходами, а також поєднання кількох джерел доходу.' },
+      { q: 'Чи потрібно мені розбиратися в австрійських податках?', a: 'Ні, спеціальні податкові знання не потрібні. Замість самостійного заповнення податкових форм ти відповідаєш на запитання про доходи, роботу, сімейну ситуацію, витрати та інші обставини. Наступні запитання залежать від твоїх відповідей.' },
+      { q: 'Чи є попередній розрахунок точною сумою повернення?', a: 'Ні. Розрахунок є попереднім і формується на основі введених тобою даних. Фактичний результат визначається після подання та опрацювання декларації податковим органом.' },
+      { q: 'QLIXA подає декларацію замість мене?', a: 'Ні. QLIXA допомагає підготувати податкову декларацію на основі введених тобою даних. Перед поданням ти перевіряєш результат і самостійно подаєш декларацію через FinanzOnline.' },
+      { q: 'QLIXA — це податковий консультант чи бухгалтер?', a: 'Ні. QLIXA — автоматизований інструмент для самостійної підготовки податкової декларації. QLIXA не є Steuerberater, бухгалтером, юридичним або фінансовим консультантом і не надає індивідуальних податкових, юридичних чи фінансових консультацій. Якщо твоя ситуація потребує професійної оцінки, варто звернутися до відповідного фахівця.' },
+      { q: 'Чи безпечно зберігати мої дані в QLIXA?', a: 'QLIXA обробляє персональні дані відповідно до вимог захисту даних. Детальна інформація про те, які дані обробляються, для яких цілей і як вони захищаються, доступна в Політиці конфіденційності.' },
     ],
   },
   RU: {
@@ -881,12 +904,16 @@ const FAQ_TEXT: Record<string, {
     h2Before: 'Часто задаваемые ',
     h2Emphasis: 'вопросы',
     items: [
-      { q: 'Самозанятый: боюсь сделать ошибку в декларации — что будет?', a: 'QLIXA поможет собрать и упорядочить все данные за год, если ведёшь бухгалтерию на платформе. Мы подскажем, на что обратить внимание для более выгодного заполнения — например, какие расходы можно списать и как правильно их задокументировать. Однако помни: QLIXA — это цифровой помощник, а не бухгалтер или Steuerberater. Если у тебя сложная ситуация или сомнения — рекомендуем дополнительно проконсультироваться со Steuerberater.' },
-      { q: 'Наёмный работник: могу ли я вернуть свои налоги?', a: 'В Австрии работодатель автоматически подаёт базовые данные о твоей зарплате в налоговую — но он не вникает в твою личную ситуацию. Именно поэтому большинство наёмных работников могут самостоятельно подать Arbeitnehmerveranlagung и вернуть часть уплаченных налогов. QLIXA поможет разобраться именно в твоей ситуации: найдёт все расходы, которые можно учесть — home office, транспорт, обучение, дети и другое. Просто и быстро, без сложных терминов.' },
-      { q: 'Я не говорю по-немецки — смогу разобраться?', a: 'Да, именно для этого и создана QLIXA. Платформа полностью доступна на украинском, русском и английском языках. Все австрийские термины переведены и объяснены простыми словами.' },
-      { q: 'Я только открыл Gewerbe. С чего начать?', a: 'Поздравляем с открытием! Вот с чего стоит начать в QLIXA: подключи бухгалтерию — фиксируй доходы и расходы с первого дня; выставляй счета клиентам прямо с платформы; следи за дашбордом — он покажет общую картину твоего бизнеса в реальном времени. А чтобы не потеряться на первых шагах — читай наши пошаговые гайды в разделе Статьи.' },
-      { q: 'Что именно я могу списать как расходы?', a: 'Очень многое: ноутбук, телефон, интернет, часть аренды (home office), курсы, подписки на программы, транспорт к клиентам и десятки других категорий. QLIXA покажет все варианты для твоей ситуации.' },
-      { q: 'Мои финансовые данные в безопасности?', a: 'Да. Серверы в ЕС, соответствие GDPR. Мы не передаём данные третьим лицам. Ты можешь удалить аккаунт и все данные в любой момент.' },
+      { q: 'Что такое QLIXA?', a: 'QLIXA — автоматизированный инструмент для самостоятельной подготовки налоговой декларации в Австрии. Вместо самостоятельного заполнения налоговых форм ты проходишь адаптивную анкету. QLIXA подстраивает вопросы под твои ответы, помогает собрать нужную информацию и подготовить декларацию к проверке и подаче.' },
+      { q: 'Зачем мне подавать декларацию, если я работаю по найму?', a: 'Работодатель передаёт в налоговую информацию о твоей зарплате, но может не знать обо всех личных обстоятельствах и расходах, которые могут иметь значение для твоей налоговой декларации. QLIXA помогает шаг за шагом пройти возможные категории и проверить, какая информация может относиться именно к твоей ситуации. Поэтому подготовка собственной налоговой декларации может иметь смысл и для наёмного работника.' },
+      { q: 'Зачем мне QLIXA, если я могу обратиться к Steuerberater?', a: 'QLIXA не заменяет Steuerberater. Это инструмент для тех, кто хочет самостоятельно подготовить свою налоговую декларацию: пройти нужные вопросы, собрать информацию, проверить возможные категории списаний и получить подготовленную декларацию. После этого ты сам решаешь: проверить и подать декларацию через FinanzOnline или, если твоя ситуация требует профессиональной оценки, обратиться к Steuerberater.' },
+      { q: 'Как работает QLIXA Tax Return?', a: 'Ты заполняешь анкету и отвечаешь на вопросы о своей ситуации. QLIXA подстраивает следующие вопросы в зависимости от твоих ответов и при необходимости задаёт дополнительные. После завершения ты получаешь предварительный расчёт возможного возврата и налоговую декларацию, подготовленную к проверке и подаче.' },
+      { q: 'Для кого подходит QLIXA Tax Return?', a: 'QLIXA Tax Return создана не только для наёмных работников. Анкета может учитывать разные ситуации: работу по найму, самозанятость или Gewerbe, доход от аренды, инвестиций или из-за границы, пенсию с дополнительным доходом, а также сочетание нескольких источников дохода.' },
+      { q: 'Нужно ли мне разбираться в австрийских налогах?', a: 'Специальные знания в области налогов не нужны. Вместо самостоятельного заполнения налоговых форм ты отвечаешь на вопросы о доходах, работе, семейной ситуации, расходах и других обстоятельствах. Следующие вопросы зависят от твоих ответов.' },
+      { q: 'Предварительный расчёт — это точная сумма возврата?', a: 'Нет. Расчёт является предварительным и формируется на основе введённых тобой данных. Фактический результат определяется после подачи и обработки декларации налоговым органом.' },
+      { q: 'QLIXA подаёт декларацию вместо меня?', a: 'Нет. QLIXA помогает подготовить налоговую декларацию на основе введённых тобой данных. Перед подачей ты проверяешь результат и самостоятельно подаёшь декларацию через FinanzOnline.' },
+      { q: 'QLIXA — это налоговый консультант или бухгалтер?', a: 'Нет. QLIXA — автоматизированный инструмент для самостоятельной подготовки налоговой декларации. QLIXA не является Steuerberater, бухгалтером, юридическим или финансовым консультантом и не предоставляет индивидуальные налоговые, юридические или финансовые консультации. Если твоя ситуация требует профессиональной оценки, стоит обратиться к соответствующему специалисту.' },
+      { q: 'Мои данные в безопасности?', a: 'QLIXA обрабатывает персональные данные в соответствии с требованиями по защите данных. Подробная информация о том, какие данные обрабатываются, для каких целей и как они защищаются, доступна в Политике конфиденциальности.' },
     ],
   },
   EN: {
@@ -894,12 +921,16 @@ const FAQ_TEXT: Record<string, {
     h2Before: 'Frequently Asked ',
     h2Emphasis: 'Questions',
     items: [
-      { q: "Self-employed: I'm afraid of making a mistake in my tax return — what happens?", a: "QLIXA helps you collect and organize all your data for the year if you keep your books on the platform. We'll point out what to pay attention to for a more favorable filing — for example, which expenses you can deduct and how to document them correctly. But remember: QLIXA is a digital assistant, not an accountant or Steuerberater. If your situation is complex or you have doubts, we recommend also consulting a Steuerberater." },
-      { q: 'Employee: can I get a tax refund?', a: "In Austria, your employer automatically reports basic data about your salary to the tax office — but it doesn't take your personal situation into account. That's why most employees can file an Arbeitnehmerveranlagung themselves and get back part of the taxes they paid. QLIXA helps you figure out exactly your situation: it finds all the expenses you can claim — home office, transport, education, children, and more. Simple and fast, without complex terms." },
-      { q: "I don't speak German — will I be able to manage?", a: "Yes, that's exactly why QLIXA was created. The platform is fully available in Ukrainian, Russian, and English. All Austrian terms are translated and explained in simple words." },
-      { q: 'I just opened a Gewerbe. Where do I start?', a: "Congratulations on opening! Here's where to start with QLIXA: set up your bookkeeping — record income and expenses from day one; issue invoices to clients right from the platform; keep an eye on the dashboard — it shows the full picture of your business in real time. And to avoid getting lost in the first steps, read our step-by-step guides in the Articles section." },
-      { q: 'What exactly can I deduct as expenses?', a: "A lot: laptop, phone, internet, part of your rent (home office), courses, software subscriptions, transport to clients, and dozens of other categories. QLIXA shows all the options for your situation." },
-      { q: 'Is my financial data safe?', a: "Yes. Servers in the EU, GDPR compliant. We don't share data with third parties. You can delete your account and all your data at any time." },
+      { q: 'What is QLIXA?', a: 'QLIXA is an automated tool for preparing your Austrian tax return yourself. Instead of filling out tax forms on your own, you complete an adaptive questionnaire. QLIXA adjusts the questions based on your answers, helps you collect the relevant information and prepares the tax return for review and submission.' },
+      { q: 'Why should I file a tax return if I am an employee?', a: "Your employer provides the tax authority with information about your salary, but may not have information about all of your personal circumstances and expenses that could be relevant to your tax return. QLIXA guides you through possible categories step by step and helps you check which information may be relevant to your situation. This means that preparing your own tax return can also be worthwhile for employees." },
+      { q: 'Why do I need QLIXA if I can go to a tax adviser?', a: 'QLIXA does not replace a tax adviser. It is designed for people who want to prepare their tax return themselves: go through the relevant questions, collect the necessary information, check possible deduction categories and receive a prepared tax return. After that, you decide whether to review and submit it yourself through FinanzOnline or contact a tax adviser if your situation requires professional assessment.' },
+      { q: 'How does QLIXA Tax Return work?', a: 'You complete the questionnaire and answer questions about your situation. QLIXA adjusts the next questions based on your answers and asks additional questions when needed. Once completed, you receive a preliminary estimate of your possible refund and a tax return prepared for review and submission.' },
+      { q: 'Who is QLIXA Tax Return for?', a: 'QLIXA Tax Return is not only for employees. The questionnaire can cover different situations, including employment, self-employment or a Gewerbe, rental income, investment or foreign income, a pension with additional income, and combinations of several income sources.' },
+      { q: 'Do I need to understand Austrian taxes?', a: 'No special tax knowledge is required. Instead of filling out tax forms yourself, you answer questions about your income, work, family situation, expenses and other circumstances. The next questions depend on your answers.' },
+      { q: 'Is the preliminary estimate the exact amount I will receive?', a: 'No. The calculation is preliminary and is based on the information you enter. The actual result is determined after the tax return has been submitted and processed by the tax authority.' },
+      { q: 'Does QLIXA submit my tax return for me?', a: 'No. QLIXA helps prepare your tax return based on the information you enter. Before submission, you review the result and submit the tax return yourself through FinanzOnline.' },
+      { q: 'Is QLIXA a tax adviser or accountant?', a: 'No. QLIXA is an automated tool for preparing your tax return yourself. QLIXA is not a tax adviser, accountant, legal adviser or financial adviser and does not provide individual tax, legal or financial advice. If your situation requires professional assessment, you should contact an appropriate professional.' },
+      { q: 'Is my data safe with QLIXA?', a: 'QLIXA processes personal data in accordance with applicable data-protection requirements. Detailed information about what data is processed, for what purposes and how it is protected is available in the Privacy Policy.' },
     ],
   },
   DE: {
@@ -907,12 +938,16 @@ const FAQ_TEXT: Record<string, {
     h2Before: 'Häufig gestellte ',
     h2Emphasis: 'Fragen',
     items: [
-      { q: 'Selbstständig: Ich habe Angst, einen Fehler in der Steuererklärung zu machen — was passiert dann?', a: 'QLIXA hilft dir, alle Daten des Jahres zu sammeln und zu ordnen, wenn du deine Buchhaltung auf der Plattform führst. Wir zeigen dir, worauf du für eine günstigere Erklärung achten solltest — zum Beispiel, welche Ausgaben du absetzen kannst und wie du sie richtig dokumentierst. Denk aber daran: QLIXA ist ein digitaler Assistent, kein Buchhalter oder Steuerberater. Bei einer komplexen Situation oder Zweifeln empfehlen wir zusätzlich einen Steuerberater zu konsultieren.' },
-      { q: 'Angestellte/r: Kann ich meine Steuern zurückbekommen?', a: 'In Österreich meldet dein Arbeitgeber automatisch grundlegende Gehaltsdaten ans Finanzamt — geht aber nicht auf deine persönliche Situation ein. Deshalb können die meisten Angestellten selbst eine Arbeitnehmerveranlagung einreichen und einen Teil der gezahlten Steuern zurückbekommen. QLIXA hilft dir, genau deine Situation zu durchschauen: findet alle Ausgaben, die du geltend machen kannst — Home Office, Fahrtkosten, Weiterbildung, Kinder und mehr. Einfach und schnell, ohne komplizierte Begriffe.' },
-      { q: 'Ich spreche kein Deutsch — komme ich trotzdem zurecht?', a: 'Ja, genau dafür wurde QLIXA entwickelt. Die Plattform ist vollständig auf Ukrainisch, Russisch und Englisch verfügbar. Alle österreichischen Begriffe sind übersetzt und einfach erklärt.' },
-      { q: 'Ich habe gerade ein Gewerbe angemeldet. Wo fange ich an?', a: 'Herzlichen Glückwunsch zur Gründung! So startest du am besten mit QLIXA: Buchhaltung einrichten — erfasse Einnahmen und Ausgaben von Tag eins an; Rechnungen direkt über die Plattform an Kunden stellen; das Dashboard im Blick behalten — es zeigt dir in Echtzeit das Gesamtbild deines Business. Und damit du bei den ersten Schritten nicht den Überblick verlierst, lies unsere Schritt-für-Schritt-Anleitungen im Bereich Artikel.' },
-      { q: 'Was genau kann ich als Ausgaben absetzen?', a: 'Sehr vieles: Laptop, Handy, Internet, ein Teil der Miete (Home Office), Kurse, Software-Abos, Fahrten zu Kunden und Dutzende weitere Kategorien. QLIXA zeigt dir alle Optionen für deine Situation.' },
-      { q: 'Sind meine Finanzdaten sicher?', a: 'Ja. Server in der EU, DSGVO-konform. Wir geben deine Daten nicht an Dritte weiter. Du kannst dein Konto und alle Daten jederzeit löschen.' },
+      { q: 'Was ist QLIXA?', a: 'QLIXA ist ein automatisiertes Tool zur selbstständigen Vorbereitung deiner Steuererklärung in Österreich. Anstatt Steuerformulare selbst auszufüllen, durchläufst du einen adaptiven Fragebogen. QLIXA passt die Fragen an deine Antworten an, hilft dir dabei, die relevanten Informationen zusammenzustellen, und bereitet die Steuererklärung zur Prüfung und Einreichung vor.' },
+      { q: 'Warum sollte ich eine Steuererklärung machen, wenn ich angestellt bin?', a: 'Dein Arbeitgeber übermittelt der Abgabenbehörde Informationen über dein Gehalt, kennt aber möglicherweise nicht alle persönlichen Umstände und Ausgaben, die für deine Steuererklärung relevant sein können. QLIXA führt dich Schritt für Schritt durch mögliche Kategorien und hilft dir zu prüfen, welche Informationen für deine Situation relevant sein könnten. Deshalb kann es auch für Arbeitnehmerinnen und Arbeitnehmer sinnvoll sein, eine eigene Steuererklärung vorzubereiten.' },
+      { q: 'Warum brauche ich QLIXA, wenn ich zu einem Steuerberater gehen kann?', a: 'QLIXA ersetzt keinen Steuerberater. QLIXA ist für Menschen gedacht, die ihre Steuererklärung selbst vorbereiten möchten: relevante Fragen beantworten, benötigte Informationen zusammentragen, mögliche Abzugskategorien prüfen und eine vorbereitete Steuererklärung erhalten. Danach entscheidest du selbst, ob du die Erklärung prüfst und über FinanzOnline einreichst oder dich an einen Steuerberater wendest, wenn deine Situation eine professionelle Beurteilung erfordert.' },
+      { q: 'Wie funktioniert QLIXA Tax Return?', a: 'Du füllst den Fragebogen aus und beantwortest Fragen zu deiner Situation. QLIXA passt die nächsten Fragen an deine Antworten an und stellt bei Bedarf zusätzliche Fragen. Nach Abschluss erhältst du eine vorläufige Berechnung einer möglichen Rückerstattung sowie eine Steuererklärung, die zur Prüfung und Einreichung vorbereitet ist.' },
+      { q: 'Für wen ist QLIXA Tax Return geeignet?', a: 'QLIXA Tax Return ist nicht nur für Arbeitnehmerinnen und Arbeitnehmer gedacht. Der Fragebogen kann unterschiedliche Situationen berücksichtigen, darunter Anstellung, Selbstständigkeit oder Gewerbe, Mieteinkünfte, Kapital- oder Auslandseinkünfte, Pension mit zusätzlichen Einkünften sowie Kombinationen mehrerer Einkommensquellen.' },
+      { q: 'Muss ich mich mit österreichischen Steuern auskennen?', a: 'Nein, besondere Steuerkenntnisse sind nicht erforderlich. Anstatt Steuerformulare selbst auszufüllen, beantwortest du Fragen zu Einkommen, Arbeit, Familiensituation, Ausgaben und weiteren Umständen. Die nächsten Fragen hängen von deinen Antworten ab.' },
+      { q: 'Ist die vorläufige Berechnung genau der Betrag, den ich zurückbekomme?', a: 'Nein. Die Berechnung ist vorläufig und basiert auf den von dir eingegebenen Daten. Das tatsächliche Ergebnis wird nach Einreichung und Bearbeitung der Steuererklärung durch die Abgabenbehörde festgestellt.' },
+      { q: 'Reicht QLIXA meine Steuererklärung für mich ein?', a: 'Nein. QLIXA hilft dabei, deine Steuererklärung anhand deiner eingegebenen Daten vorzubereiten. Vor der Einreichung prüfst du das Ergebnis und reichst die Steuererklärung selbst über FinanzOnline ein.' },
+      { q: 'Ist QLIXA ein Steuerberater oder Buchhalter?', a: 'Nein. QLIXA ist ein automatisiertes Tool zur selbstständigen Vorbereitung deiner Steuererklärung. QLIXA ist kein Steuerberater, Buchhalter, Rechtsberater oder Finanzberater und bietet keine individuelle Steuer-, Rechts- oder Finanzberatung. Wenn deine Situation eine professionelle Beurteilung erfordert, solltest du dich an eine entsprechende Fachperson wenden.' },
+      { q: 'Sind meine Daten bei QLIXA sicher?', a: 'QLIXA verarbeitet personenbezogene Daten gemäß den geltenden Datenschutzanforderungen. Detaillierte Informationen darüber, welche Daten verarbeitet werden, zu welchen Zwecken und wie sie geschützt werden, findest du in der Datenschutzerklärung.' },
     ],
   },
 }

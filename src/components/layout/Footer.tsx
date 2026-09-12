@@ -50,9 +50,9 @@ const FOOTER_TEXT: Record<string, {
   mailBodyPage: string
 }> = {
   UA: {
-    tagline: 'Автоматизована цифрова платформа для самозайнятих, підприємців та найманих працівників в Австрії.',
+    tagline: 'Автоматизований інструмент для самостійної підготовки податкової декларації в Австрії.',
     columns: [
-      { title: 'Платформа', links: [{ label: 'Про нас', href: '/about' }, { label: 'Статті', href: '/articles' }, { label: 'Інструменти', href: '/tools' }] },
+      { title: 'Навігація', links: [{ label: 'Про нас', href: '/about' }, { label: 'Статті', href: '/articles' }, { label: 'Інструменти', href: '/tools' }] },
       { title: 'Правове', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Політика конфіденційності', href: '/privacy' }, { label: 'Умови використання', href: '/agb' }] },
     ],
     contact: 'Контакт',
@@ -76,9 +76,9 @@ const FOOTER_TEXT: Record<string, {
     mailBodyPage: 'Сторінка:',
   },
   RU: {
-    tagline: 'Автоматизированная цифровая платформа для самозанятых, предпринимателей и наёмных работников в Австрии.',
+    tagline: 'Автоматизированный инструмент для самостоятельной подготовки налоговой декларации в Австрии.',
     columns: [
-      { title: 'Платформа', links: [{ label: 'О нас', href: '/about' }, { label: 'Статьи', href: '/articles' }, { label: 'Инструменты', href: '/tools' }] },
+      { title: 'Навигация', links: [{ label: 'О нас', href: '/about' }, { label: 'Статьи', href: '/articles' }, { label: 'Инструменты', href: '/tools' }] },
       { title: 'Правовое', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Политика конфиденциальности', href: '/privacy' }, { label: 'Условия использования', href: '/agb' }] },
     ],
     contact: 'Контакт',
@@ -102,9 +102,9 @@ const FOOTER_TEXT: Record<string, {
     mailBodyPage: 'Страница:',
   },
   EN: {
-    tagline: 'An automated digital platform for the self-employed, entrepreneurs, and employees in Austria.',
+    tagline: 'An automated tool for preparing your Austrian tax return yourself.',
     columns: [
-      { title: 'Platform', links: [{ label: 'About Us', href: '/about' }, { label: 'Articles', href: '/articles' }, { label: 'Tools', href: '/tools' }] },
+      { title: 'Navigation', links: [{ label: 'About Us', href: '/about' }, { label: 'Articles', href: '/articles' }, { label: 'Tools', href: '/tools' }] },
       { title: 'Legal', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Privacy Policy', href: '/privacy' }, { label: 'Terms of Use', href: '/agb' }] },
     ],
     contact: 'Contact',
@@ -128,9 +128,9 @@ const FOOTER_TEXT: Record<string, {
     mailBodyPage: 'Page:',
   },
   DE: {
-    tagline: 'Eine automatisierte digitale Plattform für Selbstständige, Unternehmer:innen und Angestellte in Österreich.',
+    tagline: 'Ein automatisiertes Tool zur selbstständigen Vorbereitung deiner Steuererklärung in Österreich.',
     columns: [
-      { title: 'Plattform', links: [{ label: 'Über uns', href: '/about' }, { label: 'Artikel', href: '/articles' }, { label: 'Tools', href: '/tools' }] },
+      { title: 'Navigation', links: [{ label: 'Über uns', href: '/about' }, { label: 'Artikel', href: '/articles' }, { label: 'Tools', href: '/tools' }] },
       { title: 'Rechtliches', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Datenschutz', href: '/privacy' }, { label: 'Nutzungsbedingungen', href: '/agb' }] },
     ],
     contact: 'Kontakt',
