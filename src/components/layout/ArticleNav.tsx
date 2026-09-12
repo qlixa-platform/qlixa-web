@@ -40,9 +40,9 @@ const ARTICLE_META_TRANSLATIONS: Record<string, Record<string, { tag: string; ti
     DE: { tag: 'Familie · Leistungen', title: 'Kindesbehinderung in Österreich: Leistungen, Vergünstigungen und erste Schritte' },
   },
   'gisa-formular': {
-    RU: { tag: 'GISA · Регистрация', title: 'Регистрация на сайте GISA: пошаговая инструкция' },
-    EN: { tag: 'GISA · Registration', title: 'Registering on the GISA website: a step-by-step guide' },
-    DE: { tag: 'GISA · Anmeldung', title: 'Anmeldung auf der GISA-Website: Schritt-für-Schritt-Anleitung' },
+    RU: { tag: 'GISA · Регистрация', title: 'Как зарегистрировать предпринимательскую деятельность через GISA: пошаговая онлайн-инструкция' },
+    EN: { tag: 'GISA · Registration', title: 'How to Register a Business Activity via GISA: Step-by-Step Online Guide' },
+    DE: { tag: 'GISA · Anmeldung', title: 'Gewerbe über GISA anmelden: Schritt-für-Schritt-Online-Anleitung' },
   },
 }
 
