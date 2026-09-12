@@ -6,7 +6,6 @@ import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import FitHeadline from '@/components/FitHeadline'
 import Image from 'next/image'
-import ReviewsSection from '@/components/layout/ReviewsSection'
 import ArticlesSlider from '@/components/layout/ArticlesSlider'
 import NotifyMeButton from '@/components/NotifyMeButton'
 
@@ -638,9 +637,9 @@ const WHYQLIXA_TEXT: Record<string, {
       ['Не хочеться відкладати декларацію', 'Коли процес здається складним, його легко відкладати на потім.'],
       ['Хочеться знати, що можна врахувати', 'І не залишатися з питанням: «А раптом я щось пропустив?»'],
     ],
-    solutionBefore: 'Саме тому народилась ',
+    solutionBefore: 'Саме тому з’явилася ',
     solutionAfter: '',
-    solutionP: ['Не ще один складний сервіс.', 'А платформа, яка допомагає і працювати за наймом, і вести бізнес — без зайвого стресу.'],
+    solutionP: ['QLIXA перетворює складний процес підготовки декларації на зрозумілу послідовність запитань.', ''],
     features: [
       { title: 'Пояснюємо людською мовою', desc: 'Без складних термінів і стресу.' },
       { title: 'Показуємо наступний крок', desc: 'Ти завжди знаєш, що робити далі.' },
@@ -649,11 +648,11 @@ const WHYQLIXA_TEXT: Record<string, {
       { title: 'Допомагаємо знайти доступні списання', desc: 'Щоб повернути максимум.' },
       { title: 'Підлаштовуємося під твою ситуацію', desc: 'Бо двох однакових історій не існує.' },
     ],
-    quoteLine1: 'Ми не замінюємо бухгалтера —',
-    quoteBefore: 'ми робимо так, щоб ти сам ',
-    quoteEmphasis: 'розумів',
-    quoteAfter: ' свою ситуацію.',
-    quoteP2: ['Ти економиш час, гроші та нерви.', 'Ми беремо на себе складне,', 'а ти займаєшся тим, що для тебе справді важливо.'],
+    quoteLine1: '',
+    quoteBefore: '',
+    quoteEmphasis: '',
+    quoteAfter: '',
+    quoteP2: ['Ти вводиш свої дані. QLIXA підлаштовує анкету під твої відповіді, формує попередній розрахунок можливого повернення та допомагає підготувати декларацію.', '', ''],
   },
   RU: {
     badge: 'Почему появилась QLIXA',
@@ -674,9 +673,9 @@ const WHYQLIXA_TEXT: Record<string, {
       ['Не хочется откладывать декларацию', 'Когда процесс кажется сложным, его легко откладывать на потом.'],
       ['Хочется знать, что можно учесть', 'И не оставаться с вопросом: «А вдруг я что-то упустил?»'],
     ],
-    solutionBefore: 'Именно поэтому родилась ',
+    solutionBefore: 'Поэтому появилась ',
     solutionAfter: '',
-    solutionP: ['Не ещё один сложный сервис.', 'А платформа, которая помогает и работать по найму, и вести бизнес — без лишнего стресса.'],
+    solutionP: ['QLIXA превращает сложный процесс подготовки налоговой декларации в понятную последовательность вопросов.', ''],
     features: [
       { title: 'Объясняем человеческим языком', desc: 'Без сложных терминов и стресса.' },
       { title: 'Показываем следующий шаг', desc: 'Ты всегда знаешь, что делать дальше.' },
@@ -685,11 +684,11 @@ const WHYQLIXA_TEXT: Record<string, {
       { title: 'Помогаем найти доступные списания', desc: 'Чтобы вернуть максимум.' },
       { title: 'Подстраиваемся под твою ситуацию', desc: 'Потому что двух одинаковых историй не существует.' },
     ],
-    quoteLine1: 'Мы не заменяем бухгалтера —',
-    quoteBefore: 'мы делаем так, чтобы ты сам ',
-    quoteEmphasis: 'понимал',
-    quoteAfter: ' свою ситуацию.',
-    quoteP2: ['Ты экономишь время, деньги и нервы.', 'Мы берём на себя сложное,', 'а ты занимаешься тем, что для тебя действительно важно.'],
+    quoteLine1: '',
+    quoteBefore: '',
+    quoteEmphasis: '',
+    quoteAfter: '',
+    quoteP2: ['Ты вводишь свои данные. QLIXA подстраивает анкету под твои ответы, показывает предварительный расчёт возможного возврата и помогает подготовить налоговую декларацию.', '', ''],
   },
   EN: {
     badge: 'Why QLIXA exists',
@@ -710,9 +709,9 @@ const WHYQLIXA_TEXT: Record<string, {
       ['You don’t want to keep putting it off', 'When a process feels complicated, it’s easy to leave it until later.'],
       ['You want to know what can be included', 'And not be left wondering: “What if I missed something?”'],
     ],
-    solutionBefore: "That's why ",
-    solutionAfter: ' was born',
-    solutionP: ['Not just another complicated tool.', 'A platform that helps you work as an employee or run your own business — without the extra stress.'],
+    solutionBefore: "That’s why ",
+    solutionAfter: ' was created',
+    solutionP: ['QLIXA turns the complex process of preparing a tax return into a clear sequence of questions.', ''],
     features: [
       { title: 'We explain in plain language', desc: 'No complex terms, no stress.' },
       { title: 'We show you the next step', desc: 'You always know what to do next.' },
@@ -721,11 +720,11 @@ const WHYQLIXA_TEXT: Record<string, {
       { title: 'We help you find available deductions', desc: 'To get back as much as possible.' },
       { title: 'We adapt to your situation', desc: 'Because no two stories are the same.' },
     ],
-    quoteLine1: "We don't replace an accountant —",
-    quoteBefore: 'we help you ',
-    quoteEmphasis: 'understand',
-    quoteAfter: ' your own situation.',
-    quoteP2: ['You save time, money, and nerves.', 'We handle the complicated part,', 'so you can focus on what really matters to you.'],
+    quoteLine1: '',
+    quoteBefore: '',
+    quoteEmphasis: '',
+    quoteAfter: '',
+    quoteP2: ['You enter your information. QLIXA adapts the questionnaire to your answers, provides a preliminary estimate of your possible refund and helps prepare your tax return.', '', ''],
   },
   DE: {
     badge: 'Warum es QLIXA gibt',
@@ -746,9 +745,9 @@ const WHYQLIXA_TEXT: Record<string, {
       ['Du möchtest die Steuererklärung nicht aufschieben', 'Wenn ein Prozess kompliziert wirkt, schiebt man ihn leicht auf später.'],
       ['Du möchtest wissen, was berücksichtigt werden kann', 'Und nicht mit der Frage zurückbleiben: „Habe ich vielleicht etwas übersehen?“'],
     ],
-    solutionBefore: 'Genau deshalb ist ',
-    solutionAfter: ' entstanden',
-    solutionP: ['Kein weiteres kompliziertes Tool.', 'Sondern eine Plattform, die dir hilft, als Angestellte:r zu arbeiten oder dein eigenes Unternehmen zu führen — ganz ohne zusätzlichen Stress.'],
+    solutionBefore: 'Deshalb gibt es ',
+    solutionAfter: '',
+    solutionP: ['QLIXA macht aus dem komplexen Prozess der Steuererklärung eine verständliche Abfolge von Fragen.', ''],
     features: [
       { title: 'Wir erklären in einfacher Sprache', desc: 'Ohne komplizierte Begriffe und Stress.' },
       { title: 'Wir zeigen dir den nächsten Schritt', desc: 'Du weißt immer, was als Nächstes kommt.' },
@@ -757,11 +756,11 @@ const WHYQLIXA_TEXT: Record<string, {
       { title: 'Wir helfen dir, mögliche Abzüge zu finden', desc: 'Damit du so viel wie möglich zurückbekommst.' },
       { title: 'Wir passen uns deiner Situation an', desc: 'Weil es nicht zwei gleiche Geschichten gibt.' },
     ],
-    quoteLine1: 'Wir ersetzen keinen Steuerberater —',
-    quoteBefore: 'wir sorgen dafür, dass du deine Situation selbst ',
-    quoteEmphasis: 'verstehst',
-    quoteAfter: '.',
-    quoteP2: ['Du sparst Zeit, Geld und Nerven.', 'Wir kümmern uns um das Komplizierte,', 'und du kannst dich auf das konzentrieren, was dir wirklich wichtig ist.'],
+    quoteLine1: '',
+    quoteBefore: '',
+    quoteEmphasis: '',
+    quoteAfter: '',
+    quoteP2: ['Du gibst deine Angaben ein. QLIXA passt den Fragebogen an deine Antworten an, zeigt eine vorläufige Berechnung einer möglichen Rückerstattung und hilft bei der Vorbereitung deiner Steuererklärung.', '', ''],
   },
 }
 
@@ -778,42 +777,42 @@ const CTA_TEXT: Record<string, {
 }> = {
   UA: {
     badge: 'Починай зараз',
-    h2: 'Твоя ситуація — унікальна. Ми це розуміємо.',
-    pBefore: 'Саме тому ми створюємо не ',
-    pSpan1: 'універсальні шаблони',
-    pMid: ' — ми допомагаємо сформувати саме ',
-    pSpan2: 'ваш персональний план дій',
-    pAfter: '. Чеклісти, калькулятори, звіти та рекомендації створюються на основі введених вами даних і враховують саме вашу ситуацію.',
+    h2: 'Відповідай на запитання — решту структурує QLIXA',
+    pBefore: 'Анкета змінюється залежно від твоїх відповідей і ставить ',
+    pSpan1: 'додаткові запитання, коли це потрібно',
+    pMid: '. На виході — ',
+    pSpan2: 'попередній розрахунок можливого повернення',
+    pAfter: ' та податкова декларація, підготовлена до перевірки й подання.',
     cta: 'Починай підготовку →',
   },
   RU: {
     badge: 'Начни сейчас',
-    h2: 'Твоя ситуация — уникальна. Мы это понимаем.',
-    pBefore: 'Именно поэтому мы создаём не ',
-    pSpan1: 'универсальные шаблоны',
-    pMid: ' — мы помогаем сформировать именно ',
-    pSpan2: 'твой персональный план действий',
-    pAfter: '. Чек-листы, калькуляторы, отчёты и рекомендации создаются на основе введённых тобой данных и учитывают именно твою ситуацию.',
+    h2: 'Отвечай на вопросы — остальное структурирует QLIXA',
+    pBefore: 'Анкета меняется в зависимости от твоих ответов и задаёт ',
+    pSpan1: 'дополнительные вопросы, когда это необходимо',
+    pMid: '. В результате ты получаешь ',
+    pSpan2: 'предварительный расчёт возможного возврата',
+    pAfter: ' и налоговую декларацию, подготовленную для проверки и подачи.',
     cta: 'Начать подготовку →',
   },
   EN: {
     badge: 'Get started now',
-    h2: 'Your situation is unique. We get that.',
-    pBefore: "That's why we don't build ",
-    pSpan1: 'universal templates',
-    pMid: ' — we help you shape ',
-    pSpan2: 'your own personal action plan',
-    pAfter: '. Checklists, calculators, reports, and recommendations are created based on the data you enter and reflect your specific situation.',
+    h2: 'Answer the questions — QLIXA structures the rest',
+    pBefore: 'The questionnaire changes based on your answers and asks ',
+    pSpan1: 'additional questions when needed',
+    pMid: '. The result is a ',
+    pSpan2: 'preliminary estimate of your possible refund',
+    pAfter: ' and a tax return prepared for review and submission.',
     cta: 'Start now →',
   },
   DE: {
     badge: 'Jetzt starten',
-    h2: 'Deine Situation ist einzigartig. Das wissen wir.',
-    pBefore: 'Deshalb erstellen wir keine ',
-    pSpan1: 'universellen Vorlagen',
-    pMid: ' — wir helfen dir, genau ',
-    pSpan2: 'deinen persönlichen Aktionsplan',
-    pAfter: ' zu erstellen. Checklisten, Rechner, Berichte und Empfehlungen basieren auf deinen eingegebenen Daten und berücksichtigen genau deine Situation.',
+    h2: 'Beantworte die Fragen — QLIXA strukturiert den Rest',
+    pBefore: 'Der Fragebogen passt sich deinen Antworten an und stellt bei Bedarf ',
+    pSpan1: 'zusätzliche Fragen',
+    pMid: '. Am Ende erhältst du eine ',
+    pSpan2: 'vorläufige Berechnung einer möglichen Rückerstattung',
+    pAfter: ' und eine Steuererklärung, die zur Prüfung und Einreichung vorbereitet ist.',
     cta: 'Jetzt starten →',
   },
 }
@@ -1576,26 +1575,34 @@ export default function HomePage() {
       <section style={{ background: '#ffffff', padding: '26px clamp(20px,6vw,80px) 32px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
-          {/* BLOCK 1 — Story header */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 40, marginBottom: 40 }}>
-            <div style={{ flex: 1 }}>
-              <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20 }}>{t5.badge}</div>
-              <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3vw,42px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.2, letterSpacing: '-1px', marginBottom: 20 }}>
-                {t5.h2Line1}<br/>{t5.h2Line2Before}{' '}
-                <em style={{ fontStyle: 'italic', color: '#038390' }}>{t5.h2Emphasis}</em>
-              </h2>
-              <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, maxWidth: 520 }}>
-                {t5.p[0]}<br/>
-                {t5.p[1]}<br/>
-                {t5.p[2]}
-              </p>
-              <Link href="/about" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, marginTop: 16, fontSize: 15, fontWeight: 600, color: '#038390', textDecoration: 'none' }}
+          {/* BLOCK 1 — Story header. Centered badge + headline (same badge/heading
+              system as the "Як це працює" section below), then one wide card
+              (same bg/radius/border language as the QLIXA Tax Return / QLIXA
+              Business cards) with body text + CTA on the left and the founders
+              illustration on the right. */}
+          <div style={{ textAlign: 'center', marginBottom: 28 }}>
+            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.15)', border: '1px solid rgba(3,131,144,0.35)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 16 }}>{t5.badge}</div>
+            <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.4vw,46px)', fontWeight: 700, color: '#1A1A1A', lineHeight: 1.1, letterSpacing: '-1px', marginBottom: 0 }}>
+              {t5.h2Line1} {t5.h2Line2Before}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t5.h2Emphasis}</em>
+            </h2>
+          </div>
+
+          <div style={{
+            background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)',
+            display: 'flex', flexDirection: 'row' as const, alignItems: 'center', marginBottom: 40,
+          }}>
+            {/* Text — left */}
+            <div style={{ flex: '1 1 54%', minWidth: 0, padding: '40px 24px 40px 48px', display: 'flex', flexDirection: 'column' as const, gap: 16 }}>
+              <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.p[0]}</p>
+              <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.p[2]}</p>
+              <Link href="/about" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 15, fontWeight: 600, color: '#038390', textDecoration: 'none', width: 'fit-content' }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.textDecoration = 'underline'}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.textDecoration = 'none'}>
                 {t5.linkText}
               </Link>
             </div>
-            <div style={{ flex: '0 0 500px', display: 'flex', alignItems: 'center' }}>
+            {/* Founders illustration — right */}
+            <div style={{ flex: '0 0 46%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '32px 48px 32px 20px', boxSizing: 'border-box' as const }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/why-qlixa/founders.png" alt="Засновники QLIXA" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }}/>
             </div>
@@ -1635,40 +1642,26 @@ export default function HomePage() {
             ))}
           </div>
 
-          {/* BLOCK 3 — QLIXA solution */}
-          <div style={{ textAlign: 'center', marginBottom: 28 }}>
-            <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(30px,3.4vw,46px)', fontWeight: 700, color: '#1A1A1A', marginBottom: 8 }}>
-              {t5.solutionBefore}<span style={{ color: '#038390', fontWeight: 700 }}>QLIXA</span>{t5.solutionAfter}
-            </h3>
-            <p style={{ fontSize: 16, color: '#595959', maxWidth: 600, margin: '0 auto' }}>
-              {t5.solutionP[0]}<br/>
-              {t5.solutionP[1]}
-            </p>
-          </div>
-
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 32, alignItems: 'stretch' }}>
-
-            {/* Left — laptop image */}
-            <div style={{ background: '#F0F7F8', borderRadius: 24, padding: 28, boxShadow: '0 8px 40px rgba(3,131,144,0.10)', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+          {/* BLOCK 3 — QLIXA solution. Same card system as the "Чому з'явилася
+              QLIXA" card above (bg/radius/border), laptop illustration on the
+              LEFT, heading + the two explanatory sentences on the RIGHT. */}
+          <div style={{
+            background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)',
+            display: 'flex', flexDirection: 'row' as const, alignItems: 'center',
+          }}>
+            {/* Laptop illustration — left */}
+            <div style={{ flex: '0 0 42%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '32px 20px 32px 48px', boxSizing: 'border-box' as const }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/why-qlixa/laptop.png" alt="" style={{ width: '75%', height: 'auto', objectFit: 'contain', display: 'block' }}/>
+              <img src="/why-qlixa/laptop.png" alt="" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }}/>
             </div>
-
-            {/* Right — quote text */}
-            <div style={{ background: '#F0F7F8', borderRadius: 24, padding: 28, boxShadow: '0 8px 40px rgba(3,131,144,0.10)', display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center' }}>
-              <p style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(18px,2vw,24px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.4, textAlign: 'center', marginBottom: 16 }}>
-                {t5.quoteLine1}<br/>
-                {t5.quoteBefore}
-                <em style={{ color: '#038390' }}>{t5.quoteEmphasis}</em>
-                {t5.quoteAfter}
-              </p>
-              <p style={{ fontSize: 15, color: '#404040', lineHeight: 1.6, textAlign: 'center' }}>
-                {t5.quoteP2[0]}<br/>
-                {t5.quoteP2[1]}<br/>
-                {t5.quoteP2[2]}
-              </p>
+            {/* Heading + text — right */}
+            <div style={{ flex: '1 1 58%', minWidth: 0, padding: '40px 48px 40px 24px', display: 'flex', flexDirection: 'column' as const, gap: 16 }}>
+              <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
+                {t5.solutionBefore}<span style={{ color: '#038390', fontWeight: 700 }}>QLIXA</span>{t5.solutionAfter}
+              </h3>
+              <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.solutionP[0]}</p>
+              <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.quoteP2[0]}</p>
             </div>
-
           </div>
         </div>
             </section>
@@ -1676,9 +1669,6 @@ export default function HomePage() {
 
       {/* ARTICLES */}
       <ArticlesSlider published={published} upcoming={upcoming} lang={lang} />
-
-      {/* ── REVIEWS ── */}
-      <ReviewsSection lang={lang} />
 
       {/* ── CTA ── */}
       <section style={{ background: 'linear-gradient(135deg, #038390 0%, #026B76 100%)', padding: '20px clamp(20px,6vw,80px)', textAlign: 'center' }}>
