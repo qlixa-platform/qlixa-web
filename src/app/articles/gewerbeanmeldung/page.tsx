@@ -623,7 +623,7 @@ export default function GewerbeanmeldungPage() {
               {t.ctaP}
             </p>
             <div style={{ display: 'flex', gap: 12, justifyContent: 'center', flexWrap: 'wrap' }}>
-              <Link href="/articles" style={{
+              <Link href="/tools" style={{
                 padding: '14px 28px', borderRadius: 999, fontSize: 14, fontWeight: 700,
                 background: 'transparent', color: 'var(--charcoal)', border: '2px solid var(--charcoal)',
                 textDecoration: 'none', display: 'inline-block',

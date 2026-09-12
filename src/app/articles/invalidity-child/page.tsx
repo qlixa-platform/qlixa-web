@@ -128,6 +128,10 @@ const IC_TEXT: Record<string, any> = {
       'Витрати на транспорт між домом дитини та відповідним закладом, якщо використання громадського транспорту є нерозумним',
     ],
     step4Tip: <>Такі Freibeträge та витрати можуть враховуватися в <strong>Arbeitnehmerveranlagung</strong> або <strong>Einkommensteuererklärung</strong> за відповідних умов.</>,
+    ctaHeading: 'Потрібно врахувати ці витрати в податковій декларації?',
+    ctaBody: 'У QLIXA можна заповнити адаптивну анкету для своєї податкової ситуації та підготувати декларацію на основі введених даних. Перед формуванням ти самостійно перевіряєш усі відповіді.',
+    ctaSupportLine: 'Почати можна безкоштовно.',
+    ctaButtonText: 'Почати податкову декларацію →',
     summaryH2Before: 'З чого ', summaryH2Em: 'можна почати',
     summarySteps: [
       'Зібрати актуальні медичні документи та перевірити вимоги до документів, виданих за межами Австрії.',
@@ -221,6 +225,10 @@ const IC_TEXT: Record<string, any> = {
       'Расходы на транспорт между домом ребёнка и соответствующим учреждением, если использование общественного транспорта неразумно',
     ],
     step4Tip: <>Такие Freibeträge и расходы могут учитываться в <strong>Arbeitnehmerveranlagung</strong> или <strong>Einkommensteuererklärung</strong> при соответствующих условиях.</>,
+    ctaHeading: 'Нужно учесть эти расходы в налоговой декларации?',
+    ctaBody: 'В QLIXA можно заполнить адаптивную анкету для своей налоговой ситуации и подготовить декларацию на основе введённых данных. Перед формированием ты самостоятельно проверяешь все ответы.',
+    ctaSupportLine: 'Начать можно бесплатно.',
+    ctaButtonText: 'Начать налоговую декларацию →',
     summaryH2Before: 'С чего ', summaryH2Em: 'можно начать',
     summarySteps: [
       'Собрать актуальные медицинские документы и проверить требования к документам, выданным за пределами Австрии.',
@@ -314,6 +322,10 @@ const IC_TEXT: Record<string, any> = {
       'Transport costs between the child\'s home and the relevant facility, where using public transport is not reasonable',
     ],
     step4Tip: <>Such Freibeträge and expenses can be taken into account in an <strong>Arbeitnehmerveranlagung</strong> or <strong>Einkommensteuererklärung</strong>, subject to the applicable conditions.</>,
+    ctaHeading: 'Need to include these expenses in your tax return?',
+    ctaBody: 'In QLIXA, you can complete an adaptive questionnaire about your tax situation and prepare a tax return based on the information you enter. Before it is generated, you review your answers yourself.',
+    ctaSupportLine: 'You can start for free.',
+    ctaButtonText: 'Start your tax return →',
     summaryH2Before: 'Where ', summaryH2Em: 'you can start',
     summarySteps: [
       'Gather current medical documents and check the requirements for documents issued outside Austria.',
@@ -407,6 +419,10 @@ const IC_TEXT: Record<string, any> = {
       'Transportkosten zwischen der Wohnung des Kindes und der jeweiligen Einrichtung, wenn die Benützung öffentlicher Verkehrsmittel unzumutbar ist',
     ],
     step4Tip: <>Solche Freibeträge und Kosten können unter den jeweiligen Voraussetzungen in der <strong>Arbeitnehmerveranlagung</strong> oder <strong>Einkommensteuererklärung</strong> berücksichtigt werden.</>,
+    ctaHeading: 'Möchtest du diese Ausgaben in deiner Steuererklärung berücksichtigen?',
+    ctaBody: 'In QLIXA kannst du einen adaptiven Fragebogen zu deiner steuerlichen Situation ausfüllen und auf Basis deiner Angaben eine Steuererklärung vorbereiten. Vor der Erstellung prüfst du deine Antworten selbst.',
+    ctaSupportLine: 'Der Einstieg ist kostenlos.',
+    ctaButtonText: 'Steuererklärung starten →',
     summaryH2Before: 'Womit du ', summaryH2Em: 'beginnen kannst',
     summarySteps: [
       'Sammle aktuelle medizinische Unterlagen und prüfe die Anforderungen an im Ausland ausgestellte Unterlagen.',
@@ -445,6 +461,7 @@ export default function InvalidityChildPage() {
   }, [])
 
   const t = IC_TEXT[lang] || IC_TEXT.UA
+  const cabinetUrl = `https://cabinet-ten-lac.vercel.app/login?lang=${lang === 'UA' ? 'uk' : lang.toLowerCase()}`
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--gray)' }}>
@@ -635,6 +652,16 @@ export default function InvalidityChildPage() {
               {t.step4Tip}
             </NoteBox>
           </StepCard>
+
+          {/* Tax return CTA */}
+          <div style={{ background: 'var(--peach-light)', borderRadius: 16, padding: 24, border: '1px solid var(--orange-mid)', marginBottom: 32 }}>
+            <h3 style={{ fontSize: 18, fontWeight: 700, color: 'var(--charcoal)', marginBottom: 10 }}>{t.ctaHeading}</h3>
+            <p style={{ fontSize: 15, lineHeight: 1.7, color: 'var(--charcoal)', marginBottom: 10 }}>{t.ctaBody}</p>
+            <p style={{ fontSize: 14, color: 'var(--text2)', marginBottom: 16 }}>{t.ctaSupportLine}</p>
+            <a href={cabinetUrl} style={{ display: 'inline-block', padding: '13px 28px', borderRadius: 12, background: '#038390', color: '#fff', fontWeight: 700, fontSize: 14, textDecoration: 'none' }}>
+              {t.ctaButtonText}
+            </a>
+          </div>
 
           {/* Summary */}
           <div style={{ background: 'var(--peach-light)', borderRadius: 16, padding: 24, border: '1px solid var(--orange-mid)', marginBottom: 32 }}>
