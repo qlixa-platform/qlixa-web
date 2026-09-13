@@ -1,10 +1,9 @@
 'use client'
 
-import React, { useState, useEffect } from 'react'
+import { useState, useEffect } from 'react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
-import FitHeadline from '@/components/FitHeadline'
 import Image from 'next/image'
 import ArticlesSlider from '@/components/layout/ArticlesSlider'
 import NotifyMeButton from '@/components/NotifyMeButton'
@@ -85,27 +84,6 @@ const ARTICLES_TEXT: Record<string, {
   },
 }
 
-// Слайдшоу на екрані ноутбука в Hero — окрема папка іконок під кожну мову
-const HERO_ICON_FOLDERS: Record<string, string> = {
-  UA: 'hero-icons-animation',
-  DE: 'hero-icons-animation-de',
-  EN: 'hero-icons-animation-en',
-  RU: 'hero-icons-animation-ru',
-}
-const HERO_ICON_FILES = [
-  'CLIENTS.png',
-  'DEADLINES.png',
-  'FINANZONLINE.png',
-  'INVOICES.png',
-  'KPI.png',
-  'TAX%20REFUND.png',
-]
-function getHeroScreenSlides(lang: string) {
-  const folder = HERO_ICON_FOLDERS[lang] || HERO_ICON_FOLDERS.UA
-  return HERO_ICON_FILES.map(f => `/${folder}/${f}`)
-}
-const HERO_SLIDE_DURATION = 2 // секунд на одну картинку
-
 // Тикер: іконка + текст, переклади на 4 мови
 type TickerItem = { icon: string; text: string }
 const TICKER_ICONS = [
@@ -167,16 +145,9 @@ const TICKER_ITEMS: Record<string, TickerItem[]> = Object.fromEntries(
   ])
 )
 
-// Переклади Hero-секції — поки що тільки UA, RU/EN/DE додамо після затвердження верстки
-type HeroCard = {
-  eyebrow: string
-  title: string
-  desc: string
-  checklist: string[]
-  cta: string
-  href: string
-  isSoon?: boolean
-}
+// Hero copy by locale. UA layout is currently the approved visual source
+// of truth (see the explicit HERO_* wrappers further down); RU/EN/DE reuse
+// the same HeroCopy shape and fall back to the pre-strip CTA/positions.
 type HeroCopy = {
   h1: [string, string]
   supporting: string
@@ -186,33 +157,15 @@ type HeroCopy = {
   cta: string
 }
 const HERO_TEXT: Record<string, {
-  badge: string
-  cards: [HeroCard, HeroCard]
-  soonLabel: string
+  // Fallback route for the RU/EN/DE Hero CTA (UA hardcodes /tax-return
+  // directly in HERO_CTA). Currently /for/naymanyy for every locale, which
+  // redirects to /tax-return — kept as-is; see cleanup report for the
+  // product-architecture note on this route.
+  employeeCtaHref: string
   hero: HeroCopy
 }> = {
   UA: {
-    badge: 'Твій автоматизований бізнес-помічник в Австрії',
-    cards: [
-      {
-        eyebrow: 'Найманий?',
-        title: 'Допоможе повернути переплачений податок',
-        desc: 'Анкета QLIXA врахує роботу, сім’ю, доходи, списання',
-        checklist: ['Ти відповідаєш на прості запитання', 'Анкета підлаштовується під твою ситуацію', 'QLIXA розраховує можливе повернення', 'Ти отримуєш готовий документ для FinanzOnline'],
-        cta: 'Перевірити моє податкове повернення →',
-        href: '/for/naymanyy',
-      },
-      {
-        eyebrow: 'Бізнес?',
-        title: 'Допоможе вести фінанси самостійно',
-        desc: 'З кабінетом QLIXA — просто вести бізнес та бути готовим до звітності',
-        checklist: ['Додаєш клієнтів, доходи, витрати, склад…', 'QLIXA автоматично їх структурує', 'Бачиш головні показники та зміни', 'Отримуєш готові звіти'],
-        cta: 'Переглянути кабінет →',
-        href: '/for/biznes',
-        isSoon: true,
-      },
-    ],
-    soonLabel: 'Скоро',
+    employeeCtaHref: '/for/naymanyy',
     hero: {
       h1: ['3 КРОКИ', 'ДО ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ.'],
       supporting: 'НЕ ПОТРІБНО САМОМУ ЗАПОВНЮВАТИ ПОДАТКОВУ ДЕКЛАРАЦІЮ',
@@ -237,27 +190,7 @@ const HERO_TEXT: Record<string, {
     },
   },
   EN: {
-    badge: 'Your automated business assistant in Austria',
-    cards: [
-      {
-        eyebrow: 'Employee?',
-        title: 'Helps you get back your overpaid tax',
-        desc: 'QLIXA’s questionnaire covers job, family, income, deductions',
-        checklist: ['You answer simple questions', 'The questionnaire adapts to your situation', 'QLIXA calculates your possible refund', 'You get a ready-made document for FinanzOnline'],
-        cta: 'Calculate my refund →',
-        href: '/for/naymanyy',
-      },
-      {
-        eyebrow: 'Business?',
-        title: 'Helps you manage finances yourself',
-        desc: 'With the QLIXA dashboard — simply run your business and stay ready for reporting',
-        checklist: ['You add clients, income, expenses, inventory…', 'QLIXA automatically structures them', 'You see key metrics and changes', 'You get ready-made reports'],
-        cta: 'View dashboard →',
-        href: '/for/biznes',
-        isSoon: true,
-      },
-    ],
-    soonLabel: 'Coming soon',
+    employeeCtaHref: '/for/naymanyy',
     hero: {
       h1: ['3 STEPS', 'TO YOUR TAX RETURN IN AUSTRIA.'],
       supporting: 'NO NEED TO FILL IN YOUR TAX RETURN YOURSELF',
@@ -277,27 +210,7 @@ const HERO_TEXT: Record<string, {
     },
   },
   RU: {
-    badge: 'Твой автоматизированный бизнес-помощник в Австрии',
-    cards: [
-      {
-        eyebrow: 'Наёмный?',
-        title: 'Поможет вернуть переплаченный налог',
-        desc: 'Анкета QLIXA учтёт работу, семью, доходы, списания',
-        checklist: ['Ты отвечаешь на простые вопросы', 'Анкета подстраивается под твою ситуацию', 'QLIXA рассчитывает возможный возврат', 'Ты получаешь готовый документ для FinanzOnline'],
-        cta: 'Рассчитать мой возврат →',
-        href: '/for/naymanyy',
-      },
-      {
-        eyebrow: 'Бизнес?',
-        title: 'Поможет вести финансы самостоятельно',
-        desc: 'С кабинетом QLIXA — просто вести бизнес и быть готовым к отчётности',
-        checklist: ['Добавляешь клиентов, доходы, расходы, склад…', 'QLIXA автоматически их структурирует', 'Видишь главные показатели и изменения', 'Получаешь готовые отчёты'],
-        cta: 'Посмотреть кабинет →',
-        href: '/for/biznes',
-        isSoon: true,
-      },
-    ],
-    soonLabel: 'Скоро',
+    employeeCtaHref: '/for/naymanyy',
     hero: {
       h1: ['3 ШАГА', 'К НАЛОГОВОЙ ДЕКЛАРАЦИИ В АВСТРИИ.'],
       supporting: 'НЕ НУЖНО САМОМУ ЗАПОЛНЯТЬ НАЛОГОВУЮ ДЕКЛАРАЦИЮ',
@@ -317,27 +230,7 @@ const HERO_TEXT: Record<string, {
     },
   },
   DE: {
-    badge: 'Dein automatisierter Geschäftsassistent in Österreich',
-    cards: [
-      {
-        eyebrow: 'Angestellte:r?',
-        title: 'Hilft dir, deine zu viel gezahlte Steuer zurückzuholen',
-        desc: 'Der QLIXA-Fragebogen berücksichtigt Job, Familie, Einkommen, Abzüge',
-        checklist: ['Du beantwortest einfache Fragen', 'Der Fragebogen passt sich deiner Situation an', 'QLIXA berechnet deine mögliche Rückerstattung', 'Du erhältst ein fertiges Dokument für FinanzOnline'],
-        cta: 'Meine Rückerstattung berechnen →',
-        href: '/for/naymanyy',
-      },
-      {
-        eyebrow: 'Business?',
-        title: 'Hilft dir, deine Finanzen selbst zu verwalten',
-        desc: 'Mit dem QLIXA-Kabinett einfach dein Geschäft führen und bereit für die Berichterstattung sein',
-        checklist: ['Du fügst Kunden, Einnahmen, Ausgaben, Lager hinzu…', 'QLIXA strukturiert sie automatisch', 'Du siehst die wichtigsten Kennzahlen und Veränderungen', 'Du erhältst fertige Berichte'],
-        cta: 'Dashboard ansehen →',
-        href: '/for/biznes',
-        isSoon: true,
-      },
-    ],
-    soonLabel: 'Demnächst',
+    employeeCtaHref: '/for/naymanyy',
     hero: {
       h1: ['3 SCHRITTE', 'ZUR STEUERERKLÄRUNG IN ÖSTERREICH.'],
       supporting: 'DU MUSST DEINE STEUERERKLÄRUNG NICHT SELBST AUSFÜLLEN',
@@ -365,7 +258,6 @@ const QLIXA_TEXT: Record<string, {
   h2Emphasis: string
   subheading: string
   cards: [string, string][] // [title, desc] x8
-  centerTagline: string
   soonLabel: string
 }> = {
   UA: {
@@ -383,7 +275,6 @@ const QLIXA_TEXT: Record<string, {
       ['QLIXA Business', 'Окремий продукт для GmbH та бізнесу — у розробці.'],
       ['QLIXA підлаштовує анкету під твої відповіді', 'QLIXA підлаштовує наступні запитання під твої відповіді та ставить додаткові запитання, коли це потрібно.'],
     ],
-    centerTagline: 'просто про складне',
     soonLabel: 'Скоро',
   },
   RU: {
@@ -401,7 +292,6 @@ const QLIXA_TEXT: Record<string, {
       ['QLIXA Business', 'Отдельный продукт для GmbH и бизнеса — в разработке.'],
       ['QLIXA подстраивает анкету под твои ответы', 'QLIXA подстраивает следующие вопросы под твои ответы и задаёт дополнительные вопросы, когда это нужно.'],
     ],
-    centerTagline: 'просто о сложном',
     soonLabel: 'Скоро',
   },
   EN: {
@@ -419,7 +309,6 @@ const QLIXA_TEXT: Record<string, {
       ['QLIXA Business', 'A separate product for GmbHs and businesses — in development.'],
       ['QLIXA adapts the questionnaire to your answers', 'QLIXA adjusts the next questions based on your answers and asks additional questions when needed.'],
     ],
-    centerTagline: 'complex made simple',
     soonLabel: 'Coming soon',
   },
   DE: {
@@ -437,7 +326,6 @@ const QLIXA_TEXT: Record<string, {
       ['QLIXA Business', 'Ein eigenes Produkt für GmbHs und Unternehmen — in Entwicklung.'],
       ['QLIXA passt den Fragebogen an deine Antworten an', 'QLIXA passt die nächsten Fragen an deine Antworten an und stellt bei Bedarf zusätzliche Fragen.'],
     ],
-    centerTagline: 'Kompliziert einfach erklärt',
     soonLabel: 'Demnächst',
   },
 }
@@ -611,11 +499,6 @@ const WHYQLIXA_TEXT: Record<string, {
   solutionBefore: string
   solutionAfter: string
   solutionP: [string, string]
-  features: { title: string; desc: string }[] // x6
-  quoteLine1: string
-  quoteBefore: string
-  quoteEmphasis: string
-  quoteAfter: string
   quoteP2: [string, string, string]
 }> = {
   UA: {
@@ -640,18 +523,6 @@ const WHYQLIXA_TEXT: Record<string, {
     solutionBefore: 'Саме тому з’явилася ',
     solutionAfter: '',
     solutionP: ['QLIXA перетворює складний процес підготовки декларації на зрозумілу послідовність запитань.', ''],
-    features: [
-      { title: 'Пояснюємо людською мовою', desc: 'Без складних термінів і стресу.' },
-      { title: 'Показуємо наступний крок', desc: 'Ти завжди знаєш, що робити далі.' },
-      { title: 'Нагадуємо про дедлайни', desc: 'Щоб нічого не пропустити.' },
-      { title: 'Збираємо все в одному місці', desc: 'Документи, податки, бізнес, FinanzOnline.' },
-      { title: 'Допомагаємо знайти доступні списання', desc: 'Щоб повернути максимум.' },
-      { title: 'Підлаштовуємося під твою ситуацію', desc: 'Бо двох однакових історій не існує.' },
-    ],
-    quoteLine1: '',
-    quoteBefore: '',
-    quoteEmphasis: '',
-    quoteAfter: '',
     quoteP2: ['Ти вводиш свої дані. QLIXA підлаштовує анкету під твої відповіді, формує попередній розрахунок можливого повернення та допомагає підготувати декларацію.', '', ''],
   },
   RU: {
@@ -676,18 +547,6 @@ const WHYQLIXA_TEXT: Record<string, {
     solutionBefore: 'Поэтому появилась ',
     solutionAfter: '',
     solutionP: ['QLIXA превращает сложный процесс подготовки налоговой декларации в понятную последовательность вопросов.', ''],
-    features: [
-      { title: 'Объясняем человеческим языком', desc: 'Без сложных терминов и стресса.' },
-      { title: 'Показываем следующий шаг', desc: 'Ты всегда знаешь, что делать дальше.' },
-      { title: 'Напоминаем о дедлайнах', desc: 'Чтобы ничего не пропустить.' },
-      { title: 'Собираем всё в одном месте', desc: 'Документы, налоги, бизнес, FinanzOnline.' },
-      { title: 'Помогаем найти доступные списания', desc: 'Чтобы вернуть максимум.' },
-      { title: 'Подстраиваемся под твою ситуацию', desc: 'Потому что двух одинаковых историй не существует.' },
-    ],
-    quoteLine1: '',
-    quoteBefore: '',
-    quoteEmphasis: '',
-    quoteAfter: '',
     quoteP2: ['Ты вводишь свои данные. QLIXA подстраивает анкету под твои ответы, показывает предварительный расчёт возможного возврата и помогает подготовить налоговую декларацию.', '', ''],
   },
   EN: {
@@ -712,18 +571,6 @@ const WHYQLIXA_TEXT: Record<string, {
     solutionBefore: "That’s why ",
     solutionAfter: ' was created',
     solutionP: ['QLIXA turns the complex process of preparing a tax return into a clear sequence of questions.', ''],
-    features: [
-      { title: 'We explain in plain language', desc: 'No complex terms, no stress.' },
-      { title: 'We show you the next step', desc: 'You always know what to do next.' },
-      { title: 'We remind you of deadlines', desc: "So nothing slips through." },
-      { title: 'We bring everything together', desc: 'Documents, taxes, business, FinanzOnline.' },
-      { title: 'We help you find available deductions', desc: 'To get back as much as possible.' },
-      { title: 'We adapt to your situation', desc: 'Because no two stories are the same.' },
-    ],
-    quoteLine1: '',
-    quoteBefore: '',
-    quoteEmphasis: '',
-    quoteAfter: '',
     quoteP2: ['You enter your information. QLIXA adapts the questionnaire to your answers, provides a preliminary estimate of your possible refund and helps prepare your tax return.', '', ''],
   },
   DE: {
@@ -748,18 +595,6 @@ const WHYQLIXA_TEXT: Record<string, {
     solutionBefore: 'Deshalb gibt es ',
     solutionAfter: '',
     solutionP: ['QLIXA macht aus dem komplexen Prozess der Steuererklärung eine verständliche Abfolge von Fragen.', ''],
-    features: [
-      { title: 'Wir erklären in einfacher Sprache', desc: 'Ohne komplizierte Begriffe und Stress.' },
-      { title: 'Wir zeigen dir den nächsten Schritt', desc: 'Du weißt immer, was als Nächstes kommt.' },
-      { title: 'Wir erinnern dich an Fristen', desc: 'Damit dir nichts durch die Lappen geht.' },
-      { title: 'Wir sammeln alles an einem Ort', desc: 'Dokumente, Steuern, Business, FinanzOnline.' },
-      { title: 'Wir helfen dir, mögliche Abzüge zu finden', desc: 'Damit du so viel wie möglich zurückbekommst.' },
-      { title: 'Wir passen uns deiner Situation an', desc: 'Weil es nicht zwei gleiche Geschichten gibt.' },
-    ],
-    quoteLine1: '',
-    quoteBefore: '',
-    quoteEmphasis: '',
-    quoteAfter: '',
     quoteP2: ['Du gibst deine Angaben ein. QLIXA passt den Fragebogen an deine Antworten an, zeigt eine vorläufige Berechnung einer möglichen Rückerstattung und hilft bei der Vorbereitung deiner Steuererklärung.', '', ''],
   },
 }
@@ -962,7 +797,6 @@ export default function HomePage() {
     return () => window.removeEventListener('qlixa-lang-change', updateLang);
   }, []);
 
-  const HERO_SCREEN_SLIDES = getHeroScreenSlides(lang);
   const t = HERO_TEXT[lang] || HERO_TEXT.UA;
   // TEMPORARY while the new commercial strip's positioning is being
   // manually approved — the free badge / free-flow strip / new CTA copy
@@ -992,71 +826,10 @@ export default function HomePage() {
     <div style={{ fontFamily: 'DM Sans, sans-serif', background: '#F0F7F8' }}>
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Caveat:wght@400;600;700&display=swap');
-        @keyframes float1 { 0%,100%{transform:rotate(-6deg) translateY(0)} 50%{transform:rotate(-6deg) translateY(-12px)} }
-        @keyframes float2 { 0%,100%{transform:rotate(5deg) translateY(0)} 50%{transform:rotate(5deg) translateY(-10px)} }
-        @keyframes float3 { 0%,100%{transform:rotate(3deg) translateY(0)} 50%{transform:rotate(3deg) translateY(-14px)} }
-        @keyframes float4 { 0%,100%{transform:rotate(-4deg) translateY(0)} 50%{transform:rotate(-4deg) translateY(-8px)} }
-        @keyframes float5 { 0%,100%{transform:rotate(4deg) translateY(0)} 50%{transform:rotate(4deg) translateY(-10px)} }
-        @keyframes progAnim { from{width:40%} to{width:85%} }
-        @keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.6;transform:scale(1.4)} }
-        @keyframes slideUp { from{opacity:0;transform:translateY(24px)} to{opacity:1;transform:translateY(0)} }
-        @keyframes shimmer { 0%{background-position:-400px 0} 100%{background-position:400px 0} }
-        @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
-        @keyframes spin { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
-        @keyframes qPulse1 { 0%{transform:translate(-50%,-50%) scale(1);opacity:0.8} 100%{transform:translate(-50%,-50%) scale(2.2);opacity:0} }
-        @keyframes qFloat { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-6px)} }
-        @keyframes qScan { 0%{transform:translateX(-100%)} 100%{transform:translateX(350%)} }
-        @keyframes qDot { 0%,100%{opacity:0.2;transform:scaleY(1)} 50%{opacity:1;transform:scaleY(1.8)} }
-        @keyframes coinFloat1 { 0%,100%{transform:translateY(0) rotate(0deg);opacity:0.15;} 50%{transform:translateY(-14px) rotate(20deg);opacity:0.35;} }
-        @keyframes coinFloat2 { 0%,100%{transform:translateY(0) rotate(0deg);opacity:0.12;} 50%{transform:translateY(-10px) rotate(-15deg);opacity:0.3;} }
-        @keyframes coinFloat3 { 0%,100%{transform:translateY(0) rotate(0deg);opacity:0.1;} 50%{transform:translateY(-18px) rotate(10deg);opacity:0.28;} }
-        @keyframes countUp { from{opacity:0;transform:translateY(8px);} to{opacity:1;transform:translateY(0);} }
-        @keyframes ringFill { 0%{stroke-dashoffset:175;} 70%{stroke-dashoffset:44;} 100%{stroke-dashoffset:44;} }
-        @keyframes wBlink { 0%,100%{opacity:1;} 50%{opacity:0;} }
-        @keyframes langPop { from{opacity:0;transform:scale(0.7);} to{opacity:1;transform:scale(1);} }
-        @keyframes updatePulse { 0%,100%{transform:scale(1);opacity:0.5;} 50%{transform:scale(1.6);opacity:1;} }
-        @keyframes barFill { 0%{width:0%;} 80%{width:100%;} 100%{width:100%;} }
-        @keyframes heroSlideFade {
-          0%    { opacity: 0; transform: translate(-50%,-50%) scale(0.75) translateY(8px); }
-          4%    { opacity: 1; transform: translate(-50%,-50%) scale(1.06) translateY(0); }
-          7%    { opacity: 1; transform: translate(-50%,-50%) scale(1) translateY(0); }
-          13%   { opacity: 1; transform: translate(-50%,-50%) scale(1) translateY(0); }
-          16.67%{ opacity: 0; transform: translate(-50%,-50%) scale(0.9) translateY(-6px); }
-          100%  { opacity: 0; transform: translate(-50%,-50%) scale(0.9) translateY(-6px); }
-        }
-        @keyframes checklistCycle {
-          0%    { opacity: 0; transform: translateY(8px); }
-          5%    { opacity: 1; transform: translateY(0); }
-          20%   { opacity: 1; transform: translateY(0); }
-          25%   { opacity: 0; transform: translateY(-8px); }
-          100%  { opacity: 0; transform: translateY(-8px); }
-        }
-        .hiw-card { background:#fff; border-radius:22px; padding:36px 28px; transition:transform 0.2s,box-shadow 0.2s; position:relative; overflow:hidden }
-        .hiw-card:hover { transform:translateY(-6px); box-shadow:0 16px 48px rgba(0,0,0,0.10) }
-        .hiw-card:hover::before { opacity:1 }
-        .hiw-card::before { content:''; position:absolute; inset:0; background:linear-gradient(135deg,rgba(3,131,144,0.07),rgba(2,107,118,0.04)); opacity:0; transition:opacity 0.2s; pointer-events:none; border-radius:22px }
-        .demo-opt { border:2px solid #eee; border-radius:12px; padding:14px 18px; cursor:pointer; background:#fff; font-size:14px; font-family:DM Sans,sans-serif; text-align:left; transition:all 0.15s; color:#1A1A1A }
-        .demo-opt:hover { border-color:#038390; background:#F0F7F8 }
-        .demo-opt.selected { border-color:#038390; background:#F0F7F8; color:#038390; font-weight:600 }
-        .feat-card { border:1px solid #eee; border-radius:22px; padding:32px 28px; transition:transform 0.2s,box-shadow 0.2s }
-        .feat-card:hover { transform:translateY(-4px); box-shadow:0 12px 36px rgba(0,0,0,0.08) }
-        .wcard { border-radius:20px; padding:36px 28px }
         .faq-item { border-bottom:1px solid #f0f0f0; overflow:hidden }
         .faq-btn { width:100%; background:none; border:none; text-align:left; padding:24px 0; cursor:pointer; display:flex; justify-content:space-between; align-items:center; font-family:DM Sans,sans-serif; font-size:17px; font-weight:600; color:#1A1A1A; gap:16px }
         .faq-btn:hover { color:#038390 }
-        @keyframes fDashBar { from{width:30%;} to{width:85%;} }
-        @keyframes fFillA { 0%{width:0%;} 60%,100%{width:100%;} }
-        @keyframes fCheckA { 0%,59%{opacity:0;} 60%,100%{opacity:1;} }
-        @keyframes fCalcNum { 0%,100%{opacity:1;} 45%{opacity:0;transform:translateY(-4px);} 55%{opacity:0;transform:translateY(4px);} }
-        @keyframes fClockTick { from{stroke-dashoffset:0;} to{stroke-dashoffset:138;} }
-        @keyframes fBlink { 0%,100%{opacity:0.4;} 50%{opacity:1;} }
-        @keyframes fKpiFill1 { 0%{width:0%;} 70%,100%{width:78%;} }
-        @keyframes fKpiFill2 { 0%{width:0%;} 70%,100%{width:45%;} }
-        @keyframes fKpiFill3 { 0%{width:0%;} 70%,100%{width:62%;} }
         @keyframes tickerMove { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
-        .panel-left { background:#FFFFFF; background-image:linear-gradient(rgba(3,131,144,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(3,131,144,0.04) 1px,transparent 1px); background-size:28px 28px; padding:12px 40px 24px 40px; display:flex; flex-direction:column; justify-content:flex-start; position:relative; overflow:hidden; border-right:1.5px solid rgba(3,131,144,0.15); box-sizing:border-box; }
-        .panel-right { background:#F0F7F8; background-image:linear-gradient(rgba(3,131,144,0.08) 1px,transparent 1px),linear-gradient(90deg,rgba(3,131,144,0.08) 1px,transparent 1px); background-size:28px 28px; padding:12px 40px 24px 40px; display:flex; flex-direction:column; justify-content:flex-start; position:relative; overflow:hidden; box-sizing:border-box; }
-        .hero-cta { display:inline-flex; align-items:center; gap:8px; padding:13px 24px; border-radius:10px; font-size:14px; font-weight:700; text-decoration:none; border:none; cursor:pointer; font-family:'DM Sans',sans-serif; width:fit-content; }
         .ticker-track { display:flex; animation:tickerMove 60s linear infinite; width:max-content; will-change:transform; }
       `}</style>
 
@@ -1064,103 +837,6 @@ export default function HomePage() {
 
       <div style={{ overflowX: 'hidden' }}>
 
-      {false && (
-      <div style={{ paddingTop: 0 }}>
-        {/* ── HERO ── */}
-        <section style={{
-          background: '#F0F7F8',
-          padding: '52px clamp(20px,6vw,80px) 44px',
-          textAlign: 'center',
-        }}>
-          <div style={{ maxWidth: 920, margin: '0 auto' }}>
-
-            {/* H1 with QLIXA SVG + rest of title */}
-            <div style={{ textAlign: 'center', marginBottom: 12 }}>
-              {/* Line 1: SVG + твій цифровий помічник */}
-              <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 0, flexWrap: 'nowrap' }}>
-                <svg style={{ display: 'inline-block', width: 'clamp(140px,18vw,220px)', height: 'auto', verticalAlign: 'middle', marginRight: 8, flexShrink: 0 }} viewBox="0 0 497 116" xmlns="http://www.w3.org/2000/svg">
-                  <defs>
-                    <linearGradient id="qlx1" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(711.226,0,0,165.405,336.274,2201.12)"><stop offset="0" style={{stopColor:'#038390',stopOpacity:1}}/><stop offset="1" style={{stopColor:'#1A1A1A',stopOpacity:1}}/></linearGradient>
-                    <linearGradient id="qlx2" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(711.226,0,0,165.405,336.274,2201.12)"><stop offset="0" style={{stopColor:'#038390',stopOpacity:1}}/><stop offset="1" style={{stopColor:'#1A1A1A',stopOpacity:1}}/></linearGradient>
-                    <linearGradient id="qlx3" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(711.226,0,0,165.405,336.274,2201.12)"><stop offset="0" style={{stopColor:'#038390',stopOpacity:1}}/><stop offset="1" style={{stopColor:'#1A1A1A',stopOpacity:1}}/></linearGradient>
-                    <linearGradient id="qlx4" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(711.226,0,0,165.405,336.274,2201.12)"><stop offset="0" style={{stopColor:'#038390',stopOpacity:1}}/><stop offset="1" style={{stopColor:'#1A1A1A',stopOpacity:1}}/></linearGradient>
-                    <linearGradient id="qlx5" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(711.226,0,0,165.405,336.274,2201.12)"><stop offset="0" style={{stopColor:'#038390',stopOpacity:1}}/><stop offset="1" style={{stopColor:'#1A1A1A',stopOpacity:1}}/></linearGradient>
-                    <linearGradient id="qlx6" x1="0" y1="0" x2="1" y2="0" gradientUnits="userSpaceOnUse" gradientTransform="matrix(711.226,0,0,165.405,336.274,2201.12)"><stop offset="0" style={{stopColor:'#038390',stopOpacity:1}}/><stop offset="1" style={{stopColor:'#1A1A1A',stopOpacity:1}}/></linearGradient>
-                  </defs>
-                  <g transform="matrix(1,0,0,1,-194.465,-869.986)">
-                    <g transform="matrix(1,0,0,1,-1.84252,-2655.14)">
-                      <g transform="matrix(0.697492,0,0,0.697492,-38.2408,2047.54)">
-                        <path d="M431.998,2273.76C425.284,2275.99 417.248,2277.11 407.889,2277.11C388.358,2277.11 372.217,2271.28 359.468,2259.62C344.005,2245.58 336.274,2224.96 336.274,2197.77C336.274,2170.37 344.209,2149.65 360.078,2135.61C373.031,2124.15 389.137,2118.42 408.397,2118.42C427.793,2118.42 444.069,2124.49 457.226,2136.63C472.417,2150.67 480.012,2170.3 480.012,2195.53C480.012,2208.89 478.384,2220.08 475.129,2229.1C472.484,2237.71 468.585,2244.87 463.431,2250.56L480.724,2266.74L464.346,2283.83L446.239,2266.74C440.746,2270.06 435.999,2272.4 431.998,2273.76ZM425.284,2246.7L410.127,2232.25L426.301,2215.37L441.458,2229.81C443.832,2224.93 445.493,2220.66 446.443,2216.99C447.935,2211.5 448.681,2205.09 448.681,2197.77C448.681,2180.95 445.239,2167.95 438.356,2158.76C431.472,2149.57 421.418,2144.97 408.194,2144.97C395.784,2144.97 385.882,2149.38 378.49,2158.2C371.098,2167.01 367.402,2180.2 367.402,2197.77C367.402,2218.32 372.692,2233.03 383.271,2241.92C390.121,2247.68 398.327,2250.56 407.889,2250.56C411.483,2250.56 414.942,2250.12 418.265,2249.24C420.096,2248.77 422.436,2247.92 425.284,2246.7Z" fill="url(#qlx1)" fillRule="nonzero"/>
-                        <path d="M503.917,2123L535.249,2123L535.249,2245.99L609.508,2245.99L609.508,2272.94L503.917,2272.94L503.917,2123Z" fill="url(#qlx2)" fillRule="nonzero"/>
-                        <rect x="628.734" y="2123" width="31.128" height="149.943" fill="url(#qlx3)" fillRule="nonzero"/>
-                        <path d="M809.602,2272.94L771.557,2272.94L743.074,2221.88L712.963,2272.94L676.545,2272.94L724.763,2196.55L678.885,2123L716.32,2123L743.074,2171.73L770.539,2123L806.754,2123L760.875,2195.33L809.602,2272.94Z" fill="url(#qlx4)" fillRule="nonzero"/>
-                        <g transform="matrix(1.42857,0,0,1.42857,-751.071,1379.87)">
-                          <path d="M1098,626L1147,521L1177,575L1259,546C1205.66,573.145 1151.96,599.762 1098,626ZM1129,596L1162,581L1147,557L1129,596Z" fill="url(#qlx5)"/>
-                          <g transform="matrix(1,0,0,1,0,-1)">
-                            <path d="M1190,604L1197,617L1175,617L1175,612L1190,604Z" fill="url(#qlx6)"/>
-                          </g>
-                        </g>
-                      </g>
-                    </g>
-                  </g>
-                </svg>
-                <span style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(20px,3vw,42px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', whiteSpace: 'nowrap' }}>
-                  {' '}твій цифровий помічник
-                </span>
-              </div>
-
-              {/* Line 2: для життя та бізнесу в Австрії */}
-              <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(20px,3vw,42px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.2, letterSpacing: '-1px' }}>
-                для життя та бізнесу <em style={{ fontStyle: 'italic', color: '#038390' }}>в Австрії.</em>
-              </div>
-            </div>
-
-            {/* H2 — single line */}
-            <p style={{ fontSize: 'clamp(13px,1.4vw,17px)', color: 'rgba(26,26,26,0.6)', fontWeight: 400, whiteSpace: 'nowrap', margin: '0 auto 14px', lineHeight: 1.5, textAlign: 'center' }}>
-              Розбирись з податками та бізнесом в Австрії без складних термінів і зайвого стресу.
-            </p>
-
-            {/* Slogan — teal marker */}
-            <div style={{ marginBottom: 24, textAlign: 'center' }}>
-              <span style={{ fontFamily: 'Caveat, cursive', fontSize: 26, fontWeight: 700, color: '#1A1A1A', background: 'linear-gradient(to bottom, transparent 55%, rgba(3,131,144,0.18) 55%, rgba(3,131,144,0.18) 92%, transparent 92%)', paddingLeft: 8, paddingRight: 8 }}>
-                просто про складне
-              </span>
-            </div>
-
-            {/* Chain — bigger pills, single line */}
-            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', flexWrap: 'nowrap', gap: 6, marginBottom: 20, overflowX: 'auto' }}>
-              {[
-                { img: '/hero-icons/tax-return.png', text: 'Повернення податку' },
-                { img: '/hero-icons/invoices.png', text: 'Рахунки / Клієнти' },
-                { img: '/hero-icons/expenses.png', text: 'Витрати' },
-                { img: '/hero-icons/reports.png', text: 'Звіти' },
-                { img: '/hero-icons/finanz.png', text: 'FinanzOnline' },
-              ].map((item, i) => (
-                <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 6 }}>
-                  <div style={{ display: 'flex', alignItems: 'center', gap: 7, background: '#fff', border: '2px solid #1A1A1A', borderRadius: 12, padding: '9px 16px', boxShadow: '3px 3px 0 #1A1A1A', fontSize: 14, fontWeight: 600, color: '#1A1A1A', whiteSpace: 'nowrap' }}>
-                    {/* eslint-disable-next-line @next/next/no-img-element */}
-                    <img src={item.img} alt={item.text} style={{ width: 20, height: 20, objectFit: 'contain', flexShrink: 0 }} />
-                    {item.text}
-                  </div>
-                  {i < 4 && <span style={{ fontSize: 18, color: '#038390', fontWeight: 700, padding: '0 2px', flexShrink: 0 }}>→</span>}
-                </div>
-              ))}
-            </div>
-
-            {/* Bottom badge + animated arrow */}
-            <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 10 }}>
-              <div style={{ display: 'inline-flex', alignItems: 'center', gap: 10, background: '#1A1A1A', borderRadius: 999, padding: '10px 24px' }}>
-                <span style={{ width: 8, height: 8, borderRadius: '50%', background: '#038390', display: 'inline-block', animation: 'pulse 1.6s infinite' }} />
-                <span style={{ fontSize: 13, fontWeight: 600, color: '#fff', letterSpacing: '0.3px' }}>Все в одному кабінеті</span>
-                <span style={{ fontSize: 14, color: '#038390' }}>✓</span>
-              </div>
-              <div style={{ fontSize: 22, color: 'rgba(3,131,144,0.5)', lineHeight: 1, animation: 'qFloat 2s ease-in-out infinite' }}>↓</div>
-            </div>
-
-          </div>
-        </section>
-      </div>
-      )}
 
       {/* ── HERO ── */}
       {/* Aspect-ratio 1200/648 (not 786) crops away the empty space that used
@@ -1372,7 +1048,7 @@ export default function HomePage() {
               MOVE THIS INDEPENDENTLY: edit only left / top / width / height here.
               ========================================================= */}
           <Link
-            href={isUA ? '/tax-return' : t.cards[0].href}
+            href={isUA ? '/tax-return' : t.employeeCtaHref}
             style={isUA ? {
               position: 'absolute' as const, left: '5%', top: '77%', width: '42%', height: 'clamp(34px,3.6vw,38px)',
               display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
