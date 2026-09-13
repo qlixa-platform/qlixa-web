@@ -104,7 +104,7 @@ function getNavItems(lang: string): NavItem[] {
   const t = NAV_TEXT[lang] || NAV_TEXT.UA
   return [
     { label: t.howItWorksLabel, href: '/#how-it-works' },
-    { label: t.taxReturn, href: '/how-it-works/tax-return' },
+    { label: t.taxReturn, href: '/tax-return' },
     { label: t.forWhom, href: '/#для-кого' },
     { label: t.articles, href: '/articles' },
     { label: t.tools, href: '/tools' },

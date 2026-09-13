@@ -525,7 +525,7 @@ const DEMO_TEXT: Record<string, {
     h2Before: 'Простий шлях до готової ',
     h2Emphasis: 'податкової декларації',
     cards: [
-      { img: '/how-it-works/step-1.png', title: 'QLIXA Tax Return', desc: 'Відповідаєш на запитання — QLIXA аналізує твої відповіді, перевіряє можливі категорії списань, показує попередній розрахунок можливого повернення та допомагає підготувати декларацію.', cta: 'Можливості', href: '/for/naymanyy' },
+      { img: '/how-it-works/step-1.png', title: 'QLIXA Tax Return', desc: 'Відповідаєш на запитання — QLIXA аналізує твої відповіді, перевіряє можливі категорії списань, показує попередній розрахунок можливого повернення та допомагає підготувати декларацію.', cta: 'Можливості', href: '/tax-return' },
       { img: '/how-it-works/step-4.png', title: 'QLIXA Business', desc: 'Окремий продукт для GmbH та бізнесу — зараз у розробці.', cta: 'Дізнатися першими', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
     ],
     soonLabel: 'Скоро',
@@ -535,7 +535,7 @@ const DEMO_TEXT: Record<string, {
     h2Before: 'Простой путь к готовой ',
     h2Emphasis: 'налоговой декларации',
     cards: [
-      { img: '/how-it-works/step-1.png', title: 'QLIXA Tax Return', desc: 'Ты отвечаешь на вопросы — QLIXA анализирует твои ответы, проверяет возможные категории вычетов, показывает предварительный расчёт возможного возврата и помогает подготовить налоговую декларацию.', cta: 'Возможности', href: '/for/naymanyy' },
+      { img: '/how-it-works/step-1.png', title: 'QLIXA Tax Return', desc: 'Ты отвечаешь на вопросы — QLIXA анализирует твои ответы, проверяет возможные категории вычетов, показывает предварительный расчёт возможного возврата и помогает подготовить налоговую декларацию.', cta: 'Подробнее о QLIXA Tax Return', href: '/tax-return' },
       { img: '/how-it-works/step-4.png', title: 'QLIXA Business', desc: 'Отдельный продукт для GmbH и бизнеса — сейчас в разработке.', cta: 'Узнать первыми', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
     ],
     soonLabel: 'Скоро',
@@ -545,7 +545,7 @@ const DEMO_TEXT: Record<string, {
     h2Before: 'A simple path to a ',
     h2Emphasis: 'completed tax return',
     cards: [
-      { img: '/how-it-works/step-1.png', title: 'QLIXA Tax Return', desc: 'You answer the questions — QLIXA analyzes your answers, checks possible deduction categories, shows a preliminary estimate of your possible refund and helps prepare your tax return.', cta: 'Features', href: '/for/naymanyy' },
+      { img: '/how-it-works/step-1.png', title: 'QLIXA Tax Return', desc: 'You answer the questions — QLIXA analyzes your answers, checks possible deduction categories, shows a preliminary estimate of your possible refund and helps prepare your tax return.', cta: 'Features', href: '/tax-return' },
       { img: '/how-it-works/step-4.png', title: 'QLIXA Business', desc: 'A separate product for GmbHs and businesses — currently in development.', cta: 'Be the first to know', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
     ],
     soonLabel: 'Coming soon',
@@ -555,7 +555,7 @@ const DEMO_TEXT: Record<string, {
     h2Before: 'Ein einfacher Weg zur fertigen ',
     h2Emphasis: 'Steuererklärung',
     cards: [
-      { img: '/how-it-works/step-1.png', title: 'QLIXA Tax Return', desc: 'Du beantwortest die Fragen — QLIXA analysiert deine Antworten, prüft mögliche Abzugskategorien, zeigt eine vorläufige Berechnung einer möglichen Rückerstattung und hilft bei der Vorbereitung deiner Steuererklärung.', cta: 'Funktionen', href: '/for/naymanyy' },
+      { img: '/how-it-works/step-1.png', title: 'QLIXA Tax Return', desc: 'Du beantwortest die Fragen — QLIXA analysiert deine Antworten, prüft mögliche Abzugskategorien, zeigt eine vorläufige Berechnung einer möglichen Rückerstattung und hilft bei der Vorbereitung deiner Steuererklärung.', cta: 'Funktionen', href: '/tax-return' },
       { img: '/how-it-works/step-4.png', title: 'QLIXA Business', desc: 'Ein separates Produkt für GmbHs und Unternehmen — derzeit in Entwicklung.', cta: 'Als Erste erfahren', href: 'mailto:info@qlixa.eu?subject=Business%20plan', isSoon: true },
     ],
     soonLabel: 'Demnächst',
