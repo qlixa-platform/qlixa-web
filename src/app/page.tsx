@@ -188,7 +188,6 @@ type HeroCopy = {
 const HERO_TEXT: Record<string, {
   badge: string
   cards: [HeroCard, HeroCard]
-  trust: string
   soonLabel: string
   hero: HeroCopy
 }> = {
@@ -213,7 +212,6 @@ const HERO_TEXT: Record<string, {
         isSoon: true,
       },
     ],
-    trust: 'Розроблено спеціально для 🇦🇹 Австрії · доступно 4 мовами · для підготовки податкової декларації',
     soonLabel: 'Скоро',
     hero: {
       h1: ['3 КРОКИ', 'ДО ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ.'],
@@ -228,9 +226,14 @@ const HERO_TEXT: Record<string, {
       },
       step3: {
         title: ['Отримай', 'декларацію'],
-        desc: ['Отримай попередній розрахунок', 'можливого повернення та', 'повністю заповнену декларацію,', 'підготовлену до перевірки й', 'подання через FinanzOnline.'],
+        desc: ['Після анкети побачиш', 'попередній розрахунок', 'можливого повернення та готову', 'податкову декларацію', 'з необхідними додатками.'],
       },
-      cta: 'Розрахувати можливе повернення →',
+      // NOTE: this UA hero.cta string is no longer read by the Hero JSX —
+      // HERO_CTA hardcodes the UA CTA text/href explicitly (see the "Do not
+      // abstract / do not map" instruction), kept here only so this field
+      // stays populated for RU/EN/DE-style consistency if this becomes
+      // data-driven again later.
+      cta: 'Почати податкову декларацію безкоштовно →',
     },
   },
   EN: {
@@ -254,7 +257,6 @@ const HERO_TEXT: Record<string, {
         isSoon: true,
       },
     ],
-    trust: 'Designed specifically for 🇦🇹 Austria · available in 4 languages · structured according to current Austrian tax regulations',
     soonLabel: 'Coming soon',
     hero: {
       h1: ['3 STEPS', 'TO YOUR TAX RETURN IN AUSTRIA.'],
@@ -295,7 +297,6 @@ const HERO_TEXT: Record<string, {
         isSoon: true,
       },
     ],
-    trust: 'Создано специально для 🇦🇹 Австрии · переведено на 4 языка · структурировано по актуальным правилам австрийской налоговой системы',
     soonLabel: 'Скоро',
     hero: {
       h1: ['3 ШАГА', 'К НАЛОГОВОЙ ДЕКЛАРАЦИИ В АВСТРИИ.'],
@@ -336,7 +337,6 @@ const HERO_TEXT: Record<string, {
         isSoon: true,
       },
     ],
-    trust: 'Speziell für 🇦🇹 Österreich entwickelt · verfügbar in 4 Sprachen · nach aktuellen österreichischen Steuervorschriften strukturiert',
     soonLabel: 'Demnächst',
     hero: {
       h1: ['3 SCHRITTE', 'ZUR STEUERERKLÄRUNG IN ÖSTERREICH.'],
@@ -964,6 +964,10 @@ export default function HomePage() {
 
   const HERO_SCREEN_SLIDES = getHeroScreenSlides(lang);
   const t = HERO_TEXT[lang] || HERO_TEXT.UA;
+  // TEMPORARY while the new commercial strip's positioning is being
+  // manually approved — the free badge / free-flow strip / new CTA copy
+  // only render for UA. RU / EN / DE keep the Hero exactly as before.
+  const isUA = lang === 'UA';
   const t2 = QLIXA_TEXT[lang] || QLIXA_TEXT.UA;
   const t3 = FORWHOM_TEXT[lang] || FORWHOM_TEXT.UA;
   const t4 = DEMO_TEXT[lang] || DEMO_TEXT.UA;
@@ -1178,136 +1182,211 @@ export default function HomePage() {
         <div style={{ position: 'absolute' as const, top: 0, left: 0, width: '100%', aspectRatio: '1200 / 648' }}>
 
           
-          {/* LAPTOP_IMAGE */}
+          {/* HERO_LAPTOP_IMAGE — combined laptop+phone source image.
+              MOVE: edit left / top / width / height on this element only. */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src="/hero/laptop_hero_only.png"
             alt=""
-            style={{ position: 'absolute' as const, left: '50%', top: '32.766%', width: '70%', height: '50%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
+            style={{ position: 'absolute' as const, left: '51%', top: '35.766%', width: '70%', height: '51%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
           />
 
-          {/* HEADLINE_LINE1 — "3 STEPS" */}
+          {/* HERO_HEADLINE_LINE_1 — "3 КРОКИ" / "3 STEPS" etc.
+              MOVE: edit left / top on this element only. */}
           <div style={{ position: 'absolute' as const, left: '0%', top: '1.713%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(20px,5.833vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
             {t.hero.h1[0]}
           </div>
-          {/* HEADLINE_LINE2 — "TO YOUR TAX RETURN IN AUSTRIA." */}
+          {/* HERO_HEADLINE_LINE_2 — "ДО ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ." / "TO YOUR TAX RETURN IN AUSTRIA." etc.
+              MOVE: edit left / top on this element only. */}
           <div style={{ position: 'absolute' as const, left: '0%', top: '15.041%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(12px,3.5vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
             {t.hero.h1[1]}
           </div>
 
-          {/* CHECKMARK_BULLET — small teal circle */}
+          {/* HERO_SUPPORTING_LINE — bullet + "НЕ ПОТРІБНО САМОМУ ЗАПОВНЮВАТИ
+              ПОДАТКОВУ ДЕКЛАРАЦІЮ". Two elements (bullet + text) kept as a
+              matched pair — move both together if you move one.
+              MOVE: edit left / top on either element below. */}
           <div style={{ position: 'absolute' as const, left: '0%', top: '27.293%', width: 'clamp(9px,1.3vw,15.6px)', height: 'clamp(9px,1.3vw,15.6px)', borderRadius: '50%', background: '#1F7489' }} />
-          {/* CHECKMARK_TEXT — "NO NEED TO FILL IN YOUR TAX RETURN YOURSELF" */}
           <div style={{ position: 'absolute' as const, left: '1.742%', top: '25.199%', fontFamily: 'Charter, Georgia, serif', fontWeight: 700, fontSize: 'clamp(9px,2vw,24px)', color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
             {t.hero.supporting}
           </div>
 
-          {/* ▼▼▼ CIRCLES_AND_STEPS_GROUP — the dashed connector line + all 3
-              step icon-groups (circle+icon+number) + all step titles and
-              descriptions. To move the WHOLE group together, edit ONLY this
-              wrapper's left/top (it currently matches inset:0, i.e. no offset
-              — children keep their existing % values unchanged, computed
-              against this wrapper instead of the outer container, which is
-              the same size, so nothing visually shifts). ▼▼▼ */}
-          <div style={{ position: 'absolute' as const, left: 0, top: -20, width: '100%', height: '100%' }}>
-          {/* DASHED_LINE_1_2_3 — connector between step 1,2 and step 3 circles */}
-          <div style={{ position: 'absolute' as const, left: '8.575%', top: '43.301%', width: '33.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
-          
-          {/* STEP1_ICON_GROUP — low-poly "about you" illustration + number "1".
-              Move the whole group by editing ONLY this div's left/top.
-              The old heavy white circle behind the icon was dropped (the new
-              illustration already carries its own visual weight and looked
-              cramped inside it); the wrapper's own position/size stays
-              identical to before so the dashed connector line, the number
-              badge and the title/desc text below stay perfectly aligned. */}
-          <div style={{ position: 'absolute' as const, left: '5.5%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
-            <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
+          {/* =========================================================
+              HERO_IMAGES_GROUP
+              Contains ONLY the 3 low-poly illustrations — no titles, no
+              descriptions, no step numbers (those live in
+              HERO_STEPS_COPY_GROUP below).
+              MOVE THE WHOLE GROUP: edit left / top / width / height on
+              THIS wrapper. Every child's own left/top is a % of THIS
+              wrapper (wrapper starts at 0/0/100%/100%, i.e. the same
+              coordinate space as the rest of the Hero, so moving it by
+              e.g. left:'3%' shifts all 3 images together by 3% of the
+              Hero's width).
+              MOVE ONE IMAGE ONLY: edit that image's own left/top/width/height.
+              ========================================================= */}
+          <div style={{ position: 'absolute' as const, left: '0%', top: '-2%', width: '100%', height: '100%' }}>
+            {/* HERO_IMAGE_1 — "about you" illustration */}
+            <div style={{ position: 'absolute' as const, left: '5.5%', top: '33.3%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/illustrations/how-it-works-about.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
-            <div style={{ position: 'absolute' as const, left: '50%', top: '118%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
-              1
-            </div>
-          </div>
 
-          {/* STEP2_ICON_GROUP — low-poly "questionnaire" illustration + number "2". */}
-          <div style={{ position: 'absolute' as const, left: '26.14%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
-            <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
+            {/* HERO_IMAGE_2 — "questionnaire" illustration */}
+            <div style={{ position: 'absolute' as const, left: '26.14%', top: '33.3%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/illustrations/how-it-works-questionnaire.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
-            <div style={{ position: 'absolute' as const, left: '50%', top: '118%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
-              2
-            </div>
-          </div>
 
-          {/* STEP3_ICON_GROUP — low-poly "tax return" illustration + number "3". */}
-          <div style={{ position: 'absolute' as const, left: '44.98%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
-            <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
+            {/* HERO_IMAGE_3 — "tax return" illustration */}
+            <div style={{ position: 'absolute' as const, left: '44.98%', top: '33.3%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/illustrations/how-it-works-tax-return.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
-            <div style={{ position: 'absolute' as const, left: '50%', top: '118%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
+          </div>
+          {/* ▲▲▲ END HERO_IMAGES_GROUP ▲▲▲ */}
+
+          {/* HERO_DOTTED_CONNECTOR — the dashed line between step 1/2 and
+              step 3. Independent from HERO_IMAGES_GROUP and
+              HERO_STEPS_COPY_GROUP on purpose.
+              MOVE THIS INDEPENDENTLY: edit only left / top / width here. */}
+          <div style={{ position: 'absolute' as const, left: '8.575%', top: '39.9%', width: '33.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
+
+          {/* =========================================================
+              HERO_STEPS_COPY_GROUP
+              Contains ONLY: the 3 step numbers, the 3 step titles and the
+              3 step descriptions. No images here (see HERO_IMAGES_GROUP).
+              MOVE THE WHOLE GROUP: edit left / top / width / height on
+              THIS wrapper (same 0/0/100%/100% coordinate-space pattern as
+              HERO_IMAGES_GROUP — see that comment for how it works).
+              MOVE ONE NUMBER / TITLE / DESCRIPTION ONLY: edit that one
+              child's own left/top/width below.
+              ========================================================= */}
+          <div style={{ position: 'absolute' as const, left: '0%', top: '-6%', width: '100%', height: '100%' }}>
+
+            {/* HERO_STEP1_NUMBER — "1" */}
+            <div style={{ position: 'absolute' as const, left: '5.5%', top: '49%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
+              1
+            </div>
+            {/* HERO_STEP2_NUMBER — "2" */}
+            <div style={{ position: 'absolute' as const, left: '26.14%', top: '49%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
+              2
+            </div>
+            {/* HERO_STEP3_NUMBER — "3" */}
+            <div style={{ position: 'absolute' as const, left: '44.98%', top: '49%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
               3
             </div>
-          </div>
 
-          {/* STEP1_TITLE — "Tell us about you" */}
-          <div style={{ position: 'absolute' as const, left: '0%', top: '57.618%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
-            {t.hero.step1.title.map((line, i) => <div key={i}>{line}</div>)}
-          </div>
+            {/* HERO_STEP1_TITLE — "Розкажи / про себе" */}
+            <div style={{ position: 'absolute' as const, left: '0%', top: '52.5%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+              {t.hero.step1.title.map((line, i) => <div key={i}>{line}</div>)}
+            </div>
+            {/* HERO_STEP1_DESCRIPTION */}
+            <div style={{ position: 'absolute' as const, left: '0%', top: '60%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+              {t.hero.step1.desc.map((line, i) => <div key={i}>{line}</div>)}
+            </div>
 
-          {/* STEP1_DESC — "Answer simple questions about your basic information, family and work situation." */}
-          <div style={{ position: 'absolute' as const, left: '0%', top: '65%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-            {t.hero.step1.desc.map((line, i) => <div key={i}>{line}</div>)}
-          </div>
+            {/* HERO_STEP2_TITLE — "Пройди анкету / QLIXA" */}
+            <div style={{ position: 'absolute' as const, left: '13.5%', top: '52.5%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+              {t.hero.step2.title.map((line, i) => <div key={i}>{line}</div>)}
+            </div>
+            {/* HERO_STEP2_DESCRIPTION */}
+            <div style={{ position: 'absolute' as const, left: '13.23%', top: '60%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+              {t.hero.step2.desc.map((line, i) => <div key={i}>{line}</div>)}
+            </div>
 
-          {/* STEP2_TITLE — "Answer the QLIXA Questionnaire" */}
-          <div style={{ position: 'absolute' as const, left: '13.5%', top: '57.618%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
-            {t.hero.step2.title.map((line, i) => <div key={i}>{line}</div>)}
-          </div>
+            {/* HERO_STEP3_TITLE — "Отримай / декларацію" */}
+            <div style={{ position: 'absolute' as const, left: '37.5%', top: '52.5%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+              {t.hero.step3.title.map((line, i) => <div key={i}>{line}</div>)}
+            </div>
+            {/* HERO_STEP3_DESCRIPTION */}
+            <div style={{ position: 'absolute' as const, left: '35.5%', top: '60%', width: '18.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+              {t.hero.step3.desc.map((line, i) => <div key={i}>{line}</div>)}
+            </div>
 
-          {/* STEP2_EXTRA_DESC — "Our questionnaire delves deep into your situation
-              and finds possible deductions." — placed next to STEP2_DESC, overlap
-              is expected by design, Iryna will nudge left/top/width herself. */}
-          <div style={{ position: 'absolute' as const, left: '13.23%', top: '65%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-            {t.hero.step2.desc.map((line, i) => <div key={i}>{line}</div>)}
           </div>
+          {/* ▲▲▲ END HERO_STEPS_COPY_GROUP ▲▲▲ */}
 
-          {/* STEP3_TITLE — "Get your tax return" */}
-          <div style={{ position: 'absolute' as const, left: '37.5%', top: '57.618%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
-            {t.hero.step3.title.map((line, i) => <div key={i}>{line}</div>)}
-          </div>
+          {/* =========================================================
+              HERO_FREE_FLOW_GROUP
+              The pale-teal horizontal free→paid strip. Independent from
+              HERO_STEPS_COPY_GROUP. No badge above this strip (removed
+              per instruction — "МОЖНА СПРОБУВАТИ БЕЗКОШТОВНО" is gone,
+              no HERO_FREE_BADGE wrapper exists).
+              TEMPORARY: UA only (isUA) while positioning is approved —
+              RU/EN/DE will get this once UA layout is approved.
+              Each of the 4 items below is its OWN absolutely-positioned
+              child (HERO_FREE_FLOW_ITEM_1..4), written explicitly — NOT
+              generated via .map() — so each can be repositioned on its own.
+              MOVE THE WHOLE STRIP: edit left / top / width / height on
+              THIS wrapper.
+              MOVE ONE ITEM ONLY: edit that item's own left/top/width below.
+              ========================================================= */}
+          {isUA && (
+            <div style={{ position: 'absolute' as const, left: '0%', top: '69%', width: '55%', height: 'clamp(30px,4.5vw,36px)' }}>
 
-          {/* STEP3_EXTRA_DESC — "Get a preliminary refund estimate and a fully completed tax return, readyto submit via FinanzOnline." — placed next to STEP3_DESC, overlap is
-              expected by design, Iryna will nudge left/top/width herself. */}
-          <div style={{ position: 'absolute' as const, left: '37.5%', top: '65%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-            {t.hero.step3.desc.map((line, i) => <div key={i}>{line}</div>)}
-          </div>
-          </div>
-          {/* ▲▲▲ END CIRCLES_AND_STEPS_GROUP ▲▲▲ */}
+              {/* background pill — purely visual, spans the whole strip */}
+              <div style={{ position: 'absolute' as const, left: 0, top: 0, width: '100%', height: '100%', background: 'rgba(3,131,144,0.05)', border: '1px solid rgba(3,131,144,0.14)', borderRadius: 18, boxSizing: 'border-box' as const }} />
 
+              {/* subtle separators between the 4 columns */}
+              <div style={{ position: 'absolute' as const, left: '25%', top: '15%', width: 1, height: '70%', background: 'rgba(3,131,144,0.15)' }} />
+              <div style={{ position: 'absolute' as const, left: '50%', top: '15%', width: 1, height: '70%', background: 'rgba(3,131,144,0.15)' }} />
+              <div style={{ position: 'absolute' as const, left: '75%', top: '15%', width: 1, height: '70%', background: 'rgba(3,131,144,0.15)' }} />
 
-          {/* BUTTON — "Calculate my refund →". aspect-ratio matches
-              hero_button.png's REAL file dimensions (457×77px) exactly, so
-              resizing it never distorts/stretches it. */}
+              {/* HERO_FREE_FLOW_ITEM_1 — QLIXA Кабінет / €0 / безкоштовний кабінет */}
+              <div style={{ position: 'absolute' as const, left: '0%', top: '0%', width: '25%', textAlign: 'center' as const }}>
+                <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>QLIXA Кабінет</div>
+                <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>€0</div>
+                <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>безкоштовний кабінет</div>
+              </div>
+
+              {/* HERO_FREE_FLOW_ITEM_2 — Податкова анкета / €0 / без оплати */}
+              <div style={{ position: 'absolute' as const, left: '25%', top: '0%', width: '25%', textAlign: 'center' as const }}>
+                <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>Податкова анкета</div>
+                <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>€0</div>
+                <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>без оплати</div>
+              </div>
+
+              {/* HERO_FREE_FLOW_ITEM_3 — Попередній розрахунок / €0 / можливий результат */}
+              <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: '25%', textAlign: 'center' as const }}>
+                <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>Попередній розрахунок</div>
+                <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>€0</div>
+                <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>можливий результат</div>
+              </div>
+
+              {/* HERO_FREE_FLOW_ITEM_4 — Готова декларація / €24,90 / разово · без підписки */}
+              <div style={{ position: 'absolute' as const, left: '75%', top: '0%', width: '25%', textAlign: 'center' as const }}>
+                <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>Готова декларація</div>
+                <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>€24,90</div>
+                <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>разово · без підписки</div>
+              </div>
+
+            </div>
+          )}
+          {/* ▲▲▲ END HERO_FREE_FLOW_GROUP ▲▲▲ */}
+
+          {/* =========================================================
+              HERO_CTA
+              Independent from HERO_FREE_FLOW_GROUP — its own left/top/width.
+              UA: "Почати податкову декларацію безкоштовно →" → /tax-return.
+              RU/EN/DE: unchanged existing CTA (old text, old href, old size).
+              MOVE THIS INDEPENDENTLY: edit only left / top / width / height here.
+              ========================================================= */}
           <Link
-            href={t.cards[0].href}
-            style={{
+            href={isUA ? '/tax-return' : t.cards[0].href}
+            style={isUA ? {
+              position: 'absolute' as const, left: '5%', top: '77%', width: '42%', height: 'clamp(34px,3.6vw,38px)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
+              backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
+              fontFamily: 'Arial, sans-serif', fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#fff', textDecoration: 'none',
+            } : {
               position: 'absolute' as const, left: '0%', top: '74%', width: '27.867%', aspectRatio: '700 / 77',
               display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
               backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
               fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.17vw,14px)', fontWeight: 700, color: '#fff', textDecoration: 'none',
             }}
           >
-            {t.hero.cta}
+            {isUA ? 'Почати податкову декларацію безкоштовно →' : t.hero.cta}
           </Link>
-
-          {/* TRUST_LINE — "Designed specifically for 🇦🇹 Austria..." — this is
-              the LAST element; the container's height ends exactly here. */}
-          <div style={{ position: 'absolute' as const, left: 0, right: 0, top: '83%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.42vw,17px)', color: '#404040', whiteSpace: 'nowrap' as const }}>
-            {t.trust}
-          </div>
 
         </div>
         {/* ▲▲▲ END HERO_CONTENT_CONTAINER ▲▲▲ */}
