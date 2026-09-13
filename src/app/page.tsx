@@ -1213,44 +1213,39 @@ export default function HomePage() {
           {/* DASHED_LINE_1_2_3 — connector between step 1,2 and step 3 circles */}
           <div style={{ position: 'absolute' as const, left: '8.575%', top: '43.301%', width: '33.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
           
-          {/* STEP1_ICON_GROUP — big white circle + chat-icon SVG + number "1".
-              Move the whole group by editing ONLY this div's left/top. */}
+          {/* STEP1_ICON_GROUP — low-poly "about you" illustration + number "1".
+              Move the whole group by editing ONLY this div's left/top.
+              The old heavy white circle behind the icon was dropped (the new
+              illustration already carries its own visual weight and looked
+              cramped inside it); the wrapper's own position/size stays
+              identical to before so the dashed connector line, the number
+              badge and the title/desc text below stay perfectly aligned. */}
           <div style={{ position: 'absolute' as const, left: '5.5%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
-            <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
-            <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(20px,3.4vw,41px)', height: 'clamp(20px,3.4vw,41px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-                <path d="M4 5C4 3.89543 4.89543 3 6 3H18C19.1046 3 20 3.89543 20 5V14C20 15.1046 19.1046 16 18 16H9L5 20V16H6C4.89543 16 4 15.1046 4 14V5Z" stroke="#038390" strokeWidth="1.8" strokeLinejoin="round" fill="#E6F4F5" />
-              </svg>
+            <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/illustrations/how-it-works-about.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
             <div style={{ position: 'absolute' as const, left: '50%', top: '118%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
               1
             </div>
           </div>
 
-          {/* STEP2_ICON_GROUP — big white circle + question-mark SVG + number "2". */}
+          {/* STEP2_ICON_GROUP — low-poly "questionnaire" illustration + number "2". */}
           <div style={{ position: 'absolute' as const, left: '26.14%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
-            <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
-            <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(20px,3.4vw,41px)', height: 'clamp(20px,3.4vw,41px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-                <path d="M8.5 9C8.5 6.5 10.2 5 12 5C13.8 5 15.5 6.2 15.5 8.2C15.5 10.8 12.5 11 12.5 14" stroke="#038390" strokeWidth="1.8" strokeLinecap="round" />
-                <circle cx="12.5" cy="18" r="1.3" fill="#038390" />
-              </svg>
+            <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/illustrations/how-it-works-questionnaire.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
             <div style={{ position: 'absolute' as const, left: '50%', top: '118%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
               2
             </div>
           </div>
 
-          {/* STEP3_ICON_GROUP — big white circle + document SVG + number "3". */}
+          {/* STEP3_ICON_GROUP — low-poly "tax return" illustration + number "3". */}
           <div style={{ position: 'absolute' as const, left: '44.98%', top: '36.39%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)' }}>
-            <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(42px,7.17vw,86px)', height: 'clamp(42px,7.17vw,86px)', transform: 'translateX(-50%)', borderRadius: '50%', background: '#fff', border: '1px solid #DAEDEF', boxShadow: '0 2px 8px rgba(0,0,0,0.05)' }} />
-            <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(20px,3.4vw,41px)', height: 'clamp(20px,3.4vw,41px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
-              <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ width: '100%', height: '100%' }}>
-                <path d="M6 3H14L19 8V20C19 20.5523 18.5523 21 18 21H6C5.44772 21 5 20.5523 5 20V4C5 3.44772 5.44772 3 6 3Z" stroke="#038390" strokeWidth="1.8" strokeLinejoin="round" fill="#E6F4F5" />
-                <path d="M14 3V8H19" stroke="#038390" strokeWidth="1.8" strokeLinejoin="round" />
-                <line x1="8" y1="12" x2="15" y2="12" stroke="#038390" strokeWidth="1.4" strokeLinecap="round" />
-                <line x1="8" y1="15" x2="15" y2="15" stroke="#038390" strokeWidth="1.4" strokeLinecap="round" />
-              </svg>
+            <div style={{ position: 'absolute' as const, left: '50%', top: '50%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translate(-50%,-50%)', display: 'flex', alignItems: 'center', justifyContent: 'center' as const }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src="/illustrations/how-it-works-tax-return.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
             <div style={{ position: 'absolute' as const, left: '50%', top: '118%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
               3
