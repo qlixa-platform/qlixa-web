@@ -148,24 +148,24 @@ const TICKER_ITEMS: Record<string, TickerItem[]> = Object.fromEntries(
 // Hero copy by locale. UA layout is currently the approved visual source
 // of truth (see the explicit HERO_* wrappers further down); RU/EN/DE reuse
 // the same HeroCopy shape and fall back to the pre-strip CTA/positions.
+type HeroFlowItem = { title: string; price: string; desc: string }
 type HeroCopy = {
   h1: [string, string]
   supporting: string
   step1: { title: string[]; desc: string[] }
   step2: { title: string[]; desc: string[] }
   step3: { title: string[]; desc: string[] }
+  // The free→paid strip (HERO_FREE_FLOW_GROUP): 4 explicit items, same
+  // structure/positions in every locale — only this text varies.
+  flow: { item1: HeroFlowItem; item2: HeroFlowItem; item3: HeroFlowItem; item4: HeroFlowItem }
   cta: string
 }
-const HERO_TEXT: Record<string, {
-  // Fallback route for the RU/EN/DE Hero CTA (UA hardcodes /tax-return
-  // directly in HERO_CTA). Currently /for/naymanyy for every locale, which
-  // redirects to /tax-return — kept as-is; see cleanup report for the
-  // product-architecture note on this route.
-  employeeCtaHref: string
-  hero: HeroCopy
-}> = {
+// All 4 locales now share one identical Hero structure/geometry (the
+// approved UA layout) and the same commercial logic (account/questionnaire/
+// estimate free, completed declaration paid). The Hero CTA always links to
+// /tax-return — no more per-locale fallback route.
+const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
   UA: {
-    employeeCtaHref: '/for/naymanyy',
     hero: {
       h1: ['3 КРОКИ', 'ДО ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ.'],
       supporting: 'НЕ ПОТРІБНО САМОМУ ЗАПОВНЮВАТИ ПОДАТКОВУ ДЕКЛАРАЦІЮ',
@@ -181,72 +181,88 @@ const HERO_TEXT: Record<string, {
         title: ['Отримай', 'декларацію'],
         desc: ['Після анкети побачиш', 'попередній розрахунок', 'можливого повернення та готову', 'податкову декларацію', 'з необхідними додатками.'],
       },
-      // NOTE: this UA hero.cta string is no longer read by the Hero JSX —
-      // HERO_CTA hardcodes the UA CTA text/href explicitly (see the "Do not
-      // abstract / do not map" instruction), kept here only so this field
-      // stays populated for RU/EN/DE-style consistency if this becomes
-      // data-driven again later.
+      flow: {
+        item1: { title: 'QLIXA Кабінет', price: '€0', desc: 'безкоштовний кабінет' },
+        item2: { title: 'Податкова анкета', price: '€0', desc: 'без оплати' },
+        item3: { title: 'Попередній розрахунок', price: '€0', desc: 'можливий результат' },
+        item4: { title: 'Готова декларація', price: '€24,90', desc: 'разово · без підписки' },
+      },
       cta: 'Почати податкову декларацію безкоштовно →',
     },
   },
   EN: {
-    employeeCtaHref: '/for/naymanyy',
     hero: {
       h1: ['3 STEPS', 'TO YOUR TAX RETURN IN AUSTRIA.'],
       supporting: 'NO NEED TO FILL IN YOUR TAX RETURN YOURSELF',
       step1: {
-        title: ['Tell us', 'about you'],
-        desc: ['Answer simple', 'questions about your', 'basic information, family', 'and work situation.'],
+        title: ['Tell us', 'about yourself'],
+        desc: ['Answer simple questions', 'about yourself, your ', 'family and your work', 'situation.'],
       },
       step2: {
-        title: ['Answer the QLIXA', 'Questionnaire'],
-        desc: ['QLIXA adapts the questions to your', 'situation, going deeper when needed', 'to check relevant deduction categories', 'and important details.'],
+        title: ['Complete the', 'QLIXA questionnaire'],
+        desc: ['QLIXA adapts the questions', 'to your situation and asks for more ', 'detail when needed to check ', 'possible deduction categories','and key information.'],
       },
       step3: {
         title: ['Get your', 'tax return'],
-        desc: ['Get a preliminary refund', 'estimate and a fully', 'completed tax return, ready', 'to submit via FinanzOnline.'],
+        desc: ['After the questionnaire, you’ll see', 'a preliminary estimate', 'of a possible refund and your', 'completed tax return with', ' the necessary additional forms.'],
       },
-      cta: 'Calculate my refund →',
+      flow: {
+        item1: { title: 'QLIXA Account', price: '€0', desc: 'free account' },
+        item2: { title: 'Tax questionnaire', price: '€0', desc: 'no payment' },
+        item3: { title: 'Preliminary estimate', price: '€0', desc: 'possible result' },
+        item4: { title: 'Completed tax return', price: '€24.90', desc: 'one-time · no subscription' },
+      },
+      cta: 'Start your tax return for free →',
     },
   },
   RU: {
-    employeeCtaHref: '/for/naymanyy',
     hero: {
       h1: ['3 ШАГА', 'К НАЛОГОВОЙ ДЕКЛАРАЦИИ В АВСТРИИ.'],
       supporting: 'НЕ НУЖНО САМОМУ ЗАПОЛНЯТЬ НАЛОГОВУЮ ДЕКЛАРАЦИЮ',
       step1: {
         title: ['Расскажи', 'о себе'],
-        desc: ['Ответь на простые', 'вопросы о себе, семье', 'и своей рабочей', 'ситуации.'],
+        desc: ['Ответь на простые вопросы', 'о себе, семье', 'и своей рабочей', 'ситуации.'],
       },
       step2: {
         title: ['Пройди анкету', 'QLIXA'],
-        desc: ['QLIXA подстраивает вопросы под', 'твою ситуацию и при необходимости', 'копает глубже, проверяя возможные', 'категории списаний и важные детали.'],
+        desc: ['QLIXA подстраивает вопросы под', 'твою ситуацию и при необходимости', 'уточняет детали, чтобы проверить', 'возможные категории вычетов','и важную информацию.'],
       },
       step3: {
         title: ['Получи', 'декларацию'],
-        desc: ['Получи предварительный расчёт', 'возврата и полностью', 'заполненную декларацию, готовую', 'к подаче через FinanzOnline.'],
+        desc: ['После анкеты ты увидишь', 'предварительный расчёт', 'возможного возврата и готовую', 'налоговую декларацию', 'с необходимыми приложениями.'],
       },
-      cta: 'Рассчитать мой возврат →',
+      flow: {
+        item1: { title: 'QLIXA Кабинет', price: '€0', desc: 'бесплатный кабинет' },
+        item2: { title: 'Налоговая анкета', price: '€0', desc: 'без оплаты' },
+        item3: { title: 'Предварительный расчёт', price: '€0', desc: 'возможный результат' },
+        item4: { title: 'Готовая декларация', price: '€24,90', desc: 'разово · без подписки' },
+      },
+      cta: 'Начать налоговую декларацию бесплатно →',
     },
   },
   DE: {
-    employeeCtaHref: '/for/naymanyy',
     hero: {
       h1: ['3 SCHRITTE', 'ZUR STEUERERKLÄRUNG IN ÖSTERREICH.'],
       supporting: 'DU MUSST DEINE STEUERERKLÄRUNG NICHT SELBST AUSFÜLLEN',
       step1: {
         title: ['Erzähl uns', 'von dir'],
-        desc: ['Beantworte einfache', 'Fragen zu dir, deiner', 'Familie und deiner', 'beruflichen Situation.'],
+        desc: ['Beantworte einfache Fragen', 'zu dir, deiner Familie', 'und deiner beruflichen', 'Situation.'],
       },
       step2: {
-        title: ['Beantworte den QLIXA-', 'Fragebogen'],
-        desc: ['QLIXA passt die Fragen an deine', 'Situation an und fragt bei Bedarf', 'genauer nach – prüft mögliche', 'Abzugskategorien und wichtige Details.'],
+        title: ['Beantworte den', 'QLIXA-Fragebogen'],
+        desc: ['QLIXA passt die Fragen', 'an deine Situation an und fragt bei Bedarf', 'genauer nach, um mögliche', 'Abzugskategorien und wichtige', 'Angaben zu prüfen.'],
       },
       step3: {
         title: ['Erhalte deine', 'Steuererklärung'],
-        desc: ['Du erhältst eine vorläufige', 'Rückerstattungs-Schätzung und eine', 'fertig ausgefüllte Steuererklärung,', 'bereit zur Abgabe über FinanzOnline.'],
+        desc: ['Nach dem Fragebogen siehst du', 'eine vorläufige Berechnung', 'einer möglichen Rückerstattung und ', 'deine fertige Steuererklärung', 'mit den erforderlichen Zusatzformularen.'],
       },
-      cta: 'Meine Rückerstattung berechnen →',
+      flow: {
+        item1: { title: 'QLIXA-Bereich', price: '€0', desc: 'kostenloser Zugang' },
+        item2: { title: 'Steuerfragebogen', price: '€0', desc: 'ohne Zahlung' },
+        item3: { title: 'Vorläufige Berechnung', price: '€0', desc: 'mögliches Ergebnis' },
+        item4: { title: 'Fertige Steuererklärung', price: '€24,90', desc: 'einmalig · kein Abo' },
+      },
+      cta: 'Steuererklärung kostenlos starten →',
     },
   },
 }
@@ -798,10 +814,6 @@ export default function HomePage() {
   }, []);
 
   const t = HERO_TEXT[lang] || HERO_TEXT.UA;
-  // TEMPORARY while the new commercial strip's positioning is being
-  // manually approved — the free badge / free-flow strip / new CTA copy
-  // only render for UA. RU / EN / DE keep the Hero exactly as before.
-  const isUA = lang === 'UA';
   const t2 = QLIXA_TEXT[lang] || QLIXA_TEXT.UA;
   const t3 = FORWHOM_TEXT[lang] || FORWHOM_TEXT.UA;
   const t4 = DEMO_TEXT[lang] || DEMO_TEXT.UA;
@@ -988,8 +1000,8 @@ export default function HomePage() {
               HERO_STEPS_COPY_GROUP. No badge above this strip (removed
               per instruction — "МОЖНА СПРОБУВАТИ БЕЗКОШТОВНО" is gone,
               no HERO_FREE_BADGE wrapper exists).
-              TEMPORARY: UA only (isUA) while positioning is approved —
-              RU/EN/DE will get this once UA layout is approved.
+              Now active for ALL 4 locales, using the exact approved UA
+              geometry — only the text (t.hero.flow.itemN) varies by locale.
               Each of the 4 items below is its OWN absolutely-positioned
               child (HERO_FREE_FLOW_ITEM_1..4), written explicitly — NOT
               generated via .map() — so each can be repositioned on its own.
@@ -997,71 +1009,65 @@ export default function HomePage() {
               THIS wrapper.
               MOVE ONE ITEM ONLY: edit that item's own left/top/width below.
               ========================================================= */}
-          {isUA && (
-            <div style={{ position: 'absolute' as const, left: '0%', top: '69%', width: '55%', height: 'clamp(30px,4.5vw,36px)' }}>
+          <div style={{ position: 'absolute' as const, left: '0%', top: '69%', width: '55%', height: 'clamp(30px,4.5vw,36px)' }}>
 
-              {/* background pill — purely visual, spans the whole strip */}
-              <div style={{ position: 'absolute' as const, left: 0, top: 0, width: '100%', height: '100%', background: 'rgba(3,131,144,0.05)', border: '1px solid rgba(3,131,144,0.14)', borderRadius: 18, boxSizing: 'border-box' as const }} />
+            {/* background pill — purely visual, spans the whole strip */}
+            <div style={{ position: 'absolute' as const, left: 0, top: 0, width: '100%', height: '100%', background: 'rgba(3,131,144,0.05)', border: '1px solid rgba(3,131,144,0.14)', borderRadius: 18, boxSizing: 'border-box' as const }} />
 
-              {/* subtle separators between the 4 columns */}
-              <div style={{ position: 'absolute' as const, left: '25%', top: '15%', width: 1, height: '70%', background: 'rgba(3,131,144,0.15)' }} />
-              <div style={{ position: 'absolute' as const, left: '50%', top: '15%', width: 1, height: '70%', background: 'rgba(3,131,144,0.15)' }} />
-              <div style={{ position: 'absolute' as const, left: '75%', top: '15%', width: 1, height: '70%', background: 'rgba(3,131,144,0.15)' }} />
+            {/* subtle separators between the 4 columns */}
+            <div style={{ position: 'absolute' as const, left: '25%', top: '15%', width: 1, height: '70%', background: 'rgba(3,131,144,0.15)' }} />
+            <div style={{ position: 'absolute' as const, left: '50%', top: '15%', width: 1, height: '70%', background: 'rgba(3,131,144,0.15)' }} />
+            <div style={{ position: 'absolute' as const, left: '75%', top: '15%', width: 1, height: '70%', background: 'rgba(3,131,144,0.15)' }} />
 
-              {/* HERO_FREE_FLOW_ITEM_1 — QLIXA Кабінет / €0 / безкоштовний кабінет */}
-              <div style={{ position: 'absolute' as const, left: '0%', top: '0%', width: '25%', textAlign: 'center' as const }}>
-                <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>QLIXA Кабінет</div>
-                <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>€0</div>
-                <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>безкоштовний кабінет</div>
-              </div>
-
-              {/* HERO_FREE_FLOW_ITEM_2 — Податкова анкета / €0 / без оплати */}
-              <div style={{ position: 'absolute' as const, left: '25%', top: '0%', width: '25%', textAlign: 'center' as const }}>
-                <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>Податкова анкета</div>
-                <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>€0</div>
-                <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>без оплати</div>
-              </div>
-
-              {/* HERO_FREE_FLOW_ITEM_3 — Попередній розрахунок / €0 / можливий результат */}
-              <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: '25%', textAlign: 'center' as const }}>
-                <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>Попередній розрахунок</div>
-                <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>€0</div>
-                <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>можливий результат</div>
-              </div>
-
-              {/* HERO_FREE_FLOW_ITEM_4 — Готова декларація / €24,90 / разово · без підписки */}
-              <div style={{ position: 'absolute' as const, left: '75%', top: '0%', width: '25%', textAlign: 'center' as const }}>
-                <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>Готова декларація</div>
-                <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>€24,90</div>
-                <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>разово · без підписки</div>
-              </div>
-
+            {/* HERO_FREE_FLOW_ITEM_1 — QLIXA account/cabinet → €0 */}
+            <div style={{ position: 'absolute' as const, left: '0%', top: '0%', width: '25%', textAlign: 'center' as const }}>
+              <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item1.title}</div>
+              <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>{t.hero.flow.item1.price}</div>
+              <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item1.desc}</div>
             </div>
-          )}
+
+            {/* HERO_FREE_FLOW_ITEM_2 — tax questionnaire → €0 */}
+            <div style={{ position: 'absolute' as const, left: '25%', top: '0%', width: '25%', textAlign: 'center' as const }}>
+              <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item2.title}</div>
+              <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>{t.hero.flow.item2.price}</div>
+              <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item2.desc}</div>
+            </div>
+
+            {/* HERO_FREE_FLOW_ITEM_3 — preliminary calculation → €0 */}
+            <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: '25%', textAlign: 'center' as const }}>
+              <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item3.title}</div>
+              <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>{t.hero.flow.item3.price}</div>
+              <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item3.desc}</div>
+            </div>
+
+            {/* HERO_FREE_FLOW_ITEM_4 — completed tax declaration → €24.90 */}
+            <div style={{ position: 'absolute' as const, left: '75%', top: '0%', width: '25%', textAlign: 'center' as const }}>
+              <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item4.title}</div>
+              <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>{t.hero.flow.item4.price}</div>
+              <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item4.desc}</div>
+            </div>
+
+          </div>
           {/* ▲▲▲ END HERO_FREE_FLOW_GROUP ▲▲▲ */}
 
           {/* =========================================================
               HERO_CTA
               Independent from HERO_FREE_FLOW_GROUP — its own left/top/width.
-              UA: "Почати податкову декларацію безкоштовно →" → /tax-return.
-              RU/EN/DE: unchanged existing CTA (old text, old href, old size).
+              Now identical geometry/styling in all 4 locales (the approved
+              UA button/coordinates) — only the text (t.hero.cta) and the
+              route are shared: every locale links straight to /tax-return.
               MOVE THIS INDEPENDENTLY: edit only left / top / width / height here.
               ========================================================= */}
           <Link
-            href={isUA ? '/tax-return' : t.employeeCtaHref}
-            style={isUA ? {
+            href="/tax-return"
+            style={{
               position: 'absolute' as const, left: '5%', top: '77%', width: '42%', height: 'clamp(34px,3.6vw,38px)',
               display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
               backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
               fontFamily: 'Arial, sans-serif', fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#fff', textDecoration: 'none',
-            } : {
-              position: 'absolute' as const, left: '0%', top: '74%', width: '27.867%', aspectRatio: '700 / 77',
-              display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
-              backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
-              fontFamily: 'Arial, sans-serif', fontSize: 'clamp(9px,1.17vw,14px)', fontWeight: 700, color: '#fff', textDecoration: 'none',
             }}
           >
-            {isUA ? 'Почати податкову декларацію безкоштовно →' : t.hero.cta}
+            {t.hero.cta}
           </Link>
 
         </div>
