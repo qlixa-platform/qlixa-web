@@ -155,8 +155,10 @@ type HeroCopy = {
   step1: { title: string[]; desc: string[] }
   step2: { title: string[]; desc: string[] }
   step3: { title: string[]; desc: string[] }
-  // The free→paid strip (HERO_FREE_FLOW_GROUP): 4 explicit items, same
-  // structure/positions in every locale — only this text varies.
+  // The free→paid flow data: 4 items, same across every locale in shape —
+  // only this text varies. No longer rendered inside the Hero itself (moved
+  // to the FLOW_STRIP in the "Що таке QLIXA" section, which reads this same
+  // t.hero.flow data — kept here rather than duplicated into a new object).
   flow: { item1: HeroFlowItem; item2: HeroFlowItem; item3: HeroFlowItem; item4: HeroFlowItem }
   cta: string
 }
@@ -899,6 +901,12 @@ export default function HomePage() {
             {t.hero.supporting}
           </div>
 
+ {/* HERO_DOTTED_CONNECTOR — the dashed line between step 1/2 and
+              step 3. Independent from HERO_IMAGES_GROUP and
+              HERO_STEPS_COPY_GROUP on purpose.
+              MOVE THIS INDEPENDENTLY: edit only left / top / width here. */}
+          <div style={{ position: 'absolute' as const, left: '8.575%', top: '39.9%', width: '33.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
+
           {/* =========================================================
               HERO_IMAGES_GROUP
               Contains ONLY the 3 low-poly illustrations — no titles, no
@@ -912,7 +920,7 @@ export default function HomePage() {
               Hero's width).
               MOVE ONE IMAGE ONLY: edit that image's own left/top/width/height.
               ========================================================= */}
-          <div style={{ position: 'absolute' as const, left: '0%', top: '-2%', width: '100%', height: '100%' }}>
+          <div style={{ position: 'absolute' as const, left: '0%', top: '0%', width: '100%', height: '100%' }}>
             {/* HERO_IMAGE_1 — "about you" illustration */}
             <div style={{ position: 'absolute' as const, left: '5.5%', top: '33.3%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -933,12 +941,7 @@ export default function HomePage() {
           </div>
           {/* ▲▲▲ END HERO_IMAGES_GROUP ▲▲▲ */}
 
-          {/* HERO_DOTTED_CONNECTOR — the dashed line between step 1/2 and
-              step 3. Independent from HERO_IMAGES_GROUP and
-              HERO_STEPS_COPY_GROUP on purpose.
-              MOVE THIS INDEPENDENTLY: edit only left / top / width here. */}
-          <div style={{ position: 'absolute' as const, left: '8.575%', top: '39.9%', width: '33.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
-
+         
           {/* =========================================================
               HERO_STEPS_COPY_GROUP
               Contains ONLY: the 3 step numbers, the 3 step titles and the
@@ -949,7 +952,7 @@ export default function HomePage() {
               MOVE ONE NUMBER / TITLE / DESCRIPTION ONLY: edit that one
               child's own left/top/width below.
               ========================================================= */}
-          <div style={{ position: 'absolute' as const, left: '0%', top: '-6%', width: '100%', height: '100%' }}>
+          <div style={{ position: 'absolute' as const, left: '0%', top: '0%', width: '100%', height: '100%' }}>
 
             {/* HERO_STEP1_NUMBER — "1" */}
             <div style={{ position: 'absolute' as const, left: '5.5%', top: '49%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
@@ -995,64 +998,11 @@ export default function HomePage() {
           {/* ▲▲▲ END HERO_STEPS_COPY_GROUP ▲▲▲ */}
 
           {/* =========================================================
-              HERO_FREE_FLOW_GROUP
-              The pale-teal horizontal free→paid strip. Independent from
-              HERO_STEPS_COPY_GROUP. No badge above this strip (removed
-              per instruction — "МОЖНА СПРОБУВАТИ БЕЗКОШТОВНО" is gone,
-              no HERO_FREE_BADGE wrapper exists).
-              Now active for ALL 4 locales, using the exact approved UA
-              geometry — only the text (t.hero.flow.itemN) varies by locale.
-              Each of the 4 items below is its OWN absolutely-positioned
-              child (HERO_FREE_FLOW_ITEM_1..4), written explicitly — NOT
-              generated via .map() — so each can be repositioned on its own.
-              MOVE THE WHOLE STRIP: edit left / top / width / height on
-              THIS wrapper.
-              MOVE ONE ITEM ONLY: edit that item's own left/top/width below.
-              ========================================================= */}
-          <div style={{ position: 'absolute' as const, left: '0%', top: '69%', width: '55%', height: 'clamp(30px,4.5vw,36px)' }}>
-
-            {/* background pill — purely visual, spans the whole strip */}
-            <div style={{ position: 'absolute' as const, left: 0, top: 0, width: '100%', height: '100%', background: 'rgba(3,131,144,0.05)', border: '1px solid rgba(3,131,144,0.14)', borderRadius: 18, boxSizing: 'border-box' as const }} />
-
-            {/* subtle separators between the 4 columns */}
-            <div style={{ position: 'absolute' as const, left: '25%', top: '15%', width: 1, height: '70%', background: 'rgba(3,131,144,0.15)' }} />
-            <div style={{ position: 'absolute' as const, left: '50%', top: '15%', width: 1, height: '70%', background: 'rgba(3,131,144,0.15)' }} />
-            <div style={{ position: 'absolute' as const, left: '75%', top: '15%', width: 1, height: '70%', background: 'rgba(3,131,144,0.15)' }} />
-
-            {/* HERO_FREE_FLOW_ITEM_1 — QLIXA account/cabinet → €0 */}
-            <div style={{ position: 'absolute' as const, left: '0%', top: '0%', width: '25%', textAlign: 'center' as const }}>
-              <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item1.title}</div>
-              <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>{t.hero.flow.item1.price}</div>
-              <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item1.desc}</div>
-            </div>
-
-            {/* HERO_FREE_FLOW_ITEM_2 — tax questionnaire → €0 */}
-            <div style={{ position: 'absolute' as const, left: '25%', top: '0%', width: '25%', textAlign: 'center' as const }}>
-              <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item2.title}</div>
-              <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>{t.hero.flow.item2.price}</div>
-              <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item2.desc}</div>
-            </div>
-
-            {/* HERO_FREE_FLOW_ITEM_3 — preliminary calculation → €0 */}
-            <div style={{ position: 'absolute' as const, left: '50%', top: '0%', width: '25%', textAlign: 'center' as const }}>
-              <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item3.title}</div>
-              <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>{t.hero.flow.item3.price}</div>
-              <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item3.desc}</div>
-            </div>
-
-            {/* HERO_FREE_FLOW_ITEM_4 — completed tax declaration → €24.90 */}
-            <div style={{ position: 'absolute' as const, left: '75%', top: '0%', width: '25%', textAlign: 'center' as const }}>
-              <div style={{ fontSize: 'clamp(5.5px,0.62vw,7px)', fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.2px', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item4.title}</div>
-              <div style={{ fontSize: 'clamp(9px,1.1vw,13px)', fontWeight: 800, color: '#038390', lineHeight: 1.1 }}>{t.hero.flow.item4.price}</div>
-              <div style={{ fontSize: 'clamp(5px,0.58vw,6.5px)', color: '#9D9D9D', whiteSpace: 'nowrap' as const, overflow: 'hidden', textOverflow: 'ellipsis' }}>{t.hero.flow.item4.desc}</div>
-            </div>
-
-          </div>
-          {/* ▲▲▲ END HERO_FREE_FLOW_GROUP ▲▲▲ */}
-
-          {/* =========================================================
               HERO_CTA
-              Independent from HERO_FREE_FLOW_GROUP — its own left/top/width.
+              Its own left/top/width (no longer positioned relative to a
+              free-flow strip — that strip was moved out of the Hero into
+              the "Що таке QLIXA" section; see FLOW_STRIP there. This CTA's
+              own coordinates are unchanged from before the move.
               Now identical geometry/styling in all 4 locales (the approved
               UA button/coordinates) — only the text (t.hero.cta) and the
               route are shared: every locale links straight to /tax-return.
@@ -1108,6 +1058,43 @@ export default function HomePage() {
             <p style={{ fontSize: 15, color: '#595959', margin: '0 auto', lineHeight: 1.7, textAlign: 'center' }}>
               {t2.subheading}
             </p>
+          </div>
+
+          {/* FLOW_STRIP — Tax Return free→paid flow. Moved here from the
+              Hero (which used absolute positioning as a fixed-height
+              canvas); this section uses normal document flow instead, so
+              the strip just sits in the page like any other block. Reuses
+              the exact same localized data (t.hero.flow) already defined
+              in HERO_TEXT — no new translation object, no duplicated copy.
+              4 explicit columns (not mapped), one row on desktop. */}
+          <div style={{
+            display: 'flex', width: '100%', background: 'rgba(3,131,144,0.05)',
+            border: '1px solid rgba(3,131,144,0.14)', borderRadius: 20,
+            margin: '28px auto 36px', padding: '16px 8px', boxSizing: 'border-box' as const,
+          }}>
+            <div style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item1.title}</div>
+              <div style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item1.price}</div>
+              <div style={{ fontSize: 11, color: '#8A8A8A', lineHeight: 1.3 }}>{t.hero.flow.item1.desc}</div>
+            </div>
+            <div style={{ width: 1, alignSelf: 'stretch' as const, background: 'rgba(3,131,144,0.15)', flexShrink: 0 }} />
+            <div style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item2.title}</div>
+              <div style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item2.price}</div>
+              <div style={{ fontSize: 11, color: '#8A8A8A', lineHeight: 1.3 }}>{t.hero.flow.item2.desc}</div>
+            </div>
+            <div style={{ width: 1, alignSelf: 'stretch' as const, background: 'rgba(3,131,144,0.15)', flexShrink: 0 }} />
+            <div style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item3.title}</div>
+              <div style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item3.price}</div>
+              <div style={{ fontSize: 11, color: '#8A8A8A', lineHeight: 1.3 }}>{t.hero.flow.item3.desc}</div>
+            </div>
+            <div style={{ width: 1, alignSelf: 'stretch' as const, background: 'rgba(3,131,144,0.15)', flexShrink: 0 }} />
+            <div style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
+              <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item4.title}</div>
+              <div style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item4.price}</div>
+              <div style={{ fontSize: 11, color: '#8A8A8A', lineHeight: 1.3 }}>{t.hero.flow.item4.desc}</div>
+            </div>
           </div>
 
           {/* 3×3 grid with QLIXA center */}
