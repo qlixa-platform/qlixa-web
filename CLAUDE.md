@@ -9,9 +9,10 @@ This repository contains the public QLIXA marketing website.
 - **Languages:** UA / DE / EN / RU
 - **Dev:** `npm run dev` → `localhost:3000`
 
-This file explains **how** to work in this repository. It does not
-own visual, PDF, legal or product specifications — those live in
-dedicated documents identified below.
+This file explains **how** to work in this repository and records
+the current approved product guardrails needed to prevent accidental regressions.
+Detailed visual, brand and PDF specifications live in the dedicated
+source-of-truth documents identified below.
 
 ---
 
