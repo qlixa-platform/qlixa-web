@@ -316,22 +316,20 @@ export default function RWRCalculator() {
   const [result, setResult] = useState<Result | null>(null)
 
   const TEAL = '#038390'
-  const DARK = '#ffffff'
-  const DARK2 = '#F0F7F8'
 
   const totalSteps = hasPartner ? 8 : 7
 
   const progress = (current: number) => (
     <div style={{ display: 'flex', gap: 4 }}>
       {Array.from({ length: totalSteps }, (_, i) => (
-        <div key={i} style={{ height: 3, flex: 1, borderRadius: 2, background: i < current ? TEAL : 'rgba(255,255,255,0.15)', transition: 'background 0.3s' }} />
+        <div key={i} style={{ height: 3, flex: 1, borderRadius: 2, background: i < current ? TEAL : 'rgba(26,26,26,0.5)', transition: 'background 0.3s' }} />
       ))}
     </div>
   )
 
   const answerBox = (label: string, value: string) => (
     <div key={label} style={{ background: '#ffffff', border: '1px solid rgba(3,131,144,0.15)', borderRadius: 10, padding: '10px 12px' }}>
-      <div style={{ fontSize: 10, color: 'rgba(255,255,255,0.35)', textTransform: 'uppercase' as const, letterSpacing: '0.8px', marginBottom: 3 }}>{label}</div>
+      <div style={{ fontSize: 10, color: 'var(--color-text-muted)', textTransform: 'uppercase' as const, letterSpacing: '0.8px', marginBottom: 3 }}>{label}</div>
       <div style={{ fontSize: 13, color: '#1A1A1A', fontWeight: 500 }}>{value}</div>
     </div>
   )
@@ -350,7 +348,7 @@ export default function RWRCalculator() {
       {electricity && electricity !== '0' && answerBox(t.electricity, `€ ${electricity}`)}
       {other && other !== '0' && answerBox(t.otherPayments, `€ ${other}`)}
       {!hasPartner && !income && (
-        <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.2)', marginTop: 8 }}>{t.fillForm}</div>
+        <div style={{ fontSize: 12, color: 'var(--color-gray)', marginTop: 8 }}>{t.fillForm}</div>
       )}
     </div>
   )
@@ -620,7 +618,7 @@ export default function RWRCalculator() {
               style={{ background: hasPartner === opt.val ? 'rgba(3,131,144,0.1)' : '#F0F7F8', border: `1px solid ${hasPartner === opt.val ? TEAL : 'rgba(3,131,144,0.2)'}`, borderRadius: 14, padding: 16, cursor: 'pointer', textAlign: 'left' as const, transition: 'all 0.2s' }}>
               <div style={{ fontSize: 22, marginBottom: 8 }}>{opt.icon}</div>
               <div style={{ fontSize: 14, fontWeight: 500, color: '#1A1A1A', marginBottom: 4 }}>{opt.label}</div>
-              <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)' }}>{opt.sub}</div>
+              <div style={{ fontSize: 11, color: 'var(--color-gray)' }}>{opt.sub}</div>
             </button>
           ))}
         </div>
@@ -730,7 +728,7 @@ export default function RWRCalculator() {
           </div>
           <div>
             <div style={{ fontSize: 18, fontWeight: 600, color: '#1A1A1A', marginBottom: 4 }}>{result.ok ? t.result.okTitle : t.result.notOkTitle}</div>
-            <div style={{ fontSize: 12, color: 'rgba(255,255,255,0.45)', lineHeight: 1.5 }}>
+            <div style={{ fontSize: 12, color: 'var(--color-text-muted)', lineHeight: 1.5 }}>
               {result.ok ? t.result.okDesc : t.result.notOkDesc}
             </div>
           </div>
@@ -751,8 +749,8 @@ export default function RWRCalculator() {
             </div>
           ))}
           <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0 5px', fontSize: 13 }}>
-            <span style={{ color: 'rgba(255,255,255,0.8)', fontWeight: 500 }}>{t.result.afterExpenses}</span>
-            <span style={{ fontSize: 15, fontWeight: 700, color: result.ok ? '#10B981' : '#F59E0B' }}>€ {fmt(result.net, lang)}</span>
+            <span style={{ color: 'var(--color-gray)', fontWeight: 500 }}>{t.result.afterExpenses}</span>
+            <span style={{ fontSize: 15, fontWeight: 700, color: result.ok ? '#065F46' : '#92400E' }}>€ {fmt(result.net, lang)}</span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
             <span style={{ color: '#595959' }}>{t.result.minBmi}</span>
@@ -762,9 +760,9 @@ export default function RWRCalculator() {
 
         {!result.ok && (
           <div style={{ background: 'rgba(245,166,35,0.08)', border: '1px solid rgba(245,166,35,0.2)', borderRadius: 14, padding: 16, marginBottom: 12 }}>
-            <div style={{ fontSize: 11, color: 'rgba(245,166,35,0.7)', textTransform: 'uppercase' as const, letterSpacing: '1px', marginBottom: 4 }}>{t.result.recommendedAmount}</div>
-            <div style={{ fontSize: 26, fontWeight: 700, color: '#F59E0B' }}>€ {fmt(result.savings, lang)}</div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.3)', marginTop: 4 }}>{t.result.recommendedNote}</div>
+            <div style={{ fontSize: 11, color: '#B45309', textTransform: 'uppercase' as const, letterSpacing: '1px', marginBottom: 4 }}>{t.result.recommendedAmount}</div>
+            <div style={{ fontSize: 26, fontWeight: 700, color: '#92400E' }}>€ {fmt(result.savings, lang)}</div>
+            <div style={{ fontSize: 11, color: 'var(--color-gray)', marginTop: 4 }}>{t.result.recommendedNote}</div>
           </div>
         )}
 
@@ -796,7 +794,7 @@ export default function RWRCalculator() {
         {step > 0 && step < 99 && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
             <div style={{ width: 160 }}>{progress(step)}</div>
-            <div style={{ fontSize: 11, color: 'rgba(255,255,255,0.4)', minWidth: 32 }}>{step} / {totalSteps}</div>
+            <div style={{ fontSize: 11, color: 'var(--color-gray)', minWidth: 32 }}>{step} / {totalSteps}</div>
           </div>
         )}
       </div>
