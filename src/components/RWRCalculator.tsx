@@ -374,7 +374,7 @@ export default function RWRCalculator() {
     <div style={{ display: 'flex', alignItems: 'center', gap: 10, background: '#ffffff', border: '1.5px solid rgba(3,131,144,0.3)', borderRadius: 14, padding: '4px 16px', marginBottom: 10 }}>
       <span style={{ fontSize: 18, color: '#595959', fontWeight: 300 }}>€</span>
       <input type="number" value={value} onChange={e => onChange(e.target.value)} placeholder={placeholder} min={0}
-        style={{ background: 'transparent', border: 'none', outline: 'none', fontSize: 22, fontWeight: 500, color: '#1A1A1A', width: '100%', padding: '13px 0' }} />
+        style={{ background: 'transparent', border: 'none', fontSize: 22, fontWeight: 500, color: '#1A1A1A', width: '100%', padding: '13px 0' }} />
     </div>
   )
 

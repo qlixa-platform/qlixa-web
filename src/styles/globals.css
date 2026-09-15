@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&family=Golos+Text:wght@400;500;600;700;900&family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600;700&family=DM+Serif+Display:ital@0;1&family=DM+Mono:wght@400;500&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -81,7 +81,7 @@
   --font-size-h4:         20px;
   --font-size-body-lg:    18px;
   --font-size-body:       16px; /* Design System "Body" — distinct from --font-size-body-min below */
-  --font-size-body-min:   15px; /* existing site-wide minimum-readable-text rule; kept as-is, do not confuse with Design System "Body" */
+  --font-size-body-min:   15px; /* existing local convention for primary paragraph text on some pages — NOT a site-wide minimum; the Design System explicitly allows smaller sizes (11–14px) for UI/metadata/badges, already used extensively */
   --font-size-small:      14px;
   --font-size-caption:    12px;
   --font-size-eyebrow:    11px;
@@ -242,4 +242,32 @@ body {
 @keyframes slideUp {
   from { opacity: 0; transform: translateY(20px); }
   to   { opacity: 1; transform: translateY(0); }
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ACCESSIBILITY — KEYBOARD FOCUS
+   Applies the --focus-ring token (Foundation #1) as a visible
+   :focus-visible outline. Does not affect mouse-click focus or any
+   normal-state appearance. Inline `outline: none` on individual
+   elements still overrides this — see Foundation #2 component fixes.
+   ══════════════════════════════════════════════════════════════ */
+
+:focus-visible {
+  outline: var(--focus-ring);
+  outline-offset: 2px;
+}
+
+/* ══════════════════════════════════════════════════════════════
+   ACCESSIBILITY — REDUCED MOTION
+   Minimal, targeted baseline: disables ambient/decorative motion
+   without breaking functional state transitions (hover, etc.).
+   ══════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .ticker-track {
+    animation: none !important;
+  }
 }

@@ -112,7 +112,7 @@ export default function NotifyMeButton({ label, source, triggerStyle }: Props) {
                   style={{
                     width: '100%', boxSizing: 'border-box' as const, padding: '13px 16px', borderRadius: 11,
                     border: '1px solid #E6F4F5', fontSize: 15, fontFamily: 'DM Sans, sans-serif',
-                    marginBottom: 14, outline: 'none',
+                    marginBottom: 14,
                   }}
                 />
                 <button
