@@ -5,6 +5,11 @@
 @tailwind utilities;
 
 :root {
+  /* ══════════════════════════════════════════════════════════════
+     LEGACY VARIABLES — actively consumed by existing pages
+     (mainly the article family). Do not change these values:
+     doing so would alter already-approved rendered pages.
+     ══════════════════════════════════════════════════════════════ */
   --teal:         #038390;
   --teal-dark:    #026B76;
   --teal-light:   #F0F7F8;
@@ -29,37 +34,119 @@
   --peach-mid:    rgba(3,131,144,0.15);
   --peach:        #F0F7F8;
 
-  /* ── Design tokens (finalized Aug 2026) ──────────────────────────
-     Single source of truth for colors + type scale.
-     Minimum readable sizes established from the "Це знайомо?" section:
-     no text on the site should go smaller than --font-size-body (15px). */
+  /* ══════════════════════════════════════════════════════════════
+     QLIXA DESIGN TOKENS — foundation aligned with
+     docs/QLIXA-DESIGN-SYSTEM-v1.md.
+     These are FOUNDATIONS for incremental adoption, not a
+     mass migration — existing inline styles are not changed by
+     introducing these variables. See CLAUDE.md → SOURCE OF TRUTH.
+     ══════════════════════════════════════════════════════════════ */
 
-  /* Full brand color palette */
-  --color-primary:      #038390;
-  --color-primary-dark: #026B76;
-  --color-charcoal:     #1A1A1A;
-  --color-white:        #FFFFFF;
-  --color-powder:       #F0F7F8;
+  /* ── COLORS ── */
+  --color-primary:      #038390; /* alias of --teal */
+  --color-primary-dark: #026B76; /* alias of --teal-dark */
+  --color-charcoal:     #1A1A1A; /* alias of --charcoal */
+  --color-surface:      #FFFFFF; /* alias of --white */
+  --color-white:        #FFFFFF; /* alias of --white (kept for existing consumers) */
+  --color-background:   #F0F7F8; /* alias of --powder */
+  --color-powder:       #F0F7F8; /* alias of --powder (kept for existing consumers) */
   --color-light-teal:   #E6F4F5;
-  --color-gray:         #595959;
-  --color-gray-light:   #9D9D9D;
-  --color-yellow:       #F5E642;
+  --color-yellow:       #F5E642; /* alias of --color-accent-yellow */
+  --color-accent-yellow: #F5E642;
   --color-red:          #CC0000;
   --color-amber:        #F59E0B;
   --color-green:        #10B981;
+  --color-success:      #10B981; /* alias of --color-green; NOT the same as legacy --success (#22C55E), which stays as-is for its existing consumer */
+  --color-warning:      #F59E0B; /* alias of --color-amber; NOT the same as legacy --warning (#C9A500) */
+  --color-danger:       #CC0000; /* alias of --color-red */
 
-  /* Text colors — semantic, by role */
+  /* Text colors — semantic, by role. Corrected to match the
+     Design System exactly: color-text-muted is #737373, and
+     #9D9D9D is its own separate "disabled" token, not "muted". */
   --color-text-primary:   #1A1A1A; /* headings, emphasis, bold highlighted text */
-  --color-text-secondary: #404040; /* body/description text — darker than the old --text2 for better readability */
-  --color-text-muted:     #9D9D9D; /* captions, footer, truly secondary text only */
+  --color-text-secondary: #404040; /* body/description text */
+  --color-text-muted:     #737373; /* secondary metadata / helper text */
+  --color-disabled:       #9D9D9D; /* disabled/decorative use, not important small text */
+  --color-gray:           #595959; /* existing local secondary-text value — LEFT UNCHANGED, do not globally replace */
+  --color-gray-light:     #9D9D9D; /* existing local muted value — LEFT UNCHANGED, do not globally replace */
 
-  /* Type scale — semantic tokens, not raw pixel values */
-  --font-size-display:  clamp(30px, 3.4vw, 46px); /* big serif section headings (H2/H3), weight 700 */
-  --font-size-emphasis: 18px; /* bold highlighted text — e.g. card titles, minimum emphasis size site-wide */
-  --font-size-body:     15px; /* minimum body/description text size site-wide — nothing should go smaller */
+  /* ── TYPOGRAPHY ── */
+  /* Semantic desktop type scale from the Design System. Establishing
+     these tokens does NOT change any existing heading/body font-size —
+     migration of individual elements happens incrementally later. */
+  --font-size-display:   clamp(30px, 3.4vw, 46px); /* existing marketing H2/H3 pattern, kept as-is */
+  --font-size-h1:         44px; /* 40–46px range midpoint */
+  --font-size-h2:         36px; /* 32–38px range midpoint */
+  --font-size-h3:         26px; /* 24–28px range midpoint */
+  --font-size-h4:         20px;
+  --font-size-body-lg:    18px;
+  --font-size-body:       16px; /* Design System "Body" — distinct from --font-size-body-min below */
+  --font-size-body-min:   15px; /* existing site-wide minimum-readable-text rule; kept as-is, do not confuse with Design System "Body" */
+  --font-size-small:      14px;
+  --font-size-caption:    12px;
+  --font-size-eyebrow:    11px;
+  --font-size-emphasis:   18px; /* existing token, unused by any component today */
   --font-weight-emphasis: 700;
   --font-weight-body:     500;
+
+  --font-family-primary: 'DM Sans', sans-serif;      /* body, UI, buttons, forms */
+  --font-family-display: 'DM Serif Display', serif;  /* selective marketing headings only */
+  --font-family-mono:    'DM Mono', monospace;        /* data/code, used sparingly */
+
+  /* ── SPACING ── */
+  /* Primary scale from the Design System. Existing approved local
+     spacing (e.g. 20px / 28px / 40px) is intentionally left as-is. */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+
+  /* ── CONTAINERS ── */
+  /* Available foundations for incremental adoption — no existing
+     page container width is changed by defining these. */
+  --container-navigation: 1280px;
+  --container-wide:       1200px; /* already the most common maxWidth in the codebase */
+  --container-content:    1080px;
+  --container-reading:    760px;  /* already the most common article maxWidth in the codebase */
+
+  /* ── RADIUS ── */
+  /* Existing intentional local radii (10px, 14px, 50%, etc.) are
+     approved exceptions and are not affected by these tokens. */
+  --radius-sm:   8px;
+  --radius-md:   12px;
+  --radius-lg:   16px;
+  --radius-xl:   20px;
+  --radius-pill: 999px;
+
+  /* ── BORDERS ── */
+  --border-brand-default: 1px solid rgba(3,131,144,0.18);
+  --border-brand-strong:  1px solid rgba(3,131,144,0.30);
+  --border-neutral:       1px solid rgba(26,26,26,0.12); /* matches existing --line exactly */
+
+  /* ── SHADOWS ── */
+  /* No new restrained-shadow token is introduced here: the Design
+     System (§8) states shadow principles ("primarily flat/minimal",
+     "stronger teal shadows only for featured elements") without a
+     concrete value to encode. The existing --shadow / --shadow-hard
+     legacy variables are kept unchanged for their current consumer. */
+
+  /* ── ACCESSIBILITY ── */
+  /* Token only — not yet applied as a global :focus-visible rule.
+     Applying it site-wide is a deliberate, separately-approved
+     follow-up step (see CLAUDE.md → CURRENT RESPONSIVE STAGE /
+     accessibility guidance), so this round introduces zero visual
+     change. */
+  --focus-ring: 2px solid #038390;
 }
+
+/* ══════════════════════════════════════════════════════════════
+   GLOBAL BASE
+   ══════════════════════════════════════════════════════════════ */
 
 * {
   box-sizing: border-box;
@@ -82,26 +169,35 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
+/* ══════════════════════════════════════════════════════════════
+   EXISTING COMPONENT CLASSES
+   Confirmed unused by any current page/component (repo-wide search,
+   Sep 2026). Kept for backward compatibility; hardcoded colors below
+   are repointed to the equivalent new tokens where the computed
+   value is unchanged — rendered appearance is identical either way
+   since nothing currently consumes these classes.
+   ══════════════════════════════════════════════════════════════ */
+
 .card-editorial {
-  border: 1.5px solid #1A1A1A;
+  border: 1.5px solid var(--color-charcoal);
   border-radius: 14px;
-  background: #FFFFFF;
+  background: var(--color-surface);
   transition: all 0.25s cubic-bezier(0.34, 1.56, 0.64, 1);
 }
 .card-editorial:hover {
   transform: translateY(-3px);
-  box-shadow: 4px 4px 0 #1A1A1A;
+  box-shadow: var(--shadow-hard);
 }
 
 .at-stripe {
   height: 3px;
-  background: linear-gradient(to right, #CC0000 33.33%, #FFFFFF 33.33%, #FFFFFF 66.66%, #CC0000 66.66%);
+  background: linear-gradient(to right, var(--color-danger) 33.33%, var(--color-surface) 33.33%, var(--color-surface) 66.66%, var(--color-danger) 66.66%);
   width: 100%;
 }
 
 .btn-primary {
-  background: #038390;
-  color: #FFFFFF;
+  background: var(--color-primary);
+  color: var(--color-surface);
   font-weight: 700;
   font-size: 15px;
   border: none;
@@ -114,7 +210,7 @@ body {
   display: inline-block;
 }
 .btn-primary:hover {
-  background: #026B76;
+  background: var(--color-primary-dark);
   transform: translateY(-1px);
   box-shadow: 0 4px 18px rgba(3,131,144,0.35);
 }
