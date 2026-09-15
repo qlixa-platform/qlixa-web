@@ -6,8 +6,6 @@ const legalLinks = [
   { href: '/impressum', label: 'Імпресум' },
   { href: '/privacy', label: 'Політика конфіденційності' },
   { href: '/agb', label: 'Умови використання' },
-  { href: '/disclaimer', label: 'Відмова від відповідальності' },
-  { href: '/lizenz', label: 'Ліцензійні умови' },
   { href: '/cookies', label: 'Політика Cookies' },
 ]
 

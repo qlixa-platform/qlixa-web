@@ -130,10 +130,9 @@ export default function ArticlesSlider({
                 </div>
               </Link>
             ) : (
-              <Link
+              <div
                 key={i}
-                href={art.href}
-                style={{ display: 'flex', flexDirection: 'column', textDecoration: 'none', minWidth: 280, flex: '0 0 280px', height: 320, background: '#fff', borderRadius: 14, padding: 18, border: '1px dashed var(--line2)', opacity: 0.65 }}
+                style={{ display: 'flex', flexDirection: 'column', minWidth: 280, flex: '0 0 280px', height: 320, background: '#fff', borderRadius: 14, padding: 18, border: '1px dashed var(--line2)', opacity: 0.65 }}
               >
                 <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 9 }}>
                   <div style={{ fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 4, background: '#F0F7F8', color: 'rgba(26,26,26,0.55)' }}>{art.tag}</div>
@@ -141,7 +140,7 @@ export default function ArticlesSlider({
                 </div>
                 <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 6 }}>{art.title}</div>
                 <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.55, marginTop: 'auto' }}>{art.desc}</div>
-              </Link>
+              </div>
             )
           )}
         </div>

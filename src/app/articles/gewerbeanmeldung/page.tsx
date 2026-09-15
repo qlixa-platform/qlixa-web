@@ -113,7 +113,6 @@ const GA_TEXT: Record<string, any> = {
     step5H2: 'Перевірити реєстрацію та дані в SVS',
     step5P: 'SVS (Sozialversicherungsanstalt der Selbständigen) — соціальне страхування самозайнятих. Після Gewerbeanmeldung орган, що реєструє Gewerbe, зазвичай сам передає дані до SVS — окрема ручна реєстрація в SVS для Gewerbetreibende, як правило, не потрібна. Перевірте свій статус страхування та дані в кабінеті SVS (вхід через ID Austria) і за потреби доповніть інформацію. Зверніть увагу: логіка повідомлення SVS для Neue Selbständige (нової самозайнятості без Gewerbe) інша.',
     step5NoteTip: 'За певних умов до медичного страхування SVS можуть бути співзастраховані окремі члени сім’ї (наприклад, чоловік/дружина, зареєстрований партнер, діти) — точні умови співстрахування варто перевірити безпосередньо в SVS.',
-    step5ArticleTitle: 'Читайте детально → Як заповнити формуляр SVS', step5ArticleSub: 'Що потрібно вказати та як працює реєстрація в SVS',
     step6H2: 'Реєстрація у FinanzOnline',
     step6P: 'Вхід через ID Austria (або через окрему реєстрацію FinanzOnline, якщо ID Austria ще немає). У Fragebogen zur Betriebseröffnung потрібно вказати очікуваний оборот — ця оцінка потрібна Finanzamt, щоб визначити, чи перевищується поріг ПДВ (55 000 € на рік), і встановити попередні податкові платежі. Це не пов’язано з внесками SVS.',
     step6TipBefore: 'Внески SVS для нових Gewerbetreibende спочатку розраховуються від мінімальної бази автоматично, незалежно від прогнозу обороту у FinanzOnline.', step6TipLink: 'SVS Beitragsrechner', step6TipAfter: ' допоможе орієнтовно оцінити суму внесків.',
@@ -123,7 +122,6 @@ const GA_TEXT: Record<string, any> = {
     step7P: <>У кабінеті FinanzOnline можна налаштувати <strong>SEPA-Lastschriftmandat</strong> для автоматичного списання платежів, які адмініструє Finanzamt (наприклад, авансових платежів з податку на прибуток). Це не поширюється на внески SVS — SVS адмініструє власний, окремий процес прямого дебетування, який налаштовується окремо в кабінеті SVS.</>,
     step8H2: 'Вибір MVK (Selbständigenvorsorge)',
     step8P: <>Протягом <strong>6 місяців</strong> після реєстрації потрібно обрати Mitarbeitervorsorgekasse (MVK) — § 6 BMSVG. Внесок становить 1,53% від доходу щомісяця і накопичується на вашому рахунку Selbständigenvorsorge. Якщо фонд не обрано самостійно, вас приєднають до одного з фондів автоматично.</>,
-    step8ArticleTitle: 'Читайте детально → Як обрати MVK', step8ArticleSub: 'Що таке MVK та які строки потрібно знати',
     step9H2: 'Скористатися сервісами WKO',
     step9P: <>WKO (Wirtschaftskammer Österreich) — торгово-промислова палата. Членство в WKO зазвичай виникає автоматично разом з отриманням Gewerbeberechtigung — окремо реєструватися для цього не потрібно. У вашому районному відділенні можуть бути <strong>консультації для початківців (Gründerservice)</strong>, вебінари та зустрічі.</>,
     step9Link: '🏢 WKO — інформація про реєстрацію',
@@ -174,7 +172,6 @@ const GA_TEXT: Record<string, any> = {
     step5H2: 'Проверить регистрацию и данные в SVS',
     step5P: 'SVS (Sozialversicherungsanstalt der Selbständigen) — социальное страхование самозанятых. После Gewerbeanmeldung орган, регистрирующий Gewerbe, как правило, сам передаёт данные в SVS — отдельная ручная регистрация в SVS для Gewerbetreibende обычно не требуется. Проверьте свой статус страхования и данные в кабинете SVS (вход через ID Austria) и при необходимости дополните информацию. Обратите внимание: логика уведомления SVS для Neue Selbständige (новой самозанятости без Gewerbe) отличается.',
     step5NoteTip: 'При определённых условиях к медицинскому страхованию SVS могут быть присоединены отдельные члены семьи (например, супруг/супруга, зарегистрированный партнёр, дети) — точные условия совместного страхования стоит уточнить непосредственно в SVS.',
-    step5ArticleTitle: 'Читайте подробно → Как заполнить формуляр SVS', step5ArticleSub: 'Какие данные нужно указать и как работает регистрация в SVS',
     step6H2: 'Регистрация в FinanzOnline',
     step6P: 'Вход через ID Austria (или через отдельную регистрацию в FinanzOnline, если ID Austria ещё нет). В Fragebogen zur Betriebseröffnung нужно указать ожидаемый оборот — эта оценка нужна Finanzamt, чтобы определить, превышается ли порог НДС (55 000 € в год), и установить предварительные налоговые платежи. Это не связано со взносами SVS.',
     step6TipBefore: 'Взносы SVS для новых Gewerbetreibende изначально рассчитываются от минимальной базы автоматически, независимо от прогноза оборота в FinanzOnline.', step6TipLink: 'SVS Beitragsrechner', step6TipAfter: ' поможет ориентировочно оценить сумму взносов.',
@@ -184,7 +181,6 @@ const GA_TEXT: Record<string, any> = {
     step7P: <>В кабинете FinanzOnline можно настроить <strong>SEPA-Lastschriftmandat</strong> для автоматического списания платежей, которые администрирует Finanzamt (например, авансовых платежей по налогу на прибыль). Это не распространяется на взносы SVS — SVS администрирует собственный, отдельный процесс прямого дебетования, который настраивается отдельно в кабинете SVS.</>,
     step8H2: 'Выбор MVK (Selbständigenvorsorge)',
     step8P: <>В течение <strong>6 месяцев</strong> после регистрации нужно выбрать Mitarbeitervorsorgekasse (MVK) — § 6 BMSVG. Взнос составляет 1,53% от дохода ежемесячно и накапливается на вашем счёте Selbständigenvorsorge. Если фонд не выбран самостоятельно, вас присоединят к одному из фондов автоматически.</>,
-    step8ArticleTitle: 'Читайте подробно → Как выбрать MVK', step8ArticleSub: 'Что такое MVK и какие сроки нужно знать',
     step9H2: 'Воспользоваться сервисами WKO',
     step9P: <>WKO (Wirtschaftskammer Österreich) — торгово-промышленная палата. Членство в WKO обычно возникает автоматически вместе с получением Gewerbeberechtigung — отдельно регистрироваться для этого не нужно. В вашем районном отделении могут быть <strong>консультации для начинающих (Gründerservice)</strong>, вебинары и встречи.</>,
     step9Link: '🏢 WKO — информация о регистрации',
@@ -235,7 +231,6 @@ const GA_TEXT: Record<string, any> = {
     step5H2: 'Check your SVS registration and details',
     step5P: "SVS (Sozialversicherungsanstalt der Selbständigen) is social insurance for the self-employed. After Gewerbeanmeldung, the authority that registers the Gewerbe generally forwards the relevant data to SVS itself — a separate manual SVS registration is usually not needed for Gewerbetreibende. Check your insurance status and details in your SVS account (log in via ID Austria) and provide additional information if required. Note: the SVS notification logic differs for Neue Selbständige (new self-employment without a Gewerbe).",
     step5NoteTip: 'Under certain conditions, specific family members (such as a spouse, registered partner, or children) may be co-insured under SVS health insurance — check the exact eligibility conditions directly with SVS.',
-    step5ArticleTitle: 'Read more → How to fill out the SVS form', step5ArticleSub: 'What information is required and how SVS registration works',
     step6H2: 'Register with FinanzOnline',
     step6P: "Log in via ID Austria (or via a separate FinanzOnline registration if you don't have ID Austria yet). In the Fragebogen zur Betriebseröffnung, you need to state your expected turnover — this estimate is used by the Finanzamt to check whether the VAT threshold (€55,000/year) is exceeded and to set advance tax payments. This is unrelated to SVS contributions.",
     step6TipBefore: "SVS contributions for new Gewerbetreibende are initially calculated automatically from the minimum contribution base, regardless of the turnover forecast in FinanzOnline.", step6TipLink: 'SVS Beitragsrechner', step6TipAfter: ' can help you estimate the approximate amount.',
@@ -245,7 +240,6 @@ const GA_TEXT: Record<string, any> = {
     step7P: <>In your FinanzOnline account, you can set up a <strong>SEPA-Lastschriftmandat</strong> for automatic payment of charges administered by the Finanzamt (such as income tax advance payments). This does not cover SVS contributions — SVS runs its own, separate direct-debit process, set up separately in your SVS account.</>,
     step8H2: 'Choosing your MVK (Selbständigenvorsorge)',
     step8P: <>Within <strong>6 months</strong> of registering, you need to choose a Mitarbeitervorsorgekasse (MVK) — § 6 BMSVG. The contribution is 1.53% of your income each month, paid into your Selbständigenvorsorge account. If you don&apos;t choose a fund yourself, you&apos;ll be assigned to one automatically.</>,
-    step8ArticleTitle: 'Read more → How to choose an MVK', step8ArticleSub: 'What MVK is and which deadlines you should know',
     step9H2: 'Use WKO services',
     step9P: <>WKO (Wirtschaftskammer Österreich) is the chamber of commerce. Membership in WKO generally arises automatically together with obtaining a Gewerbeberechtigung — you don&apos;t need to register separately for it. Your local branch may offer <strong>consultations for founders (Gründerservice)</strong>, webinars, and meetups.</>,
     step9Link: '🏢 WKO — registration information',
@@ -296,7 +290,6 @@ const GA_TEXT: Record<string, any> = {
     step5H2: 'Anmeldung und Daten bei der SVS prüfen',
     step5P: 'SVS (Sozialversicherungsanstalt der Selbständigen) — Sozialversicherung für Selbstständige. Nach der Gewerbeanmeldung übermittelt die Behörde, die das Gewerbe registriert, die relevanten Daten in der Regel selbst an die SVS — eine separate manuelle Anmeldung bei der SVS ist für Gewerbetreibende meist nicht nötig. Prüfe deinen Versicherungsstatus und deine Daten im SVS-Kundenportal (Anmeldung über ID Austria) und ergänze bei Bedarf Angaben. Beachte: Die Meldelogik der SVS unterscheidet sich für Neue Selbständige (neue Selbstständigkeit ohne Gewerbe).',
     step5NoteTip: 'Unter bestimmten Voraussetzungen können einzelne Angehörige (z. B. Ehepartner:in, eingetragene:r Partner:in, Kinder) in der SVS-Krankenversicherung mitversichert werden — die genauen Voraussetzungen solltest du direkt bei der SVS prüfen.',
-    step5ArticleTitle: 'Mehr lesen → Wie man das SVS-Formular ausfüllt', step5ArticleSub: 'Welche Angaben erforderlich sind und wie die Anmeldung bei der SVS funktioniert',
     step6H2: 'Registrierung bei FinanzOnline',
     step6P: 'Anmeldung über ID Austria (oder über eine separate FinanzOnline-Registrierung, falls du noch keine ID Austria hast). Im Fragebogen zur Betriebseröffnung musst du deinen erwarteten Umsatz angeben — diese Schätzung dient dem Finanzamt dazu, zu prüfen, ob die Umsatzsteuergrenze (55.000 € pro Jahr) überschritten wird, und Vorauszahlungen festzulegen. Das hat nichts mit den SVS-Beiträgen zu tun.',
     step6TipBefore: 'Die SVS-Beiträge für neue Gewerbetreibende werden anfangs automatisch von der Mindestbeitragsgrundlage berechnet, unabhängig von der Umsatzprognose in FinanzOnline.', step6TipLink: 'SVS Beitragsrechner', step6TipAfter: ' hilft dir, die ungefähre Beitragshöhe einzuschätzen.',
@@ -306,7 +299,6 @@ const GA_TEXT: Record<string, any> = {
     step7P: <>In deinem FinanzOnline-Konto kannst du ein <strong>SEPA-Lastschriftmandat</strong> einrichten, um vom Finanzamt verwaltete Zahlungen (z. B. Einkommensteuer-Vorauszahlungen) automatisch abbuchen zu lassen. Das gilt nicht für SVS-Beiträge — die SVS hat einen eigenen, separaten Lastschriftprozess, den du gesondert in deinem SVS-Konto einrichtest.</>,
     step8H2: 'Wahl der MVK (Selbständigenvorsorge)',
     step8P: <>Wähle innerhalb von <strong>6 Monaten</strong> nach der Anmeldung eine Mitarbeitervorsorgekasse (MVK) — § 6 BMSVG. Der Beitrag beträgt 1,53 % deines Einkommens monatlich und wird auf deinem Selbständigenvorsorge-Konto angespart. Wenn du selbst keine Kasse wählst, wirst du automatisch einer zugeteilt.</>,
-    step8ArticleTitle: 'Mehr lesen → Wie man eine MVK wählt', step8ArticleSub: 'Was eine MVK ist und welche Fristen wichtig sind',
     step9H2: 'WKO-Services nutzen',
     step9P: <>WKO (Wirtschaftskammer Österreich) — die Wirtschaftskammer. Die Mitgliedschaft in der WKO entsteht in der Regel automatisch mit dem Erwerb der Gewerbeberechtigung — eine gesonderte Anmeldung dafür ist nicht nötig. In deiner Bezirksstelle gibt es möglicherweise <strong>Beratungen für Gründer:innen (Gründerservice)</strong>, Webinare und Treffen.</>,
     step9Link: '🏢 WKO — Informationen zur Anmeldung',
@@ -522,11 +514,6 @@ export default function GewerbeanmeldungPage() {
               {t.step5P}
             </p>
             <NoteBox type="tip">{t.step5NoteTip}</NoteBox>
-            <ArticleLink
-              href="/articles/svs-formular"
-              title={t.step5ArticleTitle}
-              sub={t.step5ArticleSub}
-            />
           </div>
         </div>
 
@@ -579,11 +566,6 @@ export default function GewerbeanmeldungPage() {
             <p style={{ fontSize: 14, lineHeight: 1.8, marginBottom: 14 }}>
               {t.step8P}
             </p>
-            <ArticleLink
-              href="/articles/mvk-pension"
-              title={t.step8ArticleTitle}
-              sub={t.step8ArticleSub}
-            />
           </div>
         </div>
 

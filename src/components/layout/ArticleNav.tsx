@@ -30,9 +30,9 @@ const ARTICLE_META_TRANSLATIONS: Record<string, Record<string, { tag: string; ti
     DE: { tag: 'Geschäftsregistrierung', title: 'Gewerbeanmeldung in Österreich: Schritt-für-Schritt-Registrierung der Selbstständigkeit' },
   },
   'austria-id': {
-    RU: { tag: 'Австрия · Документы', title: 'Как оформить Austria ID: пошаговый гайд для иностранцев' },
-    EN: { tag: 'Austria · Documents', title: 'How to get an Austria ID: step-by-step guide for foreigners' },
-    DE: { tag: 'Österreich · Dokumente', title: 'Austria ID beantragen: Schritt-für-Schritt-Anleitung für Ausländer' },
+    RU: { tag: 'Австрия · Документы', title: 'Как оформить ID Austria: пошаговый гайд для иностранцев' },
+    EN: { tag: 'Austria · Documents', title: 'How to get ID Austria: step-by-step guide for foreigners' },
+    DE: { tag: 'Österreich · Dokumente', title: 'ID Austria beantragen: Schritt-für-Schritt-Anleitung für Ausländer' },
   },
   'invalidity-child': {
     RU: { tag: 'Семья · Льготы', title: 'Инвалидность ребёнка в Австрии: выплаты, льготы и с чего начать' },

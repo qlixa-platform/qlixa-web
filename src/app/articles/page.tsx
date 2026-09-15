@@ -199,10 +199,10 @@ export default function ArticlesPage() {
           </h2>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(280px,1fr))', gap: 16 }}>
             {upcoming.map((art: any) => (
-              <Link key={art.href} href={art.href} style={{
+              <div key={art.href} style={{
                 display: 'block', background: '#fff', borderRadius: 14,
                 padding: 20, border: '1px solid var(--line)',
-                textDecoration: 'none', opacity: 0.75,
+                opacity: 0.75,
               }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start', marginBottom: 8 }}>
                   <div style={{
@@ -229,7 +229,7 @@ export default function ArticlesPage() {
                 <p style={{ fontSize: 13, color: 'var(--text2)', lineHeight: 1.5 }}>
                   {art.desc}
                 </p>
-              </Link>
+              </div>
             ))}
           </div>
         </div>

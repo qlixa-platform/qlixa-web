@@ -30,7 +30,6 @@ const FOOTER_TEXT: Record<string, {
   tagline: string
   columns: FooterColumn[]
   contact: string
-  contactLink: string
   copyright: string
   madeWith: string
   errorTrigger: string
@@ -56,7 +55,6 @@ const FOOTER_TEXT: Record<string, {
       { title: 'Правове', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Політика конфіденційності', href: '/privacy' }, { label: 'Умови використання', href: '/agb' }] },
     ],
     contact: 'Контакт',
-    contactLink: 'Контакти',
     copyright: '© 2026 QLIXA®',
     madeWith: 'Зроблено з ♥ в Австрії 🇦🇹',
     errorTrigger: 'Знайшли помилку?',
@@ -82,7 +80,6 @@ const FOOTER_TEXT: Record<string, {
       { title: 'Правовое', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Политика конфиденциальности', href: '/privacy' }, { label: 'Условия использования', href: '/agb' }] },
     ],
     contact: 'Контакт',
-    contactLink: 'Контакты',
     copyright: '© 2026 QLIXA®',
     madeWith: 'Сделано с ♥ в Австрии 🇦🇹',
     errorTrigger: 'Нашли ошибку?',
@@ -108,7 +105,6 @@ const FOOTER_TEXT: Record<string, {
       { title: 'Legal', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Privacy Policy', href: '/privacy' }, { label: 'Terms of Use', href: '/agb' }] },
     ],
     contact: 'Contact',
-    contactLink: 'Contact',
     copyright: '© 2026 QLIXA®',
     madeWith: 'Made with ♥ in Austria 🇦🇹',
     errorTrigger: 'Found a mistake?',
@@ -134,7 +130,6 @@ const FOOTER_TEXT: Record<string, {
       { title: 'Rechtliches', titleHref: '/impressum', links: [{ label: 'Impressum', href: '/impressum' }, { label: 'Datenschutz', href: '/privacy' }, { label: 'Nutzungsbedingungen', href: '/agb' }] },
     ],
     contact: 'Kontakt',
-    contactLink: 'Kontakt',
     copyright: '© 2026 QLIXA®',
     madeWith: 'Made with ♥ in Österreich 🇦🇹',
     errorTrigger: 'Fehler gefunden?',
@@ -257,15 +252,6 @@ export default function Footer() {
               }}>
                 {t.contact}
               </div>
-              <Link href="/contact" style={{
-                display: 'block', fontSize: 13,
-                color: '#9D9D9D', textDecoration: 'none', marginBottom: 10,
-              }}
-                onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
-              >
-                {t.contactLink}
-              </Link>
               <a href="mailto:info@qlixa.eu" style={{
                 display: 'block', fontSize: 13,
                 color: '#9D9D9D', textDecoration: 'none', marginBottom: 10,

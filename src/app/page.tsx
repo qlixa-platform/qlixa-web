@@ -1215,7 +1215,7 @@ export default function HomePage() {
 
 
       {/* ── ДЛЯ КОГО ── */}
-      <section id="для-кого" style={{ background: '#FFFFFF', padding: '38px clamp(20px,6vw,80px) 38px' }}>
+      <section id="who-its-for" style={{ background: '#FFFFFF', padding: '38px clamp(20px,6vw,80px) 38px' }}>
         <div style={{ maxWidth: 1100, margin: '0 auto' }}>
 
           {/* Header */}
