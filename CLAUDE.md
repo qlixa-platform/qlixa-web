@@ -1,708 +1,394 @@
 # CLAUDE.md — QLIXA Website
 
-> Цей файл читає Claude Code перед будь-якою роботою з проєктом.
-> Дотримуйся всіх правил нижче БЕЗ ВИНЯТКІВ.
-
----
-
-## 🚨 ГОЛОВНЕ ПРАВИЛО — ПЕРЕД БУДЬ-ЯКОЮ ДІЄЮ
-
-**ПЕРЕД тим як писати код, документи або HTML — завжди:**
-1. Скажи що саме плануєш зробити
-2. Поясни як це можна зробити краще / запропонуй варіанти
-3. Чекай підтвердження від Ірини
-
-**НІКОЛИ не починай код без явного "так, роби" від користувача.**
-
----
-
-## 🔒 ЗАБОРОНЕНО БЕЗ ДОЗВОЛУ
-
-- ❌ Змінювати `height`, `minHeight`, `padding`, `margin` секцій
-- ❌ Змінювати розміщення карток і компонентів
-- ❌ Придумувати нові речення або змінювати текст (тільки виправляти помилки або пропонувати варіант)
-- ❌ Змінювати структуру існуючих сторінок
-- ❌ Писати код без підтвердження
-- ❌ Автоматично вибирати варіант дизайну — завжди пропонуй варіанти
-
----
-
-## 📋 ПРАВИЛА РОБОТИ
-
-**Текст:**
-- Якщо просять замінити текст — міняй ТІЛЬКИ вказаний текст
-- Не додавай нових речень і не переформульовуй без запиту
-- Можеш виправити граматичні помилки або запропонувати кращий варіант — але як пропозицію, не автоматично
-
-**Дизайн:**
-- Якщо питання про зміну фону, тексту, шрифту, кольору — запропонуй варіанти, не пиши код одразу
-- Якщо Іра не впевнена — дай 2–3 варіанти на вибір
-
-**Нові статті:**
-- Перед додаванням нової статті — уточни параметри існуючих (висота фото, minHeight body, розміри шрифтів)
-- Нова стаття має бути точно такого ж розміру як всі попередні
-
-**Секції:**
-- Не змінюй висоту секцій
-- Не переставляй картки
-- Кожну зміну фону/тексту/стилю — питай окремо
-
----
-
-## Проєкт
+QLIXA is a multilingual Austrian self-service digital product.
+This repository contains the public QLIXA marketing website.
 
 - **Stack:** Next.js 15 + TypeScript
-- **Deploy:** Vercel (auto-deploy з branch `main`)
-- **Repo:** `qlixa-platform/qlixa-web`, branch `main`
-- **Локальний шлях:** `/Users/irynashevchenko/Desktop/Автоматизация малого бизнеса/CODE  QLIXA/qlixa-web-1/`
+- **Repository:** `qlixa-platform/qlixa-web`
+- **Production workflow:** Vercel, auto-deploy from `main`
+- **Languages:** UA / DE / EN / RU
 - **Dev:** `npm run dev` → `localhost:3000`
 
+This file explains **how** to work in this repository. It does not
+own visual, PDF, legal or product specifications — those live in
+dedicated documents identified below.
+
 ---
 
-## Кольорова палітра (ТІЛЬКИ ЦІ КОЛЬОРИ)
+## SOURCE OF TRUTH
+
+Before changing something, identify which document owns that decision.
+
+### UI / visual design / components
+
+`docs/QLIXA-DESIGN-SYSTEM-v1.md`
+
+This is the visual source of truth for QLIXA — colors, typography,
+spacing, containers, radius, buttons, cards, badges, forms, states,
+marketing/product patterns, icons, accessibility.
+
+Read it before:
+- creating UI;
+- materially changing UI;
+- creating reusable UI components;
+- changing typography, colors, spacing, cards, buttons, forms or
+  interaction states.
+
+Do not use the Design System as permission to redesign approved layouts.
+
+### Brand (logos, tone of voice, brand-level rules)
+
+`docs/QLIXA_Brand_Style_Guide.md`
+
+Read it before working with logos, brand tone of voice, or any
+brand-identity question not already answered by the Design System.
+
+### PDF documents
+
+`docs/PDF_MASTER_TEMPLATE.md`
+`docs/QLIXA_Brand_Style_Guide.md`
+
+Read both before creating or materially modifying QLIXA PDFs.
+`PDF_MASTER_TEMPLATE.md` owns PDF-specific layout (page format,
+header/footer measurements, content blocks, multi-page rules).
+
+### Repository workflow
+
+`CLAUDE.md` (this file)
+
+Defines HOW to work with this repository. It must not duplicate
+detailed specifications owned by the dedicated source-of-truth
+documents above.
+
+---
+
+## WHEN RULES CONFLICT
+
+Use this priority:
+
+1. User's explicit instruction for the current task
+2. Safety / critical-area rules in this file
+3. Relevant dedicated source-of-truth document
+4. Existing approved implementation
+5. General conventions
+
+If two project documents contradict each other: **STOP and report the
+conflict.** Do not silently choose one.
+
+---
+
+## APPROVAL WORKFLOW
+
+Before a new or materially changed implementation task:
+
+1. Explain what you intend to change.
+2. Explain which files/areas are likely affected.
+3. Explain how you will verify the result.
+4. Wait for explicit approval before implementation.
+
+Once the user approves a clearly defined task or implementation
+package, do NOT repeatedly ask for approval for every file inside
+that approved scope. Do not expand the approved scope without asking.
+
+For tiny corrections explicitly requested by the user, the user's
+request itself counts as approval for that exact change.
+
+---
+
+## PRESERVE APPROVED WORK
+
+Default behavior is minimal change. Unless explicitly requested, do NOT:
+
+- redesign approved sections;
+- rewrite approved copy;
+- reorder sections or cards;
+- change page structure;
+- replace approved illustrations;
+- alter intentional/manual positioning;
+- change section heights purely for cleanup;
+- introduce new marketing claims;
+- invent new product features or promises.
+
+Refactoring must preserve rendered behavior unless visual change is
+explicitly part of the approved task.
+
+Do not perform cleanup outside the approved scope merely because you
+notice something that could be improved. Report unrelated technical
+debt separately.
+
+**Important:** do not preserve old implementation details when the
+user has explicitly approved replacing them as part of a current task.
+
+---
+
+## CRITICAL AREAS — STOP BEFORE EDITING
+
+Do not modify without separate explicit approval:
+
+- payments / Stripe;
+- authentication;
+- Supabase data behavior;
+- subscriptions / entitlements;
+- database migrations;
+- tax calculations;
+- generated tax-return logic;
+- production data behavior;
+- legal documents;
+- Cabinet authentication URLs;
+- product-selection parameters.
+
+This includes, where present: `?plan=employee`, payment flows,
+entitlement logic.
+
+Before editing a critical area:
+
+1. explain why the change is needed;
+2. identify affected files;
+3. explain possible side effects;
+4. explain rollback strategy;
+5. wait for explicit approval.
+
+A broad cleanup/design/refactor approval does NOT automatically
+authorize HOT ZONE changes.
+
+---
+
+## PRODUCT BOUNDARIES
+
+QLIXA is a self-service automated tool.
+
+Do not present QLIXA as: Steuerberater, accountant, lawyer, financial
+adviser, or individual tax adviser.
+
+Avoid unsupported guarantees or claims such as: maximum refund,
+guaranteed refund, error-free, exact refund, "we find every
+deduction", "we know what is best for you".
+
+Prefer factual product language such as: based on the user's answers,
+possible deductions/categories, preliminary refund estimate, prepared
+for review and submission.
+
+QLIXA does not submit the tax return for the user unless actual
+product behavior is explicitly changed and verified.
+
+Do not invent legal/tax claims. For current Austrian legal, tax or
+procedural claims, verify authoritative current sources before
+publishing.
+
+---
+
+## CURRENT PRODUCT MODEL
+
+### QLIXA Account / Cabinet
+- free account;
+- no artificial annual subscription access period.
+
+### QLIXA Tax Return
+- questionnaire can be completed before payment;
+- preliminary result may be shown before payment;
+- final ready tax declaration/download is paid;
+- current consumer price: €24.90 including VAT;
+- one payment = one tax declaration for one selected supported tax year;
+- no subscription.
+
+### QLIXA Business
+- separate future product;
+- Coming Soon;
+- do not invent features or pricing.
+
+This section describes the currently approved product model. Do not
+infer additional functionality from it.
+
+---
+
+## LOCALIZATION
+
+Supported public languages: UA / DE / EN / RU.
+
+Rules:
+
+- do not silently update only one locale when the approved task
+  explicitly requires all locales;
+- preserve meaning across translations rather than translating UI
+  strings mechanically;
+- German uses informal "du" where required by the current product voice;
+- canonical public routes and section IDs use stable English
+  technical names;
+- do not create locale-specific route variants unless explicitly approved.
+
+---
+
+## DESIGN SYSTEM
+
+Visual source of truth: `docs/QLIXA-DESIGN-SYSTEM-v1.md`
+
+Do not duplicate Design System tokens in this file.
+
+Website and Cabinet belong to the same QLIXA Design System but may
+have independent implementations. Marketing and product UI should
+have family resemblance, not identical layouts.
+
+Before creating a reusable UI primitive:
+
+1. inspect existing components;
+2. determine whether an equivalent already exists;
+3. reuse or extend when appropriate;
+4. avoid abstraction for abstraction's sake.
+
+---
+
+## CURRENT RESPONSIVE STAGE
+
+Current stage: **Desktop consistency and Design System foundation,
+before broad mobile adaptation.**
+
+Do not start broad mobile/tablet redesign as part of unrelated tasks.
+
+Desktop QA targets: `1024 / 1280 / 1366 / 1440 / 1920`
+Future mobile QA targets: `320 / 360 / 375 / 390 / 430`
+Future tablet QA targets: `768 / 820 / 1024`
+
+When overflow exists: diagnose the actual cause and choose the least
+destructive solution for that specific case. Do not use
+`overflow: hidden` merely to hide broken text, and do not prescribe
+one implementation technique globally.
+
+---
+
+## CODE & ARCHITECTURE
+
+Before creating something new:
+
+- inspect the existing implementation;
+- reuse appropriate components/utilities;
+- avoid duplicate logic;
+- avoid unnecessary abstraction;
+- keep changes scoped;
+- preserve localization architecture;
+- preserve maintainability.
+
+Do not perform broad refactors merely because cleaner architecture is
+theoretically possible.
+
+If technical debt is discovered outside the approved scope: report it
+separately instead of silently fixing it.
+
+---
+
+## VERIFY BEFORE AND AFTER
+
+Before implementation: state the verification plan.
+
+After implementation:
+
+- run appropriate build/type/lint checks that are actually available
+  to the project;
+- inspect affected routes/components;
+- check for broken imports/references;
+- report exactly what changed;
+- report what was verified;
+- report anything that could not be verified.
+
+Never claim something was tested if it was not. Do not invent a
+successful verification result.
+
+---
+
+## CANONICAL PUBLIC ARCHITECTURE
+
+Canonical routes include:
 
 ```
-#038390   Teal — основний акцент, кнопки, посилання
-#026B76   Teal Dark — hover стани
-#1A1A1A   Charcoal — заголовки, основний текст
-#FFFFFF   White — фон сторінок, картки
-#F0F7F8   Powder — фон секцій, QLIXA-картки
-#E6F4F5   Light Teal — border, розділювачі
-#595959   Gray — другорядний текст
-#9D9D9D   Gray Light — muted текст, footer
-#F5E642   Yellow — маркер тексту
-#CC0000   Red — помилки, placeholder
-#F59E0B   Amber — попередження
-#10B981   Green — успіх
+/
+/tax-return
+/pricing
+/about
+/articles
+/tools
+/impressum
+/privacy
+/agb
+/cookies
 ```
 
-**Правила:**
-- Темний фон `#1A1A1A` — максимум 1 секція на сторінку
-- За замовчуванням: Powder або White фон
-- Заборонено: корпоративний синій, агресивний червоний, тьмяний сірий
+Legacy redirects may intentionally remain (e.g. old `/for/*` slugs,
+`/datenschutz`, `/terms`, `/how-it-works/tax-return`).
+
+Rules:
+
+- do not introduce new segmented consumer product pages such as
+  `/for/employee`, `/for/freelancer`, etc.;
+- the unified consumer tax product canonical page is `/tax-return`;
+- do not remove an intentional redirect merely because it is legacy.
+
+If current repository structure differs, report the difference
+instead of silently rewriting architecture.
 
 ---
 
-## Текст і фон — ПРАВИЛО КОНТРАСТУ
+## ARTICLES
 
-| Фон секції | Колір тексту | Логотипи |
-|-----------|-------------|---------|
-| Білий `#FFFFFF` або Powder `#F0F7F8` | Чорний `#1A1A1A` | `_black` версії |
-| Темний `#1A1A1A` | Білий `#FFFFFF` | `_white` версії |
+Before creating a new article:
 
----
+- inspect the current published article architecture;
+- inspect `src/lib/articles.ts`;
+- inspect one current representative published article;
+- reuse current article components/patterns;
+- verify every place where article metadata must currently be registered.
 
-## Логотипи — КОЛИ ЩО ВИКОРИСТОВУВАТИ
+Do not rely on an old copied JSX template in this file.
 
-### Повний логотип з назвою і слоганом
-| Файл | Коли використовувати |
-|------|---------------------|
-| `logo-name-slogan_planets_black.svg` | Світлий фон (білий, powder) — Navbar, Footer, PDF |
-| `logo-name-slogan_planets_white.svg` | Темний фон `#1A1A1A` |
+For current Austrian legal, tax or procedural claims: verify
+authoritative current sources before publishing. Do not invent fixed
+deadlines, eligibility, fees or legal requirements.
 
-### Тільки текст QLIXA
-| Файл | Коли використовувати |
-|------|---------------------|
-| `qlixa-text_planet_black.svg` | Світлий фон |
-| `qlixa-text_planet_white.svg` | Темний фон |
-
-### Favicon / іконка
-| Файл | Коли використовувати |
-|------|---------------------|
-| `favicon-planet-black.svg` | Favicon, маленькі акценти на світлому фоні |
+If article registration is duplicated across multiple files, do not
+silently refactor it during article creation. Report it as technical
+debt unless refactoring was explicitly approved.
 
 ---
 
-## Шрифти (ТІЛЬКИ ЦІ)
+## PDF WORK
 
-| Шрифт | Використання |
-|-------|-------------|
-| DM Serif Display | H1, H2, H3 — weight 400 |
-| DM Sans | Весь body, UI, кнопки |
-| Caveat | Акцентні підписи |
+Before creating or materially modifying a PDF, read:
+
+1. `docs/PDF_MASTER_TEMPLATE.md`
+2. `docs/QLIXA_Brand_Style_Guide.md`
+
+Those documents own PDF-specific layout and branding.
+
+Do not duplicate PDF CSS/layout specifications in this file.
+
+If those documents conflict with each other: STOP and report the conflict.
 
 ---
 
-## Відступи
+## LEGAL / COMPANY INFORMATION
+
+Do not assume company, trademark, analytics, cookie, privacy or
+legal-page facts from historical project notes.
+
+Before publishing or changing legal/company information: verify the
+current approved project information and, where appropriate, current
+authoritative legal sources.
+
+Legal pages are a CRITICAL AREA and require explicit approval before
+modification.
+
+---
+
+## Key files
 
 ```
-Секції:         72px clamp(20px,6vw,80px)
-Компактні:      48px clamp(20px,6vw,80px)
-Max-width:      1200px (основний), 860–900px (статті)
-Картки radius:  16–20px
-Кнопки radius:  10–14px
-Badge radius:   999px
+src/app/page.tsx                     — homepage
+src/app/articles/                    — all articles
+src/lib/articles.ts                  — article metadata source of truth
+src/app/about/page.tsx               — about page
+src/styles/globals.css               — global styles
+src/components/layout/Navbar.tsx     — navbar
+src/components/layout/Footer.tsx     — footer
+src/components/RWRCalculator.tsx     — RWR+ calculator
+src/components/RWRChecklists.tsx     — PDF checklists
+public/logos/                        — all logos
+public/articles/                     — article media and PDFs
 ```
-
----
-
-## Компоненти
-
-### Кнопка Primary
-```tsx
-background: '#038390', color: '#fff', borderRadius: 12,
-padding: '13px 28px', fontWeight: 700, border: 'none'
-// hover: background '#026B76'
-```
-
-### Кнопка Ghost
-```tsx
-background: '#F0F7F8', border: '1px solid rgba(3,131,144,0.25)',
-color: '#038390', borderRadius: 10
-```
-
-### Картка QLIXA (основна)
-```tsx
-background: '#F0F7F8', borderRadius: 20,
-border: '1px solid rgba(3,131,144,0.10)'
-// hover: translateY(-4px), shadow teal
-```
-
-### Картка біла
-```tsx
-background: '#fff', border: '1px solid #E6F4F5',
-borderRadius: 16, boxShadow: '0 4px 16px rgba(53,52,52,0.07)'
-```
-
-### Badge
-```tsx
-fontSize: 11, fontWeight: 700, letterSpacing: '2px',
-textTransform: 'uppercase', padding: '4px 12px',
-borderRadius: 999, background: 'rgba(3,131,144,0.1)',
-color: '#038390'
-```
-
-### Картки статей
-- Фото: `height: 190px`, `borderRadius: 14`
-- Body grid: `minHeight: 200px`
-- Body slider: `minHeight: 230px`
-- Title: `minHeight: 58–60px`, `flex: none`
-- Desc: `flex: 1`
-
----
-
-## PDF фірмовий стиль
-
-**Хедер:** білий фон | логотип `logo-name-slogan_planets_black.svg` ліво (160px) | teal лінія 2px знизу | назва + qlixa.eu справа
-
-**Футер:** білий фон | логотип ліво (110px) | "Твій цифровий бізнес-помічник в Австрії | qlixa.eu" справа
-
-**Кольори:**
-- Заголовки секцій: `#038390` фон, білий текст
-- Рядки: чергуються `#F0F7F8` / `#FFFFFF`
-- Успіх: `#E8F8F0` фон
-- Увага: `#FFF8E7` фон
-- Дисклеймер: курсив, `#888888`, 8–9px
-
-**Логотип в PDF — завжди fetch динамічно:**
-```tsx
-const res = await fetch('/logos/logo-name-slogan_planets_black.svg')
-const svgText = await res.text()
-const svgBlob = new Blob([svgText], { type: 'image/svg+xml' })
-const svgUrl = URL.createObjectURL(svgBlob)
-// Конвертуй в PNG через canvas перед jsPDF
-```
-
----
-
-## Тон голосу
-
-**✅ Можна:** "ти", легкі жарти, 1–2 emoji на блок, прості речення
-**❌ Не можна:** сарказм, складні терміни без пояснення, юридичні гарантії, "ТЕРМІНОВО!"
-
----
-
-## Структура нової статті
-```
-Hero: h1 (DM Serif) + subtitle + tags + date + readTime + фото справа
-TOC sidebar (sticky, scrollMarginTop: 80px)
-Disclaimer (якщо є юр. інфо)
-Секції з anchor id + scrollMarginTop: 80px
-Завантаження PDF (якщо є)
-CTA в кінці
-```
-
----
-
-## Юридична інформація
-
-- **Юр. особа:** QLIXA GmbH (in Gründung)
-- **Email:** info@qlixa.eu — ТІЛЬКИ email (без адреси!)
-- **Торгова марка:** QLIXA™ (реєстрація в процесі)
-- **Аналітика:** Plausible (cookie banner не потрібен)
-- **Placeholder поля:** red dashed underline
-
----
-
-## Ключові файли
-
-```
-src/app/page.tsx                     — головна сторінка
-src/app/articles/                    — всі статті
-src/app/about/page.tsx               — про нас
-src/components/layout/Navbar.tsx     — навбар
-src/components/layout/Footer.tsx     — футер
-src/components/RWRCalculator.tsx     — калькулятор RWR+
-src/components/RWRChecklists.tsx     — PDF чеклісти
-public/logos/                        — всі логотипи
-public/articles/                     — медіа та PDF статей
-```
-
----
-
-## Заборонено в дизайні
-
-- ❌ Більше 1 темної секції на сторінку
-- ❌ Emoji як основні іконки в секціях
-- ❌ Текст без відступів
-- ❌ Корпоративні сірі блоки
-- ❌ Забагато анімацій (тільки subtle hover)
-- ❌ Фізична адреса у розділах контакту
-
----
-
-## 📄 ПРАВИЛО ГЕНЕРАЦІЇ PDF
-
-**Перед створенням БУДЬ-ЯКОГО PDF-документу — обов'язково:**
-
-1. Прочитай `docs/PDF_MASTER_TEMPLATE.md` → візьми архітектуру, структуру, компоненти
-2. Прочитай `docs/BRAND_STYLE_GUIDE.md` → візьми кольори, шрифти, логотипи
-3. Тільки після цього — генеруй документ
-
-**Ніколи:**
-- ❌ Не прописуй HEX кольори вручну в PDF коді
-- ❌ Не вигадуй структуру хедера/футера — вона в PDF_MASTER_TEMPLATE.md
-- ❌ Не вбудовуй логотип як статичний base64 — завжди fetch динамічно
-
-**Логотип в PDF — завжди так:**
-```tsx
-const res = await fetch('/logos/logo-name-slogan_planets_black.svg')
-const svgText = await res.text()
-const svgBlob = new Blob([svgText], { type: 'image/svg+xml' })
-const svgUrl = URL.createObjectURL(svgBlob)
-// конвертуй SVG → PNG через canvas перед jsPDF
-```
-
----
-
-## 🛠️ DEVELOPMENT WORKFLOW
-
-### 1. Verify Before You Build
-Перед реалізацією будь-якої функції завжди пояснюй:
-- як будеш перевіряти що все працює
-- що має відбутися якщо все реалізовано правильно
-- які частини застосунку можуть бути зачеплені
-
-Після реалізації:
-- запусти всі необхідні кроки перевірки
-- звітуй що саме було протестовано
-- звітуй чи все пройшло успішно
-- якщо щось не вдалося перевірити автоматично — поясни чому
-
-❌ Ніколи не завершуй задачу без верифікації.
-
----
-
-### 2. Ask Before Editing Critical Areas
-Перед зміною будь-якого критичного коду (платежі, автентифікація, підписки, рахунки, податкові розрахунки, міграції БД, юридичні документи або все що може вплинути на production дані):
-
-Зупинись. Запитай підтвердження.
-Поясни:
-- що зміниться
-- які файли зачеплені
-- можливі побічні ефекти
-- можливі ризики
-- стратегія відкату якщо щось піде не так
-
-❌ Не модифікуй критичний код без явного дозволу.
-
----
-
-### 3. Interview Before Every Major Feature
-Перед будь-якою великою задачею (нова сторінка, стаття, калькулятор, дашборд, функція, автоматизація, AI-інструмент тощо) — спочатку проведи інтерв'ю.
-
-Запитай:
-- Яку основну проблему це вирішує?
-- Для кого це?
-- Як виглядає успішний результат?
-- Що це НЕ повинно робити?
-- Є обмеження?
-- Це MVP чи фінальна версія?
-
-Підсумуй відповіді. Починай реалізацію тільки після підтвердження.
-❌ Ніколи не пропускай цей крок.
-
----
-
-### 4. Reuse Before Creating
-Перед створенням нового компонента, функції, сторінки або утиліти — перевір існуючий код.
-
-Запитай себе:
-- Чи існує щось подібне?
-- Чи можна це розширити замість створення нового?
-- Чи може це стати reusable компонентом?
-
-Надавай перевагу розширенню існуючої архітектури над створенням дублікатів.
-
----
-
-### 5. Consolidate Duplicate Logic
-Регулярно перевіряй кодову базу. Якщо кілька компонентів або функцій виконують одну роботу:
-- визнач їх
-- запропонуй об'єднання в одне reusable рішення
-- поясни переваги
-
-❌ Ніколи не дублюй логіку без причини.
-
----
-
-### 6. Suggest Existing Skills
-Перед вирішенням задачі перевір чи існує Claude Skill який може виконати це краще.
-Якщо є відповідний Skill — поясни:
-- що це за Skill
-- чому він підходить
-- які переваги він дає
-- чи варто додати його до QLIXA workflow
-
----
-
-### 7. Improve Existing Skills
-Щоразу коли використовуємо Claude Skill — думай як його покращити.
-Кожен Skill має містити розділ **Gotchas** з:
-- типовими помилками
-- edge cases
-- уроками з реального досвіду
-- речами що раніше спричиняли баги
-- рекомендаціями як уникнути цих помилок
-
-Skills мають постійно розвиватися з реального досвіду проєкту.
-
----
-
-### 8. Suggest Automation Opportunities
-Під час кожної задачі активно шукай можливості для автоматизації.
-Якщо помічаєш повторювану роботу — пропонуй:
-- автоматизацію
-- reusable інструменти
-- генератори
-- шаблони
-- AI workflows
-- інтеграції
-
-Завжди пояснюй чому автоматизація допомагає і яка економія часу.
-Думай як технічний співзасновник, а не просто розробник.
-
----
-
-### 9. Build for the Future
-Ніколи не вирішуй тільки сьогоднішню проблему.
-При проєктуванні завжди враховуй:
-- масштабованість
-- підтримуваність
-- локалізацію
-- майбутні модулі та інтеграції
-- підтримку багатьох мов
-- повторне використання
-
-Обирай рішення що зменшують майбутню роботу. Уникай швидких хаків.
-
----
-
-### 10. Think Like a Product Architect
-Не просто виконуй запити — оцінюй чи є краще продуктове рішення.
-Якщо бачиш більш масштабований, простіший або зручніший підхід:
-- поясни його
-- покажи компроміси
-- дай мені вибрати
-
-Твоя роль — не тільки писати код, а допомагати проєктувати продукт який буде легко підтримувати через роки.
-
----
-
-### 11. Protect the QLIXA Design System
-Перед створенням будь-якого UI перевір:
-- Brand Style Guide
-- Design Rules
-- існуючі компоненти, іконки, відступи, типографіку
-
-❌ Ніколи не вигадуй стилі що суперечать дизайн-системі.
-Весь UI має відчуватися як один продукт.
-
----
-
-### 12. Think Like an Owner
-При технічних рішеннях думай як один із засновників QLIXA.
-Пріоритети:
-- простота
-- підтримуваність
-- читабельність
-- масштабованість
-- довіра користувачів
-- довгострокова якість продукту
-
-Оптимізуй не для швидкого написання коду — а для продукту яким ми будемо пишатися через роки.
-
----
-
-### 13. Challenge Before Implementing
-Не автоматично реалізуй кожну ідею точно як запитано.
-Якщо бачиш простіше, елегантніше або зручніше рішення:
-- поясни своє міркування
-- порівняй обидва підходи
-- рекомендуй кращий варіант
-- дай мені прийняти фінальне рішення
-
-Поважай мої вимоги, але не соромся оскаржувати їх коли це справді покращує продукт.
-
----
-
-## 📋 ТЕХНІЧНИЙ БОРГ / МАЙБУТНІ ПОКРАЩЕННЯ
-
-### Design Tokens — CSS змінні (ПРІОРИТЕТ перед великим редизайном)
-
-**Проблема зараз:**
-Всі кольори прописані як inline styles в кожному компоненті (`background: '#038390'`).
-Щоб змінити колір — треба шукати по всіх файлах вручну.
-
-**Рішення — перейти на CSS змінні:**
-```css
-/* globals.css */
-:root {
-  --color-primary:    #038390;
-  --color-primary-dark: #026B76;
-  --color-charcoal:   #1A1A1A;
-  --color-white:      #FFFFFF;
-  --color-powder:     #F0F7F8;
-  --color-light-teal: #E6F4F5;
-  --color-gray:       #595959;
-  --color-gray-light: #9D9D9D;
-  --color-yellow:     #F5E642;
-  --color-red:        #CC0000;
-  --color-amber:      #F59E0B;
-  --color-green:      #10B981;
-}
-```
-
-**Тоді в компонентах:**
-```tsx
-background: 'var(--color-primary)'   // замість '#038390'
-color: 'var(--color-charcoal)'       // замість '#1A1A1A'
-```
-
-**Результат:**
-Щоб змінити весь колір сайту — міняєш 1 рядок в 1 файлі.
-
-**Коли робити:** перед запуском або перед великим редизайном.
-**Оцінка часу:** 2–3 години роботи.
-
----
-
-### Принципи кольорів (до врахування при наступному редизайні)
-
-Уникати чистих кольорів — вони створюють різкий контраст і eye strain.
-Використовувати off-версії:
-
-| Замість | Краще |
-|---------|-------|
-| `#000000` чистий чорний | `#0C0A00`, `#28282B`, `#15161A` |
-| `#FFFFFF` чистий білий | `#FAF9F6`, `#FFFAFA`, `#F0F8FF` |
-| `#FF0000` чистий червоний | `#D21404`, `#E3242B`, `#B90E0A` |
-| `#00FF00` чистий зелений | `#5DBB63`, `#3DED97`, `#AEF359` |
-
-**Наші поточні кольори:**
-- `#1A1A1A` — ✅ вже off-black
-- `#10B981` — ✅ вже off-green  
-- `#FFFFFF` — ⚠️ можна замінити на `#FAF9F6` при редизайні
-- `#CC0000` — ⚠️ можна замінити на `#D21404` при редизайні
----
-
-## 📰 ПРАВИЛА НОВИХ СТАТЕЙ
-
-### Структура кожної статті — обов'язково
-
-**1. Hero секція — завжди однакова:**
-```tsx
-<section style={{ background: '#F0F7F8', padding: '56px clamp(20px,6vw,80px) 40px' }}>
-  <div style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
-    
-    {/* Ліво — текст */}
-    <div style={{ flex: 1 }}>
-      {/* Теги */}
-      <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' }}>
-        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: '#038390', background: 'rgba(3,131,144,0.1)', padding: '4px 12px', borderRadius: 999 }}>КАТЕГОРІЯ</span>
-        <span style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase', color: '#595959', background: 'rgba(89,89,89,0.08)', padding: '4px 12px', borderRadius: 999 }}>ПІДКАТЕГОРІЯ</span>
-      </div>
-      {/* Заголовок */}
-      <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
-        Заголовок статті:<br/>
-        <em style={{ color: '#038390', fontStyle: 'italic' }}>підзаголовок</em>
-      </h1>
-      {/* Мета */}
-      <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap', fontSize: 13, color: '#888' }}>
-        <span>🕐 X хв читання</span>
-        <span>📅 Місяць 20XX</span>
-        <span>✍️ QLIXA</span>
-      </div>
-    </div>
-
-    {/* Право — фото */}
-    <div style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
-      <img src="/articles/назва-cover.jpg" alt="..." style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
-    </div>
-
-  </div>
-</section>
-```
-
-**2. Контент секція — завжди з трьома колонками:**
-```tsx
-<section style={{ padding: '56px clamp(20px,6vw,80px)' }}>
-  <div style={{ maxWidth: 1060, margin: '0 auto', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
-    
-    <ArticleSidebar currentSlug="slug-статті" />  {/* ліво: всі статті */}
-    
-    <aside style={{ flex: '0 0 200px', position: 'sticky', top: 24, ... }}>
-      {/* Зміст — TOC */}
-    </aside>
-    
-    <div style={{ flex: 1, minWidth: 0 }}>
-      {/* Основний контент */}
-      <ArticlePrevNext currentSlug="slug-статті" />  {/* в кінці */}
-    </div>
-
-  </div>
-</section>
-```
-
-**3. TOC — правила:**
-- Кожен h2 розділ має `id="..."` і `scrollMarginTop: '80px'`
-- TOC aside: `flex: '0 0 200px'`, `position: sticky`, `top: 24`
-- Стиль посилань: колір `#595959`, hover `#038390`
-
-**4. Зображення обкладинки:**
-- Формат: JPG (не PNG)
-- Розмір: до 200KB
-- Розміри: 1536×1024px або подібне співвідношення 3:2
-- Шлях: `public/articles/назва-cover.jpg`
-
-**5. Додавання в три місця — ОБОВ'ЯЗКОВО:**
-Кожна нова стаття додається в:
-1. `src/app/page.tsx` — масив `published` (головна сторінка)
-2. `src/app/articles/page.tsx` — масив `published` (сторінка статей)
-3. `src/app/articles/[slug]/page.tsx` — окрема сторінка статті
-
-**6. Параметри картки статті:**
-```tsx
-{
-  href: '/articles/slug',
-  cover: '/articles/slug-cover.jpg',
-  tag: 'Категорія',
-  date: 'Місяць 20XX',
-  title: 'Заголовок статті',
-  desc: 'Короткий опис до 2 рядків',
-  readTime: 'X хв читання',
-  author: 'QLIXA',
-}
-```
-
-**7. Розміри карток — не змінювати:**
-- Фото: `height: 190px`, `borderRadius: 14`
-- Body grid: `minHeight: 200px`
-- Body slider: `minHeight: 230px`
-- Title: `minHeight: 58-60px`, `flex: none`
-- Desc: `flex: 1`
-
-**8. Персонаж у статтях:**
-- Використовуємо тільки "Ірина" (без прізвища)
-- Відмінюється: Ірини, Ірині, Іриною
-- НЕ писати: Muller, Müller, Ірина Мюллер
----
-
-## 📰 ПРАВИЛО НОВОЇ СТАТТІ — 4 МІСЦЯ
-
-Кожна нова стаття додається ОБОВ'ЯЗКОВО в 4 місця:
-
-1. `src/lib/articles.ts` — головний список статей (використовується в ArticleSidebar і ArticlePrevNext)
-2. `src/app/page.tsx` — масив `published` (секція "Останні статті" на головній)
-3. `src/app/articles/page.tsx` — масив `published` (сторінка всіх статей)
-4. `src/app/articles/[slug]/page.tsx` — окрема сторінка статті
-
-❌ Якщо стаття додана тільки в 1-2 місця — вона не відображатиметься скрізь!
-
-### Шаблон запису в src/lib/articles.ts:
-```ts
-{
-  slug: 'назва-статті',
-  href: '/articles/назва-статті',
-  tag: 'Категорія',
-  title: 'Повна назва статті',
-  desc: 'Короткий опис до 2 рядків.',
-  cover: '/articles/назва-статті-cover.jpg',
-  published: true,  // false = "Скоро" в сайдбарі
-},
-```
-
-### Порядок статей в articles.ts:
-Нові опубліковані статті додаються на ПОЧАТОК масиву.
-Статті з `published: false` залишаються в кінці.
-## 📏 МІНІМАЛЬНІ РОЗМІРИ ШРИФТУ (ОБОВ'ЯЗКОВО ДЛЯ ВСІХ НОВИХ СТОРІНОК І СТАТЕЙ)
-
-Еталон визначено в серпні 2026 на основі секції "Це знайомо?" на головній сторінці.
-Повна специфікація — у `docs/QLIXA_Design_Tokens.md`.
-
-**Правило просте: жоден текст, який людина має прочитати й зрозуміти, не може бути дрібнішим за ці розміри:**
-
-| Роль тексту | Мінімальний розмір | Вага |
-|---|---|---|
-| Заголовки секцій (H2/H3) | `clamp(30px, 3.4vw, 46px)` | 700 |
-| Виділений/акцентний текст (назви карток, заголовки пунктів) | `18px` | 700 |
-| Основний описовий текст (параграфи, пояснення, пункти чеклистів) | `15px` | 500 |
-
-**Кольори для тексту:**
-- Заголовки/виділення: `#1A1A1A`
-- Основний опис: `#404040` (НЕ `#595959` — замало контрасту для читабельності)
-- Справді другорядне (footer, копірайт): `#9D9D9D`
-
-**Винятки (можна лишати дрібнішими — це декоративні елементи, не текст для читання):**
-- UPPERCASE бейджі-пігулки (категорії, теги) — 11px
-- Номерні кружечки кроків (цифра в кольоровому колі)
-- Дрібні підписи-переклади під німецькими термінами (курсив, одне слово)
-- Progress bar / індикатори кроків
-
-**Перед написанням будь-якої нової статті чи сторінки — звіряйся з цією таблицею. Якщо сумніваєшся, чи текст "реальний" чи "декоративний" — став 15px, це завжди безпечний мінімум.**
-## 🖼️ ЛОГОТИП В ІНСТРУМЕНТАХ
-
-Для всіх інтерактивних інструментів і калькуляторів (RWR+ калькулятор, чеклисти, майбутні інструменти)
-використовувати ТІЛЬКИ:
-
-`/logos/favicon-planet-origin.svg`
-
-НЕ використовувати `favicon-planet-black.svg` в інструментах — цей файл лишається тільки для:
-- фавікону вкладки браузера (`layout.tsx`)
-- декоративних CTA-блоків у статтях (не інтерактивних інструментів)
-## 🖥️ ДЕСКТОП-ПЕРШИЙ ПІДХІД (поточний етап)
-
-Зараз верстаємо **тільки під десктоп**. Мобільна адаптація — окремий етап пізніше.
-
-### Правило "не обрізати, а зменшувати"
-
-Якщо текст або ряд елементів (теги, посилання, кнопки в один рядок) можуть не влізти
-в контейнер — **НІКОЛИ** не використовуй `overflow: hidden` саме по собі як рішення.
-Замість цього застосовуй компонент, який **вимірює реальну ширину контейнера** і
-підганяє вміст під неї:
-
-- **Один текстовий елемент** (заголовок, речення) → `FitHeadline`
-  (`src/components/FitHeadline.tsx`) — зменшує `font-size` по 0.5px, поки не влізе
-  в 1 рядок.
-- **Рядок з кількох елементів** (теги-пігулки, кнопки поруч) → `FitRow`
-  (`src/components/FitRow.tsx`) — масштабує весь рядок цілком через `transform: scale`.
-
-❌ **Заборонено:** `clamp(min, Xvw, max)` для розміру шрифту всередині контейнера,
-ширина якого НЕ дорівнює ширині вікна (наприклад, контейнер `max-width: 800px`
-всередині сторінки шириною 1440px) — `vw` рахується від вікна, а не від контейнера,
-тому текст або обрізається, або переповнює. `clamp(vw)` можна використовувати
-лише коли елемент реально займає всю ширину вікна (напр. заголовки на всю ширину сайту).
-
-### Чому це важливо
-Обрізаний текст (як тепер було з тегами "Маєш капітальні та закордонні доходи...")
-виглядає як помилка й губить сенс. Краще трохи менший, але **повний** текст.
