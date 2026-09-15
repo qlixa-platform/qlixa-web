@@ -480,7 +480,7 @@ export default function InvalidityChildPage() {
                 {t.titleLine1}<br />
                 <em style={{ color: '#038390', fontStyle: 'italic' }}>{t.titleEm}</em>
               </h1>
-              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: '#888' }}>
+              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: 'var(--color-gray)' }}>
                 <span>{t.metaTime}</span>
                 <span>{t.metaParents}</span>
                 <span>{t.metaForeigners}</span>

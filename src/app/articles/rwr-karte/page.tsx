@@ -610,7 +610,7 @@ export default function RWRKartePage() {
               <p style={{ fontSize: 16, color: '#595959', lineHeight: 1.75, marginBottom: 24, maxWidth: 480 }}>
                 {t.intro}
               </p>
-              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: '#888' }}>
+              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: 'var(--color-gray)' }}>
                 <span>📅 {t.date}</span>
                 <span>⏱ {t.readTime}</span>
                 <span>✍️ QLIXA</span>

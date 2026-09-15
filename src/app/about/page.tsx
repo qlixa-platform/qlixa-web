@@ -782,7 +782,7 @@ export default function AboutPage() {
                   <div key={item.title} style={{ background: '#fff', borderRadius: 14, padding: '16px 12px', textAlign: 'center' as const }}>
                     <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', marginBottom: 8 }}>{item.title}</div>
                     <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: '#038390', marginBottom: 4 }}>{item.price}</div>
-                    <div style={{ fontSize: 11, color: '#9D9D9D' }}>{item.note}</div>
+                    <div style={{ fontSize: 11, color: 'var(--color-text-muted)' }}>{item.note}</div>
                   </div>
                 ))}
               </div>

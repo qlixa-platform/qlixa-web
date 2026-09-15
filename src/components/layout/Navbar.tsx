@@ -134,7 +134,7 @@ export default function Navbar() {
               {navItems.map(item => (
                 <Link key={item.label} href={item.href} style={{
                   padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
-                  color: '#9D9D9D', textDecoration: 'none',
+                  color: 'var(--color-text-muted)', textDecoration: 'none',
                 }}
                   onClick={
                     item.href === '/#who-its-for' ? scrollToAnchor('who-its-for') :
@@ -142,17 +142,17 @@ export default function Navbar() {
                     undefined
                   }
                   onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--color-text-muted)'}
                 >
                   {item.label}
                 </Link>
               ))}
               <Link href="/pricing" style={{
                 padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
-                color: '#9D9D9D', textDecoration: 'none',
+                color: 'var(--color-text-muted)', textDecoration: 'none',
               }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--color-text-muted)'}
               >
                 {t.pricing}
               </Link>
@@ -172,7 +172,7 @@ export default function Navbar() {
                       cursor: 'pointer',
                       fontSize: 12,
                       fontWeight: lang === l ? 700 : 400,
-                      color: lang === l ? '#038390' : '#9D9D9D',
+                      color: lang === l ? '#038390' : 'var(--color-text-muted)',
                       padding: '2px 5px',
                       borderRadius: 4,
                       fontFamily: 'DM Sans, sans-serif',
@@ -187,7 +187,7 @@ export default function Navbar() {
 
               <a href={`https://cabinet-ten-lac.vercel.app/login?lang=${lang === 'UA' ? 'uk' : lang.toLowerCase()}`} style={{
                 padding: '8px 16px', borderRadius: 10, fontSize: 14, fontWeight: 500,
-                color: '#9D9D9D', border: '1px solid #9D9D9D',
+                color: 'var(--color-text-muted)', border: '1px solid var(--color-text-muted)',
                 background: 'transparent', cursor: 'pointer', fontFamily: 'DM Sans, sans-serif',
                 textDecoration: 'none', display: 'inline-block',
               }}>

@@ -1075,25 +1075,25 @@ export default function HomePage() {
             <div style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
               <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item1.title}</div>
               <div style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item1.price}</div>
-              <div style={{ fontSize: 11, color: '#8A8A8A', lineHeight: 1.3 }}>{t.hero.flow.item1.desc}</div>
+              <div style={{ fontSize: 11, color: 'var(--color-gray)', lineHeight: 1.3 }}>{t.hero.flow.item1.desc}</div>
             </div>
             <div style={{ width: 1, alignSelf: 'stretch' as const, background: 'rgba(3,131,144,0.15)', flexShrink: 0 }} />
             <div style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
               <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item2.title}</div>
               <div style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item2.price}</div>
-              <div style={{ fontSize: 11, color: '#8A8A8A', lineHeight: 1.3 }}>{t.hero.flow.item2.desc}</div>
+              <div style={{ fontSize: 11, color: 'var(--color-gray)', lineHeight: 1.3 }}>{t.hero.flow.item2.desc}</div>
             </div>
             <div style={{ width: 1, alignSelf: 'stretch' as const, background: 'rgba(3,131,144,0.15)', flexShrink: 0 }} />
             <div style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
               <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item3.title}</div>
               <div style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item3.price}</div>
-              <div style={{ fontSize: 11, color: '#8A8A8A', lineHeight: 1.3 }}>{t.hero.flow.item3.desc}</div>
+              <div style={{ fontSize: 11, color: 'var(--color-gray)', lineHeight: 1.3 }}>{t.hero.flow.item3.desc}</div>
             </div>
             <div style={{ width: 1, alignSelf: 'stretch' as const, background: 'rgba(3,131,144,0.15)', flexShrink: 0 }} />
             <div style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
               <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item4.title}</div>
               <div style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item4.price}</div>
-              <div style={{ fontSize: 11, color: '#8A8A8A', lineHeight: 1.3 }}>{t.hero.flow.item4.desc}</div>
+              <div style={{ fontSize: 11, color: 'var(--color-gray)', lineHeight: 1.3 }}>{t.hero.flow.item4.desc}</div>
             </div>
           </div>
 

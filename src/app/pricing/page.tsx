@@ -336,7 +336,7 @@ export default function PricingPage() {
 
             <div style={rowPriceArea}>
               <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 40, fontWeight: 800, color: '#1A1A1A', lineHeight: 1 }}>€0</div>
-              <div style={{ fontSize: 12, color: '#9D9D9D', marginTop: 8 }}>{t.free.priceNote}</div>
+              <div style={{ fontSize: 12, color: 'var(--color-text-muted)', marginTop: 8 }}>{t.free.priceNote}</div>
             </div>
 
             <div style={rowDivider}>
@@ -363,7 +363,7 @@ export default function PricingPage() {
               <a href={CABINET_URL} style={{ display: 'block', textAlign: 'center' as const, padding: '13px 22px', borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: '#F0F7F8', color: '#038390', border: '1px solid rgba(3,131,144,0.3)', marginBottom: 10 }}>
                 {t.free.cta}
               </a>
-              <p style={{ fontSize: 12, color: '#9D9D9D', textAlign: 'center' as const, margin: 0 }}>{t.free.ctaNote}</p>
+              <p style={{ fontSize: 12, color: 'var(--color-text-muted)', textAlign: 'center' as const, margin: 0 }}>{t.free.ctaNote}</p>
             </div>
           </div>
 
@@ -431,12 +431,12 @@ export default function PricingPage() {
         </p>
 
         {/* Preliminary-result note — subtle, not an alarming legal box. */}
-        <p style={{ maxWidth: 700, margin: '16px auto 0', fontSize: 12, color: '#9D9D9D', lineHeight: 1.5, textAlign: 'center' as const }}>
+        <p style={{ maxWidth: 700, margin: '16px auto 0', fontSize: 12, color: 'var(--color-text-muted)', lineHeight: 1.5, textAlign: 'center' as const }}>
           {t.prelimNote}
         </p>
 
         {/* Self-service note — one short line, no legal box. */}
-        <p style={{ maxWidth: 700, margin: '10px auto 0', fontSize: 12, color: '#9D9D9D', lineHeight: 1.5, textAlign: 'center' as const }}>
+        <p style={{ maxWidth: 700, margin: '10px auto 0', fontSize: 12, color: 'var(--color-text-muted)', lineHeight: 1.5, textAlign: 'center' as const }}>
           {t.selfServiceNote}
         </p>
       </section>

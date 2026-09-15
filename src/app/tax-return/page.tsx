@@ -75,7 +75,7 @@ function YesNoPill({ active, label }: { active?: boolean; label: string }) {
   return (
     <span style={{
       fontSize: 14, fontWeight: 700, padding: '7px 16px', borderRadius: 999,
-      background: active ? '#038390' : '#F0F7F8', color: active ? '#fff' : '#9D9D9D',
+      background: active ? '#038390' : '#F0F7F8', color: active ? '#fff' : 'var(--color-gray)',
       border: `1px solid ${active ? '#038390' : '#E6F4F5'}`,
     }}>
       {label}
@@ -920,7 +920,7 @@ export default function TaxReturnPage() {
               <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 8, marginTop: 14 }}>
                 {terms.map(term => (
                   <span key={term} style={{
-                    fontSize: 14, fontWeight: 600, color: '#9D9D9D', background: 'var(--gray, #F5F5F5)',
+                    fontSize: 14, fontWeight: 600, color: 'var(--color-gray)', background: 'var(--gray, #F5F5F5)',
                     border: '1px solid #E6F4F5', borderRadius: 8, padding: '8px 12px', fontFamily: 'monospace',
                   }}>
                     {term}
@@ -1060,7 +1060,7 @@ export default function TaxReturnPage() {
             ))}
           </div>
           <p style={{ fontSize: 16, fontWeight: 600, color: '#404040', marginBottom: 6 }}>{t.s5Support}</p>
-          <p style={{ fontSize: 15, color: '#9D9D9D' }}>{t.s5Secondary}</p>
+          <p style={{ fontSize: 15, color: 'var(--color-gray)' }}>{t.s5Secondary}</p>
         </div>
       </section>
 
@@ -1145,7 +1145,7 @@ export default function TaxReturnPage() {
             <div style={{ fontSize: 14, color: 'rgba(255,255,255,0.6)', marginBottom: 10, fontWeight: 500 }}>{t.s9ResultLabel}</div>
             <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 44, fontWeight: 700, color: '#fff' }}>€ —</div>
           </div>
-          <p style={{ fontSize: 14, color: '#9D9D9D', maxWidth: 480, margin: '0 auto' }}>{t.s9Note}</p>
+          <p style={{ fontSize: 14, color: 'var(--color-gray)', maxWidth: 480, margin: '0 auto' }}>{t.s9Note}</p>
         </div>
       </section>
 
@@ -1208,7 +1208,7 @@ export default function TaxReturnPage() {
             </div>
           </div>
 
-          <p style={{ fontSize: 14, color: '#9D9D9D', maxWidth: 520, margin: '24px auto 0' }}>{t.s11Caption}</p>
+          <p style={{ fontSize: 14, color: 'var(--color-gray)', maxWidth: 520, margin: '24px auto 0' }}>{t.s11Caption}</p>
         </div>
       </section>
 
@@ -1224,7 +1224,7 @@ export default function TaxReturnPage() {
               </div>
             ))}
           </div>
-          <p style={{ fontSize: 14, color: '#9D9D9D', lineHeight: 1.6, maxWidth: 760, margin: '0 auto', textAlign: 'center' as const }}>
+          <p style={{ fontSize: 14, color: 'var(--color-gray)', lineHeight: 1.6, maxWidth: 760, margin: '0 auto', textAlign: 'center' as const }}>
             {t.s12Disclaimer}
           </p>
         </div>

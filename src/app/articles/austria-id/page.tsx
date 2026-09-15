@@ -93,7 +93,7 @@ const AID_TEXT: Record<string, any> = {
           <NumberedList dark items={['Зайди на сайт: a-trust.at/id-austria-registrierung', 'Введи отриманий Freischaltcode і Widerrufs-Passwort', 'Заверши реєстрацію та прив’яжи обраний спосіб автентифікації — наприклад, застосунок ID Austria']} />
           <div style={{ marginTop: 12, padding: '12px 16px', borderRadius: 10, background: 'var(--success-bg)', border: '1px solid var(--success)', display: 'flex', gap: 10, alignItems: 'center' }}>
             <span style={{ fontSize: 18 }}>✅</span>
-            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--success)' }}>Готово — ID Austria активована та готова до використання.</span>
+            <span style={{ fontSize: 13, fontWeight: 600, color: '#065F46' }}>Готово — ID Austria активована та готова до використання.</span>
           </div>
         </> },
     ],
@@ -165,7 +165,7 @@ const AID_TEXT: Record<string, any> = {
           <NumberedList dark items={['Зайдите на сайт: a-trust.at/id-austria-registrierung', 'Введите полученный Freischaltcode и Widerrufs-Passwort', 'Завершите регистрацию и привяжите выбранный способ аутентификации — например, приложение ID Austria']} />
           <div style={{ marginTop: 12, padding: '12px 16px', borderRadius: 10, background: 'var(--success-bg)', border: '1px solid var(--success)', display: 'flex', gap: 10, alignItems: 'center' }}>
             <span style={{ fontSize: 18 }}>✅</span>
-            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--success)' }}>Готово — ID Austria активирована и готова к использованию.</span>
+            <span style={{ fontSize: 13, fontWeight: 600, color: '#065F46' }}>Готово — ID Austria активирована и готова к использованию.</span>
           </div>
         </> },
     ],
@@ -237,7 +237,7 @@ const AID_TEXT: Record<string, any> = {
           <NumberedList dark items={['Go to: a-trust.at/id-austria-registrierung', 'Enter the Freischaltcode and Widerrufs-Passwort you received', 'Complete registration and link your chosen authentication method — for example, the ID Austria app']} />
           <div style={{ marginTop: 12, padding: '12px 16px', borderRadius: 10, background: 'var(--success-bg)', border: '1px solid var(--success)', display: 'flex', gap: 10, alignItems: 'center' }}>
             <span style={{ fontSize: 18 }}>✅</span>
-            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--success)' }}>Done — ID Austria is activated and ready to use.</span>
+            <span style={{ fontSize: 13, fontWeight: 600, color: '#065F46' }}>Done — ID Austria is activated and ready to use.</span>
           </div>
         </> },
     ],
@@ -309,7 +309,7 @@ const AID_TEXT: Record<string, any> = {
           <NumberedList dark items={['Gehe auf: a-trust.at/id-austria-registrierung', 'Gib den erhaltenen Freischaltcode und das Widerrufs-Passwort ein', 'Schließe die Registrierung ab und verknüpfe deine gewählte Authentifizierungsmethode — zum Beispiel die App ID Austria']} />
           <div style={{ marginTop: 12, padding: '12px 16px', borderRadius: 10, background: 'var(--success-bg)', border: '1px solid var(--success)', display: 'flex', gap: 10, alignItems: 'center' }}>
             <span style={{ fontSize: 18 }}>✅</span>
-            <span style={{ fontSize: 13, fontWeight: 600, color: 'var(--success)' }}>Fertig — ID Austria ist aktiviert und einsatzbereit.</span>
+            <span style={{ fontSize: 13, fontWeight: 600, color: '#065F46' }}>Fertig — ID Austria ist aktiviert und einsatzbereit.</span>
           </div>
         </> },
     ],
@@ -366,7 +366,7 @@ export default function AustriaIdPage() {
                 {t.titleLine1}<br />
                 <em style={{ color: '#038390', fontStyle: 'italic' }}>{t.titleEm}</em>
               </h1>
-              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: '#888' }}>
+              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: 'var(--color-gray)' }}>
                 <span>{t.metaTime}</span>
                 <span>{t.metaSteps}</span>
                 <span>{t.metaForeigners}</span>

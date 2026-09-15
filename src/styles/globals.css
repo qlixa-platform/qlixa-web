@@ -26,7 +26,7 @@
   --shadow-hard:  4px 4px 0 #1A1A1A;
   --success:      #22C55E;
   --success-bg:   rgba(34,197,94,0.1);
-  --warning:      #C9A500;
+  --warning:      #C9A500; /* DEPRECATED — confirmed zero consumers repo-wide (Foundation #3 audit, Sep 2026); kept defined but unused rather than deleted */
   /* Legacy aliases so existing pages compile without errors */
   --orange:       #038390;
   --orange-mid:   rgba(3,131,144,0.2);

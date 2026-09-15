@@ -192,7 +192,7 @@ export default function ToolsPage() {
                   <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 14, color: '#1A1A1A', marginBottom: 2 }}>
                     {item.title}
                   </div>
-                  <div style={{ fontSize: 11, color: '#9D9D9D' }}>
+                  <div style={{ fontSize: 11, color: 'var(--color-text-muted)' }}>
                     {t.checklistSubtitle}
                   </div>
                 </div>

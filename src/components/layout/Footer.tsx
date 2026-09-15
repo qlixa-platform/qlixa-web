@@ -204,7 +204,7 @@ export default function Footer() {
                   style={{ display: 'block' }}
                 />
               </Link>
-              <p style={{ fontSize: 12, lineHeight: 1.6, color: '#9D9D9D', marginBottom: 16 }}>
+              <p style={{ fontSize: 12, lineHeight: 1.6, color: 'var(--color-text-muted)', marginBottom: 16 }}>
                 {t.tagline}
               </p>
             </div>
@@ -215,17 +215,17 @@ export default function Footer() {
                 {col.titleHref ? (
                   <Link href={col.titleHref} style={{
                     display: 'block', fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
-                    textTransform: 'uppercase', color: '#9D9D9D', marginBottom: 16, textDecoration: 'none',
+                    textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: 16, textDecoration: 'none',
                   }}
                     onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--color-text-muted)'}
                   >
                     {col.title}
                   </Link>
                 ) : (
                   <div style={{
                     fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
-                    textTransform: 'uppercase', color: '#9D9D9D', marginBottom: 16,
+                    textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: 16,
                   }}>
                     {col.title}
                   </div>
@@ -233,10 +233,10 @@ export default function Footer() {
                 {col.links.map(link => (
                   <Link key={link.href} href={link.href} style={{
                     display: 'block', fontSize: 13,
-                    color: '#9D9D9D', textDecoration: 'none', marginBottom: 10,
+                    color: 'var(--color-text-muted)', textDecoration: 'none', marginBottom: 10,
                   }}
                     onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
+                    onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--color-text-muted)'}
                   >
                     {link.label}
                   </Link>
@@ -248,25 +248,25 @@ export default function Footer() {
             <div>
               <div style={{
                 fontSize: 11, fontWeight: 700, letterSpacing: '0.08em',
-                textTransform: 'uppercase', color: '#9D9D9D', marginBottom: 16,
+                textTransform: 'uppercase', color: 'var(--color-text-muted)', marginBottom: 16,
               }}>
                 {t.contact}
               </div>
               <a href="mailto:info@qlixa.eu" style={{
                 display: 'block', fontSize: 13,
-                color: '#9D9D9D', textDecoration: 'none', marginBottom: 10,
+                color: 'var(--color-text-muted)', textDecoration: 'none', marginBottom: 10,
               }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--color-text-muted)'}
               >
                 info@qlixa.eu
               </a>
               <button onClick={() => setShowModal(true)} style={{
                 display: 'block', fontSize: 13, background: 'none', border: 'none', padding: 0,
-                color: '#9D9D9D', textDecoration: 'underline', cursor: 'pointer', textAlign: 'left',
+                color: 'var(--color-text-muted)', textDecoration: 'underline', cursor: 'pointer', textAlign: 'left',
               }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
+                onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--color-text-muted)'}
               >
                 {t.errorTrigger}
               </button>
@@ -277,16 +277,16 @@ export default function Footer() {
           <div style={{
             paddingTop: 24, borderTop: '1px solid #f0f0f0',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap',
-            gap: 16, fontSize: 12, color: '#9D9D9D',
+            gap: 16, fontSize: 12, color: 'var(--color-text-muted)',
           }}>
             <span>{t.copyright}</span>
 
             <div style={{ display: 'flex', gap: 14 }}>
               {socials.map(s => (
                 <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer"
-                  title={s.name} style={{ color: '#9D9D9D', display: 'flex' }}
+                  title={s.name} style={{ color: 'var(--color-text-muted)', display: 'flex' }}
                   onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#9D9D9D'}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--color-text-muted)'}
                 >
                   {s.icon}
                 </a>
