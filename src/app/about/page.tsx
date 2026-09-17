@@ -601,7 +601,7 @@ export default function AboutPage() {
             card below aligns its outer edge to this same width. */}
         <div style={{ maxWidth: 1080, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 40 }}>
           <div style={{ flex: '1 1 60%', maxWidth: 520 }}>
-            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 20 }}>{c.badge}</div>
+            <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#026B76', marginBottom: 20 }}>{c.badge}</div>
             <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(32px,4vw,50px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 18 }}>
               {c.h1Line1}<br/>{c.h1Line2}
             </h1>
@@ -739,7 +739,7 @@ export default function AboutPage() {
                 { text: c.s7Pills[4], icon: 'family' as const },
                 { text: c.s7Pills[5], icon: 'euroDoc' as const },
               ].map((pill) => (
-                <span key={pill.text} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7, fontSize: 13, fontWeight: 600, color: '#038390', background: '#F0F7F8', border: '1px solid rgba(3,131,144,0.2)', borderRadius: 16, padding: '10px 12px' }}>
+                <span key={pill.text} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 7, fontSize: 13, fontWeight: 600, color: '#026B76', background: '#F0F7F8', border: '1px solid rgba(3,131,144,0.2)', borderRadius: 16, padding: '10px 12px' }}>
                   <AboutIcon name={pill.icon} size={16} />
                   {pill.text}
                 </span>

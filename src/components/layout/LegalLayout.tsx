@@ -28,7 +28,7 @@ export default function LegalLayout({ children }: { children: React.ReactNode })
         overflowY: 'auto' as const,
       }}>
         <div style={{ padding: '0 24px', marginBottom: 24 }}>
-          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 4 }}>
+          <div style={{ fontSize: 10, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#026B76', marginBottom: 4 }}>
             Правове
           </div>
           <div style={{ fontSize: 11, color: '#888' }}>Юридичні документи</div>

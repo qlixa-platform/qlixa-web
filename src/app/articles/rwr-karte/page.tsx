@@ -661,10 +661,10 @@ export default function RWRKartePage() {
 
               {/* Timeline */}
               <div style={{ background: '#F0F7F8', borderRadius: 16, padding: '24px 28px', marginBottom: 40 }}>
-                <div style={{ fontWeight: 700, color: '#038390', marginBottom: 16, fontSize: 13, letterSpacing: '1px', textTransform: 'uppercase' as const }}>{t.timelineLabel}</div>
+                <div style={{ fontWeight: 700, color: '#026B76', marginBottom: 16, fontSize: 13, letterSpacing: '1px', textTransform: 'uppercase' as const }}>{t.timelineLabel}</div>
                 {t.timeline.map(([time, desc]: [string, string], i: number) => (
                   <div key={i} style={{ display: 'flex', gap: 16, marginBottom: i < 4 ? 12 : 0 }}>
-                    <div style={{ flex: '0 0 100px', fontSize: 12, fontWeight: 700, color: '#038390', paddingTop: 2 }}>{time}</div>
+                    <div style={{ flex: '0 0 100px', fontSize: 12, fontWeight: 700, color: '#026B76', paddingTop: 2 }}>{time}</div>
                     <div style={{ flex: 1, fontSize: 14, color: '#595959', lineHeight: 1.6, borderLeft: '2px solid rgba(3,131,144,0.2)', paddingLeft: 16 }}>{desc}</div>
                   </div>
                 ))}

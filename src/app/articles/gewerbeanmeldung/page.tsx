@@ -61,7 +61,7 @@ function ArticleLink({ href, title, sub }: { href: string; title: string; sub: s
       <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <span style={{ fontSize: 18 }}>📖</span>
         <div>
-          <div style={{ fontSize: 13, fontWeight: 700, color: '#038390' }}>{title}</div>
+          <div style={{ fontSize: 13, fontWeight: 700, color: '#026B76' }}>{title}</div>
           <div style={{ fontSize: 11, color: 'var(--text2)', marginTop: 2 }}>{sub}</div>
         </div>
       </div>

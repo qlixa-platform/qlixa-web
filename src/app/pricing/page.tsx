@@ -304,7 +304,7 @@ export default function PricingPage() {
       {/* Hero — kept short on purpose: commercial model lives in the cards
           below, not in another explanatory paragraph. */}
       <section style={{ background: '#FFFFFF', padding: '40px clamp(20px,6vw,80px) 20px', textAlign: 'center' as const }}>
-        <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 16 }}>{t.eyebrow}</div>
+        <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#026B76', marginBottom: 16 }}>{t.eyebrow}</div>
         <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.2vw,40px)', fontWeight: 700, color: '#1A1A1A', marginBottom: 10, lineHeight: 1.15 }}>
           {t.h1}
         </h1>

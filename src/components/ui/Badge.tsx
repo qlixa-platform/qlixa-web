@@ -25,7 +25,7 @@ const VARIANT_STYLES: Record<BadgeVariant, CSSProperties> = {
     fontWeight: 700,
     letterSpacing: '1.5px',
     textTransform: 'uppercase',
-    color: '#038390',
+    color: '#026B76',
     background: 'rgba(3,131,144,0.1)',
     padding: '4px 12px',
     borderRadius: 999,

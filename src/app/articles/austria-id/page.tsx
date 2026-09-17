@@ -500,7 +500,7 @@ export default function AustriaIdPage() {
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ fontSize: 18 }}>📖</span>
               <div>
-                <div style={{ fontSize: 13, fontWeight: 700, color: '#038390' }}>{t.nextArticleTitle}</div>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#026B76' }}>{t.nextArticleTitle}</div>
                 <div style={{ fontSize: 11, color: 'var(--text2)', marginTop: 2 }}>{t.nextArticleSub}</div>
               </div>
             </div>

@@ -136,7 +136,7 @@ export default function ToolsPage() {
           </div>
 
           {/* Section label — Інструменти */}
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 14 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#026B76', marginBottom: 14 }}>
             {t.toolsLabel}
           </div>
 
@@ -169,7 +169,7 @@ export default function ToolsPage() {
           </div>
 
           {/* Section label — Чеклісти */}
-          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 14 }}>
+          <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#026B76', marginBottom: 14 }}>
             {t.checklistsLabel}
           </div>
 

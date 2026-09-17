@@ -77,7 +77,7 @@ export function ArticleTOC({ items }: { items: [string, string][] }) {
       background: '#F0F7F8', borderRadius: 16,
       padding: '20px 24px', marginBottom: 32,
     }}>
-      <div style={{ fontWeight: 700, color: '#038390', marginBottom: 14, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>
+      <div style={{ fontWeight: 700, color: '#026B76', marginBottom: 14, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>
         {t.toc}
       </div>
       <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px 24px' }}>

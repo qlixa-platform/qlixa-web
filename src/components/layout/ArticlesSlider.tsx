@@ -67,7 +67,7 @@ export default function ArticlesSlider({
             {t.header} <em style={{ fontStyle: 'italic', color: '#038390' }}>{t.headerEm}</em>
           </h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <Link href="/articles" style={{ fontSize: 13, fontWeight: 500, color: '#038390', textDecoration: 'none' }}>
+            <Link href="/articles" style={{ fontSize: 13, fontWeight: 500, color: '#026B76', textDecoration: 'none' }}>
               {t.allArticles}
             </Link>
             <div style={{ display: 'flex', gap: 8 }}>

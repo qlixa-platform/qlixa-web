@@ -18,7 +18,7 @@ function Eyebrow({ children }: { children: React.ReactNode }) {
       display: 'inline-block', padding: '5px 16px', borderRadius: 999,
       background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)',
       fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const,
-      color: '#038390',
+      color: '#026B76',
     }}>
       {children}
     </div>
@@ -39,7 +39,7 @@ function SectionHeading({ children, style }: { children: React.ReactNode; style?
 function Chip({ children }: { children: React.ReactNode }) {
   return (
     <span style={{
-      display: 'inline-block', fontSize: 15, fontWeight: 700, color: '#038390',
+      display: 'inline-block', fontSize: 15, fontWeight: 700, color: '#026B76',
       background: '#F0F7F8', border: '1px solid rgba(3,131,144,0.20)', borderRadius: 999,
       padding: '10px 18px', whiteSpace: 'nowrap' as const,
     }}>
@@ -971,7 +971,7 @@ export default function TaxReturnPage() {
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit,minmax(280px,1fr))', gap: 20 }}>
             {/* Example A — home office */}
             <div style={{ background: '#F0F7F8', borderRadius: 18, padding: 22, border: '1px solid rgba(3,131,144,0.12)' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 10 }}>{t.s3Label}</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, color: '#026B76', marginBottom: 10 }}>{t.s3Label}</div>
               <p style={{ fontSize: 16, fontWeight: 700, color: '#1A1A1A', marginBottom: 12, lineHeight: 1.4 }}>{t.s3QA_Q}</p>
               <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
                 <YesNoPill active label={t.s3Yes} />
@@ -987,7 +987,7 @@ export default function TaxReturnPage() {
 
             {/* Example B — children */}
             <div style={{ background: '#F0F7F8', borderRadius: 18, padding: 22, border: '1px solid rgba(3,131,144,0.12)' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 10 }}>{t.s3Label}</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, color: '#026B76', marginBottom: 10 }}>{t.s3Label}</div>
               <p style={{ fontSize: 16, fontWeight: 700, color: '#1A1A1A', marginBottom: 12, lineHeight: 1.4 }}>{t.s3QB_Q}</p>
               <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
                 <YesNoPill active label={t.s3Yes} />
@@ -1003,7 +1003,7 @@ export default function TaxReturnPage() {
 
             {/* Example C — self-employment */}
             <div style={{ background: '#F0F7F8', borderRadius: 18, padding: 22, border: '1px solid rgba(3,131,144,0.12)' }}>
-              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, color: '#038390', marginBottom: 10 }}>{t.s3Label}</div>
+              <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1px', textTransform: 'uppercase' as const, color: '#026B76', marginBottom: 10 }}>{t.s3Label}</div>
               <p style={{ fontSize: 16, fontWeight: 700, color: '#1A1A1A', marginBottom: 12, lineHeight: 1.4 }}>{t.s3QC_Q}</p>
               <div style={{ display: 'flex', gap: 8, marginBottom: 16 }}>
                 <YesNoPill active label={t.s3Yes} />
@@ -1248,7 +1248,7 @@ export default function TaxReturnPage() {
       {/* ── 14. FINAL CTA ── */}
       <section style={{ background: 'linear-gradient(135deg, #038390 0%, #026B76 100%)', padding: '64px clamp(20px,6vw,80px)' }}>
         <div style={{ maxWidth: 1000, margin: '0 auto', textAlign: 'center' as const }}>
-          <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(255,255,255,0.15)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#fff', marginBottom: 18 }}>
+          <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(0,0,0,0.10)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#fff', marginBottom: 18 }}>
             {t.s14Eyebrow}
           </div>
           <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.6vw,40px)', fontWeight: 700, color: '#fff', lineHeight: 1.25, marginBottom: 14 }}>

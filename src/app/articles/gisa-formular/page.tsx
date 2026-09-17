@@ -707,8 +707,8 @@ export default function GisaFormularPage() {
               <h3 style={{ fontSize: 15, fontWeight: 700, color: '#038390', margin: '20px 0 10px' }}>{t.step1H3_2}</h3>
               <div style={{ display: 'grid', gap: 12, gridTemplateColumns: '1fr 1fr', marginBottom: 16 }}>
                 <div style={{ padding: 14, borderRadius: 10, border: '2px solid #038390', background: 'var(--peach-light)' }}>
-                  <div style={{ fontSize: 15, fontWeight: 700, color: '#038390', marginBottom: 3 }}>{t.step1Way1Title}</div>
-                  <div style={{ fontSize: 11, fontStyle: 'italic', color: '#038390', marginBottom: 5 }}>{t.step1Way1Tr}</div>
+                  <div style={{ fontSize: 15, fontWeight: 700, color: '#026B76', marginBottom: 3 }}>{t.step1Way1Title}</div>
+                  <div style={{ fontSize: 11, fontStyle: 'italic', color: '#026B76', marginBottom: 5 }}>{t.step1Way1Tr}</div>
                   <div style={{ fontSize: 15, color: 'var(--charcoal)', lineHeight: 1.55 }}>{t.step1Way1Desc}</div>
                 </div>
                 <div style={{ padding: 14, borderRadius: 10, border: '1px solid var(--line)', background: 'var(--gray)' }}>
