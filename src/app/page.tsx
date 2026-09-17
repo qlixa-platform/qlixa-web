@@ -882,16 +882,30 @@ export default function HomePage() {
             style={{ position: 'absolute' as const, left: '51%', top: '35.766%', width: '70%', height: '51%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
           />
 
-          {/* HERO_HEADLINE_LINE_1 — "3 КРОКИ" / "3 STEPS" etc.
-              MOVE: edit left / top on this element only. */}
-          <div style={{ position: 'absolute' as const, left: '0%', top: '1.713%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(20px,5.833vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
-            {t.hero.h1[0]}
-          </div>
-          {/* HERO_HEADLINE_LINE_2 — "ДО ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ." / "TO YOUR TAX RETURN IN AUSTRIA." etc.
-              MOVE: edit left / top on this element only. */}
-          <div style={{ position: 'absolute' as const, left: '0%', top: '15.041%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(12px,3.5vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
-            {t.hero.h1[1]}
-          </div>
+          {/* HERO_HEADLINE — both lines wrapped in a single semantic <h1>
+              so the page has exactly one, complete accessible heading
+              ("3 КРОКИ" + "ДО ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ." read as
+              one sentence), without touching either line's own position,
+              typography, or content. The wrapper sets ONLY `margin: 0` —
+              no position/width/height/padding/background of its own —
+              so it contributes no box of its own to the Hero's layout;
+              each line below keeps its EXACT pre-existing inline style,
+              unchanged. See PRE-MOBILE REPAIR #1 report for the CSS
+              reasoning (position:absolute children still resolve their
+              containing block to HERO_CONTENT_CONTAINER, not to this
+              unpositioned wrapper). */}
+          <h1 style={{ margin: 0 }}>
+            {/* HERO_HEADLINE_LINE_1 — "3 КРОКИ" / "3 STEPS" etc.
+                MOVE: edit left / top on this element only. */}
+            <div style={{ position: 'absolute' as const, left: '0%', top: '1.713%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(20px,5.833vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+              {t.hero.h1[0]}
+            </div>
+            {/* HERO_HEADLINE_LINE_2 — "ДО ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ." / "TO YOUR TAX RETURN IN AUSTRIA." etc.
+                MOVE: edit left / top on this element only. */}
+            <div style={{ position: 'absolute' as const, left: '0%', top: '15.041%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(12px,3.5vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+              {t.hero.h1[1]}
+            </div>
+          </h1>
 
           {/* HERO_SUPPORTING_LINE — bullet + "НЕ ПОТРІБНО САМОМУ ЗАПОВНЮВАТИ
               ПОДАТКОВУ ДЕКЛАРАЦІЮ". Two elements (bullet + text) kept as a

@@ -21,11 +21,26 @@ type UpArticle = {
   href: string
 }
 
-const SLIDER_TEXT: Record<string, { header: string; headerEm: string; allArticles: string; readMore: string; soon: string }> = {
-  UA: { header: 'Останні', headerEm: 'статті', allArticles: 'Всі статті →', readMore: 'Читати →', soon: 'Скоро' },
-  RU: { header: 'Последние', headerEm: 'статьи', allArticles: 'Все статьи →', readMore: 'Читать →', soon: 'Скоро' },
-  EN: { header: 'Latest', headerEm: 'articles', allArticles: 'All articles →', readMore: 'Read →', soon: 'Soon' },
-  DE: { header: 'Neueste', headerEm: 'Artikel', allArticles: 'Alle Artikel →', readMore: 'Lesen →', soon: 'Bald' },
+const SLIDER_TEXT: Record<string, {
+  header: string; headerEm: string; allArticles: string; readMore: string; soon: string
+  prev: string; next: string; goToGroup: (n: number) => string
+}> = {
+  UA: {
+    header: 'Останні', headerEm: 'статті', allArticles: 'Всі статті →', readMore: 'Читати →', soon: 'Скоро',
+    prev: 'Попередні статті', next: 'Наступні статті', goToGroup: (n) => `Перейти до групи статей ${n}`,
+  },
+  RU: {
+    header: 'Последние', headerEm: 'статьи', allArticles: 'Все статьи →', readMore: 'Читать →', soon: 'Скоро',
+    prev: 'Предыдущие статьи', next: 'Следующие статьи', goToGroup: (n) => `Перейти к группе статей ${n}`,
+  },
+  EN: {
+    header: 'Latest', headerEm: 'articles', allArticles: 'All articles →', readMore: 'Read →', soon: 'Soon',
+    prev: 'Previous articles', next: 'Next articles', goToGroup: (n) => `Go to article group ${n}`,
+  },
+  DE: {
+    header: 'Neueste', headerEm: 'Artikel', allArticles: 'Alle Artikel →', readMore: 'Lesen →', soon: 'Bald',
+    prev: 'Vorherige Artikel', next: 'Weitere Artikel', goToGroup: (n) => `Zu Artikelgruppe ${n} wechseln`,
+  },
 }
 
 export default function ArticlesSlider({
@@ -70,10 +85,11 @@ export default function ArticlesSlider({
               {t.allArticles}
             </Link>
             <div style={{ display: 'flex', gap: 8 }}>
-              {([{ d: -1, i: '←' }, { d: 1, i: '→' }] as const).map(b => (
+              {([{ d: -1, i: '←', label: t.prev }, { d: 1, i: '→', label: t.next }] as const).map(b => (
                 <button
                   key={b.d}
                   onClick={() => go(b.d)}
+                  aria-label={b.label}
                   style={{
                     width: 36, height: 36, borderRadius: '50%',
                     border: '1px solid rgba(26,26,26,0.15)', background: '#fff',
@@ -154,6 +170,7 @@ export default function ArticlesSlider({
             <button
               key={i}
               onClick={() => setCur(Math.min(i * visible, maxCur))}
+              aria-label={t.goToGroup(i + 1)}
               style={{
                 width: isActive ? 20 : 7, height: 7,
                 borderRadius: isActive ? 4 : '50%',

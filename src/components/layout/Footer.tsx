@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import Input from '@/components/ui/Input'
@@ -158,6 +158,8 @@ export default function Footer() {
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [desc, setDesc] = useState('')
+  const modalRef = useRef<HTMLDivElement>(null)
+  const previousFocusRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
     const updateLang = () => {
@@ -174,7 +176,49 @@ export default function Footer() {
   const closeModal = () => {
     setShowModal(false)
     setName(''); setEmail(''); setDesc('')
+    previousFocusRef.current?.focus()
   }
+
+  const openModal = () => {
+    previousFocusRef.current = document.activeElement as HTMLElement | null
+    setShowModal(true)
+  }
+
+  // Keyboard behavior while the modal is open: Escape closes it, and
+  // Tab/Shift+Tab are trapped within the modal's own focusable controls.
+  useEffect(() => {
+    if (!showModal) return
+
+    const getFocusable = () =>
+      Array.from(modalRef.current?.querySelectorAll<HTMLElement>('input, textarea, button:not([disabled])') || [])
+
+    // Move focus to the first control as soon as the modal renders.
+    getFocusable()[0]?.focus()
+
+    const onKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape') {
+        closeModal()
+        return
+      }
+      if (e.key === 'Tab') {
+        const focusable = getFocusable()
+        if (focusable.length === 0) return
+        const first = focusable[0]
+        const last = focusable[focusable.length - 1]
+        if (e.shiftKey && document.activeElement === first) {
+          e.preventDefault()
+          last.focus()
+        } else if (!e.shiftKey && document.activeElement === last) {
+          e.preventDefault()
+          first.focus()
+        }
+      }
+    }
+
+    document.addEventListener('keydown', onKeyDown)
+    return () => document.removeEventListener('keydown', onKeyDown)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showModal])
 
   const handleSend = () => {
     if (!name || !email || !desc) return
@@ -263,7 +307,7 @@ export default function Footer() {
               >
                 info@qlixa.eu
               </a>
-              <button onClick={() => setShowModal(true)} style={{
+              <button onClick={openModal} style={{
                 display: 'block', fontSize: 13, background: 'none', border: 'none', padding: 0,
                 color: 'var(--color-text-muted)', textDecoration: 'underline', cursor: 'pointer', textAlign: 'left',
               }}
@@ -307,7 +351,7 @@ export default function Footer() {
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           padding: 16, zIndex: 200,
         }}>
-          <div onClick={e => e.stopPropagation()} style={{
+          <div ref={modalRef} onClick={e => e.stopPropagation()} style={{
             background: '#fff', borderRadius: 20, padding: '32px 28px',
             maxWidth: 440, width: '100%', boxShadow: '0 20px 60px rgba(0,0,0,0.2)',
           }}>
