@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
+import ButtonLink from '@/components/ui/ButtonLink'
 
 const CABINET_BASE = 'https://cabinet-ten-lac.vercel.app/login'
 
@@ -1080,12 +1081,9 @@ export default function TaxReturnPage() {
                 </div>
               ))}
             </div>
-            <a href={cabinetUrl} style={{
-              display: 'inline-flex', alignItems: 'center', gap: 8, padding: '15px 30px', background: '#038390',
-              color: '#fff', borderRadius: 12, fontSize: 16, fontWeight: 700, textDecoration: 'none', marginBottom: 12,
-            }}>
+            <ButtonLink href={cabinetUrl} style={{ marginBottom: 12 }}>
               {t.s6Cta}
-            </a>
+            </ButtonLink>
             <p style={{ fontSize: 14, color: '#595959' }}>{t.s6Support}</p>
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1099,12 +1097,9 @@ export default function TaxReturnPage() {
           <SectionHeading style={{ marginBottom: 16 }}>{t.s7H2}</SectionHeading>
           <p style={{ fontSize: 17, color: '#404040', lineHeight: 1.65, marginBottom: 4 }}>{t.s7P1}</p>
           <p style={{ fontSize: 17, color: '#404040', lineHeight: 1.65, marginBottom: 28 }}>{t.s7P2}</p>
-          <a href={cabinetUrl} style={{
-            display: 'inline-flex', alignItems: 'center', gap: 8, padding: '15px 30px', background: '#038390',
-            color: '#fff', borderRadius: 12, fontSize: 16, fontWeight: 700, textDecoration: 'none', marginBottom: 12,
-          }}>
+          <ButtonLink href={cabinetUrl} style={{ marginBottom: 12 }}>
             {t.s7Cta}
-          </a>
+          </ButtonLink>
           <p style={{ fontSize: 14, color: '#595959' }}>{t.s7Support}</p>
         </div>
       </section>
