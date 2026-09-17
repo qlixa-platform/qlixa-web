@@ -826,28 +826,38 @@ export default function HomePage() {
           ends. Every element below is its OWN separate, labeled, absolutely-
           positioned div (not shared via .map()), so each can be nudged
           independently just by editing that one div's left/top. */}
-      <section style={{ background: '#FFFFFF', padding: '0 clamp(20px,6vw,80px)', boxSizing: 'border-box' as const }}>
+      <section className="hero-section" style={{ background: '#FFFFFF', padding: '0 clamp(20px,6vw,80px)', boxSizing: 'border-box' as const }}>
         {/* ▼▼▼ HERO_CROP_WRAPPER — this OUTER box controls Hero's visible
             height. Change ONLY this wrapper's aspect-ratio to trim empty
             space after the trust line — it crops (overflow:hidden), it does
             NOT rescale or distort anything, because the INNER box below
             keeps its ORIGINAL 1200/648 ratio untouched. ▼▼▼ */}
-        <div style={{ maxWidth: 1200, margin: '0 auto', aspectRatio: '1200 / 566', position: 'relative' as const, overflow: 'hidden' }}>
+        <div className="hero-crop-wrapper" style={{ maxWidth: 1200, margin: '0 auto', aspectRatio: '1200 / 566', position: 'relative' as const, overflow: 'hidden' }}>
         {/* ▼▼▼ HERO_CONTENT_CONTAINER — everything belonging to the Hero
             section lives inside this ONE div. Its aspect-ratio (1200/648)
             must stay EXACTLY as is — every child's top/left % below is
             calibrated against this number. ▼▼▼ */}
-        <div style={{ position: 'absolute' as const, top: 0, left: 0, width: '100%', aspectRatio: '1200 / 648' }}>
+        <div className="hero-content-container" style={{ position: 'absolute' as const, top: 0, left: 0, width: '100%', aspectRatio: '1200 / 648' }}>
 
           
           {/* HERO_LAPTOP_IMAGE — combined laptop+phone source image.
-              MOVE: edit left / top / width / height on this element only. */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/hero/laptop_hero_only.png"
-            alt=""
-            style={{ position: 'absolute' as const, left: '51%', top: '35.766%', width: '70%', height: '51%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
-          />
+              MOVE: edit left / top / width / height on this element only.
+              HERO_VISUAL_STAGE — plain, unstyled-at-desktop wrapper (same
+              safe-wrapper technique as HERO_HEADLINE/HERO_SUPPORTING_WRAP):
+              contributes no box at desktop since its only child stays
+              position:absolute and resolves against HERO_CONTENT_CONTAINER
+              unchanged. At mobile only, .hero-visual-stage becomes the
+              product-display card (background/border/radius/decoration)
+              framing the same unmodified laptop asset. */}
+          <div className="hero-visual-stage">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="hero-laptop-image"
+              src="/hero/laptop_hero_only.png"
+              alt=""
+              style={{ position: 'absolute' as const, left: '51%', top: '35.766%', width: '70%', height: '51%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
+            />
+          </div>
 
           {/* HERO_HEADLINE — both lines wrapped in a single semantic <h1>
               so the page has exactly one, complete accessible heading
@@ -861,15 +871,15 @@ export default function HomePage() {
               reasoning (position:absolute children still resolve their
               containing block to HERO_CONTENT_CONTAINER, not to this
               unpositioned wrapper). */}
-          <h1 style={{ margin: 0 }}>
+          <h1 className="hero-headline" style={{ margin: 0 }}>
             {/* HERO_HEADLINE_LINE_1 — "3 КРОКИ" / "3 STEPS" etc.
                 MOVE: edit left / top on this element only. */}
-            <div style={{ position: 'absolute' as const, left: '0%', top: '1.713%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(20px,5.833vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+            <div className="hero-headline-line hero-headline-line-1" style={{ position: 'absolute' as const, left: '0%', top: '1.713%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(20px,5.833vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
               {t.hero.h1[0]}
             </div>
             {/* HERO_HEADLINE_LINE_2 — "ДО ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ." / "TO YOUR TAX RETURN IN AUSTRIA." etc.
                 MOVE: edit left / top on this element only. */}
-            <div style={{ position: 'absolute' as const, left: '0%', top: '15.041%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(12px,3.5vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+            <div className="hero-headline-line hero-headline-line-2" style={{ position: 'absolute' as const, left: '0%', top: '15.041%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(12px,3.5vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
               {t.hero.h1[1]}
             </div>
           </h1>
@@ -878,106 +888,113 @@ export default function HomePage() {
               ПОДАТКОВУ ДЕКЛАРАЦІЮ". Two elements (bullet + text) kept as a
               matched pair — move both together if you move one.
               MOVE: edit left / top on either element below. */}
-          <div style={{ position: 'absolute' as const, left: '0%', top: '27.293%', width: 'clamp(9px,1.3vw,15.6px)', height: 'clamp(9px,1.3vw,15.6px)', borderRadius: '50%', background: '#1F7489' }} />
-          <div style={{ position: 'absolute' as const, left: '1.742%', top: '25.199%', fontFamily: 'Charter, Georgia, serif', fontWeight: 700, fontSize: 'clamp(9px,2vw,24px)', color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
-            {t.hero.supporting}
+          {/* HERO_SUPPORTING_WRAP — plain, unstyled-at-desktop wrapper.
+              Contributes no box of its own at desktop (its only children
+              are position:absolute, so it collapses to zero height and
+              does not affect HERO_CONTENT_CONTAINER's layout); exists so
+              the mobile breakpoint can lay the bullet + text out as one
+              inline-flex pair via .hero-supporting-wrap. */}
+          <div className="hero-supporting-wrap">
+            <div className="hero-bullet" style={{ position: 'absolute' as const, left: '0%', top: '27.293%', width: 'clamp(9px,1.3vw,15.6px)', height: 'clamp(9px,1.3vw,15.6px)', borderRadius: '50%', background: '#1F7489' }} />
+            <div className="hero-supporting-text" style={{ position: 'absolute' as const, left: '1.742%', top: '25.199%', fontFamily: 'Charter, Georgia, serif', fontWeight: 700, fontSize: 'clamp(9px,2vw,24px)', color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
+              {t.hero.supporting}
+            </div>
           </div>
 
  {/* HERO_DOTTED_CONNECTOR — the dashed line between step 1/2 and
               step 3. Independent from HERO_IMAGES_GROUP and
               HERO_STEPS_COPY_GROUP on purpose.
               MOVE THIS INDEPENDENTLY: edit only left / top / width here. */}
-          <div style={{ position: 'absolute' as const, left: '8.575%', top: '39.9%', width: '33.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
+          <div className="hero-dotted-connector" style={{ position: 'absolute' as const, left: '8.575%', top: '39.9%', width: '33.258%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
 
           {/* =========================================================
-              HERO_IMAGES_GROUP
-              Contains ONLY the 3 low-poly illustrations — no titles, no
-              descriptions, no step numbers (those live in
-              HERO_STEPS_COPY_GROUP below).
+              HERO_STEP_1/2/3 — each wraps that step's icon, number,
+              title and description together. Every child below keeps
+              its EXACT pre-existing inline position/size/typography
+              unchanged (still position:absolute, still percentages
+              against the Hero's 0/0/100%/100% coordinate space) — only
+              the JSX nesting changed (previously flat siblings split
+              across two separate "all icons" / "all numbers+titles+
+              descriptions" group wrappers, now grouped per step). Since
+              these new step wrappers are themselves unpositioned
+              (position:static, no box styling), they are NOT the
+              containing block for their absolutely-positioned children
+              — those still resolve against HERO_CONTENT_CONTAINER
+              exactly as before, so desktop pixels are unchanged (same
+              technique already used for HERO_HEADLINE's own wrapper).
               MOVE THE WHOLE GROUP: edit left / top / width / height on
-              THIS wrapper. Every child's own left/top is a % of THIS
-              wrapper (wrapper starts at 0/0/100%/100%, i.e. the same
-              coordinate space as the rest of the Hero, so moving it by
-              e.g. left:'3%' shifts all 3 images together by 3% of the
-              Hero's width).
-              MOVE ONE IMAGE ONLY: edit that image's own left/top/width/height.
+              the icon/number/title/description below (unchanged from
+              before — nothing about desktop editing changed).
+              Mobile-only: .hero-step lays these out as a flex row
+              (icon hidden, number + text side by side) via globals.css.
               ========================================================= */}
-          <div style={{ position: 'absolute' as const, left: '0%', top: '0%', width: '100%', height: '100%' }}>
+
+          <div className="hero-step hero-step-1">
             {/* HERO_IMAGE_1 — "about you" illustration */}
-            <div style={{ position: 'absolute' as const, left: '5.5%', top: '33.3%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
+            <div className="hero-step-icon" style={{ position: 'absolute' as const, left: '5.5%', top: '33.3%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/illustrations/how-it-works-about.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
+            {/* HERO_STEP1_NUMBER — "1" */}
+            <div className="hero-step-number" style={{ position: 'absolute' as const, left: '5.5%', top: '49%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
+              1
+            </div>
+            <div className="hero-step-text">
+              {/* HERO_STEP1_TITLE — "Розкажи / про себе" */}
+              <div className="hero-step-title" style={{ position: 'absolute' as const, left: '0%', top: '52.5%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+                {t.hero.step1.title.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
+              </div>
+              {/* HERO_STEP1_DESCRIPTION */}
+              <div className="hero-step-desc" style={{ position: 'absolute' as const, left: '0%', top: '60%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+                {t.hero.step1.desc.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
+              </div>
+            </div>
+          </div>
 
+          <div className="hero-step hero-step-2">
             {/* HERO_IMAGE_2 — "questionnaire" illustration */}
-            <div style={{ position: 'absolute' as const, left: '26.14%', top: '33.3%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
+            <div className="hero-step-icon" style={{ position: 'absolute' as const, left: '26.14%', top: '33.3%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/illustrations/how-it-works-questionnaire.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
+            {/* HERO_STEP2_NUMBER — "2" */}
+            <div className="hero-step-number" style={{ position: 'absolute' as const, left: '26.14%', top: '49%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
+              2
+            </div>
+            <div className="hero-step-text">
+              {/* HERO_STEP2_TITLE — "Пройди анкету / QLIXA" */}
+              <div className="hero-step-title" style={{ position: 'absolute' as const, left: '13.5%', top: '52.5%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+                {t.hero.step2.title.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
+              </div>
+              {/* HERO_STEP2_DESCRIPTION */}
+              <div className="hero-step-desc" style={{ position: 'absolute' as const, left: '13.23%', top: '60%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+                {t.hero.step2.desc.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
+              </div>
+            </div>
+          </div>
 
+          <div className="hero-step hero-step-3">
             {/* HERO_IMAGE_3 — "tax return" illustration */}
-            <div style={{ position: 'absolute' as const, left: '44.98%', top: '33.3%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
+            <div className="hero-step-icon" style={{ position: 'absolute' as const, left: '44.98%', top: '33.3%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/illustrations/how-it-works-tax-return.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
-          </div>
-          {/* ▲▲▲ END HERO_IMAGES_GROUP ▲▲▲ */}
-
-         
-          {/* =========================================================
-              HERO_STEPS_COPY_GROUP
-              Contains ONLY: the 3 step numbers, the 3 step titles and the
-              3 step descriptions. No images here (see HERO_IMAGES_GROUP).
-              MOVE THE WHOLE GROUP: edit left / top / width / height on
-              THIS wrapper (same 0/0/100%/100% coordinate-space pattern as
-              HERO_IMAGES_GROUP — see that comment for how it works).
-              MOVE ONE NUMBER / TITLE / DESCRIPTION ONLY: edit that one
-              child's own left/top/width below.
-              ========================================================= */}
-          <div style={{ position: 'absolute' as const, left: '0%', top: '0%', width: '100%', height: '100%' }}>
-
-            {/* HERO_STEP1_NUMBER — "1" */}
-            <div style={{ position: 'absolute' as const, left: '5.5%', top: '49%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
-              1
-            </div>
-            {/* HERO_STEP2_NUMBER — "2" */}
-            <div style={{ position: 'absolute' as const, left: '26.14%', top: '49%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
-              2
-            </div>
             {/* HERO_STEP3_NUMBER — "3" */}
-            <div style={{ position: 'absolute' as const, left: '44.98%', top: '49%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
+            <div className="hero-step-number" style={{ position: 'absolute' as const, left: '44.98%', top: '49%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
               3
             </div>
-
-            {/* HERO_STEP1_TITLE — "Розкажи / про себе" */}
-            <div style={{ position: 'absolute' as const, left: '0%', top: '52.5%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
-              {t.hero.step1.title.map((line, i) => <div key={i}>{line}</div>)}
+            <div className="hero-step-text">
+              {/* HERO_STEP3_TITLE — "Отримай / декларацію" */}
+              <div className="hero-step-title" style={{ position: 'absolute' as const, left: '37.5%', top: '52.5%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
+                {t.hero.step3.title.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
+              </div>
+              {/* HERO_STEP3_DESCRIPTION */}
+              <div className="hero-step-desc" style={{ position: 'absolute' as const, left: '35.5%', top: '60%', width: '18.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
+                {t.hero.step3.desc.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
+              </div>
             </div>
-            {/* HERO_STEP1_DESCRIPTION */}
-            <div style={{ position: 'absolute' as const, left: '0%', top: '60%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-              {t.hero.step1.desc.map((line, i) => <div key={i}>{line}</div>)}
-            </div>
-
-            {/* HERO_STEP2_TITLE — "Пройди анкету / QLIXA" */}
-            <div style={{ position: 'absolute' as const, left: '13.5%', top: '52.5%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
-              {t.hero.step2.title.map((line, i) => <div key={i}>{line}</div>)}
-            </div>
-            {/* HERO_STEP2_DESCRIPTION */}
-            <div style={{ position: 'absolute' as const, left: '13.23%', top: '60%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-              {t.hero.step2.desc.map((line, i) => <div key={i}>{line}</div>)}
-            </div>
-
-            {/* HERO_STEP3_TITLE — "Отримай / декларацію" */}
-            <div style={{ position: 'absolute' as const, left: '37.5%', top: '52.5%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
-              {t.hero.step3.title.map((line, i) => <div key={i}>{line}</div>)}
-            </div>
-            {/* HERO_STEP3_DESCRIPTION */}
-            <div style={{ position: 'absolute' as const, left: '35.5%', top: '60%', width: '18.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-              {t.hero.step3.desc.map((line, i) => <div key={i}>{line}</div>)}
-            </div>
-
           </div>
-          {/* ▲▲▲ END HERO_STEPS_COPY_GROUP ▲▲▲ */}
+          {/* ▲▲▲ END HERO_STEP_1/2/3 ▲▲▲ */}
 
           {/* =========================================================
               HERO_CTA
@@ -991,6 +1008,7 @@ export default function HomePage() {
               MOVE THIS INDEPENDENTLY: edit only left / top / width / height here.
               ========================================================= */}
           <Link
+            className="hero-cta"
             href="/tax-return"
             style={{
               position: 'absolute' as const, left: '5%', top: '77%', width: '42%', height: 'clamp(34px,3.6vw,38px)',
