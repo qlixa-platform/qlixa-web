@@ -1046,7 +1046,7 @@ export default function HomePage() {
 
 
       {/* ── ЩО ТАКЕ QLIXA ── */}
-      <section style={{ background: '#ffffff', padding: '40px clamp(20px,6vw,80px) 38px' }}>
+      <section className="wiq-section" style={{ background: '#ffffff', padding: '40px clamp(20px,6vw,80px) 38px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
           {/* Header */}
@@ -1067,33 +1067,33 @@ export default function HomePage() {
               the exact same localized data (t.hero.flow) already defined
               in HERO_TEXT — no new translation object, no duplicated copy.
               4 explicit columns (not mapped), one row on desktop. */}
-          <div style={{
+          <div className="wiq-flow" style={{
             display: 'flex', width: '100%', background: 'rgba(3,131,144,0.05)',
             border: '1px solid rgba(3,131,144,0.14)', borderRadius: 20,
             margin: '28px auto 36px', padding: '16px 8px', boxSizing: 'border-box' as const,
           }}>
-            <div style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item1.title}</div>
-              <div style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item1.price}</div>
-              <div style={{ fontSize: 11, color: 'var(--color-gray)', lineHeight: 1.3 }}>{t.hero.flow.item1.desc}</div>
+            <div className="wiq-flow-item" style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
+              <div className="wiq-flow-title" style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item1.title}</div>
+              <div className="wiq-flow-price" style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item1.price}</div>
+              <div className="wiq-flow-desc" style={{ fontSize: 11, color: 'var(--color-gray)', lineHeight: 1.3 }}>{t.hero.flow.item1.desc}</div>
             </div>
-            <div style={{ width: 1, alignSelf: 'stretch' as const, background: 'rgba(3,131,144,0.15)', flexShrink: 0 }} />
-            <div style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item2.title}</div>
-              <div style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item2.price}</div>
-              <div style={{ fontSize: 11, color: 'var(--color-gray)', lineHeight: 1.3 }}>{t.hero.flow.item2.desc}</div>
+            <div className="wiq-flow-divider" style={{ width: 1, alignSelf: 'stretch' as const, background: 'rgba(3,131,144,0.15)', flexShrink: 0 }} />
+            <div className="wiq-flow-item" style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
+              <div className="wiq-flow-title" style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item2.title}</div>
+              <div className="wiq-flow-price" style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item2.price}</div>
+              <div className="wiq-flow-desc" style={{ fontSize: 11, color: 'var(--color-gray)', lineHeight: 1.3 }}>{t.hero.flow.item2.desc}</div>
             </div>
-            <div style={{ width: 1, alignSelf: 'stretch' as const, background: 'rgba(3,131,144,0.15)', flexShrink: 0 }} />
-            <div style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item3.title}</div>
-              <div style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item3.price}</div>
-              <div style={{ fontSize: 11, color: 'var(--color-gray)', lineHeight: 1.3 }}>{t.hero.flow.item3.desc}</div>
+            <div className="wiq-flow-divider" style={{ width: 1, alignSelf: 'stretch' as const, background: 'rgba(3,131,144,0.15)', flexShrink: 0 }} />
+            <div className="wiq-flow-item" style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
+              <div className="wiq-flow-title" style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item3.title}</div>
+              <div className="wiq-flow-price" style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item3.price}</div>
+              <div className="wiq-flow-desc" style={{ fontSize: 11, color: 'var(--color-gray)', lineHeight: 1.3 }}>{t.hero.flow.item3.desc}</div>
             </div>
-            <div style={{ width: 1, alignSelf: 'stretch' as const, background: 'rgba(3,131,144,0.15)', flexShrink: 0 }} />
-            <div style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
-              <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item4.title}</div>
-              <div style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item4.price}</div>
-              <div style={{ fontSize: 11, color: 'var(--color-gray)', lineHeight: 1.3 }}>{t.hero.flow.item4.desc}</div>
+            <div className="wiq-flow-divider" style={{ width: 1, alignSelf: 'stretch' as const, background: 'rgba(3,131,144,0.15)', flexShrink: 0 }} />
+            <div className="wiq-flow-item wiq-flow-item-last" style={{ flex: '1 1 0', minWidth: 0, textAlign: 'center' as const, padding: '0 6px' }}>
+              <div className="wiq-flow-title" style={{ fontSize: 12, fontWeight: 700, color: '#595959', textTransform: 'uppercase' as const, letterSpacing: '0.3px', marginBottom: 4 }}>{t.hero.flow.item4.title}</div>
+              <div className="wiq-flow-price" style={{ fontSize: 20, fontWeight: 800, color: '#038390', lineHeight: 1.15, marginBottom: 2 }}>{t.hero.flow.item4.price}</div>
+              <div className="wiq-flow-desc" style={{ fontSize: 11, color: 'var(--color-gray)', lineHeight: 1.3 }}>{t.hero.flow.item4.desc}</div>
             </div>
           </div>
 
