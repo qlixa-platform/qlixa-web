@@ -14,54 +14,40 @@ type PubArticle = {
   cover: string
 }
 
-type UpArticle = {
-  tag: string
-  title: string
-  desc: string
-  href: string
-}
-
 const SLIDER_TEXT: Record<string, {
-  header: string; headerEm: string; allArticles: string; readMore: string; soon: string
+  header: string; headerEm: string; allArticles: string; readMore: string
   prev: string; next: string; goToGroup: (n: number) => string
 }> = {
   UA: {
-    header: 'Останні', headerEm: 'статті', allArticles: 'Всі статті →', readMore: 'Читати →', soon: 'Скоро',
+    header: 'Останні', headerEm: 'статті', allArticles: 'Всі статті →', readMore: 'Читати →',
     prev: 'Попередні статті', next: 'Наступні статті', goToGroup: (n) => `Перейти до групи статей ${n}`,
   },
   RU: {
-    header: 'Последние', headerEm: 'статьи', allArticles: 'Все статьи →', readMore: 'Читать →', soon: 'Скоро',
+    header: 'Последние', headerEm: 'статьи', allArticles: 'Все статьи →', readMore: 'Читать →',
     prev: 'Предыдущие статьи', next: 'Следующие статьи', goToGroup: (n) => `Перейти к группе статей ${n}`,
   },
   EN: {
-    header: 'Latest', headerEm: 'articles', allArticles: 'All articles →', readMore: 'Read →', soon: 'Soon',
+    header: 'Latest', headerEm: 'articles', allArticles: 'All articles →', readMore: 'Read →',
     prev: 'Previous articles', next: 'Next articles', goToGroup: (n) => `Go to article group ${n}`,
   },
   DE: {
-    header: 'Neueste', headerEm: 'Artikel', allArticles: 'Alle Artikel →', readMore: 'Lesen →', soon: 'Bald',
+    header: 'Neueste', headerEm: 'Artikel', allArticles: 'Alle Artikel →', readMore: 'Lesen →',
     prev: 'Vorherige Artikel', next: 'Weitere Artikel', goToGroup: (n) => `Zu Artikelgruppe ${n} wechseln`,
   },
 }
 
 export default function ArticlesSlider({
   published,
-  upcoming,
   lang,
 }: {
   published: PubArticle[]
-  upcoming: UpArticle[]
   lang: string
 }) {
   const [cur, setCur] = React.useState(0)
   const visible = 4
   const t = SLIDER_TEXT[lang] || SLIDER_TEXT.UA
 
-  const allCards: Array<
-    ({ type: 'pub' } & PubArticle) | ({ type: 'up' } & UpArticle)
-  > = [
-    ...published.map(a => ({ ...a, type: 'pub' as const })),
-    ...upcoming.map(a => ({ ...a, type: 'up' as const })),
-  ]
+  const allCards: Array<{ type: 'pub' } & PubArticle> = published.map(a => ({ ...a, type: 'pub' as const }))
 
   const total = allCards.length
   const maxCur = Math.max(0, total - visible)
@@ -122,43 +108,29 @@ export default function ArticlesSlider({
             transition: 'transform 0.4s cubic-bezier(.25,.46,.45,.94)',
           }}
         >
-          {allCards.map((art, i) =>
-            art.type === 'pub' ? (
-              <Link
-                key={i}
-                href={art.href}
-                className="card-link"
-                style={{ display: 'block', textDecoration: 'none', position: 'relative', minWidth: 280, flex: '0 0 280px' }}
-              >
-                <div style={{ position: 'relative', width: '100%', height: 190, borderRadius: 14, overflow: 'hidden', zIndex: 1 }}>
-                  <Image src={art.cover} alt={art.title} fill className="card-img" style={{ objectFit: 'cover', objectPosition: 'center 35%' }} />
-                  <div style={{ position: 'absolute', top: 12, left: 12, background: 'var(--orange)', color: '#fff', fontSize: 10, fontWeight: 700, padding: '4px 10px', borderRadius: 4, zIndex: 2 }}>
-                    {art.tag}
-                  </div>
+          {allCards.map((art, i) => (
+            <Link
+              key={i}
+              href={art.href}
+              className="card-link"
+              style={{ display: 'block', textDecoration: 'none', position: 'relative', minWidth: 280, flex: '0 0 280px' }}
+            >
+              <div style={{ position: 'relative', width: '100%', height: 190, borderRadius: 14, overflow: 'hidden', zIndex: 1 }}>
+                <Image src={art.cover} alt={art.title} fill className="card-img" style={{ objectFit: 'cover', objectPosition: 'center 35%' }} />
+                <div style={{ position: 'absolute', top: 12, left: 12, background: 'var(--orange)', color: '#fff', fontSize: 10, fontWeight: 700, padding: '4px 10px', borderRadius: 4, zIndex: 2 }}>
+                  {art.tag}
                 </div>
-                <div className="card-body-inner" style={{ position: 'relative', zIndex: 2, background: '#fff', borderRadius: 14, padding: '20px 18px 18px', marginTop: -22, border: '1px solid var(--line)', boxShadow: '0 4px 16px rgba(53,52,52,0.07)', display: 'flex', flexDirection: 'column', minHeight: 230 }}>
-                  <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 7, minHeight: 58, flex: 'none' }}>{art.title}</div>
-                  <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 12, flex: 1 }}>{art.desc}</div>
-                  <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'auto' }}>
-                    <span style={{ fontSize: 11, color: 'rgba(26,26,26,0.55)' }}>{art.date} · {art.readTime}</span>
-                    <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)' }}>{t.readMore}</span>
-                  </div>
-                </div>
-              </Link>
-            ) : (
-              <div
-                key={i}
-                style={{ display: 'flex', flexDirection: 'column', minWidth: 280, flex: '0 0 280px', height: 320, background: '#fff', borderRadius: 14, padding: 18, border: '1px dashed var(--line2)', opacity: 0.65 }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: 9 }}>
-                  <div style={{ fontSize: 10, fontWeight: 700, padding: '3px 8px', borderRadius: 4, background: '#F0F7F8', color: 'rgba(26,26,26,0.55)' }}>{art.tag}</div>
-                  <div style={{ fontSize: 9, fontWeight: 700, textTransform: 'uppercase', padding: '3px 7px', borderRadius: 3, background: 'var(--peach-light)', color: 'var(--orange)' }}>{t.soon}</div>
-                </div>
-                <div style={{ fontSize: 13, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 6 }}>{art.title}</div>
-                <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.55, marginTop: 'auto' }}>{art.desc}</div>
               </div>
-            )
-          )}
+              <div className="card-body-inner" style={{ position: 'relative', zIndex: 2, background: '#fff', borderRadius: 14, padding: '20px 18px 18px', marginTop: -22, border: '1px solid var(--line)', boxShadow: '0 4px 16px rgba(53,52,52,0.07)', display: 'flex', flexDirection: 'column', minHeight: 230 }}>
+                <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--charcoal)', lineHeight: 1.4, marginBottom: 7, minHeight: 58, flex: 'none' }}>{art.title}</div>
+                <div style={{ fontSize: 12, color: 'var(--text2)', lineHeight: 1.6, marginBottom: 12, flex: 1 }}>{art.desc}</div>
+                <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 'auto' }}>
+                  <span style={{ fontSize: 11, color: 'rgba(26,26,26,0.55)' }}>{art.date} · {art.readTime}</span>
+                  <span style={{ fontSize: 11, fontWeight: 700, color: 'var(--orange)' }}>{t.readMore}</span>
+                </div>
+              </div>
+            </Link>
+          ))}
         </div>
       </div>
 

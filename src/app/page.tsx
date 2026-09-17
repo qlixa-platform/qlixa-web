@@ -17,15 +17,8 @@ const PUBLISHED_META = [
   { href: '/articles/gisa-formular',     cover: '/articles/gisa-cover.jpg',             date: { UA: 'Червень 2026', RU: 'Июнь 2026',   EN: 'June 2026',   DE: 'Juni 2026' },   readTime: { UA: '15 хв читання', RU: '15 мин',      EN: '15 min read', DE: '15 Min.' } },
 ]
 
-const UPCOMING_HREFS = [
-  '/articles/svs-formular',
-  '/articles/finanz-online',
-  '/articles/mvk-pension',
-]
-
 const ARTICLES_TEXT: Record<string, {
   published: { tag: string; title: string; desc: string }[]
-  upcoming:  { tag: string; title: string; desc: string }[]
 }> = {
   UA: {
     published: [
@@ -34,11 +27,6 @@ const ARTICLES_TEXT: Record<string, {
       { tag: 'Австрія · Документи',   title: 'Як оформити ID Austria: покроковий гайд для іноземців',               desc: 'Як оформити ID Austria та використовувати її для доступу до цифрових державних сервісів, зокрема FinanzOnline.' },
       { tag: 'Сім\'я · Пільги',       title: 'Інвалідність дитини в Австрії: виплати, пільги та з чого почати',    desc: 'Огляд основних тем для батьків: Behindertenpass, підвищена Familienbeihilfe, Pflegegeld та можливі податкові пільги.' },
       { tag: 'GISA · Реєстрація',     title: 'Реєстрація на сайті GISA: покрокова інструкція',                      desc: 'Покрокова інструкція з онлайн-подання Gewerbeanmeldung через GISA з поясненням основних полів і етапів.' },
-    ],
-    upcoming: [
-      { tag: 'SVS',          title: 'Як заповнити формуляр SVS',           desc: 'Соціальне страхування — що вказати щоб не переплатити.' },
-      { tag: 'FinanzOnline', title: 'Як заповнити формуляр FinanzOnline',  desc: 'Реєстрація в податковій онлайн — покроково.' },
-      { tag: 'MVK',          title: 'Як обрати пенсійний фонд MVK',         desc: 'Що таке MVK і як не пропустити дедлайн 6 місяців.' },
     ],
   },
   RU: {
@@ -49,11 +37,6 @@ const ARTICLES_TEXT: Record<string, {
       { tag: 'Семья · Льготы',        title: 'Инвалидность ребёнка в Австрии: выплаты, льготы и с чего начать',    desc: 'Обзор основных тем для родителей: Behindertenpass, повышенная Familienbeihilfe, Pflegegeld и возможные налоговые льготы.' },
       { tag: 'GISA · Регистрация',    title: 'Регистрация на сайте GISA: пошаговая инструкция',                     desc: 'Пошаговая инструкция по онлайн-подаче Gewerbeanmeldung через GISA с пояснением основных полей и этапов.' },
     ],
-    upcoming: [
-      { tag: 'SVS',          title: 'Как заполнить формуляр SVS',          desc: 'Социальное страхование — что указать чтобы не переплатить.' },
-      { tag: 'FinanzOnline', title: 'Как заполнить формуляр FinanzOnline', desc: 'Регистрация в налоговой онлайн — пошагово.' },
-      { tag: 'MVK',          title: 'Как выбрать пенсионный фонд MVK',     desc: 'Что такое MVK и как не пропустить дедлайн 6 месяцев.' },
-    ],
   },
   EN: {
     published: [
@@ -63,11 +46,6 @@ const ARTICLES_TEXT: Record<string, {
       { tag: 'Family · Benefits',      title: 'Child Disability in Austria: Payments, Benefits and Where to Start',   desc: 'An overview of key topics for parents: Behindertenpass, increased Familienbeihilfe, Pflegegeld and possible tax benefits.' },
       { tag: 'GISA · Registration',    title: 'Registering on GISA Website: Step-by-Step Instructions',               desc: 'A step-by-step guide to submitting a Gewerbeanmeldung online via GISA, with explanations of the main fields and stages.' },
     ],
-    upcoming: [
-      { tag: 'SVS',          title: 'How to Fill in the SVS Form',         desc: 'Social insurance — what to enter so you don\'t overpay.' },
-      { tag: 'FinanzOnline', title: 'How to Fill in the FinanzOnline Form', desc: 'Online tax office registration — step by step.' },
-      { tag: 'MVK',          title: 'How to Choose a Pension Fund MVK',    desc: 'What MVK is and how not to miss the 6-month deadline.' },
-    ],
   },
   DE: {
     published: [
@@ -76,11 +54,6 @@ const ARTICLES_TEXT: Record<string, {
       { tag: 'Österreich · Dokumente', title: 'ID Austria beantragen: Schritt-für-Schritt-Anleitung für Ausländer',  desc: 'So richtest du die ID Austria ein und nutzt sie für den Zugang zu digitalen Behördenservices, darunter FinanzOnline.' },
       { tag: 'Familie · Leistungen',   title: 'Behinderung des Kindes in Österreich: Leistungen und wie man anfängt', desc: 'Ein Überblick über wichtige Themen für Eltern: Behindertenpass, erhöhte Familienbeihilfe, Pflegegeld und mögliche steuerliche Begünstigungen.' },
       { tag: 'GISA · Anmeldung',       title: 'Registrierung auf der GISA-Website: Schritt-für-Schritt-Anleitung',   desc: 'Eine Schritt-für-Schritt-Anleitung zur Online-Gewerbeanmeldung über GISA mit Erklärungen zu den wichtigsten Feldern und Schritten.' },
-    ],
-    upcoming: [
-      { tag: 'SVS',          title: 'So füllst du das SVS-Formular aus',          desc: 'Sozialversicherung — was du angeben musst, um nicht zu viel zu zahlen.' },
-      { tag: 'FinanzOnline', title: 'So füllst du das FinanzOnline-Formular aus', desc: 'Online-Registrierung beim Finanzamt — Schritt für Schritt.' },
-      { tag: 'MVK',          title: 'Wie du den Pensionsfonds MVK wählst',        desc: 'Was MVK ist und wie du die 6-Monats-Frist nicht verpasst.' },
     ],
   },
 }
@@ -828,12 +801,6 @@ export default function HomePage() {
     readTime: PUBLISHED_META[i].readTime[lang as 'UA' | 'RU' | 'EN' | 'DE'] || PUBLISHED_META[i].readTime.UA,
     ...item,
   }));
-  const upcoming = UPCOMING_HREFS.map((href, i) => ({
-    href,
-    tag: at.upcoming[i].tag,
-    title: at.upcoming[i].title,
-    desc: at.upcoming[i].desc,
-  }));
   const t6 = CTA_TEXT[lang] || CTA_TEXT.UA;
   const t7 = FAQ_TEXT[lang] || FAQ_TEXT.UA;
 
@@ -1480,7 +1447,7 @@ export default function HomePage() {
       </section>
 
       {/* ARTICLES */}
-      <ArticlesSlider published={published} upcoming={upcoming} lang={lang} />
+      <ArticlesSlider published={published} lang={lang} />
 
       {/* ── FAQ — after CTA ── */}
       <section id="faq" style={{ padding: '32px clamp(20px,6vw,80px)', background: '#F0F7F8' }}>
