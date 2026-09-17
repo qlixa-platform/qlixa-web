@@ -7,6 +7,7 @@ import Link from 'next/link'
 import Image from 'next/image'
 import ArticlesSlider from '@/components/layout/ArticlesSlider'
 import NotifyMeButton from '@/components/NotifyMeButton'
+import Badge from '@/components/ui/Badge'
 
 const PUBLISHED_META = [
   { href: '/articles/rwr-karte',         cover: '/articles/rwr-karte-cover.jpg',        date: { UA: '2026-07-21',   RU: '2026-07-21',  EN: '2026-07-21',  DE: '2026-07-21' },  readTime: { UA: '~15 хвилин',    RU: '~15 минут',   EN: '~15 min',    DE: '~15 Min.' } },
@@ -1182,13 +1183,11 @@ export default function HomePage() {
             <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', position: 'relative' as const }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
-              <span style={{
-                position: 'absolute' as const, top: 14, right: 14,
-                fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642',
-                padding: '3px 9px', borderRadius: 999, zIndex: 1,
+              <Badge variant="comingSoon" style={{
+                position: 'absolute' as const, top: 14, right: 14, zIndex: 1,
               }}>
                 {t2.soonLabel}
-              </span>
+              </Badge>
               <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img src="/what-is-qlixa/business.png" alt="Бізнес-помічник" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
@@ -1242,13 +1241,11 @@ export default function HomePage() {
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
                   {card.isSoon && (
-                    <span style={{
-                      position: 'absolute' as const, top: 14, right: 14,
-                      fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642',
-                      padding: '3px 9px', borderRadius: 999, zIndex: 1,
+                    <Badge variant="comingSoon" style={{
+                      position: 'absolute' as const, top: 14, right: 14, zIndex: 1,
                     }}>
                       {t3.soonLabel}
-                    </span>
+                    </Badge>
                   )}
                   <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                     {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -1308,9 +1305,9 @@ export default function HomePage() {
                       <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
                         {card.title}
                       </h3>
-                      <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642', padding: '3px 9px', borderRadius: 999, flexShrink: 0 }}>
+                      <Badge variant="comingSoon" style={{ flexShrink: 0 }}>
                         {t4.soonLabel}
-                      </span>
+                      </Badge>
                     </div>
                   ) : (
                     <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>

@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react'
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import NotifyMeButton from '@/components/NotifyMeButton'
+import Badge from '@/components/ui/Badge'
 
 const CABINET_URL = 'https://cabinet-ten-lac.vercel.app/login'
 
@@ -407,9 +408,9 @@ export default function PricingPage() {
               changes, never the yellow color. */}
           <div style={{ display: 'flex', flexDirection: 'column' as const, alignSelf: 'start' as const, background: '#EDF5F5', borderRadius: 20, border: '1px solid rgba(3,131,144,0.14)', padding: 26 }}>
             <div style={{ minHeight: 15, marginBottom: 14 }}>
-              <span style={{ fontSize: 10, fontWeight: 700, letterSpacing: '1px', color: '#026B76', background: '#F5E642', padding: '3px 9px', borderRadius: 999 }}>
+              <Badge variant="comingSoon">
                 {t.business.badge}
-              </span>
+              </Badge>
             </div>
             <div style={{ ...rowTitle, fontSize: 22, color: '#1A1A1A' }}>{t.business.title}</div>
             <p style={{ ...rowDesc, minHeight: 0, color: '#595959' }}>{t.business.desc}</p>
