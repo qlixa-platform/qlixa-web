@@ -3,6 +3,8 @@
 import { useState, useEffect } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import Input from '@/components/ui/Input'
+import Textarea from '@/components/ui/Textarea'
 
 const socials = [
   {
@@ -316,16 +318,16 @@ export default function Footer() {
               {t.modalSubtitle}
             </p>
 
-            <input value={name} onChange={e => setName(e.target.value)} placeholder={t.namePlaceholder}
-              style={{ width: '100%', padding: '11px 14px', borderRadius: 10, border: '1px solid #E6F4F5', fontSize: 14, marginBottom: 10, fontFamily: 'DM Sans, sans-serif', boxSizing: 'border-box' as const }} />
-            <input value={email} onChange={e => setEmail(e.target.value)} placeholder={t.emailPlaceholder} type="email"
-              style={{ width: '100%', padding: '11px 14px', borderRadius: 10, border: '1px solid #E6F4F5', fontSize: 14, marginBottom: 16, fontFamily: 'DM Sans, sans-serif', boxSizing: 'border-box' as const }} />
+            <Input value={name} onChange={e => setName(e.target.value)} placeholder={t.namePlaceholder}
+              style={{ marginBottom: 10 }} />
+            <Input value={email} onChange={e => setEmail(e.target.value)} placeholder={t.emailPlaceholder} type="email"
+              style={{ marginBottom: 16 }} />
 
             <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#1A1A1A', marginBottom: 8 }}>
               {t.descLabel}
             </label>
-            <textarea value={desc} onChange={e => setDesc(e.target.value)} placeholder={t.descPlaceholder} rows={4}
-              style={{ width: '100%', padding: '11px 14px', borderRadius: 10, border: '1px solid #E6F4F5', fontSize: 14, marginBottom: 24, fontFamily: 'DM Sans, sans-serif', resize: 'vertical' as const, boxSizing: 'border-box' as const }} />
+            <Textarea value={desc} onChange={e => setDesc(e.target.value)} placeholder={t.descPlaceholder} rows={4}
+              style={{ marginBottom: 24 }} />
 
             <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
               <button onClick={closeModal} style={{
