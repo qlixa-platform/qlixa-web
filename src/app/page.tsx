@@ -124,7 +124,7 @@ const TICKER_ITEMS: Record<string, TickerItem[]> = Object.fromEntries(
 // the same HeroCopy shape and fall back to the pre-strip CTA/positions.
 type HeroFlowItem = { title: string; price: string; desc: string }
 type HeroCopy = {
-  h1: [string, string]
+  h1: { lead: string; connector: string; result: string }
   supporting: string
   step1: { title: string[]; desc: string[] }
   step2: { title: string[]; desc: string[] }
@@ -143,8 +143,8 @@ type HeroCopy = {
 const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
   UA: {
     hero: {
-      h1: ['3 КРОКИ', 'ДО ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ.'],
-      supporting: 'НЕ ПОТРІБНО САМОМУ ЗАПОВНЮВАТИ ПОДАТКОВУ ДЕКЛАРАЦІЮ',
+      h1: { lead: '3 КРОКИ', connector: 'до твоєї', result: 'ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ.' },
+      supporting: 'Просто відповідай на запитання — QLIXA проведе тебе далі.',
       step1: {
         title: ['Розкажи', 'про себе'],
         desc: ['Дай прості відповіді', 'про себе, свою сім’ю', 'та робочу', 'ситуацію.'],
@@ -168,8 +168,8 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
   },
   EN: {
     hero: {
-      h1: ['3 STEPS', 'TO YOUR TAX RETURN IN AUSTRIA.'],
-      supporting: 'NO NEED TO FILL IN YOUR TAX RETURN YOURSELF',
+      h1: { lead: '3 STEPS', connector: 'to your', result: 'TAX RETURN IN AUSTRIA.' },
+      supporting: 'Simply answer the questions — QLIXA guides you through the next steps.',
       step1: {
         title: ['Tell us', 'about yourself'],
         desc: ['Answer simple questions', 'about yourself, your ', 'family and your work', 'situation.'],
@@ -193,8 +193,8 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
   },
   RU: {
     hero: {
-      h1: ['3 ШАГА', 'К НАЛОГОВОЙ ДЕКЛАРАЦИИ В АВСТРИИ.'],
-      supporting: 'НЕ НУЖНО САМОМУ ЗАПОЛНЯТЬ НАЛОГОВУЮ ДЕКЛАРАЦИЮ',
+      h1: { lead: '3 ШАГА', connector: 'к твоей', result: 'НАЛОГОВОЙ ДЕКЛАРАЦИИ В АВСТРИИ.' },
+      supporting: 'Просто отвечай на вопросы — QLIXA проведёт тебя дальше.',
       step1: {
         title: ['Расскажи', 'о себе'],
         desc: ['Ответь на простые вопросы', 'о себе, семье', 'и своей рабочей', 'ситуации.'],
@@ -218,8 +218,8 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
   },
   DE: {
     hero: {
-      h1: ['3 SCHRITTE', 'ZUR STEUERERKLÄRUNG IN ÖSTERREICH.'],
-      supporting: 'DU MUSST DEINE STEUERERKLÄRUNG NICHT SELBST AUSFÜLLEN',
+      h1: { lead: '3 SCHRITTE', connector: 'zu deiner', result: 'STEUERERKLÄRUNG IN ÖSTERREICH.' },
+      supporting: 'Beantworte einfach die Fragen — QLIXA führt dich Schritt für Schritt weiter.',
       step1: {
         title: ['Erzähl uns', 'von dir'],
         desc: ['Beantworte einfache Fragen', 'zu dir, deiner Familie', 'und deiner beruflichen', 'Situation.'],
@@ -859,28 +859,38 @@ export default function HomePage() {
             />
           </div>
 
-          {/* HERO_HEADLINE — both lines wrapped in a single semantic <h1>
+          {/* HERO_HEADLINE — both rows wrapped in a single semantic <h1>
               so the page has exactly one, complete accessible heading
-              ("3 КРОКИ" + "ДО ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ." read as
-              one sentence), without touching either line's own position,
-              typography, or content. The wrapper sets ONLY `margin: 0` —
-              no position/width/height/padding/background of its own —
-              so it contributes no box of its own to the Hero's layout;
-              each line below keeps its EXACT pre-existing inline style,
-              unchanged. See PRE-MOBILE REPAIR #1 report for the CSS
-              reasoning (position:absolute children still resolve their
-              containing block to HERO_CONTENT_CONTAINER, not to this
-              unpositioned wrapper). */}
+              ("3 КРОКИ до твоєї" + "ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ."
+              read as one sentence), without touching either row's own
+              position or the Hero's other coordinates. The wrapper sets
+              ONLY `margin: 0` — no position/width/height/padding/
+              background of its own — so it contributes no box of its
+              own to the Hero's layout. See PRE-MOBILE REPAIR #1 report
+              for the CSS reasoning (position:absolute children still
+              resolve their containing block to HERO_CONTENT_CONTAINER,
+              not to this unpositioned wrapper). */}
           <h1 className="hero-headline" style={{ margin: 0 }}>
-            {/* HERO_HEADLINE_LINE_1 — "3 КРОКИ" / "3 STEPS" etc.
+            {/* HERO_HEADLINE_LINE_1 — first row: lead ("3 КРОКИ" / "3 STEPS"
+                etc.) + small connector ("до твоєї" / "to your" etc.) on the
+                same baseline. Row keeps its EXACT pre-existing absolute
+                position/size — only its content changed from a single
+                text node to two inline children.
                 MOVE: edit left / top on this element only. */}
-            <div className="hero-headline-line hero-headline-line-1" style={{ position: 'absolute' as const, left: '0%', top: '1.713%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(20px,5.833vw,70px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
-              {t.hero.h1[0]}
+            <div className="hero-headline-line hero-headline-line-1" style={{ position: 'absolute' as const, left: '0%', top: '1.713%', display: 'flex', alignItems: 'baseline', gap: '8px', whiteSpace: 'nowrap' as const }}>
+              <span className="hero-headline-lead" style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(20px,5.833vw,70px)', lineHeight: 1, color: '#1A1A1A' }}>
+                {t.hero.h1.lead}
+              </span>
+              <span className="hero-headline-connector" style={{ fontFamily: 'DM Serif Display, serif', fontStyle: 'italic' as const, fontWeight: 400, fontSize: 'clamp(16px,2.2vw,27px)', lineHeight: 1, color: '#404040' }}>
+                {t.hero.h1.connector}
+              </span>
             </div>
-            {/* HERO_HEADLINE_LINE_2 — "ДО ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ." / "TO YOUR TAX RETURN IN AUSTRIA." etc.
+            {/* HERO_HEADLINE_LINE_2 — result row: "ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В
+                АВСТРІЇ." / "TAX RETURN IN AUSTRIA." etc. Unchanged position/
+                typography — only its data source changed (h1.result).
                 MOVE: edit left / top on this element only. */}
             <div className="hero-headline-line hero-headline-line-2" style={{ position: 'absolute' as const, left: '0%', top: '15.041%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(12px,3.5vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
-              {t.hero.h1[1]}
+              {t.hero.h1.result}
             </div>
           </h1>
 

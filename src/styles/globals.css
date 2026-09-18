@@ -351,10 +351,12 @@ body {
     text-transform: none !important;
   }
   .hero-headline-line-1 {
+    margin-bottom: 2px !important;
+  }
+  .hero-headline-lead {
     font-size: clamp(26px, 7.6vw, 31px) !important;
     color: #038390 !important;
     line-height: 0.98 !important;
-    margin-bottom: 2px !important;
   }
   .hero-headline-line-2 {
     font-size: clamp(24px, 6.9vw, 29px) !important;
