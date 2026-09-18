@@ -1108,113 +1108,113 @@ export default function HomePage() {
           </div>
 
           {/* 3×3 grid with QLIXA center */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
+          <div className="wiq-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
 
             {/* Card 1 */}
-            <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
+            <div className="wiq-card" style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+              <div className="wiq-card-header" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/what-is-qlixa/tax-return.png" alt="Повернення податку" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[0][0]}</div>
+                <img className="wiq-card-icon" src="/what-is-qlixa/tax-return.png" alt="Повернення податку" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
+                <div className="wiq-card-title" style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[0][0]}</div>
               </div>
-              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[0][1]}</div>
+              <div className="wiq-card-desc" style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[0][1]}</div>
             </div>
 
             {/* Card 2 */}
-            <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
+            <div className="wiq-card" style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+              <div className="wiq-card-header" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/what-is-qlixa/interface.png" alt="Інтерфейс" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[1][0]}</div>
+                <img className="wiq-card-icon" src="/what-is-qlixa/interface.png" alt="Інтерфейс" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
+                <div className="wiq-card-title" style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[1][0]}</div>
               </div>
-              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[1][1]}</div>
+              <div className="wiq-card-desc" style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[1][1]}</div>
             </div>
 
             {/* Card 3 */}
-            <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
+            <div className="wiq-card" style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+              <div className="wiq-card-header" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/what-is-qlixa/not-for-accountants.png" alt="Не для бухгалтерів" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[2][0]}</div>
+                <img className="wiq-card-icon" src="/what-is-qlixa/not-for-accountants.png" alt="Не для бухгалтерів" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
+                <div className="wiq-card-title" style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[2][0]}</div>
               </div>
-              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[2][1]}</div>
+              <div className="wiq-card-desc" style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[2][1]}</div>
             </div>
 
             {/* Card 4 */}
-            <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
+            <div className="wiq-card" style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+              <div className="wiq-card-header" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/what-is-qlixa/laws.png" alt="Закони" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[3][0]}</div>
+                <img className="wiq-card-icon" src="/what-is-qlixa/laws.png" alt="Закони" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
+                <div className="wiq-card-title" style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[3][0]}</div>
               </div>
-              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[3][1]}</div>
+              <div className="wiq-card-desc" style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[3][1]}</div>
             </div>
 
             {/* CENTER — hero mockup image */}
-            <div style={{ background: '#FFFFFF', borderRadius: 24, padding: '8px 12px', boxShadow: '4px 4px 0 #1A1A1A', border: '1.5px solid #1A1A1A', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 6, position: 'relative', overflow: 'hidden' }}>
+            <div className="wiq-card-center" style={{ background: '#FFFFFF', borderRadius: 24, padding: '8px 12px', boxShadow: '4px 4px 0 #1A1A1A', border: '1.5px solid #1A1A1A', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 6, position: 'relative', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/platform/hero-mockup.png" alt="QLIXA" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             </div>
 
             {/* Card 5 */}
-            <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
+            <div className="wiq-card" style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+              <div className="wiq-card-header" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/what-is-qlixa/no-deductions-missed.png" alt="Жодного списання" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[4][0]}</div>
+                <img className="wiq-card-icon" src="/what-is-qlixa/no-deductions-missed.png" alt="Жодного списання" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
+                <div className="wiq-card-title" style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[4][0]}</div>
               </div>
-              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[4][1]}</div>
+              <div className="wiq-card-desc" style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[4][1]}</div>
             </div>
 
             {/* Card 6 */}
-            <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
+            <div className="wiq-card" style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+              <div className="wiq-card-header" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/what-is-qlixa/no-deadlines-missed.png" alt="Жодного дедлайну" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[5][0]}</div>
+                <img className="wiq-card-icon" src="/what-is-qlixa/no-deadlines-missed.png" alt="Жодного дедлайну" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
+                <div className="wiq-card-title" style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[5][0]}</div>
               </div>
-              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[5][1]}</div>
+              <div className="wiq-card-desc" style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[5][1]}</div>
             </div>
 
             {/* Card 7 */}
-            <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', position: 'relative' as const }}
+            <div className="wiq-card" style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', position: 'relative' as const }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
-              <Badge variant="comingSoon" style={{
+              <Badge variant="comingSoon" className="wiq-card-badge" style={{
                 position: 'absolute' as const, top: 14, right: 14, zIndex: 1,
               }}>
                 {t2.soonLabel}
               </Badge>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+              <div className="wiq-card-header" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/what-is-qlixa/business.png" alt="Бізнес-помічник" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3, paddingRight: 60 }}>{t2.cards[6][0]}</div>
+                <img className="wiq-card-icon" src="/what-is-qlixa/business.png" alt="Бізнес-помічник" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
+                <div className="wiq-card-title wiq-card-title-business" style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3, paddingRight: 60 }}>{t2.cards[6][0]}</div>
               </div>
-              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[6][1]}</div>
+              <div className="wiq-card-desc" style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[6][1]}</div>
             </div>
 
             {/* Card 8 */}
-            <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
+            <div className="wiq-card" style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
                   onMouseEnter={e => { (e.currentTarget as HTMLElement).style.transform = 'translateY(-4px)'; (e.currentTarget as HTMLElement).style.boxShadow = '0 12px 32px rgba(3,131,144,0.12)'; }}
                   onMouseLeave={e => { (e.currentTarget as HTMLElement).style.transform = ''; (e.currentTarget as HTMLElement).style.boxShadow = ''; }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
+              <div className="wiq-card-header" style={{ display: 'flex', alignItems: 'center', gap: 14, marginBottom: 14 }}>
                 {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img src="/what-is-qlixa/languages.png" alt="Мови" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
-                <div style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[7][0]}</div>
+                <img className="wiq-card-icon" src="/what-is-qlixa/languages.png" alt="Мови" style={{ width: 36, height: 36, objectFit: 'contain', flexShrink: 0 }} />
+                <div className="wiq-card-title" style={{ fontSize: 16, fontWeight: 800, color: '#1A1A1A', textTransform: 'uppercase', letterSpacing: '0.5px', lineHeight: 1.3 }}>{t2.cards[7][0]}</div>
               </div>
-              <div style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[7][1]}</div>
+              <div className="wiq-card-desc" style={{ fontSize: 15, color: '#404040', lineHeight: 1.6 }}>{t2.cards[7][1]}</div>
             </div>
 
           </div>

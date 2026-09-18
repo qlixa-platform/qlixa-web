@@ -610,4 +610,51 @@ body {
     line-height: 1.3 !important;
     margin-top: 2px;
   }
+
+  /* ── "WHAT IS QLIXA" 3×3 GRID — Phase 1B.2 ──
+     Deliberate experiment: keep the SAME 3-column desktop matrix at
+     mobile widths, only shrinking padding/typography/image size so it
+     fits the narrower column. No column-count change, no layout
+     transform. CSS Grid's default row `align-items:stretch` (already
+     relied on at desktop, never set explicitly either way) keeps the
+     3 cards in each row equal height with zero extra rule needed. */
+  .wiq-grid {
+    gap: 5px !important;
+  }
+  .wiq-card,
+  .wiq-card-center {
+    padding: 6px !important;
+    border-radius: 10px !important;
+  }
+  .wiq-card-header {
+    gap: 4px !important;
+    margin-bottom: 4px !important;
+  }
+  .wiq-card-icon {
+    width: 18px !important;
+    height: 18px !important;
+  }
+  .wiq-card-title {
+    font-size: 10px !important;
+    letter-spacing: 0 !important;
+    line-height: 1.2 !important;
+  }
+  .wiq-card-desc {
+    font-size: 8px !important;
+    line-height: 1.25 !important;
+  }
+  /* Card 7's badge was tuned for the 24px-padded desktop card; at the
+     6px mobile padding its original top:14/right:14 offset would push
+     it outside the card, so both the position and its own (otherwise
+     desktop-sized) label are scaled down to match. */
+  .wiq-card-badge {
+    top: 3px !important;
+    right: 3px !important;
+    padding: 2px 5px !important;
+    font-size: 6.5px !important;
+    letter-spacing: 0.3px !important;
+  }
+  .wiq-card-title-business {
+    padding-right: 24px !important;
+  }
 }
