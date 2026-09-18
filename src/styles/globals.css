@@ -921,4 +921,41 @@ body {
     color: #404040;
     line-height: 1.45;
   }
+
+  /* ── DEMO SECTION — QLIXA Tax Return / QLIXA Business ──
+     Desktop already uses an image-left/text-right row for both cards
+     (confirmed by reading the current JSX before touching anything),
+     so no structural reordering is needed here — only compaction:
+     smaller image column, tighter padding/typography, and an explicit
+     44px-tall touch target on both CTAs (the plain <a> for Tax Return
+     and NotifyMeButton's trigger for Business, via its new optional
+     triggerClassName prop — the modal itself is untouched). */
+  .demo-cards-wrap {
+    gap: 12px !important;
+  }
+  .demo-card {
+    border-radius: 16px !important;
+  }
+  .demo-card-image {
+    flex-basis: 34% !important;
+    padding: 12px !important;
+  }
+  .demo-card-text {
+    padding: 14px 14px 14px 0 !important;
+    gap: 6px !important;
+  }
+  .demo-card-title {
+    font-size: 18px !important;
+    line-height: 1.2 !important;
+  }
+  .demo-card-desc {
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+  }
+  .demo-card-cta {
+    min-height: 44px !important;
+    font-size: 14px !important;
+    display: inline-flex !important;
+    align-items: center !important;
+  }
 }

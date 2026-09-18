@@ -7,9 +7,10 @@ type Props = {
   label: string // текст кнопки-тригера
   source: string // напр. 'pricing-self-employed', 'homepage-demo-business'
   triggerStyle?: React.CSSProperties
+  triggerClassName?: string // optional CSS hook on the trigger button only (e.g. for a mobile-only touch-target/typography override) — modal itself is untouched
 }
 
-export default function NotifyMeButton({ label, source, triggerStyle }: Props) {
+export default function NotifyMeButton({ label, source, triggerStyle, triggerClassName }: Props) {
   const [isOpen, setIsOpen] = useState(false)
   const [email, setEmail] = useState('')
   const [status, setStatus] = useState<'idle' | 'loading' | 'success' | 'duplicate' | 'error'>('idle')
@@ -46,6 +47,7 @@ export default function NotifyMeButton({ label, source, triggerStyle }: Props) {
     <>
       <button
         onClick={() => setIsOpen(true)}
+        className={triggerClassName}
         style={{
           display: 'inline-flex', alignItems: 'center', gap: 8, padding: '12px 24px',
           background: '#038390', color: '#fff', borderRadius: 11, fontSize: 15, fontWeight: 700,

@@ -1332,14 +1332,14 @@ export default function HomePage() {
               Reuses the same card look (bg/radius/border) and the same
               image (next/image fill + padding) and CTA patterns as before —
               only the grid-of-3 became a stack of 2 wide row cards. */}
-          <div style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
+          <div className="demo-cards-wrap" style={{ display: 'flex', flexDirection: 'column', gap: 16 }}>
             {t4.cards.map((card) => (
-              <div key={card.title} style={{
+              <div key={card.title} className="demo-card" style={{
                 background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)',
                 display: 'flex', flexDirection: 'row', alignItems: 'center', position: 'relative' as const,
               }}>
                 {/* Image */}
-                <div style={{ flex: '0 0 32%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20, boxSizing: 'border-box' as const }}>
+                <div className="demo-card-image" style={{ flex: '0 0 32%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: 20, boxSizing: 'border-box' as const }}>
                   <Image
                     src={card.img}
                     alt={card.title}
@@ -1350,10 +1350,10 @@ export default function HomePage() {
                   />
                 </div>
                 {/* Text */}
-                <div style={{ flex: 1, minWidth: 0, padding: '20px 32px', display: 'flex', flexDirection: 'column', gap: 10 }}>
+                <div className="demo-card-text" style={{ flex: 1, minWidth: 0, padding: '20px 32px', display: 'flex', flexDirection: 'column', gap: 10 }}>
                   {card.isSoon ? (
                     <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-                      <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
+                      <h3 className="demo-card-title" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
                         {card.title}
                       </h3>
                       <Badge variant="comingSoon" style={{ flexShrink: 0 }}>
@@ -1361,24 +1361,25 @@ export default function HomePage() {
                       </Badge>
                     </div>
                   ) : (
-                    <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
+                    <h3 className="demo-card-title" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
                       {card.title}
                     </h3>
                   )}
-                  <p style={{ fontSize: 15, color: '#404040', lineHeight: 1.6, margin: 0 }}>
+                  <p className="demo-card-desc" style={{ fontSize: 15, color: '#404040', lineHeight: 1.6, margin: 0 }}>
                     {card.desc}
                   </p>
                   {card.isSoon ? (
                     <NotifyMeButton
                       label={`${card.cta} →`}
                       source={`homepage-demo-${card.title}`}
+                      triggerClassName="demo-card-cta"
                       triggerStyle={{
                         background: 'transparent', padding: 0, borderRadius: 0,
                         fontSize: 15, fontWeight: 700, color: '#038390', width: 'fit-content',
                       }}
                     />
                   ) : (
-                    <a href={card.href} style={{ fontSize: 15, fontWeight: 700, color: '#038390', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                    <a href={card.href} className="demo-card-cta" style={{ fontSize: 15, fontWeight: 700, color: '#038390', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                       {card.cta} →
                     </a>
                   )}
