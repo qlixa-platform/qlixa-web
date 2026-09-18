@@ -958,4 +958,74 @@ body {
     display: inline-flex !important;
     align-items: center !important;
   }
+
+  /* ── "WHY QLIXA" SECTION — mobile ──
+     Editorial composition, not a shrunk desktop grid. Both wide row-
+     cards (story intro, solution) switch from side-by-side to a
+     single stacked column via one shared class (.why-story-card /
+     .why-story-image / .why-story-text / .why-body) — since desktop's
+     JSX order already differs between the two (text-then-image for
+     the intro, image-then-text for the solution), just flipping
+     flex-direction naturally alternates which appears on top, giving
+     visual rhythm without any extra markup. The 8 pain-point rows
+     already used the "icon + text row" pattern (option C from the
+     brief) at desktop — they only needed a 2-column-grid → 1-column
+     change plus tighter spacing, not a structural rewrite. */
+  .why-section {
+    padding: 48px 16px 56px !important;
+  }
+  .why-story-card {
+    flex-direction: column !important;
+    border-radius: 18px !important;
+    margin-bottom: 28px !important;
+  }
+  .why-story-image {
+    padding: 24px 16px 8px 16px !important;
+  }
+  .why-story-image img {
+    width: auto !important;
+    max-width: 55% !important;
+    max-height: 150px !important;
+    margin: 0 auto !important;
+  }
+  .why-story-text {
+    padding: 8px 16px 24px 16px !important;
+    gap: 12px !important;
+  }
+  .why-body {
+    font-size: 14px !important;
+    line-height: 1.5 !important;
+  }
+  .why-link {
+    font-size: 14px !important;
+    padding: 8px 0 !important;
+  }
+  .why-solution-heading {
+    font-size: 19px !important;
+    line-height: 1.25 !important;
+  }
+  .why-pain-grid {
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+    margin-bottom: 28px !important;
+  }
+  .why-pain-card {
+    padding: 12px !important;
+    gap: 12px !important;
+    border-radius: 14px !important;
+  }
+  .why-pain-icon {
+    flex: 0 0 48px !important;
+    width: 48px !important;
+    height: 48px !important;
+  }
+  .why-pain-title {
+    font-size: 14px !important;
+    margin-bottom: 3px !important;
+    line-height: 1.25 !important;
+  }
+  .why-pain-desc {
+    font-size: 13px !important;
+    line-height: 1.4 !important;
+  }
 }

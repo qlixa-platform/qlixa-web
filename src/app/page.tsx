@@ -1394,7 +1394,7 @@ export default function HomePage() {
 
 
       {/* ── WHY QLIXA — redesigned ── */}
-      <section style={{ background: '#ffffff', padding: '26px clamp(20px,6vw,80px) 32px' }}>
+      <section className="why-section" style={{ background: '#ffffff', padding: '26px clamp(20px,6vw,80px) 32px' }}>
         <div style={{ maxWidth: 1200, margin: '0 auto' }}>
 
           {/* BLOCK 1 — Story header. Centered badge + headline (same badge/heading
@@ -1409,22 +1409,22 @@ export default function HomePage() {
             </h2>
           </div>
 
-          <div style={{
+          <div className="why-story-card" style={{
             background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)',
             display: 'flex', flexDirection: 'row' as const, alignItems: 'center', marginBottom: 40,
           }}>
             {/* Text — left */}
-            <div style={{ flex: '1 1 54%', minWidth: 0, padding: '40px 24px 40px 48px', display: 'flex', flexDirection: 'column' as const, gap: 16 }}>
-              <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.p[0]}</p>
-              <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.p[2]}</p>
-              <Link href="/about" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 15, fontWeight: 600, color: '#038390', textDecoration: 'none', width: 'fit-content' }}
+            <div className="why-story-text" style={{ flex: '1 1 54%', minWidth: 0, padding: '40px 24px 40px 48px', display: 'flex', flexDirection: 'column' as const, gap: 16 }}>
+              <p className="why-body" style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.p[0]}</p>
+              <p className="why-body" style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.p[2]}</p>
+              <Link href="/about" className="why-link" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 15, fontWeight: 600, color: '#038390', textDecoration: 'none', width: 'fit-content' }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.textDecoration = 'underline'}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.textDecoration = 'none'}>
                 {t5.linkText}
               </Link>
             </div>
             {/* Founders illustration — right */}
-            <div style={{ flex: '0 0 46%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '32px 48px 32px 20px', boxSizing: 'border-box' as const }}>
+            <div className="why-story-image" style={{ flex: '0 0 46%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '32px 48px 32px 20px', boxSizing: 'border-box' as const }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/why-qlixa/founders.png" alt="Засновники QLIXA" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }}/>
             </div>
@@ -1437,7 +1437,7 @@ export default function HomePage() {
             </h3>
           </div>
 
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20, marginBottom: 40 }}>
+          <div className="why-pain-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: 20, marginBottom: 40 }}>
             {[
               '/why-qlixa/fear-mistake.png',
               '/why-qlixa/complex-words.png',
@@ -1448,17 +1448,17 @@ export default function HomePage() {
               '/why-qlixa/deadline.png',
               '/why-qlixa/return-all.png',
             ].map((img, i) => ({ img, title: t5.painCards[i][0], desc: t5.painCards[i][1] })).map((card, i) => (
-              <div key={i}
+              <div key={i} className="why-pain-card"
                 style={{ background: '#F0F7F8', borderRadius: 20, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.10)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'default', display: 'flex', flexDirection: 'row' as const, alignItems: 'center', padding: 20, gap: 20 }}
                 onMouseEnter={e => { const el = e.currentTarget as HTMLElement; el.style.transform='translateY(-4px)'; el.style.boxShadow='0 12px 32px rgba(3,131,144,0.12)'; }}
                 onMouseLeave={e => { const el = e.currentTarget as HTMLElement; el.style.transform=''; el.style.boxShadow=''; }}>
-                <div style={{ flex: '0 0 96px', width: 96, height: 96, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+                <div className="why-pain-icon" style={{ flex: '0 0 96px', width: 96, height: 96, display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={card.img} alt={card.title} style={{ width: '100%', height: '100%', objectFit: 'contain' }}/>
                 </div>
                 <div style={{ flex: 1, minWidth: 0 }}>
-                  <div style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 6, lineHeight: 1.3 }}>{card.title}</div>
-                  <div style={{ fontSize: 15, fontWeight: 500, color: '#404040', lineHeight: 1.6 }}>{card.desc}</div>
+                  <div className="why-pain-title" style={{ fontSize: 18, fontWeight: 700, color: '#1A1A1A', marginBottom: 6, lineHeight: 1.3 }}>{card.title}</div>
+                  <div className="why-pain-desc" style={{ fontSize: 15, fontWeight: 500, color: '#404040', lineHeight: 1.6 }}>{card.desc}</div>
                 </div>
               </div>
             ))}
@@ -1467,22 +1467,22 @@ export default function HomePage() {
           {/* BLOCK 3 — QLIXA solution. Same card system as the "Чому з'явилася
               QLIXA" card above (bg/radius/border), laptop illustration on the
               LEFT, heading + the two explanatory sentences on the RIGHT. */}
-          <div style={{
+          <div className="why-story-card" style={{
             background: '#F0F7F8', borderRadius: 24, overflow: 'hidden', border: '1px solid rgba(3,131,144,0.15)',
             display: 'flex', flexDirection: 'row' as const, alignItems: 'center',
           }}>
             {/* Laptop illustration — left */}
-            <div style={{ flex: '0 0 42%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '32px 20px 32px 48px', boxSizing: 'border-box' as const }}>
+            <div className="why-story-image" style={{ flex: '0 0 42%', display: 'flex', alignItems: 'center', justifyContent: 'center', padding: '32px 20px 32px 48px', boxSizing: 'border-box' as const }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/why-qlixa/laptop.png" alt="" style={{ width: '100%', height: 'auto', objectFit: 'contain', display: 'block' }}/>
             </div>
             {/* Heading + text — right */}
-            <div style={{ flex: '1 1 58%', minWidth: 0, padding: '40px 48px 40px 24px', display: 'flex', flexDirection: 'column' as const, gap: 16 }}>
-              <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
+            <div className="why-story-text" style={{ flex: '1 1 58%', minWidth: 0, padding: '40px 48px 40px 24px', display: 'flex', flexDirection: 'column' as const, gap: 16 }}>
+              <h3 className="why-solution-heading" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 24, fontWeight: 700, color: '#1A1A1A', lineHeight: 1.25, letterSpacing: '-0.3px', margin: 0 }}>
                 {t5.solutionBefore}<span style={{ color: '#038390', fontWeight: 700 }}>QLIXA</span>{t5.solutionAfter}
               </h3>
-              <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.solutionP[0]}</p>
-              <p style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.quoteP2[0]}</p>
+              <p className="why-body" style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.solutionP[0]}</p>
+              <p className="why-body" style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.quoteP2[0]}</p>
             </div>
           </div>
         </div>
