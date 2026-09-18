@@ -9,6 +9,7 @@ import ArticlesSlider from '@/components/layout/ArticlesSlider'
 import NotifyMeButton from '@/components/NotifyMeButton'
 import Badge from '@/components/ui/Badge'
 import WhatIsQlixaFeatureGrid from '@/components/WhatIsQlixaFeatureGrid'
+import ForWhomExpandableGrid from '@/components/ForWhomExpandableGrid'
 
 const PUBLISHED_META = [
   { href: '/articles/rwr-karte',         cover: '/articles/rwr-karte-cover.jpg',        date: { UA: '2026-07-21',   RU: '2026-07-21',  EN: '2026-07-21',  DE: '2026-07-21' },  readTime: { UA: '~15 хвилин',    RU: '~15 минут',   EN: '~15 min',    DE: '~15 Min.' } },
@@ -1256,8 +1257,11 @@ export default function HomePage() {
             </h2>
           </div>
 
-          {/* Cards grid */}
-          <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
+          {/* Cards grid — DESKTOP presentation, unchanged. Hidden at
+              <=900px in favor of ForWhomExpandableGrid below, which
+              reads the SAME card array/t3.cards data for its mobile
+              collapsed/expand presentation. */}
+          <div className="fw-grid-desktop-only" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
 
             {[
               { img: '/for-who/naymanyy.png', href: '/for/naymanyy' },
@@ -1289,6 +1293,22 @@ export default function HomePage() {
             ))}
 
           </div>
+
+          {/* Mobile-only interactive presentation of the same 6 cards,
+              built from the exact same t3.cards/soonLabel data — no
+              translation duplication. See ForWhomExpandableGrid.tsx. */}
+          <ForWhomExpandableGrid
+            columns={2}
+            soonLabel={t3.soonLabel}
+            cards={[
+              { img: '/for-who/naymanyy.png', href: '/for/naymanyy', title: t3.cards[0][0], desc: t3.cards[0][1] },
+              { img: '/for-who/pensioner.png', href: '/for/pensioner', title: t3.cards[1][0], desc: t3.cards[1][1] },
+              { img: '/for-who/samostiynyy.png', href: '/for/samostiynyy', title: t3.cards[2][0], desc: t3.cards[2][1] },
+              { img: '/for-who/nerukhomist.png', href: '/for/nerukhomist', title: t3.cards[3][0], desc: t3.cards[3][1] },
+              { img: '/for-who/frilanser.png', href: '/for/frilanser', title: t3.cards[4][0], desc: t3.cards[4][1], isSoon: false },
+              { img: '/for-who/biznes.png', href: '/for/biznes', title: t3.cards[5][0], desc: t3.cards[5][1], isSoon: false },
+            ]}
+          />
 
         </div>
       </section>

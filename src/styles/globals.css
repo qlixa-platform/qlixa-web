@@ -303,6 +303,11 @@ body {
   display: none;
 }
 
+/* Same base-hidden pattern for the "For whom" mobile grid. */
+.fw-grid-mobile-only {
+  display: none;
+}
+
 @media (max-width: 900px) {
 
   /* ── NAVBAR ── */
@@ -798,6 +803,119 @@ body {
     line-height: 1.25;
   }
   .wiq-mdetail-desc {
+    font-size: 13px;
+    font-weight: 500;
+    color: #404040;
+    line-height: 1.45;
+  }
+
+  /* ── "FOR WHOM" GRID — mobile ──
+     2 columns (not 3): these cards carry noticeably longer titles than
+     the "What is QLIXA" grid (e.g. "Доходи від інвестицій або з-за
+     кордону") and larger 72×72 source illustrations, so a 3-column
+     mobile layout would force the longest title into many more lines
+     than its neighbors while giving the images very little room. 2
+     columns × 3 rows keeps the grid fully even (6 cards, no partial
+     row) while giving each card roughly double the width a 3-column
+     layout would. Every card here is still a real <Link> to its
+     existing destination (see ForWhomExpandableGrid.tsx) — the toggle
+     button is a sibling, not nested, so tapping the card body still
+     navigates immediately and unchanged; only the small +/- previews
+     the description inline. */
+  .fw-grid-desktop-only {
+    display: none !important;
+  }
+  .fw-grid-mobile-only {
+    display: grid !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 8px;
+  }
+  /* .fw-card-outer is the actual grid item (stretched to match its
+     row by CSS Grid's default align-items:stretch); the Link needs
+     its own height:100% so that chain reaches the inner .fw-card div
+     (which already has height:100% inline, matching desktop). */
+  .fw-card-link {
+    height: 100%;
+  }
+  .fw-card {
+    padding: 10px !important;
+    border-radius: 14px !important;
+    min-height: 120px;
+  }
+  .fw-card-header {
+    gap: 8px !important;
+    margin-bottom: 6px !important;
+  }
+  .fw-card-icon {
+    width: 40px !important;
+    height: 40px !important;
+  }
+  .fw-card-title {
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    text-transform: none !important;
+    letter-spacing: 0 !important;
+    line-height: 1.18 !important;
+    padding-right: 0 !important;
+  }
+  .fw-card-desc {
+    display: none !important;
+  }
+  .fw-toggle {
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    width: 22px;
+    height: 22px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    margin: 0;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1;
+    color: #038390;
+    cursor: pointer;
+  }
+
+  /* Expanded detail row — inline in normal flow, spans the full grid
+     width, inserted immediately after the row containing the tapped
+     card. No modal, no overlay, no dimming, no animation. */
+  .fw-detail {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    background: #F0F7F8;
+    border: 1px solid rgba(3,131,144,0.2);
+    border-radius: 13px;
+    padding: 16px;
+  }
+  .fw-detail-image {
+    flex-shrink: 0;
+    width: 40px;
+    height: 40px;
+    object-fit: contain;
+  }
+  .fw-detail-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+  }
+  .fw-detail-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1A1A1A;
+    line-height: 1.25;
+    text-transform: none;
+  }
+  .fw-detail-desc {
     font-size: 13px;
     font-weight: 500;
     color: #404040;
