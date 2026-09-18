@@ -8,6 +8,7 @@ import Image from 'next/image'
 import ArticlesSlider from '@/components/layout/ArticlesSlider'
 import NotifyMeButton from '@/components/NotifyMeButton'
 import Badge from '@/components/ui/Badge'
+import WhatIsQlixaFeatureGrid from '@/components/WhatIsQlixaFeatureGrid'
 
 const PUBLISHED_META = [
   { href: '/articles/rwr-karte',         cover: '/articles/rwr-karte-cover.jpg',        date: { UA: '2026-07-21',   RU: '2026-07-21',  EN: '2026-07-21',  DE: '2026-07-21' },  readTime: { UA: '~15 хвилин',    RU: '~15 минут',   EN: '~15 min',    DE: '~15 Min.' } },
@@ -1107,8 +1108,11 @@ export default function HomePage() {
             </div>
           </div>
 
-          {/* 3×3 grid with QLIXA center */}
-          <div className="wiq-grid" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
+          {/* 3×3 grid with QLIXA center — DESKTOP presentation, unchanged.
+              Hidden at <=900px in favor of WhatIsQlixaFeatureGrid below,
+              which reads the SAME t2.cards data for its interactive
+              collapsed/expand mobile presentation. */}
+          <div className="wiq-grid wiq-grid-desktop-only" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
 
             {/* Card 1 */}
             <div className="wiq-card" style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer' }}
@@ -1218,6 +1222,24 @@ export default function HomePage() {
             </div>
 
           </div>
+
+          {/* Mobile-only interactive presentation of the same 9 positions,
+              built from the exact same t2.cards/soonLabel data — no
+              translation duplication. See WhatIsQlixaFeatureGrid.tsx. */}
+          <WhatIsQlixaFeatureGrid
+            centerImg="/platform/hero-mockup.png"
+            centerAlt="QLIXA"
+            cards={[
+              { img: '/what-is-qlixa/tax-return.png', alt: 'Повернення податку', title: t2.cards[0][0], desc: t2.cards[0][1] },
+              { img: '/what-is-qlixa/interface.png', alt: 'Інтерфейс', title: t2.cards[1][0], desc: t2.cards[1][1] },
+              { img: '/what-is-qlixa/not-for-accountants.png', alt: 'Не для бухгалтерів', title: t2.cards[2][0], desc: t2.cards[2][1] },
+              { img: '/what-is-qlixa/laws.png', alt: 'Закони', title: t2.cards[3][0], desc: t2.cards[3][1] },
+              { img: '/what-is-qlixa/no-deductions-missed.png', alt: 'Жодного списання', title: t2.cards[4][0], desc: t2.cards[4][1] },
+              { img: '/what-is-qlixa/no-deadlines-missed.png', alt: 'Жодного дедлайну', title: t2.cards[5][0], desc: t2.cards[5][1] },
+              { img: '/what-is-qlixa/business.png', alt: 'Бізнес-помічник', title: t2.cards[6][0], desc: t2.cards[6][1], badge: t2.soonLabel },
+              { img: '/what-is-qlixa/languages.png', alt: 'Мови', title: t2.cards[7][0], desc: t2.cards[7][1] },
+            ]}
+          />
         </div>
       </section>
 

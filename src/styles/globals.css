@@ -295,6 +295,14 @@ body {
   display: block;
 }
 
+/* Mobile-only interactive "What is QLIXA" feature grid: hidden by
+   default at every width, shown only inside the mobile media query
+   below — mirrors the exact same pattern already used for
+   .navbar-mobile-controls, so it can never appear above 900px. */
+.wiq-grid-mobile-only {
+  display: none;
+}
+
 @media (max-width: 900px) {
 
   /* ── NAVBAR ── */
@@ -561,19 +569,24 @@ body {
   .wiq-flow-item {
     counter-increment: wiqflow;
     display: grid !important;
-    grid-template-columns: 20px 1fr auto;
+    grid-template-columns: 24px 1fr auto;
     column-gap: 8px;
+    row-gap: 3px;
     align-items: baseline;
     text-align: left !important;
-    padding: 12px 4px !important;
+    padding: 14px 4px !important;
     border-bottom: 1px solid rgba(3,131,144,0.14);
   }
+  /* Number, title and price are all placed in row 1 and share the
+     grid's own `align-items:baseline`, so they sit on one deliberate
+     text baseline instead of the number floating above the title
+     (the previous version spanned the number across both rows with
+     `align-self:start`, which is what produced the uneven look). */
   .wiq-flow-item::before {
     content: counter(wiqflow, decimal-leading-zero);
     grid-column: 1;
-    grid-row: 1 / 3;
-    align-self: start;
-    font-size: 11px;
+    grid-row: 1;
+    font-size: 12px;
     font-weight: 700;
     color: #038390;
   }
@@ -586,7 +599,7 @@ body {
     text-align: left !important;
     text-transform: none !important;
     letter-spacing: normal !important;
-    font-size: 13px !important;
+    font-size: 15px !important;
     font-weight: 700 !important;
     color: #1A1A1A !important;
     margin-bottom: 0 !important;
@@ -594,21 +607,22 @@ body {
   .wiq-flow-price {
     grid-column: 3;
     grid-row: 1;
-    font-size: 14px !important;
+    font-size: 16px !important;
     font-weight: 700 !important;
     line-height: 1.2 !important;
     margin-bottom: 0 !important;
   }
   .wiq-flow-item-last .wiq-flow-price {
-    font-size: 15px !important;
+    font-size: 17px !important;
     color: #026B76 !important;
   }
   .wiq-flow-desc {
     grid-column: 2 / 4;
     grid-row: 2;
-    font-size: 11px !important;
+    font-size: 13px !important;
+    font-weight: 500 !important;
     line-height: 1.3 !important;
-    margin-top: 2px;
+    margin-top: 0;
   }
 
   /* ── "WHAT IS QLIXA" 3×3 GRID — Phase 1B.2 ──
@@ -656,5 +670,137 @@ body {
   }
   .wiq-card-title-business {
     padding-right: 24px !important;
+  }
+
+  /* ── "WHAT IS QLIXA" 3×3 GRID — Phase 1B.3 ──
+     Desktop's full-description grid (.wiq-grid-desktop-only, the exact
+     unchanged block above) is hidden at mobile; WhatIsQlixaFeatureGrid
+     (.wiq-grid-mobile-only) becomes the visible 3-column presentation
+     instead — same 3×3 matrix, same source data, collapsed content
+     with an inline expand/collapse detail row per the approved design. */
+  .wiq-grid-desktop-only {
+    display: none !important;
+  }
+  .wiq-grid-mobile-only {
+    display: grid !important;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 6px;
+  }
+
+  .wiq-mcard {
+    appearance: none;
+    -webkit-appearance: none;
+    background: #F0F7F8;
+    border: 1px solid rgba(3,131,144,0.12);
+    border-radius: 11px;
+    padding: 8px;
+    margin: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    position: relative;
+    min-height: 126px;
+    width: 100%;
+  }
+  .wiq-mcard-center {
+    background: #FFFFFF;
+    border: 1.5px solid #1A1A1A;
+    box-shadow: 4px 4px 0 #1A1A1A;
+    border-radius: 11px;
+    justify-content: center;
+    cursor: default;
+    overflow: hidden;
+  }
+  .wiq-mcard-center img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .wiq-mcard-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 42px;
+    margin-bottom: 6px;
+  }
+  .wiq-mcard-image img {
+    max-width: 70%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .wiq-mcard-title {
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.15;
+    color: #1A1A1A;
+  }
+  .wiq-mcard-indicator {
+    position: absolute;
+    bottom: 5px;
+    right: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    line-height: 1;
+    color: #038390;
+  }
+  .wiq-mcard .wiq-card-badge {
+    top: 3px !important;
+    right: 3px !important;
+    padding: 2px 5px !important;
+    font-size: 6.5px !important;
+    letter-spacing: 0.3px !important;
+  }
+
+  /* Expanded detail row — inline in normal flow, spans the full grid
+     width, inserted immediately after the row containing the tapped
+     card (see WhatIsQlixaFeatureGrid.tsx). No modal, no overlay, no
+     dimming, no animation. */
+  .wiq-mdetail {
+    grid-column: 1 / -1;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    background: #F0F7F8;
+    border: 1px solid rgba(3,131,144,0.2);
+    border-radius: 13px;
+    padding: 15px;
+  }
+  .wiq-mdetail-image {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .wiq-mdetail-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+  }
+  .wiq-mdetail-text {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    flex: 1;
+    min-width: 0;
+    text-align: left;
+  }
+  .wiq-mdetail-title {
+    font-size: 15px;
+    font-weight: 700;
+    color: #1A1A1A;
+    line-height: 1.25;
+  }
+  .wiq-mdetail-desc {
+    font-size: 13px;
+    font-weight: 500;
+    color: #404040;
+    line-height: 1.45;
   }
 }
