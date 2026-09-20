@@ -22,7 +22,7 @@ export default function ScrollArrows() {
   }
 
   return (
-    <div style={{ position: 'fixed', right: 24, bottom: 24, display: 'flex', flexDirection: 'column', gap: 10, zIndex: 9999 }}>
+    <div className="scroll-arrows-group" style={{ position: 'fixed', right: 24, bottom: 24, display: 'flex', flexDirection: 'column', gap: 10, zIndex: 9999 }}>
       <button
         aria-label="Нагору"
         onClick={scrollTop}

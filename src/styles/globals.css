@@ -1242,4 +1242,35 @@ body {
   .pricing-price-duplicate {
     display: none !important;
   }
+
+  /* ── GLOBAL SCROLL UP/DOWN ARROWS — MOBILE REPOSITION ──
+     Real-phone QA found the bottom-right position (right:24,bottom:24,
+     set inline in ScrollArrows.tsx — unchanged here, still the desktop
+     position) could cover Footer buttons/links and other bottom-page
+     CTAs. Moved to vertical-viewport-center on the right edge instead,
+     which tracks the viewport (not document/section height) exactly
+     like the original bottom-right anchor did — it's still `position:
+     fixed`, just re-anchored via top+transform instead of bottom. The
+     group (not each button individually) is centered; the existing
+     column stack/gap/button styles are untouched. */
+  .scroll-arrows-group {
+    top: 50%;
+    bottom: auto !important;
+    transform: translateY(-50%);
+    right: max(8px, env(safe-area-inset-right)) !important;
+  }
+}
+
+/* Short-landscape safety net: on very short mobile viewports, revert
+   to the original bottom-right anchor rather than true vertical
+   centering, so the group can't end up uncomfortably close to the top
+   edge or overlap dynamic browser-chrome UI. Scoped narrowly (only
+   fires when both mobile-width AND short-height), so normal portrait
+   phones are unaffected. */
+@media (max-width: 900px) and (max-height: 400px) {
+  .scroll-arrows-group {
+    top: auto;
+    bottom: 12px !important;
+    transform: none;
+  }
 }
