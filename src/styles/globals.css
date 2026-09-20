@@ -308,6 +308,11 @@ body {
   display: none;
 }
 
+/* Same base-hidden pattern for the Articles native touch-scroll rail. */
+.articles-rail-mobile-only {
+  display: none;
+}
+
 @media (max-width: 900px) {
 
   /* ── NAVBAR ── */
@@ -1043,5 +1048,115 @@ body {
   .final-cta-p {
     font-size: 15px !important;
     line-height: 1.5 !important;
+  }
+
+  /* ── ARTICLES — mobile native touch-scroll rail ──
+     Desktop's transform-based track/dots/arrows are hidden entirely
+     (real, functional horizontal overflow replaces them on mobile,
+     rather than trying to make the JS transform carousel touch-
+     friendly). `align-items:flex-start` on the rail is the key rule
+     that lets one expanded card grow taller without stretching its
+     siblings — a plain flex row would otherwise default to
+     align-items:stretch and force every card to match the tallest. */
+  .articles-desktop-only {
+    display: none !important;
+  }
+  .articles-arrows-desktop-only {
+    display: none !important;
+  }
+  .articles-rail-mobile-only {
+    display: flex !important;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    scroll-snap-type: x proximity;
+    align-items: flex-start;
+    gap: 8px;
+    padding: 0 16px 6px 16px;
+    scrollbar-width: none;
+  }
+  .articles-rail-mobile-only::-webkit-scrollbar {
+    display: none;
+  }
+  .art-card {
+    position: relative;
+    flex: 0 0 auto;
+    width: 160px;
+    background: #fff;
+    border-radius: 14px;
+    border: 1px solid var(--line);
+    overflow: hidden;
+    scroll-snap-align: start;
+  }
+  .art-card-image-link {
+    display: block;
+    text-decoration: none;
+  }
+  .art-card-image {
+    position: relative;
+    width: 100%;
+    height: 100px;
+  }
+  .art-card-tag {
+    position: absolute;
+    top: 6px;
+    left: 6px;
+    background: var(--orange);
+    color: #fff;
+    font-size: 8px;
+    font-weight: 700;
+    padding: 2px 6px;
+    border-radius: 4px;
+    z-index: 2;
+  }
+  .art-card-titlerow {
+    display: flex;
+    align-items: flex-start;
+    gap: 2px;
+    padding: 8px 4px 8px 8px;
+  }
+  .art-card-title {
+    flex: 1;
+    min-width: 0;
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--charcoal);
+    line-height: 1.25;
+    text-decoration: none;
+  }
+  .art-toggle {
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    margin: -6px -4px 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: none;
+    border: none;
+    font-size: 16px;
+    font-weight: 700;
+    color: #038390;
+    cursor: pointer;
+    padding: 0;
+  }
+  .art-detail {
+    padding: 0 10px 12px 10px;
+  }
+  .art-detail-desc {
+    font-size: 13px;
+    color: var(--text2);
+    line-height: 1.4;
+    margin: 0 0 6px 0;
+  }
+  .art-detail-meta {
+    font-size: 11px;
+    color: rgba(26,26,26,0.55);
+    margin-bottom: 6px;
+  }
+  .art-detail-link {
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--orange);
+    text-decoration: none;
   }
 }

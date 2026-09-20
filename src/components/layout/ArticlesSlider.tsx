@@ -47,6 +47,16 @@ export default function ArticlesSlider({
   const visible = 4
   const t = SLIDER_TEXT[lang] || SLIDER_TEXT.UA
 
+  // Mobile-only: which article's description is currently expanded
+  // inline within its own card (native horizontal-scroll rail below).
+  // Desktop's cur/go/visible carousel above is completely untouched —
+  // this is separate, additive state for the separate mobile rail.
+  const [activeIndex, setActiveIndex] = React.useState<number | null>(null)
+  const baseId = React.useId()
+  function toggle(i: number) {
+    setActiveIndex(cur => (cur === i ? null : i))
+  }
+
   const allCards: Array<{ type: 'pub' } & PubArticle> = published.map(a => ({ ...a, type: 'pub' as const }))
 
   const total = allCards.length
@@ -70,7 +80,7 @@ export default function ArticlesSlider({
             <Link href="/articles" style={{ fontSize: 13, fontWeight: 500, color: '#026B76', textDecoration: 'none' }}>
               {t.allArticles}
             </Link>
-            <div style={{ display: 'flex', gap: 8 }}>
+            <div className="articles-arrows-desktop-only" style={{ display: 'flex', gap: 8 }}>
               {([{ d: -1, i: '←', label: t.prev }, { d: 1, i: '→', label: t.next }] as const).map(b => (
                 <button
                   key={b.d}
@@ -92,6 +102,10 @@ export default function ArticlesSlider({
         </div>
       </div>
 
+      {/* Track + Dots — DESKTOP presentation, unchanged. Hidden at
+          <=900px in favor of the native touch-scroll rail below, which
+          reads the SAME allCards array — no duplicate article data. */}
+      <div className="articles-desktop-only">
       {/* Track */}
       <div style={{ maxWidth: 1200, margin: '0 auto', padding: '0 16px', overflow: 'hidden' }}>
         <style>{`
@@ -151,6 +165,62 @@ export default function ArticlesSlider({
                 transition: 'all 0.2s', padding: 0,
               }}
             />
+          )
+        })}
+      </div>
+      </div>
+      {/* ▲▲▲ END desktop-only Track + Dots ▲▲▲ */}
+
+      {/* ── MOBILE — native touch-scroll rail ──
+          Real horizontal overflow (not the desktop transform track),
+          so finger swipe works directly with no arrow-button
+          dependency. Each card is a compact, consistently-sized unit;
+          tapping the image/title (a real <Link>) still navigates to
+          the article exactly as before; a separate sibling "+/-"
+          button (not nested inside the Link — avoids illegal
+          button-inside-link nesting) reveals that ONE card's own
+          description below its collapsed content, without affecting
+          its neighbors' height (align-items:flex-start on the rail —
+          see globals.css) or breaking horizontal scrolling. */}
+      <div className="articles-rail-mobile-only">
+        {allCards.map((art, i) => {
+          const isOpen = activeIndex === i
+          const panelId = `articles-detail-${baseId}-${i}`
+          return (
+            <div key={i} className="art-card">
+              <Link href={art.href} className="art-card-image-link">
+                <div className="art-card-image">
+                  <Image src={art.cover} alt={art.title} fill style={{ objectFit: 'cover', objectPosition: 'center 35%' }} />
+                  <div className="art-card-tag">{art.tag}</div>
+                </div>
+              </Link>
+              {/* Title link and toggle are SIBLINGS (not nested inside
+                  each other or inside the image Link) — both the image
+                  and the title independently navigate to the article;
+                  the toggle is the only control that expands/collapses
+                  the description. Kept in one stable row so its
+                  position never shifts when the card grows. */}
+              <div className="art-card-titlerow">
+                <Link href={art.href} className="art-card-title">{art.title}</Link>
+                <button
+                  type="button"
+                  className="art-toggle"
+                  aria-expanded={isOpen}
+                  aria-controls={panelId}
+                  aria-label={art.title}
+                  onClick={() => toggle(i)}
+                >
+                  {isOpen ? '−' : '+'}
+                </button>
+              </div>
+              {isOpen && (
+                <div id={panelId} className="art-detail">
+                  <p className="art-detail-desc">{art.desc}</p>
+                  <div className="art-detail-meta">{art.date} · {art.readTime}</div>
+                  <Link href={art.href} className="art-detail-link">{t.readMore}</Link>
+                </div>
+              )}
+            </div>
           )
         })}
       </div>
