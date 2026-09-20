@@ -313,11 +313,14 @@ body {
   display: none;
 }
 
-/* Same base-hidden pattern for the Pricing page's mobile swipe-position
-   dots (the pricing cards themselves are NOT a separate mobile-only
-   element — see .pricing-cards-grid inside the media query below,
-   which repurposes the existing desktop grid via CSS only). */
-.pricing-dots-mobile-only {
+/* Mobile V2: base-hidden pattern for the Pricing page's compact plan
+   trigger buttons (same pattern as wiq/fw/articles above — hidden by
+   default at every width, shown only inside the mobile media query
+   below, so it can never appear at desktop regardless of state).
+   Replaces the V1 swipe-position dots, which are removed: V1's
+   horizontal swipe rail is gone, so there is no scroll position left
+   to indicate. */
+.pricing-mobile-trigger {
   display: none;
 }
 
@@ -1193,54 +1196,50 @@ body {
     margin-top: auto;
   }
 
-  /* ── PRICING PAGE — HORIZONTAL SWIPE RAIL ──
-     Root cause of the mobile overlap: the 3-card grid
-     (gridTemplateColumns: minmax(0,1fr) minmax(0,1fr) minmax(240px,0.68fr))
-     had zero mobile override, so three columns — one with a hard 240px
-     floor — were forced into ~353px of available width, crushing all
-     three cards into overlapping, unreadably narrow slivers. Fix: the
-     SAME grid container and SAME three card elements (no new JSX, no
-     duplicated locale copy) switch from CSS grid to a horizontally
-     scrolling flex row here; desktop's grid declaration above 900px is
-     completely untouched. Card height parity is inherited for free —
-     Free/Tax Return still stretch to match each other, and Business
-     still stays shorter via its own pre-existing inline
-     alignSelf:'start' — flexbox cross-axis alignment behaves the same
-     in row direction as it did as a grid row, so no extra height CSS
-     is needed to preserve that already-approved behavior. */
+  /* ── PRICING PAGE MOBILE V2 — 3-plan overview + single expanded plan ──
+     Replaces the V1 horizontal swipe rail entirely (removed below):
+     real-phone QA found that swipe discovery hid two of three plans by
+     default, which is wrong for a decision page — the user must see
+     all three choices immediately. The SAME grid container and SAME
+     three card elements are reused (no new JSX duplicating locale
+     copy): grid-template-columns collapses to one column so the three
+     cards stack vertically in normal page flow — no overflow-x, no
+     scroll-snap, no swipe dependency of any kind. Desktop's 3-column
+     grid declaration above 900px is completely untouched. */
   .pricing-cards-grid {
-    display: flex !important;
-    gap: 14px !important;
-    overflow-x: auto;
-    overflow-y: visible;
-    scroll-snap-type: x mandatory;
-    -webkit-overflow-scrolling: touch;
-    scrollbar-width: none;
-    padding-bottom: 4px;
-  }
-  .pricing-cards-grid::-webkit-scrollbar {
-    display: none;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
   }
   .pricing-card {
-    flex: 0 0 88%;
-    min-width: 0;
-    scroll-snap-align: start;
-    scroll-snap-stop: always;
+    padding: 16px !important;
   }
 
-  /* Small, restrained swipe-position indicator. Purely visual — the
-     rail's own native scroll/snap is the actual navigation, so these
-     are plain aria-hidden spans, not fake interactive buttons. */
-  .pricing-dots-mobile-only {
+  /* Compact plan trigger — the ONLY thing visible per plan until the
+     user taps it. Shown here only (hidden at desktop via the base
+     rule above this query). */
+  .pricing-mobile-trigger {
     display: flex !important;
-    justify-content: center;
-    gap: 7px;
-    margin-top: 14px;
   }
-  .pricing-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    transition: background 0.2s;
+
+  /* The existing full card content (label/title/desc/price/features/
+     callouts/CTA) is wrapped, byte-for-byte unmodified, in
+     .pricing-card-body — visible by default at every width (this rule
+     never hides it). Only the EXTRA .pricing-card-body-collapsed
+     class, applied per-card from React state, hides it, and only
+     inside this mobile query — so it is structurally impossible for
+     any card's full content to disappear at desktop regardless of
+     state. */
+  .pricing-card-body-collapsed {
+    display: none !important;
+  }
+
+  /* Suppresses the large price number / status badge inside the
+     expanded body on mobile only — it is already shown compactly in
+     the trigger row above it, and this avoids the same figure/badge
+     appearing twice in one screen. No rule outside this query touches
+     this element, so desktop keeps showing it exactly as before —
+     this is a mobile presentation choice, not a content removal. */
+  .pricing-price-duplicate {
+    display: none !important;
   }
 }

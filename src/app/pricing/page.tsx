@@ -276,20 +276,17 @@ function vatBreakdown(grossStr: string, lang: string): string {
 export default function PricingPage() {
   const [lang, setLang] = useState('UA')
 
-  // Mobile-only: which of the 3 pricing cards the horizontal swipe rail
-  // currently has in view, tracked cheaply from the rail's own native
-  // scroll position (no carousel library, no extra state machine —
-  // there's no existing slider infrastructure on this page to reuse,
-  // and 3 cards don't justify building one). Drives the small ● ○ ○
-  // position indicator only; the rail's native scroll/snap remains the
-  // actual navigation. Completely inert at desktop (>=901px), where the
-  // rail CSS that makes this scrollable never applies.
-  const [activeCard, setActiveCard] = useState(0)
-  function handleRailScroll(e: React.UIEvent<HTMLDivElement>) {
-    const el = e.currentTarget
-    const slot = el.scrollWidth / 3
-    const idx = Math.round(el.scrollLeft / slot)
-    setActiveCard(Math.max(0, Math.min(2, idx)))
+  // Mobile-only: which single plan (if any) is currently expanded.
+  // null = all three collapsed, which is the required initial state —
+  // the user must see the complete plan landscape before choosing one
+  // to read in full. A union of at most one value makes "two plans
+  // expanded at once" structurally impossible. Completely inert at
+  // desktop (>=901px): nothing there can ever set this away from null,
+  // since the only control that calls setExpandedPlan (the mobile
+  // trigger button) is itself hidden at desktop.
+  const [expandedPlan, setExpandedPlan] = useState<'free' | 'taxReturn' | 'business' | null>(null)
+  function togglePlan(key: 'free' | 'taxReturn' | 'business') {
+    setExpandedPlan(p => (p === key ? null : key))
   }
 
   useEffect(() => {
@@ -312,6 +309,29 @@ export default function PricingPage() {
   const rowDesc: React.CSSProperties = { fontSize: 14, lineHeight: 1.55, marginBottom: 20, minHeight: 66 }
   const rowPriceArea: React.CSSProperties = { minHeight: 104, marginBottom: 18, display: 'flex', flexDirection: 'column' as const, justifyContent: 'flex-end' }
   const rowDivider: React.CSSProperties = { borderTop: '1px solid rgba(3,131,144,0.15)', paddingTop: 18, marginBottom: 4 }
+
+  // Mobile-only compact trigger row styles — shared shape across all
+  // three plans; each card supplies its own text colors to match its
+  // existing color theme (light card vs the dark teal Tax Return card).
+  const triggerNameRow: React.CSSProperties = { display: 'flex', justifyContent: 'space-between', alignItems: 'center', gap: 10 }
+  const triggerName: React.CSSProperties = { fontFamily: 'DM Serif Display, serif', fontSize: 20, fontWeight: 700 }
+  const triggerPrice: React.CSSProperties = { fontSize: 22, fontWeight: 800, flexShrink: 0 }
+  const triggerDesc: React.CSSProperties = { fontSize: 13, lineHeight: 1.35, margin: '6px 0 0' }
+  const triggerFooterRow: React.CSSProperties = { display: 'flex', justifyContent: 'flex-end', marginTop: 10 }
+
+  // Decorative-only chevron (aria-hidden — the trigger button's own
+  // aria-expanded already communicates open/closed state to assistive
+  // tech). Rotates via inline style computed from React state; no new
+  // translated "details"/"expand" copy exists anywhere in PRICING_TEXT
+  // for any of the 4 locales, so a language-neutral icon avoids
+  // inventing 4 new hardcoded strings (see final report).
+  function Chevron({ open, color }: { open: boolean; color: string }) {
+    return (
+      <svg aria-hidden="true" width="14" height="9" viewBox="0 0 14 9" fill="none" style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s' }}>
+        <path d="M1 1L7 7L13 1" stroke={color} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
+    )
+  }
 
   return (
     <div style={{ minHeight: '100vh', background: '#F0F7F8' }}>
@@ -341,7 +361,6 @@ export default function PricingPage() {
       <section style={{ background: '#FFFFFF', padding: '20px clamp(20px,4vw,60px) 40px' }}>
         <div
           className="pricing-cards-grid"
-          onScroll={handleRailScroll}
           style={{
             maxWidth: 1200, margin: '0 auto', width: '100%', display: 'grid',
             gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr) minmax(240px,0.68fr)',
@@ -349,71 +368,118 @@ export default function PricingPage() {
           }}>
 
           {/* CARD 1 — QLIXA Free: light aqua, low-risk entry point */}
-          <div className="pricing-card" style={{ display: 'flex', flexDirection: 'column' as const, background: '#FAFEFE', borderRadius: 20, border: '1px solid rgba(3,131,144,0.25)', padding: 28 }}>
-            <div style={{ ...rowLabel, color: '#038390' }}>{t.free.label}</div>
-            <div style={{ ...rowTitle, color: '#1A1A1A' }}>{t.free.title}</div>
-            <p style={{ ...rowDesc, color: '#404040' }}>{t.free.desc}</p>
+          <div className="pricing-card" style={{ display: 'flex', flexDirection: 'column' as const, background: '#FAFEFE', borderRadius: 20, border: expandedPlan === 'free' ? '1.5px solid #038390' : '1px solid rgba(3,131,144,0.25)', padding: 28 }}>
 
-            <div style={rowPriceArea}>
-              <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 40, fontWeight: 800, color: '#1A1A1A', lineHeight: 1 }}>€0</div>
-              <div style={{ fontSize: 12, color: 'var(--color-text-muted)', marginTop: 8 }}>{t.free.priceNote}</div>
-            </div>
-
-            <div style={rowDivider}>
-              <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
-                {t.free.features.map((item, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-                    <span style={{ color: '#038390', fontWeight: 700, flexShrink: 0, fontSize: 14, marginTop: 1 }}>✓</span>
-                    <span style={{ fontSize: 14, color: '#1A1A1A', lineHeight: 1.4 }}>{item}</span>
-                  </div>
-                ))}
+            {/* Mobile-only compact selector/trigger — hidden at desktop
+                (base rule in globals.css); reuses the SAME t.free data
+                as the full content below, nothing new authored. */}
+            <button
+              type="button"
+              className="pricing-mobile-trigger"
+              onClick={() => togglePlan('free')}
+              aria-expanded={expandedPlan === 'free'}
+              aria-controls="pricing-panel-free"
+              aria-label={t.free.title}
+              style={{ flexDirection: 'column' as const, width: '100%', textAlign: 'left' as const, background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit' }}
+            >
+              <div style={triggerNameRow}>
+                <span style={{ ...triggerName, color: '#1A1A1A' }}>{t.free.title}</span>
+                <span style={{ ...triggerPrice, color: '#1A1A1A' }}>€0</span>
               </div>
-            </div>
+              <p style={{ ...triggerDesc, color: '#404040' }}>{t.free.desc}</p>
+              <div style={triggerFooterRow}>
+                <Chevron open={expandedPlan === 'free'} color="#038390" />
+              </div>
+            </button>
 
-            {/* Star insight — lives INSIDE the Free card only (not a
-                standalone section below the pricing row). A small
-                highlighted inset, not a fourth section. */}
-            <div style={{ background: 'rgba(3,131,144,0.06)', borderRadius: 13, padding: '14px 16px', marginTop: 16 }}>
-              <div style={{ fontSize: 13, fontWeight: 700, color: '#1A1A1A', marginBottom: 5 }}>{t.free.starHeading}</div>
-              <p style={{ fontSize: 12, color: '#595959', lineHeight: 1.5, margin: '0 0 4px' }}>{t.free.starBody1}</p>
-              <p style={{ fontSize: 12, color: '#595959', lineHeight: 1.5, margin: 0 }}>{t.free.starBody2}</p>
-            </div>
+            <div id="pricing-panel-free" className={`pricing-card-body${expandedPlan === 'free' ? '' : ' pricing-card-body-collapsed'}`} style={{ display: 'flex', flexDirection: 'column' as const, flex: 1, minHeight: 0 }}>
+              <div style={{ ...rowLabel, color: '#038390' }}>{t.free.label}</div>
+              <div style={{ ...rowTitle, color: '#1A1A1A' }}>{t.free.title}</div>
+              <p style={{ ...rowDesc, color: '#404040' }}>{t.free.desc}</p>
 
-            <div style={{ marginTop: 'auto', paddingTop: 20 }}>
-              <a href={CABINET_URL} style={{ display: 'block', textAlign: 'center' as const, padding: '13px 22px', borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: '#F0F7F8', color: '#038390', border: '1px solid rgba(3,131,144,0.3)', marginBottom: 10 }}>
-                {t.free.cta}
-              </a>
-              <p style={{ fontSize: 12, color: 'var(--color-text-muted)', textAlign: 'center' as const, margin: 0 }}>{t.free.ctaNote}</p>
+              <div style={rowPriceArea}>
+                <div className="pricing-price-duplicate" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 40, fontWeight: 800, color: '#1A1A1A', lineHeight: 1 }}>€0</div>
+                <div style={{ fontSize: 12, color: 'var(--color-text-muted)', marginTop: 8 }}>{t.free.priceNote}</div>
+              </div>
+
+              <div style={rowDivider}>
+                <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
+                  {t.free.features.map((item, i) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                      <span style={{ color: '#038390', fontWeight: 700, flexShrink: 0, fontSize: 14, marginTop: 1 }}>✓</span>
+                      <span style={{ fontSize: 14, color: '#1A1A1A', lineHeight: 1.4 }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Star insight — lives INSIDE the Free card only (not a
+                  standalone section below the pricing row). A small
+                  highlighted inset, not a fourth section. */}
+              <div style={{ background: 'rgba(3,131,144,0.06)', borderRadius: 13, padding: '14px 16px', marginTop: 16 }}>
+                <div style={{ fontSize: 13, fontWeight: 700, color: '#1A1A1A', marginBottom: 5 }}>{t.free.starHeading}</div>
+                <p style={{ fontSize: 12, color: '#595959', lineHeight: 1.5, margin: '0 0 4px' }}>{t.free.starBody1}</p>
+                <p style={{ fontSize: 12, color: '#595959', lineHeight: 1.5, margin: 0 }}>{t.free.starBody2}</p>
+              </div>
+
+              <div style={{ marginTop: 'auto', paddingTop: 20 }}>
+                <a href={CABINET_URL} style={{ display: 'block', textAlign: 'center' as const, padding: '13px 22px', borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: '#F0F7F8', color: '#038390', border: '1px solid rgba(3,131,144,0.3)', marginBottom: 10 }}>
+                  {t.free.cta}
+                </a>
+                <p style={{ fontSize: 12, color: 'var(--color-text-muted)', textAlign: 'center' as const, margin: 0 }}>{t.free.ctaNote}</p>
+              </div>
             </div>
           </div>
 
           {/* CARD 2 — QLIXA Tax Return: strongest visual weight, deep teal */}
-          <div className="pricing-card" style={{ display: 'flex', flexDirection: 'column' as const, background: 'linear-gradient(160deg, #038390 0%, #026B76 100%)', borderRadius: 20, boxShadow: '0 16px 40px rgba(3,131,144,0.28)', padding: 28 }}>
-            <div style={{ ...rowLabel, color: 'rgba(255,255,255,0.85)' }}>{t.taxReturn.label}</div>
-            <div style={{ ...rowTitle, color: '#fff' }}>{t.taxReturn.title}</div>
-            <p style={{ ...rowDesc, color: 'rgba(255,255,255,0.85)' }}>{t.taxReturn.desc}</p>
+          <div className="pricing-card" style={{ display: 'flex', flexDirection: 'column' as const, background: 'linear-gradient(160deg, #038390 0%, #026B76 100%)', borderRadius: 20, boxShadow: expandedPlan === 'taxReturn' ? '0 16px 40px rgba(3,131,144,0.42)' : '0 16px 40px rgba(3,131,144,0.28)', padding: 28 }}>
 
-            <div style={rowPriceArea}>
-              <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 56, fontWeight: 800, color: '#fff', lineHeight: 1 }}>{mainPrice(t.taxReturn.price, lang)}</div>
-              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginTop: 8 }}>{vatBreakdown(t.taxReturn.price, lang)}</div>
-              <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 600, marginTop: 2 }}>{t.taxReturn.paymentLine}</div>
-            </div>
-
-            <div style={{ ...rowDivider, borderTop: '1px solid rgba(255,255,255,0.18)' }}>
-              <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
-                {t.taxReturn.features.map((item, i) => (
-                  <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
-                    <span style={{ color: '#fff', fontWeight: 700, flexShrink: 0, fontSize: 14, marginTop: 1 }}>✓</span>
-                    <span style={{ fontSize: 14, color: '#fff', lineHeight: 1.4 }}>{item}</span>
-                  </div>
-                ))}
+            <button
+              type="button"
+              className="pricing-mobile-trigger"
+              onClick={() => togglePlan('taxReturn')}
+              aria-expanded={expandedPlan === 'taxReturn'}
+              aria-controls="pricing-panel-taxreturn"
+              aria-label={t.taxReturn.title}
+              style={{ flexDirection: 'column' as const, width: '100%', textAlign: 'left' as const, background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit' }}
+            >
+              <div style={triggerNameRow}>
+                <span style={{ ...triggerName, color: '#fff' }}>{t.taxReturn.title}</span>
+                <span style={{ ...triggerPrice, color: '#fff' }}>{mainPrice(t.taxReturn.price, lang)}</span>
               </div>
-            </div>
+              <p style={{ ...triggerDesc, color: 'rgba(255,255,255,0.85)' }}>{t.taxReturn.desc}</p>
+              <div style={triggerFooterRow}>
+                <Chevron open={expandedPlan === 'taxReturn'} color="#fff" />
+              </div>
+            </button>
 
-            <div style={{ marginTop: 'auto', paddingTop: 20 }}>
-              <a href={`${CABINET_URL}?plan=employee`} style={{ display: 'block', textAlign: 'center' as const, padding: '13px 22px', borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: '#fff', color: '#038390' }}>
-                {t.taxReturn.cta}
-              </a>
+            <div id="pricing-panel-taxreturn" className={`pricing-card-body${expandedPlan === 'taxReturn' ? '' : ' pricing-card-body-collapsed'}`} style={{ display: 'flex', flexDirection: 'column' as const, flex: 1, minHeight: 0 }}>
+              <div style={{ ...rowLabel, color: 'rgba(255,255,255,0.85)' }}>{t.taxReturn.label}</div>
+              <div style={{ ...rowTitle, color: '#fff' }}>{t.taxReturn.title}</div>
+              <p style={{ ...rowDesc, color: 'rgba(255,255,255,0.85)' }}>{t.taxReturn.desc}</p>
+
+              <div style={rowPriceArea}>
+                <div className="pricing-price-duplicate" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 56, fontWeight: 800, color: '#fff', lineHeight: 1 }}>{mainPrice(t.taxReturn.price, lang)}</div>
+                <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.7)', marginTop: 8 }}>{vatBreakdown(t.taxReturn.price, lang)}</div>
+                <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.85)', fontWeight: 600, marginTop: 2 }}>{t.taxReturn.paymentLine}</div>
+              </div>
+
+              <div style={{ ...rowDivider, borderTop: '1px solid rgba(255,255,255,0.18)' }}>
+                <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 10 }}>
+                  {t.taxReturn.features.map((item, i) => (
+                    <div key={i} style={{ display: 'flex', alignItems: 'flex-start', gap: 8 }}>
+                      <span style={{ color: '#fff', fontWeight: 700, flexShrink: 0, fontSize: 14, marginTop: 1 }}>✓</span>
+                      <span style={{ fontSize: 14, color: '#fff', lineHeight: 1.4 }}>{item}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div style={{ marginTop: 'auto', paddingTop: 20 }}>
+                <a href={`${CABINET_URL}?plan=employee`} style={{ display: 'block', textAlign: 'center' as const, padding: '13px 22px', borderRadius: 11, fontSize: 15, fontWeight: 700, textDecoration: 'none', background: '#fff', color: '#038390' }}>
+                  {t.taxReturn.cta}
+                </a>
+              </div>
             </div>
           </div>
 
@@ -425,33 +491,48 @@ export default function PricingPage() {
               QLIXA" Business card (same fontSize/weight/letterSpacing/
               colors/padding/radius) in every locale — only the badge TEXT
               changes, never the yellow color. */}
-          <div className="pricing-card" style={{ display: 'flex', flexDirection: 'column' as const, alignSelf: 'start' as const, background: '#EDF5F5', borderRadius: 20, border: '1px solid rgba(3,131,144,0.14)', padding: 26 }}>
-            <div style={{ minHeight: 15, marginBottom: 14 }}>
-              <Badge variant="comingSoon">
-                {t.business.badge}
-              </Badge>
-            </div>
-            <div style={{ ...rowTitle, fontSize: 22, color: '#1A1A1A' }}>{t.business.title}</div>
-            <p style={{ ...rowDesc, minHeight: 0, color: '#595959' }}>{t.business.desc}</p>
+          <div className="pricing-card" style={{ display: 'flex', flexDirection: 'column' as const, alignSelf: 'start' as const, background: '#EDF5F5', borderRadius: 20, border: expandedPlan === 'business' ? '1.5px solid #038390' : '1px solid rgba(3,131,144,0.14)', padding: 26 }}>
 
-            <div style={{ marginTop: 'auto', paddingTop: 20 }}>
-              <NotifyMeButton
-                label={t.business.cta}
-                source="pricing-business"
-                triggerStyle={{ display: 'block', width: '100%', boxSizing: 'border-box' as const, textAlign: 'center' as const, padding: '13px 22px', borderRadius: 11, fontSize: 15, fontWeight: 700, background: '#026B76', color: '#fff' }}
-              />
+            <button
+              type="button"
+              className="pricing-mobile-trigger"
+              onClick={() => togglePlan('business')}
+              aria-expanded={expandedPlan === 'business'}
+              aria-controls="pricing-panel-business"
+              aria-label={t.business.title}
+              style={{ flexDirection: 'column' as const, width: '100%', textAlign: 'left' as const, background: 'none', border: 'none', padding: 0, cursor: 'pointer', font: 'inherit' }}
+            >
+              <div style={triggerNameRow}>
+                <span style={{ ...triggerName, color: '#1A1A1A' }}>{t.business.title}</span>
+                <Badge className="pricing-price-duplicate" variant="comingSoon">
+                  {t.business.badge}
+                </Badge>
+              </div>
+              <p style={{ ...triggerDesc, color: '#595959' }}>{t.business.desc}</p>
+              <div style={triggerFooterRow}>
+                <Chevron open={expandedPlan === 'business'} color="#038390" />
+              </div>
+            </button>
+
+            <div id="pricing-panel-business" className={`pricing-card-body${expandedPlan === 'business' ? '' : ' pricing-card-body-collapsed'}`} style={{ display: 'flex', flexDirection: 'column' as const, flex: 1, minHeight: 0 }}>
+              <div style={{ minHeight: 15, marginBottom: 14 }}>
+                <Badge variant="comingSoon">
+                  {t.business.badge}
+                </Badge>
+              </div>
+              <div style={{ ...rowTitle, fontSize: 22, color: '#1A1A1A' }}>{t.business.title}</div>
+              <p style={{ ...rowDesc, minHeight: 0, color: '#595959' }}>{t.business.desc}</p>
+
+              <div style={{ marginTop: 'auto', paddingTop: 20 }}>
+                <NotifyMeButton
+                  label={t.business.cta}
+                  source="pricing-business"
+                  triggerStyle={{ display: 'block', width: '100%', boxSizing: 'border-box' as const, textAlign: 'center' as const, padding: '13px 22px', borderRadius: 11, fontSize: 15, fontWeight: 700, background: '#026B76', color: '#fff' }}
+                />
+              </div>
             </div>
           </div>
 
-        </div>
-
-        {/* Mobile-only swipe position indicator — purely visual (the rail's
-            own native scroll/snap is the real navigation), so these are
-            plain aria-hidden spans, not fake interactive buttons. */}
-        <div className="pricing-dots-mobile-only" aria-hidden="true">
-          {[0, 1, 2].map(i => (
-            <span key={i} className="pricing-dot" style={{ background: activeCard === i ? '#038390' : 'rgba(3,131,144,0.25)' }} />
-          ))}
         </div>
 
         {/* Multiple-years rule — short, clear, no new section weight. */}
