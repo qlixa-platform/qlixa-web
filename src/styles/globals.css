@@ -1113,6 +1113,18 @@ body {
     align-items: flex-start;
     gap: 2px;
     padding: 8px 4px 8px 8px;
+    /* Reserves enough height for the longest REAL title across all 5
+       articles × 4 locales (confirmed by direct measurement of the
+       actual ARTICLES_TEXT data, not assumption): the German
+       "Gewerbeanmeldung in Österreich: Schritt-für-Schritt zur
+       Selbstständigkeit" (73 chars) needs ~5 wrapped lines at this
+       row's ~110px available title width (160px card − titlerow
+       padding − the 36px toggle − its gap). min-height (not a fixed
+       height) means every collapsed card reaches this same height —
+       shorter titles simply leave blank space below — while a
+       genuinely longer future title would still grow rather than
+       clip. */
+    min-height: 98px;
   }
   .art-card-title {
     flex: 1;
@@ -1139,7 +1151,19 @@ body {
     cursor: pointer;
     padding: 0;
   }
+  /* Same principle as the title zone above: min-height (not a fixed
+     height) reserved for the longest REAL description — the German
+     170-character excerpt for "Gewerbeanmeldung in Österreich" needs
+     ~8 wrapped lines at this panel's ~140px content width. Making
+     .art-detail a flex column and giving the CTA link margin-top:auto
+     pins it to the bottom of that reserved zone regardless of how
+     much shorter a given article's actual description is — so every
+     expanded card reaches the same designed height and its CTA lands
+     at the same vertical position, exactly as requested. */
   .art-detail {
+    display: flex;
+    flex-direction: column;
+    min-height: 190px;
     padding: 0 10px 12px 10px;
   }
   .art-detail-desc {
@@ -1158,5 +1182,6 @@ body {
     font-weight: 700;
     color: var(--orange);
     text-decoration: none;
+    margin-top: auto;
   }
 }
