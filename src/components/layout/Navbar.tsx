@@ -68,8 +68,19 @@ function getNavItems(lang: string): NavItem[] {
 
 export default function Navbar() {
   const [lang, setLang] = React.useState<string>('UA');
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  // Single union state guarantees mutual exclusivity by construction —
+  // it is structurally impossible for both the language menu and the
+  // navigation menu to be "open" at once, since only one value can be
+  // stored at a time. Root-cause fix: the language trigger and the
+  // hamburger previously both called the SAME setIsMenuOpen(boolean)
+  // toggle (shared state / wrong handler, not a CSS/hit-area issue —
+  // confirmed by direct inspection before writing this), so tapping
+  // either one opened the identical navigation panel.
+  const [openPanel, setOpenPanel] = React.useState<'lang' | 'nav' | null>(null);
   const hamburgerRef = useRef<HTMLButtonElement>(null);
+  const langTriggerRef = useRef<HTMLButtonElement>(null);
+  const langWrapRef = useRef<HTMLDivElement>(null);
+  const navPanelRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
     const saved = localStorage.getItem('qlixa-lang');
@@ -105,36 +116,70 @@ export default function Navbar() {
     }
   };
 
-  const closeMenu = () => {
-    setIsMenuOpen(false);
+  const closeNav = () => {
+    setOpenPanel(null);
     hamburgerRef.current?.focus();
+  };
+
+  const closeLang = () => {
+    setOpenPanel(null);
+    langTriggerRef.current?.focus();
   };
 
   const handleLangAndClose = (l: string) => {
     handleLang(l);
-    setIsMenuOpen(false);
+    setOpenPanel(null);
   };
 
-  // Escape closes the mobile panel while it's open. No focus trap is
-  // needed here (unlike Footer's form modal) since this is a simple
-  // non-modal link/button panel — Tab already flows naturally through
-  // whichever of its controls are visible.
+  const toggleLang = () => setOpenPanel(p => (p === 'lang' ? null : 'lang'));
+  const toggleNav = () => setOpenPanel(p => (p === 'nav' ? null : 'nav'));
+
+  // Escape closes whichever panel is open and returns focus to its own
+  // trigger. No focus trap is needed here (unlike Footer's form modal)
+  // since these are simple non-modal link/button panels — Tab already
+  // flows naturally through whichever controls are visible.
   useEffect(() => {
-    if (!isMenuOpen) return
+    if (openPanel === null) return
     const onKeyDown = (e: KeyboardEvent) => {
-      if (e.key === 'Escape') closeMenu()
+      if (e.key === 'Escape') {
+        if (openPanel === 'lang') closeLang()
+        else closeNav()
+      }
     }
     document.addEventListener('keydown', onKeyDown)
     return () => document.removeEventListener('keydown', onKeyDown)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isMenuOpen])
+  }, [openPanel])
+
+  // Outside tap closes whichever panel is currently open. Checked
+  // against each panel's own trigger+content so a tap ON the trigger
+  // (which already toggles it) isn't also treated as "outside".
+  useEffect(() => {
+    if (openPanel === null) return
+    const onPointerDown = (e: MouseEvent | TouchEvent) => {
+      const target = e.target as Node
+      if (openPanel === 'lang') {
+        if (langWrapRef.current && !langWrapRef.current.contains(target)) setOpenPanel(null)
+      } else if (openPanel === 'nav') {
+        const insideHamburger = hamburgerRef.current?.contains(target)
+        const insidePanel = navPanelRef.current?.contains(target)
+        if (!insideHamburger && !insidePanel) setOpenPanel(null)
+      }
+    }
+    document.addEventListener('mousedown', onPointerDown)
+    document.addEventListener('touchstart', onPointerDown)
+    return () => {
+      document.removeEventListener('mousedown', onPointerDown)
+      document.removeEventListener('touchstart', onPointerDown)
+    }
+  }, [openPanel])
 
   const navItems = getNavItems(lang);
   const t = NAV_TEXT[lang] || NAV_TEXT.UA;
 
   function scrollToAnchor(id: string) {
     return () => {
-      setIsMenuOpen(false)
+      setOpenPanel(null)
       const el = document.getElementById(id); if (el) el.scrollIntoView({ behavior: 'smooth' });
     }
   }
@@ -229,24 +274,65 @@ export default function Navbar() {
                 hamburger. Hidden by default (inline style) at every width;
                 shown only inside the @media(max-width:900px) block in
                 globals.css via .navbar-mobile-controls, so desktop is
-                never affected regardless of viewport-resize edge cases. */}
-            <div className="navbar-mobile-controls" style={{ display: 'none', alignItems: 'center', gap: 4 }}>
-              <button
-                onClick={() => setIsMenuOpen(o => !o)}
-                style={{
-                  background: 'none', border: 'none', cursor: 'pointer',
-                  fontSize: 13, fontWeight: 700, color: '#038390',
-                  padding: '6px 4px', fontFamily: 'DM Sans, sans-serif',
-                }}
-              >
-                {lang} ▾
-              </button>
+                never affected regardless of viewport-resize edge cases.
+                The two controls are fully independent: separate refs,
+                separate handlers, separate aria-controls targets, and
+                (via openPanel's single-value union type) mutually
+                exclusive open state — tapping one can never open the
+                other's panel. */}
+            <div className="navbar-mobile-controls" style={{ display: 'none', alignItems: 'center', gap: 6 }}>
+              <div ref={langWrapRef} style={{ position: 'relative' as const }}>
+                <button
+                  ref={langTriggerRef}
+                  type="button"
+                  onClick={toggleLang}
+                  aria-label={`Language: ${lang}`}
+                  aria-expanded={openPanel === 'lang'}
+                  aria-controls="mobile-lang-menu"
+                  style={{
+                    background: 'none', border: 'none', cursor: 'pointer',
+                    fontSize: 13, fontWeight: 700, color: '#038390',
+                    padding: '14px 8px', fontFamily: 'DM Sans, sans-serif',
+                  }}
+                >
+                  {lang} ▾
+                </button>
+                {openPanel === 'lang' && (
+                  <div
+                    id="mobile-lang-menu"
+                    role="menu"
+                    style={{
+                      position: 'absolute' as const, top: '100%', right: 0, marginTop: 4,
+                      background: '#fff', border: '1px solid #E6F4F5', borderRadius: 10,
+                      boxShadow: '0 8px 24px rgba(26,26,26,0.12)', zIndex: 41,
+                      display: 'flex', flexDirection: 'column' as const, minWidth: 96, padding: 6,
+                    }}
+                  >
+                    {(['UA', 'DE', 'EN', 'RU'] as const).map((l) => (
+                      <button
+                        key={l}
+                        role="menuitem"
+                        onClick={() => { handleLang(l); closeLang(); }}
+                        style={{
+                          background: lang === l ? '#F0F7F8' : 'none',
+                          border: 'none', cursor: 'pointer', borderRadius: 6, textAlign: 'left' as const,
+                          fontSize: 14, fontWeight: lang === l ? 700 : 400,
+                          color: lang === l ? '#038390' : 'var(--color-text-muted)',
+                          padding: '10px 10px', fontFamily: 'DM Sans, sans-serif',
+                        }}
+                      >
+                        {l}
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
               <button
                 ref={hamburgerRef}
                 type="button"
-                onClick={() => setIsMenuOpen(o => !o)}
-                aria-label={isMenuOpen ? 'Close menu' : 'Open menu'}
-                aria-expanded={isMenuOpen}
+                onClick={toggleNav}
+                aria-label={openPanel === 'nav' ? 'Close menu' : 'Open menu'}
+                aria-expanded={openPanel === 'nav'}
                 aria-controls="mobile-nav-panel"
                 style={{
                   width: 44, height: 44, display: 'flex', alignItems: 'center', justifyContent: 'center',
@@ -271,9 +357,10 @@ export default function Navbar() {
           conditional render (no CSS visibility class needed): it can
           only ever be opened via the hamburger, which is itself hidden
           at desktop widths, so it never appears there. */}
-      {isMenuOpen && (
+      {openPanel === 'nav' && (
         <div
           id="mobile-nav-panel"
+          ref={navPanelRef}
           style={{
             position: 'sticky', top: 64, zIndex: 39,
             background: '#ffffff', borderTop: '1px solid #E6F4F5',
@@ -290,7 +377,7 @@ export default function Navbar() {
               onClick={
                 item.href === '/#who-its-for' ? scrollToAnchor('who-its-for') :
                 item.href === '/#how-it-works' ? scrollToAnchor('how-it-works') :
-                () => setIsMenuOpen(false)
+                () => setOpenPanel(null)
               }
             >
               {item.label}
@@ -300,7 +387,7 @@ export default function Navbar() {
             padding: '12px 4px', fontSize: 15, fontWeight: 500,
             color: '#1A1A1A', textDecoration: 'none', borderBottom: '1px solid #F0F7F8',
           }}
-            onClick={() => setIsMenuOpen(false)}
+            onClick={() => setOpenPanel(null)}
           >
             {t.pricing}
           </Link>
@@ -324,7 +411,7 @@ export default function Navbar() {
           </div>
 
           <a href={`https://cabinet-ten-lac.vercel.app/login?lang=${lang === 'UA' ? 'uk' : lang.toLowerCase()}`}
-            onClick={() => setIsMenuOpen(false)}
+            onClick={() => setOpenPanel(null)}
             style={{
               display: 'block', textAlign: 'center', marginTop: 10,
               padding: '13px 16px', borderRadius: 10, fontSize: 15, fontWeight: 600,
