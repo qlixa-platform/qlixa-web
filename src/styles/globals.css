@@ -1028,4 +1028,20 @@ body {
     font-size: 13px !important;
     line-height: 1.4 !important;
   }
+
+  /* ── FINAL GRADIENT CTA — mobile ──
+     Already a compact, single-column editorial block at desktop (no
+     cards, no grid) — its H2 clamp(28px,4vw,54px) already resolves to
+     its 28px floor at every width from 320–430px, and the CTA button
+     is already a generous, well-sized touch target, so neither needed
+     any override. Only section padding and the lead paragraph size
+     were adjusted for a tighter mobile fit and consistency with the
+     14–15px lead size used elsewhere in the mobile work. */
+  .final-cta-section {
+    padding: 48px 16px 48px !important;
+  }
+  .final-cta-p {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+  }
 }

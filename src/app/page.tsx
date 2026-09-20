@@ -1499,12 +1499,12 @@ export default function HomePage() {
           at normal desktop/laptop widths, scales down smoothly as the
           viewport narrows, and is free to wrap on tablet/mobile — no JS
           shrink-to-fit, no fixed px override. */}
-      <section style={{ background: 'linear-gradient(135deg, #038390 0%, #026B76 100%)', padding: '56px clamp(20px,6vw,80px)', textAlign: 'center' }}>
+      <section className="final-cta-section" style={{ background: 'linear-gradient(135deg, #038390 0%, #026B76 100%)', padding: '56px clamp(20px,6vw,80px)', textAlign: 'center' }}>
         <div style={{ fontSize: 12, fontWeight: 700, color: 'rgba(255,255,255,0.7)', letterSpacing: 2, textTransform: 'uppercase', marginBottom: 14 }}>{t6.badge}</div>
         <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,4vw,54px)', fontWeight: 400, color: '#fff', lineHeight: 1.15, margin: '0 0 16px 0', letterSpacing: '-1px' }}>
           {t6.h2}
         </h2>
-        <p style={{ fontSize: 17, color: 'rgba(255,255,255,0.85)', lineHeight: 1.6, maxWidth: 640, margin: '0 auto 24px' }}>
+        <p className="final-cta-p" style={{ fontSize: 17, color: 'rgba(255,255,255,0.85)', lineHeight: 1.6, maxWidth: 640, margin: '0 auto 24px' }}>
           {t6.pBefore}<span style={{ background: 'rgba(255,255,255,0.2)', borderRadius: 3, padding: '1px 4px', fontWeight: 700 }}>{t6.pHighlight}</span>{t6.pAfter}
         </p>
         <div style={{ marginBottom: 16 }}>
@@ -1512,7 +1512,7 @@ export default function HomePage() {
             {t6.cta}
           </Link>
         </div>
-        <div style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>
+        <div className="final-cta-trust" style={{ fontSize: 13, color: 'rgba(255,255,255,0.65)' }}>
           {t6.trust}
         </div>
       </section>
