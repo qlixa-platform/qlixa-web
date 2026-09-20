@@ -276,6 +276,22 @@ function vatBreakdown(grossStr: string, lang: string): string {
 export default function PricingPage() {
   const [lang, setLang] = useState('UA')
 
+  // Mobile-only: which of the 3 pricing cards the horizontal swipe rail
+  // currently has in view, tracked cheaply from the rail's own native
+  // scroll position (no carousel library, no extra state machine —
+  // there's no existing slider infrastructure on this page to reuse,
+  // and 3 cards don't justify building one). Drives the small ● ○ ○
+  // position indicator only; the rail's native scroll/snap remains the
+  // actual navigation. Completely inert at desktop (>=901px), where the
+  // rail CSS that makes this scrollable never applies.
+  const [activeCard, setActiveCard] = useState(0)
+  function handleRailScroll(e: React.UIEvent<HTMLDivElement>) {
+    const el = e.currentTarget
+    const slot = el.scrollWidth / 3
+    const idx = Math.round(el.scrollLeft / slot)
+    setActiveCard(Math.max(0, Math.min(2, idx)))
+  }
+
   useEffect(() => {
     const updateLang = () => {
       const l = localStorage.getItem('qlixa-lang')
@@ -323,14 +339,17 @@ export default function PricingPage() {
           needed. Business uses the same top-row styles (so its top aligns
           too) but alignSelf:'start' keeps it visually shorter/secondary. */}
       <section style={{ background: '#FFFFFF', padding: '20px clamp(20px,4vw,60px) 40px' }}>
-        <div style={{
-          maxWidth: 1200, margin: '0 auto', width: '100%', display: 'grid',
-          gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr) minmax(240px,0.68fr)',
-          gap: 18, alignItems: 'stretch',
-        }}>
+        <div
+          className="pricing-cards-grid"
+          onScroll={handleRailScroll}
+          style={{
+            maxWidth: 1200, margin: '0 auto', width: '100%', display: 'grid',
+            gridTemplateColumns: 'minmax(0,1fr) minmax(0,1fr) minmax(240px,0.68fr)',
+            gap: 18, alignItems: 'stretch',
+          }}>
 
           {/* CARD 1 — QLIXA Free: light aqua, low-risk entry point */}
-          <div style={{ display: 'flex', flexDirection: 'column' as const, background: '#FAFEFE', borderRadius: 20, border: '1px solid rgba(3,131,144,0.25)', padding: 28 }}>
+          <div className="pricing-card" style={{ display: 'flex', flexDirection: 'column' as const, background: '#FAFEFE', borderRadius: 20, border: '1px solid rgba(3,131,144,0.25)', padding: 28 }}>
             <div style={{ ...rowLabel, color: '#038390' }}>{t.free.label}</div>
             <div style={{ ...rowTitle, color: '#1A1A1A' }}>{t.free.title}</div>
             <p style={{ ...rowDesc, color: '#404040' }}>{t.free.desc}</p>
@@ -369,7 +388,7 @@ export default function PricingPage() {
           </div>
 
           {/* CARD 2 — QLIXA Tax Return: strongest visual weight, deep teal */}
-          <div style={{ display: 'flex', flexDirection: 'column' as const, background: 'linear-gradient(160deg, #038390 0%, #026B76 100%)', borderRadius: 20, boxShadow: '0 16px 40px rgba(3,131,144,0.28)', padding: 28 }}>
+          <div className="pricing-card" style={{ display: 'flex', flexDirection: 'column' as const, background: 'linear-gradient(160deg, #038390 0%, #026B76 100%)', borderRadius: 20, boxShadow: '0 16px 40px rgba(3,131,144,0.28)', padding: 28 }}>
             <div style={{ ...rowLabel, color: 'rgba(255,255,255,0.85)' }}>{t.taxReturn.label}</div>
             <div style={{ ...rowTitle, color: '#fff' }}>{t.taxReturn.title}</div>
             <p style={{ ...rowDesc, color: 'rgba(255,255,255,0.85)' }}>{t.taxReturn.desc}</p>
@@ -406,7 +425,7 @@ export default function PricingPage() {
               QLIXA" Business card (same fontSize/weight/letterSpacing/
               colors/padding/radius) in every locale — only the badge TEXT
               changes, never the yellow color. */}
-          <div style={{ display: 'flex', flexDirection: 'column' as const, alignSelf: 'start' as const, background: '#EDF5F5', borderRadius: 20, border: '1px solid rgba(3,131,144,0.14)', padding: 26 }}>
+          <div className="pricing-card" style={{ display: 'flex', flexDirection: 'column' as const, alignSelf: 'start' as const, background: '#EDF5F5', borderRadius: 20, border: '1px solid rgba(3,131,144,0.14)', padding: 26 }}>
             <div style={{ minHeight: 15, marginBottom: 14 }}>
               <Badge variant="comingSoon">
                 {t.business.badge}
@@ -424,6 +443,15 @@ export default function PricingPage() {
             </div>
           </div>
 
+        </div>
+
+        {/* Mobile-only swipe position indicator — purely visual (the rail's
+            own native scroll/snap is the real navigation), so these are
+            plain aria-hidden spans, not fake interactive buttons. */}
+        <div className="pricing-dots-mobile-only" aria-hidden="true">
+          {[0, 1, 2].map(i => (
+            <span key={i} className="pricing-dot" style={{ background: activeCard === i ? '#038390' : 'rgba(3,131,144,0.25)' }} />
+          ))}
         </div>
 
         {/* Multiple-years rule — short, clear, no new section weight. */}

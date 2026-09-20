@@ -313,6 +313,14 @@ body {
   display: none;
 }
 
+/* Same base-hidden pattern for the Pricing page's mobile swipe-position
+   dots (the pricing cards themselves are NOT a separate mobile-only
+   element — see .pricing-cards-grid inside the media query below,
+   which repurposes the existing desktop grid via CSS only). */
+.pricing-dots-mobile-only {
+  display: none;
+}
+
 @media (max-width: 900px) {
 
   /* ── NAVBAR ── */
@@ -1183,5 +1191,56 @@ body {
     color: var(--orange);
     text-decoration: none;
     margin-top: auto;
+  }
+
+  /* ── PRICING PAGE — HORIZONTAL SWIPE RAIL ──
+     Root cause of the mobile overlap: the 3-card grid
+     (gridTemplateColumns: minmax(0,1fr) minmax(0,1fr) minmax(240px,0.68fr))
+     had zero mobile override, so three columns — one with a hard 240px
+     floor — were forced into ~353px of available width, crushing all
+     three cards into overlapping, unreadably narrow slivers. Fix: the
+     SAME grid container and SAME three card elements (no new JSX, no
+     duplicated locale copy) switch from CSS grid to a horizontally
+     scrolling flex row here; desktop's grid declaration above 900px is
+     completely untouched. Card height parity is inherited for free —
+     Free/Tax Return still stretch to match each other, and Business
+     still stays shorter via its own pre-existing inline
+     alignSelf:'start' — flexbox cross-axis alignment behaves the same
+     in row direction as it did as a grid row, so no extra height CSS
+     is needed to preserve that already-approved behavior. */
+  .pricing-cards-grid {
+    display: flex !important;
+    gap: 14px !important;
+    overflow-x: auto;
+    overflow-y: visible;
+    scroll-snap-type: x mandatory;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    padding-bottom: 4px;
+  }
+  .pricing-cards-grid::-webkit-scrollbar {
+    display: none;
+  }
+  .pricing-card {
+    flex: 0 0 88%;
+    min-width: 0;
+    scroll-snap-align: start;
+    scroll-snap-stop: always;
+  }
+
+  /* Small, restrained swipe-position indicator. Purely visual — the
+     rail's own native scroll/snap is the actual navigation, so these
+     are plain aria-hidden spans, not fake interactive buttons. */
+  .pricing-dots-mobile-only {
+    display: flex !important;
+    justify-content: center;
+    gap: 7px;
+    margin-top: 14px;
+  }
+  .pricing-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    transition: background 0.2s;
   }
 }
