@@ -331,6 +331,12 @@ body {
   display: none;
 }
 
+/* Footer error-report modal: the mobile-only × is hidden at every width by
+   default and shown only inside the mobile query below. */
+.footer-modal-close {
+  display: none;
+}
+
 @media (max-width: 900px) {
 
   /* ── NAVBAR ── */
@@ -1441,29 +1447,102 @@ body {
   }
 
   /* ══════════════════════════════════════════════════════════════
-     FOOTER ERROR-REPORT MODAL — MOBILE VIEWPORT-SAFE HEIGHT
-     Root cause of the "stretched / doesn't fit" bug: the panel had no
-     max-height and no overflow-y at all — only the outer backdrop had
-     padding:16, which centers the panel but does NOT constrain its
-     height, so on any mobile viewport shorter than the form's natural
-     content height (very common with the on-screen keyboard open, or
-     with a validation-error row added) the panel simply overflowed
-     the fixed-position backdrop with no way to scroll to the hidden
-     part. Fixed by capping the panel to the visible viewport and
-     letting IT scroll internally, exactly like a normal dialog;
-     desktop is untouched since this rule only exists in this query. */
-  .footer-modal-panel {
-    max-height: calc(100dvh - 32px);
-    overflow-y: auto;
-    -webkit-overflow-scrolling: touch;
-    padding: 22px 20px !important;
+     FOOTER ERROR-REPORT MODAL — MOBILE (correction #2)
+     Compact centered dialog: ~20px of visible backdrop on every side,
+     auto height (max-height is only a safety limit), the ONLY scroll
+     area is .footer-modal-scroll, and the × sits outside it so it never
+     scrolls away. Inputs use 16px text — anything smaller makes iOS
+     Safari auto-zoom the page on focus, which is what made the previous
+     version look oversized/"floating". Desktop is untouched: every rule
+     here lives inside this query. */
+  .footer-modal-backdrop {
+    /* was 16px; 20px (or the device safe-area, if larger) on each side
+       leaves a clearly visible backdrop ring around the panel. */
+    padding: max(20px, env(safe-area-inset-top)) max(20px, env(safe-area-inset-right))
+             max(20px, env(safe-area-inset-bottom)) max(20px, env(safe-area-inset-left)) !important;
+    /* Above the global ↑ ↓ controls (z-index 9999) so they sit behind the
+       dimmed backdrop and cannot be tapped through it. The ↑ ↓ component
+       itself is untouched. */
+    z-index: 10000 !important;
+    overscroll-behavior: contain;
   }
-  /* Safe wrapping for the Cancel/Send row — both buttons already fit
-     comfortably at 393px+, but this is a defensive fallback for the
-     narrowest supported width (320px) combined with the longest
-     locale strings, so the row wraps instead of overflowing. */
+  .footer-modal-panel {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    height: auto;
+    max-height: calc(100vh - 40px);
+    max-height: calc(100dvh - 40px);
+    padding: 0 !important;
+    overflow: hidden;
+  }
+  .footer-modal-scroll {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    padding: 20px 18px;
+  }
+  .footer-modal-title {
+    font-size: 26px !important;
+    line-height: 1.1 !important;
+    margin-bottom: 10px !important;
+    padding-right: 40px; /* keeps the heading clear of the × */
+  }
+  .footer-modal-sub {
+    font-size: 15px !important;
+    line-height: 1.5 !important;
+    margin-bottom: 16px !important;
+  }
+  .footer-modal-panel input,
+  .footer-modal-panel textarea {
+    font-size: 16px !important;
+  }
+  .footer-modal-panel input {
+    min-height: 50px;
+    padding: 0 14px !important;
+    margin-bottom: 12px !important;
+  }
+  .footer-modal-panel label {
+    font-size: 14px !important;
+    margin-top: 6px;
+    margin-bottom: 8px !important;
+  }
+  .footer-modal-panel textarea {
+    min-height: 110px;
+    padding: 12px 14px !important;
+    margin-bottom: 18px !important;
+  }
   .footer-modal-actions {
-    flex-wrap: wrap;
+    display: grid !important;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px !important;
+  }
+  .footer-modal-actions button {
+    min-height: 50px;
+    padding: 0 12px !important;
+    font-size: 15px !important;
+  }
+  .footer-modal-close {
+    display: flex;
+    position: absolute;
+    top: 4px;
+    right: 4px;
+    width: 44px;
+    height: 44px;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    background: none;
+    border: none;
+    color: #595959;
+    cursor: pointer;
+  }
+}
+/* Narrowest phones: stack Cancel/Send rather than shrink their labels. */
+@media (max-width: 340px) {
+  .footer-modal-actions {
+    grid-template-columns: 1fr;
   }
 }
 

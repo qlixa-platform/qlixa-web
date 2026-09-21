@@ -184,26 +184,54 @@ export default function Footer() {
     setShowModal(true)
   }
 
-  // Body-scroll lock while the modal is open — without it, a touch-drag
-  // starting on the fixed-position backdrop can scroll the page behind it
-  // on mobile instead of (or in addition to) the modal's own content,
-  // since `position:fixed` alone does not prevent background scroll on
-  // touch devices. Restores whatever inline value was present before
-  // (normally none) on close/unmount.
+  // Mobile-only body-scroll lock. `overflow:hidden` on <body> is ignored by
+  // iOS Safari for touch scrolling, so the page behind the modal kept
+  // moving (and the collapsing address bar kept resizing the 100dvh
+  // panel — the "floating" feel). The robust fix is pinning <body> with
+  // position:fixed at the current scroll offset, then restoring the exact
+  // scroll position on close so there is no page jump. Desktop (>900px)
+  // gets no lock at all, exactly as before this modal was touched.
   useEffect(() => {
     if (!showModal) return
-    const prevOverflow = document.body.style.overflow
-    document.body.style.overflow = 'hidden'
-    return () => { document.body.style.overflow = prevOverflow }
+    if (!window.matchMedia('(max-width: 900px)').matches) return
+    const { body } = document
+    const scrollY = window.scrollY
+    const prev = {
+      position: body.style.position, top: body.style.top, left: body.style.left,
+      right: body.style.right, width: body.style.width, overflow: body.style.overflow,
+    }
+    body.style.position = 'fixed'
+    body.style.top = `-${scrollY}px`
+    body.style.left = '0'
+    body.style.right = '0'
+    body.style.width = '100%'
+    body.style.overflow = 'hidden'
+    return () => {
+      body.style.position = prev.position
+      body.style.top = prev.top
+      body.style.left = prev.left
+      body.style.right = prev.right
+      body.style.width = prev.width
+      body.style.overflow = prev.overflow
+      window.scrollTo({ top: scrollY, behavior: 'instant' as ScrollBehavior })
+    }
   }, [showModal])
+
+  // Backdrop close only when the press AND the release both happened on
+  // the bare backdrop — so dragging a text selection out of a field, or
+  // scrolling the form, never dismisses the dialog.
+  const pressedBackdropRef = useRef(false)
 
   // Keyboard behavior while the modal is open: Escape closes it, and
   // Tab/Shift+Tab are trapped within the modal's own focusable controls.
   useEffect(() => {
     if (!showModal) return
 
+    // Visible controls only: the mobile-only × is display:none at desktop,
+    // and a hidden element must never become the trap's "last" stop.
     const getFocusable = () =>
       Array.from(modalRef.current?.querySelectorAll<HTMLElement>('input, textarea, button:not([disabled])') || [])
+        .filter(el => el.getClientRects().length > 0)
 
     // Move focus to the first control as soon as the modal renders.
     getFocusable()[0]?.focus()
@@ -359,48 +387,71 @@ export default function Footer() {
 
       {/* Error report modal */}
       {showModal && (
-        <div onClick={closeModal} style={{
-          position: 'fixed', inset: 0, background: 'rgba(26,26,26,0.5)',
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          padding: 16, zIndex: 200,
-        }}>
+        <div
+          className="footer-modal-backdrop"
+          onPointerDown={e => { pressedBackdropRef.current = e.target === e.currentTarget }}
+          onClick={e => {
+            if (e.target === e.currentTarget && pressedBackdropRef.current) closeModal()
+            pressedBackdropRef.current = false
+          }}
+          style={{
+            position: 'fixed', inset: 0, background: 'rgba(26,26,26,0.5)',
+            display: 'flex', alignItems: 'center', justifyContent: 'center',
+            padding: 16, zIndex: 200,
+          }}
+        >
           <div ref={modalRef} className="footer-modal-panel" onClick={e => e.stopPropagation()} style={{
             background: '#fff', borderRadius: 20, padding: '32px 28px',
             maxWidth: 440, width: '100%', boxShadow: '0 20px 60px rgba(0,0,0,0.2)',
           }}>
-            <h3 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, fontWeight: 400, color: '#1A1A1A', marginBottom: 8 }}>
-              {t.modalTitle}
-            </h3>
-            <p style={{ fontSize: 13, color: '#595959', lineHeight: 1.6, marginBottom: 20 }}>
-              {t.modalSubtitle}
-            </p>
+            {/* At desktop this wrapper is a plain block inside the padded
+                panel (identical layout to before). At mobile it becomes the
+                internal scroll area so the × below stays pinned. */}
+            <div className="footer-modal-scroll">
+              <h3 className="footer-modal-title" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, fontWeight: 400, color: '#1A1A1A', marginBottom: 8 }}>
+                {t.modalTitle}
+              </h3>
+              <p className="footer-modal-sub" style={{ fontSize: 13, color: '#595959', lineHeight: 1.6, marginBottom: 20 }}>
+                {t.modalSubtitle}
+              </p>
 
-            <Input value={name} onChange={e => setName(e.target.value)} placeholder={t.namePlaceholder}
-              style={{ marginBottom: 10 }} />
-            <Input value={email} onChange={e => setEmail(e.target.value)} placeholder={t.emailPlaceholder} type="email"
-              style={{ marginBottom: 16 }} />
+              <Input value={name} onChange={e => setName(e.target.value)} placeholder={t.namePlaceholder}
+                style={{ marginBottom: 10 }} />
+              <Input value={email} onChange={e => setEmail(e.target.value)} placeholder={t.emailPlaceholder} type="email"
+                style={{ marginBottom: 16 }} />
 
-            <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#1A1A1A', marginBottom: 8 }}>
-              {t.descLabel}
-            </label>
-            <Textarea value={desc} onChange={e => setDesc(e.target.value)} placeholder={t.descPlaceholder} rows={4}
-              style={{ marginBottom: 24 }} />
+              <label style={{ display: 'block', fontSize: 13, fontWeight: 600, color: '#1A1A1A', marginBottom: 8 }}>
+                {t.descLabel}
+              </label>
+              <Textarea value={desc} onChange={e => setDesc(e.target.value)} placeholder={t.descPlaceholder} rows={4}
+                style={{ marginBottom: 24 }} />
 
-            <div className="footer-modal-actions" style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
-              <button onClick={closeModal} style={{
-                padding: '11px 20px', borderRadius: 10, border: '1px solid #E6F4F5',
-                background: '#fff', color: '#595959', fontSize: 13, fontWeight: 600, cursor: 'pointer',
-              }}>
-                {t.cancel}
-              </button>
-              <button onClick={handleSend} disabled={!name || !email || !desc} style={{
-                padding: '11px 24px', borderRadius: 10, border: 'none',
-                background: (!name || !email || !desc) ? '#9D9D9D' : '#038390', color: '#fff',
-                fontSize: 13, fontWeight: 700, cursor: (!name || !email || !desc) ? 'not-allowed' : 'pointer',
-              }}>
-                {t.send}
-              </button>
+              <div className="footer-modal-actions" style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
+                <button onClick={closeModal} style={{
+                  padding: '11px 20px', borderRadius: 10, border: '1px solid #E6F4F5',
+                  background: '#fff', color: '#595959', fontSize: 13, fontWeight: 600, cursor: 'pointer',
+                }}>
+                  {t.cancel}
+                </button>
+                <button onClick={handleSend} disabled={!name || !email || !desc} style={{
+                  padding: '11px 24px', borderRadius: 10, border: 'none',
+                  background: (!name || !email || !desc) ? '#9D9D9D' : '#038390', color: '#fff',
+                  fontSize: 13, fontWeight: 700, cursor: (!name || !email || !desc) ? 'not-allowed' : 'pointer',
+                }}>
+                  {t.send}
+                </button>
+              </div>
             </div>
+
+            {/* Mobile-only ×. Last in DOM on purpose so the first Tab stop /
+                initial focus stays on the Name field exactly as before; it
+                sits outside the scroll area so it never scrolls away. The
+                accessible name reuses the existing localized "Cancel" string. */}
+            <button type="button" className="footer-modal-close" onClick={closeModal} aria-label={t.cancel}>
+              <svg aria-hidden="true" width="18" height="18" viewBox="0 0 18 18" fill="none">
+                <path d="M3 3l12 12M15 3L3 15" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              </svg>
+            </button>
           </div>
         </div>
       )}
