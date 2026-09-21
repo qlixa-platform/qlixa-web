@@ -338,7 +338,7 @@ export default function RWRCalculator() {
   const adjP = hasPartner ? adjIncome(parseFloat(partnerIncome) || 0, partnerIncomeType) : 0
 
   const sidebar = (
-    <div style={{ width: 200, background: '#F0F7F8', borderLeft: '1.5px solid rgba(3,131,144,0.15)', padding: '20px 16px', display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
+    <div className="rwr-calc-sidebar" style={{ width: 200, background: '#F0F7F8', borderLeft: '1.5px solid rgba(3,131,144,0.15)', padding: '20px 16px', display: 'flex', flexDirection: 'column' as const, gap: 8 }}>
       <div style={{ fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#038390', marginBottom: 4 }}>{t.sidebarTitle}</div>
       {hasPartner !== null && answerBox(t.composition, hasPartner ? t.withPartner : t.onlyMe)}
       {children > 0 && answerBox(t.childrenLabel, String(children))}
@@ -606,7 +606,7 @@ export default function RWRCalculator() {
     )
 
     if (step === 1) return (
-      <div style={mainStyle}>
+      <div className="rwr-calc-step" style={mainStyle}>
         {stepLabel(1, t.step1.title)}
         {hint(t.step1.hint)}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 24 }}>
@@ -627,7 +627,7 @@ export default function RWRCalculator() {
     )
 
     if (step === 2) return (
-      <div style={mainStyle}>
+      <div className="rwr-calc-step" style={mainStyle}>
         {stepLabel(2, t.step2.title)}
         {hint(t.step2.hint(fmt(MIN_CHILD, lang)))}
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const, marginBottom: 24 }}>
@@ -645,7 +645,7 @@ export default function RWRCalculator() {
     )
 
     if (step === 3) return (
-      <div style={mainStyle}>
+      <div className="rwr-calc-step" style={mainStyle}>
         {stepLabel(3, t.step3.title)}
         {typeToggle(incomeType, setIncomeType)}
         {hint(incomeType === 'employed' ? t.step3.hintEmployed : t.step3.hintSelf)}
@@ -654,7 +654,7 @@ export default function RWRCalculator() {
     )
 
     if (step === 4) return (
-      <div style={mainStyle}>
+      <div className="rwr-calc-step" style={mainStyle}>
         {stepLabel(4, t.step4.title)}
         {fieldInput(income, setIncome, incomeType === 'self' ? t.step4.placeholderSelf : t.step4.placeholderEmployed)}
         {hint(incomeType === 'employed' ? t.step4.hintEmployed : t.step4.hintSelf)}
@@ -669,7 +669,7 @@ export default function RWRCalculator() {
     )
 
     if (step === 5 && hasPartner) return (
-      <div style={mainStyle}>
+      <div className="rwr-calc-step" style={mainStyle}>
         {stepLabel(5, t.step5.title)}
         {typeToggle(partnerIncomeType, setPartnerIncomeType)}
         {fieldInput(partnerIncome, setPartnerIncome, partnerIncomeType === 'self' ? t.step5.placeholderSelf : t.step5.placeholderEmployed)}
@@ -685,7 +685,7 @@ export default function RWRCalculator() {
     )
 
     if (step === rentStep) return (
-      <div style={mainStyle}>
+      <div className="rwr-calc-step" style={mainStyle}>
         {stepLabel(rentStep, t.stepRent.title)}
         {fieldInput(rent, setRent, t.stepRent.placeholder)}
         {hint(t.stepRent.hint)}
@@ -700,7 +700,7 @@ export default function RWRCalculator() {
     )
 
     if (step === elecStep) return (
-      <div style={mainStyle}>
+      <div className="rwr-calc-step" style={mainStyle}>
         {stepLabel(elecStep, t.stepElec.title)}
         {fieldInput(electricity, setElectricity, t.stepElec.placeholder)}
         {hint(t.stepElec.hint)}
@@ -709,7 +709,7 @@ export default function RWRCalculator() {
     )
 
     if (step === otherStep) return (
-      <div style={mainStyle}>
+      <div className="rwr-calc-step" style={mainStyle}>
         {stepLabel(otherStep, t.stepOther.title)}
         {fieldInput(other, setOther, t.stepOther.placeholder)}
         {hint(t.stepOther.hint)}
@@ -785,21 +785,21 @@ export default function RWRCalculator() {
   const showSidebar = step > 0 && step < 99
 
   return (
-    <div style={wrapStyle}>
-      <div style={headerStyle}>
+    <div className="rwr-calc-wrap" style={wrapStyle}>
+      <div className="rwr-calc-header" style={headerStyle}>
         <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
           <img src="/logos/favicon-planet-origin.svg" alt="QLIXA" style={{ width: 40, height: 40, objectFit: 'contain' as const }}/>
           <div style={{ fontSize: 17, fontWeight: 700, color: '#1A1A1A', letterSpacing: '0.5px', lineHeight: 1 }}>{t.headerTitle}</div>
         </div>
         {step > 0 && step < 99 && (
           <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-            <div style={{ width: 160 }}>{progress(step)}</div>
+            <div className="rwr-calc-progress" style={{ width: 160 }}>{progress(step)}</div>
             <div style={{ fontSize: 11, color: 'var(--color-gray)', minWidth: 32 }}>{step} / {totalSteps}</div>
           </div>
         )}
       </div>
 
-      <div style={{ display: 'flex', flex: 1 }}>
+      <div className="rwr-calc-body" style={{ display: 'flex', flex: 1 }}>
         {renderStep()}
         {showSidebar && sidebar}
       </div>

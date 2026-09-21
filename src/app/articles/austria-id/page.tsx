@@ -356,24 +356,24 @@ export default function AustriaIdPage() {
 
         {/* Hero */}
         <section style={{ background: '#F0F7F8', padding: '56px clamp(20px,6vw,80px) 40px' }}>
-          <div style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
+          <div className="article-hero-row" style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
             <div style={{ flex: 1 }}>
               <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
                 <Badge variant="tagPrimary">{t.tag1}</Badge>
                 <Badge variant="tagSecondary">{t.tag2}</Badge>
                 <Badge variant="tagSecondary">{t.tag3}</Badge>
               </div>
-              <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
+              <h1 className="article-h1" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
                 {t.titleLine1}<br />
                 <em style={{ color: '#038390', fontStyle: 'italic' }}>{t.titleEm}</em>
               </h1>
-              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: 'var(--color-gray)' }}>
+              <div className="article-meta-row" style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: 'var(--color-gray)' }}>
                 <span>{t.metaTime}</span>
                 <span>{t.metaSteps}</span>
                 <span>{t.metaForeigners}</span>
               </div>
             </div>
-            <div style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
+            <div className="article-hero-image" style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/articles/austria-id-cover.jpg" alt="ID Austria" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
             </div>

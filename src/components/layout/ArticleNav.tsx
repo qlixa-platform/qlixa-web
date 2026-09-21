@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useId } from 'react'
 import Link from 'next/link'
 import { articles, getAdjacentArticles } from '@/lib/articles'
 
@@ -72,17 +72,38 @@ function useArticleNavLang() {
 
 export function ArticleTOC({ items }: { items: [string, string][] }) {
   const t = useArticleNavLang()
+  // Mobile-only collapse state. Irrelevant at desktop (>=901px): the
+  // items grid there is force-shown by an unconditional CSS rule
+  // outside the mobile media query (see .article-toc-grid-collapsed in
+  // globals.css), so toggling this state never hides desktop content —
+  // only the mobile-only chevron (base-hidden pattern, same as the
+  // rest of the project) is visible feedback for it there.
+  const [open, setOpen] = useState(false)
+  const panelId = useId()
   return (
     <div style={{
       background: '#F0F7F8', borderRadius: 16,
       padding: '20px 24px', marginBottom: 32,
     }}>
-      <div style={{ fontWeight: 700, color: '#026B76', marginBottom: 14, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>
+      <button
+        type="button"
+        onClick={() => setOpen(o => !o)}
+        aria-expanded={open}
+        aria-controls={panelId}
+        style={{
+          display: 'flex', alignItems: 'center', justifyContent: 'space-between', width: '100%',
+          background: 'none', border: 'none', padding: 0, margin: 0, cursor: 'pointer', font: 'inherit', textAlign: 'left' as const,
+          fontWeight: 700, color: '#026B76', marginBottom: 14, fontSize: 11, letterSpacing: '1.5px', textTransform: 'uppercase' as const,
+        }}
+      >
         {t.toc}
-      </div>
-      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px 24px' }}>
+        <svg className="article-toc-chevron" aria-hidden="true" width="12" height="8" viewBox="0 0 12 8" fill="none" style={{ transform: open ? 'rotate(180deg)' : 'none', transition: 'transform 0.2s', flexShrink: 0 }}>
+          <path d="M1 1L6 6L11 1" stroke="#026B76" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      </button>
+      <div id={panelId} className={`article-toc-grid${open ? '' : ' article-toc-grid-collapsed'}`} style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '6px 24px' }}>
         {items.map(([href, label]) => (
-          <a key={href} href={href} style={{
+          <a key={href} href={href} onClick={() => setOpen(false)} style={{
             fontSize: 13, color: '#595959', textDecoration: 'none',
             padding: '4px 0', lineHeight: 1.4,
           }}
@@ -93,11 +114,6 @@ export function ArticleTOC({ items }: { items: [string, string][] }) {
           </a>
         ))}
       </div>
-      <style>{`
-        @media (max-width: 700px) {
-          div[style*="grid-template-columns: repeat(3"] { grid-template-columns: 1fr !important; }
-        }
-      `}</style>
     </div>
   )
 }
@@ -108,7 +124,7 @@ export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
   const all = articles
 
   return (
-    <div style={{
+    <div className="article-sidebar-desktop-only" style={{
       width: 220, flexShrink: 0,
       position: 'sticky', top: 80,
       alignSelf: 'flex-start',
@@ -198,7 +214,7 @@ export function ArticlePrevNext({ currentSlug }: { currentSlug: string }) {
   if (!prev && !next) return null
 
   return (
-    <div style={{
+    <div className="article-prevnext-grid" style={{
       display: 'grid',
       gridTemplateColumns: prev && next ? '1fr 1fr' : prev ? '1fr auto' : 'auto 1fr',
       gap: 12, margin: '40px 0 0',

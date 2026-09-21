@@ -598,26 +598,26 @@ export default function RWRKartePage() {
 
         {/* Hero */}
         <section style={{ background: '#F0F7F8', padding: '56px clamp(20px,6vw,80px) 40px' }}>
-          <div style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
+          <div className="article-hero-row" style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
             <div style={{ flex: 1 }}>
               <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
                 <Badge variant="tagPrimary">{t.tag1}</Badge>
                 <Badge variant="tagSecondary">{t.tag2}</Badge>
                 <Badge variant="tagSecondary">{t.tag3}</Badge>
               </div>
-              <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
+              <h1 className="article-h1" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
                 {t.title}
               </h1>
               <p style={{ fontSize: 16, color: '#595959', lineHeight: 1.75, marginBottom: 24, maxWidth: 480 }}>
                 {t.intro}
               </p>
-              <div style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: 'var(--color-gray)' }}>
+              <div className="article-meta-row" style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: 'var(--color-gray)' }}>
                 <span>📅 {t.date}</span>
                 <span>⏱ {t.readTime}</span>
                 <span>✍️ QLIXA</span>
               </div>
             </div>
-            <div style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
+            <div className="article-hero-image" style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
               <img src="/articles/rwr-karte-cover.jpg" alt="RWR+ Karte" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
             </div>
           </div>
@@ -727,7 +727,7 @@ export default function RWRKartePage() {
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 16 }}>{t.incomeH2}</h2>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.85, marginBottom: 16 }}>{t.incomeP}</p>
 
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
+                <div className="article-grid-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16, marginBottom: 24 }}>
                   <div style={{ background: '#F0F7F8', borderRadius: 12, padding: '20px' }}>
                     <div style={{ fontWeight: 700, color: '#1A1A1A', marginBottom: 10, fontSize: 14 }}>{t.employedLabel}</div>
                     {t.employedItems.map((item: any) => (
@@ -869,7 +869,7 @@ export default function RWRKartePage() {
               <div id="checklist" style={{ marginBottom: 40, scrollMarginTop: '80px' }}>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.5vw,30px)', fontWeight: 400, color: '#1A1A1A', marginBottom: 8 }}>{t.checklistH2}</h2>
                 <p style={{ fontSize: 15, color: '#595959', lineHeight: 1.75, marginBottom: 20 }}>{t.checklistP}</p>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
+                <div className="article-grid-3col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16 }}>
                   <div style={{ background: '#038390', borderRadius: 16, padding: '24px', display: 'flex', flexDirection: 'column' as const }}>
                     <div style={{ fontSize: 11, fontWeight: 700, letterSpacing: '1.5px', textTransform: 'uppercase' as const, color: 'rgba(255,255,255,0.6)', marginBottom: 8 }}>{t.card1.badge}</div>
                     <div style={{ fontFamily: 'DM Serif Display, serif', fontSize: 18, color: 'white', marginBottom: 8 }}>{t.card1.title}</div>

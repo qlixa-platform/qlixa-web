@@ -324,6 +324,13 @@ body {
   display: none;
 }
 
+/* Same base-hidden pattern for the mobile-only Table of Contents
+   expand/collapse chevron (ArticleNav.tsx's ArticleTOC) — desktop's
+   TOC header stays exactly as before, with no chevron rendered. */
+.article-toc-chevron {
+  display: none;
+}
+
 @media (max-width: 900px) {
 
   /* ── NAVBAR ── */
@@ -1258,6 +1265,116 @@ body {
     bottom: auto !important;
     transform: translateY(-50%);
     right: max(8px, env(safe-area-inset-right)) !important;
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     ARTICLE MOBILE TEMPLATE — PHASE 1 (RWR+ + shared components)
+     Real-phone QA found the desktop 3-zone article layout (left "All
+     articles" sidebar + center article + right-adjacent hero image)
+     surviving unmodified at mobile widths, crushing everything into
+     unreadable slivers. All rules below are additive-only inside this
+     shared mobile query; desktop (>=901px) inline styles/JSX are
+     completely untouched, so nothing here can alter desktop rendering
+     regardless of state. ArticleSidebar/ArticleTOC/ArticlePrevNext are
+     the actual SHARED component (src/components/layout/ArticleNav.tsx,
+     used identically by all 5 published articles), so those 3 classes
+     fix all 5 articles at once. The .article-hero-row/.article-h1/
+     .article-meta-row/.article-hero-image classes target a layout
+     PATTERN that is duplicated (not componentized) identically across
+     each of the 5 article page.tsx files — the class name is the same
+     and the CSS rule lives once here, but the className had to be
+     added once per page, which is the smallest safe change given no
+     shared ArticleLayout component currently exists. ══════════════ */
+
+  /* "All articles" sidebar: secondary navigation, not useful competing
+     for reading width on a phone. Data/links are untouched — only this
+     component's own rendered box is hidden here. */
+  .article-sidebar-desktop-only {
+    display: none !important;
+  }
+
+  /* Article hero: desktop's side-by-side text+image row becomes a
+     single column — image (which was forcing the text column down to
+     near-zero width, the direct cause of the "lead wraps into
+     3-character lines" symptom in the QA screenshot) now sits full
+     width below the text instead of squeezed beside it. */
+  .article-hero-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 20px !important;
+  }
+  .article-hero-image {
+    flex: 1 1 auto !important;
+    width: 100% !important;
+    max-height: 220px;
+  }
+  .article-h1 {
+    font-size: 32px !important;
+    line-height: 1.1 !important;
+  }
+  .article-meta-row {
+    gap: 14px !important;
+  }
+
+  /* Table of Contents: collapsed by default (see ArticleNav.tsx —
+     `open` state starts false), single-column list when expanded
+     instead of desktop's 3-column grid (3 columns at ~110px each is
+     unreadable). The chevron is a new, purely mobile affordance. */
+  .article-toc-grid {
+    grid-template-columns: 1fr !important;
+  }
+  .article-toc-grid-collapsed {
+    display: none !important;
+  }
+  .article-toc-chevron {
+    display: inline-block !important;
+  }
+
+  /* Prev/next "other articles" navigation: 2-column grid becomes one
+     full-width card per row instead of two squeezed side by side. */
+  .article-prevnext-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* RWR+-specific body content grids (income-source comparison,
+     document-checklist CTA cards) — genuinely dense text content that
+     needs full reading width at mobile, unlike shorter yes/no-style
+     grids elsewhere that already work fine at 2 columns. */
+  .article-grid-2col {
+    grid-template-columns: 1fr !important;
+  }
+  .article-grid-3col {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* RWR+ income calculator (RWRCalculator.tsx): the outer wrap was
+     capped at 75% of the article column's width, and its own internal
+     answer-summary sidebar had a fixed 200px width — together these
+     crushed the actual question/input content into an unusably narrow
+     sliver, with clipped currency fields. Fixed to use the full mobile
+     reading width, with the summary sidebar moving below the question
+     instead of squeezing beside it. */
+  .rwr-calc-wrap {
+    max-width: 100% !important;
+  }
+  .rwr-calc-header {
+    padding: 12px 16px !important;
+    flex-wrap: wrap;
+    row-gap: 8px;
+  }
+  .rwr-calc-progress {
+    width: 100px !important;
+  }
+  .rwr-calc-body {
+    flex-direction: column !important;
+  }
+  .rwr-calc-sidebar {
+    width: 100% !important;
+    border-left: none !important;
+    border-top: 1.5px solid rgba(3,131,144,0.15);
+  }
+  .rwr-calc-step {
+    padding: 20px !important;
   }
 }
 
