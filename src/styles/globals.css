@@ -1376,6 +1376,69 @@ body {
   .rwr-calc-step {
     padding: 20px !important;
   }
+
+  /* ══════════════════════════════════════════════════════════════
+     ABOUT PAGE MOBILE ADAPTATION
+     Every desktop "text | image" or "image | text" storytelling row
+     on /about (hero, bureaucracy card, "we looked for answers",
+     timeline card) is a flex ROW with a percentage/fixed-px split
+     (e.g. flex:'1 1 60%' + flex:'0 0 40%'). At mobile that split
+     crushed the text column, mirroring the same class of bug already
+     fixed on Pricing/Articles. These 3 classes are generic and reused
+     across all 4 such rows rather than 4 separate rulesets; the
+     text/image CHILD of each row keeps its own authored DOM order
+     (image-first sections stay image-first, text-first sections stay
+     text-first) — only the row's axis flips from horizontal to
+     vertical, so the intended reading sequence is preserved exactly
+     as authored, never guessed. */
+  .about-stack-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 24px !important;
+  }
+  .about-stack-text {
+    flex: 1 1 auto !important;
+    max-width: 100% !important;
+  }
+  .about-stack-image {
+    flex: 1 1 auto !important;
+    max-width: 100% !important;
+  }
+  /* The hero's decorative halo (300px, no offsets — sits at its flex
+     static position) fits under the image at every desktop width, but
+     would overflow a 320px-wide mobile viewport once its own column
+     shrinks to ~280px of content width. Capped to a size that fits
+     safely under the narrowest supported phone width. */
+  .about-hero-halo {
+    width: 220px !important;
+    height: 220px !important;
+  }
+  /* Shared editorial "card" shell reused by 8 distinct About sections
+     (bureaucracy, answers, Finanzamt quote, how-we-met, timeline,
+     free-first, coffee philosophy, what's-next) — each currently has
+     its own literal 28–40px desktop padding; one class uniformly
+     reduces all of them to the same mobile card padding already
+     established on Pricing/Homepage, without needing 8 separate
+     overrides. */
+  .about-card {
+    padding: 20px !important;
+  }
+  /* Reused for every short-content grid on the page (the 5-icon
+     "answers" strip, the 6 lifestyle pills, the 4 free-plan price
+     items) — 2 columns keeps their compact, at-a-glance card feel
+     instead of forcing a full list, matching the task's own "short
+     cards may stay 2-column" guidance. */
+  .about-grid-2col {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+  /* Reused for every grid whose cells contain full sentences (the 3
+     "why QLIXA doesn't have to be complicated" statements, the 3
+     throughout-the-year cards, the 2 belief cards) — these need full
+     reading width, matching the task's "cards with paragraphs → 1
+     column" guidance. */
+  .about-grid-1col {
+    grid-template-columns: 1fr !important;
+  }
 }
 
 /* Short-landscape safety net: on very short mobile viewports, revert

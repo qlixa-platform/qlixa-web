@@ -599,8 +599,8 @@ export default function AboutPage() {
       <section style={{ background: '#F0F7F8', padding: '60px clamp(20px,6vw,80px) 60px' }}>
         {/* ABOUT_SECTION_CONTAINER — shared 1080px page grid; every major
             card below aligns its outer edge to this same width. */}
-        <div style={{ maxWidth: 1080, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 40 }}>
-          <div style={{ flex: '1 1 60%', maxWidth: 520 }}>
+        <div className="about-stack-row" style={{ maxWidth: 1080, margin: '0 auto', display: 'flex', alignItems: 'center', gap: 40 }}>
+          <div className="about-stack-text" style={{ flex: '1 1 60%', maxWidth: 520 }}>
             <div style={{ display: 'inline-block', padding: '5px 16px', borderRadius: 999, background: 'rgba(3,131,144,0.1)', border: '1px solid rgba(3,131,144,0.25)', fontSize: 11, fontWeight: 700, letterSpacing: '2px', textTransform: 'uppercase' as const, color: '#026B76', marginBottom: 20 }}>{c.badge}</div>
             <h1 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(32px,4vw,50px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 18 }}>
               {c.h1Line1}<br/>{c.h1Line2}
@@ -608,9 +608,9 @@ export default function AboutPage() {
             <p style={{ fontSize: 'clamp(15px,1.3vw,18px)', color: '#595959', lineHeight: 1.7, marginBottom: 12 }}>{c.heroP1}</p>
             <p style={{ fontSize: 'clamp(15px,1.3vw,18px)', color: '#595959', lineHeight: 1.7 }}>{c.heroP2}</p>
           </div>
-          <div style={{ flex: '0 0 40%', display: 'flex', justifyContent: 'center', position: 'relative' as const }}>
+          <div className="about-stack-image" style={{ flex: '0 0 40%', display: 'flex', justifyContent: 'center', position: 'relative' as const }}>
             {/* subtle abstract halo behind the illustration — no hard card */}
-            <div style={{ position: 'absolute' as const, width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(3,131,144,0.10) 0%, rgba(3,131,144,0.03) 60%, transparent 75%)' }} />
+            <div className="about-hero-halo" style={{ position: 'absolute' as const, width: 300, height: 300, borderRadius: '50%', background: 'radial-gradient(circle, rgba(3,131,144,0.10) 0%, rgba(3,131,144,0.03) 60%, transparent 75%)' }} />
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img src="/about/ira-and-ira.png" alt={c.heroAlt} style={{ width: '100%', maxWidth: 320, height: 'auto', objectFit: 'contain', display: 'block', position: 'relative' as const }}/>
           </div>
@@ -624,8 +624,8 @@ export default function AboutPage() {
         <div style={{ maxWidth: 1080, margin: '0 auto', display: 'flex', flexDirection: 'column' as const, gap: 60 }}>
 
           {/* ── 2. AUSTRIAN BUREAUCRACY — one horizontal card ── */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#F8FCFC', border: '1px solid rgba(3,131,144,0.12)', borderRadius: 24, padding: '34px 36px' }}>
-            <div style={{ flex: '1 1 65%', maxWidth: 620 }}>
+          <div className="about-stack-row about-card" style={{ display: 'flex', alignItems: 'center', gap: 8, background: '#F8FCFC', border: '1px solid rgba(3,131,144,0.12)', borderRadius: 24, padding: '34px 36px' }}>
+            <div className="about-stack-text" style={{ flex: '1 1 65%', maxWidth: 620 }}>
               <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.4vw,30px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.3, marginBottom: 16 }}>{c.s2Heading}</h2>
               <div style={{ display: 'flex', flexDirection: 'column' as const, gap: 4, marginBottom: 14 }}>
                 {c.s2Lines.map((line) => (
@@ -636,7 +636,7 @@ export default function AboutPage() {
                 {c.s2Before} <HighlightYellow>{c.s2Highlight}</HighlightYellow>
               </p>
             </div>
-            <div style={{ flex: '0 0 35%', display: 'flex', justifyContent: 'center' }}>
+            <div className="about-stack-image" style={{ flex: '0 0 35%', display: 'flex', justifyContent: 'center' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/about/confused-moms.png" alt="" style={{ width: '100%', maxWidth: 240, height: 'auto', objectFit: 'contain', display: 'block' }}/>
             </div>
@@ -647,14 +647,14 @@ export default function AboutPage() {
               single row at 1440/1280/1024 — kept deliberately compact
               (fixed icon/font sizes, no wrapping) rather than fluid, so
               they don't quietly collapse to 2 rows at 1024px. ── */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 30, background: '#F8FCFC', border: '1px solid rgba(3,131,144,0.12)', borderRadius: 24, padding: '30px 32px' }}>
-            <div style={{ flex: '0 0 170px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(3,131,144,0.05)', borderRadius: 20, padding: '18px 8px', alignSelf: 'stretch' }}>
+          <div className="about-stack-row about-card" style={{ display: 'flex', alignItems: 'center', gap: 30, background: '#F8FCFC', border: '1px solid rgba(3,131,144,0.12)', borderRadius: 24, padding: '30px 32px' }}>
+            <div className="about-stack-image" style={{ flex: '0 0 170px', display: 'flex', alignItems: 'center', justifyContent: 'center', background: 'rgba(3,131,144,0.05)', borderRadius: 20, padding: '18px 8px', alignSelf: 'stretch' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/about/studying-moms.png" alt="" style={{ width: '100%', maxWidth: 145, height: 'auto', objectFit: 'contain', display: 'block' }}/>
             </div>
-            <div style={{ flex: 1, minWidth: 0 }}>
+            <div className="about-stack-text" style={{ flex: 1, minWidth: 0 }}>
               <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(22px,2.4vw,30px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.3, marginBottom: 16 }}>{c.s3Heading}</h2>
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0,1fr))', gap: 10, marginBottom: 16 }}>
+              <div className="about-grid-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(5, minmax(0,1fr))', gap: 10, marginBottom: 16 }}>
                 {c.s3Grid.map((item) => (
                   <div key={item.label} style={{ display: 'flex', flexDirection: 'column' as const, alignItems: 'center', gap: 6, background: '#F0F7F8', border: '1px solid rgba(3,131,144,0.12)', borderRadius: 15, padding: '14px 8px', textAlign: 'center' as const }}>
                     <AboutIcon name={item.icon} size={23} />
@@ -668,7 +668,7 @@ export default function AboutPage() {
 
           {/* ── 4. FINANZAMT QUOTE — outer card aligned to the shared
               1080px grid; text kept inside a narrower readable column. ── */}
-          <div style={{ background: '#F0F7F8', borderRadius: 20, borderLeft: '4px solid #038390', padding: '28px 36px', width: '100%' }}>
+          <div className="about-card" style={{ background: '#F0F7F8', borderRadius: 20, borderLeft: '4px solid #038390', padding: '28px 36px', width: '100%' }}>
             <div style={{ maxWidth: 760 }}>
               <p style={{ fontSize: 16, color: '#1A1A1A', lineHeight: 1.7, marginBottom: 8 }}>{c.s4P1}</p>
               <p style={{ fontSize: 16, color: '#1A1A1A', lineHeight: 1.7, marginBottom: 12 }}>{c.s4P2}</p>
@@ -683,7 +683,7 @@ export default function AboutPage() {
           {/* ── 5. HOW WE MET — ABOUT_MET_CARD is full-width (aligned to
               the shared 1080px grid, same as the other major cards);
               ABOUT_MET_TEXT keeps the actual copy at a readable width. ── */}
-          <div style={{ width: '100%', background: 'rgba(3,131,144,0.035)', borderRadius: 20, padding: '32px 40px' }}>
+          <div className="about-card" style={{ width: '100%', background: 'rgba(3,131,144,0.035)', borderRadius: 20, padding: '32px 40px' }}>
             <div style={{ maxWidth: 760, margin: '0 auto', textAlign: 'center' as const }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 16 }}>
                 <AboutIcon name="connect" size={22} />
@@ -695,8 +695,8 @@ export default function AboutPage() {
           </div>
 
           {/* ── 6. TIMELINE — one integrated split card ── */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: 36, background: '#F8FCFC', border: '1px solid rgba(3,131,144,0.12)', borderRadius: 24, padding: '32px 36px' }}>
-            <div style={{ flex: 1 }}>
+          <div className="about-stack-row about-card" style={{ display: 'flex', alignItems: 'center', gap: 36, background: '#F8FCFC', border: '1px solid rgba(3,131,144,0.12)', borderRadius: 24, padding: '32px 36px' }}>
+            <div className="about-stack-text" style={{ flex: 1 }}>
               <div style={{ display: 'flex', alignItems: 'center', flexWrap: 'wrap' as const, gap: 10, marginBottom: 18 }}>
                 {c.s6Timeline.map((step, i) => (
                   <div key={step} style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
@@ -713,7 +713,7 @@ export default function AboutPage() {
               <p style={{ fontSize: 15, color: '#404040', lineHeight: 1.65, marginBottom: 8 }}>{c.s6P2}</p>
               <p style={{ fontSize: 15, color: '#404040', lineHeight: 1.65, margin: 0 }}>{c.s6P3}</p>
             </div>
-            <div style={{ flex: '0 0 230px', display: 'flex', justifyContent: 'center' }}>
+            <div className="about-stack-image" style={{ flex: '0 0 230px', display: 'flex', justifyContent: 'center' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/about/helping-friends.png" alt="" style={{ width: '100%', maxWidth: 230, height: 'auto', objectFit: 'contain', display: 'block' }}/>
             </div>
@@ -730,7 +730,7 @@ export default function AboutPage() {
             <p style={{ fontSize: 15, color: '#404040', lineHeight: 1.7, marginBottom: 24 }}>{c.s7P2}</p>
 
             {/* B. 6 pills, 3×2 */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, marginBottom: 24 }}>
+            <div className="about-grid-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 10, marginBottom: 24 }}>
               {[
                 { text: c.s7Pills[0], icon: 'briefcase' as const },
                 { text: c.s7Pills[1], icon: 'shop' as const },
@@ -755,7 +755,7 @@ export default function AboutPage() {
             </p>
 
             {/* D. three compact statement blocks */}
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
+            <div className="about-grid-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 12 }}>
               <div style={{ background: '#F8FCFC', border: '1px solid rgba(3,131,144,0.10)', borderRadius: 14, padding: '16px 16px' }}>
                 <p style={{ fontSize: 14, color: '#595959', lineHeight: 1.6, margin: 0 }}>{c.s7P5}</p>
               </div>
@@ -774,10 +774,10 @@ export default function AboutPage() {
               readable column. ── */}
           <div>
             <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(24px,2.6vw,32px)', fontWeight: 400, color: '#1A1A1A', textAlign: 'center' as const, marginBottom: 20 }}>{c.s8Heading}</h2>
-            <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '32px 40px', width: '100%' }}>
+            <div className="about-card" style={{ background: '#F0F7F8', borderRadius: 20, padding: '32px 40px', width: '100%' }}>
               <p style={{ fontSize: 16, color: '#1A1A1A', lineHeight: 1.7, marginBottom: 24, textAlign: 'center' as const, maxWidth: 680, marginLeft: 'auto', marginRight: 'auto' }}>{c.s8P1}</p>
 
-              <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, marginBottom: 24 }}>
+              <div className="about-grid-2col" style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 10, marginBottom: 24 }}>
                 {c.s8Items.map((item) => (
                   <div key={item.title} style={{ background: '#fff', borderRadius: 14, padding: '16px 12px', textAlign: 'center' as const }}>
                     <div style={{ fontSize: 12, fontWeight: 700, color: '#595959', marginBottom: 8 }}>{item.title}</div>
@@ -804,7 +804,7 @@ export default function AboutPage() {
               <SectionHeading>{c.s9Heading}</SectionHeading>
               <p style={{ fontSize: 16, color: '#404040', lineHeight: 1.75, margin: '14px 0 22px' }}>{c.s9Body}</p>
             </div>
-            <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, marginBottom: 18 }}>
+            <div className="about-grid-1col" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14, marginBottom: 18 }}>
               {[
                 { ...c.s9Cards[0], icon: 'route' as const },
                 { ...c.s9Cards[1], icon: 'income' as const },
@@ -822,7 +822,7 @@ export default function AboutPage() {
 
           {/* ── 10. COFFEE PHILOSOPHY — manifesto card, full-width outer
               (aligned to the shared 1080px grid), narrower inner text. ── */}
-          <div style={{ width: '100%', textAlign: 'center' as const, background: 'rgba(3,131,144,0.035)', borderRadius: 20, padding: '32px 40px' }}>
+          <div className="about-card" style={{ width: '100%', textAlign: 'center' as const, background: 'rgba(3,131,144,0.035)', borderRadius: 20, padding: '32px 40px' }}>
             <div style={{ maxWidth: 760, margin: '0 auto' }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 14 }}>
                 <AboutIcon name="coffee" size={22} />
@@ -834,7 +834,7 @@ export default function AboutPage() {
           </div>
 
           {/* ── 11. BELIEFS ── */}
-          <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
+          <div className="about-grid-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 16 }}>
             <div style={{ background: '#F0F7F8', borderRadius: 18, padding: '26px 28px', display: 'flex', alignItems: 'center', gap: 20 }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/about/stressed-accountant.png" alt={c.belief1Alt} style={{ width: 100, height: 100, objectFit: 'contain', flexShrink: 0 }}/>
@@ -851,7 +851,7 @@ export default function AboutPage() {
 
           {/* ── 12. WHAT'S NEXT — card outer is full-width (aligned to the
               shared 1080px grid), inner text kept narrower and centered. ── */}
-          <div style={{ width: '100%', textAlign: 'center' as const, background: '#fff', borderTop: '3px solid rgba(3,131,144,0.35)', borderRadius: 16, boxShadow: '0 1px 0 rgba(3,131,144,0.06)', padding: '28px 36px' }}>
+          <div className="about-card" style={{ width: '100%', textAlign: 'center' as const, background: '#fff', borderTop: '3px solid rgba(3,131,144,0.35)', borderRadius: 16, boxShadow: '0 1px 0 rgba(3,131,144,0.06)', padding: '28px 36px' }}>
             <div style={{ maxWidth: 720, margin: '0 auto' }}>
               <div style={{ display: 'flex', justifyContent: 'center', marginBottom: 12 }}>
                 <AboutIcon name="arrow" size={20} />
