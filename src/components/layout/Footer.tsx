@@ -184,6 +184,19 @@ export default function Footer() {
     setShowModal(true)
   }
 
+  // Body-scroll lock while the modal is open — without it, a touch-drag
+  // starting on the fixed-position backdrop can scroll the page behind it
+  // on mobile instead of (or in addition to) the modal's own content,
+  // since `position:fixed` alone does not prevent background scroll on
+  // touch devices. Restores whatever inline value was present before
+  // (normally none) on close/unmount.
+  useEffect(() => {
+    if (!showModal) return
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+    return () => { document.body.style.overflow = prevOverflow }
+  }, [showModal])
+
   // Keyboard behavior while the modal is open: Escape closes it, and
   // Tab/Shift+Tab are trapped within the modal's own focusable controls.
   useEffect(() => {
@@ -351,7 +364,7 @@ export default function Footer() {
           display: 'flex', alignItems: 'center', justifyContent: 'center',
           padding: 16, zIndex: 200,
         }}>
-          <div ref={modalRef} onClick={e => e.stopPropagation()} style={{
+          <div ref={modalRef} className="footer-modal-panel" onClick={e => e.stopPropagation()} style={{
             background: '#fff', borderRadius: 20, padding: '32px 28px',
             maxWidth: 440, width: '100%', boxShadow: '0 20px 60px rgba(0,0,0,0.2)',
           }}>
@@ -373,7 +386,7 @@ export default function Footer() {
             <Textarea value={desc} onChange={e => setDesc(e.target.value)} placeholder={t.descPlaceholder} rows={4}
               style={{ marginBottom: 24 }} />
 
-            <div style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
+            <div className="footer-modal-actions" style={{ display: 'flex', gap: 10, justifyContent: 'flex-end' }}>
               <button onClick={closeModal} style={{
                 padding: '11px 20px', borderRadius: 10, border: '1px solid #E6F4F5',
                 background: '#fff', color: '#595959', fontSize: 13, fontWeight: 600, cursor: 'pointer',
