@@ -617,8 +617,8 @@ export default function RWRKartePage() {
                 <span>✍️ QLIXA</span>
               </div>
             </div>
-            <div className="article-hero-image" style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
-              <img src="/articles/rwr-karte-cover.jpg" alt="RWR+ Karte" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
+            <div className="article-hero-image" style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0, aspectRatio: '3 / 2' }}>
+              <img src="/articles/rwr-karte-cover.jpg" alt="RWR+ Karte" width={1536} height={1024} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}/>
             </div>
           </div>
         </section>
