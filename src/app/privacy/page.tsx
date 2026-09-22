@@ -262,7 +262,7 @@ export default function PrivacyPage() {
               {/* 8. Ваші права */}
               <div>
                 <h2 style={{ fontFamily: 'DM Serif Display, serif', fontSize: 20, fontWeight: 400, color: '#038390', marginBottom: 20, paddingBottom: 8, borderBottom: '1px solid #E6F4F5' }}>8. Ваші права</h2>
-                <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+                <div className="legal-grid-1col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12 }}>
                   {[
                     { icon: '📋', title: 'Право на доступ', desc: 'Отримати копію своїх даних' },
                     { icon: '✏️', title: 'Право на виправлення', desc: 'Змінити неточні дані' },
