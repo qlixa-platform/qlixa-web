@@ -31,5 +31,5 @@ export default async function LocaleHomePage({
     notFound()
   }
 
-  return <HomePageContent lang={toInternalKey(locale)} />
+  return <HomePageContent lang={toInternalKey(locale)} locale={locale} />
 }

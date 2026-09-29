@@ -10,7 +10,7 @@ import NotifyMeButton from '@/components/NotifyMeButton'
 import Badge from '@/components/ui/Badge'
 import WhatIsQlixaFeatureGrid from '@/components/WhatIsQlixaFeatureGrid'
 import ForWhomExpandableGrid from '@/components/ForWhomExpandableGrid'
-import type { InternalLangKey } from '@/lib/locale'
+import type { InternalLangKey, Locale } from '@/lib/locale'
 
 const PUBLISHED_META = [
   { href: '/articles/rwr-karte',         cover: '/articles/rwr-karte-cover.jpg',        date: { UA: '2026-07-21',   RU: '2026-07-21',  EN: '2026-07-21',  DE: '2026-07-21' },  readTime: { UA: '~15 хвилин',    RU: '~15 минут',   EN: '~15 min',    DE: '~15 Min.' } },
@@ -777,7 +777,14 @@ const FAQ_TEXT: Record<string, {
   },
 }
 
-export default function HomePageContent({ lang }: { lang: InternalLangKey }) {
+// `locale` is an EXPLICIT, separately-passed prop — deliberately not
+// derived from `lang` here. HomePageContent is shared by both the old,
+// un-prefixed "/" route (src/app/page.tsx, which only ever passes `lang`)
+// and the new localized "/[locale]" route (which passes both). Deriving
+// `locale` from `lang` internally would make the old "/" route's Navbar/
+// Footer switch into localized mode too, which must not happen during
+// this coexistence phase — see QLIXA_I18N_MIGRATION_PLAN.md, Phase 4.
+export default function HomePageContent({ lang, locale }: { lang: InternalLangKey; locale?: Locale }) {
   const [openFaq, setOpenFaq] = useState<number | null>(null)
 
   const t = HERO_TEXT[lang] || HERO_TEXT.UA;
@@ -806,7 +813,7 @@ export default function HomePageContent({ lang }: { lang: InternalLangKey }) {
         .ticker-track { display:flex; animation:tickerMove 60s linear infinite; width:max-content; will-change:transform; }
       `}</style>
 
-      <Navbar />
+      <Navbar locale={locale} />
 
       <div style={{ overflowX: 'hidden' }}>
 
@@ -1537,7 +1544,7 @@ export default function HomePageContent({ lang }: { lang: InternalLangKey }) {
         </div>
       </section>
 
-      <Footer />
+      <Footer locale={locale} />
       </div>
     </div>
   )

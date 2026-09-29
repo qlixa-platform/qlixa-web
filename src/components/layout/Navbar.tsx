@@ -3,6 +3,8 @@
 import React, { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { usePathname } from 'next/navigation'
+import { type Locale, toInternalKey, localeHref } from '@/lib/locale'
 
 type NavLink = { label: string; href: string }
 type NavItem = NavLink
@@ -66,8 +68,19 @@ function getNavItems(lang: string): NavItem[] {
   ]
 }
 
-export default function Navbar() {
-  const [lang, setLang] = React.useState<string>('UA');
+// Two explicit modes (QLIXA_I18N_MIGRATION_PLAN.md, Phase 4):
+// - LEGACY MODE (`locale` undefined): every existing `'use client'` page
+//   still calls <Navbar /> with no props — behavior here is byte-for-byte
+//   identical to before Phase 4 (localStorage/navigator detection, a
+//   state-mutating switcher, `qlixa-lang-change`).
+// - LOCALIZED MODE (`locale` provided, currently only by HomePageContent
+//   when rendered from src/app/[locale]/page.tsx): the internal language
+//   is derived synchronously from the URL locale on every render — never
+//   from localStorage/navigator — so raw server HTML is already correct
+//   before any client JS runs. The switcher becomes real <Link>s built
+//   with the existing localeHref() utility instead of state mutation.
+export default function Navbar({ locale }: { locale?: Locale } = {}) {
+  const [legacyLang, setLegacyLang] = React.useState<string>('UA');
   // Single union state guarantees mutual exclusivity by construction —
   // it is structurally impossible for both the language menu and the
   // navigation menu to be "open" at once, since only one value can be
@@ -81,11 +94,18 @@ export default function Navbar() {
   const langTriggerRef = useRef<HTMLButtonElement>(null);
   const langWrapRef = useRef<HTMLDivElement>(null);
   const navPanelRef = useRef<HTMLDivElement>(null);
+  const pathname = usePathname();
 
   useEffect(() => {
+    // Localized mode: language is derived synchronously from `locale` on
+    // every render (see `lang` below) — this legacy detection effect must
+    // never run, since it would read/write localStorage as if this were
+    // still a client-selected-language page.
+    if (locale) return;
+
     const saved = localStorage.getItem('qlixa-lang');
     if (saved) {
-      setLang(saved);
+      setLegacyLang(saved);
       return;
     }
     // First-time visitor, nothing saved yet — detect the browser/device
@@ -103,13 +123,16 @@ export default function Navbar() {
       if (LANG_MAP[code]) { detected = LANG_MAP[code]; break; }
     }
     if (!SUPPORTED.includes(detected)) detected = 'EN';
-    setLang(detected);
+    setLegacyLang(detected);
     localStorage.setItem('qlixa-lang', detected);
     window.dispatchEvent(new Event('qlixa-lang-change'));
-  }, []);
+  }, [locale]);
 
+  // Legacy-mode switcher setter only — never invoked in localized mode,
+  // since the switcher there renders real <Link>s (see JSX below) instead
+  // of buttons that call this.
   const handleLang = (l: string) => {
-    setLang(l);
+    setLegacyLang(l);
     if (typeof window !== 'undefined') {
       localStorage.setItem('qlixa-lang', l);
       window.dispatchEvent(new Event('qlixa-lang-change'));
@@ -174,8 +197,16 @@ export default function Navbar() {
     }
   }, [openPanel])
 
+  // Effective language: synchronous from the URL in localized mode (never
+  // localStorage/navigator), or the legacy client-detected state otherwise.
+  const lang = locale ? toInternalKey(locale) : legacyLang;
   const navItems = getNavItems(lang);
   const t = NAV_TEXT[lang] || NAV_TEXT.UA;
+
+  // Home/logo link is the only ordinary destination localized in Phase 4
+  // (every other Navbar link's localized destination page doesn't exist
+  // yet) — see QLIXA_I18N_MIGRATION_PLAN.md, Phase 4.
+  const logoHref = locale ? localeHref(locale, '/') : '/';
 
   function scrollToAnchor(id: string) {
     return () => {
@@ -193,7 +224,7 @@ export default function Navbar() {
           <div className="navbar-row" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', height: 64 }}>
 
             {/* Logo */}
-            <Link href="/" style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', marginLeft: '-12px' }}>
+            <Link href={logoHref} style={{ display: 'flex', alignItems: 'center', textDecoration: 'none', marginLeft: '-12px' }}>
               <Image
                 className="navbar-logo"
                 src="/logos/logo-name-slogan_planets_black.svg"
@@ -235,29 +266,59 @@ export default function Navbar() {
 
             {/* Right actions */}
             <div style={{ display: 'flex', alignItems: 'center', gap: 8 }} className="hidden-mobile">
-              {/* Language switcher */}
+              {/* Language switcher — desktop row (site 1/3). Localized mode
+                  renders real <Link>s built with localeHref()/usePathname()
+                  so switching language is a normal crawlable navigation;
+                  legacy mode is untouched (state-mutating buttons). */}
               <div style={{ display: 'flex', alignItems: 'center', gap: 2, marginRight: 8 }}>
-                {(['UA', 'DE', 'EN', 'RU'] as const).map((l) => (
-                  <button
-                    key={l}
-                    onClick={() => handleLang(l)}
-                    style={{
-                      background: 'none',
-                      border: 'none',
-                      cursor: 'pointer',
-                      fontSize: 12,
-                      fontWeight: lang === l ? 700 : 400,
-                      color: lang === l ? '#038390' : 'var(--color-text-muted)',
-                      padding: '2px 5px',
-                      borderRadius: 4,
-                      fontFamily: 'DM Sans, sans-serif',
-                      transition: 'color 0.15s',
-                      letterSpacing: '0.5px',
-                    }}
-                  >
-                    {l}
-                  </button>
-                ))}
+                {locale ? (
+                  (['de', 'en', 'ua', 'ru'] as const).map((l) => (
+                    <Link
+                      key={l}
+                      href={localeHref(l, pathname)}
+                      aria-current={l === locale ? 'page' : undefined}
+                      style={{
+                        display: 'inline-block',
+                        textDecoration: 'none',
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: 12,
+                        fontWeight: l === locale ? 700 : 400,
+                        color: l === locale ? '#038390' : 'var(--color-text-muted)',
+                        padding: '2px 5px',
+                        borderRadius: 4,
+                        fontFamily: 'DM Sans, sans-serif',
+                        transition: 'color 0.15s',
+                        letterSpacing: '0.5px',
+                      }}
+                    >
+                      {l.toUpperCase()}
+                    </Link>
+                  ))
+                ) : (
+                  (['UA', 'DE', 'EN', 'RU'] as const).map((l) => (
+                    <button
+                      key={l}
+                      onClick={() => handleLang(l)}
+                      style={{
+                        background: 'none',
+                        border: 'none',
+                        cursor: 'pointer',
+                        fontSize: 12,
+                        fontWeight: lang === l ? 700 : 400,
+                        color: lang === l ? '#038390' : 'var(--color-text-muted)',
+                        padding: '2px 5px',
+                        borderRadius: 4,
+                        fontFamily: 'DM Sans, sans-serif',
+                        transition: 'color 0.15s',
+                        letterSpacing: '0.5px',
+                      }}
+                    >
+                      {l}
+                    </button>
+                  ))
+                )}
               </div>
 
               <a href={`https://cabinet-ten-lac.vercel.app/login?lang=${lang === 'UA' ? 'uk' : lang.toLowerCase()}`} style={{
@@ -308,22 +369,47 @@ export default function Navbar() {
                       display: 'flex', flexDirection: 'column' as const, minWidth: 96, padding: 6,
                     }}
                   >
-                    {(['UA', 'DE', 'EN', 'RU'] as const).map((l) => (
-                      <button
-                        key={l}
-                        role="menuitem"
-                        onClick={() => { handleLang(l); closeLang(); }}
-                        style={{
-                          background: lang === l ? '#F0F7F8' : 'none',
-                          border: 'none', cursor: 'pointer', borderRadius: 6, textAlign: 'left' as const,
-                          fontSize: 14, fontWeight: lang === l ? 700 : 400,
-                          color: lang === l ? '#038390' : 'var(--color-text-muted)',
-                          padding: '10px 10px', fontFamily: 'DM Sans, sans-serif',
-                        }}
-                      >
-                        {l}
-                      </button>
-                    ))}
+                    {/* Site 2/3 — mobile compact dropdown. Same dual-mode
+                        split as the desktop row above. */}
+                    {locale ? (
+                      (['de', 'en', 'ua', 'ru'] as const).map((l) => (
+                        <Link
+                          key={l}
+                          href={localeHref(l, pathname)}
+                          role="menuitem"
+                          aria-current={l === locale ? 'page' : undefined}
+                          onClick={closeLang}
+                          style={{
+                            display: 'block',
+                            textDecoration: 'none',
+                            background: l === locale ? '#F0F7F8' : 'none',
+                            border: 'none', cursor: 'pointer', borderRadius: 6, textAlign: 'left' as const,
+                            fontSize: 14, fontWeight: l === locale ? 700 : 400,
+                            color: l === locale ? '#038390' : 'var(--color-text-muted)',
+                            padding: '10px 10px', fontFamily: 'DM Sans, sans-serif',
+                          }}
+                        >
+                          {l.toUpperCase()}
+                        </Link>
+                      ))
+                    ) : (
+                      (['UA', 'DE', 'EN', 'RU'] as const).map((l) => (
+                        <button
+                          key={l}
+                          role="menuitem"
+                          onClick={() => { handleLang(l); closeLang(); }}
+                          style={{
+                            background: lang === l ? '#F0F7F8' : 'none',
+                            border: 'none', cursor: 'pointer', borderRadius: 6, textAlign: 'left' as const,
+                            fontSize: 14, fontWeight: lang === l ? 700 : 400,
+                            color: lang === l ? '#038390' : 'var(--color-text-muted)',
+                            padding: '10px 10px', fontFamily: 'DM Sans, sans-serif',
+                          }}
+                        >
+                          {l}
+                        </button>
+                      ))
+                    )}
                   </div>
                 )}
               </div>
@@ -393,21 +479,43 @@ export default function Navbar() {
           </Link>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 8, padding: '14px 4px 6px' }}>
-            {(['UA', 'DE', 'EN', 'RU'] as const).map((l) => (
-              <button
-                key={l}
-                onClick={() => handleLangAndClose(l)}
-                style={{
-                  background: lang === l ? '#F0F7F8' : 'none',
-                  border: 'none', cursor: 'pointer', borderRadius: 6,
-                  fontSize: 13, fontWeight: lang === l ? 700 : 400,
-                  color: lang === l ? '#038390' : 'var(--color-text-muted)',
-                  padding: '6px 10px', fontFamily: 'DM Sans, sans-serif',
-                }}
-              >
-                {l}
-              </button>
-            ))}
+            {/* Site 3/3 — mobile full nav panel row. Same dual-mode split. */}
+            {locale ? (
+              (['de', 'en', 'ua', 'ru'] as const).map((l) => (
+                <Link
+                  key={l}
+                  href={localeHref(l, pathname)}
+                  aria-current={l === locale ? 'page' : undefined}
+                  onClick={() => setOpenPanel(null)}
+                  style={{
+                    textDecoration: 'none',
+                    background: l === locale ? '#F0F7F8' : 'none',
+                    border: 'none', cursor: 'pointer', borderRadius: 6,
+                    fontSize: 13, fontWeight: l === locale ? 700 : 400,
+                    color: l === locale ? '#038390' : 'var(--color-text-muted)',
+                    padding: '6px 10px', fontFamily: 'DM Sans, sans-serif',
+                  }}
+                >
+                  {l.toUpperCase()}
+                </Link>
+              ))
+            ) : (
+              (['UA', 'DE', 'EN', 'RU'] as const).map((l) => (
+                <button
+                  key={l}
+                  onClick={() => handleLangAndClose(l)}
+                  style={{
+                    background: lang === l ? '#F0F7F8' : 'none',
+                    border: 'none', cursor: 'pointer', borderRadius: 6,
+                    fontSize: 13, fontWeight: lang === l ? 700 : 400,
+                    color: lang === l ? '#038390' : 'var(--color-text-muted)',
+                    padding: '6px 10px', fontFamily: 'DM Sans, sans-serif',
+                  }}
+                >
+                  {l}
+                </button>
+              ))
+            )}
           </div>
 
           <a href={`https://cabinet-ten-lac.vercel.app/login?lang=${lang === 'UA' ? 'uk' : lang.toLowerCase()}`}

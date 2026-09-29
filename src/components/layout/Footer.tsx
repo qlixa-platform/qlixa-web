@@ -5,6 +5,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import Input from '@/components/ui/Input'
 import Textarea from '@/components/ui/Textarea'
+import { type Locale, toInternalKey, localeHref } from '@/lib/locale'
 
 const socials = [
   {
@@ -152,8 +153,14 @@ const FOOTER_TEXT: Record<string, {
   },
 }
 
-export default function Footer() {
-  const [lang, setLang] = useState('UA')
+// Same two explicit modes as Navbar (QLIXA_I18N_MIGRATION_PLAN.md, Phase
+// 4) — LEGACY MODE (`locale` undefined, every existing call site) is
+// byte-for-byte unchanged; LOCALIZED MODE (`locale` provided) derives the
+// language synchronously from the URL, never from localStorage. The error
+// modal, focus trap, scroll lock, and hover behavior below are completely
+// untouched either way.
+export default function Footer({ locale }: { locale?: Locale } = {}) {
+  const [legacyLang, setLegacyLang] = useState('UA')
   const [showModal, setShowModal] = useState(false)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
@@ -162,16 +169,19 @@ export default function Footer() {
   const previousFocusRef = useRef<HTMLElement | null>(null)
 
   useEffect(() => {
+    if (locale) return // localized mode: language comes from the URL, not localStorage
     const updateLang = () => {
       const l = localStorage.getItem('qlixa-lang')
-      if (l) setLang(l.toUpperCase())
+      if (l) setLegacyLang(l.toUpperCase())
     }
     updateLang()
     window.addEventListener('qlixa-lang-change', updateLang)
     return () => window.removeEventListener('qlixa-lang-change', updateLang)
-  }, [])
+  }, [locale])
 
+  const lang = locale ? toInternalKey(locale) : legacyLang
   const t = FOOTER_TEXT[lang] || FOOTER_TEXT.UA
+  const logoHref = locale ? localeHref(locale, '/') : '/'
 
   const closeModal = () => {
     setShowModal(false)
@@ -282,7 +292,7 @@ export default function Footer() {
           }}>
             {/* Brand */}
             <div>
-              <Link href="/" style={{ display: 'inline-block', textDecoration: 'none', marginBottom: 14 }}>
+              <Link href={logoHref} style={{ display: 'inline-block', textDecoration: 'none', marginBottom: 14 }}>
                 <Image
                   src="/logos/logo-name-slogan_planets_black.svg"
                   alt="QLIXA — Reports in One Click"
