@@ -408,7 +408,7 @@ export default function AboutContent({ lang, locale }: { lang: InternalLangKey; 
           <div style={narrowCol}>
             <h2 style={h2Style}>{c.ctaH2}</h2>
             <div style={{ display: 'flex', flexWrap: 'wrap' as const, gap: 12, justifyContent: 'center', marginTop: 20, marginBottom: 28 }}>
-              <Link href="/tax-return" style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: 50, padding: '13px 28px', borderRadius: 12, background: '#038390', color: '#ffffff', fontSize: 15, fontWeight: 700, textDecoration: 'none' }}>
+              <Link href={locale ? localeHref(locale, '/tax-return') : '/tax-return'} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: 50, padding: '13px 28px', borderRadius: 12, background: '#038390', color: '#ffffff', fontSize: 15, fontWeight: 700, textDecoration: 'none' }}>
                 {c.ctaPrimary}
               </Link>
               <Link href={locale ? localeHref(locale, '/pricing') : '/pricing'} style={{ display: 'inline-flex', alignItems: 'center', justifyContent: 'center', minHeight: 50, padding: '13px 28px', borderRadius: 12, background: '#F0F7F8', color: '#038390', border: '1px solid rgba(3,131,144,0.3)', fontSize: 15, fontWeight: 700, textDecoration: 'none' }}>

@@ -1017,7 +1017,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
               ========================================================= */}
           <Link
             className="hero-cta"
-            href="/tax-return"
+            href={locale ? localeHref(locale, '/tax-return') : '/tax-return'}
             style={{
               position: 'absolute' as const, left: '5%', top: '77%', width: '42%', height: 'clamp(34px,3.6vw,38px)',
               display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
@@ -1375,7 +1375,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
                       }}
                     />
                   ) : (
-                    <a href={card.href} className="demo-card-cta" style={{ fontSize: 15, fontWeight: 700, color: '#038390', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
+                    <a href={locale ? localeHref(locale, card.href) : card.href} className="demo-card-cta" style={{ fontSize: 15, fontWeight: 700, color: '#038390', textDecoration: 'none', display: 'inline-flex', alignItems: 'center', gap: 6 }}>
                       {card.cta} →
                     </a>
                   )}

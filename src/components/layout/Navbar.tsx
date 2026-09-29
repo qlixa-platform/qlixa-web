@@ -57,11 +57,11 @@ const NAV_TEXT: Record<string, {
   },
 }
 
-function getNavItems(lang: string): NavItem[] {
+function getNavItems(lang: string, locale?: Locale): NavItem[] {
   const t = NAV_TEXT[lang] || NAV_TEXT.UA
   return [
     { label: t.howItWorksLabel, href: '/#how-it-works' },
-    { label: t.taxReturn, href: '/tax-return' },
+    { label: t.taxReturn, href: locale ? localeHref(locale, '/tax-return') : '/tax-return' },
     { label: t.forWhom, href: '/#who-its-for' },
     { label: t.articles, href: '/articles' },
     { label: t.tools, href: '/tools' },
@@ -200,7 +200,7 @@ export default function Navbar({ locale }: { locale?: Locale } = {}) {
   // Effective language: synchronous from the URL in localized mode (never
   // localStorage/navigator), or the legacy client-detected state otherwise.
   const lang = locale ? toInternalKey(locale) : legacyLang;
-  const navItems = getNavItems(lang);
+  const navItems = getNavItems(lang, locale);
   const t = NAV_TEXT[lang] || NAV_TEXT.UA;
 
   // Home/logo link is the only ordinary destination localized in Phase 4
