@@ -10,7 +10,7 @@ import NotifyMeButton from '@/components/NotifyMeButton'
 import Badge from '@/components/ui/Badge'
 import WhatIsQlixaFeatureGrid from '@/components/WhatIsQlixaFeatureGrid'
 import ForWhomExpandableGrid from '@/components/ForWhomExpandableGrid'
-import type { InternalLangKey, Locale } from '@/lib/locale'
+import { type InternalLangKey, type Locale, localeHref } from '@/lib/locale'
 
 const PUBLISHED_META = [
   { href: '/articles/rwr-karte',         cover: '/articles/rwr-karte-cover.jpg',        date: { UA: '2026-07-21',   RU: '2026-07-21',  EN: '2026-07-21',  DE: '2026-07-21' },  readTime: { UA: '~15 хвилин',    RU: '~15 минут',   EN: '~15 min',    DE: '~15 Min.' } },
@@ -1504,7 +1504,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
           {t6.pBefore}<span style={{ background: 'rgba(255,255,255,0.2)', borderRadius: 3, padding: '1px 4px', fontWeight: 700 }}>{t6.pHighlight}</span>{t6.pAfter}
         </p>
         <div style={{ marginBottom: 16 }}>
-          <Link href="/pricing" style={{ padding: '16px 36px', borderRadius: 999, fontSize: 16, fontWeight: 600, background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.6)', textDecoration: 'none', display: 'inline-block' }}>
+          <Link href={locale ? localeHref(locale, '/pricing') : '/pricing'} style={{ padding: '16px 36px', borderRadius: 999, fontSize: 16, fontWeight: 600, background: 'transparent', color: '#fff', border: '2px solid rgba(255,255,255,0.6)', textDecoration: 'none', display: 'inline-block' }}>
             {t6.cta}
           </Link>
         </div>

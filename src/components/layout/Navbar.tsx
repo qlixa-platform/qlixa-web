@@ -253,7 +253,7 @@ export default function Navbar({ locale }: { locale?: Locale } = {}) {
                   {item.label}
                 </Link>
               ))}
-              <Link href="/pricing" style={{
+              <Link href={locale ? localeHref(locale, '/pricing') : '/pricing'} style={{
                 padding: '8px 12px', borderRadius: 8, fontSize: 14, fontWeight: 500,
                 color: 'var(--color-text-muted)', textDecoration: 'none',
               }}
@@ -469,7 +469,7 @@ export default function Navbar({ locale }: { locale?: Locale } = {}) {
               {item.label}
             </Link>
           ))}
-          <Link href="/pricing" style={{
+          <Link href={locale ? localeHref(locale, '/pricing') : '/pricing'} style={{
             padding: '12px 4px', fontSize: 15, fontWeight: 500,
             color: '#1A1A1A', textDecoration: 'none', borderBottom: '1px solid #F0F7F8',
           }}
