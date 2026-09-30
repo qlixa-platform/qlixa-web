@@ -6,7 +6,11 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { type Locale, toInternalKey, localeHref } from '@/lib/locale'
 
-type NavLink = { label: string; href: string }
+// `anchor` is set only for the two homepage-section nav items
+// (how-it-works / who-its-for) — a stable id the click-handlers key off
+// of, so they never have to compare against the full `href` string
+// (which now varies by locale — see getNavItems below).
+type NavLink = { label: string; href: string; anchor?: string }
 type NavItem = NavLink
 
 // Переклади навбару — всі 4 мови
@@ -59,10 +63,16 @@ const NAV_TEXT: Record<string, {
 
 function getNavItems(lang: string, locale?: Locale): NavItem[] {
   const t = NAV_TEXT[lang] || NAV_TEXT.UA
+  // Homepage-section anchors must stay on the CURRENT locale's homepage
+  // (/de#how-it-works, not /#how-it-works) — otherwise following one from
+  // a localized page drops the visitor onto the legacy root. `homeHref`
+  // is the locale root ('/de', '/en', ... or '/' in legacy mode); both
+  // anchor hrefs below are built from it so they can never drift apart.
+  const homeHref = locale ? localeHref(locale, '/') : '/'
   return [
-    { label: t.howItWorksLabel, href: '/#how-it-works' },
+    { label: t.howItWorksLabel, href: `${homeHref}#how-it-works`, anchor: 'how-it-works' },
     { label: t.taxReturn, href: locale ? localeHref(locale, '/tax-return') : '/tax-return' },
-    { label: t.forWhom, href: '/#who-its-for' },
+    { label: t.forWhom, href: `${homeHref}#who-its-for`, anchor: 'who-its-for' },
     { label: t.articles, href: '/articles' },
     { label: t.tools, href: locale ? localeHref(locale, '/tools') : '/tools' },
   ]
@@ -243,8 +253,8 @@ export default function Navbar({ locale }: { locale?: Locale } = {}) {
                   color: 'var(--color-text-muted)', textDecoration: 'none',
                 }}
                   onClick={
-                    item.href === '/#who-its-for' ? scrollToAnchor('who-its-for') :
-                    item.href === '/#how-it-works' ? scrollToAnchor('how-it-works') :
+                    item.anchor === 'who-its-for' ? scrollToAnchor('who-its-for') :
+                    item.anchor === 'how-it-works' ? scrollToAnchor('how-it-works') :
                     undefined
                   }
                   onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
@@ -461,8 +471,8 @@ export default function Navbar({ locale }: { locale?: Locale } = {}) {
               color: '#1A1A1A', textDecoration: 'none', borderBottom: '1px solid #F0F7F8',
             }}
               onClick={
-                item.href === '/#who-its-for' ? scrollToAnchor('who-its-for') :
-                item.href === '/#how-it-works' ? scrollToAnchor('how-it-works') :
+                item.anchor === 'who-its-for' ? scrollToAnchor('who-its-for') :
+                item.anchor === 'how-it-works' ? scrollToAnchor('how-it-works') :
                 () => setOpenPanel(null)
               }
             >

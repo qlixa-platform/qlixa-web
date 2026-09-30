@@ -1413,7 +1413,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             <div className="why-story-text" style={{ flex: '1 1 54%', minWidth: 0, padding: '40px 24px 40px 48px', display: 'flex', flexDirection: 'column' as const, gap: 16 }}>
               <p className="why-body" style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.p[0]}</p>
               <p className="why-body" style={{ fontSize: 17, color: '#595959', lineHeight: 1.75, margin: 0 }}>{t5.p[2]}</p>
-              <Link href="/about" className="why-link" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 15, fontWeight: 600, color: '#038390', textDecoration: 'none', width: 'fit-content' }}
+              <Link href={locale ? localeHref(locale, '/about') : '/about'} className="why-link" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 15, fontWeight: 600, color: '#038390', textDecoration: 'none', width: 'fit-content' }}
                 onMouseEnter={e => (e.currentTarget as HTMLElement).style.textDecoration = 'underline'}
                 onMouseLeave={e => (e.currentTarget as HTMLElement).style.textDecoration = 'none'}>
                 {t5.linkText}
