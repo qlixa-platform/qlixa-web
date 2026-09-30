@@ -3,17 +3,19 @@ import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import AustriaIdContent from '@/components/AustriaIdContent'
 import GewerbeanmeldungContent from '@/components/GewerbeanmeldungContent'
 import GisaFormularContent from '@/components/GisaFormularContent'
+import InvalidityChildContent from '@/components/InvalidityChildContent'
 
 // ————————————————————————————————————————————————————————————————
 // Localized individual article route — QLIXA_I18N_MIGRATION_PLAN.md,
-// Phase 6, Batch B1 (established) / Batch B2 / Batch B3 (extended).
+// Phase 6, Batch B1 (established) / Batch B2 / Batch B3 / Batch B4
+// (extended).
 //
 // This is the reusable dispatcher established by the FIRST localized
 // individual-article route (austria-id) and extended by each subsequent
 // article migration. At this stage it recognizes "austria-id",
-// "gewerbeanmeldung" and "gisa-formular" — every other slug (rwr-karte,
-// invalidity-child) 404s here, exactly like an unknown slug would,
-// because their own *Content components don't exist yet. As each
+// "gewerbeanmeldung", "gisa-formular" and "invalidity-child" — the only
+// remaining slug (rwr-karte) 404s here, exactly like an unknown slug
+// would, because its own *Content component doesn't exist yet. As each
 // subsequent article is migrated, this file gains one more entry in the
 // slug→component lookup below — it is not rewritten from scratch each
 // time.
@@ -37,13 +39,13 @@ import GisaFormularContent from '@/components/GisaFormularContent'
 // articles.ts) — that registry exists for ArticleNav's sidebar/prev-next
 // links, which still point to flat legacy URLs for slugs that aren't in
 // this map yet (see AustriaIdContent's own doc comment).
-const SUPPORTED_ARTICLE_SLUGS = ['austria-id', 'gewerbeanmeldung', 'gisa-formular'] as const
+const SUPPORTED_ARTICLE_SLUGS = ['austria-id', 'gewerbeanmeldung', 'gisa-formular', 'invalidity-child'] as const
 
 // Pre-generates only the currently-supported slugs, for all 4 locales.
-// Advertising the remaining 2 slugs here would statically generate
-// pages for routes that have no *Content component to render yet — this
-// list grows by exactly one entry per future Batch B/C migration, never
-// all at once.
+// Advertising the one remaining slug (rwr-karte) here would statically
+// generate pages for a route that has no *Content component to render
+// yet — this list grows by exactly one entry per future article
+// migration, never all at once.
 export function generateStaticParams() {
   return SUPPORTED_ARTICLE_SLUGS.map((slug) => ({ slug }))
 }
@@ -68,6 +70,8 @@ export default async function LocaleArticlePage({
       return <GewerbeanmeldungContent lang={lang} locale={locale} />
     case 'gisa-formular':
       return <GisaFormularContent lang={lang} locale={locale} />
+    case 'invalidity-child':
+      return <InvalidityChildContent lang={lang} locale={locale} />
     default:
       notFound()
   }
