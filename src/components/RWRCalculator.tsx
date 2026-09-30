@@ -1,6 +1,7 @@
 'use client'
 import { useState, useEffect, type ReactNode } from 'react'
 import { loadPDFScripts, fetchLogoAsDataUrl } from '@/utils/generatePDF'
+import type { InternalLangKey } from '@/lib/locale'
 
 const FREE_STATION = 386.43
 const MIN_SINGLE = 1308.39
@@ -300,9 +301,10 @@ const CALC_TEXT: Record<string, any> = {
   },
 }
 
-export default function RWRCalculator() {
-  const lang = useLang()
-  const t = CALC_TEXT[lang] || CALC_TEXT.UA
+export default function RWRCalculator({ lang }: { lang?: InternalLangKey } = {}) {
+  const legacyLang = useLang()
+  const effectiveLang = lang ?? legacyLang
+  const t = CALC_TEXT[effectiveLang] || CALC_TEXT.UA
   const [step, setStep] = useState(0)
   const [hasPartner, setHasPartner] = useState<boolean | null>(null)
   const [children, setChildren] = useState(0)
@@ -342,8 +344,8 @@ export default function RWRCalculator() {
       <div style={{ fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#038390', marginBottom: 4 }}>{t.sidebarTitle}</div>
       {hasPartner !== null && answerBox(t.composition, hasPartner ? t.withPartner : t.onlyMe)}
       {children > 0 && answerBox(t.childrenLabel, String(children))}
-      {income && answerBox(t.yourIncome, `€ ${fmt(adjI, lang)}`)}
-      {hasPartner && partnerIncome && answerBox(t.partnerIncome, `€ ${fmt(adjP, lang)}`)}
+      {income && answerBox(t.yourIncome, `€ ${fmt(adjI, effectiveLang)}`)}
+      {hasPartner && partnerIncome && answerBox(t.partnerIncome, `€ ${fmt(adjP, effectiveLang)}`)}
       {rent && answerBox(t.rent, `€ ${rent}`)}
       {electricity && electricity !== '0' && answerBox(t.electricity, `€ ${electricity}`)}
       {other && other !== '0' && answerBox(t.otherPayments, `€ ${other}`)}
@@ -419,7 +421,7 @@ export default function RWRCalculator() {
 
   const generatePDF = async (r: Result) => {
     const p = t.pdf
-    const date = new Date().toLocaleDateString(LOCALE_MAP[lang] || 'uk-UA', { day: '2-digit', month: 'long', year: 'numeric' })
+    const date = new Date().toLocaleDateString(LOCALE_MAP[effectiveLang] || 'uk-UA', { day: '2-digit', month: 'long', year: 'numeric' })
 
     const logoSrc = await fetchLogoAsDataUrl()
 
@@ -455,11 +457,11 @@ export default function RWRCalculator() {
 
         <table style="width:100%;border-collapse:collapse;margin-bottom:20px">
           ${[
-            [incomeType === 'employed' ? p.yourIncomeEmployed : p.yourIncomeSelf, `€ ${fmt(r.adj, lang)}`],
-            ...(hasPartner && r.adjP > 0 ? [[partnerIncomeType === 'employed' ? p.partnerIncomeEmployed : p.partnerIncomeSelf, `€ ${fmt(r.adjP, lang)}`]] : []),
-            [p.rentDeduction, `− € ${fmt(r.rentDed, lang)}`],
-            ...(r.elec > 0 ? [[p.electricityLabel, `− € ${fmt(r.elec, lang)}`]] : []),
-            ...(r.oth > 0 ? [[p.otherLabel, `− € ${fmt(r.oth, lang)}`]] : []),
+            [incomeType === 'employed' ? p.yourIncomeEmployed : p.yourIncomeSelf, `€ ${fmt(r.adj, effectiveLang)}`],
+            ...(hasPartner && r.adjP > 0 ? [[partnerIncomeType === 'employed' ? p.partnerIncomeEmployed : p.partnerIncomeSelf, `€ ${fmt(r.adjP, effectiveLang)}`]] : []),
+            [p.rentDeduction, `− € ${fmt(r.rentDed, effectiveLang)}`],
+            ...(r.elec > 0 ? [[p.electricityLabel, `− € ${fmt(r.elec, effectiveLang)}`]] : []),
+            ...(r.oth > 0 ? [[p.otherLabel, `− € ${fmt(r.oth, effectiveLang)}`]] : []),
           ].map(([l, v], i) => `
             <tr style="background:${i % 2 === 0 ? '#F0F7F8' : '#ffffff'}">
               <td style="padding:9px 12px;font-size:12px;color:#595959">${l}</td>
@@ -468,22 +470,22 @@ export default function RWRCalculator() {
           `).join('')}
           <tr style="background:#038390">
             <td style="padding:10px 12px;font-size:13px;font-weight:700;color:#fff">${p.afterExpenses}</td>
-            <td style="padding:10px 12px;font-size:13px;font-weight:700;color:#fff;text-align:right">€ ${fmt(r.net, lang)}</td>
+            <td style="padding:10px 12px;font-size:13px;font-weight:700;color:#fff;text-align:right">€ ${fmt(r.net, effectiveLang)}</td>
           </tr>
           <tr style="background:#F0F7F8">
             <td style="padding:9px 12px;font-size:12px;color:#595959">${minBmiText}</td>
-            <td style="padding:9px 12px;font-size:12px;font-weight:700;color:#1A1A1A;text-align:right">€ ${fmt(r.required, lang)}</td>
+            <td style="padding:9px 12px;font-size:12px;font-weight:700;color:#1A1A1A;text-align:right">€ ${fmt(r.required, effectiveLang)}</td>
           </tr>
           <tr style="background:${r.ok ? '#E8F8F0' : '#FFF8E7'}">
             <td style="padding:10px 12px;font-size:13px;font-weight:700;color:${r.ok ? '#065F46' : '#92400E'}">${r.ok ? p.remainderOk : p.remainderShort}</td>
-            <td style="padding:10px 12px;font-size:13px;font-weight:700;color:${r.ok ? '#10B981' : '#F59E0B'};text-align:right">€ ${r.ok ? fmt(r.net - r.required, lang) : fmt(r.shortage, lang)}</td>
+            <td style="padding:10px 12px;font-size:13px;font-weight:700;color:${r.ok ? '#10B981' : '#F59E0B'};text-align:right">€ ${r.ok ? fmt(r.net - r.required, effectiveLang) : fmt(r.shortage, effectiveLang)}</td>
           </tr>
         </table>
 
         ${!r.ok ? `
         <div style="background:#FFF8E7;border:1px solid rgba(245,166,35,0.3);border-radius:10px;padding:20px 18px;margin-bottom:20px">
           <div style="font-size:10px;color:#B45309;text-transform:uppercase;letter-spacing:1px;margin-bottom:10px">${p.recommendedLabel}</div>
-          <div style="font-size:26px;font-weight:700;color:#F59E0B;margin-bottom:8px;line-height:1.3">€ ${fmt(r.savings, lang)}</div>
+          <div style="font-size:26px;font-weight:700;color:#F59E0B;margin-bottom:8px;line-height:1.3">€ ${fmt(r.savings, effectiveLang)}</div>
           <div style="font-size:10px;color:#888;margin-top:6px;line-height:1.5">${p.recommendedNote}<br/>${p.recommendedNote2}</div>
         </div>` : ''}
 
@@ -611,8 +613,8 @@ export default function RWRCalculator() {
         {hint(t.step1.hint)}
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 24 }}>
           {[
-            { label: t.step1.onlyMe, sub: t.step1.min(fmt(MIN_SINGLE, lang)), val: false, icon: '🧑' },
-            { label: t.step1.withPartner, sub: t.step1.min(fmt(MIN_COUPLE, lang)), val: true, icon: '👫' }
+            { label: t.step1.onlyMe, sub: t.step1.min(fmt(MIN_SINGLE, effectiveLang)), val: false, icon: '🧑' },
+            { label: t.step1.withPartner, sub: t.step1.min(fmt(MIN_COUPLE, effectiveLang)), val: true, icon: '👫' }
           ].map(opt => (
             <button key={String(opt.val)} onClick={() => { setHasPartner(opt.val); setStep(2) }}
               style={{ background: hasPartner === opt.val ? 'rgba(3,131,144,0.1)' : '#F0F7F8', border: `1px solid ${hasPartner === opt.val ? TEAL : 'rgba(3,131,144,0.2)'}`, borderRadius: 14, padding: 16, cursor: 'pointer', textAlign: 'left' as const, transition: 'all 0.2s' }}>
@@ -629,7 +631,7 @@ export default function RWRCalculator() {
     if (step === 2) return (
       <div className="rwr-calc-step" style={mainStyle}>
         {stepLabel(2, t.step2.title)}
-        {hint(t.step2.hint(fmt(MIN_CHILD, lang)))}
+        {hint(t.step2.hint(fmt(MIN_CHILD, effectiveLang)))}
         <div style={{ display: 'flex', gap: 8, flexWrap: 'wrap' as const, marginBottom: 24 }}>
           {[0,1,2,3,4].map(n => (
             <button key={n} onClick={() => setChildren(n)}
@@ -737,11 +739,11 @@ export default function RWRCalculator() {
         <div style={{ background: '#ffffff', border: '1px solid rgba(3,131,144,0.15)', borderRadius: 14, padding: 16, marginBottom: 12 }}>
           <div style={{ fontSize: 10, textTransform: 'uppercase' as const, letterSpacing: '1.5px', color: '#038390', marginBottom: 12 }}>{t.result.breakdown}</div>
           {[
-            [incomeType === 'employed' ? t.result.yourIncomeEmployed : t.result.yourIncomeSelf, `€ ${fmt(result.adj, lang)}`],
-            ...(hasPartner && result.adjP > 0 ? [[partnerIncomeType === 'employed' ? t.result.partnerIncomeEmployed : t.result.partnerIncomeSelf, `€ ${fmt(result.adjP, lang)}`]] : []),
-            [t.result.rentDeduction, `− € ${fmt(result.rentDed, lang)}`],
-            ...(result.elec > 0 ? [[t.result.electricityLabel, `− € ${fmt(result.elec, lang)}`]] : []),
-            ...(result.oth > 0 ? [[t.result.otherLabel, `− € ${fmt(result.oth, lang)}`]] : []),
+            [incomeType === 'employed' ? t.result.yourIncomeEmployed : t.result.yourIncomeSelf, `€ ${fmt(result.adj, effectiveLang)}`],
+            ...(hasPartner && result.adjP > 0 ? [[partnerIncomeType === 'employed' ? t.result.partnerIncomeEmployed : t.result.partnerIncomeSelf, `€ ${fmt(result.adjP, effectiveLang)}`]] : []),
+            [t.result.rentDeduction, `− € ${fmt(result.rentDed, effectiveLang)}`],
+            ...(result.elec > 0 ? [[t.result.electricityLabel, `− € ${fmt(result.elec, effectiveLang)}`]] : []),
+            ...(result.oth > 0 ? [[t.result.otherLabel, `− € ${fmt(result.oth, effectiveLang)}`]] : []),
           ].map(([l, v], i) => (
             <div key={i} style={{ display: 'flex', justifyContent: 'space-between', padding: '5px 0', borderBottom: '1px solid rgba(3,131,144,0.1)', fontSize: 13 }}>
               <span style={{ color: '#595959' }}>{l}</span>
@@ -750,18 +752,18 @@ export default function RWRCalculator() {
           ))}
           <div style={{ display: 'flex', justifyContent: 'space-between', padding: '10px 0 5px', fontSize: 13 }}>
             <span style={{ color: 'var(--color-gray)', fontWeight: 500 }}>{t.result.afterExpenses}</span>
-            <span style={{ fontSize: 15, fontWeight: 700, color: result.ok ? '#065F46' : '#92400E' }}>€ {fmt(result.net, lang)}</span>
+            <span style={{ fontSize: 15, fontWeight: 700, color: result.ok ? '#065F46' : '#92400E' }}>€ {fmt(result.net, effectiveLang)}</span>
           </div>
           <div style={{ display: 'flex', justifyContent: 'space-between', fontSize: 12 }}>
             <span style={{ color: '#595959' }}>{t.result.minBmi}</span>
-            <span style={{ color: '#595959' }}>€ {fmt(result.required, lang)}</span>
+            <span style={{ color: '#595959' }}>€ {fmt(result.required, effectiveLang)}</span>
           </div>
         </div>
 
         {!result.ok && (
           <div style={{ background: 'rgba(245,166,35,0.08)', border: '1px solid rgba(245,166,35,0.2)', borderRadius: 14, padding: 16, marginBottom: 12 }}>
             <div style={{ fontSize: 11, color: '#B45309', textTransform: 'uppercase' as const, letterSpacing: '1px', marginBottom: 4 }}>{t.result.recommendedAmount}</div>
-            <div style={{ fontSize: 26, fontWeight: 700, color: '#92400E' }}>€ {fmt(result.savings, lang)}</div>
+            <div style={{ fontSize: 26, fontWeight: 700, color: '#92400E' }}>€ {fmt(result.savings, effectiveLang)}</div>
             <div style={{ fontSize: 11, color: 'var(--color-gray)', marginTop: 4 }}>{t.result.recommendedNote}</div>
           </div>
         )}
