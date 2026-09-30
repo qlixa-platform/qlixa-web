@@ -651,7 +651,7 @@ export default function RwrKarteContent({ lang, locale }: { lang: InternalLangKe
         {/* Content */}
         <section style={{ padding: '56px clamp(20px,6vw,80px)' }}>
           <div style={{ maxWidth: 1060, margin: '0 auto', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
-            <ArticleSidebar currentSlug="rwr-karte" lang={lang} />
+            <ArticleSidebar currentSlug="rwr-karte" lang={lang} locale={locale} />
 
             {/* Main article */}
             <div style={{ flex: 1, minWidth: 0 }}>
@@ -935,7 +935,7 @@ export default function RwrKarteContent({ lang, locale }: { lang: InternalLangKe
             </div>
           </div>
         </section>
-        <ArticlePrevNext currentSlug="rwr-karte" lang={lang} />
+        <ArticlePrevNext currentSlug="rwr-karte" lang={lang} locale={locale} />
       </main>
       <Footer locale={locale} />
     </>

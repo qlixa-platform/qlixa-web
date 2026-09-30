@@ -4,7 +4,7 @@ import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
 import { generateChecklistPDF } from '@/components/RWRChecklists'
-import type { InternalLangKey, Locale } from '@/lib/locale'
+import { type InternalLangKey, type Locale, localeHref } from '@/lib/locale'
 
 // Переклади сторінки "Інструменти" — всі 4 мови
 const TOOLS_PAGE_TEXT: Record<string, {
@@ -147,7 +147,7 @@ export default function ToolsContent({ lang, locale }: { lang: InternalLangKey; 
           {/* Tool rows */}
           <div style={{ background: '#fff', borderRadius: 14, border: '1px solid rgba(3,131,144,0.12)', overflow: 'hidden', marginBottom: 100 }}>
             {tools.map((tool, i) => (
-              <Link key={tool.href} href={tool.href} style={{
+              <Link key={tool.href} href={locale ? localeHref(locale, tool.href) : tool.href} style={{
                 display: 'flex', alignItems: 'center', gap: 16, padding: '14px 18px',
                 textDecoration: 'none',
                 borderBottom: i < tools.length - 1 ? '1px solid rgba(3,131,144,0.08)' : 'none',

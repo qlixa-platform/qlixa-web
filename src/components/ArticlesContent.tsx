@@ -3,7 +3,7 @@
 import Navbar from '@/components/layout/Navbar'
 import Footer from '@/components/layout/Footer'
 import Link from 'next/link'
-import type { InternalLangKey, Locale } from '@/lib/locale'
+import { type InternalLangKey, type Locale, localeHref } from '@/lib/locale'
 
 // Фіксовані частини (href/cover не залежать від мови)
 const PUBLISHED_META = [
@@ -140,7 +140,7 @@ export default function ArticlesContent({ lang, locale }: { lang: InternalLangKe
           `}</style>
           <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill,minmax(260px,1fr))', gap: 24, alignItems: 'start' }}>
             {published.map((art: any) => (
-              <Link key={art.href} href={art.href} className="card-link" style={{ display: 'block', textDecoration: 'none', position: 'relative' }}>
+              <Link key={art.href} href={locale ? localeHref(locale, art.href) : art.href} className="card-link" style={{ display: 'block', textDecoration: 'none', position: 'relative' }}>
                 <div style={{ position: 'relative', width: '100%', height: 190, borderRadius: 14, overflow: 'hidden', zIndex: 1 }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
                   <img src={art.cover} alt={art.title} className="card-img" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%', display: 'block' }} />

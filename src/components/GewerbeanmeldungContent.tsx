@@ -378,7 +378,7 @@ export default function GewerbeanmeldungContent({ lang, locale }: { lang: Intern
       <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 16px 80px', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
 
         {/* Sidebar */}
-        <ArticleSidebar currentSlug="gewerbeanmeldung" lang={lang} />
+        <ArticleSidebar currentSlug="gewerbeanmeldung" lang={lang} locale={locale} />
 
         {/* Main content */}
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -514,7 +514,7 @@ export default function GewerbeanmeldungContent({ lang, locale }: { lang: Intern
             <ExtLink href="https://www.gisa.gv.at/online-gewerbeanmeldung">{t.step4GisaLink}</ExtLink>
             <NoteBox type="info">{t.step4NoteInfo}</NoteBox>
             <ArticleLink
-              href="/articles/gisa-formular"
+              href={locale ? localeHref(locale, '/articles/gisa-formular') : '/articles/gisa-formular'}
               title={t.step4ArticleTitle}
               sub={t.step4ArticleSub}
             />
@@ -657,7 +657,7 @@ export default function GewerbeanmeldungContent({ lang, locale }: { lang: Intern
         </div>
 
         {/* Prev / Next navigation */}
-        <ArticlePrevNext currentSlug="gewerbeanmeldung" lang={lang} />
+        <ArticlePrevNext currentSlug="gewerbeanmeldung" lang={lang} locale={locale} />
 
         </div>{/* end main content */}
       </div>{/* end flex wrapper */}

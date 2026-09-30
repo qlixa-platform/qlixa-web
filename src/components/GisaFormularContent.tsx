@@ -688,7 +688,7 @@ export default function GisaFormularContent({ lang, locale }: { lang: InternalLa
 
       {/* Body + sidebar */}
       <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 16px 80px', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
-        <ArticleSidebar currentSlug="gisa-formular" lang={lang} />
+        <ArticleSidebar currentSlug="gisa-formular" lang={lang} locale={locale} />
         <div style={{ flex: 1, minWidth: 0 }}>
           <Link href={locale ? localeHref(locale, '/articles') : '/articles'} style={{ display: 'inline-flex', alignItems: 'center', gap: 6, fontSize: 15, color: 'var(--text3)', textDecoration: 'none', marginBottom: 32 }}>{t.backLink}</Link>
 
@@ -941,7 +941,7 @@ export default function GisaFormularContent({ lang, locale }: { lang: InternalLa
             {t.footerNote}
           </div>
 
-          <ArticlePrevNext currentSlug="gisa-formular" lang={lang} />
+          <ArticlePrevNext currentSlug="gisa-formular" lang={lang} locale={locale} />
         </div>
       </div>
       <Footer locale={locale} />

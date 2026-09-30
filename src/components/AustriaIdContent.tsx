@@ -398,7 +398,7 @@ export default function AustriaIdContent({ lang, locale }: { lang: InternalLangK
       <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 16px 80px', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
 
         {/* Sidebar */}
-        <ArticleSidebar currentSlug="austria-id" lang={lang} />
+        <ArticleSidebar currentSlug="austria-id" lang={lang} locale={locale} />
 
         {/* Main content */}
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -510,7 +510,7 @@ export default function AustriaIdContent({ lang, locale }: { lang: InternalLangK
             </div>
           ))}
           <p style={{ fontSize: 12, color: 'var(--text3)', marginTop: 16, marginBottom: 6 }}>{t.nextArticleLead}</p>
-          <Link href="/articles/gewerbeanmeldung" style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '14px 18px', borderRadius: 12, border: '1.5px solid #038390', background: 'var(--peach-light)', textDecoration: 'none' }}>
+          <Link href={locale ? localeHref(locale, '/articles/gewerbeanmeldung') : '/articles/gewerbeanmeldung'} style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 12, padding: '14px 18px', borderRadius: 12, border: '1.5px solid #038390', background: 'var(--peach-light)', textDecoration: 'none' }}>
             <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
               <span style={{ fontSize: 18 }}>📖</span>
               <div>
@@ -535,7 +535,7 @@ export default function AustriaIdContent({ lang, locale }: { lang: InternalLangK
         </div>
 
         {/* Prev / Next navigation */}
-        <ArticlePrevNext currentSlug="austria-id" lang={lang} />
+        <ArticlePrevNext currentSlug="austria-id" lang={lang} locale={locale} />
 
         </div>{/* end main content */}
       </div>{/* end flex wrapper */}

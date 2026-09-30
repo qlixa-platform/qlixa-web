@@ -3,6 +3,7 @@
 import React from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
+import { type Locale, localeHref } from '@/lib/locale'
 
 type PubArticle = {
   tag: string
@@ -36,12 +37,20 @@ const SLIDER_TEXT: Record<string, {
   },
 }
 
+// `art.href` values inside `published` are already resolved by the
+// caller (HomePageContent) via localeHref before being passed in here —
+// this component never re-derives them. `locale` is used ONLY for this
+// component's own "All articles" link below, following the same
+// dual-mode contract as everywhere else: omitted → flat legacy href;
+// provided → locale-aware.
 export default function ArticlesSlider({
   published,
   lang,
+  locale,
 }: {
   published: PubArticle[]
   lang: string
+  locale?: Locale
 }) {
   const [cur, setCur] = React.useState(0)
   const visible = 4
@@ -77,7 +86,7 @@ export default function ArticlesSlider({
             {t.header} <em style={{ fontStyle: 'italic', color: '#038390' }}>{t.headerEm}</em>
           </h2>
           <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
-            <Link href="/articles" style={{ fontSize: 13, fontWeight: 500, color: '#026B76', textDecoration: 'none' }}>
+            <Link href={locale ? localeHref(locale, '/articles') : '/articles'} style={{ fontSize: 13, fontWeight: 500, color: '#026B76', textDecoration: 'none' }}>
               {t.allArticles}
             </Link>
             <div className="articles-arrows-desktop-only" style={{ display: 'flex', gap: 8 }}>

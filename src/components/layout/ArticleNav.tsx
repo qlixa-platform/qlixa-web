@@ -3,7 +3,7 @@
 import { useState, useEffect, useId } from 'react'
 import Link from 'next/link'
 import { articles, getAdjacentArticles } from '@/lib/articles'
-import type { InternalLangKey } from '@/lib/locale'
+import { type InternalLangKey, type Locale, localeHref } from '@/lib/locale'
 
 const ARTICLE_NAV_TEXT: Record<string, {
   toc: string
@@ -127,7 +127,12 @@ export function ArticleTOC({ items, lang }: { items: [string, string][]; lang?: 
   )
 }
 
-export function ArticleSidebar({ currentSlug, lang }: { currentSlug: string; lang?: InternalLangKey }) {
+// `locale`, when provided, makes every page-route href this component
+// generates (each article entry + the "back to all" link) locale-aware
+// via localeHref — completely separate from `lang`, which only selects
+// display language (see useArticleNavLang above). Legacy callers pass
+// neither prop and get byte-for-byte flat hrefs, exactly as before.
+export function ArticleSidebar({ currentSlug, lang, locale }: { currentSlug: string; lang?: InternalLangKey; locale?: Locale }) {
   const legacyLang = useLang()
   const effectiveLang = lang ?? legacyLang
   const t = ARTICLE_NAV_TEXT[effectiveLang] || ARTICLE_NAV_TEXT.UA
@@ -163,7 +168,7 @@ export function ArticleSidebar({ currentSlug, lang }: { currentSlug: string; lan
             return (
               <Link
                 key={art.slug}
-                href={art.href}
+                href={locale ? localeHref(locale, art.href) : art.href}
                 style={{
                   display: 'flex', alignItems: 'flex-start', gap: 10,
                   padding: '10px 10px', borderRadius: 8,
@@ -205,7 +210,7 @@ export function ArticleSidebar({ currentSlug, lang }: { currentSlug: string; lan
         </div>
 
         <div style={{ padding: '10px 16px', borderTop: '1px solid var(--line)' }}>
-          <Link href="/articles" style={{ fontSize: 12, color: '#038390', fontWeight: 600, textDecoration: 'none' }}>
+          <Link href={locale ? localeHref(locale, '/articles') : '/articles'} style={{ fontSize: 12, color: '#038390', fontWeight: 600, textDecoration: 'none' }}>
             {t.backToAll}
           </Link>
         </div>
@@ -214,7 +219,9 @@ export function ArticleSidebar({ currentSlug, lang }: { currentSlug: string; lan
   )
 }
 
-export function ArticlePrevNext({ currentSlug, lang }: { currentSlug: string; lang?: InternalLangKey }) {
+// Same `locale` contract as ArticleSidebar above — makes the prev/next
+// page-route hrefs locale-aware without touching language resolution.
+export function ArticlePrevNext({ currentSlug, lang, locale }: { currentSlug: string; lang?: InternalLangKey; locale?: Locale }) {
   const legacyLang = useLang()
   const effectiveLang = lang ?? legacyLang
   const t = ARTICLE_NAV_TEXT[effectiveLang] || ARTICLE_NAV_TEXT.UA
@@ -231,7 +238,7 @@ export function ArticlePrevNext({ currentSlug, lang }: { currentSlug: string; la
       gap: 12, margin: '40px 0 0',
     }}>
       {prev ? (
-        <Link href={prev.href} style={{
+        <Link href={locale ? localeHref(locale, prev.href) : prev.href} style={{
           display: 'flex', flexDirection: 'column' as const, gap: 6,
           padding: '16px 18px', borderRadius: 14,
           border: '1px solid var(--line)', background: '#fff',
@@ -251,7 +258,7 @@ export function ArticlePrevNext({ currentSlug, lang }: { currentSlug: string; la
       ) : <div />}
 
       {next ? (
-        <Link href={next.href} style={{
+        <Link href={locale ? localeHref(locale, next.href) : next.href} style={{
           display: 'flex', flexDirection: 'column' as const, gap: 6,
           padding: '16px 18px', borderRadius: 14,
           border: '1px solid var(--line)', background: '#fff',

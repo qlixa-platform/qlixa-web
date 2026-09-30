@@ -798,6 +798,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
     date: PUBLISHED_META[i].date[lang as 'UA' | 'RU' | 'EN' | 'DE'] || PUBLISHED_META[i].date.UA,
     readTime: PUBLISHED_META[i].readTime[lang as 'UA' | 'RU' | 'EN' | 'DE'] || PUBLISHED_META[i].readTime.UA,
     ...item,
+    href: locale ? localeHref(locale, PUBLISHED_META[i].href) : PUBLISHED_META[i].href,
   }));
   const t6 = CTA_TEXT[lang] || CTA_TEXT.UA;
   const t7 = FAQ_TEXT[lang] || FAQ_TEXT.UA;
@@ -1514,7 +1515,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
       </section>
 
       {/* ARTICLES */}
-      <ArticlesSlider published={published} lang={lang} />
+      <ArticlesSlider published={published} lang={lang} locale={locale} />
 
       {/* ── FAQ — after CTA ── */}
       <section id="faq" style={{ padding: '32px clamp(20px,6vw,80px)', background: '#F0F7F8' }}>

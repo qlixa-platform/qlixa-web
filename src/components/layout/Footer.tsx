@@ -183,14 +183,15 @@ export default function Footer({ locale }: { locale?: Locale } = {}) {
   const t = FOOTER_TEXT[lang] || FOOTER_TEXT.UA
   const logoHref = locale ? localeHref(locale, '/') : '/'
 
-  // Scoped nav-link localization (QLIXA_I18N_MIGRATION_PLAN.md, Phase 5):
-  // only /about and /tools have localized [locale] routes so far. Every
-  // other Footer link (/articles, /impressum, /privacy, /agb) stays a
-  // plain path in both modes until its own destination exists — see
-  // localeHref's own doc comment on why a not-yet-existing localized
-  // destination must never be linked to early.
+  // Scoped nav-link localization (QLIXA_I18N_MIGRATION_PLAN.md, Phase 5
+  // + Phase 6 final link-graph sweep): /about, /tools and /articles all
+  // now have localized [locale] routes. Every other Footer link
+  // (/impressum, /privacy, /agb) stays a plain path in both modes until
+  // its own destination exists — see localeHref's own doc comment on why
+  // a not-yet-existing localized destination must never be linked to
+  // early.
   const footerHref = (href: string) =>
-    locale && (href === '/about' || href === '/tools') ? localeHref(locale, href) : href
+    locale && (href === '/about' || href === '/tools' || href === '/articles') ? localeHref(locale, href) : href
 
   const closeModal = () => {
     setShowModal(false)

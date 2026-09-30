@@ -527,7 +527,7 @@ export default function InvalidityChildContent({ lang, locale }: { lang: Interna
       <div style={{ maxWidth: 1060, margin: '0 auto', padding: '48px 16px 80px', display: 'flex', gap: 32, alignItems: 'flex-start' }}>
 
         {/* Sidebar */}
-        <ArticleSidebar currentSlug="invalidity-child" lang={lang} />
+        <ArticleSidebar currentSlug="invalidity-child" lang={lang} locale={locale} />
 
         {/* Main content */}
         <div style={{ flex: 1, minWidth: 0 }}>
@@ -729,7 +729,7 @@ export default function InvalidityChildContent({ lang, locale }: { lang: Interna
           </div>
 
           {/* Prev / Next */}
-          <ArticlePrevNext currentSlug="invalidity-child" lang={lang} />
+          <ArticlePrevNext currentSlug="invalidity-child" lang={lang} locale={locale} />
 
         </div>{/* end main content */}
       </div>{/* end flex wrapper */}
