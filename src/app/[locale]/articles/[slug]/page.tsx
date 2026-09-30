@@ -1,19 +1,21 @@
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import AustriaIdContent from '@/components/AustriaIdContent'
+import GewerbeanmeldungContent from '@/components/GewerbeanmeldungContent'
 
 // ————————————————————————————————————————————————————————————————
 // Localized individual article route — QLIXA_I18N_MIGRATION_PLAN.md,
-// Phase 6, Batch B1.
+// Phase 6, Batch B1 (established) / Batch B2 (extended).
 //
-// This is the FIRST localized individual-article route and establishes
-// the reusable pattern for the remaining articles (Batch B2+). At this
-// stage it recognizes ONLY the "austria-id" slug — every other slug
-// (rwr-karte, gewerbeanmeldung, gisa-formular, invalidity-child) 404s
-// here, exactly like an unknown slug would, because their own
-// *Content components don't exist yet. As each subsequent article is
-// migrated, this file gains one more entry in the slug→component
-// lookup below — it is not rewritten from scratch each time.
+// This is the reusable dispatcher established by the FIRST localized
+// individual-article route (austria-id) and extended by each subsequent
+// article migration. At this stage it recognizes "austria-id" and
+// "gewerbeanmeldung" — every other slug (rwr-karte, gisa-formular,
+// invalidity-child) 404s here, exactly like an unknown slug would,
+// because their own *Content components don't exist yet. As each
+// subsequent article is migrated, this file gains one more entry in the
+// slug→component lookup below — it is not rewritten from scratch each
+// time.
 //
 // Genuine Server Component: `locale` and `slug` come only from the URL
 // segments (params), never from localStorage/navigator/client state.
@@ -34,10 +36,10 @@ import AustriaIdContent from '@/components/AustriaIdContent'
 // articles.ts) — that registry exists for ArticleNav's sidebar/prev-next
 // links, which still point to flat legacy URLs for slugs that aren't in
 // this map yet (see AustriaIdContent's own doc comment).
-const SUPPORTED_ARTICLE_SLUGS = ['austria-id'] as const
+const SUPPORTED_ARTICLE_SLUGS = ['austria-id', 'gewerbeanmeldung'] as const
 
-// Pre-generates only the one currently-supported slug, for all 4
-// locales. Advertising the other 4 slugs here would statically generate
+// Pre-generates only the currently-supported slugs, for all 4 locales.
+// Advertising the remaining 3 slugs here would statically generate
 // pages for routes that have no *Content component to render yet — this
 // list grows by exactly one entry per future Batch B/C migration, never
 // all at once.
@@ -61,6 +63,8 @@ export default async function LocaleArticlePage({
   switch (slug) {
     case 'austria-id':
       return <AustriaIdContent lang={lang} locale={locale} />
+    case 'gewerbeanmeldung':
+      return <GewerbeanmeldungContent lang={lang} locale={locale} />
     default:
       notFound()
   }
