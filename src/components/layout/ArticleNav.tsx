@@ -3,6 +3,7 @@
 import { useState, useEffect, useId } from 'react'
 import Link from 'next/link'
 import { articles, getAdjacentArticles } from '@/lib/articles'
+import type { InternalLangKey } from '@/lib/locale'
 
 const ARTICLE_NAV_TEXT: Record<string, {
   toc: string
@@ -65,13 +66,21 @@ function useLang() {
   return lang
 }
 
-function useArticleNavLang() {
-  const lang = useLang()
-  return ARTICLE_NAV_TEXT[lang] || ARTICLE_NAV_TEXT.UA
+// `explicitLang`, when provided, overrides the legacy localStorage-derived
+// language — but useLang() is still called unconditionally below so hook
+// order never depends on whether a caller passes it (React Rules of
+// Hooks). This is the same dual-mode pattern already proven in
+// Navbar/Footer/*Content components: no explicit lang → byte-for-byte
+// legacy behavior; explicit lang → used as-is, no localStorage read
+// needed for the effective displayed language.
+function useArticleNavLang(explicitLang?: InternalLangKey) {
+  const legacyLang = useLang()
+  const effectiveLang = explicitLang ?? legacyLang
+  return ARTICLE_NAV_TEXT[effectiveLang] || ARTICLE_NAV_TEXT.UA
 }
 
-export function ArticleTOC({ items }: { items: [string, string][] }) {
-  const t = useArticleNavLang()
+export function ArticleTOC({ items, lang }: { items: [string, string][]; lang?: InternalLangKey }) {
+  const t = useArticleNavLang(lang)
   // Mobile-only collapse state. Irrelevant at desktop (>=901px): the
   // items grid there is force-shown by an unconditional CSS rule
   // outside the mobile media query (see .article-toc-grid-collapsed in
@@ -118,9 +127,10 @@ export function ArticleTOC({ items }: { items: [string, string][] }) {
   )
 }
 
-export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
-  const lang = useLang()
-  const t = ARTICLE_NAV_TEXT[lang] || ARTICLE_NAV_TEXT.UA
+export function ArticleSidebar({ currentSlug, lang }: { currentSlug: string; lang?: InternalLangKey }) {
+  const legacyLang = useLang()
+  const effectiveLang = lang ?? legacyLang
+  const t = ARTICLE_NAV_TEXT[effectiveLang] || ARTICLE_NAV_TEXT.UA
   const all = articles
 
   return (
@@ -146,7 +156,7 @@ export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
 
         <div style={{ padding: 8 }}>
           {all.map(rawArt => {
-            const art = localizeArticle(rawArt, lang)
+            const art = localizeArticle(rawArt, effectiveLang)
             const isCurrent = art.slug === currentSlug
             const isPublished = art.published
 
@@ -204,12 +214,13 @@ export function ArticleSidebar({ currentSlug }: { currentSlug: string }) {
   )
 }
 
-export function ArticlePrevNext({ currentSlug }: { currentSlug: string }) {
-  const lang = useLang()
-  const t = ARTICLE_NAV_TEXT[lang] || ARTICLE_NAV_TEXT.UA
+export function ArticlePrevNext({ currentSlug, lang }: { currentSlug: string; lang?: InternalLangKey }) {
+  const legacyLang = useLang()
+  const effectiveLang = lang ?? legacyLang
+  const t = ARTICLE_NAV_TEXT[effectiveLang] || ARTICLE_NAV_TEXT.UA
   const { prev: rawPrev, next: rawNext } = getAdjacentArticles(currentSlug)
-  const prev = rawPrev ? localizeArticle(rawPrev, lang) : null
-  const next = rawNext ? localizeArticle(rawNext, lang) : null
+  const prev = rawPrev ? localizeArticle(rawPrev, effectiveLang) : null
+  const next = rawNext ? localizeArticle(rawNext, effectiveLang) : null
 
   if (!prev && !next) return null
 
