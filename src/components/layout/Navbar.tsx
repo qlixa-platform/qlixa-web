@@ -64,7 +64,7 @@ function getNavItems(lang: string, locale?: Locale): NavItem[] {
     { label: t.taxReturn, href: locale ? localeHref(locale, '/tax-return') : '/tax-return' },
     { label: t.forWhom, href: '/#who-its-for' },
     { label: t.articles, href: '/articles' },
-    { label: t.tools, href: '/tools' },
+    { label: t.tools, href: locale ? localeHref(locale, '/tools') : '/tools' },
   ]
 }
 

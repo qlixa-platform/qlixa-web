@@ -1,5 +1,6 @@
 'use client'
 import { loadPDFScripts, fetchLogoAsDataUrl } from '@/utils/generatePDF'
+import type { InternalLangKey } from '@/lib/locale'
 
 type ChecklistType = 'employed' | 'self' | 'kids'
 
@@ -417,9 +418,9 @@ function getLang() {
   return l ? l.toUpperCase() : 'UA'
 }
 
-async function generateChecklistPDF(type: ChecklistType) {
-  const lang = getLang()
-  const t = CHECKLIST_TEXT[lang] || CHECKLIST_TEXT.UA
+async function generateChecklistPDF(type: ChecklistType, lang?: InternalLangKey) {
+  const effectiveLang = lang ?? getLang()
+  const t = CHECKLIST_TEXT[effectiveLang] || CHECKLIST_TEXT.UA
   const config = t.configs[type]
 
   await loadPDFScripts()
