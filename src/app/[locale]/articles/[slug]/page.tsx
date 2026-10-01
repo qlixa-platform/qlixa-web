@@ -53,32 +53,55 @@ export function generateStaticParams() {
   return SUPPORTED_ARTICLE_SLUGS.map((slug) => ({ slug }))
 }
 
-// Page-level SEO metadata — scoped ONLY to this one article, now across
-// all 4 of its locales (EN/UA/RU added alongside the EN/UA/RU body copy
-// itself; DE's own entry is untouched). Every other slug/locale
-// combination returns {}, which Next merges with the inherited
+// Page-level SEO metadata — resolved by BOTH slug and locale (Phase
+// 8.1, Batch 3A: extended from the single-article/4-locale shape used
+// for "steuererklaerung-selbst-vorbereiten" alone, which is preserved
+// here with its exact existing values in all 4 locales — see that
+// slug's own entry below, untouched). Added in this batch: DE metadata
+// for "austria-id", "gewerbeanmeldung" and "gisa-formular". Every other
+// slug/locale combination (including EN/UA/RU for these 3 articles,
+// and "rwr-karte"/"invalidity-child" in any locale — deliberately not
+// added yet) returns {}, which Next merges with the inherited
 // root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
-// the other 5 articles' rendered <title>/<meta description>. This
-// intentionally does NOT touch canonical, hreflang, openGraph or
-// twitter — those stay out of scope for this task, per both the
-// original metadata correction brief and the EN/UA/RU localization
-// brief ("do not add canonical/hreflang here yet").
-const ARTICLE_METADATA: Record<string, { title: string; description: string }> = {
-  de: {
-    title: 'Steuererklärung in Österreich selbst vorbereiten | QLIXA',
-    description: 'Steuererklärung in Österreich selbst vorbereiten – auch ohne Steuerformulare zu kennen. QLIXA führt dich mit verständlichen Fragen Schritt für Schritt durch deine Situation.',
+// any combination not explicitly listed here. This intentionally does
+// NOT touch canonical, hreflang, openGraph or twitter — out of scope
+// for this batch.
+const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; description: string }>>> = {
+  'steuererklaerung-selbst-vorbereiten': {
+    de: {
+      title: 'Steuererklärung in Österreich selbst vorbereiten | QLIXA',
+      description: 'Steuererklärung in Österreich selbst vorbereiten – auch ohne Steuerformulare zu kennen. QLIXA führt dich mit verständlichen Fragen Schritt für Schritt durch deine Situation.',
+    },
+    en: {
+      title: 'How to Prepare Your Tax Return in Austria | QLIXA',
+      description: 'Prepare your tax return in Austria without having to understand every tax form first. QLIXA guides you through your situation with clear, step-by-step questions.',
+    },
+    ua: {
+      title: 'Податкова декларація в Австрії: як підготувати | QLIXA',
+      description: 'Як самостійно підготувати податкову декларацію в Австрії без вивчення податкових форм. QLIXA проводить крок за кроком через зрозумілі запитання.',
+    },
+    ru: {
+      title: 'Налоговая декларация в Австрии: как подготовить | QLIXA',
+      description: 'Как самостоятельно подготовить налоговую декларацию в Австрии без изучения налоговых форм. QLIXA шаг за шагом проводит вас через понятные вопросы.',
+    },
   },
-  en: {
-    title: 'How to Prepare Your Tax Return in Austria | QLIXA',
-    description: 'Prepare your tax return in Austria without having to understand every tax form first. QLIXA guides you through your situation with clear, step-by-step questions.',
+  'austria-id': {
+    de: {
+      title: 'ID Austria einrichten: Schritt-für-Schritt-Anleitung | QLIXA',
+      description: 'ID Austria einrichten: Voraussetzungen, Registrierung, benötigte Dokumente und Behördentermin Schritt für Schritt verständlich erklärt.',
+    },
   },
-  ua: {
-    title: 'Податкова декларація в Австрії: як підготувати | QLIXA',
-    description: 'Як самостійно підготувати податкову декларацію в Австрії без вивчення податкових форм. QLIXA проводить крок за кроком через зрозумілі запитання.',
+  'gewerbeanmeldung': {
+    de: {
+      title: 'Gewerbe anmelden in Österreich: Schritt für Schritt | QLIXA',
+      description: 'Gewerbe in Österreich anmelden: Voraussetzungen, benötigte Unterlagen, zuständige Behörde und Ablauf der Gewerbeanmeldung einfach erklärt.',
+    },
   },
-  ru: {
-    title: 'Налоговая декларация в Австрии: как подготовить | QLIXA',
-    description: 'Как самостоятельно подготовить налоговую декларацию в Австрии без изучения налоговых форм. QLIXA шаг за шагом проводит вас через понятные вопросы.',
+  'gisa-formular': {
+    de: {
+      title: 'Gewerbe online über GISA anmelden: Anleitung | QLIXA',
+      description: 'Gewerbeanmeldung über GISA Schritt für Schritt: Online-Formular, ID Austria, benötigte Angaben, Beilagen und Ablauf verständlich erklärt.',
+    },
   },
 }
 
@@ -89,11 +112,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params
 
-  if (slug === 'steuererklaerung-selbst-vorbereiten' && ARTICLE_METADATA[locale]) {
-    return ARTICLE_METADATA[locale]
-  }
-
-  return {}
+  return ARTICLE_METADATA[slug]?.[locale] ?? {}
 }
 
 export default async function LocaleArticlePage({
