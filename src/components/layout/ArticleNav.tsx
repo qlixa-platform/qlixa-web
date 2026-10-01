@@ -45,7 +45,23 @@ const ARTICLE_META_TRANSLATIONS: Record<string, Record<string, { tag: string; ti
     EN: { tag: 'GISA · Registration', title: 'How to Register a Business Activity via GISA: Step-by-Step Online Guide' },
     DE: { tag: 'GISA · Anmeldung', title: 'Gewerbe über GISA anmelden: Schritt-für-Schritt-Online-Anleitung' },
   },
+  'steuererklaerung-selbst-vorbereiten': {
+    RU: { tag: 'Налоговая декларация', title: 'Как самостоятельно подготовить налоговую декларацию в Австрии: пошагово' },
+    EN: { tag: 'Tax Return', title: 'How to Prepare Your Tax Return in Austria: Step by Step' },
+    DE: { tag: 'Steuererklärung', title: 'Steuererklärung in Österreich selbst vorbereiten: Schritt für Schritt' },
+  },
 }
+
+// Slugs that exist ONLY as localized routes (/[locale]/articles/<slug>)
+// — no flat, un-prefixed /articles/<slug> page exists for them. Right
+// now that's just the one article added after individual localized
+// article routes already existed (Phase 8 EN/UA/RU localization
+// brief), so it never had — and was never meant to get — a legacy flat
+// wrapper the way the original 5 articles do. Filtered out of both
+// ArticleSidebar and ArticlePrevNext below whenever `locale` is
+// undefined (flat/legacy mode), so neither ever generates a flat link
+// to a route that 404s.
+const LOCALE_ONLY_SLUGS = new Set(['steuererklaerung-selbst-vorbereiten'])
 
 function localizeArticle<T extends { slug: string; tag: string; title: string }>(art: T, lang: string): T {
   const override = ARTICLE_META_TRANSLATIONS[art.slug]?.[lang]
@@ -136,7 +152,9 @@ export function ArticleSidebar({ currentSlug, lang, locale }: { currentSlug: str
   const legacyLang = useLang()
   const effectiveLang = lang ?? legacyLang
   const t = ARTICLE_NAV_TEXT[effectiveLang] || ARTICLE_NAV_TEXT.UA
-  const all = articles
+  // See LOCALE_ONLY_SLUGS above — in flat/legacy mode (no `locale`
+  // prop), never list an article that has no flat page.
+  const all = locale ? articles : articles.filter(a => !LOCALE_ONLY_SLUGS.has(a.slug))
 
   return (
     <div className="article-sidebar-desktop-only" style={{
@@ -225,7 +243,11 @@ export function ArticlePrevNext({ currentSlug, lang, locale }: { currentSlug: st
   const legacyLang = useLang()
   const effectiveLang = lang ?? legacyLang
   const t = ARTICLE_NAV_TEXT[effectiveLang] || ARTICLE_NAV_TEXT.UA
-  const { prev: rawPrev, next: rawNext } = getAdjacentArticles(currentSlug)
+  const { prev: rawPrevAll, next: rawNextAll } = getAdjacentArticles(currentSlug)
+  // See LOCALE_ONLY_SLUGS above — in flat/legacy mode, never point
+  // prev/next at an article that has no flat page (it would 404).
+  const rawPrev = !locale && rawPrevAll && LOCALE_ONLY_SLUGS.has(rawPrevAll.slug) ? null : rawPrevAll
+  const rawNext = !locale && rawNextAll && LOCALE_ONLY_SLUGS.has(rawNextAll.slug) ? null : rawNextAll
   const prev = rawPrev ? localizeArticle(rawPrev, effectiveLang) : null
   const next = rawNext ? localizeArticle(rawNext, effectiveLang) : null
 

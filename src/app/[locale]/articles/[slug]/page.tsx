@@ -15,10 +15,10 @@ import SteuererklaerungSelbstVorbereitenContent from '@/components/Steuererklaer
 //
 // This is the reusable dispatcher established by the FIRST localized
 // individual-article route (austria-id) and extended by each subsequent
-// article migration. It now recognizes all 5 articles: "austria-id",
-// "gewerbeanmeldung", "gisa-formular", "invalidity-child" and
-// "rwr-karte" — every other slug still 404s here, exactly like an
-// unknown slug would.
+// article migration. It now recognizes 6 articles: "austria-id",
+// "gewerbeanmeldung", "gisa-formular", "invalidity-child", "rwr-karte"
+// and "steuererklaerung-selbst-vorbereiten" — every other slug still
+// 404s here, exactly like an unknown slug would.
 //
 // Genuine Server Component: `locale` and `slug` come only from the URL
 // segments (params), never from localStorage/navigator/client state.
@@ -40,33 +40,48 @@ import SteuererklaerungSelbstVorbereitenContent from '@/components/Steuererklaer
 // links, which still point to flat legacy URLs for slugs that aren't in
 // this map yet (see AustriaIdContent's own doc comment).
 //
-// 'steuererklaerung-selbst-vorbereiten' (Phase 8 new-article brief) is
-// DE-ONLY today — see the locale guard in the switch below. It is still
-// listed here (not in a separate array) so generateStaticParams below
-// pre-generates its path for all 4 locales like every other slug; the
-// non-DE paths simply 404 via the guard instead of rendering untranslated
-// or machine-translated content. Remove the guard once EN/UA/RU content
-// for this article is approved.
+// 'steuererklaerung-selbst-vorbereiten' was DE-only at first; EN/UA/RU
+// copy is now approved too (Phase 8 EN/UA/RU localization brief), so it
+// renders for all 4 locales like every other article — no locale guard
+// needed in the switch below any more.
 const SUPPORTED_ARTICLE_SLUGS = ['austria-id', 'gewerbeanmeldung', 'gisa-formular', 'invalidity-child', 'rwr-karte', 'steuererklaerung-selbst-vorbereiten'] as const
 
 // Pre-generates all 6 currently-supported article slugs, for all 4
-// locales — 24 localized individual-article page paths in total (20 of
-// which actually render; the 3 non-DE paths for the newest slug 404 via
-// the guard in the switch below).
+// locales — 24 localized individual-article page paths in total, all of
+// which now actually render.
 export function generateStaticParams() {
   return SUPPORTED_ARTICLE_SLUGS.map((slug) => ({ slug }))
 }
 
-// Page-level SEO metadata — scoped ONLY to the one new DE article
-// (correction requested after the initial Phase 8 new-article delivery;
-// the earlier "metadata" added to ArticlesContent.tsx was card copy for
-// the index grid, not real <title>/<meta description> output). Every
-// other slug/locale combination returns {}, which Next merges with the
-// inherited root-layout metadata (src/app/layout.tsx) — i.e. no change
-// at all to the other 5 articles' or other locales' rendered <title>/
-// <meta description>. This intentionally does NOT touch canonical,
-// hreflang, openGraph or twitter — those stay out of scope per the
-// correction brief ("do not redesign the global metadata system").
+// Page-level SEO metadata — scoped ONLY to this one article, now across
+// all 4 of its locales (EN/UA/RU added alongside the EN/UA/RU body copy
+// itself; DE's own entry is untouched). Every other slug/locale
+// combination returns {}, which Next merges with the inherited
+// root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
+// the other 5 articles' rendered <title>/<meta description>. This
+// intentionally does NOT touch canonical, hreflang, openGraph or
+// twitter — those stay out of scope for this task, per both the
+// original metadata correction brief and the EN/UA/RU localization
+// brief ("do not add canonical/hreflang here yet").
+const ARTICLE_METADATA: Record<string, { title: string; description: string }> = {
+  de: {
+    title: 'Steuererklärung in Österreich selbst vorbereiten | QLIXA',
+    description: 'Steuererklärung in Österreich selbst vorbereiten – auch ohne Steuerformulare zu kennen. QLIXA führt dich mit verständlichen Fragen Schritt für Schritt durch deine Situation.',
+  },
+  en: {
+    title: 'How to Prepare Your Tax Return in Austria | QLIXA',
+    description: 'Prepare your tax return in Austria without having to understand every tax form first. QLIXA guides you through your situation with clear, step-by-step questions.',
+  },
+  ua: {
+    title: 'Податкова декларація в Австрії: як підготувати | QLIXA',
+    description: 'Як самостійно підготувати податкову декларацію в Австрії без вивчення податкових форм. QLIXA проводить крок за кроком через зрозумілі запитання.',
+  },
+  ru: {
+    title: 'Налоговая декларация в Австрии: как подготовить | QLIXA',
+    description: 'Как самостоятельно подготовить налоговую декларацию в Австрии без изучения налоговых форм. QLIXA шаг за шагом проводит вас через понятные вопросы.',
+  },
+}
+
 export async function generateMetadata({
   params,
 }: {
@@ -74,11 +89,8 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params
 
-  if (locale === 'de' && slug === 'steuererklaerung-selbst-vorbereiten') {
-    return {
-      title: 'Steuererklärung in Österreich selbst vorbereiten | QLIXA',
-      description: 'Steuererklärung in Österreich selbst vorbereiten – auch ohne Steuerformulare zu kennen. QLIXA führt dich mit verständlichen Fragen Schritt für Schritt durch deine Situation.',
-    }
+  if (slug === 'steuererklaerung-selbst-vorbereiten' && ARTICLE_METADATA[locale]) {
+    return ARTICLE_METADATA[locale]
   }
 
   return {}
@@ -109,13 +121,6 @@ export default async function LocaleArticlePage({
     case 'rwr-karte':
       return <RwrKarteContent lang={lang} locale={locale} />
     case 'steuererklaerung-selbst-vorbereiten':
-      // DE-only (Phase 8 new-article brief — no EN/UA/RU translation
-      // approved yet). 404 for every other locale instead of silently
-      // rendering German content, or a fallback, on /en|ua|ru/articles/
-      // steuererklaerung-selbst-vorbereiten.
-      if (locale !== 'de') {
-        notFound()
-      }
       return <SteuererklaerungSelbstVorbereitenContent lang={lang} locale={locale} />
     default:
       notFound()

@@ -12,14 +12,13 @@ const PUBLISHED_META = [
   { href: '/articles/austria-id', cover: '/articles/austria-id-cover.jpg' },
   { href: '/articles/invalidity-child', cover: '/articles/invalidity-cover.jpg' },
   { href: '/articles/gisa-formular', cover: '/articles/gisa-cover.jpg' },
-  // Index 5 — only ever reached by DE's own `published` array below
-  // (which is the only one with a 6th entry); UA/RU/EN each stay at
-  // 5 items, so their `.map` over `published` never reaches index 5
-  // and this entry is a no-op for them. `cover: null` (not a path) —
-  // no real photo exists yet for this article; the card renders the
-  // CSS-based <CoverPlaceholder> below instead of an <img> that would
-  // 404. Swap this back to a real path once an approved cover exists —
-  // the render logic below already handles both cases.
+  // Index 5 — now has a matching 6th entry in all 4 `published` arrays
+  // below (EN/UA/RU added alongside their article translations).
+  // `cover: null` (not a path) — no real photo exists yet for this
+  // article in any locale; the card renders the CSS-based
+  // <CoverPlaceholder> below instead of an <img> that would 404. Swap
+  // this back to a real path once an approved cover exists — the
+  // render logic below already handles both cases.
   { href: '/articles/steuererklaerung-selbst-vorbereiten', cover: null as string | null },
 ]
 
@@ -38,6 +37,11 @@ const ARTICLES_PAGE_TEXT: Record<string, any> = {
       { tag: 'Австрія · Документи', date: 'Червень 2026', title: 'Як оформити ID Austria: покроковий гайд для іноземців', desc: 'Як оформити ID Austria та використовувати її для доступу до цифрових державних сервісів, зокрема FinanzOnline.', readTime: '8 хв читання' },
       { tag: "Сім'я · Пільги", date: 'Червень 2026', title: 'Інвалідність дитини в Австрії: виплати, пільги та з чого почати', desc: 'Огляд основних тем для батьків: Behindertenpass, підвищена Familienbeihilfe, Pflegegeld та можливі податкові пільги.', readTime: '10 хв читання' },
       { tag: 'GISA · Реєстрація', date: 'Червень 2026', title: 'Реєстрація на сайті GISA: покрокова інструкція', desc: 'Покрокова інструкція з онлайн-подання Gewerbeanmeldung через GISA з поясненням основних полів і етапів.', readTime: '15 хв читання' },
+      // New (Phase 8 EN/UA/RU localization brief). Title is the exact
+      // approved UA title from that brief; desc reuses the approved UA
+      // meta description (section 2 of the same brief) rather than
+      // inventing separate card copy.
+      { tag: 'Податкова декларація', date: 'Жовтень 2026', title: 'Як самостійно підготувати податкову декларацію в Австрії: крок за кроком', desc: 'Як самостійно підготувати податкову декларацію в Австрії без вивчення податкових форм. QLIXA проводить крок за кроком через зрозумілі запитання.', readTime: '~5 хв читання' },
     ],
   },
   RU: {
@@ -53,6 +57,10 @@ const ARTICLES_PAGE_TEXT: Record<string, any> = {
       { tag: 'Австрия · Документы', date: 'Июнь 2026', title: 'Как оформить ID Austria: пошаговый гайд для иностранцев', desc: 'Как оформить ID Austria и использовать её для доступа к цифровым государственным сервисам, включая FinanzOnline.', readTime: '8 мин чтения' },
       { tag: 'Семья · Льготы', date: 'Июнь 2026', title: 'Инвалидность ребёнка в Австрии: выплаты, льготы и с чего начать', desc: 'Обзор основных тем для родителей: Behindertenpass, повышенная Familienbeihilfe, Pflegegeld и возможные налоговые льготы.', readTime: '10 мин чтения' },
       { tag: 'GISA · Регистрация', date: 'Июнь 2026', title: 'Регистрация на сайте GISA: пошаговая инструкция', desc: 'Пошаговая инструкция по онлайн-подаче Gewerbeanmeldung через GISA с пояснением основных полей и этапов.', readTime: '15 мин чтения' },
+      // New (Phase 8 EN/UA/RU localization brief). Title is the exact
+      // approved RU title from that brief; desc reuses the approved RU
+      // meta description (section 2 of the same brief).
+      { tag: 'Налоговая декларация', date: 'Октябрь 2026', title: 'Как самостоятельно подготовить налоговую декларацию в Австрии: пошагово', desc: 'Как самостоятельно подготовить налоговую декларацию в Австрии без изучения налоговых форм. QLIXA шаг за шагом проводит вас через понятные вопросы.', readTime: '~5 мин чтения' },
     ],
   },
   EN: {
@@ -68,6 +76,10 @@ const ARTICLES_PAGE_TEXT: Record<string, any> = {
       { tag: 'Austria · Documents', date: 'June 2026', title: 'How to get ID Austria: step-by-step guide for foreigners', desc: 'How to set up ID Austria and use it to access digital government services, including FinanzOnline.', readTime: '8 min read' },
       { tag: 'Family · Benefits', date: 'June 2026', title: 'Child disability in Austria: payments, benefits, and where to start', desc: 'An overview of key topics for parents: Behindertenpass, increased Familienbeihilfe, Pflegegeld and possible tax benefits.', readTime: '10 min read' },
       { tag: 'GISA · Registration', date: 'June 2026', title: 'Registering on the GISA website: step-by-step instructions', desc: 'A step-by-step guide to submitting a Gewerbeanmeldung online via GISA, with explanations of the main fields and stages.', readTime: '15 min read' },
+      // New (Phase 8 EN/UA/RU localization brief). Title is the exact
+      // approved EN title from that brief; desc reuses the approved EN
+      // meta description (section 2 of the same brief).
+      { tag: 'Tax Return', date: 'October 2026', title: 'How to Prepare Your Tax Return in Austria: Step by Step', desc: 'Prepare your tax return in Austria without having to understand every tax form first. QLIXA guides you through your situation with clear, step-by-step questions.', readTime: '~6 min read' },
     ],
   },
   DE: {
@@ -83,24 +95,37 @@ const ARTICLES_PAGE_TEXT: Record<string, any> = {
       { tag: 'Österreich · Dokumente', date: 'Juni 2026', title: 'ID Austria beantragen: Schritt-für-Schritt-Anleitung für Ausländer', desc: 'So richtest du die ID Austria ein und nutzt sie für den Zugang zu digitalen Behördenservices, darunter FinanzOnline.', readTime: '8 Min. Lesezeit' },
       { tag: 'Familie · Leistungen', date: 'Juni 2026', title: 'Kindesbehinderung in Österreich: Leistungen, Vergünstigungen und erste Schritte', desc: 'Ein Überblick über wichtige Themen für Eltern: Behindertenpass, erhöhte Familienbeihilfe, Pflegegeld und mögliche steuerliche Begünstigungen.', readTime: '10 Min. Lesezeit' },
       { tag: 'GISA · Anmeldung', date: 'Juni 2026', title: 'Registrierung auf GISA: Schritt-für-Schritt-Anleitung', desc: 'Eine Schritt-für-Schritt-Anleitung zur Online-Gewerbeanmeldung über GISA mit Erklärungen zu den wichtigsten Feldern und Schritten.', readTime: '15 Min. Lesezeit' },
-      // New (Phase 8 new-article brief). DE-only — UA/RU/EN arrays above
-      // deliberately do NOT get a 6th entry (no approved translation
-      // yet; see PUBLISHED_META's own comment on why that's safe).
+      // New (Phase 8 new-article brief; EN/UA/RU added in the follow-up
+      // localization brief — all 4 `published` arrays now carry this
+      // 6th entry).
       { tag: 'Steuererklärung', date: 'Oktober 2026', title: 'Steuererklärung in Österreich selbst vorbereiten: Schritt für Schritt', desc: 'Steuererklärung in Österreich selbst vorbereiten – auch ohne Steuerformulare zu kennen. QLIXA führt dich mit verständlichen Fragen Schritt für Schritt durch deine Situation.', readTime: '~5 Min. Lesezeit' },
     ],
   },
 }
 
+// Localized main word for the placeholder cover below — the only part
+// of it that changes per language (Phase 8 EN/UA/RU localization brief:
+// "localize the main word appropriately while keeping tax form labels
+// E1 · L1 · L1k unchanged"). "QLIXA" also stays unchanged — it's a
+// brand name, not a translatable word.
+const COVER_PLACEHOLDER_LABEL: Record<string, string> = {
+  DE: 'Steuererklärung',
+  EN: 'Tax Return',
+  UA: 'Податкова декларація',
+  RU: 'Налоговая декларация',
+}
+
 // Temporary cover placeholder — used ONLY for the one card whose
 // PUBLISHED_META entry has `cover: null` (currently just the new
-// Steuererklärung article). The 5 existing covers are untouched real
-// photos; this never renders for them. Minimal CSS/typography only —
-// no image request, no new dependency — fills the exact same 190px-tall
-// box the real <img> covers use, so it's responsive at the same
-// dimensions automatically. Swap PUBLISHED_META's `cover: null` back to
-// a real path once an approved photo exists; this component can then
-// be deleted.
-function CoverPlaceholder() {
+// Steuererklärung/Tax Return article, in all 4 locales). The 5 existing
+// covers are untouched real photos; this never renders for them.
+// Minimal CSS/typography only — no image request, no new dependency —
+// fills the exact same 190px-tall box the real <img> covers use, so
+// it's responsive at the same dimensions automatically. Swap
+// PUBLISHED_META's `cover: null` back to a real path once an approved
+// photo exists; this component can then be deleted.
+function CoverPlaceholder({ lang }: { lang: InternalLangKey }) {
+  const label = COVER_PLACEHOLDER_LABEL[lang] || COVER_PLACEHOLDER_LABEL.DE
   return (
     <div style={{
       width: '100%', height: '100%',
@@ -108,7 +133,7 @@ function CoverPlaceholder() {
       display: 'flex', flexDirection: 'column' as const, alignItems: 'center', justifyContent: 'center',
       gap: 4, color: '#fff', textAlign: 'center' as const,
     }}>
-      <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.3px' }}>Steuererklärung</span>
+      <span style={{ fontSize: 13, fontWeight: 700, letterSpacing: '0.3px' }}>{label}</span>
       <span style={{ fontSize: 11, color: 'rgba(255,255,255,0.75)', letterSpacing: '0.5px' }}>E1 · L1 · L1k</span>
       <span style={{ fontSize: 15, margin: '2px 0' }}>→</span>
       <span style={{ fontFamily: 'DM Serif Display, serif', fontStyle: 'italic' as const, fontSize: 16 }}>QLIXA</span>
@@ -132,7 +157,14 @@ function CoverPlaceholder() {
 // actually exist.
 export default function ArticlesContent({ lang, locale }: { lang: InternalLangKey; locale?: Locale }) {
   const t = ARTICLES_PAGE_TEXT[lang] || ARTICLES_PAGE_TEXT.UA
-  const published = t.published.map((item: any, i: number) => ({ ...item, ...PUBLISHED_META[i] }))
+  const rawPublished = t.published.map((item: any, i: number) => ({ ...item, ...PUBLISHED_META[i] }))
+  // The newest article only has a localized route
+  // (/[locale]/articles/steuererklaerung-selbst-vorbereiten) — no flat,
+  // un-prefixed /articles/steuererklaerung-selbst-vorbereiten page
+  // exists. Hide its card entirely on the flat/legacy route (locale
+  // undefined) so this index never links to a route that 404s; the
+  // card shows normally on every /[locale]/articles route.
+  const published = locale ? rawPublished : rawPublished.filter((art: any) => art.href !== '/articles/steuererklaerung-selbst-vorbereiten')
 
   return (
     <div style={{ minHeight: '100vh', background: 'var(--gray)' }}>
@@ -184,7 +216,7 @@ export default function ArticlesContent({ lang, locale }: { lang: InternalLangKe
                     // eslint-disable-next-line @next/next/no-img-element
                     <img src={art.cover} alt={art.title} className="card-img" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: 'center 35%', display: 'block' }} />
                   ) : (
-                    <CoverPlaceholder />
+                    <CoverPlaceholder lang={lang} />
                   )}
                   <div style={{ position: 'absolute', top: 12, left: 12, background: 'var(--orange)', color: '#fff', fontSize: 10, fontWeight: 700, letterSpacing: '0.5px', padding: '4px 10px', borderRadius: 4, zIndex: 2 }}>
                     {art.tag}

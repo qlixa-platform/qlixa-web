@@ -54,6 +54,27 @@ export const articles: Article[] = [
     cover: '/articles/gisa-cover.jpg',
     published: true,
   },
+  // Added once the article existed in all 4 locales (Phase 8 EN/UA/RU
+  // localization brief, section 9). Appended at the end — this only
+  // gives gisa-formular a "next" article it didn't have before and
+  // doesn't reshuffle any other existing article's prev/next adjacency.
+  // `tag`/`title` here are the UA base text (this array has no language
+  // dimension of its own); EN/RU/DE overrides live in
+  // src/components/layout/ArticleNav.tsx's ARTICLE_META_TRANSLATIONS,
+  // exactly like the other 5 articles. `cover` is required by the
+  // `Article` type but — like every other entry here — is never
+  // actually read by ArticleSidebar/ArticlePrevNext (confirmed: neither
+  // renders an image), so this placeholder path being non-existent has
+  // no effect.
+  {
+    slug: 'steuererklaerung-selbst-vorbereiten',
+    href: '/articles/steuererklaerung-selbst-vorbereiten',
+    tag: 'Податкова декларація',
+    title: 'Як самостійно підготувати податкову декларацію в Австрії: крок за кроком',
+    desc: 'Як самостійно підготувати податкову декларацію в Австрії без вивчення податкових форм. QLIXA проводить крок за кроком через зрозумілі запитання.',
+    cover: '/articles/steuererklaerung-selbst-vorbereiten-cover.jpg',
+    published: true,
+  },
 ]
 
 export function getAdjacentArticles(currentSlug: string) {
