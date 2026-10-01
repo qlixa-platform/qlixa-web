@@ -1,3 +1,4 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import AustriaIdContent from '@/components/AustriaIdContent'
@@ -54,6 +55,33 @@ const SUPPORTED_ARTICLE_SLUGS = ['austria-id', 'gewerbeanmeldung', 'gisa-formula
 // the guard in the switch below).
 export function generateStaticParams() {
   return SUPPORTED_ARTICLE_SLUGS.map((slug) => ({ slug }))
+}
+
+// Page-level SEO metadata — scoped ONLY to the one new DE article
+// (correction requested after the initial Phase 8 new-article delivery;
+// the earlier "metadata" added to ArticlesContent.tsx was card copy for
+// the index grid, not real <title>/<meta description> output). Every
+// other slug/locale combination returns {}, which Next merges with the
+// inherited root-layout metadata (src/app/layout.tsx) — i.e. no change
+// at all to the other 5 articles' or other locales' rendered <title>/
+// <meta description>. This intentionally does NOT touch canonical,
+// hreflang, openGraph or twitter — those stay out of scope per the
+// correction brief ("do not redesign the global metadata system").
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string; slug: string }>
+}): Promise<Metadata> {
+  const { locale, slug } = await params
+
+  if (locale === 'de' && slug === 'steuererklaerung-selbst-vorbereiten') {
+    return {
+      title: 'Steuererklärung in Österreich selbst vorbereiten | QLIXA',
+      description: 'Steuererklärung in Österreich selbst vorbereiten – auch ohne Steuerformulare zu kennen. QLIXA führt dich mit verständlichen Fragen Schritt für Schritt durch deine Situation.',
+    }
+  }
+
+  return {}
 }
 
 export default async function LocaleArticlePage({
