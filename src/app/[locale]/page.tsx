@@ -1,6 +1,30 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import HomePageContent from '@/components/HomePageContent'
+
+// Page-level SEO metadata — Phase 8.1, Batch 1 (DE only for now). Every
+// other locale returns {}, which Next merges with the inherited
+// root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
+// EN/UA/RU or to the legacy un-prefixed "/" route. Canonical, hreflang,
+// Open Graph, Twitter and structured data are intentionally untouched —
+// out of scope for this batch.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+
+  if (locale === 'de') {
+    return {
+      title: 'Steuererklärung in Österreich einfach vorbereiten | QLIXA',
+      description: 'Steuererklärung in Österreich selbst vorbereiten: Beantworte verständliche Fragen, sieh deine mögliche Steuererstattung vorab und erhalte deine vorbereitete Steuererklärung.',
+    }
+  }
+
+  return {}
+}
 
 // ————————————————————————————————————————————————————————————————
 // Localized homepage — QLIXA_I18N_MIGRATION_PLAN.md, Phase 3.
