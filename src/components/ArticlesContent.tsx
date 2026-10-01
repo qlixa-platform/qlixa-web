@@ -12,6 +12,14 @@ const PUBLISHED_META = [
   { href: '/articles/austria-id', cover: '/articles/austria-id-cover.jpg' },
   { href: '/articles/invalidity-child', cover: '/articles/invalidity-cover.jpg' },
   { href: '/articles/gisa-formular', cover: '/articles/gisa-cover.jpg' },
+  // Index 5 — only ever reached by DE's own `published` array below
+  // (which is the only one with a 6th entry); UA/RU/EN each stay at
+  // 5 items, so their `.map` over `published` never reaches index 5
+  // and this entry is a no-op for them. Cover is a placeholder path —
+  // no photo exists yet for this new article (see Phase 8 new-article
+  // final report); the card will show a broken image until a real
+  // file is added at this path.
+  { href: '/articles/steuererklaerung-selbst-vorbereiten', cover: '/articles/steuererklaerung-selbst-vorbereiten-cover.jpg' },
 ]
 
 // Переклади сторінки "Статті" — всі 4 мови
@@ -74,6 +82,10 @@ const ARTICLES_PAGE_TEXT: Record<string, any> = {
       { tag: 'Österreich · Dokumente', date: 'Juni 2026', title: 'ID Austria beantragen: Schritt-für-Schritt-Anleitung für Ausländer', desc: 'So richtest du die ID Austria ein und nutzt sie für den Zugang zu digitalen Behördenservices, darunter FinanzOnline.', readTime: '8 Min. Lesezeit' },
       { tag: 'Familie · Leistungen', date: 'Juni 2026', title: 'Kindesbehinderung in Österreich: Leistungen, Vergünstigungen und erste Schritte', desc: 'Ein Überblick über wichtige Themen für Eltern: Behindertenpass, erhöhte Familienbeihilfe, Pflegegeld und mögliche steuerliche Begünstigungen.', readTime: '10 Min. Lesezeit' },
       { tag: 'GISA · Anmeldung', date: 'Juni 2026', title: 'Registrierung auf GISA: Schritt-für-Schritt-Anleitung', desc: 'Eine Schritt-für-Schritt-Anleitung zur Online-Gewerbeanmeldung über GISA mit Erklärungen zu den wichtigsten Feldern und Schritten.', readTime: '15 Min. Lesezeit' },
+      // New (Phase 8 new-article brief). DE-only — UA/RU/EN arrays above
+      // deliberately do NOT get a 6th entry (no approved translation
+      // yet; see PUBLISHED_META's own comment on why that's safe).
+      { tag: 'Steuererklärung', date: 'Oktober 2026', title: 'Steuererklärung in Österreich selbst vorbereiten: Schritt für Schritt', desc: 'Steuererklärung in Österreich selbst vorbereiten – auch ohne Steuerformulare zu kennen. QLIXA führt dich mit verständlichen Fragen Schritt für Schritt durch deine Situation.', readTime: '~5 Min. Lesezeit' },
     ],
   },
 }

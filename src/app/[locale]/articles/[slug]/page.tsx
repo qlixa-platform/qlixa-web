@@ -5,6 +5,7 @@ import GewerbeanmeldungContent from '@/components/GewerbeanmeldungContent'
 import GisaFormularContent from '@/components/GisaFormularContent'
 import InvalidityChildContent from '@/components/InvalidityChildContent'
 import RwrKarteContent from '@/components/RwrKarteContent'
+import SteuererklaerungSelbstVorbereitenContent from '@/components/SteuererklaerungSelbstVorbereitenContent'
 
 // ————————————————————————————————————————————————————————————————
 // Localized individual article route — QLIXA_I18N_MIGRATION_PLAN.md,
@@ -37,10 +38,20 @@ import RwrKarteContent from '@/components/RwrKarteContent'
 // articles.ts) — that registry exists for ArticleNav's sidebar/prev-next
 // links, which still point to flat legacy URLs for slugs that aren't in
 // this map yet (see AustriaIdContent's own doc comment).
-const SUPPORTED_ARTICLE_SLUGS = ['austria-id', 'gewerbeanmeldung', 'gisa-formular', 'invalidity-child', 'rwr-karte'] as const
+//
+// 'steuererklaerung-selbst-vorbereiten' (Phase 8 new-article brief) is
+// DE-ONLY today — see the locale guard in the switch below. It is still
+// listed here (not in a separate array) so generateStaticParams below
+// pre-generates its path for all 4 locales like every other slug; the
+// non-DE paths simply 404 via the guard instead of rendering untranslated
+// or machine-translated content. Remove the guard once EN/UA/RU content
+// for this article is approved.
+const SUPPORTED_ARTICLE_SLUGS = ['austria-id', 'gewerbeanmeldung', 'gisa-formular', 'invalidity-child', 'rwr-karte', 'steuererklaerung-selbst-vorbereiten'] as const
 
-// Pre-generates all 5 currently-supported article slugs, for all 4
-// locales — 20 localized individual-article pages in total.
+// Pre-generates all 6 currently-supported article slugs, for all 4
+// locales — 24 localized individual-article page paths in total (20 of
+// which actually render; the 3 non-DE paths for the newest slug 404 via
+// the guard in the switch below).
 export function generateStaticParams() {
   return SUPPORTED_ARTICLE_SLUGS.map((slug) => ({ slug }))
 }
@@ -69,6 +80,15 @@ export default async function LocaleArticlePage({
       return <InvalidityChildContent lang={lang} locale={locale} />
     case 'rwr-karte':
       return <RwrKarteContent lang={lang} locale={locale} />
+    case 'steuererklaerung-selbst-vorbereiten':
+      // DE-only (Phase 8 new-article brief — no EN/UA/RU translation
+      // approved yet). 404 for every other locale instead of silently
+      // rendering German content, or a fallback, on /en|ua|ru/articles/
+      // steuererklaerung-selbst-vorbereiten.
+      if (locale !== 'de') {
+        notFound()
+      }
+      return <SteuererklaerungSelbstVorbereitenContent lang={lang} locale={locale} />
     default:
       notFound()
   }
