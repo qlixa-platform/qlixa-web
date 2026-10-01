@@ -54,14 +54,13 @@ export function generateStaticParams() {
 }
 
 // Page-level SEO metadata — resolved by BOTH slug and locale (Phase
-// 8.1, Batch 3A: extended from the single-article/4-locale shape used
-// for "steuererklaerung-selbst-vorbereiten" alone, which is preserved
-// here with its exact existing values in all 4 locales — see that
-// slug's own entry below, untouched). Added in this batch: DE metadata
-// for "austria-id", "gewerbeanmeldung" and "gisa-formular". Every other
-// slug/locale combination (including EN/UA/RU for these 3 articles,
-// and "rwr-karte"/"invalidity-child" in any locale — deliberately not
-// added yet) returns {}, which Next merges with the inherited
+// 8.1, Batch 3A: restructured from the single-article/4-locale shape
+// used for "steuererklaerung-selbst-vorbereiten" alone, preserved here
+// with its exact existing values in all 4 locales; Batch 3B: added DE
+// metadata for "rwr-karte" and "invalidity-child", completing DE
+// coverage for all 6 articles). Every slug/locale combination not
+// explicitly listed below (all EN/UA/RU for the 5 non-"steuererklärung"
+// articles) returns {}, which Next merges with the inherited
 // root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
 // any combination not explicitly listed here. This intentionally does
 // NOT touch canonical, hreflang, openGraph or twitter — out of scope
@@ -101,6 +100,18 @@ const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; d
     de: {
       title: 'Gewerbe online über GISA anmelden: Anleitung | QLIXA',
       description: 'Gewerbeanmeldung über GISA Schritt für Schritt: Online-Formular, ID Austria, benötigte Angaben, Beilagen und Ablauf verständlich erklärt.',
+    },
+  },
+  'rwr-karte': {
+    de: {
+      title: 'RWR Plus Karte Österreich: Voraussetzungen & Antrag | QLIXA',
+      description: 'RWR Plus Karte in Österreich: Voraussetzungen, benötigte Unterlagen, Einkommensnachweis und Vorbereitung auf den Antrag verständlich erklärt.',
+    },
+  },
+  'invalidity-child': {
+    de: {
+      title: 'Kind mit Behinderung in Österreich: Leistungen & Hilfe | QLIXA',
+      description: 'Überblick für Eltern: Behindertenpass, erhöhte Familienbeihilfe, Pflegegeld und mögliche steuerliche Begünstigungen für Kinder mit Behinderung in Österreich.',
     },
   },
 }
