@@ -3,10 +3,12 @@ import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import TaxReturnContent from '@/components/TaxReturnContent'
 
-// Page-level SEO metadata — Phase 8.1, Batch 1 (DE) + Batch 4 (EN
-// added). UA/RU still return {}, which Next merges with the inherited
-// root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
-// UA/RU or to the legacy un-prefixed "/tax-return" route. Canonical,
+// Page-level SEO metadata — Phase 8.1, Batch 1 (DE) + Batch 4 (EN) +
+// Batch 5 (UA added). RU still returns {}, which Next merges with the
+// inherited root-layout metadata (src/app/layout.tsx) — i.e. no change
+// at all to RU or to the legacy un-prefixed "/tax-return" route. The
+// route segment stays "ua" (not "uk") — the eventual html-lang/hreflang
+// code "uk" is a separate, later technical-SEO task. Canonical,
 // hreflang, Open Graph, Twitter and structured data are intentionally
 // untouched — out of scope for this batch.
 export async function generateMetadata({
@@ -27,6 +29,13 @@ export async function generateMetadata({
     return {
       title: 'Prepare Your Tax Return in Austria | QLIXA',
       description: 'Prepare your Austrian tax return yourself. Answer questions that adapt to your situation, see your possible refund in advance and receive a prepared tax return.',
+    }
+  }
+
+  if (locale === 'ua') {
+    return {
+      title: 'Як підготувати податкову декларацію в Австрії | QLIXA',
+      description: 'Підготуй податкову декларацію в Австрії самостійно. Відповідай на запитання, що адаптуються до твоєї ситуації, та заздалегідь побач можливе повернення податку.',
     }
   }
 

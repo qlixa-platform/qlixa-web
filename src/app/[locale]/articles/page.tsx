@@ -4,14 +4,16 @@ import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import ArticlesContent from '@/components/ArticlesContent'
 
 // Page-level SEO metadata for the ARTICLES INDEX route itself — Phase
-// 8.1, Batch 2 (DE) + Batch 4 (EN added). Scoped only to this index
-// page; the sibling [slug] dispatcher has its own separate
-// generateMetadata for individual articles and is untouched here.
-// UA/RU still return {}, which Next merges with the inherited
+// 8.1, Batch 2 (DE) + Batch 4 (EN) + Batch 5 (UA added). Scoped only
+// to this index page; the sibling [slug] dispatcher has its own
+// separate generateMetadata for individual articles and is untouched
+// here. RU still returns {}, which Next merges with the inherited
 // root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
-// UA/RU or to the legacy un-prefixed "/articles" route. Canonical,
-// hreflang, Open Graph, Twitter and structured data are intentionally
-// untouched — out of scope for this batch.
+// RU or to the legacy un-prefixed "/articles" route. The route segment
+// stays "ua" (not "uk") — the eventual html-lang/hreflang code "uk" is
+// a separate, later technical-SEO task. Canonical, hreflang, Open
+// Graph, Twitter and structured data are intentionally untouched — out
+// of scope for this batch.
 export async function generateMetadata({
   params,
 }: {
@@ -30,6 +32,13 @@ export async function generateMetadata({
     return {
       title: 'Taxes & Life in Austria: Practical Guides | QLIXA',
       description: 'Practical guides to taxes, self-employment, documents and everyday life in Austria, explained clearly by QLIXA.',
+    }
+  }
+
+  if (locale === 'ua') {
+    return {
+      title: 'Податки та життя в Австрії: практичні інструкції | QLIXA',
+      description: 'Практичні інструкції про податки, самозайнятість, документи та життя в Австрії — зрозуміло від QLIXA.',
     }
   }
 

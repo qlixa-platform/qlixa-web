@@ -3,12 +3,14 @@ import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import AboutContent from '@/components/AboutContent'
 
-// Page-level SEO metadata — Phase 8.1, Batch 2 (DE) + Batch 4 (EN
-// added). UA/RU still return {}, which Next merges with the inherited
-// root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
-// UA/RU or to the legacy un-prefixed "/about" route. Canonical,
-// hreflang, Open Graph, Twitter and structured data are intentionally
-// untouched — out of scope for this batch.
+// Page-level SEO metadata — Phase 8.1, Batch 2 (DE) + Batch 4 (EN) +
+// Batch 5 (UA added). RU still returns {}, which Next merges with the
+// inherited root-layout metadata (src/app/layout.tsx) — i.e. no change
+// at all to RU or to the legacy un-prefixed "/about" route. The route
+// segment stays "ua" (not "uk") — the eventual html-lang/hreflang code
+// "uk" is a separate, later technical-SEO task. Canonical, hreflang,
+// Open Graph, Twitter and structured data are intentionally untouched —
+// out of scope for this batch.
 export async function generateMetadata({
   params,
 }: {
@@ -27,6 +29,13 @@ export async function generateMetadata({
     return {
       title: 'What Is QLIXA? Digital Tax Tool for Austria',
       description: 'Learn how QLIXA works: a digital self-service tool for preparing your tax return in Austria independently.',
+    }
+  }
+
+  if (locale === 'ua') {
+    return {
+      title: 'Що таке QLIXA? Цифровий податковий інструмент для Австрії',
+      description: 'Дізнайся, як працює QLIXA — цифровий self-service інструмент для самостійної підготовки податкової декларації в Австрії.',
     }
   }
 

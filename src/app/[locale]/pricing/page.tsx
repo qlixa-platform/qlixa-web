@@ -3,17 +3,19 @@ import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import PricingContent from '@/components/PricingContent'
 
-// Page-level SEO metadata — Phase 8.1, Batch 1 (DE) + Batch 4 (EN
-// added). UA/RU still return {}, which Next merges with the inherited
-// root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
-// UA/RU or to the legacy un-prefixed "/pricing" route. Canonical,
+// Page-level SEO metadata — Phase 8.1, Batch 1 (DE) + Batch 4 (EN) +
+// Batch 5 (UA added). RU still returns {}, which Next merges with the
+// inherited root-layout metadata (src/app/layout.tsx) — i.e. no change
+// at all to RU or to the legacy un-prefixed "/pricing" route. The
+// route segment stays "ua" (not "uk") — the eventual html-lang/hreflang
+// code "uk" is a separate, later technical-SEO task. Canonical,
 // hreflang, Open Graph, Twitter and structured data are intentionally
 // untouched — out of scope for this batch.
 //
 // Product precision (per the Phase 8.1 brief): €24,90 / €24.90 is the
 // price for ONE generated tax return for ONE selected tax year — there
-// is no subscription. Both strings below preserve that wording exactly
-// as approved; do not rephrase them.
+// is no subscription. All three strings below preserve that wording
+// exactly as approved; do not rephrase them.
 export async function generateMetadata({
   params,
 }: {
@@ -32,6 +34,13 @@ export async function generateMetadata({
     return {
       title: 'QLIXA Pricing: Tax Return for €24.90 | No Subscription',
       description: 'Try QLIXA for free. A prepared tax return costs €24.90 per tax return and selected tax year. One-time payment, no subscription.',
+    }
+  }
+
+  if (locale === 'ua') {
+    return {
+      title: 'QLIXA: вартість податкової декларації €24,90 | Без підписки',
+      description: 'Спробуй QLIXA безкоштовно. Готова податкова декларація коштує €24,90 за одну декларацію та обраний податковий рік. Одноразова оплата, без підписки.',
     }
   }
 
