@@ -1,6 +1,34 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import ArticlesContent from '@/components/ArticlesContent'
+
+// Page-level SEO metadata for the ARTICLES INDEX route itself — Phase
+// 8.1, Batch 2 (DE only for now). Scoped only to this index page; the
+// sibling [slug] dispatcher has its own separate generateMetadata for
+// the one article that already has approved metadata
+// (steuererklaerung-selbst-vorbereiten) and is untouched here. Every
+// other locale returns {}, which Next merges with the inherited
+// root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
+// EN/UA/RU or to the legacy un-prefixed "/articles" route. Canonical,
+// hreflang, Open Graph, Twitter and structured data are intentionally
+// untouched — out of scope for this batch.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+
+  if (locale === 'de') {
+    return {
+      title: 'Steuern & Leben in Österreich: Anleitungen | QLIXA',
+      description: 'Praktische Anleitungen zu Steuern, Selbstständigkeit, Dokumenten und Leben in Österreich – verständlich erklärt von QLIXA.',
+    }
+  }
+
+  return {}
+}
 
 // ————————————————————————————————————————————————————————————————
 // Localized /articles — QLIXA_I18N_MIGRATION_PLAN.md, Phase 6.

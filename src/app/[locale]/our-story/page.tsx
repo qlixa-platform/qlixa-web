@@ -1,6 +1,30 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import OurStoryContent from '@/components/OurStoryContent'
+
+// Page-level SEO metadata — Phase 8.1, Batch 2 (DE only for now). Every
+// other locale returns {}, which Next merges with the inherited
+// root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
+// EN/UA/RU or to the legacy un-prefixed "/our-story" route. Canonical,
+// hreflang, Open Graph, Twitter and structured data are intentionally
+// untouched — out of scope for this batch.
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>
+}): Promise<Metadata> {
+  const { locale } = await params
+
+  if (locale === 'de') {
+    return {
+      title: 'Über QLIXA: Die Geschichte hinter dem Steuer-Tool',
+      description: 'Lerne die Geschichte hinter QLIXA kennen und erfahre, warum das digitale Self-Service-Tool für die Steuererklärung in Österreich entstanden ist.',
+    }
+  }
+
+  return {}
+}
 
 // ————————————————————————————————————————————————————————————————
 // Localized /our-story — QLIXA_I18N_MIGRATION_PLAN.md, Phase 5.
