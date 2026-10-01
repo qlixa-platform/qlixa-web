@@ -58,13 +58,13 @@ export function generateStaticParams() {
 // used for "steuererklaerung-selbst-vorbereiten" alone, preserved here
 // with its exact existing values in all 4 locales; Batch 3B: added DE
 // metadata for "rwr-karte" and "invalidity-child", completing DE
-// coverage for all 6 articles). Every slug/locale combination not
-// explicitly listed below (all EN/UA/RU for the 5 non-"steuererklärung"
-// articles) returns {}, which Next merges with the inherited
-// root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
-// any combination not explicitly listed here. This intentionally does
-// NOT touch canonical, hreflang, openGraph or twitter — out of scope
-// for this batch.
+// coverage for all 6 articles; Batch 4: added `en` metadata to the
+// other 5 articles, completing EN coverage for all 6). UA/RU for those
+// 5 articles still have no entry, so they return {}, which Next merges
+// with the inherited root-layout metadata (src/app/layout.tsx) — i.e.
+// no change at all to any combination not explicitly listed here. This
+// intentionally does NOT touch canonical, hreflang, openGraph or
+// twitter — out of scope for this batch.
 const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; description: string }>>> = {
   'steuererklaerung-selbst-vorbereiten': {
     de: {
@@ -89,11 +89,19 @@ const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; d
       title: 'ID Austria einrichten: Schritt-für-Schritt-Anleitung | QLIXA',
       description: 'ID Austria einrichten: Voraussetzungen, Registrierung, benötigte Dokumente und Behördentermin Schritt für Schritt verständlich erklärt.',
     },
+    en: {
+      title: 'How to Register for ID Austria: Step-by-Step Guide | QLIXA',
+      description: 'How to register for ID Austria: requirements, registration steps, documents and the government office appointment explained step by step.',
+    },
   },
   'gewerbeanmeldung': {
     de: {
       title: 'Gewerbe anmelden in Österreich: Schritt für Schritt | QLIXA',
       description: 'Gewerbe in Österreich anmelden: Voraussetzungen, benötigte Unterlagen, zuständige Behörde und Ablauf der Gewerbeanmeldung einfach erklärt.',
+    },
+    en: {
+      title: 'How to Register a Business (Gewerbe) in Austria | QLIXA',
+      description: 'How to register a Gewerbe in Austria: requirements, documents, competent authority and the business registration process explained step by step.',
     },
   },
   'gisa-formular': {
@@ -101,17 +109,29 @@ const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; d
       title: 'Gewerbe online über GISA anmelden: Anleitung | QLIXA',
       description: 'Gewerbeanmeldung über GISA Schritt für Schritt: Online-Formular, ID Austria, benötigte Angaben, Beilagen und Ablauf verständlich erklärt.',
     },
+    en: {
+      title: 'How to Register a Gewerbe Online via GISA | QLIXA',
+      description: 'Register a Gewerbe online via GISA step by step: the online form, ID Austria, required information, attachments and submission process explained.',
+    },
   },
   'rwr-karte': {
     de: {
       title: 'RWR Plus Karte Österreich: Voraussetzungen & Antrag | QLIXA',
       description: 'RWR Plus Karte in Österreich: Voraussetzungen, benötigte Unterlagen, Einkommensnachweis und Vorbereitung auf den Antrag verständlich erklärt.',
     },
+    en: {
+      title: 'Red-White-Red Card Plus Austria: Requirements & Application | QLIXA',
+      description: 'Red-White-Red Card Plus in Austria: requirements, required documents, proof of income and how to prepare for your application.',
+    },
   },
   'invalidity-child': {
     de: {
       title: 'Kind mit Behinderung in Österreich: Leistungen & Hilfe | QLIXA',
       description: 'Überblick für Eltern: Behindertenpass, erhöhte Familienbeihilfe, Pflegegeld und mögliche steuerliche Begünstigungen für Kinder mit Behinderung in Österreich.',
+    },
+    en: {
+      title: 'Child with a Disability in Austria: Benefits & Support | QLIXA',
+      description: 'Overview for parents of children with disabilities in Austria: disability pass, increased family allowance, care allowance and possible tax benefits.',
     },
   },
 }

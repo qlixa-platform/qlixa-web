@@ -3,17 +3,17 @@ import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import PricingContent from '@/components/PricingContent'
 
-// Page-level SEO metadata — Phase 8.1, Batch 1 (DE only for now). Every
-// other locale returns {}, which Next merges with the inherited
+// Page-level SEO metadata — Phase 8.1, Batch 1 (DE) + Batch 4 (EN
+// added). UA/RU still return {}, which Next merges with the inherited
 // root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
-// EN/UA/RU or to the legacy un-prefixed "/pricing" route. Canonical,
+// UA/RU or to the legacy un-prefixed "/pricing" route. Canonical,
 // hreflang, Open Graph, Twitter and structured data are intentionally
 // untouched — out of scope for this batch.
 //
-// Product precision (per the Phase 8.1 brief): €24,90 is the price for
-// ONE generated tax return for ONE selected tax year — there is no
-// subscription. The description below preserves that wording exactly
-// as approved; do not rephrase it.
+// Product precision (per the Phase 8.1 brief): €24,90 / €24.90 is the
+// price for ONE generated tax return for ONE selected tax year — there
+// is no subscription. Both strings below preserve that wording exactly
+// as approved; do not rephrase them.
 export async function generateMetadata({
   params,
 }: {
@@ -25,6 +25,13 @@ export async function generateMetadata({
     return {
       title: 'QLIXA Kosten: Steuererklärung für €24,90 | Kein Abo',
       description: 'QLIXA kostenlos ausprobieren. Die vorbereitete Steuererklärung kostet €24,90 pro Steuererklärung und ausgewähltem Steuerjahr. Einmalige Zahlung, kein Abo.',
+    }
+  }
+
+  if (locale === 'en') {
+    return {
+      title: 'QLIXA Pricing: Tax Return for €24.90 | No Subscription',
+      description: 'Try QLIXA for free. A prepared tax return costs €24.90 per tax return and selected tax year. One-time payment, no subscription.',
     }
   }
 

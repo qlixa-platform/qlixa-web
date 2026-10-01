@@ -3,10 +3,10 @@ import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import TaxReturnContent from '@/components/TaxReturnContent'
 
-// Page-level SEO metadata — Phase 8.1, Batch 1 (DE only for now). Every
-// other locale returns {}, which Next merges with the inherited
+// Page-level SEO metadata — Phase 8.1, Batch 1 (DE) + Batch 4 (EN
+// added). UA/RU still return {}, which Next merges with the inherited
 // root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
-// EN/UA/RU or to the legacy un-prefixed "/tax-return" route. Canonical,
+// UA/RU or to the legacy un-prefixed "/tax-return" route. Canonical,
 // hreflang, Open Graph, Twitter and structured data are intentionally
 // untouched — out of scope for this batch.
 export async function generateMetadata({
@@ -20,6 +20,13 @@ export async function generateMetadata({
     return {
       title: 'Steuererklärung in Österreich selber machen | QLIXA',
       description: 'Steuererklärung selbst vorbereiten: Beantworte passende Fragen zu deiner Situation, sieh deine mögliche Steuererstattung vorab und erhalte deine vorbereitete Steuererklärung.',
+    }
+  }
+
+  if (locale === 'en') {
+    return {
+      title: 'Prepare Your Tax Return in Austria | QLIXA',
+      description: 'Prepare your Austrian tax return yourself. Answer questions that adapt to your situation, see your possible refund in advance and receive a prepared tax return.',
     }
   }
 

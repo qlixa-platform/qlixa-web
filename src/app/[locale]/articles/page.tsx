@@ -4,13 +4,12 @@ import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import ArticlesContent from '@/components/ArticlesContent'
 
 // Page-level SEO metadata for the ARTICLES INDEX route itself — Phase
-// 8.1, Batch 2 (DE only for now). Scoped only to this index page; the
-// sibling [slug] dispatcher has its own separate generateMetadata for
-// the one article that already has approved metadata
-// (steuererklaerung-selbst-vorbereiten) and is untouched here. Every
-// other locale returns {}, which Next merges with the inherited
+// 8.1, Batch 2 (DE) + Batch 4 (EN added). Scoped only to this index
+// page; the sibling [slug] dispatcher has its own separate
+// generateMetadata for individual articles and is untouched here.
+// UA/RU still return {}, which Next merges with the inherited
 // root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
-// EN/UA/RU or to the legacy un-prefixed "/articles" route. Canonical,
+// UA/RU or to the legacy un-prefixed "/articles" route. Canonical,
 // hreflang, Open Graph, Twitter and structured data are intentionally
 // untouched — out of scope for this batch.
 export async function generateMetadata({
@@ -24,6 +23,13 @@ export async function generateMetadata({
     return {
       title: 'Steuern & Leben in Österreich: Anleitungen | QLIXA',
       description: 'Praktische Anleitungen zu Steuern, Selbstständigkeit, Dokumenten und Leben in Österreich – verständlich erklärt von QLIXA.',
+    }
+  }
+
+  if (locale === 'en') {
+    return {
+      title: 'Taxes & Life in Austria: Practical Guides | QLIXA',
+      description: 'Practical guides to taxes, self-employment, documents and everyday life in Austria, explained clearly by QLIXA.',
     }
   }
 

@@ -3,10 +3,10 @@ import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import OurStoryContent from '@/components/OurStoryContent'
 
-// Page-level SEO metadata — Phase 8.1, Batch 2 (DE only for now). Every
-// other locale returns {}, which Next merges with the inherited
+// Page-level SEO metadata — Phase 8.1, Batch 2 (DE) + Batch 4 (EN
+// added). UA/RU still return {}, which Next merges with the inherited
 // root-layout metadata (src/app/layout.tsx) — i.e. no change at all to
-// EN/UA/RU or to the legacy un-prefixed "/our-story" route. Canonical,
+// UA/RU or to the legacy un-prefixed "/our-story" route. Canonical,
 // hreflang, Open Graph, Twitter and structured data are intentionally
 // untouched — out of scope for this batch.
 export async function generateMetadata({
@@ -20,6 +20,13 @@ export async function generateMetadata({
     return {
       title: 'Über QLIXA: Die Geschichte hinter dem Steuer-Tool',
       description: 'Lerne die Geschichte hinter QLIXA kennen und erfahre, warum das digitale Self-Service-Tool für die Steuererklärung in Österreich entstanden ist.',
+    }
+  }
+
+  if (locale === 'en') {
+    return {
+      title: 'About QLIXA: The Story Behind the Tax Tool',
+      description: 'Meet the story behind QLIXA and discover why the digital self-service tool for preparing tax returns in Austria was created.',
     }
   }
 
