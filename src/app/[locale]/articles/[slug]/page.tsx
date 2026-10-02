@@ -57,15 +57,11 @@ export function generateStaticParams() {
 // 8.1, Batch 3A: restructured from the single-article/4-locale shape
 // used for "steuererklaerung-selbst-vorbereiten" alone, preserved here
 // with its exact existing values in all 4 locales; Batch 3B: added DE
-// metadata for "rwr-karte" and "invalidity-child", completing DE
-// coverage for all 6 articles; Batch 4: added `en` metadata to the
-// other 5 articles, completing EN coverage for all 6; Batch 5: added
-// `ua` metadata to the same 5 articles, completing UA coverage for all
-// 6). RU for those 5 articles still has no entry, so it returns {},
-// which Next merges with the inherited root-layout metadata
-// (src/app/layout.tsx) — i.e. no change at all to any combination not
-// explicitly listed here. This intentionally does NOT touch canonical,
-// hreflang, openGraph or twitter — out of scope for this batch.
+// metadata for "rwr-karte" and "invalidity-child"; Batch 4: added `en`
+// metadata to the other 5 articles; Batch 5: added `ua`; Batch 6: added
+// `ru`, completing all 4 locales for all 6 articles). This
+// intentionally does NOT touch canonical, hreflang, openGraph or
+// twitter — out of scope for this batch.
 const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; description: string }>>> = {
   'steuererklaerung-selbst-vorbereiten': {
     de: {
@@ -98,6 +94,10 @@ const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; d
       title: 'Як зареєструвати ID Austria: покрокова інструкція | QLIXA',
       description: 'Як зареєструвати ID Austria: умови, етапи реєстрації, необхідні документи та візит до органу реєстрації — покроково і зрозуміло.',
     },
+    ru: {
+      title: 'Как зарегистрировать ID Austria: пошаговая инструкция | QLIXA',
+      description: 'Как зарегистрировать ID Austria: условия, этапы регистрации, необходимые документы и визит в орган регистрации — пошагово и понятно.',
+    },
   },
   'gewerbeanmeldung': {
     de: {
@@ -111,6 +111,10 @@ const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; d
     ua: {
       title: 'Як відкрити Gewerbe в Австрії: покрокова інструкція | QLIXA',
       description: 'Як зареєструвати Gewerbe в Австрії: умови, необхідні документи, компетентний орган та процес реєстрації підприємницької діяльності.',
+    },
+    ru: {
+      title: 'Как открыть Gewerbe в Австрии: пошаговая инструкция | QLIXA',
+      description: 'Как зарегистрировать Gewerbe в Австрии: условия, необходимые документы, компетентный орган и процесс регистрации предпринимательской деятельности.',
     },
   },
   'gisa-formular': {
@@ -126,6 +130,10 @@ const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; d
       title: 'Як зареєструвати Gewerbe онлайн через GISA | QLIXA',
       description: 'Реєстрація Gewerbe онлайн через GISA покроково: онлайн-форма, ID Austria, необхідні дані, додатки та процес подання.',
     },
+    ru: {
+      title: 'Как зарегистрировать Gewerbe онлайн через GISA | QLIXA',
+      description: 'Регистрация Gewerbe онлайн через GISA пошагово: онлайн-форма, ID Austria, необходимые данные, приложения и процесс подачи.',
+    },
   },
   'rwr-karte': {
     de: {
@@ -140,6 +148,10 @@ const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; d
       title: 'RWR Plus в Австрії: умови та подання заяви | QLIXA',
       description: 'RWR Plus в Австрії: умови, необхідні документи, підтвердження доходу та підготовка до подання заяви — зрозуміло і по кроках.',
     },
+    ru: {
+      title: 'RWR Plus в Австрии: условия и подача заявления | QLIXA',
+      description: 'RWR Plus в Австрии: условия, необходимые документы, подтверждение дохода и подготовка к подаче заявления — понятно и по шагам.',
+    },
   },
   'invalidity-child': {
     de: {
@@ -153,6 +165,10 @@ const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; d
     ua: {
       title: 'Дитина з інвалідністю в Австрії: виплати та підтримка | QLIXA',
       description: 'Огляд для батьків дітей з інвалідністю в Австрії: Behindertenpass, підвищена Familienbeihilfe, Pflegegeld та можливі податкові пільги.',
+    },
+    ru: {
+      title: 'Ребёнок с инвалидностью в Австрии: выплаты и поддержка | QLIXA',
+      description: 'Обзор для родителей детей с инвалидностью в Австрии: Behindertenpass, повышенная Familienbeihilfe, Pflegegeld и возможные налоговые льготы.',
     },
   },
 }

@@ -4,13 +4,11 @@ import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import HomePageContent from '@/components/HomePageContent'
 
 // Page-level SEO metadata — Phase 8.1, Batch 1 (DE) + Batch 4 (EN) +
-// Batch 5 (UA added). RU still returns {}, which Next merges with the
-// inherited root-layout metadata (src/app/layout.tsx) — i.e. no change
-// at all to RU or to the legacy un-prefixed "/" route. The route
+// Batch 5 (UA) + Batch 6 (RU added, completing all 4 locales for this
+// route). Canonical, hreflang, Open Graph, Twitter and structured data
+// are intentionally untouched — out of scope for this batch. The route
 // segment stays "ua" (not "uk") — the eventual html-lang/hreflang code
-// "uk" is a separate, later technical-SEO task. Canonical, hreflang,
-// Open Graph, Twitter and structured data are intentionally untouched —
-// out of scope for this batch.
+// "uk" is a separate, later technical-SEO task.
 export async function generateMetadata({
   params,
 }: {
@@ -36,6 +34,13 @@ export async function generateMetadata({
     return {
       title: 'Податкова декларація в Австрії просто | QLIXA',
       description: 'Підготуй податкову декларацію в Австрії самостійно: відповідай на зрозумілі запитання, заздалегідь побач можливе повернення податку та отримай готову декларацію.',
+    }
+  }
+
+  if (locale === 'ru') {
+    return {
+      title: 'Налоговая декларация в Австрии — просто | QLIXA',
+      description: 'Подготовьте налоговую декларацию в Австрии самостоятельно: ответьте на понятные вопросы, заранее узнайте возможный возврат налога и получите готовую декларацию.',
     }
   }
 

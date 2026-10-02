@@ -4,13 +4,11 @@ import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import TaxReturnContent from '@/components/TaxReturnContent'
 
 // Page-level SEO metadata — Phase 8.1, Batch 1 (DE) + Batch 4 (EN) +
-// Batch 5 (UA added). RU still returns {}, which Next merges with the
-// inherited root-layout metadata (src/app/layout.tsx) — i.e. no change
-// at all to RU or to the legacy un-prefixed "/tax-return" route. The
-// route segment stays "ua" (not "uk") — the eventual html-lang/hreflang
-// code "uk" is a separate, later technical-SEO task. Canonical,
-// hreflang, Open Graph, Twitter and structured data are intentionally
-// untouched — out of scope for this batch.
+// Batch 5 (UA) + Batch 6 (RU added, completing all 4 locales for this
+// route). Canonical, hreflang, Open Graph, Twitter and structured data
+// are intentionally untouched — out of scope for this batch. The route
+// segment stays "ua" (not "uk") — the eventual html-lang/hreflang code
+// "uk" is a separate, later technical-SEO task.
 export async function generateMetadata({
   params,
 }: {
@@ -36,6 +34,13 @@ export async function generateMetadata({
     return {
       title: 'Як підготувати податкову декларацію в Австрії | QLIXA',
       description: 'Підготуй податкову декларацію в Австрії самостійно. Відповідай на запитання, що адаптуються до твоєї ситуації, та заздалегідь побач можливе повернення податку.',
+    }
+  }
+
+  if (locale === 'ru') {
+    return {
+      title: 'Как подготовить налоговую декларацию в Австрии | QLIXA',
+      description: 'Подготовьте налоговую декларацию в Австрии самостоятельно. Ответьте на вопросы, которые адаптируются к вашей ситуации, и заранее узнайте возможный возврат налога.',
     }
   }
 

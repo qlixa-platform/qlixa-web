@@ -4,13 +4,11 @@ import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import OurStoryContent from '@/components/OurStoryContent'
 
 // Page-level SEO metadata — Phase 8.1, Batch 2 (DE) + Batch 4 (EN) +
-// Batch 5 (UA added). RU still returns {}, which Next merges with the
-// inherited root-layout metadata (src/app/layout.tsx) — i.e. no change
-// at all to RU or to the legacy un-prefixed "/our-story" route. The
-// route segment stays "ua" (not "uk") — the eventual html-lang/hreflang
-// code "uk" is a separate, later technical-SEO task. Canonical,
-// hreflang, Open Graph, Twitter and structured data are intentionally
-// untouched — out of scope for this batch.
+// Batch 5 (UA) + Batch 6 (RU added, completing all 4 locales for this
+// route). Canonical, hreflang, Open Graph, Twitter and structured data
+// are intentionally untouched — out of scope for this batch. The route
+// segment stays "ua" (not "uk") — the eventual html-lang/hreflang code
+// "uk" is a separate, later technical-SEO task.
 export async function generateMetadata({
   params,
 }: {
@@ -36,6 +34,13 @@ export async function generateMetadata({
     return {
       title: 'Про QLIXA: історія створення податкового інструменту',
       description: 'Познайомся з історією QLIXA та дізнайся, чому з’явився цифровий self-service інструмент для підготовки податкової декларації в Австрії.',
+    }
+  }
+
+  if (locale === 'ru') {
+    return {
+      title: 'О QLIXA: история создания налогового инструмента',
+      description: 'Познакомьтесь с историей QLIXA и узнайте, почему появился цифровой self-service инструмент для подготовки налоговой декларации в Австрии.',
     }
   }
 

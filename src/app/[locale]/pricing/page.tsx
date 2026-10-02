@@ -4,17 +4,15 @@ import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import PricingContent from '@/components/PricingContent'
 
 // Page-level SEO metadata — Phase 8.1, Batch 1 (DE) + Batch 4 (EN) +
-// Batch 5 (UA added). RU still returns {}, which Next merges with the
-// inherited root-layout metadata (src/app/layout.tsx) — i.e. no change
-// at all to RU or to the legacy un-prefixed "/pricing" route. The
-// route segment stays "ua" (not "uk") — the eventual html-lang/hreflang
-// code "uk" is a separate, later technical-SEO task. Canonical,
-// hreflang, Open Graph, Twitter and structured data are intentionally
-// untouched — out of scope for this batch.
+// Batch 5 (UA) + Batch 6 (RU added, completing all 4 locales for this
+// route). Canonical, hreflang, Open Graph, Twitter and structured data
+// are intentionally untouched — out of scope for this batch. The route
+// segment stays "ua" (not "uk") — the eventual html-lang/hreflang code
+// "uk" is a separate, later technical-SEO task.
 //
 // Product precision (per the Phase 8.1 brief): €24,90 / €24.90 is the
 // price for ONE generated tax return for ONE selected tax year — there
-// is no subscription. All three strings below preserve that wording
+// is no subscription. All four strings below preserve that wording
 // exactly as approved; do not rephrase them.
 export async function generateMetadata({
   params,
@@ -41,6 +39,13 @@ export async function generateMetadata({
     return {
       title: 'QLIXA: вартість податкової декларації €24,90 | Без підписки',
       description: 'Спробуй QLIXA безкоштовно. Готова податкова декларація коштує €24,90 за одну декларацію та обраний податковий рік. Одноразова оплата, без підписки.',
+    }
+  }
+
+  if (locale === 'ru') {
+    return {
+      title: 'QLIXA: налоговая декларация за €24,90 | Без подписки',
+      description: 'Попробуйте QLIXA бесплатно. Готовая налоговая декларация стоит €24,90 за одну декларацию и выбранный налоговый год. Разовая оплата, без подписки.',
     }
   }
 

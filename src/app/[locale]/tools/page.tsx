@@ -4,13 +4,11 @@ import { isSupportedLocale, toInternalKey } from '@/lib/locale'
 import ToolsContent from '@/components/ToolsContent'
 
 // Page-level SEO metadata — Phase 8.1, Batch 2 (DE) + Batch 4 (EN) +
-// Batch 5 (UA added). RU still returns {}, which Next merges with the
-// inherited root-layout metadata (src/app/layout.tsx) — i.e. no change
-// at all to RU or to the legacy un-prefixed "/tools" route. The route
+// Batch 5 (UA) + Batch 6 (RU added, completing all 4 locales for this
+// route). Canonical, hreflang, Open Graph, Twitter and structured data
+// are intentionally untouched — out of scope for this batch. The route
 // segment stays "ua" (not "uk") — the eventual html-lang/hreflang code
-// "uk" is a separate, later technical-SEO task. Canonical, hreflang,
-// Open Graph, Twitter and structured data are intentionally untouched —
-// out of scope for this batch.
+// "uk" is a separate, later technical-SEO task.
 export async function generateMetadata({
   params,
 }: {
@@ -36,6 +34,13 @@ export async function generateMetadata({
     return {
       title: 'RWR Plus: калькулятор доходу та чек-листи | QLIXA',
       description: 'Безкоштовний калькулятор доходу та чек-листи для RWR Plus в Австрії. Перевір свій дохід і підготуй основні документи для подання заяви.',
+    }
+  }
+
+  if (locale === 'ru') {
+    return {
+      title: 'RWR Plus: калькулятор дохода и чек-листы | QLIXA',
+      description: 'Бесплатный калькулятор дохода и чек-листы для RWR Plus в Австрии. Проверьте свой доход и подготовьте основные документы для подачи заявления.',
     }
   }
 
