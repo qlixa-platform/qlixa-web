@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
+import { getLocalizedAlternates } from '@/lib/seo'
 import AboutContent from '@/components/AboutContent'
 
 // Page-level SEO metadata — Phase 8.1, Batch 2 (DE) + Batch 4 (EN) +
-// Batch 5 (UA) + Batch 6 (RU added, completing all 4 locales for this
-// route). Canonical, hreflang, Open Graph, Twitter and structured data
-// are intentionally untouched — out of scope for this batch. The route
-// segment stays "ua" (not "uk") — the eventual html-lang/hreflang code
-// "uk" is a separate, later technical-SEO task.
+// Batch 5 (UA) + Batch 6 (RU, completing all 4 locales' Title/
+// Description) + Batch 8 (canonical/hreflang added via the shared
+// src/lib/seo.ts helper). Every existing Title/Description string
+// below is unchanged. Open Graph, Twitter and structured data remain
+// out of scope. The route segment stays "ua" (not "uk") — only the
+// hreflang KEY uses "uk", via getLocalizedAlternates/toHtmlLang.
 export async function generateMetadata({
   params,
 }: {
@@ -20,6 +22,7 @@ export async function generateMetadata({
     return {
       title: 'Was ist QLIXA? Digitales Steuer-Tool für Österreich',
       description: 'Erfahre, wie QLIXA funktioniert: ein digitales Self-Service-Tool zur selbstständigen Vorbereitung der Steuererklärung in Österreich.',
+      ...getLocalizedAlternates(locale, '/about'),
     }
   }
 
@@ -27,6 +30,7 @@ export async function generateMetadata({
     return {
       title: 'What Is QLIXA? Digital Tax Tool for Austria',
       description: 'Learn how QLIXA works: a digital self-service tool for preparing your tax return in Austria independently.',
+      ...getLocalizedAlternates(locale, '/about'),
     }
   }
 
@@ -34,6 +38,7 @@ export async function generateMetadata({
     return {
       title: 'Що таке QLIXA? Цифровий податковий інструмент для Австрії',
       description: 'Дізнайся, як працює QLIXA — цифровий self-service інструмент для самостійної підготовки податкової декларації в Австрії.',
+      ...getLocalizedAlternates(locale, '/about'),
     }
   }
 
@@ -41,6 +46,7 @@ export async function generateMetadata({
     return {
       title: 'Что такое QLIXA? Цифровой налоговый инструмент для Австрии',
       description: 'Узнайте, как работает QLIXA — цифровой self-service инструмент для самостоятельной подготовки налоговой декларации в Австрии.',
+      ...getLocalizedAlternates(locale, '/about'),
     }
   }
 

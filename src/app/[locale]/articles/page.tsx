@@ -1,17 +1,19 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
+import { getLocalizedAlternates } from '@/lib/seo'
 import ArticlesContent from '@/components/ArticlesContent'
 
 // Page-level SEO metadata for the ARTICLES INDEX route itself — Phase
-// 8.1, Batch 2 (DE) + Batch 4 (EN) + Batch 5 (UA) + Batch 6 (RU added,
-// completing all 4 locales for this route). Scoped only to this index
-// page; the sibling [slug] dispatcher has its own separate
-// generateMetadata for individual articles and is untouched here.
-// Canonical, hreflang, Open Graph, Twitter and structured data are
-// intentionally untouched — out of scope for this batch. The route
-// segment stays "ua" (not "uk") — the eventual html-lang/hreflang code
-// "uk" is a separate, later technical-SEO task.
+// 8.1, Batch 2 (DE) + Batch 4 (EN) + Batch 5 (UA) + Batch 6 (RU,
+// completing all 4 locales' Title/Description) + Batch 8 (canonical/
+// hreflang added via the shared src/lib/seo.ts helper). Scoped only to
+// this index page; the sibling [slug] dispatcher has its own separate
+// generateMetadata for individual articles and is untouched here. Every
+// existing Title/Description string below is unchanged. Open Graph,
+// Twitter and structured data remain out of scope. The route segment
+// stays "ua" (not "uk") — only the hreflang KEY uses "uk", via
+// getLocalizedAlternates/toHtmlLang.
 export async function generateMetadata({
   params,
 }: {
@@ -23,6 +25,7 @@ export async function generateMetadata({
     return {
       title: 'Steuern & Leben in Österreich: Anleitungen | QLIXA',
       description: 'Praktische Anleitungen zu Steuern, Selbstständigkeit, Dokumenten und Leben in Österreich – verständlich erklärt von QLIXA.',
+      ...getLocalizedAlternates(locale, '/articles'),
     }
   }
 
@@ -30,6 +33,7 @@ export async function generateMetadata({
     return {
       title: 'Taxes & Life in Austria: Practical Guides | QLIXA',
       description: 'Practical guides to taxes, self-employment, documents and everyday life in Austria, explained clearly by QLIXA.',
+      ...getLocalizedAlternates(locale, '/articles'),
     }
   }
 
@@ -37,6 +41,7 @@ export async function generateMetadata({
     return {
       title: 'Податки та життя в Австрії: практичні інструкції | QLIXA',
       description: 'Практичні інструкції про податки, самозайнятість, документи та життя в Австрії — зрозуміло від QLIXA.',
+      ...getLocalizedAlternates(locale, '/articles'),
     }
   }
 
@@ -44,6 +49,7 @@ export async function generateMetadata({
     return {
       title: 'Налоги и жизнь в Австрии: практические инструкции | QLIXA',
       description: 'Практические инструкции о налогах, самозанятости, документах и жизни в Австрии — понятно от QLIXA.',
+      ...getLocalizedAlternates(locale, '/articles'),
     }
   }
 

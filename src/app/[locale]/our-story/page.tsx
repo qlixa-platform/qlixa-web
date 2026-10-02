@@ -1,14 +1,16 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
+import { getLocalizedAlternates } from '@/lib/seo'
 import OurStoryContent from '@/components/OurStoryContent'
 
 // Page-level SEO metadata — Phase 8.1, Batch 2 (DE) + Batch 4 (EN) +
-// Batch 5 (UA) + Batch 6 (RU added, completing all 4 locales for this
-// route). Canonical, hreflang, Open Graph, Twitter and structured data
-// are intentionally untouched — out of scope for this batch. The route
-// segment stays "ua" (not "uk") — the eventual html-lang/hreflang code
-// "uk" is a separate, later technical-SEO task.
+// Batch 5 (UA) + Batch 6 (RU, completing all 4 locales' Title/
+// Description) + Batch 8 (canonical/hreflang added via the shared
+// src/lib/seo.ts helper). Every existing Title/Description string
+// below is unchanged. Open Graph, Twitter and structured data remain
+// out of scope. The route segment stays "ua" (not "uk") — only the
+// hreflang KEY uses "uk", via getLocalizedAlternates/toHtmlLang.
 export async function generateMetadata({
   params,
 }: {
@@ -20,6 +22,7 @@ export async function generateMetadata({
     return {
       title: 'Über QLIXA: Die Geschichte hinter dem Steuer-Tool',
       description: 'Lerne die Geschichte hinter QLIXA kennen und erfahre, warum das digitale Self-Service-Tool für die Steuererklärung in Österreich entstanden ist.',
+      ...getLocalizedAlternates(locale, '/our-story'),
     }
   }
 
@@ -27,6 +30,7 @@ export async function generateMetadata({
     return {
       title: 'About QLIXA: The Story Behind the Tax Tool',
       description: 'Meet the story behind QLIXA and discover why the digital self-service tool for preparing tax returns in Austria was created.',
+      ...getLocalizedAlternates(locale, '/our-story'),
     }
   }
 
@@ -34,6 +38,7 @@ export async function generateMetadata({
     return {
       title: 'Про QLIXA: історія створення податкового інструменту',
       description: 'Познайомся з історією QLIXA та дізнайся, чому з’явився цифровий self-service інструмент для підготовки податкової декларації в Австрії.',
+      ...getLocalizedAlternates(locale, '/our-story'),
     }
   }
 
@@ -41,6 +46,7 @@ export async function generateMetadata({
     return {
       title: 'О QLIXA: история создания налогового инструмента',
       description: 'Познакомьтесь с историей QLIXA и узнайте, почему появился цифровой self-service инструмент для подготовки налоговой декларации в Австрии.',
+      ...getLocalizedAlternates(locale, '/our-story'),
     }
   }
 

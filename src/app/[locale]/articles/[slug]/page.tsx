@@ -1,6 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
+import { getLocalizedAlternates } from '@/lib/seo'
 import AustriaIdContent from '@/components/AustriaIdContent'
 import GewerbeanmeldungContent from '@/components/GewerbeanmeldungContent'
 import GisaFormularContent from '@/components/GisaFormularContent'
@@ -173,6 +174,13 @@ const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; d
   },
 }
 
+// Canonical/hreflang are route properties, not article-copy properties
+// — ARTICLE_METADATA above stays responsible for title/description
+// only (Batches 3A/3B/4/5/6); this function is the one place that
+// combines it with getLocalizedAlternates (Batch 8). An unknown slug,
+// or a slug/locale combination with no approved copy, has no `entry`
+// here, so it returns {} — it never accidentally gets a canonical/
+// hreflang set for a page that doesn't actually exist at that URL.
 export async function generateMetadata({
   params,
 }: {
@@ -180,7 +188,24 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale, slug } = await params
 
-  return ARTICLE_METADATA[slug]?.[locale] ?? {}
+  const entry = ARTICLE_METADATA[slug]?.[locale]
+  if (!entry) {
+    return {}
+  }
+
+  // Narrows `locale` to the `Locale` type getLocalizedAlternates
+  // expects. In practice this is always true here, since `entry` only
+  // exists for the 4 real locale keys written into ARTICLE_METADATA
+  // above — this check exists for type safety, not because the
+  // fallback branch is expected to run.
+  if (!isSupportedLocale(locale)) {
+    return entry
+  }
+
+  return {
+    ...entry,
+    ...getLocalizedAlternates(locale, `/articles/${slug}`),
+  }
 }
 
 export default async function LocaleArticlePage({
