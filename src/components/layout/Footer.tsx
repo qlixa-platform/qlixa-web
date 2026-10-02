@@ -305,7 +305,7 @@ export default function Footer({ locale }: { locale?: Locale } = {}) {
               <Link href={logoHref} style={{ display: 'inline-block', textDecoration: 'none', marginBottom: 14 }}>
                 <Image
                   src="/logos/logo-name-slogan_planets_black.svg"
-                  alt="QLIXA — Reports in One Click"
+                  alt="QLIXA — Tax Return. Simplified."
                   width={140}
                   height={50}
                   style={{ display: 'block' }}

@@ -1,28 +1,52 @@
+import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
-import { isSupportedLocale, SUPPORTED_LOCALES } from '@/lib/locale'
+import { isSupportedLocale, toHtmlLang, SUPPORTED_LOCALES } from '@/lib/locale'
+import '../../styles/globals.css'
+import ScrollArrows from '@/components/layout/ScrollArrows'
+import StructuredData from '@/components/layout/StructuredData'
 
 // ————————————————————————————————————————————————————————————————
-// TEMPORARY nested layout for the i18n migration's coexistence phase
-// (QLIXA_I18N_MIGRATION_PLAN.md, Phase 2 — revised after the root-layout
-// architecture verification).
+// Phase 8.4, Batch 11A — promoted from a temporary non-root nested
+// layout (QLIXA_I18N_MIGRATION_PLAN.md, Phase 2) to a REAL, independent
+// root layout, now that all 52 localized public pages are complete.
+// This is the "localized root" approved by the Phase 8.4 Step 0 audit
+// — the sibling to src/app/(marketing)/layout.tsx (the relocated
+// former single root, still serving every non-localized route).
 //
-// This is deliberately NOT the app's root layout yet: it renders only
-// `children`, with no <html>/<body> of its own. Those stay owned by the
-// existing src/app/layout.tsx for the whole coexistence window (Phases
-// 2–8), which is why every currently-existing page.tsx continues to
-// build and render completely unchanged alongside this new [locale]
-// segment. Confirmed by build test during the architecture verification
-// that adding a second, sibling <html>-owning root here would break
-// every other top-level route ("doesn't have a root layout").
+// <html lang={toHtmlLang(locale)}> — reuses the EXISTING locale.ts
+// mapping (de→de, en→en, ua→uk, ru→ru) rather than a second one.
+// `locale` comes only from the already-validated URL segment (params),
+// never from localStorage/navigator/client state, so the correct
+// language is present in the INITIAL server-rendered HTML — no
+// hydration-dependent fix. `generateStaticParams` below means this
+// value is known at BUILD time, so static generation for all 52 pages
+// is fully preserved; nothing here reads a request-time API.
 //
-// <html lang> correctness is intentionally OUT OF SCOPE here — it stays
-// whatever src/app/layout.tsx currently hardcodes until the final
-// cutover phase, when this layout is promoted to be the real root and
-// gains <html lang={locale}>. Do not attempt to correct it via
-// useEffect, LangSync, localStorage, or any client-side mechanism in
-// the meantime — that would reintroduce exactly the hydration-dependent
-// pattern this migration exists to remove.
+// Deliberately does NOT render <LangSync /> — LangSync reads
+// `qlixa-lang` from localStorage and would be both redundant and
+// actively wrong here: a stale localStorage value must never be able
+// to override the URL-authoritative language on a localized page (see
+// the Phase 8.4 Step 0 audit's own LangSync analysis). LangSync
+// remains exactly where it already was, in the (marketing) root, for
+// the legacy client-side language mechanism that root still serves.
+//
+// `metadata.icons` is repeated here (not inherited from (marketing),
+// since these are two independent root trees) purely so the favicon
+// isn't lost for the 52 localized pages. No title/description/
+// openGraph/twitter/alternates object is set here — every page under
+// this root already provides its own complete, approved metadata via
+// its own generateMetadata (Phases 8.1–8.3); adding a second fallback
+// copy here would create exactly the second SEO-copy source this
+// batch's brief says not to introduce.
 // ————————————————————————————————————————————————————————————————
+
+export const metadata: Metadata = {
+  icons: {
+    icon: '/logos/favicon-planet-black.svg',
+    shortcut: '/logos/favicon-planet-black.svg',
+    apple: '/logos/favicon-planet-black.svg',
+  },
+}
 
 export function generateStaticParams() {
   return SUPPORTED_LOCALES.map((locale) => ({ locale }))
@@ -41,5 +65,13 @@ export default async function LocaleLayout({
     notFound()
   }
 
-  return children
+  return (
+    <html lang={toHtmlLang(locale)}>
+      <body>
+        {children}
+        <ScrollArrows />
+        <StructuredData />
+      </body>
+    </html>
+  )
 }

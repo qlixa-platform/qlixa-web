@@ -1,9 +1,32 @@
 import type { Metadata } from 'next'
-import '../styles/globals.css'
+import '../../styles/globals.css'
 import ScrollArrows from '@/components/layout/ScrollArrows'
 import LangSync from '@/components/layout/LangSync'
 import StructuredData from '@/components/layout/StructuredData'
 
+// ————————————————————————————————————————————————————————————————
+// Phase 8.4, Batch 11A — this file is the relocated/evolved
+// src/app/layout.tsx (moved here via git mv, content otherwise
+// unchanged except the relative CSS import, which gained one more
+// "../" to account for the extra (marketing) route-group directory
+// level). It is now ONE of two independent root layouts — the other
+// is src/app/[locale]/layout.tsx, promoted in this same batch to own
+// its own <html lang={toHtmlLang(locale)}>/<body> for the 52 localized
+// pages. This root continues to serve every non-localized HTML route
+// moved under this (marketing) group: the flat legacy page duplicates,
+// Legal, and the /for/*|/how-it-works/* redirect aliases — all still
+// hardcoded <html lang="en">, unchanged, since none of those routes
+// are localized. <LangSync /> stays here because this side of the
+// site still uses the legacy client-side localStorage language
+// mechanism; it is deliberately NOT present in the new [locale] root
+// (see that file's own comment for why).
+//
+// Route groups (the parentheses in "(marketing)") are a pure
+// filesystem-organization device — they never appear in the URL, so
+// every route moved into this folder keeps its exact original public
+// path (e.g. src/app/(marketing)/about/page.tsx still serves /about).
+// ————————————————————————————————————————————————————————————————
+//
 // Phase 8.3, Batch 10A — the `openGraph` block was cleaned up because
 // it directly conflicted with social metadata: every one of the 52
 // localized pages now sets its own openGraph/twitter via
