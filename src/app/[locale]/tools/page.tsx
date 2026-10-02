@@ -1,16 +1,18 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
-import { getLocalizedAlternates } from '@/lib/seo'
+import { getLocalizedAlternates, getSocialMetadata } from '@/lib/seo'
 import ToolsContent from '@/components/ToolsContent'
+
+const PATH = '/tools'
 
 // Page-level SEO metadata — Phase 8.1, Batch 2 (DE) + Batch 4 (EN) +
 // Batch 5 (UA) + Batch 6 (RU, completing all 4 locales' Title/
-// Description) + Batch 8 (canonical/hreflang added via the shared
-// src/lib/seo.ts helper). Every existing Title/Description string
-// below is unchanged. Open Graph, Twitter and structured data remain
-// out of scope. The route segment stays "ua" (not "uk") — only the
-// hreflang KEY uses "uk", via getLocalizedAlternates/toHtmlLang.
+// Description) + Batch 8 (canonical/hreflang) + Batch 10A (Open Graph/
+// Twitter via getSocialMetadata — reuses the SAME title/description
+// variables as standard metadata; no separate OG_TITLE copy exists).
+// The route segment stays "ua" (not "uk") — only the hreflang KEY and
+// the Open Graph locale use "uk"/"uk_UA", via src/lib/seo.ts.
 export async function generateMetadata({
   params,
 }: {
@@ -19,34 +21,46 @@ export async function generateMetadata({
   const { locale } = await params
 
   if (locale === 'de') {
+    const title = 'RWR Plus Rechner & Checklisten für Österreich | QLIXA'
+    const description = 'Kostenloser RWR Plus Einkommensrechner und Checklisten für Österreich. Prüfe dein Einkommen und bereite wichtige Unterlagen für den RWR+ Antrag vor.'
     return {
-      title: 'RWR Plus Rechner & Checklisten für Österreich | QLIXA',
-      description: 'Kostenloser RWR Plus Einkommensrechner und Checklisten für Österreich. Prüfe dein Einkommen und bereite wichtige Unterlagen für den RWR+ Antrag vor.',
-      ...getLocalizedAlternates(locale, '/tools'),
+      title,
+      description,
+      ...getLocalizedAlternates(locale, PATH),
+      ...getSocialMetadata({ locale, path: PATH, title, description, type: 'website' }),
     }
   }
 
   if (locale === 'en') {
+    const title = 'Red-White-Red Card Plus Calculator & Checklists | QLIXA'
+    const description = 'Free income calculator and checklists for the Red-White-Red Card Plus in Austria. Check your income and prepare key documents for your application.'
     return {
-      title: 'Red-White-Red Card Plus Calculator & Checklists | QLIXA',
-      description: 'Free income calculator and checklists for the Red-White-Red Card Plus in Austria. Check your income and prepare key documents for your application.',
-      ...getLocalizedAlternates(locale, '/tools'),
+      title,
+      description,
+      ...getLocalizedAlternates(locale, PATH),
+      ...getSocialMetadata({ locale, path: PATH, title, description, type: 'website' }),
     }
   }
 
   if (locale === 'ua') {
+    const title = 'RWR Plus: калькулятор доходу та чек-листи | QLIXA'
+    const description = 'Безкоштовний калькулятор доходу та чек-листи для RWR Plus в Австрії. Перевір свій дохід і підготуй основні документи для подання заяви.'
     return {
-      title: 'RWR Plus: калькулятор доходу та чек-листи | QLIXA',
-      description: 'Безкоштовний калькулятор доходу та чек-листи для RWR Plus в Австрії. Перевір свій дохід і підготуй основні документи для подання заяви.',
-      ...getLocalizedAlternates(locale, '/tools'),
+      title,
+      description,
+      ...getLocalizedAlternates(locale, PATH),
+      ...getSocialMetadata({ locale, path: PATH, title, description, type: 'website' }),
     }
   }
 
   if (locale === 'ru') {
+    const title = 'RWR Plus: калькулятор дохода и чек-листы | QLIXA'
+    const description = 'Бесплатный калькулятор дохода и чек-листы для RWR Plus в Австрии. Проверьте свой доход и подготовьте основные документы для подачи заявления.'
     return {
-      title: 'RWR Plus: калькулятор дохода и чек-листы | QLIXA',
-      description: 'Бесплатный калькулятор дохода и чек-листы для RWR Plus в Австрии. Проверьте свой доход и подготовьте основные документы для подачи заявления.',
-      ...getLocalizedAlternates(locale, '/tools'),
+      title,
+      description,
+      ...getLocalizedAlternates(locale, PATH),
+      ...getSocialMetadata({ locale, path: PATH, title, description, type: 'website' }),
     }
   }
 

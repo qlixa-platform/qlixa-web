@@ -1,17 +1,18 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
-import { getLocalizedAlternates } from '@/lib/seo'
+import { getLocalizedAlternates, getSocialMetadata } from '@/lib/seo'
 import HomePageContent from '@/components/HomePageContent'
+
+const PATH = '/'
 
 // Page-level SEO metadata — Phase 8.1, Batch 1 (DE) + Batch 4 (EN) +
 // Batch 5 (UA) + Batch 6 (RU, completing all 4 locales' Title/
-// Description) + Batch 8 (canonical/hreflang added via the shared
-// src/lib/seo.ts helper — see that file for the ua/uk hreflang-key
-// distinction). Every existing Title/Description string below is
-// unchanged. Open Graph, Twitter and structured data remain out of
-// scope. The route segment stays "ua" (not "uk") — only the hreflang
-// KEY uses "uk", via getLocalizedAlternates/toHtmlLang.
+// Description) + Batch 8 (canonical/hreflang) + Batch 10A (Open Graph/
+// Twitter via getSocialMetadata — reuses the SAME title/description
+// variables as standard metadata; no separate OG_TITLE copy exists).
+// The route segment stays "ua" (not "uk") — only the hreflang KEY and
+// the Open Graph locale use "uk"/"uk_UA", via src/lib/seo.ts.
 export async function generateMetadata({
   params,
 }: {
@@ -20,34 +21,46 @@ export async function generateMetadata({
   const { locale } = await params
 
   if (locale === 'de') {
+    const title = 'Steuererklärung in Österreich einfach vorbereiten | QLIXA'
+    const description = 'Steuererklärung in Österreich selbst vorbereiten: Beantworte verständliche Fragen, sieh deine mögliche Steuererstattung vorab und erhalte deine vorbereitete Steuererklärung.'
     return {
-      title: 'Steuererklärung in Österreich einfach vorbereiten | QLIXA',
-      description: 'Steuererklärung in Österreich selbst vorbereiten: Beantworte verständliche Fragen, sieh deine mögliche Steuererstattung vorab und erhalte deine vorbereitete Steuererklärung.',
-      ...getLocalizedAlternates(locale, '/'),
+      title,
+      description,
+      ...getLocalizedAlternates(locale, PATH),
+      ...getSocialMetadata({ locale, path: PATH, title, description, type: 'website' }),
     }
   }
 
   if (locale === 'en') {
+    const title = 'Tax Return in Austria Made Simple | QLIXA'
+    const description = 'Prepare your tax return in Austria yourself: answer clear questions, see your possible tax refund in advance and receive your prepared tax return.'
     return {
-      title: 'Tax Return in Austria Made Simple | QLIXA',
-      description: 'Prepare your tax return in Austria yourself: answer clear questions, see your possible tax refund in advance and receive your prepared tax return.',
-      ...getLocalizedAlternates(locale, '/'),
+      title,
+      description,
+      ...getLocalizedAlternates(locale, PATH),
+      ...getSocialMetadata({ locale, path: PATH, title, description, type: 'website' }),
     }
   }
 
   if (locale === 'ua') {
+    const title = 'Податкова декларація в Австрії просто | QLIXA'
+    const description = 'Підготуй податкову декларацію в Австрії самостійно: відповідай на зрозумілі запитання, заздалегідь побач можливе повернення податку та отримай готову декларацію.'
     return {
-      title: 'Податкова декларація в Австрії просто | QLIXA',
-      description: 'Підготуй податкову декларацію в Австрії самостійно: відповідай на зрозумілі запитання, заздалегідь побач можливе повернення податку та отримай готову декларацію.',
-      ...getLocalizedAlternates(locale, '/'),
+      title,
+      description,
+      ...getLocalizedAlternates(locale, PATH),
+      ...getSocialMetadata({ locale, path: PATH, title, description, type: 'website' }),
     }
   }
 
   if (locale === 'ru') {
+    const title = 'Налоговая декларация в Австрии — просто | QLIXA'
+    const description = 'Подготовьте налоговую декларацию в Австрии самостоятельно: ответьте на понятные вопросы, заранее узнайте возможный возврат налога и получите готовую декларацию.'
     return {
-      title: 'Налоговая декларация в Австрии — просто | QLIXA',
-      description: 'Подготовьте налоговую декларацию в Австрии самостоятельно: ответьте на понятные вопросы, заранее узнайте возможный возврат налога и получите готовую декларацию.',
-      ...getLocalizedAlternates(locale, '/'),
+      title,
+      description,
+      ...getLocalizedAlternates(locale, PATH),
+      ...getSocialMetadata({ locale, path: PATH, title, description, type: 'website' }),
     }
   }
 

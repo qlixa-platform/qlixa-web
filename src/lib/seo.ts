@@ -64,3 +64,89 @@ export function getLocalizedAlternates(locale: Locale, path: string) {
     },
   }
 }
+
+// ————————————————————————————————————————————————————————————————
+// Social metadata — Open Graph + Twitter (Phase 8.3, Batch 10A).
+//
+// Approved universal social image (Phase 8.3 brief). Its real,
+// measured dimensions are 1729×910 — NOT the 1200×630 the brief
+// originally expected. Per explicit user decision (asked during this
+// batch rather than guessed), the OG image metadata below declares
+// these REAL dimensions rather than the file itself being resized —
+// 1729×910 is ≈1.90:1, already very close to Open Graph's own ideal
+// 1.91:1 ratio, so this is a correctly-proportioned image at a larger
+// size, not a problem. If the image is ever replaced, update
+// OG_IMAGE_WIDTH/OG_IMAGE_HEIGHT to match the new file's real
+// dimensions — never assert a number that doesn't match the actual
+// asset.
+const OG_IMAGE_URL = `${SITE_URL}/og/qlixa-og.png`
+const OG_IMAGE_WIDTH = 1729
+const OG_IMAGE_HEIGHT = 910
+const OG_IMAGE_ALT = 'QLIXA — Tax Return. Simplified.'
+
+// Open Graph locale codes — deliberately separate from toHtmlLang()'s
+// hreflang codes (de/en/uk/ru): Open Graph's own convention is
+// language_TERRITORY (e.g. uk_UA), not the bare BCP-47 language code
+// hreflang uses. Ukrainian is 'uk_UA', matching the same uk (not 'ua')
+// distinction established throughout this codebase — 'ua_UA' must
+// never be produced.
+const OG_LOCALE_MAP: Record<Locale, string> = {
+  de: 'de_AT',
+  en: 'en_US',
+  ua: 'uk_UA',
+  ru: 'ru_RU',
+}
+
+export type SocialMetadataType = 'website' | 'article'
+
+// getSocialMetadata(...) — the single source of truth for Open Graph +
+// Twitter on localized pages. Deliberately takes `title`/`description`
+// as PARAMETERS rather than looking them up itself: every call site
+// already has its own approved SEO title/description (from its own
+// generateMetadata locale branch, or from ARTICLE_METADATA for
+// articles) and passes the SAME values through here — there is no
+// second OG_TITLE/TWITTER_TITLE copy anywhere, by construction.
+export function getSocialMetadata({
+  locale,
+  path,
+  title,
+  description,
+  type,
+}: {
+  locale: Locale
+  path: string
+  title: string
+  description: string
+  type: SocialMetadataType
+}) {
+  const url = absoluteUrl(locale, path)
+  const alternateLocale = SUPPORTED_LOCALES
+    .filter((l) => l !== locale)
+    .map((l) => OG_LOCALE_MAP[l])
+
+  const image = {
+    url: OG_IMAGE_URL,
+    width: OG_IMAGE_WIDTH,
+    height: OG_IMAGE_HEIGHT,
+    alt: OG_IMAGE_ALT,
+  }
+
+  return {
+    openGraph: {
+      title,
+      description,
+      url,
+      siteName: 'QLIXA',
+      locale: OG_LOCALE_MAP[locale],
+      alternateLocale,
+      type,
+      images: [image],
+    },
+    twitter: {
+      card: 'summary_large_image' as const,
+      title,
+      description,
+      images: [OG_IMAGE_URL],
+    },
+  }
+}

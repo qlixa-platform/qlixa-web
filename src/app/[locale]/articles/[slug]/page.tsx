@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
-import { getLocalizedAlternates } from '@/lib/seo'
+import { getLocalizedAlternates, getSocialMetadata } from '@/lib/seo'
 import AustriaIdContent from '@/components/AustriaIdContent'
 import GewerbeanmeldungContent from '@/components/GewerbeanmeldungContent'
 import GisaFormularContent from '@/components/GisaFormularContent'
@@ -193,18 +193,37 @@ export async function generateMetadata({
     return {}
   }
 
-  // Narrows `locale` to the `Locale` type getLocalizedAlternates
-  // expects. In practice this is always true here, since `entry` only
-  // exists for the 4 real locale keys written into ARTICLE_METADATA
-  // above — this check exists for type safety, not because the
-  // fallback branch is expected to run.
+  // Narrows `locale` to the `Locale` type getLocalizedAlternates/
+  // getSocialMetadata expect. In practice this is always true here,
+  // since `entry` only exists for the 4 real locale keys written into
+  // ARTICLE_METADATA above — this check exists for type safety, not
+  // because the fallback branch is expected to run.
   if (!isSupportedLocale(locale)) {
     return entry
   }
 
+  const path = `/articles/${slug}`
+
+  // Open Graph/Twitter (Phase 8.3, Batch 10A) reuse the SAME
+  // entry.title/entry.description already approved for standard
+  // metadata — no separate OG copy. `type: 'article'` per the Batch
+  // 10A brief; deliberately NOT adding publishedTime/modifiedTime/
+  // authors — the Phase 8.3 audit found no trustworthy publication
+  // date or author for any of the 6 articles, and inventing either
+  // was explicitly disallowed. An unknown slug (or unsupported locale)
+  // never reaches this point — `entry` would already be falsy above —
+  // so no fake social metadata is ever produced for a non-existent
+  // article page.
   return {
     ...entry,
-    ...getLocalizedAlternates(locale, `/articles/${slug}`),
+    ...getLocalizedAlternates(locale, path),
+    ...getSocialMetadata({
+      locale,
+      path,
+      title: entry.title,
+      description: entry.description,
+      type: 'article',
+    }),
   }
 }
 

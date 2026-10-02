@@ -1,16 +1,18 @@
 import type { Metadata } from 'next'
 import { notFound } from 'next/navigation'
 import { isSupportedLocale, toInternalKey } from '@/lib/locale'
-import { getLocalizedAlternates } from '@/lib/seo'
+import { getLocalizedAlternates, getSocialMetadata } from '@/lib/seo'
 import PricingContent from '@/components/PricingContent'
+
+const PATH = '/pricing'
 
 // Page-level SEO metadata — Phase 8.1, Batch 1 (DE) + Batch 4 (EN) +
 // Batch 5 (UA) + Batch 6 (RU, completing all 4 locales' Title/
-// Description) + Batch 8 (canonical/hreflang added via the shared
-// src/lib/seo.ts helper). Every existing Title/Description string
-// below is unchanged. Open Graph, Twitter and structured data remain
-// out of scope. The route segment stays "ua" (not "uk") — only the
-// hreflang KEY uses "uk", via getLocalizedAlternates/toHtmlLang.
+// Description) + Batch 8 (canonical/hreflang) + Batch 10A (Open Graph/
+// Twitter via getSocialMetadata — reuses the SAME title/description
+// variables as standard metadata; no separate OG_TITLE copy exists).
+// The route segment stays "ua" (not "uk") — only the hreflang KEY and
+// the Open Graph locale use "uk"/"uk_UA", via src/lib/seo.ts.
 //
 // Product precision (per the Phase 8.1 brief): €24,90 / €24.90 is the
 // price for ONE generated tax return for ONE selected tax year — there
@@ -24,34 +26,46 @@ export async function generateMetadata({
   const { locale } = await params
 
   if (locale === 'de') {
+    const title = 'QLIXA Kosten: Steuererklärung für €24,90 | Kein Abo'
+    const description = 'QLIXA kostenlos ausprobieren. Die vorbereitete Steuererklärung kostet €24,90 pro Steuererklärung und ausgewähltem Steuerjahr. Einmalige Zahlung, kein Abo.'
     return {
-      title: 'QLIXA Kosten: Steuererklärung für €24,90 | Kein Abo',
-      description: 'QLIXA kostenlos ausprobieren. Die vorbereitete Steuererklärung kostet €24,90 pro Steuererklärung und ausgewähltem Steuerjahr. Einmalige Zahlung, kein Abo.',
-      ...getLocalizedAlternates(locale, '/pricing'),
+      title,
+      description,
+      ...getLocalizedAlternates(locale, PATH),
+      ...getSocialMetadata({ locale, path: PATH, title, description, type: 'website' }),
     }
   }
 
   if (locale === 'en') {
+    const title = 'QLIXA Pricing: Tax Return for €24.90 | No Subscription'
+    const description = 'Try QLIXA for free. A prepared tax return costs €24.90 per tax return and selected tax year. One-time payment, no subscription.'
     return {
-      title: 'QLIXA Pricing: Tax Return for €24.90 | No Subscription',
-      description: 'Try QLIXA for free. A prepared tax return costs €24.90 per tax return and selected tax year. One-time payment, no subscription.',
-      ...getLocalizedAlternates(locale, '/pricing'),
+      title,
+      description,
+      ...getLocalizedAlternates(locale, PATH),
+      ...getSocialMetadata({ locale, path: PATH, title, description, type: 'website' }),
     }
   }
 
   if (locale === 'ua') {
+    const title = 'QLIXA: вартість податкової декларації €24,90 | Без підписки'
+    const description = 'Спробуй QLIXA безкоштовно. Готова податкова декларація коштує €24,90 за одну декларацію та обраний податковий рік. Одноразова оплата, без підписки.'
     return {
-      title: 'QLIXA: вартість податкової декларації €24,90 | Без підписки',
-      description: 'Спробуй QLIXA безкоштовно. Готова податкова декларація коштує €24,90 за одну декларацію та обраний податковий рік. Одноразова оплата, без підписки.',
-      ...getLocalizedAlternates(locale, '/pricing'),
+      title,
+      description,
+      ...getLocalizedAlternates(locale, PATH),
+      ...getSocialMetadata({ locale, path: PATH, title, description, type: 'website' }),
     }
   }
 
   if (locale === 'ru') {
+    const title = 'QLIXA: налоговая декларация за €24,90 | Без подписки'
+    const description = 'Попробуйте QLIXA бесплатно. Готовая налоговая декларация стоит €24,90 за одну декларацию и выбранный налоговый год. Разовая оплата, без подписки.'
     return {
-      title: 'QLIXA: налоговая декларация за €24,90 | Без подписки',
-      description: 'Попробуйте QLIXA бесплатно. Готовая налоговая декларация стоит €24,90 за одну декларацию и выбранный налоговый год. Разовая оплата, без подписки.',
-      ...getLocalizedAlternates(locale, '/pricing'),
+      title,
+      description,
+      ...getLocalizedAlternates(locale, PATH),
+      ...getSocialMetadata({ locale, path: PATH, title, description, type: 'website' }),
     }
   }
 
