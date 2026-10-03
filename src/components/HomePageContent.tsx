@@ -1261,12 +1261,12 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
           <div className="fw-grid-desktop-only" style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: 14 }}>
 
             {[
-              { img: '/for-who/naymanyy.png', href: '/for/naymanyy' },
-              { img: '/for-who/pensioner.png', href: '/for/pensioner' },
-              { img: '/for-who/samostiynyy.png', href: '/for/samostiynyy' },
-              { img: '/for-who/nerukhomist.png', href: '/for/nerukhomist' },
-              { img: '/for-who/frilanser.png', href: '/for/frilanser', isSoon: false },
-              { img: '/for-who/biznes.png', href: '/for/biznes', isSoon: false },
+              { img: '/for-who/naymanyy.png', href: locale ? localeHref(locale, '/tax-return') : '/for/naymanyy' },
+              { img: '/for-who/pensioner.png', href: locale ? localeHref(locale, '/tax-return') : '/for/pensioner' },
+              { img: '/for-who/samostiynyy.png', href: locale ? localeHref(locale, '/tax-return') : '/for/samostiynyy' },
+              { img: '/for-who/nerukhomist.png', href: locale ? localeHref(locale, '/tax-return') : '/for/nerukhomist' },
+              { img: '/for-who/frilanser.png', href: locale ? localeHref(locale, '/tax-return') : '/for/frilanser', isSoon: false },
+              { img: '/for-who/biznes.png', href: locale ? localeHref(locale, '/pricing') : '/for/biznes', isSoon: false },
             ].map((card, i) => (
               <Link key={i} href={card.href} style={{ textDecoration: 'none' }}>
                 <div style={{ background: '#F0F7F8', borderRadius: 20, padding: '24px', border: '1px solid rgba(3,131,144,0.12)', transition: 'transform 0.2s, box-shadow 0.2s', cursor: 'pointer', height: '100%', position: 'relative' as const }}
@@ -1298,12 +1298,12 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             columns={2}
             soonLabel={t3.soonLabel}
             cards={[
-              { img: '/for-who/naymanyy.png', href: '/for/naymanyy', title: t3.cards[0][0], desc: t3.cards[0][1] },
-              { img: '/for-who/pensioner.png', href: '/for/pensioner', title: t3.cards[1][0], desc: t3.cards[1][1] },
-              { img: '/for-who/samostiynyy.png', href: '/for/samostiynyy', title: t3.cards[2][0], desc: t3.cards[2][1] },
-              { img: '/for-who/nerukhomist.png', href: '/for/nerukhomist', title: t3.cards[3][0], desc: t3.cards[3][1] },
-              { img: '/for-who/frilanser.png', href: '/for/frilanser', title: t3.cards[4][0], desc: t3.cards[4][1], isSoon: false },
-              { img: '/for-who/biznes.png', href: '/for/biznes', title: t3.cards[5][0], desc: t3.cards[5][1], isSoon: false },
+              { img: '/for-who/naymanyy.png', href: locale ? localeHref(locale, '/tax-return') : '/for/naymanyy', title: t3.cards[0][0], desc: t3.cards[0][1] },
+              { img: '/for-who/pensioner.png', href: locale ? localeHref(locale, '/tax-return') : '/for/pensioner', title: t3.cards[1][0], desc: t3.cards[1][1] },
+              { img: '/for-who/samostiynyy.png', href: locale ? localeHref(locale, '/tax-return') : '/for/samostiynyy', title: t3.cards[2][0], desc: t3.cards[2][1] },
+              { img: '/for-who/nerukhomist.png', href: locale ? localeHref(locale, '/tax-return') : '/for/nerukhomist', title: t3.cards[3][0], desc: t3.cards[3][1] },
+              { img: '/for-who/frilanser.png', href: locale ? localeHref(locale, '/tax-return') : '/for/frilanser', title: t3.cards[4][0], desc: t3.cards[4][1], isSoon: false },
+              { img: '/for-who/biznes.png', href: locale ? localeHref(locale, '/pricing') : '/for/biznes', title: t3.cards[5][0], desc: t3.cards[5][1], isSoon: false },
             ]}
           />
 

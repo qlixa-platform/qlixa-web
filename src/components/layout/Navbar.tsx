@@ -238,7 +238,7 @@ export default function Navbar({ locale }: { locale?: Locale } = {}) {
               <Image
                 className="navbar-logo"
                 src="/logos/logo-name-slogan_planets_black.svg"
-                alt="QLIXA — Reports in One Click"
+                alt="QLIXA — Tax Return. Simplified."
                 width={160}
                 height={57}
                 style={{ display: 'block' }}
