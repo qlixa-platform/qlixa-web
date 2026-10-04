@@ -41,7 +41,7 @@ const ARTICLES_PAGE_TEXT: Record<string, any> = {
       // approved UA title from that brief; desc reuses the approved UA
       // meta description (section 2 of the same brief) rather than
       // inventing separate card copy.
-      { tag: 'Податкова декларація', date: 'Жовтень 2026', title: 'Як самостійно підготувати податкову декларацію в Австрії: крок за кроком', desc: 'Як самостійно підготувати податкову декларацію в Австрії без вивчення податкових форм. QLIXA проводить крок за кроком через зрозумілі запитання.', readTime: '~5 хв читання' },
+      { tag: 'Податкова декларація', date: 'Жовтень 2026', title: 'Як легко підготувати податкову декларацію в Австрії з QLIXA', desc: 'Як підготувати податкову декларацію в Австрії без необхідності спочатку розбиратися в податкових формах. Дізнайтеся, як працює QLIXA і що ви отримуєте в результаті.', readTime: '~5 хв читання' },
     ],
   },
   RU: {
@@ -60,7 +60,7 @@ const ARTICLES_PAGE_TEXT: Record<string, any> = {
       // New (Phase 8 EN/UA/RU localization brief). Title is the exact
       // approved RU title from that brief; desc reuses the approved RU
       // meta description (section 2 of the same brief).
-      { tag: 'Налоговая декларация', date: 'Октябрь 2026', title: 'Как самостоятельно подготовить налоговую декларацию в Австрии: пошагово', desc: 'Как самостоятельно подготовить налоговую декларацию в Австрии без изучения налоговых форм. QLIXA шаг за шагом проводит вас через понятные вопросы.', readTime: '~5 мин чтения' },
+      { tag: 'Налоговая декларация', date: 'Октябрь 2026', title: 'Как просто подготовить налоговую декларацию в Австрии с QLIXA', desc: 'Как подготовить налоговую декларацию в Австрии без необходимости сначала разбираться в налоговых формах. Узнайте, как работает QLIXA и что вы получаете в результате.', readTime: '~5 мин чтения' },
     ],
   },
   EN: {
@@ -79,7 +79,7 @@ const ARTICLES_PAGE_TEXT: Record<string, any> = {
       // New (Phase 8 EN/UA/RU localization brief). Title is the exact
       // approved EN title from that brief; desc reuses the approved EN
       // meta description (section 2 of the same brief).
-      { tag: 'Tax Return', date: 'October 2026', title: 'How to Prepare Your Tax Return in Austria: Step by Step', desc: 'Prepare your tax return in Austria without having to understand every tax form first. QLIXA guides you through your situation with clear, step-by-step questions.', readTime: '~6 min read' },
+      { tag: 'Tax Return', date: 'October 2026', title: 'An Easier Way to Prepare Your Tax Return in Austria with QLIXA', desc: 'Prepare your tax return in Austria without having to understand the tax forms first. See how QLIXA works and what you receive at the end.', readTime: '~6 min read' },
     ],
   },
   DE: {
@@ -98,7 +98,7 @@ const ARTICLES_PAGE_TEXT: Record<string, any> = {
       // New (Phase 8 new-article brief; EN/UA/RU added in the follow-up
       // localization brief — all 4 `published` arrays now carry this
       // 6th entry).
-      { tag: 'Steuererklärung', date: 'Oktober 2026', title: 'Steuererklärung in Österreich selbst vorbereiten: Schritt für Schritt', desc: 'Steuererklärung in Österreich selbst vorbereiten – auch ohne Steuerformulare zu kennen. QLIXA führt dich mit verständlichen Fragen Schritt für Schritt durch deine Situation.', readTime: '~5 Min. Lesezeit' },
+      { tag: 'Steuererklärung', date: 'Oktober 2026', title: 'Steuererklärung in Österreich einfacher vorbereiten – mit QLIXA', desc: 'Steuererklärung in Österreich vorbereiten, ohne zuerst die Steuerformulare verstehen zu müssen. Erfahre, wie QLIXA funktioniert und was du am Ende erhältst.', readTime: '~5 Min. Lesezeit' },
     ],
   },
 }

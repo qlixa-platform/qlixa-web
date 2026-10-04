@@ -46,9 +46,9 @@ const ARTICLE_META_TRANSLATIONS: Record<string, Record<string, { tag: string; ti
     DE: { tag: 'GISA · Anmeldung', title: 'Gewerbe über GISA anmelden: Schritt-für-Schritt-Online-Anleitung' },
   },
   'steuererklaerung-selbst-vorbereiten': {
-    RU: { tag: 'Налоговая декларация', title: 'Как самостоятельно подготовить налоговую декларацию в Австрии: пошагово' },
-    EN: { tag: 'Tax Return', title: 'How to Prepare Your Tax Return in Austria: Step by Step' },
-    DE: { tag: 'Steuererklärung', title: 'Steuererklärung in Österreich selbst vorbereiten: Schritt für Schritt' },
+    RU: { tag: 'Налоговая декларация', title: 'Как просто подготовить налоговую декларацию в Австрии с QLIXA' },
+    EN: { tag: 'Tax Return', title: 'An Easier Way to Prepare Your Tax Return in Austria with QLIXA' },
+    DE: { tag: 'Steuererklärung', title: 'Steuererklärung in Österreich einfacher vorbereiten – mit QLIXA' },
   },
 }
 

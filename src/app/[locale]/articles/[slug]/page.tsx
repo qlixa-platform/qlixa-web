@@ -67,19 +67,19 @@ const ARTICLE_METADATA: Record<string, Partial<Record<string, { title: string; d
   'steuererklaerung-selbst-vorbereiten': {
     de: {
       title: 'Steuererklärung in Österreich selbst vorbereiten | QLIXA',
-      description: 'Steuererklärung in Österreich selbst vorbereiten – auch ohne Steuerformulare zu kennen. QLIXA führt dich mit verständlichen Fragen Schritt für Schritt durch deine Situation.',
+      description: 'Steuererklärung in Österreich vorbereiten, ohne zuerst die Steuerformulare verstehen zu müssen. Erfahre, wie QLIXA funktioniert und was du am Ende erhältst.',
     },
     en: {
       title: 'How to Prepare Your Tax Return in Austria | QLIXA',
-      description: 'Prepare your tax return in Austria without having to understand every tax form first. QLIXA guides you through your situation with clear, step-by-step questions.',
+      description: 'Prepare your tax return in Austria without having to understand the tax forms first. See how QLIXA works and what you receive at the end.',
     },
     ua: {
       title: 'Податкова декларація в Австрії: як підготувати | QLIXA',
-      description: 'Як самостійно підготувати податкову декларацію в Австрії без вивчення податкових форм. QLIXA проводить крок за кроком через зрозумілі запитання.',
+      description: 'Як підготувати податкову декларацію в Австрії без необхідності спочатку розбиратися в податкових формах. Дізнайтеся, як працює QLIXA і що ви отримуєте в результаті.',
     },
     ru: {
       title: 'Налоговая декларация в Австрии: как подготовить | QLIXA',
-      description: 'Как самостоятельно подготовить налоговую декларацию в Австрии без изучения налоговых форм. QLIXA шаг за шагом проводит вас через понятные вопросы.',
+      description: 'Как подготовить налоговую декларацию в Австрии без необходимости сначала разбираться в налоговых формах. Узнайте, как работает QLIXA и что вы получаете в результате.',
     },
   },
   'austria-id': {

@@ -47,7 +47,7 @@ function ExtLink({ href, children }: { href: string; children: React.ReactNode }
 // important:" / "Це важливий момент:" / "Это важный момент:") that the
 // approved DE copy never had — DE simply omits the key.
 const T: Record<string, {
-  tag1: string; tag2: string; tag3: string
+  tag1: string; tag3: string
   titleLine1: string; titleEm: string
   metaTime: string
   toc: [string, string][]
@@ -112,8 +112,8 @@ const T: Record<string, {
   finalCta: string
 }> = {
   DE: {
-    tag1: 'Steuererklärung', tag2: 'Selbst vorbereiten', tag3: 'Österreich',
-    titleLine1: 'Steuererklärung in Österreich selbst vorbereiten:', titleEm: 'Schritt für Schritt',
+    tag1: 'Steuererklärung', tag3: 'Österreich',
+    titleLine1: 'Steuererklärung in Österreich einfacher vorbereiten –', titleEm: 'mit QLIXA',
     metaTime: '🕐 ~5 Min. Lesezeit',
     toc: [
       ['#abgabe', 'Muss ich eine Steuererklärung abgeben?'],
@@ -126,12 +126,12 @@ const T: Record<string, {
     ],
     backLink: '← Alle Artikel',
 
-    intro1: 'Du möchtest deine Steuererklärung in Österreich selbst vorbereiten, weißt aber nicht, wo du anfangen sollst?',
-    intro2: 'E1, L1, L1k, FinanzOnline – all diese Begriffe können den Prozess komplizierter erscheinen lassen, als er sein muss.',
-    emphasis1: 'Die gute Nachricht: Um deine Steuererklärung selbst vorzubereiten, musst du nicht zuerst alle Steuerformulare verstehen oder dich durch das österreichische Steuerrecht arbeiten.',
-    intro3: 'Einfacher ist es, mit dem anzufangen, was du bereits weißt: Wo hast du gearbeitet? Welche Einkünfte hattest du? Gab es zusätzliche Ausgaben? Hast du Kinder? Und was war in diesem Steuerjahr sonst noch wichtig?',
-    emphasis2: 'Genau hier setzt die Grundidee von QLIXA an.',
-    intro4: 'Statt mit Steuerformularen beginnst du mit verständlichen Fragen zu deiner persönlichen Situation.',
+    intro1: 'Eine Steuererklärung in Österreich kann komplizierter wirken, als sie eigentlich ist.',
+    intro2: 'E1, L1, L1k, FinanzOnline, verschiedene Beilagen und Ausgabenkategorien – da kann man sich schon verlieren, bevor man überhaupt angefangen hat.',
+    emphasis1: 'QLIXA geht einen anderen Weg: Statt dich zuerst mit Steuerformularen zu beschäftigen, beantwortest du verständliche Fragen zu dir, deiner Familie, deiner Arbeit, deinem Einkommen und deinen Ausgaben.',
+    intro3: 'Die nächsten Fragen hängen von deinen vorherigen Antworten ab.',
+    emphasis2: 'Auf Basis deiner Angaben hilft QLIXA dir, mögliche Kategorien zu prüfen und deine Steuererklärung für deine Prüfung und eigenständige Einreichung vorzubereiten.',
+    intro4: 'Du beginnst also nicht mit E1 oder L1 – sondern mit deiner eigenen Situation.',
 
     h2AbgabeBefore: 'Muss ich überhaupt eine ', h2AbgabeEm: 'Steuererklärung abgeben?',
     abgabeP1: 'Das hängt von deiner Situation ab.',
@@ -212,8 +212,8 @@ const T: Record<string, {
   },
 
   EN: {
-    tag1: 'Tax Return', tag2: 'Self-Prepared', tag3: 'Austria',
-    titleLine1: 'How to Prepare Your Tax Return in Austria:', titleEm: 'Step by Step',
+    tag1: 'Tax Return', tag3: 'Austria',
+    titleLine1: 'An Easier Way to Prepare Your Tax Return in Austria', titleEm: 'with QLIXA',
     metaTime: '🕐 ~6 min read',
     toc: [
       ['#abgabe', 'Do I need to file at all?'],
@@ -226,12 +226,12 @@ const T: Record<string, {
     ],
     backLink: '← All Articles',
 
-    intro1: 'Need to prepare your tax return in Austria but don’t know where to start?',
-    intro2: 'E1, L1, L1k, FinanzOnline — all these names can make the process seem much more complicated than it actually needs to be.',
-    emphasis1: 'The good news: you don’t need to understand every Austrian tax form or study Austrian tax law before you can start preparing your tax return.',
-    intro3: 'It’s much easier to start with what you already know about yourself: Where did you work? What income did you receive? Did you have additional expenses? Do you have children? And what else was relevant to your situation during the tax year?',
-    emphasis2: 'This is exactly where the idea behind QLIXA comes in.',
-    intro4: 'Instead of starting with tax forms, you start with clear questions about your own situation.',
+    intro1: 'A tax return in Austria can look more complicated than it actually is.',
+    intro2: 'E1, L1, L1k, FinanzOnline, different attachments and expense categories — it’s easy to feel lost before you’ve even started.',
+    emphasis1: 'QLIXA takes a different approach: instead of starting with tax forms, you answer clear questions about yourself, your family, your work, your income and your expenses.',
+    intro3: 'The next questions depend on your previous answers.',
+    emphasis2: 'Based on what you enter, QLIXA helps you check possible categories and prepares your tax return for you to review and file yourself.',
+    intro4: 'In other words, you don’t start with E1 or L1 — you start with your own situation.',
 
     h2AbgabeBefore: 'Do I Need to File a ', h2AbgabeEm: 'Tax Return at All?',
     abgabeP1: 'It depends on your situation.',
@@ -313,8 +313,8 @@ const T: Record<string, {
   },
 
   UA: {
-    tag1: 'Податкова декларація', tag2: 'Самостійно', tag3: 'Австрія',
-    titleLine1: 'Як самостійно підготувати податкову декларацію в Австрії:', titleEm: 'крок за кроком',
+    tag1: 'Податкова декларація', tag3: 'Австрія',
+    titleLine1: 'Як легко підготувати податкову декларацію в Австрії', titleEm: 'з QLIXA',
     metaTime: '🕐 ~5 хв читання',
     toc: [
       ['#abgabe', 'Чи потрібно подавати декларацію?'],
@@ -327,12 +327,12 @@ const T: Record<string, {
     ],
     backLink: '← Всі статті',
 
-    intro1: 'Потрібно підготувати податкову декларацію в Австрії, але ви не знаєте, з чого почати?',
-    intro2: 'E1, L1, L1k, FinanzOnline — усі ці назви можуть створювати враження, що процес набагато складніший, ніж є насправді.',
-    emphasis1: 'Хороша новина: щоб самостійно підготувати податкову декларацію, вам не потрібно спочатку розбиратися в усіх податкових формах або вивчати австрійське податкове законодавство.',
-    intro3: 'Набагато простіше почати з того, що ви вже знаєте про себе: де ви працювали, які доходи отримували, чи були додаткові витрати, чи є у вас діти та які ще обставини були важливими протягом податкового року.',
-    emphasis2: 'Саме тут з’являється основна ідея QLIXA.',
-    intro4: 'Замість того щоб починати з податкових форм, ви починаєте зі зрозумілих запитань про свою ситуацію.',
+    intro1: 'Податкова декларація в Австрії може здаватися складнішою, ніж вона є насправді.',
+    intro2: 'E1, L1, L1k, FinanzOnline, різні додатки та категорії витрат — легко заплутатися ще до того, як почнеш.',
+    emphasis1: 'QLIXA пропонує інший підхід: замість того щоб спочатку розбиратися в податкових формах, ти відповідаєш на зрозумілі запитання про себе, родину, роботу, доходи та витрати.',
+    intro3: 'Наступні запитання залежать від твоїх попередніх відповідей.',
+    emphasis2: 'На основі введених даних QLIXA допомагає перевірити можливі категорії та підготувати податкову декларацію для твоєї перевірки і самостійної подачі.',
+    intro4: 'Тобто починати потрібно не з E1 чи L1 — а зі своєї ситуації.',
 
     h2AbgabeBefore: 'А мені взагалі потрібно подавати ', h2AbgabeEm: 'податкову декларацію?',
     abgabeP1: 'Це залежить від вашої ситуації.',
@@ -414,8 +414,8 @@ const T: Record<string, {
   },
 
   RU: {
-    tag1: 'Налоговая декларация', tag2: 'Самостоятельно', tag3: 'Австрия',
-    titleLine1: 'Как самостоятельно подготовить налоговую декларацию в Австрии:', titleEm: 'пошагово',
+    tag1: 'Налоговая декларация', tag3: 'Австрия',
+    titleLine1: 'Как просто подготовить налоговую декларацию в Австрии', titleEm: 'с QLIXA',
     metaTime: '🕐 ~5 мин чтения',
     toc: [
       ['#abgabe', 'Нужно ли подавать декларацию?'],
@@ -428,12 +428,12 @@ const T: Record<string, {
     ],
     backLink: '← Все статьи',
 
-    intro1: 'Нужно подготовить налоговую декларацию в Австрии, но вы не знаете, с чего начать?',
-    intro2: 'E1, L1, L1k, FinanzOnline — все эти названия могут сделать процесс намного сложнее, чем он есть на самом деле.',
-    emphasis1: 'Хорошая новость: чтобы самостоятельно подготовить налоговую декларацию, вам не нужно сначала разбираться во всех налоговых формах и изучать австрийское налоговое законодательство.',
-    intro3: 'Гораздо проще начать с того, что вы уже знаете о себе: где вы работали, какие доходы получали, были ли дополнительные расходы, есть ли у вас дети и какие ещё обстоятельства были важны в течение налогового года.',
-    emphasis2: 'Именно здесь появляется основная идея QLIXA.',
-    intro4: 'Вместо налоговых форм вы начинаете с понятных вопросов о своей ситуации.',
+    intro1: 'Налоговая декларация в Австрии может выглядеть сложнее, чем есть на самом деле.',
+    intro2: 'E1, L1, L1k, FinanzOnline, разные приложения и категории расходов — легко запутаться ещё до того, как начнёшь.',
+    emphasis1: 'QLIXA предлагает другой подход: вместо того чтобы сначала разбираться в налоговых формах, ты отвечаешь на понятные вопросы о себе, семье, работе, доходах и расходах.',
+    intro3: 'Следующие вопросы зависят от твоих предыдущих ответов.',
+    emphasis2: 'На основе введённых данных QLIXA помогает проверить возможные категории и подготовить налоговую декларацию для твоей проверки и самостоятельной подачи.',
+    intro4: 'То есть начинать нужно не с E1 или L1 — а со своей ситуации.',
 
     h2AbgabeBefore: 'А мне вообще нужно подавать ', h2AbgabeEm: 'налоговую декларацию?',
     abgabeP1: 'Это зависит от вашей ситуации.',
@@ -546,7 +546,6 @@ export default function SteuererklaerungSelbstVorbereitenContent({ lang, locale 
         <div style={{ maxWidth: 860, margin: '0 auto' }}>
           <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
             <Badge variant="tagPrimary">{t.tag1}</Badge>
-            <Badge variant="tagSecondary">{t.tag2}</Badge>
             <Badge variant="tagSecondary">{t.tag3}</Badge>
           </div>
           <h1 className="article-h1" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
