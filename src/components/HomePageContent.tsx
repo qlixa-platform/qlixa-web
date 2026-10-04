@@ -1369,6 +1369,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
                     <NotifyMeButton
                       label={`${card.cta} →`}
                       source={`homepage-demo-${card.title}`}
+                      locale={locale}
                       triggerClassName="demo-card-cta"
                       triggerStyle={{
                         background: 'transparent', padding: 0, borderRadius: 0,

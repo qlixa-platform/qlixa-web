@@ -530,6 +530,7 @@ export default function PricingContent({ lang, locale }: { lang: InternalLangKey
                 <NotifyMeButton
                   label={t.business.cta}
                   source="pricing-business"
+                  locale={locale}
                   triggerStyle={{ display: 'block', width: '100%', boxSizing: 'border-box' as const, textAlign: 'center' as const, padding: '13px 22px', borderRadius: 11, fontSize: 15, fontWeight: 700, background: '#026B76', color: '#fff' }}
                 />
               </div>
