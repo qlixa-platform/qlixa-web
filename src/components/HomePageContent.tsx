@@ -18,6 +18,12 @@ const PUBLISHED_META = [
   { href: '/articles/austria-id',        cover: '/articles/austria-id-cover.jpg',       date: { UA: 'Червень 2026', RU: 'Июнь 2026',   EN: 'June 2026',   DE: 'Juni 2026' },   readTime: { UA: '8 хв читання',  RU: '8 мин',       EN: '8 min read',  DE: '8 Min.' } },
   { href: '/articles/invalidity-child',  cover: '/articles/invalidity-cover.jpg',       date: { UA: 'Червень 2026', RU: 'Июнь 2026',   EN: 'June 2026',   DE: 'Juni 2026' },   readTime: { UA: '10 хв читання', RU: '10 мин',      EN: '10 min read', DE: '10 Min.' } },
   { href: '/articles/gisa-formular',     cover: '/articles/gisa-cover.jpg',             date: { UA: 'Червень 2026', RU: 'Июнь 2026',   EN: 'June 2026',   DE: 'Juni 2026' },   readTime: { UA: '15 хв читання', RU: '15 мин',      EN: '15 min read', DE: '15 Min.' } },
+  // Index 5 — locale-only article (Batch 9A.3): no flat, un-prefixed
+  // /articles/steuererklaerung-selbst-vorbereiten page exists, so this
+  // entry is filtered out of `published` below whenever `locale` is
+  // undefined (the flat/legacy homepage), exactly like ArticleNav.tsx's
+  // own LOCALE_ONLY_SLUGS handling for the same slug.
+  { href: '/articles/steuererklaerung-selbst-vorbereiten', cover: '/articles/steuererklaerung-selbst-vorbereiten-cover.jpg', date: { UA: 'Жовтень 2026', RU: 'Октябрь 2026', EN: 'October 2026', DE: 'Oktober 2026' }, readTime: { UA: '~5 хв читання', RU: '~5 мин чтения', EN: '~6 min read', DE: '~5 Min.' } },
 ]
 
 const ARTICLES_TEXT: Record<string, {
@@ -30,6 +36,7 @@ const ARTICLES_TEXT: Record<string, {
       { tag: 'Австрія · Документи',   title: 'Як оформити ID Austria: покроковий гайд для іноземців',               desc: 'Як оформити ID Austria та використовувати її для доступу до цифрових державних сервісів, зокрема FinanzOnline.' },
       { tag: 'Сім\'я · Пільги',       title: 'Інвалідність дитини в Австрії: виплати, пільги та з чого почати',    desc: 'Огляд основних тем для батьків: Behindertenpass, підвищена Familienbeihilfe, Pflegegeld та можливі податкові пільги.' },
       { tag: 'GISA · Реєстрація',     title: 'Реєстрація на сайті GISA: покрокова інструкція',                      desc: 'Покрокова інструкція з онлайн-подання Gewerbeanmeldung через GISA з поясненням основних полів і етапів.' },
+      { tag: 'Податкова декларація',  title: 'Як легко підготувати податкову декларацію в Австрії з QLIXA',         desc: 'Як підготувати податкову декларацію в Австрії без необхідності спочатку розбиратися в податкових формах. Дізнайтеся, як працює QLIXA і що ви отримуєте в результаті.' },
     ],
   },
   RU: {
@@ -39,6 +46,7 @@ const ARTICLES_TEXT: Record<string, {
       { tag: 'Австрия · Документы',   title: 'Как оформить ID Austria: пошаговый гайд для иностранцев',             desc: 'Как оформить ID Austria и использовать её для доступа к цифровым государственным сервисам, включая FinanzOnline.' },
       { tag: 'Семья · Льготы',        title: 'Инвалидность ребёнка в Австрии: выплаты, льготы и с чего начать',    desc: 'Обзор основных тем для родителей: Behindertenpass, повышенная Familienbeihilfe, Pflegegeld и возможные налоговые льготы.' },
       { tag: 'GISA · Регистрация',    title: 'Регистрация на сайте GISA: пошаговая инструкция',                     desc: 'Пошаговая инструкция по онлайн-подаче Gewerbeanmeldung через GISA с пояснением основных полей и этапов.' },
+      { tag: 'Налоговая декларация',  title: 'Как просто подготовить налоговую декларацию в Австрии с QLIXA',      desc: 'Как подготовить налоговую декларацию в Австрии без необходимости сначала разбираться в налоговых формах. Узнайте, как работает QLIXA и что вы получаете в результате.' },
     ],
   },
   EN: {
@@ -48,6 +56,7 @@ const ARTICLES_TEXT: Record<string, {
       { tag: 'Austria · Documents',    title: 'How to Get ID Austria: Step-by-Step Guide for Foreigners',             desc: 'How to set up ID Austria and use it to access digital government services, including FinanzOnline.' },
       { tag: 'Family · Benefits',      title: 'Child Disability in Austria: Payments, Benefits and Where to Start',   desc: 'An overview of key topics for parents: Behindertenpass, increased Familienbeihilfe, Pflegegeld and possible tax benefits.' },
       { tag: 'GISA · Registration',    title: 'Registering on GISA Website: Step-by-Step Instructions',               desc: 'A step-by-step guide to submitting a Gewerbeanmeldung online via GISA, with explanations of the main fields and stages.' },
+      { tag: 'Tax Return',             title: 'An Easier Way to Prepare Your Tax Return in Austria with QLIXA',       desc: 'Prepare your tax return in Austria without having to understand the tax forms first. See how QLIXA works and what you receive at the end.' },
     ],
   },
   DE: {
@@ -57,6 +66,7 @@ const ARTICLES_TEXT: Record<string, {
       { tag: 'Österreich · Dokumente', title: 'ID Austria beantragen: Schritt-für-Schritt-Anleitung für Ausländer',  desc: 'So richtest du die ID Austria ein und nutzt sie für den Zugang zu digitalen Behördenservices, darunter FinanzOnline.' },
       { tag: 'Familie · Leistungen',   title: 'Behinderung des Kindes in Österreich: Leistungen und wie man anfängt', desc: 'Ein Überblick über wichtige Themen für Eltern: Behindertenpass, erhöhte Familienbeihilfe, Pflegegeld und mögliche steuerliche Begünstigungen.' },
       { tag: 'GISA · Anmeldung',       title: 'Registrierung auf der GISA-Website: Schritt-für-Schritt-Anleitung',   desc: 'Eine Schritt-für-Schritt-Anleitung zur Online-Gewerbeanmeldung über GISA mit Erklärungen zu den wichtigsten Feldern und Schritten.' },
+      { tag: 'Steuererklärung',        title: 'Steuererklärung in Österreich einfacher vorbereiten – mit QLIXA',     desc: 'Steuererklärung in Österreich vorbereiten, ohne zuerst die Steuerformulare verstehen zu müssen. Erfahre, wie QLIXA funktioniert und was du am Ende erhältst.' },
     ],
   },
 }
@@ -799,7 +809,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
     readTime: PUBLISHED_META[i].readTime[lang as 'UA' | 'RU' | 'EN' | 'DE'] || PUBLISHED_META[i].readTime.UA,
     ...item,
     href: locale ? localeHref(locale, PUBLISHED_META[i].href) : PUBLISHED_META[i].href,
-  }));
+  })).filter((art) => locale || art.href !== '/articles/steuererklaerung-selbst-vorbereiten');
   const t6 = CTA_TEXT[lang] || CTA_TEXT.UA;
   const t7 = FAQ_TEXT[lang] || FAQ_TEXT.UA;
 
