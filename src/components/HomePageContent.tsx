@@ -942,7 +942,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
               position: 'absolute' as const, left: '33%', top: '34%', width: '20%', height: 'clamp(44px,5vw,54px)',
               display: 'flex', alignItems: 'center', justifyContent: 'center' as const, textAlign: 'center' as const,
               backgroundImage: "url('/hero/hero_button.png')", backgroundRepeat: 'no-repeat' as const, backgroundPosition: 'center' as const, backgroundSize: '100% 100%',
-              fontFamily: 'DM Sans, sans-serif', fontSize: 'clamp(10px,1.6vw,15px)', fontWeight: 700, color: '#000000', textDecoration: 'none',
+              fontFamily: 'DM Sans, sans-serif', fontSize: 'clamp(10px,1.6vw,15px)', fontWeight: 700, color: '#087B95', textDecoration: 'none',
               lineHeight: 1.25, padding: '10px 18px', boxSizing: 'border-box' as const,
             }}
           >
