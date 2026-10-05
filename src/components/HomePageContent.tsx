@@ -867,7 +867,11 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
           <img
             src="/hero/hero_alpine_background.png"
             alt=""
-            style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.15 }}
+            style={{
+              width: '100%', height: 'auto', display: 'block', opacity: 1,
+              WebkitMaskImage: 'linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%)',
+              maskImage: 'linear-gradient(to right, transparent 0%, black 7%, black 93%, transparent 100%)',
+            }}
           />
         </div>
         {/* ▼▼▼ HERO_CONTENT_CONTAINER — everything belonging to the Hero
