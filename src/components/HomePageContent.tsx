@@ -139,9 +139,9 @@ type HeroFlowItem = { title: string; price: string; desc: string }
 type HeroCopy = {
   h1: { lead: string; connector: string; result: string }
   supporting: string
-  step1: { title: string[]; desc: string[] }
-  step2: { title: string[]; desc: string[] }
-  step3: { title: string[]; desc: string[] }
+  step1: { title: string[] }
+  step2: { title: string[] }
+  step3: { title: string[] }
   // The free→paid flow data: 4 items, same across every locale in shape —
   // only this text varies. No longer rendered inside the Hero itself (moved
   // to the FLOW_STRIP in the "Що таке QLIXA" section, which reads this same
@@ -158,18 +158,9 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
     hero: {
       h1: { lead: '3 КРОКИ', connector: 'до твоєї', result: 'ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ.' },
       supporting: 'Просто відповідай на запитання — QLIXA проведе тебе далі.',
-      step1: {
-        title: ['Розкажи', 'про себе'],
-        desc: ['Дай прості відповіді', 'про себе, свою сім’ю', 'та робочу', 'ситуацію.'],
-      },
-      step2: {
-        title: ['Пройди анкету', 'QLIXA'],
-        desc: ['QLIXA підлаштовує запитання', 'під твою ситуацію та за потреби', 'заглиблюється, щоб перевірити можливі', 'категорії списань і важливі деталі.'],
-      },
-      step3: {
-        title: ['Отримай', 'декларацію'],
-        desc: ['Після анкети побачиш', 'попередній розрахунок', 'можливого повернення та готову', 'податкову декларацію', 'з необхідними додатками.'],
-      },
+      step1: { title: ['Розкажи', 'про себе'] },
+      step2: { title: ['Пройди анкету', 'QLIXA'] },
+      step3: { title: ['Отримай', 'декларацію'] },
       flow: {
         item1: { title: 'QLIXA Кабінет', price: '€0', desc: 'безкоштовний кабінет' },
         item2: { title: 'Податкова анкета', price: '€0', desc: 'без оплати' },
@@ -183,18 +174,9 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
     hero: {
       h1: { lead: '3 STEPS', connector: 'to your', result: 'TAX RETURN IN AUSTRIA.' },
       supporting: 'Simply answer the questions — QLIXA guides you through the next steps.',
-      step1: {
-        title: ['Tell us', 'about yourself'],
-        desc: ['Answer simple questions', 'about yourself, your ', 'family and your work', 'situation.'],
-      },
-      step2: {
-        title: ['Complete the', 'QLIXA questionnaire'],
-        desc: ['QLIXA adapts the questions', 'to your situation and asks for more ', 'detail when needed to check ', 'possible deduction categories','and key information.'],
-      },
-      step3: {
-        title: ['Get your', 'tax return'],
-        desc: ['After the questionnaire, you’ll see', 'a preliminary estimate', 'of a possible refund and your', 'completed tax return with', ' the necessary additional forms.'],
-      },
+      step1: { title: ['Tell us', 'about yourself'] },
+      step2: { title: ['Complete the', 'QLIXA questionnaire'] },
+      step3: { title: ['Get your', 'tax return'] },
       flow: {
         item1: { title: 'QLIXA Account', price: '€0', desc: 'free account' },
         item2: { title: 'Tax questionnaire', price: '€0', desc: 'no payment' },
@@ -208,18 +190,9 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
     hero: {
       h1: { lead: '3 ШАГА', connector: 'к твоей', result: 'НАЛОГОВОЙ ДЕКЛАРАЦИИ В АВСТРИИ.' },
       supporting: 'Просто отвечай на вопросы — QLIXA проведёт тебя дальше.',
-      step1: {
-        title: ['Расскажи', 'о себе'],
-        desc: ['Ответь на простые вопросы', 'о себе, семье', 'и своей рабочей', 'ситуации.'],
-      },
-      step2: {
-        title: ['Пройди анкету', 'QLIXA'],
-        desc: ['QLIXA подстраивает вопросы под', 'твою ситуацию и при необходимости', 'уточняет детали, чтобы проверить', 'возможные категории вычетов','и важную информацию.'],
-      },
-      step3: {
-        title: ['Получи', 'декларацию'],
-        desc: ['После анкеты ты увидишь', 'предварительный расчёт', 'возможного возврата и готовую', 'налоговую декларацию', 'с необходимыми приложениями.'],
-      },
+      step1: { title: ['Расскажи', 'о себе'] },
+      step2: { title: ['Пройди анкету', 'QLIXA'] },
+      step3: { title: ['Получи', 'декларацию'] },
       flow: {
         item1: { title: 'QLIXA Кабинет', price: '€0', desc: 'бесплатный кабинет' },
         item2: { title: 'Налоговая анкета', price: '€0', desc: 'без оплаты' },
@@ -233,18 +206,9 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
     hero: {
       h1: { lead: '3 SCHRITTE', connector: 'zu deiner', result: 'STEUERERKLÄRUNG IN ÖSTERREICH.' },
       supporting: 'Beantworte einfach die Fragen — QLIXA führt dich Schritt für Schritt weiter.',
-      step1: {
-        title: ['Erzähl uns', 'von dir'],
-        desc: ['Beantworte einfache Fragen', 'zu dir, deiner Familie', 'und deiner beruflichen', 'Situation.'],
-      },
-      step2: {
-        title: ['Beantworte den', 'QLIXA-Fragebogen'],
-        desc: ['QLIXA passt die Fragen', 'an deine Situation an und fragt bei Bedarf', 'genauer nach, um mögliche', 'Abzugskategorien und wichtige', 'Angaben zu prüfen.'],
-      },
-      step3: {
-        title: ['Erhalte deine', 'Steuererklärung'],
-        desc: ['Nach dem Fragebogen siehst du', 'eine vorläufige Berechnung', 'einer möglichen Rückerstattung und ', 'deine fertige Steuererklärung', 'mit den erforderlichen Zusatzformularen.'],
-      },
+      step1: { title: ['Erzähl uns', 'von dir'] },
+      step2: { title: ['Beantworte den', 'QLIXA-Fragebogen'] },
+      step3: { title: ['Erhalte deine', 'Steuererklärung'] },
       flow: {
         item1: { title: 'QLIXA-Bereich', price: '€0', desc: 'kostenloser Zugang' },
         item2: { title: 'Steuerfragebogen', price: '€0', desc: 'ohne Zahlung' },
@@ -830,31 +794,15 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
 
 
       {/* ── HERO ── */}
-      {/* Aspect-ratio 1200/648 (not 786) crops away the empty space that used
-          to sit below the trust line — Hero now ends exactly where its content
-          ends. Every element below is its OWN separate, labeled, absolutely-
-          positioned div (not shared via .map()), so each can be nudged
-          independently just by editing that one div's left/top. */}
       <section className="hero-section" style={{ background: '#FFFFFF', padding: '0 clamp(20px,6vw,80px)', boxSizing: 'border-box' as const }}>
-        {/* ▼▼▼ HERO_CROP_WRAPPER — this OUTER box controls Hero's visible
-            height. Change ONLY this wrapper's aspect-ratio to trim empty
-            space after the trust line — it crops (overflow:hidden), it does
-            NOT rescale or distort anything, because the INNER box below
-            keeps its ORIGINAL 1200/648 ratio untouched. ▼▼▼ */}
+        {/* Crop wrapper controls the Hero's visible height (overflow:hidden);
+            the inner hero-content-container below keeps its own fixed
+            1200/648 ratio, which every child's absolute left/top is
+            calibrated against — do not change that ratio. */}
         <div className="hero-crop-wrapper" style={{ maxWidth: 1200, margin: '0 auto', aspectRatio: '1200 / 566', position: 'relative' as const, overflow: 'hidden' }}>
-        {/* HERO_ALPINE_BACKGROUND — purely decorative panorama (mountains
-            + Austrian town + lake), added as an INDEPENDENT layer behind
-            HERO_CONTENT_CONTAINER. Anchored to the bottom of this crop
-            wrapper, spans the full width at the image's own real aspect
-            ratio (2172×724, i.e. ~3:1 — not a guessed/fixed height), so
-            it never distorts. Low opacity keeps it a light decorative
-            wash rather than competing with the step titles/CTA text that
-            sit on top of it with no opaque card background of their own
-            at desktop. Does not touch hero-content-container's coordinate
-            system or any existing element's position. Hidden on mobile
-            (see globals.css) rather than risking interaction with that
-            breakpoint's content-driven (position:static, height:auto)
-            layout. */}
+        {/* Decorative Alpine background — anchored to the bottom of the
+            crop wrapper at its own real aspect ratio (2172×724). Hidden on
+            mobile (see globals.css). */}
         <div
           className="hero-alpine-background"
           aria-hidden="true"
@@ -874,50 +822,30 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             }}
           />
         </div>
-        {/* ▼▼▼ HERO_CONTENT_CONTAINER — everything belonging to the Hero
-            section lives inside this ONE div. Its aspect-ratio (1200/648)
-            must stay EXACTLY as is — every child's top/left % below is
-            calibrated against this number. ▼▼▼ */}
+        {/* Everything in the Hero lives inside this one div — its
+            1200/648 aspect ratio is what every child's %-based left/top
+            below is calibrated against. */}
         <div className="hero-content-container" style={{ position: 'absolute' as const, top: 0, left: 0, width: '100%', aspectRatio: '1200 / 648' }}>
 
-          
-          {/* HERO_LAPTOP_IMAGE — combined laptop+phone source image.
-              MOVE: edit left / top / width / height on this element only.
-              HERO_VISUAL_STAGE — plain, unstyled-at-desktop wrapper (same
-              safe-wrapper technique as HERO_HEADLINE/HERO_SUPPORTING_WRAP):
-              contributes no box at desktop since its only child stays
-              position:absolute and resolves against HERO_CONTENT_CONTAINER
-              unchanged. At mobile only, .hero-visual-stage becomes the
-              product-display card (background/border/radius/decoration)
-              framing the same unmodified laptop asset. */}
+          {/* Product preview — laptop + phone mockup */}
           <div className="hero-visual-stage">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="hero-laptop-image"
               src="/hero/laptop_hero_only.png"
-              alt=""
+              alt={
+                lang === 'UA' ? 'Попередній перегляд інтерфейсу QLIXA' :
+                lang === 'RU' ? 'Превью интерфейса QLIXA' :
+                lang === 'EN' ? 'Preview of the QLIXA product interface' :
+                'Vorschau der QLIXA-Benutzeroberfläche'
+              }
               style={{ position: 'absolute' as const, left: '52%', top: '35%', width: '70%', height: '48%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
             />
           </div>
 
-          {/* HERO_HEADLINE — both rows wrapped in a single semantic <h1>
-              so the page has exactly one, complete accessible heading
-              ("3 КРОКИ до твоєї" + "ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В АВСТРІЇ."
-              read as one sentence), without touching either row's own
-              position or the Hero's other coordinates. The wrapper sets
-              ONLY `margin: 0` — no position/width/height/padding/
-              background of its own — so it contributes no box of its
-              own to the Hero's layout. See PRE-MOBILE REPAIR #1 report
-              for the CSS reasoning (position:absolute children still
-              resolve their containing block to HERO_CONTENT_CONTAINER,
-              not to this unpositioned wrapper). */}
+          {/* Headline — one semantic H1 across both lines */}
           <h1 className="hero-headline" style={{ margin: 0 }}>
-            {/* HERO_HEADLINE_LINE_1 — first row: lead ("3 КРОКИ" / "3 STEPS"
-                etc.) + small connector ("до твоєї" / "to your" etc.) on the
-                same baseline. Row keeps its EXACT pre-existing absolute
-                position/size — only its content changed from a single
-                text node to two inline children.
-                MOVE: edit left / top on this element only. */}
+            {/* Lead + connector (e.g. "3 STEPS" + "to your") */}
             <div className="hero-headline-line hero-headline-line-1" style={{ position: 'absolute' as const, left: '0%', top: '1.713%', display: 'flex', alignItems: 'baseline', gap: '8px', whiteSpace: 'nowrap' as const }}>
               <span className="hero-headline-lead" style={{ fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(20px,5.833vw,70px)', lineHeight: 1, color: '#1A1A1A' }}>
                 {t.hero.h1.lead}
@@ -926,25 +854,13 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
                 {t.hero.h1.connector}
               </span>
             </div>
-            {/* HERO_HEADLINE_LINE_2 — result row: "ПОДАТКОВОЇ ДЕКЛАРАЦІЇ В
-                АВСТРІЇ." / "TAX RETURN IN AUSTRIA." etc. Unchanged position/
-                typography — only its data source changed (h1.result).
-                MOVE: edit left / top on this element only. */}
+            {/* Result line (e.g. "TAX RETURN IN AUSTRIA.") */}
             <div className="hero-headline-line hero-headline-line-2" style={{ position: 'absolute' as const, left: '0%', top: '15.041%', fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(12px,3.5vw,42px)', lineHeight: 1, color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
               {t.hero.h1.result}
             </div>
           </h1>
 
-          {/* HERO_SUPPORTING_LINE — bullet + "НЕ ПОТРІБНО САМОМУ ЗАПОВНЮВАТИ
-              ПОДАТКОВУ ДЕКЛАРАЦІЮ". Two elements (bullet + text) kept as a
-              matched pair — move both together if you move one.
-              MOVE: edit left / top on either element below. */}
-          {/* HERO_SUPPORTING_WRAP — plain, unstyled-at-desktop wrapper.
-              Contributes no box of its own at desktop (its only children
-              are position:absolute, so it collapses to zero height and
-              does not affect HERO_CONTENT_CONTAINER's layout); exists so
-              the mobile breakpoint can lay the bullet + text out as one
-              inline-flex pair via .hero-supporting-wrap. */}
+          {/* Supporting line — bullet + text */}
           <div className="hero-supporting-wrap">
             <div className="hero-bullet" style={{ position: 'absolute' as const, left: '0%', top: '27.293%', width: 'clamp(9px,1.3vw,15.6px)', height: 'clamp(9px,1.3vw,15.6px)', borderRadius: '50%', background: '#1F7489' }} />
             <div className="hero-supporting-text" style={{ position: 'absolute' as const, left: '1.742%', top: '25.199%', fontFamily: 'Charter, Georgia, serif', fontWeight: 700, fontSize: 'clamp(9px,2vw,24px)', color: '#1A1A1A', whiteSpace: 'nowrap' as const }}>
@@ -952,27 +868,13 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             </div>
           </div>
 
- {/* HERO_DOTTED_CONNECTOR — the dashed line between step 1/2 and
-              step 3. Independent from HERO_IMAGES_GROUP and
-              HERO_STEPS_COPY_GROUP on purpose.
-              MOVE THIS INDEPENDENTLY: edit only left / top / width here. */}
+          {/* Dashed connector, step 1 → step 3 */}
           <div className="hero-dotted-connector" style={{ position: 'absolute' as const, left: '7%', top: '39%', width: '37%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
 
-          {/* =========================================================
-              HERO_STEP_1/2/3 — each `.hero-step-N` is now itself a real
-              positioned container (desktop only): it carries its own
-              left/top/width/height, computed from the PREVIOUS hero-
-              relative coordinates so the icon/number/title visually sit
-              exactly where they did before this refactor. Icon/number/
-              title below are now positioned relative to THEIR OWN step
-              container (0–100%), not the full Hero — so the whole group
-              moves together as one unit.
-              MOVE WHOLE STEP: edit left / top on this container only.
-              Mobile: unchanged — the existing mobile breakpoint already
-              forces this container's position/left/top/width/height back
-              to the flex-row layout (see globals.css), so these new
-              desktop-only values never reach <=900px.
-              ========================================================= */}
+          {/* Steps 1–3 — each .hero-step-N is its own positioned
+              container; icon/number/title inside are positioned relative
+              to it (0–100%), so the whole step moves as one unit. Mobile
+              layout comes entirely from globals.css. */}
 
           <div className="hero-step hero-step-1" style={{ position: 'absolute' as const, left: '0%', top: '32%', width: '8%', height: '20%' }}>
             {/* HERO_IMAGE_1 — "about you" illustration */}
@@ -1029,13 +931,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
           </div>
           {/* ▲▲▲ END HERO_STEP_1/2/3 ▲▲▲ */}
 
-          {/* HERO_STEP3_CTA_CONNECTOR — small decorative arrow in the
-              free space between Step 3's right edge (23%+11%=34%) and
-              the CTA's left edge (36%). Purely visual: aria-hidden,
-              pointerEvents:none, does not move Step 3 or the CTA. Kept
-              separate from HERO_DOTTED_CONNECTOR above (which only ever
-              spans step1→step3) rather than extending that line through
-              the CTA. */}
+          {/* Decorative arrow, step 3 → CTA */}
           <div
             className="hero-step3-cta-connector"
             aria-hidden="true"
@@ -1048,17 +944,8 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             →
           </div>
 
-          {/* =========================================================
-              HERO_CTA
-              Its own left/top/width (no longer positioned relative to a
-              free-flow strip — that strip was moved out of the Hero into
-              the "Що таке QLIXA" section; see FLOW_STRIP there. This CTA's
-              own coordinates are unchanged from before the move.
-              Now identical geometry/styling in all 4 locales (the approved
-              UA button/coordinates) — only the text (t.hero.cta) and the
-              route are shared: every locale links straight to /tax-return.
-              MOVE THIS INDEPENDENTLY: edit only left / top / width / height here.
-              ========================================================= */}
+          {/* CTA — same geometry/styling in all 4 locales; text and
+              /tax-return route come from t.hero.cta. */}
           <Link
             className="hero-cta"
             href={locale ? localeHref(locale, '/tax-return') : '/tax-return'}
@@ -1074,11 +961,9 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
           </Link>
 
         </div>
-        {/* ▲▲▲ END HERO_CONTENT_CONTAINER ▲▲▲ */}
         </div>
-        {/* ▲▲▲ END HERO_CROP_WRAPPER ▲▲▲ */}
       </section>
-      {/* ── END HERO2 ── */}
+      {/* ── END HERO ── */}
 
       {/* ── TICKER — premium minimal, icon + text, 4 languages ── */}
       <div className="ticker-wrap" style={{ background: '#FFFFFF', padding: '12px 0', overflow: 'hidden', position: 'relative', borderTop: '1px solid #E6F4F5', borderBottom: '1px solid #E6F4F5' }}>
