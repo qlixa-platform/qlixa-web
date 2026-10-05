@@ -864,7 +864,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
               className="hero-laptop-image"
               src="/hero/laptop_hero_only.png"
               alt=""
-              style={{ position: 'absolute' as const, left: '51%', top: '35.766%', width: '70%', height: '51%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
+              style={{ position: 'absolute' as const, left: '52%', top: '35%', width: '70%', height: '48%', objectFit: 'contain' as const, objectPosition: 'left top' as const }}
             />
           </div>
 
