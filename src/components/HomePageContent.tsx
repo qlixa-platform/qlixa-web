@@ -956,7 +956,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
               step 3. Independent from HERO_IMAGES_GROUP and
               HERO_STEPS_COPY_GROUP on purpose.
               MOVE THIS INDEPENDENTLY: edit only left / top / width here. */}
-          <div className="hero-dotted-connector" style={{ position: 'absolute' as const, left: '7%', top: '43%', width: '17%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
+          <div className="hero-dotted-connector" style={{ position: 'absolute' as const, left: '7%', top: '39%', width: '37%', height: 0, borderTop: '2px dashed #BFDFDF' }} />
 
           {/* =========================================================
               HERO_STEP_1/2/3 — each `.hero-step-N` is now itself a real
@@ -981,12 +981,12 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
               <img src="/illustrations/how-it-works-about.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
             {/* HERO_STEP1_NUMBER — "1" */}
-            <div className="hero-step-number" style={{ position: 'absolute' as const, left: '50%', top: '45%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
+            <div className="hero-step-number" style={{ position: 'absolute' as const, left: '50%', top: '65%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
               1
             </div>
             <div className="hero-step-text">
               {/* HERO_STEP1_TITLE — "Розкажи / про себе" */}
-              <div className="hero-step-title" style={{ position: 'absolute' as const, left: '0%', top: '70%', width: '100%', textAlign: 'center' as const, fontFamily: 'DM Sans, sans-serif', fontWeight: 600, fontSize: 'clamp(9px,1.25vw,15px)', color: '#1A1A1A', lineHeight: 1.2 }}>
+              <div className="hero-step-title" style={{ position: 'absolute' as const, left: '0%', top: '81%', width: '100%', textAlign: 'center' as const, fontFamily: 'DM Sans, sans-serif', fontWeight: 600, fontSize: 'clamp(9px,1.25vw,15px)', color: '#1A1A1A', lineHeight: 1.2 }}>
                 {t.hero.step1.title.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
               </div>
             </div>
@@ -999,12 +999,12 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
               <img src="/illustrations/how-it-works-questionnaire.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
             {/* HERO_STEP2_NUMBER — "2" */}
-            <div className="hero-step-number" style={{ position: 'absolute' as const, left: '50%', top: '45%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
+            <div className="hero-step-number" style={{ position: 'absolute' as const, left: '50%', top: '65%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
               2
             </div>
             <div className="hero-step-text">
               {/* HERO_STEP2_TITLE — "Пройди анкету / QLIXA" */}
-              <div className="hero-step-title" style={{ position: 'absolute' as const, left: '0%', top: '70%', width: '100%', textAlign: 'center' as const, fontFamily: 'DM Sans, sans-serif', fontWeight: 600, fontSize: 'clamp(9px,1.25vw,15px)', color: '#1A1A1A', lineHeight: 1.2 }}>
+              <div className="hero-step-title" style={{ position: 'absolute' as const, left: '0%', top: '81%', width: '100%', textAlign: 'center' as const, fontFamily: 'DM Sans, sans-serif', fontWeight: 600, fontSize: 'clamp(9px,1.25vw,15px)', color: '#1A1A1A', lineHeight: 1.2 }}>
                 {t.hero.step2.title.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
               </div>
             </div>
@@ -1017,12 +1017,12 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
               <img src="/illustrations/how-it-works-tax-return.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
             {/* HERO_STEP3_NUMBER — "3" */}
-            <div className="hero-step-number" style={{ position: 'absolute' as const, left: '45.45%', top: '45%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
+            <div className="hero-step-number" style={{ position: 'absolute' as const, left: '45.45%', top: '65%', width: 'clamp(14px,1.67vw,20px)', height: 'clamp(14px,1.67vw,20px)', transform: 'translateX(-50%)', borderRadius: '50%', border: '1px solid #BFDFDF', background: '#fff', display: 'flex', alignItems: 'center', justifyContent: 'center' as const, fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#595959' }}>
               3
             </div>
             <div className="hero-step-text">
               {/* HERO_STEP3_TITLE — "Отримай / декларацію" */}
-              <div className="hero-step-title" style={{ position: 'absolute' as const, left: '0%', top: '70%', width: '100%', textAlign: 'center' as const, fontFamily: 'DM Sans, sans-serif', fontWeight: 600, fontSize: 'clamp(9px,1.25vw,15px)', color: '#1A1A1A', lineHeight: 1.2 }}>
+              <div className="hero-step-title" style={{ position: 'absolute' as const, left: '0%', top: '81%', width: '100%', textAlign: 'center' as const, fontFamily: 'DM Sans, sans-serif', fontWeight: 600, fontSize: 'clamp(9px,1.25vw,15px)', color: '#1A1A1A', lineHeight: 1.2 }}>
                 {t.hero.step3.title.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
               </div>
             </div>
