@@ -20,8 +20,8 @@ import { type InternalLangKey, type Locale, localeHref } from '@/lib/locale'
 function Emphasis({ children }: { children: React.ReactNode }) {
   return (
     <p style={{
-      borderLeft: '3px solid #038390', paddingLeft: 16,
-      margin: '20px 0', fontSize: 15, fontWeight: 600,
+      borderLeft: '3px solid #038390', paddingLeft: 18, paddingTop: 2, paddingBottom: 2,
+      margin: '24px 0', fontSize: 15, fontWeight: 600,
       color: 'var(--charcoal)', lineHeight: 1.7,
     }}>
       {children}
@@ -536,24 +536,38 @@ export default function SteuererklaerungSelbstVorbereitenContent({ lang, locale 
     <div style={{ minHeight: '100vh', background: 'var(--gray)' }}>
       <Navbar locale={locale} />
 
-      {/* Hero — text-only: no cover photo exists yet for this article
-          (unlike the 5 existing articles, which each have a dedicated
-          photo). Omitting the image column keeps the hero honest rather
-          than inventing or reusing an unrelated image; the two-column
-          .article-hero-row/.article-hero-image pattern can be added
-          later once a real cover exists. */}
+      {/* Hero — now uses the real approved cover (Batch 9A.3) in the
+          same two-column .article-hero-row/.article-hero-image pattern
+          established by AustriaIdContent.tsx etc., replacing the
+          temporary text-only hero. H1 no longer forces a line break
+          between the main title and the "QLIXA" phrase — the browser
+          wraps it naturally, same as the rest of the article family. */}
       <section style={{ background: '#F0F7F8', padding: '56px clamp(20px,6vw,80px) 40px' }}>
-        <div style={{ maxWidth: 860, margin: '0 auto' }}>
-          <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
-            <Badge variant="tagPrimary">{t.tag1}</Badge>
-            <Badge variant="tagSecondary">{t.tag3}</Badge>
+        <div className="article-hero-row" style={{ maxWidth: 860, margin: '0 auto', display: 'flex', gap: 48, alignItems: 'center' }}>
+          <div style={{ flex: 1 }}>
+            <div style={{ display: 'flex', gap: 8, marginBottom: 16, flexWrap: 'wrap' as const }}>
+              <Badge variant="tagPrimary">{t.tag1}</Badge>
+              <Badge variant="tagSecondary">{t.tag3}</Badge>
+            </div>
+            <h1 className="article-h1" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
+              {t.titleLine1}{' '}<em style={{ color: '#038390', fontStyle: 'italic' }}>{t.titleEm}</em>
+            </h1>
+            <div className="article-meta-row" style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: 'var(--color-gray)' }}>
+              <span>{t.metaTime}</span>
+            </div>
           </div>
-          <h1 className="article-h1" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 'clamp(28px,3.5vw,44px)', fontWeight: 400, color: '#1A1A1A', lineHeight: 1.15, letterSpacing: '-1px', marginBottom: 16 }}>
-            {t.titleLine1}<br />
-            <em style={{ color: '#038390', fontStyle: 'italic' }}>{t.titleEm}</em>
-          </h1>
-          <div className="article-meta-row" style={{ display: 'flex', gap: 24, flexWrap: 'wrap' as const, fontSize: 13, color: 'var(--color-gray)' }}>
-            <span>{t.metaTime}</span>
+          <div className="article-hero-image" style={{ flex: '0 0 340px', borderRadius: 16, overflow: 'hidden', flexShrink: 0 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/articles/steuererklaerung-selbst-vorbereiten-cover.jpg"
+              alt={
+                lang === 'UA' ? 'Ілюстрація до статті про підготовку податкової декларації в Австрії' :
+                lang === 'RU' ? 'Иллюстрация к статье о подготовке налоговой декларации в Австрии' :
+                lang === 'EN' ? 'Illustration for the article about preparing a tax return in Austria' :
+                'Illustration zum Artikel über die Steuererklärung in Österreich'
+              }
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
           </div>
         </div>
       </section>
@@ -576,26 +590,34 @@ export default function SteuererklaerungSelbstVorbereitenContent({ lang, locale 
             {t.backLink}
           </Link>
 
-          {/* Intro */}
-          <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.intro1}</p>
-          <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.intro2}</p>
-          <Emphasis>{t.emphasis1}</Emphasis>
-          <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.intro3}</p>
-          <Emphasis>{t.emphasis2}</Emphasis>
-          <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 32 }}>{t.intro4}</p>
+          {/* Intro — one coherent editorial opening (Batch 9A.4
+              presentation polish; copy unchanged). intro1+intro2 read as
+              the opening statement, emphasis1 carries the primary QLIXA
+              idea, intro3 is a short supporting bridge, emphasis2 states
+              the concrete result, and intro4 closes with slightly
+              stronger typographic presence than an ordinary paragraph —
+              without another full card. */}
+          <div style={{ marginBottom: 40 }}>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.intro1}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 20 }}>{t.intro2}</p>
+            <Emphasis>{t.emphasis1}</Emphasis>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', margin: '20px 0' }}>{t.intro3}</p>
+            <Emphasis>{t.emphasis2}</Emphasis>
+            <p style={{ fontSize: 17, fontWeight: 600, lineHeight: 1.6, color: 'var(--charcoal)', marginTop: 28, marginBottom: 0 }}>{t.intro4}</p>
+          </div>
 
           {/* 1. Muss ich überhaupt eine Steuererklärung abgeben? */}
           <h2 id="abgabe" style={{ fontFamily: 'DM Serif Display, serif', fontSize: 22, color: 'var(--charcoal)', marginBottom: 16, scrollMarginTop: '80px' }}>
             {t.h2AbgabeBefore}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t.h2AbgabeEm}</em>
           </h2>
           <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 32 }}>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.abgabeP1}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.abgabeP2}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.abgabeP3}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.abgabeP4}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.abgabeP5}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.abgabeP6}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)' }}>{t.abgabeP7}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.abgabeP1}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.abgabeP2}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.abgabeP3}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.abgabeP4}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.abgabeP5}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.abgabeP6}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)' }}>{t.abgabeP7}</p>
           </div>
 
           {/* 2. Fang nicht mit Steuerformularen an */}
@@ -603,7 +625,7 @@ export default function SteuererklaerungSelbstVorbereitenContent({ lang, locale 
             {t.h2SituationBefore}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t.h2SituationEm}</em>
           </h2>
           <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 32 }}>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.situationIntro}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.situationIntro}</p>
 
             <div className="article-grid-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 18 }}>
               {t.fragen.map((f, i) => (
@@ -613,13 +635,13 @@ export default function SteuererklaerungSelbstVorbereitenContent({ lang, locale 
               ))}
             </div>
 
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 10 }}>{t.situationQuoteLead}</p>
-            <p style={{ fontSize: 14, fontStyle: 'italic', color: 'var(--text2)', margin: '0 0 18px', paddingLeft: 14, borderLeft: '2px solid var(--line2)' }}>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 10 }}>{t.situationQuoteLead}</p>
+            <p style={{ fontSize: 15, fontStyle: 'italic', color: 'var(--text2)', margin: '0 0 18px', paddingLeft: 14, borderLeft: '2px solid var(--line2)' }}>
               &ldquo;{t.situationQuote}&rdquo;
             </p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.situationP1}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.situationP1}</p>
             <Emphasis>{t.emphasis3}</Emphasis>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.situationP2}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.situationP2}</p>
             <Emphasis>{t.emphasis4}</Emphasis>
           </div>
 
@@ -635,15 +657,15 @@ export default function SteuererklaerungSelbstVorbereitenContent({ lang, locale 
             {t.h2FormulareBefore}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t.h2FormulareEm}</em>
           </h2>
           <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 32 }}>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.formulareP1}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.formulareP2}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.formulareP3}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 10, fontWeight: 600 }}>{t.formulareQ}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 10 }}>{t.formulareLeadIn}</p>
-            <p style={{ fontSize: 14, fontStyle: 'italic', color: 'var(--text2)', margin: '0 0 18px', paddingLeft: 14, borderLeft: '2px solid var(--line2)' }}>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.formulareP1}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.formulareP2}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.formulareP3}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 10, fontWeight: 600 }}>{t.formulareQ}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 10 }}>{t.formulareLeadIn}</p>
+            <p style={{ fontSize: 15, fontStyle: 'italic', color: 'var(--text2)', margin: '0 0 18px', paddingLeft: 14, borderLeft: '2px solid var(--line2)' }}>
               &ldquo;{t.formulareQuote}&rdquo;
             </p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 10 }}>{t.formulareInsteadLabel}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 10 }}>{t.formulareInsteadLabel}</p>
             <div className="article-grid-2col" style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10, marginBottom: 18 }}>
               {t.formulareQuestions.map((q, i) => (
                 <div key={i} style={{ display: 'flex', alignItems: 'center', gap: 10, background: 'var(--gray)', borderRadius: 10, padding: '11px 14px', border: '1px solid var(--line)' }}>
@@ -652,7 +674,7 @@ export default function SteuererklaerungSelbstVorbereitenContent({ lang, locale 
               ))}
             </div>
             <Emphasis>{t.emphasis5}</Emphasis>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)' }}>{t.formulareP4}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)' }}>{t.formulareP4}</p>
           </div>
 
           {/* 4. Muss ich vorher wissen, welche Ausgaben ich brauche? */}
@@ -660,10 +682,10 @@ export default function SteuererklaerungSelbstVorbereitenContent({ lang, locale 
             {t.h2VorwissenBefore}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t.h2VorwissenEm}</em>
           </h2>
           <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 32 }}>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.vorwissenP1}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.vorwissenP2}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.vorwissenP3}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.vorwissenP4}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.vorwissenP1}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.vorwissenP2}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.vorwissenP3}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.vorwissenP4}</p>
             <Emphasis>{t.emphasis6}</Emphasis>
           </div>
 
@@ -673,12 +695,12 @@ export default function SteuererklaerungSelbstVorbereitenContent({ lang, locale 
           </h2>
           <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 32 }}>
             {t.ergebnisLeadIn && (
-              <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14, fontWeight: 600 }}>{t.ergebnisLeadIn}</p>
+              <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14, fontWeight: 600 }}>{t.ergebnisLeadIn}</p>
             )}
             <Emphasis>{t.emphasis7}</Emphasis>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.ergebnisP1}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.ergebnisP1}</p>
             <Emphasis>{t.emphasis8}</Emphasis>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)' }}>{t.ergebnisP2}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)' }}>{t.ergebnisP2}</p>
           </div>
 
           {/* 6. Wie kommt meine Steuererklärung zum Finanzamt? */}
@@ -686,9 +708,9 @@ export default function SteuererklaerungSelbstVorbereitenContent({ lang, locale 
             {t.h2FinanzonlineBefore}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t.h2FinanzonlineEm}</em>
           </h2>
           <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 32 }}>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.finanzP1}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.finanzP1}</p>
             <Emphasis>{t.emphasis9}</Emphasis>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.finanzP2}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.finanzP2}</p>
             <p><ExtLink href={FINANZONLINE_URL}>{t.finanzLinkLabel}</ExtLink></p>
           </div>
 
@@ -697,8 +719,8 @@ export default function SteuererklaerungSelbstVorbereitenContent({ lang, locale 
             {t.h2SelbstBefore}<em style={{ fontStyle: 'italic', color: '#038390' }}>{t.h2SelbstEm}</em>
           </h2>
           <div style={{ background: '#fff', borderRadius: 16, padding: 24, border: '1px solid var(--line)', boxShadow: 'var(--shadow)', marginBottom: 32 }}>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.selbstP1}</p>
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.selbstLeadIn}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.selbstP1}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.selbstLeadIn}</p>
 
             {/* Flow — flex-wrap only (no fixed-column grid), so it wraps
                 naturally at any width instead of being forced into one
@@ -714,7 +736,7 @@ export default function SteuererklaerungSelbstVorbereitenContent({ lang, locale 
               ))}
             </div>
 
-            <p style={{ fontSize: 14, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.selbstP2}</p>
+            <p style={{ fontSize: 15, lineHeight: 1.85, color: 'var(--charcoal)', marginBottom: 14 }}>{t.selbstP2}</p>
             <Emphasis>{t.emphasis10}</Emphasis>
           </div>
 
