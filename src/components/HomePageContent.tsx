@@ -167,7 +167,7 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
         item3: { title: 'Попередній розрахунок', price: '€0', desc: 'можливий результат' },
         item4: { title: 'Готова декларація', price: '€24,90', desc: 'разово · без підписки' },
       },
-      cta: 'Почати безкоштовно →',
+      cta: 'Почати безкоштовно',
     },
   },
   EN: {
@@ -183,7 +183,7 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
         item3: { title: 'Preliminary estimate', price: '€0', desc: 'possible result' },
         item4: { title: 'Completed tax return', price: '€24.90', desc: 'one-time · no subscription' },
       },
-      cta: 'Start for free →',
+      cta: 'Start for free',
     },
   },
   RU: {
@@ -199,7 +199,7 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
         item3: { title: 'Предварительный расчёт', price: '€0', desc: 'возможный результат' },
         item4: { title: 'Готовая декларация', price: '€24,90', desc: 'разово · без подписки' },
       },
-      cta: 'Начать бесплатно →',
+      cta: 'Начать бесплатно',    
     },
   },
   DE: {
@@ -215,7 +215,7 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
         item3: { title: 'Vorläufige Berechnung', price: '€0', desc: 'mögliches Ergebnis' },
         item4: { title: 'Fertige Steuererklärung', price: '€24,90', desc: 'einmalig · kein Abo' },
       },
-      cta: 'Kostenlos starten →',
+      cta: 'Kostenlos starten',
     },
   },
 }
@@ -878,7 +878,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
 
           <div className="hero-step hero-step-1" style={{ position: 'absolute' as const, left: '0%', top: '32%', width: '8%', height: '20%' }}>
             {/* HERO_IMAGE_1 — "about you" illustration */}
-            <div className="hero-step-icon" style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
+            <div className="hero-step-icon" style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(38px,6.5vw,60px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/illustrations/how-it-works-about.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
@@ -896,7 +896,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
 
           <div className="hero-step hero-step-2" style={{ position: 'absolute' as const, left: '7%', top: '32%', width: '16%', height: '20%' }}>
             {/* HERO_IMAGE_2 — "questionnaire" illustration */}
-            <div className="hero-step-icon" style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
+            <div className="hero-step-icon" style={{ position: 'absolute' as const, left: '50%', top: '0%', width: 'clamp(38px,6.5vw,60px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/illustrations/how-it-works-questionnaire.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
@@ -912,9 +912,9 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             </div>
           </div>
 
-          <div className="hero-step hero-step-3" style={{ position: 'absolute' as const, left: '23%', top: '32%', width: '11%', height: '20%' }}>
+          <div className="hero-step hero-step-3" style={{ position: 'absolute' as const, left: '22%', top: '32%', width: '11%', height: '20%' }}>
             {/* HERO_IMAGE_3 — "tax return" illustration */}
-            <div className="hero-step-icon" style={{ position: 'absolute' as const, left: '45.45%', top: '0%', width: 'clamp(38px,6.5vw,80px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
+            <div className="hero-step-icon" style={{ position: 'absolute' as const, left: '45.45%', top: '0%', width: 'clamp(38px,6.5vw,60px)', height: 'clamp(38px,6.5vw,80px)', transform: 'translateX(-50%)' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src="/illustrations/how-it-works-tax-return.png" alt="" style={{ width: '100%', height: '100%', objectFit: 'contain' as const }} />
             </div>
@@ -931,18 +931,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
           </div>
           {/* ▲▲▲ END HERO_STEP_1/2/3 ▲▲▲ */}
 
-          {/* Decorative arrow, step 3 → CTA */}
-          <div
-            className="hero-step3-cta-connector"
-            aria-hidden="true"
-            style={{
-              position: 'absolute' as const, left: '34.3%', top: '37%', width: 'clamp(16px,2vw,24px)', height: 'clamp(44px,5vw,56px)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center' as const, pointerEvents: 'none' as const,
-              color: 'rgba(3,131,144,0.55)', fontSize: 'clamp(16px,2vw,22px)', lineHeight: 1,
-            }}
-          >
-            →
-          </div>
+
 
           {/* CTA — same geometry/styling in all 4 locales; text and
               /tax-return route come from t.hero.cta. */}
@@ -950,10 +939,10 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             className="hero-cta"
             href={locale ? localeHref(locale, '/tax-return') : '/tax-return'}
             style={{
-              position: 'absolute' as const, left: '36%', top: '37%', width: '17%', height: 'clamp(44px,5vw,56px)',
+              position: 'absolute' as const, left: '33%', top: '34%', width: '20%', height: 'clamp(44px,5vw,54px)',
               display: 'flex', alignItems: 'center', justifyContent: 'center' as const, textAlign: 'center' as const,
               backgroundImage: "url('/hero/hero_button.png')", backgroundRepeat: 'no-repeat' as const, backgroundPosition: 'center' as const, backgroundSize: '100% 100%',
-              fontFamily: 'DM Sans, sans-serif', fontSize: 'clamp(13px,1.6vw,17px)', fontWeight: 700, color: '#FFFFFF', textDecoration: 'none',
+              fontFamily: 'DM Sans, sans-serif', fontSize: 'clamp(10px,1.6vw,15px)', fontWeight: 700, color: '#000000', textDecoration: 'none',
               lineHeight: 1.25, padding: '10px 18px', boxSizing: 'border-box' as const,
             }}
           >
