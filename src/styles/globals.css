@@ -215,6 +215,23 @@ body {
   box-shadow: 0 4px 18px rgba(3,131,144,0.35);
 }
 
+/* Hero CTA — restrained hover/active, same family as .btn-primary above.
+   `background`/`box-shadow` need !important here only because the CTA's
+   own default values are set inline (position/size are manually tuned
+   per-locale-shared coordinates, kept as inline styles) — inline styles
+   otherwise always win over a plain class rule, including on :hover. */
+.hero-cta {
+  transition: background-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+}
+.hero-cta:hover {
+  background: #026B76 !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 10px rgba(3,131,144,0.32) !important;
+}
+.hero-cta:active {
+  transform: translateY(0);
+}
+
 /* Dropdown animation */
 .dropdown-menu {
   animation: dropDown 0.15s ease-out;
@@ -269,6 +286,12 @@ body {
   }
   .ticker-track {
     animation: none !important;
+  }
+  .hero-cta {
+    transition: none !important;
+  }
+  .hero-cta:hover {
+    transform: none !important;
   }
 }
 
@@ -503,7 +526,16 @@ body {
      per the approved art direction. Number uses flex `order` to lead
      the row, same technique as before, still zero DOM change. */
   .hero-step {
-    position: relative;
+    /* Desktop (Hero Desktop Micro-Batch) now gives each .hero-step-N an
+       inline position:absolute + left/top/width/height so icon+number+
+       title move together as one group. All four must be forced back
+       here, or the step would be pulled out of this mobile flex row
+       entirely. */
+    position: relative !important;
+    left: auto !important;
+    top: auto !important;
+    width: auto !important;
+    height: auto !important;
     display: flex;
     align-items: center;
     gap: 10px;
