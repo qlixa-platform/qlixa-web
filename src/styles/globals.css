@@ -483,6 +483,17 @@ body {
     display: none !important;
   }
 
+  /* ── HERO — alpine background, hidden on mobile (Hero Visual Cleanup
+     micro-batch): at this breakpoint hero-crop-wrapper switches to
+     height:auto/overflow:visible (content-driven), so a bottom-anchored
+     absolutely-positioned image here has no safe, predictable height to
+     anchor against — hiding it avoids any risk of horizontal overflow
+     or covering mobile's stacked text/CTA, exactly like the dotted
+     connector above. ── */
+  .hero-alpine-background {
+    display: none !important;
+  }
+
   /* ── HERO — 3-row process block (order 4/5/6) ──
      No wrapper element added: the three existing .hero-step-N siblings
      share one background with no gap between them and only the middle

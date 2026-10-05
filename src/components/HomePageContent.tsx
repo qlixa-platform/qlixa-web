@@ -842,6 +842,34 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             NOT rescale or distort anything, because the INNER box below
             keeps its ORIGINAL 1200/648 ratio untouched. ▼▼▼ */}
         <div className="hero-crop-wrapper" style={{ maxWidth: 1200, margin: '0 auto', aspectRatio: '1200 / 566', position: 'relative' as const, overflow: 'hidden' }}>
+        {/* HERO_ALPINE_BACKGROUND — purely decorative panorama (mountains
+            + Austrian town + lake), added as an INDEPENDENT layer behind
+            HERO_CONTENT_CONTAINER. Anchored to the bottom of this crop
+            wrapper, spans the full width at the image's own real aspect
+            ratio (2172×724, i.e. ~3:1 — not a guessed/fixed height), so
+            it never distorts. Low opacity keeps it a light decorative
+            wash rather than competing with the step titles/CTA text that
+            sit on top of it with no opaque card background of their own
+            at desktop. Does not touch hero-content-container's coordinate
+            system or any existing element's position. Hidden on mobile
+            (see globals.css) rather than risking interaction with that
+            breakpoint's content-driven (position:static, height:auto)
+            layout. */}
+        <div
+          className="hero-alpine-background"
+          aria-hidden="true"
+          style={{
+            position: 'absolute' as const, left: 0, bottom: 0, width: '100%',
+            pointerEvents: 'none' as const, userSelect: 'none' as const,
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src="/hero/hero_alpine_background.png"
+            alt=""
+            style={{ width: '100%', height: 'auto', display: 'block', opacity: 0.15 }}
+          />
+        </div>
         {/* ▼▼▼ HERO_CONTENT_CONTAINER — everything belonging to the Hero
             section lives inside this ONE div. Its aspect-ratio (1200/648)
             must stay EXACTLY as is — every child's top/left % below is
@@ -963,10 +991,6 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
               <div className="hero-step-title" style={{ position: 'absolute' as const, left: '0%', top: '52.5%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
                 {t.hero.step1.title.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
               </div>
-              {/* HERO_STEP1_DESCRIPTION */}
-              <div className="hero-step-desc" style={{ position: 'absolute' as const, left: '0%', top: '60%', width: '10.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-                {t.hero.step1.desc.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
-              </div>
             </div>
           </div>
 
@@ -984,10 +1008,6 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
               {/* HERO_STEP2_TITLE — "Пройди анкету / QLIXA" */}
               <div className="hero-step-title" style={{ position: 'absolute' as const, left: '13.5%', top: '52.5%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
                 {t.hero.step2.title.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
-              </div>
-              {/* HERO_STEP2_DESCRIPTION */}
-              <div className="hero-step-desc" style={{ position: 'absolute' as const, left: '13.23%', top: '60%', width: '25.39%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-                {t.hero.step2.desc.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
               </div>
             </div>
           </div>
@@ -1007,13 +1027,11 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
               <div className="hero-step-title" style={{ position: 'absolute' as const, left: '37.5%', top: '52.5%', width: '14.84%', textAlign: 'center' as const, fontFamily: 'Arial Black, Arial, sans-serif', fontWeight: 900, fontSize: 'clamp(9px,1.25vw,15px)', color: '#09877A', lineHeight: 1.2 }}>
                 {t.hero.step3.title.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
               </div>
-              {/* HERO_STEP3_DESCRIPTION */}
-              <div className="hero-step-desc" style={{ position: 'absolute' as const, left: '35.5%', top: '60%', width: '18.84%', textAlign: 'center' as const, fontFamily: 'Arial, sans-serif', fontSize: 'clamp(7px,0.92vw,11px)', color: '#404040', lineHeight: 1.35 }}>
-                {t.hero.step3.desc.map((line, i, arr) => <span key={i} className="hero-fragment">{line}{i < arr.length - 1 ? ' ' : ''}</span>)}
-              </div>
             </div>
           </div>
-          {/* ▲▲▲ END HERO_STEP_1/2/3 ▲▲▲ */}
+          {/* ▲▲▲ END HERO_STEP_1/2/3 ▲▲▲ (step descriptions removed —
+              Hero Visual Cleanup micro-batch; icons/numbers/titles kept
+              unchanged) */}
 
           {/* =========================================================
               HERO_CTA
@@ -1030,7 +1048,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             className="hero-cta"
             href={locale ? localeHref(locale, '/tax-return') : '/tax-return'}
             style={{
-              position: 'absolute' as const, left: '5%', top: '77%', width: '42%', height: 'clamp(34px,3.6vw,38px)',
+              position: 'absolute' as const, left: '5%', top: '70%', width: '42%', height: 'clamp(34px,3.6vw,38px)',
               display: 'flex', alignItems: 'center', justifyContent: 'center' as const,
               backgroundImage: 'url(/hero/hero_button.png)', backgroundSize: '100% 100%', backgroundRepeat: 'no-repeat' as const,
               fontFamily: 'Arial, sans-serif', fontSize: 'clamp(8px,1vw,12px)', fontWeight: 700, color: '#fff', textDecoration: 'none',
