@@ -1029,6 +1029,25 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
           </div>
           {/* ▲▲▲ END HERO_STEP_1/2/3 ▲▲▲ */}
 
+          {/* HERO_STEP3_CTA_CONNECTOR — small decorative arrow in the
+              free space between Step 3's right edge (23%+11%=34%) and
+              the CTA's left edge (36%). Purely visual: aria-hidden,
+              pointerEvents:none, does not move Step 3 or the CTA. Kept
+              separate from HERO_DOTTED_CONNECTOR above (which only ever
+              spans step1→step3) rather than extending that line through
+              the CTA. */}
+          <div
+            className="hero-step3-cta-connector"
+            aria-hidden="true"
+            style={{
+              position: 'absolute' as const, left: '34.3%', top: '37%', width: 'clamp(16px,2vw,24px)', height: 'clamp(44px,5vw,56px)',
+              display: 'flex', alignItems: 'center', justifyContent: 'center' as const, pointerEvents: 'none' as const,
+              color: 'rgba(3,131,144,0.55)', fontSize: 'clamp(16px,2vw,22px)', lineHeight: 1,
+            }}
+          >
+            →
+          </div>
+
           {/* =========================================================
               HERO_CTA
               Its own left/top/width (no longer positioned relative to a
@@ -1046,9 +1065,9 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             style={{
               position: 'absolute' as const, left: '36%', top: '37%', width: '17%', height: 'clamp(44px,5vw,56px)',
               display: 'flex', alignItems: 'center', justifyContent: 'center' as const, textAlign: 'center' as const,
-              background: '#038390', border: '1px solid #038390', borderRadius: 10, boxShadow: '0 2px 6px rgba(3,131,144,0.25)',
-              fontFamily: 'DM Sans, sans-serif', fontSize: 'clamp(11px,1.15vw,14px)', fontWeight: 700, color: '#FFFFFF', textDecoration: 'none',
-              lineHeight: 1.25, padding: '4px 8px', boxSizing: 'border-box' as const,
+              background: '#038390', border: '1px solid #026B76', borderRadius: 13, boxShadow: '0 5px 14px rgba(0,0,0,0.14)',
+              fontFamily: 'DM Sans, sans-serif', fontSize: 'clamp(13px,1.6vw,17px)', fontWeight: 700, color: '#FFFFFF', textDecoration: 'none',
+              lineHeight: 1.25, padding: '10px 18px', boxSizing: 'border-box' as const,
             }}
           >
             {t.hero.cta}

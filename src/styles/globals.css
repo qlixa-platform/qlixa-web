@@ -221,15 +221,19 @@ body {
    per-locale-shared coordinates, kept as inline styles) — inline styles
    otherwise always win over a plain class rule, including on :hover. */
 .hero-cta {
-  transition: background-color 200ms ease, transform 200ms ease, box-shadow 200ms ease;
+  transition: background-color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
 }
 .hero-cta:hover {
   background: #026B76 !important;
-  transform: translateY(-1px);
-  box-shadow: 0 4px 10px rgba(3,131,144,0.32) !important;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 18px rgba(0,0,0,0.18) !important;
 }
 .hero-cta:active {
   transform: translateY(0);
+}
+.hero-cta:focus-visible {
+  outline: 2px solid #026B76;
+  outline-offset: 2px;
 }
 
 /* Dropdown animation */
@@ -501,8 +505,9 @@ body {
     object-position: center center !important;
   }
 
-  /* ── HERO — decorative connector, hidden on mobile ── */
-  .hero-dotted-connector {
+  /* ── HERO — decorative connectors, hidden on mobile ── */
+  .hero-dotted-connector,
+  .hero-step3-cta-connector {
     display: none !important;
   }
 
