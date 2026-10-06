@@ -154,10 +154,10 @@ type HeroCopy = {
 // single shared laptop_hero_only.png. Same dimensions as the original
 // asset; only the file selected per locale changes.
 const HERO_LAPTOP_IMAGE: Record<Locale, string> = {
-  de: '/hero/laptop_hero_de.png',
-  en: '/hero/laptop_hero_en.png',
-  ua: '/hero/laptop_hero_ua.png',
-  ru: '/hero/laptop_hero_ru.png',
+  de: '/hero/laptop_hero_de.webp',
+  en: '/hero/laptop_hero_en.webp',
+  ua: '/hero/laptop_hero_ua.webp',
+  ru: '/hero/laptop_hero_ru.webp',
 }
 // All 4 locales now share one identical Hero structure/geometry (the
 // approved UA layout) and the same commercial logic (account/questionnaire/
@@ -846,7 +846,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="hero-laptop-image"
-              src={locale ? HERO_LAPTOP_IMAGE[locale] : '/hero/laptop_hero_de.png'}
+              src={locale ? HERO_LAPTOP_IMAGE[locale] : '/hero/laptop_hero_de.webp'}
               alt={
                 lang === 'UA' ? 'Попередній перегляд інтерфейсу QLIXA' :
                 lang === 'RU' ? 'Превью интерфейса QLIXA' :
@@ -959,11 +959,11 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
               aria-label={t.hero.ctaAriaLabel}
               style={{
                 position: 'absolute' as const, left: '33%', top: '34%', width: '20%', height: 'clamp(44px,5vw,54px)',
-                backgroundImage: "url('/hero/hero_button.png')", backgroundRepeat: 'no-repeat' as const, backgroundPosition: 'center' as const, backgroundSize: '100% 100%',
+                backgroundImage: "url('/hero/hero_button.webp')", backgroundRepeat: 'no-repeat' as const, backgroundPosition: 'center' as const, backgroundSize: '100% 100%',
                 textDecoration: 'none',
               }}
             >
-              {/* Real text label — not baked into hero_button.png.
+              {/* Real text label — not baked into hero_button.webp.
                   Positioned independently via left/top/transform (not
                   flex) so it can be nudged without touching the Link's
                   own coordinates. Initial guess: dead-center of the

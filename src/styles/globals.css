@@ -216,7 +216,7 @@ body {
 }
 
 /* Hero CTA — restrained hover/active. The button's visual background is
-   the custom hero_button.png artwork (backgroundImage, set inline), so
+   the custom hero_button.webp artwork (backgroundImage, set inline), so
    hover/active only use filter/transform rather than swapping colors
    that would fight the image. */
 .hero-cta {
@@ -510,7 +510,7 @@ body {
 
   /* ── HERO — CTA label/caption (Hero CTA as final action in the 3-step
      flow): the label is position:absolute on desktop so it can sit
-     anywhere inside the hero_button.png artwork — must be forced back
+     anywhere inside the hero_button.webp artwork — must be forced back
      into normal flow here, or it floats relative to whatever positioned
      ancestor it finds once .hero-cta itself goes position:static below.
      The caption is desktop-only positioned text tied to hero-content-
