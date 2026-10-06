@@ -974,7 +974,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             <div
               className="hero-cta-caption"
               style={{
-                position: 'absolute' as const, left: '33%', top: '44%', width: '20%',
+                position: 'absolute' as const, left: '33%', top: '48%', width: '20%',
                 textAlign: 'center' as const, fontFamily: 'DM Sans, sans-serif', fontWeight: 600, fontSize: 'clamp(9px,1.25vw,15px)', color: '#1A1A1A', lineHeight: 1.2,
               }}
             >
