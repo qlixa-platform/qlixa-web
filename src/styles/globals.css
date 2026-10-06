@@ -509,6 +509,28 @@ body {
     display: none !important;
   }
 
+  /* ── HERO — CTA label/caption (Hero CTA as final action in the 3-step
+     flow): the label is position:absolute on desktop so it can sit
+     anywhere inside the hero_button.png artwork — must be forced back
+     into normal flow here, or it floats relative to whatever positioned
+     ancestor it finds once .hero-cta itself goes position:static below.
+     The caption is desktop-only positioned text tied to hero-content-
+     container's %-coordinate space; mobile's own CTA button text
+     ("START", from hero-cta-label, now in normal flow) already serves
+     the same purpose, so the caption is hidden rather than given its
+     own mobile position. ── */
+  .hero-cta-label {
+    position: static !important;
+    left: auto !important;
+    top: auto !important;
+    transform: none !important;
+    white-space: normal !important;
+    font-size: 14px !important;
+  }
+  .hero-cta-caption {
+    display: none !important;
+  }
+
   /* ── HERO — alpine background, hidden on mobile (Hero Visual Cleanup
      micro-batch): at this breakpoint hero-crop-wrapper switches to
      height:auto/overflow:visible (content-driven), so a bottom-anchored

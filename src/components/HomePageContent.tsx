@@ -148,6 +148,7 @@ type HeroCopy = {
   // t.hero.flow data — kept here rather than duplicated into a new object).
   flow: { item1: HeroFlowItem; item2: HeroFlowItem; item3: HeroFlowItem; item4: HeroFlowItem }
   cta: string
+  ctaAriaLabel: string
 }
 // All 4 locales now share one identical Hero structure/geometry (the
 // approved UA layout) and the same commercial logic (account/questionnaire/
@@ -168,6 +169,7 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
         item4: { title: 'Готова декларація', price: '€24,90', desc: 'разово · без підписки' },
       },
       cta: 'Почати безкоштовно',
+      ctaAriaLabel: 'Почати податкову декларацію безкоштовно',
     },
   },
   EN: {
@@ -184,6 +186,7 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
         item4: { title: 'Completed tax return', price: '€24.90', desc: 'one-time · no subscription' },
       },
       cta: 'Start for free',
+      ctaAriaLabel: 'Start your tax return for free',
     },
   },
   RU: {
@@ -199,7 +202,8 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
         item3: { title: 'Предварительный расчёт', price: '€0', desc: 'возможный результат' },
         item4: { title: 'Готовая декларация', price: '€24,90', desc: 'разово · без подписки' },
       },
-      cta: 'Начать бесплатно',    
+      cta: 'Начать бесплатно',
+      ctaAriaLabel: 'Начать налоговую декларацию бесплатно',    
     },
   },
   DE: {
@@ -216,6 +220,7 @@ const HERO_TEXT: Record<string, { hero: HeroCopy }> = {
         item4: { title: 'Fertige Steuererklärung', price: '€24,90', desc: 'einmalig · kein Abo' },
       },
       cta: 'Kostenlos starten',
+      ctaAriaLabel: 'Steuererklärung kostenlos starten',
     },
   },
 }
@@ -933,21 +938,49 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
 
 
 
-          {/* CTA — same geometry/styling in all 4 locales; text and
-              /tax-return route come from t.hero.cta. */}
-          <Link
-            className="hero-cta"
-            href={locale ? localeHref(locale, '/tax-return') : '/tax-return'}
-            style={{
-              position: 'absolute' as const, left: '33%', top: '34%', width: '20%', height: 'clamp(44px,5vw,54px)',
-              display: 'flex', alignItems: 'center', justifyContent: 'center' as const, textAlign: 'center' as const,
-              backgroundImage: "url('/hero/hero_button.png')", backgroundRepeat: 'no-repeat' as const, backgroundPosition: 'center' as const, backgroundSize: '100% 100%',
-              fontFamily: 'DM Sans, sans-serif', fontSize: 'clamp(10px,1.6vw,15px)', fontWeight: 700, color: '#087B95', textDecoration: 'none',
-              lineHeight: 1.25, padding: '10px 18px', boxSizing: 'border-box' as const,
-            }}
-          >
-            {t.hero.cta}
-          </Link>
+          {/* CTA group — unstyled wrapper (same safe-wrapper technique as
+              HERO_HEADLINE above): contributes no box of its own, so the
+              Link below still resolves its position:absolute against
+              hero-content-container exactly as before. Final action after
+              steps 1–3, not a 4th step. */}
+          <div className="hero-cta-group">
+            <Link
+              className="hero-cta"
+              href={locale ? localeHref(locale, '/tax-return') : '/tax-return'}
+              aria-label={t.hero.ctaAriaLabel}
+              style={{
+                position: 'absolute' as const, left: '33%', top: '34%', width: '20%', height: 'clamp(44px,5vw,54px)',
+                backgroundImage: "url('/hero/hero_button.png')", backgroundRepeat: 'no-repeat' as const, backgroundPosition: 'center' as const, backgroundSize: '100% 100%',
+                textDecoration: 'none',
+              }}
+            >
+              {/* Real text label — not baked into hero_button.png.
+                  Positioned independently via left/top/transform (not
+                  flex) so it can be nudged without touching the Link's
+                  own coordinates. Initial guess: dead-center of the
+                  button box — adjust left/top below to fit the artwork. */}
+              <span
+                className="hero-cta-label"
+                style={{
+                  position: 'absolute' as const, left: '50%', top: '50%', transform: 'translate(-50%, -50%)',
+                  whiteSpace: 'nowrap' as const, fontFamily: 'DM Sans, sans-serif', fontSize: 'clamp(10px,1.6vw,15px)', fontWeight: 700, color: '#087B95',
+                }}
+              >
+                START
+              </span>
+            </Link>
+            {/* Caption below the CTA — same typographic family as the
+                step titles. Independent left/top; adjust to taste. */}
+            <div
+              className="hero-cta-caption"
+              style={{
+                position: 'absolute' as const, left: '33%', top: '44%', width: '20%',
+                textAlign: 'center' as const, fontFamily: 'DM Sans, sans-serif', fontWeight: 600, fontSize: 'clamp(9px,1.25vw,15px)', color: '#1A1A1A', lineHeight: 1.2,
+              }}
+            >
+              {t.hero.cta}
+            </div>
+          </div>
 
         </div>
         </div>
