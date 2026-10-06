@@ -1089,7 +1089,7 @@ export default function TaxReturnContent({ lang, locale }: { lang: InternalLangK
             <p style={{ fontSize: 14, color: '#595959' }}>{t.s6Support}</p>
           </div>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/platform/hero-mockup.png" alt={t.s6ImgAlt} style={{ width: '100%', height: 'auto', objectFit: 'contain' as const, display: 'block', borderRadius: 20 }} />
+          <img src="/platform/hero-mockup.webp" alt={t.s6ImgAlt} style={{ width: '100%', height: 'auto', objectFit: 'contain' as const, display: 'block', borderRadius: 20 }} />
         </div>
       </section>
 

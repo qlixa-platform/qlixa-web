@@ -1123,7 +1123,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             {/* CENTER — hero mockup image */}
             <div className="wiq-card-center" style={{ background: '#FFFFFF', borderRadius: 24, padding: '8px 12px', boxShadow: '4px 4px 0 #1A1A1A', border: '1.5px solid #1A1A1A', display: 'flex', flexDirection: 'column', alignItems: 'center', justifyContent: 'center', height: '100%', gap: 6, position: 'relative', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src="/platform/hero-mockup.png" alt="QLIXA" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
+              <img src="/platform/hero-mockup.webp" alt="QLIXA" style={{ width: '100%', height: '100%', objectFit: 'contain' }} />
             </div>
 
             {/* Card 5 */}
@@ -1185,7 +1185,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
               built from the exact same t2.cards/soonLabel data — no
               translation duplication. See WhatIsQlixaFeatureGrid.tsx. */}
           <WhatIsQlixaFeatureGrid
-            centerImg="/platform/hero-mockup.png"
+            centerImg="/platform/hero-mockup.webp"
             centerAlt="QLIXA"
             cards={[
               { img: '/what-is-qlixa/tax-return.png', alt: 'Повернення податку', title: t2.cards[0][0], desc: t2.cards[0][1] },
