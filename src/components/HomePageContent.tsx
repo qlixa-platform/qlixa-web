@@ -150,6 +150,15 @@ type HeroCopy = {
   cta: string
   ctaAriaLabel: string
 }
+// Hero laptop/phone mockup — one locale-specific PNG instead of the
+// single shared laptop_hero_only.png. Same dimensions as the original
+// asset; only the file selected per locale changes.
+const HERO_LAPTOP_IMAGE: Record<Locale, string> = {
+  de: '/hero/laptop_hero_de.png',
+  en: '/hero/laptop_hero_en.png',
+  ua: '/hero/laptop_hero_ua.png',
+  ru: '/hero/laptop_hero_ru.png',
+}
 // All 4 locales now share one identical Hero structure/geometry (the
 // approved UA layout) and the same commercial logic (account/questionnaire/
 // estimate free, completed declaration paid). The Hero CTA always links to
@@ -837,7 +846,7 @@ export default function HomePageContent({ lang, locale }: { lang: InternalLangKe
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               className="hero-laptop-image"
-              src="/hero/laptop_hero_only.png"
+              src={locale ? HERO_LAPTOP_IMAGE[locale] : '/hero/laptop_hero_de.png'}
               alt={
                 lang === 'UA' ? 'Попередній перегляд інтерфейсу QLIXA' :
                 lang === 'RU' ? 'Превью интерфейса QLIXA' :
