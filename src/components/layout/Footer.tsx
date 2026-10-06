@@ -381,19 +381,22 @@ export default function Footer({ locale }: { locale?: Locale } = {}) {
           </div>
 
           {/* Bottom bar — copyright | social icons | made with */}
-          <div style={{
-            paddingTop: 24, borderTop: '1px solid #f0f0f0',
+          <div className="footer-bottom-bar" style={{
+            background: 'linear-gradient(to bottom, rgba(255,255,255,0.45), rgba(255,255,255,0.78))',
+            backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)',
+            border: '1px solid rgba(255,255,255,0.65)', borderRadius: 20,
+            boxShadow: '0 4px 18px rgba(3,131,144,0.08)', padding: '16px 20px',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap',
-            gap: 16, fontSize: 12, color: 'var(--color-text-muted)',
+            gap: 16, fontSize: 12, color: 'var(--color-gray)',
           }}>
             <span>{t.copyright}</span>
 
             <div style={{ display: 'flex', gap: 14 }}>
               {socials.map(s => (
                 <a key={s.name} href={s.href} target="_blank" rel="noopener noreferrer"
-                  title={s.name} style={{ color: 'var(--color-text-muted)', display: 'flex' }}
-                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
-                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = 'var(--color-text-muted)'}
+                  title={s.name} style={{ color: '#038390', display: 'flex' }}
+                  onMouseEnter={e => (e.currentTarget as HTMLElement).style.color = '#026B76'}
+                  onMouseLeave={e => (e.currentTarget as HTMLElement).style.color = '#038390'}
                 >
                   {s.icon}
                 </a>

@@ -1634,6 +1634,14 @@ body {
   .legal-grid-1col {
     grid-template-columns: 1fr !important;
   }
+
+  /* Footer glass bottom bar: stack cleanly instead of wrapping mid-row
+     once copyright/icons/made-with no longer fit on one line. */
+  .footer-bottom-bar {
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
 }
 /* Narrowest phones: stack Cancel/Send rather than shrink their labels. */
 @media (max-width: 340px) {
