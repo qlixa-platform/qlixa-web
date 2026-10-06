@@ -466,9 +466,8 @@ body {
   }
 
   /* ── HERO — product visual (order 3) ──
-     Human QA: no decoration at all. The SAME existing asset
-     (/hero/laptop_hero_only.png — .hero-laptop-image is only a class
-     name, not a different image) is shown complete, centered, large,
+     Human QA: no decoration at all. The same locale-specific laptop
+     asset (.hero-laptop-image) is shown complete, centered, large,
      directly on the white Hero background. No ::before/::after, no
      background, no border. */
   .hero-visual-stage {
