@@ -293,8 +293,16 @@ export default function Footer({ locale }: { locale?: Locale } = {}) {
   return (
     <footer>
       <div style={{ height: 1, background: '#f0f0f0', width: '100%' }} />
-      <div style={{ background: `#ffffff url('/footer/footer-mountains.webp') bottom / cover no-repeat` }}>
-        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 16px' }}>
+      <div style={{ background: `#ffffff url('/footer/footer-mountains.webp') bottom / cover no-repeat`, position: 'relative' as const }}>
+        {/* Readability overlay between the mountain photo and the main Footer
+            content — position:absolute paints above static siblings by
+            default regardless of DOM order, so it needs its own z-index
+            (0) under the content wrapper's (1) to actually sit behind it. */}
+        <div aria-hidden="true" style={{
+          position: 'absolute' as const, inset: 0, zIndex: 0, pointerEvents: 'none' as const,
+          background: 'linear-gradient(to bottom, rgba(255,255,255,0.78) 0%, rgba(255,255,255,0.52) 45%, rgba(255,255,255,0.18) 75%, rgba(255,255,255,0) 100%)',
+        }} />
+        <div style={{ maxWidth: 1200, margin: '0 auto', padding: '48px 16px 0', position: 'relative' as const, zIndex: 1 }}>
           <div style={{
             display: 'grid',
             gridTemplateColumns: 'repeat(auto-fit, minmax(180px, 1fr))',
@@ -379,13 +387,20 @@ export default function Footer({ locale }: { locale?: Locale } = {}) {
               </button>
             </div>
           </div>
+        </div>
 
-          {/* Bottom bar — copyright | social icons | made with */}
-          <div className="footer-bottom-bar" style={{
-            background: 'linear-gradient(to bottom, rgba(255,255,255,0.45), rgba(255,255,255,0.78))',
-            backdropFilter: 'blur(6px)', WebkitBackdropFilter: 'blur(6px)',
-            border: '1px solid rgba(255,255,255,0.65)', borderRadius: 20,
-            boxShadow: '0 4px 18px rgba(3,131,144,0.08)', padding: '16px 20px',
+        {/* Bottom bar — copyright | social icons | made with. Full-width,
+            flush with the Footer's bottom edge so it reads as part of the
+            lake surface rather than a floating card; the inner wrapper
+            below keeps its content aligned with the columns above. */}
+        <div className="footer-bottom-bar" style={{
+          position: 'relative' as const, zIndex: 1,
+          background: 'linear-gradient(to bottom, rgba(240,247,248,0.20) 0%, rgba(240,247,248,0.42) 45%, rgba(240,247,248,0.68) 100%)',
+          backdropFilter: 'blur(7px)', WebkitBackdropFilter: 'blur(7px)',
+          border: 'none', boxShadow: 'none', borderRadius: 0,
+        }}>
+          <div className="footer-bottom-bar-inner" style={{
+            maxWidth: 1200, margin: '0 auto', padding: '16px',
             display: 'flex', alignItems: 'center', justifyContent: 'space-between', flexWrap: 'wrap',
             gap: 16, fontSize: 12, color: 'var(--color-gray)',
           }}>

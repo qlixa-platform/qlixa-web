@@ -1636,8 +1636,10 @@ body {
   }
 
   /* Footer glass bottom bar: stack cleanly instead of wrapping mid-row
-     once copyright/icons/made-with no longer fit on one line. */
-  .footer-bottom-bar {
+     once copyright/icons/made-with no longer fit on one line. The flex
+     row lives on the inner content wrapper now (the outer .footer-bottom-bar
+     is just the full-width glass background layer). */
+  .footer-bottom-bar-inner {
     flex-direction: column;
     justify-content: center;
     text-align: center;
