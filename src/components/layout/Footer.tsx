@@ -395,8 +395,8 @@ export default function Footer({ locale }: { locale?: Locale } = {}) {
             below keeps its content aligned with the columns above. */}
         <div className="footer-bottom-bar" style={{
           position: 'relative' as const, zIndex: 1,
-          background: 'linear-gradient(to bottom, rgba(240,247,248,0.20) 0%, rgba(240,247,248,0.42) 45%, rgba(240,247,248,0.68) 100%)',
-          backdropFilter: 'blur(7px)', WebkitBackdropFilter: 'blur(7px)',
+          background: 'linear-gradient(to bottom, rgba(240,247,248,0.10) 0%, rgba(240,247,248,0.18) 45%, rgba(240,247,248,0.28) 100%)',
+          backdropFilter: 'blur(3px)', WebkitBackdropFilter: 'blur(3px)',
           border: 'none', boxShadow: 'none', borderRadius: 0,
         }}>
           <div className="footer-bottom-bar-inner" style={{
